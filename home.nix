@@ -15,7 +15,7 @@ in
 
   home.packages = with pkgs; [
     cachix
-    # tig
+    tig
     # dotnet-sdk_5
     # nix-thunk
   ];

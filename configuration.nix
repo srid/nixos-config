@@ -67,6 +67,7 @@
     gnome3.gnome-tweaks
     brave
     vscode
+    obsidian
   ];
 
   services = {

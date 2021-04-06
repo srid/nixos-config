@@ -1,0 +1,2 @@
+- `home.nix`: Only install things that are needed in all platforms (VMs, VPS, WSL2, etc.)
+- `configuration.nix`: Install things I need natively on NixOS.
