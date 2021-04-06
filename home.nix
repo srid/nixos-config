@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
-let 
-  nix-thunk = 
-    (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") {}).command;
-in {
+let
+  nix-thunk =
+    (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
+in
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

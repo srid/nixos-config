@@ -2,20 +2,22 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e0516457-2611-4fbd-afdd-b96618c15fc9";
+    {
+      device = "/dev/disk/by-uuid/e0516457-2611-4fbd-afdd-b96618c15fc9";
       fsType = "ext4";
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/5C46-63E4";
+    {
+      device = "/dev/disk/by-uuid/5C46-63E4";
       fsType = "vfat";
     };
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/0bb9c031-1533-40bb-81ae-f956ba84568d"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/0bb9c031-1533-40bb-81ae-f956ba84568d"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
@@ -53,7 +55,7 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
-  
+
   users.users.srid = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
