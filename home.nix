@@ -84,21 +84,6 @@ in {
         t = "tig";
         l = "ls --color=always";
       };
-      # Without this, none of the Nix stuff will be on PATH.
-      initExtra = ''
-        if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-          . ~/.nix-profile/etc/profile.d/nix.sh;
-          export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH
-        fi # added by Nix installer
-        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-
-        # Add dotnet tools to PATH
-        export PATH=~/.dotnet/tools/:$PATH
-
-        # Rust 
-        export PATH=/home/srid/.cargo/bin:$PATH
-        source $HOME/.cargo/env
-        '';
     };
 
     starship = {
