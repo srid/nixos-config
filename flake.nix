@@ -13,7 +13,7 @@
         /* ({ pkgs, ... }: {
           system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
           nix.registry.nixpkgs.flake = nixpkgs;
-        }) */
+          }) */
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
