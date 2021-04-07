@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -11,16 +12,17 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4200ca92-3b3c-4a41-98d5-92bbc0a5597e";
+    {
+      device = "/dev/disk/by-uuid/4200ca92-3b3c-4a41-98d5-92bbc0a5597e";
       fsType = "ext4";
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7C8B-3F49";
+    {
+      device = "/dev/disk/by-uuid/7C8B-3F49";
       fsType = "vfat";
     };
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b03a08aa-1c9c-4674-b03b-ec59003306f5"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/b03a08aa-1c9c-4674-b03b-ec59003306f5"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
@@ -65,7 +67,7 @@
   services.xserver.desktopManager.gnome3.enable = true;
   services.openssh.enable = true;
   services.ipfs.enable = true;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;

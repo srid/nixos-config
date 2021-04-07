@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "bbenoist.nix"
+        "bbenoist.nix",
+        "b4dm4n.nixpkgs-fmt"
     ]
 }

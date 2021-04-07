@@ -7,8 +7,8 @@
     himalaya.url = "github:srid/himalaya/nixify";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, ... }: 
-    let 
+  outputs = inputs@{ self, home-manager, nixpkgs, ... }:
+    let
       system = "x86_64-linux";
       # Make configuration for any computer I use in my home office.
       mkHomeMachine = configurationNix: nixpkgs.lib.nixosSystem {
@@ -23,17 +23,19 @@
 
           # Packages from flake inputs
           ({ pkgs, lib, ... }: {
-            environment.systemPackages = 
-              let 
+
+            environment.systemPackages =
+              let
                 # Wrap himalaya to be aware of ProtonMail's bridge cert.
-                himalaya = lib.getAttrFromPath [system] inputs.himalaya.defaultPackage;
-                himalayaWithSslEnv = 
+                himalaya = lib.getAttrFromPath [ system ] inputs.himalaya.defaultPackage;
+                himalayaWithSslEnv =
                   pkgs.writeScriptBin "h" ''
                     #!${pkgs.stdenv.shell}
                     export SSL_CERT_FILE=~/.config/protonmail/bridge/cert.pem
                     exec ${himalaya}/bin/himalaya
-                    '';
-              in [
+                  '';
+              in
+              [
                 himalayaWithSslEnv
               ];
           })
@@ -47,7 +49,8 @@
           }
         ];
       };
-    in {
+    in
+    {
       nixosConfigurations.p71 = mkHomeMachine ./hosts/p71.nix;
       nixosConfigurations.x1c7 = mkHomeMachine ./hosts/x1c7.nix;
     };

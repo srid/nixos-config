@@ -1,0 +1,6 @@
+{
+    "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
+    "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+}
