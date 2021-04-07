@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+set -xe
+nix shell nixpkgs#nixpkgs-fmt --command nixpkgs-fmt *.nix */*.nix

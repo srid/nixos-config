@@ -12,12 +12,9 @@
       modules = [
         # System configuration
         ./configuration.nix
-        # ProtonMail Bridge
-        ({ pkgs, ...}: {
-            environment.systemPackages = [ pkgs.protonmail-bridge ];
-            services.gnome3.gnome-keyring.enable = true; 
-          }
-        )
+        ./modules/passwordstore.nix
+        ./modules/protonmail-bridge.nix
+
         # home-manager configuration
         home-manager.nixosModules.home-manager
         {
