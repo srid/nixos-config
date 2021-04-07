@@ -15,6 +15,7 @@
           # System configuration
           configurationNix
           ./modules/passwordstore.nix
+          ./modules/syncthing.nix
           ./modules/protonmail-bridge.nix
           ./modules/monitor-brightness.nix
 

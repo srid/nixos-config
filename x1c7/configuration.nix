@@ -72,11 +72,6 @@
 
   services = {
     openssh.enable = true;
-    syncthing = {
-      enable = true;
-      user = "srid";
-      dataDir = "/home/srid";
-    };
   };
 
   # Open ports in the firewall.
