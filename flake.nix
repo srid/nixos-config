@@ -16,10 +16,10 @@
         modules = [
           # System configuration
           configurationNix
-          ./modules/passwordstore.nix
-          ./modules/syncthing.nix
-          ./modules/protonmail-bridge.nix
-          ./modules/monitor-brightness.nix
+          ./features/passwordstore.nix
+          ./features/syncthing.nix
+          ./features/protonmail-bridge.nix
+          ./features/monitor-brightness.nix
 
           # Packages from flake inputs
           ({ pkgs, lib, ... }: {
@@ -48,7 +48,7 @@
         ];
       };
     in {
-      nixosConfigurations.p71 = mkHomeMachine ./p71/configuration.nix;
-      nixosConfigurations.x1c7 = mkHomeMachine ./x1c7/configuration.nix;
+      nixosConfigurations.p71 = mkHomeMachine ./hosts/p71.nix;
+      nixosConfigurations.x1c7 = mkHomeMachine ./hosts/x1c7.nix;
     };
 }
