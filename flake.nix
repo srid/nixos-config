@@ -14,6 +14,7 @@
         ./p71/configuration.nix
         ./modules/passwordstore.nix
         ./modules/protonmail-bridge.nix
+        ./modules/monitor-brightness.nix
 
         # home-manager configuration
         home-manager.nixosModules.home-manager
