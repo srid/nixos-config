@@ -55,8 +55,10 @@
   networking.interfaces.wlp4s0.useDHCP = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" "intel" ];
+  };
 
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
