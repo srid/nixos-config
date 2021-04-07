@@ -10,11 +10,15 @@
     nixosConfigurations.x1c7 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        /* ({ pkgs, ... }: {
-          system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-          nix.registry.nixpkgs.flake = nixpkgs;
-          }) */
+        # System configuration
         ./configuration.nix
+        # ProtonMail Bridge
+        ({ pkgs, ...}: {
+            environment.systemPackages = [ pkgs.protonmail-bridge ];
+            services.gnome3.gnome-keyring.enable = true; 
+          }
+        )
+        # home-manager configuration
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
