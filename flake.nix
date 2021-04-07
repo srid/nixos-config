@@ -7,11 +7,11 @@
   };
 
   outputs = { self, home-manager, nixpkgs }: {
-    nixosConfigurations.x1c7 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.p71 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         # System configuration
-        ./configuration.nix
+        ./p71/configuration.nix
         ./modules/passwordstore.nix
         ./modules/protonmail-bridge.nix
 
