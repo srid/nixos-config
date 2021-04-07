@@ -63,6 +63,8 @@
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
+  services.openssh.enable = true;
+  services.ipfs.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
@@ -79,7 +81,6 @@
     obsidian
   ];
 
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
