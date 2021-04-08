@@ -18,7 +18,7 @@
           configurationNix
           ./features/passwordstore.nix
           ./features/syncthing.nix
-          ./features/virtualization.nix
+          # ./features/virtualization.nix
           ./features/email
           ./features/monitor-brightness.nix
 
