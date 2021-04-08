@@ -68,6 +68,7 @@
     brave
     vscode
     obsidian
+    signal-desktop
   ];
 
   services = {
@@ -89,4 +90,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
