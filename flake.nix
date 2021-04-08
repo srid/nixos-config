@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
+    himalaya.url = "github:srid/himalaya/nixify-crate2nix";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
@@ -19,6 +20,11 @@
           ./features/syncthing.nix
           ./features/email
           ./features/monitor-brightness.nix
+
+          # HACK: This should really go under ./features/email
+          ({
+            environment.systemPackages = [ inputs.himalaya.outputs.defaultPackage.${system} ];
+          })
 
           # home-manager configuration
           home-manager.nixosModules.home-manager
