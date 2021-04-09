@@ -12,7 +12,7 @@ in
         [ cabal-install
           cabal-fmt
           ghcid
-          haskell-language-server
+          # haskell-language-server
         ]);
     overrides = self: super: with pkgs.haskell.lib; {
       # dulwich = dontCheck super.dulwich;

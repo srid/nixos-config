@@ -12,5 +12,6 @@ in
 {
   environment.systemPackages = with pkgs; [
     myst
+    alacritty
   ];
 }

@@ -20,7 +20,7 @@ main = do
     cfg =
       def
         { modMask = mod4Mask, -- Use Super instead of Alt
-          terminal = "myst",
+          terminal = "alacritty", -- "myst",
           layoutHook =
             borderSpacing $
               avoidStruts $
