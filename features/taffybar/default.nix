@@ -1,8 +1,8 @@
-{ config, pkgs, ...}:
-
-let 
+{ config, pkgs, ... }:
+let
   taffyPkg = pkgs.callPackage ./taffybar-srid { inherit pkgs; };
-in {
+in
+{
   systemd.user.services.taffybar = {
     enable = true;
     description = "Taffybar";

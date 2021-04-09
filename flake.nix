@@ -25,7 +25,7 @@
           ./features/monitor-brightness.nix
           ./features/xmonad
           ./features/desktopish
-          # ./features/taffybar
+          ./features/taffybar
 
           # HACK: This should really go under ./features/email
           ({
