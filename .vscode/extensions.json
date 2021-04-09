@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "bbenoist.nix",
-        "b4dm4n.nixpkgs-fmt"
+        "b4dm4n.nixpkgs-fmt",
+        "jnoortheen.nix-ide"
     ]
 }
