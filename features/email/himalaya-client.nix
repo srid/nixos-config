@@ -9,8 +9,21 @@
           # HACK: See note in flake.nix
           exec himalaya $*
         '';
+      # Helper to read and display the (HTML) email message in Markdown,
+      # highlighted with pager.
+      himalayaReadMail =
+        pkgs.writeScriptBin "h-read" ''
+          #!${pkgs.stdenv.shell}
+          ${himalayaWithSslEnv}/bin/h read $* \
+            | ${pkgs.pandoc}/bin/pandoc -f html -t markdown_strict \
+            | ${pkgs.bat}/bin/bat -l md
+        '';
+      # TODO more helpers
+      # - `h move` with fzf-selector for target folder
     in
     [
       himalayaWithSslEnv
+      # Helpers
+      himalayaReadMail
     ];
 }
