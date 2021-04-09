@@ -12,18 +12,16 @@
     let
       system = "x86_64-linux";
       # Make configuration for any computer I use in my home office.
-      mkHomeMachine = configurationNix: thinkpadModule: nixpkgs.lib.nixosSystem {
+      mkHomeMachine = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
+        modules = ([
           # System configuration
           configurationNix
-          thinkpadModule
+          # ./features/virtualization.nix
           ./features/passwordstore.nix
           ./features/syncthing.nix
-          # ./features/virtualization.nix
           ./features/email
           ./features/monitor-brightness.nix
-          ./features/desktopish
 
           # HACK: This should really go under ./features/email
           ({
@@ -37,15 +35,20 @@
             home-manager.useUserPackages = true;
             home-manager.users.srid = import ./home.nix;
           }
-        ];
+        ] ++ extraModules);
       };
     in
     {
       nixosConfigurations.p71 = mkHomeMachine
         ./hosts/p71.nix
-        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53;
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+          ./features/desktopish
+        ];
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix
-        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen;
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+        ];
     };
 }
