@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+set -xe
+nix-shell --run "ghcid -T \":main $*\""

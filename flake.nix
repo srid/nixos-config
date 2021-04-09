@@ -23,6 +23,9 @@
           # ./features/virtualization.nix
           ./features/email
           ./features/monitor-brightness.nix
+          ./features/xmonad
+          ./features/desktopish
+          ./features/taffybar
 
           # HACK: This should really go under ./features/email
           ({

@@ -63,7 +63,7 @@
   };
 
   # Enable the GNOME 3 Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
   services.openssh.enable = true;
   services.ipfs.enable = true;
@@ -79,9 +79,11 @@
   environment.systemPackages = with pkgs; [
     gnome3.gnome-tweaks
     brave
-    vscode nodejs-12_x  # Need this node https://nixos.wiki/wiki/Vscode
+    vscode
+    nodejs-12_x # Need this node https://nixos.wiki/wiki/Vscode
     obsidian
     signal-desktop
+    ripgrep
   ];
 
 
