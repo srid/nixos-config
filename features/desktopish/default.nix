@@ -7,6 +7,7 @@
     ./screencapture.nix
     ./fonts.nix
     ./touchpad-trackpoint.nix
+    ./autolock.nix
 
     # WMish things
     ./xmonad
