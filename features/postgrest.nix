@@ -6,7 +6,7 @@ in
   # PostgreSQL itself
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_12;
+    package = pkgs.postgresql_13;
     enableTCPIP = false;
     # https://nixos.wiki/wiki/PostgreSQL
     authentication = pkgs.lib.mkOverride 10
@@ -33,7 +33,8 @@ in
       ExecStart =
         let pgrstConf = pkgs.writeText "pgrst.conf" ''
           db-uri = "postgres://postgres@localhost/postgres"
-          db-schema = "public"
+          db-schema = "nixcloud"
+          # TODO: change when going production
           db-anon-role = "postgres"
           server-port = 7000
         '';

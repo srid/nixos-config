@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, system, inputs, ... }:
+let
+  himalaya = inputs.himalaya.outputs.defaultPackage.${system};
+in
+{
   environment.systemPackages =
     let
       # Wrap himalaya to be aware of ProtonMail's bridge cert.
@@ -6,8 +10,7 @@
         pkgs.writeScriptBin "h" ''
           #!${pkgs.stdenv.shell}
           export SSL_CERT_FILE=~/.config/protonmail/bridge/cert.pem
-          # HACK: See note in flake.nix
-          exec himalaya $*
+          exec ${himalaya}/bin/himalaya $*
         '';
       # Helper to read and display the (HTML) email message in Markdown,
       # highlighted with pager.

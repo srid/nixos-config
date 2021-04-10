@@ -14,6 +14,8 @@
       # Make configuration for any computer I use in my home office.
       mkHomeMachine = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
+        # Arguments to pass to all modules.
+        specialArgs = { inherit system inputs; };
         modules = ([
           # System configuration
           configurationNix
@@ -23,11 +25,6 @@
           ./features/syncthing.nix
           ./features/email
           ./features/monitor-brightness.nix
-
-          # HACK: This should really go under ./features/email
-          ({
-            environment.systemPackages = [ inputs.himalaya.outputs.defaultPackage.${system} ];
-          })
 
           # home-manager configuration
           home-manager.nixosModules.home-manager
