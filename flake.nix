@@ -17,7 +17,8 @@
         modules = ([
           # System configuration
           configurationNix
-          # ./features/virtualization.nix
+
+          # Features common to all of my machines
           ./features/passwordstore.nix
           ./features/syncthing.nix
           ./features/email
@@ -44,6 +45,8 @@
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/desktopish
+          # ./features/virtualization.nix
+          ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix

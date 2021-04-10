@@ -84,6 +84,8 @@
     obsidian
     signal-desktop
     ripgrep
+    fzf
+    htop
   ];
 
 
