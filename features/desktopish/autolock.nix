@@ -10,7 +10,7 @@
     locker = "${pkgs.xlockmore}/bin/xlock -mode space";
 
     # Suspend after sometime (enable this after things are okay)
-    killtime = 20; # mins
+    killtime = 10; # mins
     killer = "${pkgs.systemd}/bin/systemctl suspend";
   };
 }
