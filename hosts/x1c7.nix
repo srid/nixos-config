@@ -38,6 +38,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    trustedUsers = [ "root" "srid" ];
   };
 
   time.timeZone = "America/New_York";

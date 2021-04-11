@@ -57,11 +57,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1617992288,
-        "narHash": "sha256-gzpVOOAr7lFnl2vUG/zE6XD+knBl+VoUYYjrT7phQxI=",
+        "lastModified": 1618180539,
+        "narHash": "sha256-xn3XQ5vikgMWtDsHntlQUQpbSPyFE9VXFcNNUziVm6o=",
         "owner": "srid",
         "repo": "himalaya",
-        "rev": "8ce57493b5fd4bbc420f4631205d09160008ff11",
+        "rev": "034aaea2aa166c7983654b4c15b58a49648a13a7",
         "type": "github"
       },
       "original": {

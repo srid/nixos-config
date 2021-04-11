@@ -40,6 +40,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    trustedUsers = [ "root" "srid" ];
   };
 
   networking.hostName = "p71"; # Define your hostname.
