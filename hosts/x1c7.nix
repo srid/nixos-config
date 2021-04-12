@@ -67,9 +67,14 @@
   environment.systemPackages = with pkgs; [
     gnome3.gnome-tweaks
     brave
+    google-chrome
     vscode
     obsidian
     signal-desktop
+    psmisc
+    htop
+    fzf
+    ripgrep
   ];
 
   services = {

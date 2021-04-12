@@ -80,6 +80,7 @@
   environment.systemPackages = with pkgs; [
     gnome3.gnome-tweaks
     brave
+    google-chrome
     vscode
     nodejs-12_x # Need this node https://nixos.wiki/wiki/Vscode
     obsidian
@@ -87,6 +88,7 @@
     ripgrep
     fzf
     htop
+    psmisc
   ];
 
 
