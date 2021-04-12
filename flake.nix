@@ -11,6 +11,7 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     himalaya.url = "github:srid/himalaya/nixify-crate2nix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
@@ -29,6 +30,7 @@
           ./features/passwordstore.nix
           ./features/syncthing.nix
           ./features/email
+          ./features/emacs.nix
           ./features/monitor-brightness.nix
 
           # home-manager configuration

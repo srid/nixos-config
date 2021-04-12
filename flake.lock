@@ -17,6 +17,21 @@
         "type": "github"
       }
     },
+    "emacs-overlay": {
+      "locked": {
+        "lastModified": 1618166767,
+        "narHash": "sha256-GX9HpyX64eDkfuvGZgi3UZxUhqahEzyxwIlYLh3m1sM=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "e52579ab1b0fe093ea230116ac175be61488e7ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -168,6 +183,7 @@
     },
     "root": {
       "inputs": {
+        "emacs-overlay": "emacs-overlay",
         "himalaya": "himalaya",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
