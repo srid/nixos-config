@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official # cache.
-    nixpkgs.url = "github:nixos/nixpkgs/a73020b2a150322c9832b50baeb0296ba3b13dd7";
+    nixpkgs.url = "github:nixos/nixpkgs/e8893cc489de8ffbe8125fb0d37f05e8023a2d99";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -38,7 +38,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.srid = import ./home.nix;
+            home-manager.users.srid = import ./home.nix {
+              inherit inputs system;
+              pkgs = import nixpkgs { inherit system; };
+            };
           }
         ] ++ extraModules);
       };

@@ -1,23 +1,14 @@
 { pkgs, lib, system, inputs, ... }:
-let
-  himalaya = inputs.himalaya.outputs.defaultPackage.${system};
-in
 {
   environment.systemPackages =
     let
-      # Wrap himalaya to be aware of ProtonMail's bridge cert.
-      himalayaWithSslEnv =
-        pkgs.writeScriptBin "h" ''
-          #!${pkgs.stdenv.shell}
-          export SSL_CERT_FILE=~/.config/protonmail/bridge/cert.pem
-          exec ${himalaya}/bin/himalaya $*
-        '';
+      himalaya = import ./himalaya.nix { inherit pkgs system inputs; };
       # Helper to read and display the (HTML) email message in Markdown,
       # highlighted with pager.
       himalayaReadMail =
         pkgs.writeScriptBin "h-read" ''
           #!${pkgs.stdenv.shell}
-          ${himalayaWithSslEnv}/bin/h read $* \
+          ${himalaya}/bin/himalaya read $* \
             | ${pkgs.pandoc}/bin/pandoc -f html -t markdown_strict \
             | ${pkgs.bat}/bin/bat -l md
         '';
@@ -25,7 +16,7 @@ in
       # - `h move` with fzf-selector for target folder
     in
     [
-      himalayaWithSslEnv
+      himalaya
       # Helpers
       himalayaReadMail
     ];

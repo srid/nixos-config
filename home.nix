@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
-
+{ pkgs, inputs, system, ... }:
 let
   nix-thunk =
     (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
+  himalayaSrc = inputs.himalaya;
+  himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
 in
 {
   # Let Home Manager install and manage itself.
@@ -73,8 +74,16 @@ in
       vimAlias = true;
       # withNodeJs = true;
 
+      extraPackages = [
+        himalaya
+      ];
+
       plugins = with pkgs.vimPlugins; [
         vim-nix
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "himalaya";
+          src = himalayaSrc + "/vim";
+        })
       ];
     };
 
@@ -84,6 +93,7 @@ in
         g = "git";
         t = "tig";
         l = "ls --color=always";
+        h = "${himalaya}/bin/himalaya";
       };
     };
 
