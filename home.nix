@@ -80,6 +80,7 @@ in
 
       plugins = with pkgs.vimPlugins; [
         vim-nix
+        # telescope-nvim -- breaks himalaya
         (pkgs.vimUtils.buildVimPlugin {
           name = "himalaya";
           src = himalayaSrc + "/vim";
