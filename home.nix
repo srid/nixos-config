@@ -80,13 +80,33 @@ in
 
       plugins = with pkgs.vimPlugins; [
         vim-nix
-        # telescope-nvim -- breaks himalaya
+        # status bar / tabline
+        vim-airline
+        papercolor-theme
+        fzf-vim
+        ale
+        # telescope-nvim
+
         (pkgs.vimUtils.buildVimPlugin {
           name = "himalaya";
           src = himalayaSrc + "/vim";
         })
       ];
+
+      extraConfig = ''
+        " papercolor-theme
+        set t_Co=256   " This is may or may not needed.
+        set background=light
+        colorscheme PaperColor
+
+        " Find files using Telescope command-line sugar.
+        nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+        nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+        nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+        nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+      '';
     };
+
 
     bash = {
       enable = true;
