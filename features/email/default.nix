@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
     ./protonmail-bridge.nix
-    ./himalaya-client.nix
+    ./himalaya-workflow.nix
   ];
 }
