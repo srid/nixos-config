@@ -22,7 +22,7 @@
         set -xe
         date
         ${pkgs.xautolock}/bin/xautolock -disable
-        ${pkgs.xlockmore}/bin/xlock
+        ${pkgs.xlockmore}/bin/xlock -mode blank
         date
         ${pkgs.xautolock}/bin/xautolock -enable
         ${pkgs.cowsay}/bin/cowsay "Welcome back!"
