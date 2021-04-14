@@ -33,7 +33,7 @@ in
       ExecStart =
         let pgrstConf = pkgs.writeText "pgrst.conf" ''
           db-uri = "postgres://postgres@localhost/postgres"
-          db-schema = "nixcloud"
+          db-schema = "api"
           # TODO: change when going production
           db-anon-role = "postgres"
           server-port = 7000

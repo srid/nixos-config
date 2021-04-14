@@ -5,11 +5,9 @@
     enable = true;
     time = 5; # mins
 
-    # Not sure if some modes are the cause of system freeze
-    # So deterministically pick one.
-    locker = "${pkgs.xlockmore}/bin/xlock -mode space";
+    locker = "${pkgs.xlockmore}/bin/xlock";
 
-    # Suspend after sometime (enable this after things are okay)
+    # Suspend asap after lock. 
     killtime = 10; # mins
     killer = "${pkgs.systemd}/bin/systemctl suspend";
   };
