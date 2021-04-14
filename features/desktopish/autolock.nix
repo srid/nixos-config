@@ -5,7 +5,8 @@
     enable = true;
     time = 5; # mins
 
-    locker = "${pkgs.xlockmore}/bin/xlock";
+    # Some modes freeze P71, so explicitly select a mode that is known to be stable.
+    locker = "${pkgs.xlockmore}/bin/xlock -mode space";
 
     # Suspend asap after lock. 
     killtime = 10; # mins
