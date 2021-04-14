@@ -29,6 +29,7 @@
           # Features common to all of my machines
           ./features/passwordstore.nix
           ./features/syncthing.nix
+          ./features/protonvpn.nix
           ./features/email
           ./features/emacs.nix
           ./features/monitor-brightness.nix
@@ -52,7 +53,7 @@
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/desktopish
-          # ./features/virtualization.nix
+          ./features/virtualization.nix
           ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
