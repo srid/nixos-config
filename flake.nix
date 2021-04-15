@@ -61,7 +61,6 @@
         ./hosts/x1c7.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          ./features/desktopish
         ];
     };
 }

@@ -11,8 +11,8 @@
     ./redshift.nix
 
     # WMish things
-    # ./xmonad
-    ./sway.nix
+    ./xmonad
+    #./sway.nix
     # ./taffybar  # Disabled, because it rarely works
   ];
 }

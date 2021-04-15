@@ -52,7 +52,7 @@
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
   services.xserver.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
 
   users.users.srid = {
