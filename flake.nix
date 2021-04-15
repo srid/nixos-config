@@ -53,7 +53,8 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ./features/desktopish
+          #./features/desktopish
+          ./features/server-mode.nix
           ./features/virtualization.nix
           ./features/postgrest.nix
         ];
