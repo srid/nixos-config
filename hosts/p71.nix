@@ -78,17 +78,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gnome3.gnome-tweaks
+    aria2
     brave
+    fzf
+    gnome3.gnome-tweaks
     google-chrome
-    vscode
+    htop
+    mpv
     nodejs-12_x # Need this node https://nixos.wiki/wiki/Vscode
     obsidian
-    signal-desktop
-    ripgrep
-    fzf
-    htop
     psmisc
+    ripgrep
+    signal-desktop
+    vscode
   ];
 
 
