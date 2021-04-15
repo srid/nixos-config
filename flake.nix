@@ -10,7 +10,7 @@
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
-    himalaya.url = "github:srid/himalaya/nixify-crate2nix-smtp-port";
+    himalaya.url = "github:srid/himalaya/nixify-crate2nix";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
@@ -32,7 +32,7 @@
           ./features/syncthing.nix
           ./features/protonvpn.nix
           ./features/email
-          ./features/emacs.nix
+          #./features/emacs.nix
           ./features/monitor-brightness.nix
 
           # home-manager configuration

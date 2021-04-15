@@ -72,16 +72,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1618290512,
-        "narHash": "sha256-HDU0PP46V6kgP7dkEtsnnGOGQfom+6N3GKNV/S+b6r0=",
+        "lastModified": 1618509900,
+        "narHash": "sha256-6L2iT+069ffbG0x5AnPm99khBha2HvH0lA8xjlD6kqc=",
         "owner": "srid",
         "repo": "himalaya",
-        "rev": "ef89cbd30296389b7d363ecbb03080081304d98e",
+        "rev": "8f09b577e3b3c32c71b8036dc3bc01287a598234",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "nixify-crate2nix-smtp-port",
+        "ref": "nixify-crate2nix",
         "repo": "himalaya",
         "type": "github"
       }
