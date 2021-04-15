@@ -55,21 +55,21 @@
   networking.interfaces.wlp4s0.useDHCP = true;
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "nvidia" "intel" ];
-  };
+  #services.xserver = {
+  #  enable = true;
+  #  videoDrivers = [ "nvidia" "intel" ];
+  #};
 
   # Enable the GNOME 3 Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  #services.xserver.desktopManager.gnome3.enable = true;
   services.openssh.enable = true;
   services.ipfs.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" ]; 
   };
 
   # List packages installed in system profile. To search, run:
