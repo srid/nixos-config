@@ -11,6 +11,6 @@
 
     # WMish things
     ./xmonad
-    ./taffybar
+    # ./taffybar  # Disabled, because it rarely works
   ];
 }
