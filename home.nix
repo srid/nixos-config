@@ -117,8 +117,7 @@ in
         h = "${himalaya}/bin/himalaya";
         em = "TERM=xterm-direct emacs -nw";
       };
-      sessionVariables = {
-      };
+      sessionVariables = { };
     };
 
     starship = {
@@ -129,6 +128,15 @@ in
     autojump.enable = true;
     fzf.enable = true;
     jq.enable = true;
+  };
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "p71" = {
+        hostname = "192.168.2.24";
+      };
+    };
   };
 
   # This value determines the Home Manager release that your
