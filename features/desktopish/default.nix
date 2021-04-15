@@ -8,6 +8,7 @@
     ./fonts.nix
     ./touchpad-trackpoint.nix
     ./autolock.nix
+    ./redshift.nix
 
     # WMish things
     ./xmonad

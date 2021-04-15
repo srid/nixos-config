@@ -27,6 +27,7 @@
           configurationNix
 
           # Features common to all of my machines
+          ./features/current-location.nix
           ./features/passwordstore.nix
           ./features/syncthing.nix
           ./features/protonvpn.nix

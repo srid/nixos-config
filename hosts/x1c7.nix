@@ -41,8 +41,6 @@
     trustedUsers = [ "root" "srid" ];
   };
 
-  time.timeZone = "America/New_York";
-
   networking.hostName = "x1c7";
   networking.networkmanager.enable = true;
 

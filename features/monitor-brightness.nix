@@ -7,6 +7,6 @@
     ddcutil
 
     # This can control the laptop display.
-    xorg.xbacklight
+    brightnessctl
   ];
 }
