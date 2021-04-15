@@ -115,6 +115,9 @@ in
         t = "tig";
         l = "ls --color=always";
         h = "${himalaya}/bin/himalaya";
+        em = "TERM=xterm-direct emacs -nw";
+      };
+      sessionVariables = {
       };
     };
 
