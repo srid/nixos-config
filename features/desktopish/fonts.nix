@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-   fonts = {
+  fonts = {
     enableDefaultFonts = true;
 
     fonts = with pkgs; [
@@ -15,9 +15,6 @@
       # For fish powerline plugin
       powerline-fonts
       cascadia-code
-
-      # Doom emacs
-      emacs-all-the-icons-fonts
     ];
   };
 }

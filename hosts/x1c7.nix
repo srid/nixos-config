@@ -68,30 +68,14 @@
     gnome3.gnome-tweaks
     google-chrome
     htop
-    obsidian
-    psmisc
     ripgrep
     signal-desktop
     vscode
-    opera
   ];
 
   services = {
     openssh.enable = true;
   };
-
-  security.sudo.extraRules = [
-    {
-      users = [ "srid" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
