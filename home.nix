@@ -18,7 +18,10 @@ in
     cachix
     tig
     gh
-    # nix-thunk
+    procs # no more: ps -ef | grep 
+    ytop
+    tealdeer
+    # ^ easy to forget these; write SRS?
   ];
 
   programs = {

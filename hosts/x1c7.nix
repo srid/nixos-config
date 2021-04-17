@@ -80,6 +80,19 @@
     openssh.enable = true;
   };
 
+  security.sudo.extraRules = [
+    {
+      users = [ "srid" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
