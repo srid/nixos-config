@@ -32,6 +32,7 @@
           ./features/passwordstore.nix
           ./features/syncthing.nix
           ./features/protonvpn.nix
+          ./features/docker.nix
           ./features/email
           #./features/emacs.nix
           ./features/monitor-brightness.nix
@@ -56,7 +57,6 @@
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           #./features/desktopish
           ./features/server-mode.nix
-          ./features/virtualization.nix
           ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
