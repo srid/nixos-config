@@ -19,7 +19,6 @@ in
     tig
     gh
     procs # no more: ps -ef | grep 
-    ytop
     tealdeer
     # ^ easy to forget these; write SRS?
   ];

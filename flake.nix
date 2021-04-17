@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official # cache.
-    nixpkgs.url = "github:nixos/nixpkgs/e019872af81e4013fd518fcacfba74b1de21a50e";
+    nixpkgs.url = "github:nixos/nixpkgs/dcdf30a78a523296b5f9d44fb67afac485b64737";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -62,6 +62,7 @@
         ./hosts/x1c7.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ./features/block-socialmedia.nix
         ];
     };
 }
