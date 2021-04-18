@@ -59,17 +59,17 @@
   #  enable = true;
   #  videoDrivers = [ "nvidia" "intel" ];
   #};
-
-  # Enable the GNOME 3 Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome3.enable = true;
+
   services.openssh.enable = true;
   services.ipfs.enable = true;
+  services.netdata.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; 
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -82,7 +82,7 @@
     google-chrome
     htop
     mpv
-    nodejs-12_x # Need this node https://nixos.wiki/wiki/Vscode
+    nodejs-12_x # Need this for https://nixos.wiki/wiki/Vscode
     obsidian
     psmisc
     ripgrep

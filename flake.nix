@@ -28,6 +28,7 @@
 
           # Features common to all of my machines
           ./features/self-ide.nix
+          ./features/caches
           ./features/current-location.nix
           ./features/passwordstore.nix
           ./features/syncthing.nix
