@@ -72,16 +72,15 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1618617299,
-        "narHash": "sha256-3cSNuPyfBQAJ5qnsHo+LB0D9dQpztnRXEMkEh9mOzsk=",
-        "owner": "srid",
+        "lastModified": 1618697171,
+        "narHash": "sha256-C5uVAjelFVfIoQVypmcOMsq1YwzfZNppfic7yBFdabo=",
+        "owner": "soywod",
         "repo": "himalaya",
-        "rev": "ecc6e8c7bb2224f33ec83f50a49e46dca9855cd9",
+        "rev": "76f9084f9151a5b35a5a209014341a7a841c890e",
         "type": "github"
       },
       "original": {
-        "owner": "srid",
-        "ref": "nixify-crate2nix",
+        "owner": "soywod",
         "repo": "himalaya",
         "type": "github"
       }

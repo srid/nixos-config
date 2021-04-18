@@ -10,7 +10,7 @@
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
-    himalaya.url = "github:srid/himalaya/nixify-crate2nix";
+    himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
