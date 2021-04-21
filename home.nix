@@ -135,7 +135,7 @@ in
     enable = true;
     matchBlocks = {
       "p71" = {
-        hostname = "192.168.2.24";
+        hostname = "192.168.2.25";
       };
     };
   };
