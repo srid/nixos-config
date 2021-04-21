@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official # cache.
-    nixpkgs.url = "github:nixos/nixpkgs/dcdf30a78a523296b5f9d44fb67afac485b64737";
+    nixpkgs.url = "github:nixos/nixpkgs/04bb7dc19bc7b382f76b186e9674397a4f371f4a";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -35,7 +35,7 @@
           ./features/protonvpn.nix
           ./features/docker.nix
           ./features/email
-          #./features/emacs.nix
+          ./features/emacs.nix
           ./features/monitor-brightness.nix
 
           # home-manager configuration
