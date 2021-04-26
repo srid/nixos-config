@@ -34,7 +34,6 @@
           ./features/syncthing.nix
           ./features/protonvpn.nix
           ./features/docker.nix
-          ./features/email
           ./features/emacs.nix
           ./features/monitor-brightness.nix
 
@@ -64,6 +63,7 @@
         ./hosts/x1c7.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ./features/email
           ./features/block-socialmedia.nix
         ];
     };

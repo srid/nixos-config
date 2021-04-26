@@ -116,7 +116,7 @@ in
         g = "git";
         t = "tig";
         l = "ls --color=always";
-        h = "${himalaya}/bin/himalaya";
+        h = "himalaya";
       };
       sessionVariables = { };
     };
