@@ -70,6 +70,7 @@
     htop
     ripgrep
     signal-desktop
+    vlc
     vscode
   ];
 
