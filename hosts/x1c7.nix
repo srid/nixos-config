@@ -23,6 +23,9 @@
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
+  # FIXME: https://github.com/NixOS/nixpkgs/pull/97972#issuecomment-834774554
+  services.tlp.enable = false;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
