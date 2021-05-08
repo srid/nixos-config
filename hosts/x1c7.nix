@@ -77,6 +77,7 @@
     signal-desktop
     vlc
     vscode
+    mpv
   ];
 
   services = {
