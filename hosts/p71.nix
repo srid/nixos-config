@@ -54,6 +54,8 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp4s0.useDHCP = true;
 
+  programs.mosh.enable = true;
+
   # Enable the X11 windowing system.
   #services.xserver = {
   #  enable = true;
