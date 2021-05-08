@@ -1,10 +1,10 @@
 { pkgs, inputs, ... }:
 let
-  # emacs = pkgs.emacsUnstable;
-  emacs = pkgs.emacs;
+  emacs = pkgs.emacsUnstable;
+  # emacs = pkgs.emacs;
 in
 {
-  # nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+  nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
   environment.systemPackages = [
     emacs
 
