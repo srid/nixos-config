@@ -12,6 +12,7 @@
     home-manager.url = "github:nix-community/home-manager";
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:

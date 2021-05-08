@@ -4,6 +4,7 @@ let
     (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
   himalayaSrc = inputs.himalaya;
   himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
+  neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
 {
   # Let Home Manager install and manage itself.
@@ -72,8 +73,8 @@ in
 
     neovim = {
       enable = true;
+      package = neovim-nightly;
       viAlias = true;
-      vimAlias = true;
       # withNodeJs = true;
 
       extraPackages = [
@@ -87,7 +88,7 @@ in
         papercolor-theme
         fzf-vim
         ale
-        # telescope-nvim
+        telescope-nvim
 
         (pkgs.vimUtils.buildVimPlugin {
           name = "himalaya";
