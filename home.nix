@@ -6,7 +6,7 @@ let
   himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
-{
+rec {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -91,29 +91,8 @@ in
       ];
 
       plugins = with pkgs.vimPlugins; [
-        # Language support
-        vim-nix
-        vim-markdown
-
-        # IDE support
-        completion-nvim # A async completion framework aims to provide completion to neovim's built in LSP written in Lua
-        lsp-status-nvim
-        nvim-treesitter  # syntax highlighting
-        nvim-lspconfig
-
-        # Theme
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "tokyonight.nvim";
-          src = inputs.tokyonight;
-        })  # This doesn't render colors well
-        onedark-vim
-
-        # TODO: comment
         vim-airline
-        # papercolor-theme
-        fzf-vim
-        ale
-        telescope-nvim
+        papercolor-theme
 
         (pkgs.vimUtils.buildVimPlugin {
           name = "himalaya";
@@ -122,44 +101,12 @@ in
       ];
 
       extraConfig = ''
-        "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-        "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-        "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-        if (empty($TMUX))
-          if (has("nvim"))
-            "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-            let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-          endif
-          "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-          "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-          " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-          if (has("termguicolors"))
-            set termguicolors
-          endif
-        endif
-
         " papercolor-theme
         " set t_Co=256   " This is may or may not needed.
-        " set background=light
-        " let g:tokyonight_style = "day"
-        syntax on
-        colorscheme onedark
-
-        " Find files using Telescope command-line sugar.
-        nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-        nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-        nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-        nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-        " IDE
-        lua require'lspconfig'.hls.setup{}
-
-        "Markdown
-        let g:vim_markdown_new_list_item_indent = 2
-
+        set background=light
+        colorscheme PaperColor
       '';
     };
-
 
     bash = {
       enable = true;

@@ -343,15 +343,15 @@
         "rotate-text": "rotate-text"
       },
       "locked": {
-        "lastModified": 1619598899,
-        "narHash": "sha256-+wvgPmY0qa+kpScJhJKyB05jWF8JaxsMlPF9kr/8WIM=",
-        "owner": "vlaci",
+        "lastModified": 1620474154,
+        "narHash": "sha256-k6eSgpLI1DxiHpmTNRsp2h/nQbTT0fO+7jIihBKnGMc=",
+        "owner": "srid",
         "repo": "nix-doom-emacs",
-        "rev": "746c847149f3d40ea952038f7fe78ce0d7808138",
+        "rev": "8aed53c7a19533609d2968bd7470036615d21a63",
         "type": "github"
       },
       "original": {
-        "owner": "vlaci",
+        "owner": "srid",
         "repo": "nix-doom-emacs",
         "type": "github"
       }
@@ -585,8 +585,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_6",
-        "tokyonight": "tokyonight"
+        "nixpkgs": "nixpkgs_6"
       }
     },
     "rotate-text": {
@@ -621,22 +620,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "tokyonight": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1620382079,
-        "narHash": "sha256-ny87pRVy9mWAz+aSBWToj9NntGARDgmCKW2zhLIK25E=",
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
-        "rev": "529e6d9f325c82c0b40f8d8b329c6c310a6114c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },

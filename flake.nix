@@ -13,13 +13,7 @@
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
-
-    #Vim plugins
-    tokyonight = {
-      url = "github:folke/tokyonight.nvim";
-      flake = false;
-    };
+    nix-doom-emacs.url = "github:srid/nix-doom-emacs";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
