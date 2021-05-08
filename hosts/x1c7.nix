@@ -78,6 +78,8 @@
     vlc
     vscode
     mpv
+    alacritty
+    fractal
   ];
 
   services = {
