@@ -83,6 +83,7 @@ in
 
       plugins = with pkgs.vimPlugins; [
         vim-nix
+        vim-markdown
         # status bar / tabline
         vim-airline
         papercolor-theme
