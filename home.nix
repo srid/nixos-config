@@ -82,11 +82,25 @@ in
       ];
 
       plugins = with pkgs.vimPlugins; [
+        # Language support
         vim-nix
         vim-markdown
-        # status bar / tabline
+
+        # IDE support
+        completion-nvim # A async completion framework aims to provide completion to neovim's built in LSP written in Lua
+        lsp-status-nvim
+        nvim-treesitter  # syntax highlighting
+        nvim-lspconfig
+
+        # Theme
+        (pkgs.vimUtils.buildVimPlugin {
+          name = "tokyonight.nvim";
+          src = inputs.tokyonight;
+        })
+
+        # TODO: comment
         vim-airline
-        papercolor-theme
+        # papercolor-theme
         fzf-vim
         ale
         telescope-nvim
@@ -99,15 +113,19 @@ in
 
       extraConfig = ''
         " papercolor-theme
-        set t_Co=256   " This is may or may not needed.
-        set background=light
-        colorscheme PaperColor
+        " set t_Co=256   " This is may or may not needed.
+        " set background=light
+        let g:tokyonight_style = "day"
+        colorscheme tokyonight
 
         " Find files using Telescope command-line sugar.
         nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
         nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
         nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
         nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+        " IDE
+        lua require'lspconfig'.hls.setup{}
       '';
     };
 

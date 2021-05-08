@@ -277,7 +277,8 @@
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_5",
+        "tokyonight": "tokyonight"
       }
     },
     "rust-overlay": {
@@ -296,6 +297,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1620382079,
+        "narHash": "sha256-ny87pRVy9mWAz+aSBWToj9NntGARDgmCKW2zhLIK25E=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "529e6d9f325c82c0b40f8d8b329c6c310a6114c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },
