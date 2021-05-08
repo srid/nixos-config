@@ -13,6 +13,7 @@
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
 
     #Vim plugins
     tokyonight = {
@@ -41,7 +42,7 @@
           ./features/syncthing.nix
           ./features/protonvpn.nix
           ./features/docker.nix
-          ./features/emacs.nix
+          # ./features/emacs.nix
           ./features/monitor-brightness.nix
 
           # home-manager configuration

@@ -15,6 +15,10 @@ in
   home.username = "srid";
   home.homeDirectory = "/home/srid";
 
+  imports = [
+    inputs.nix-doom-emacs.hmModule
+  ];
+
   home.packages = with pkgs; [
     cachix
     tig
@@ -69,6 +73,11 @@ in
         bind - split-window -v -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
       '';
+    };
+
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./config/doom.d;
     };
 
     neovim = {
