@@ -79,7 +79,9 @@
     vscode
     mpv
     alacritty
-    fractal
+    nheko  # Element.io desktop app
+    youtube-dl
+    newsflash  # RSS reader
   ];
 
   services = {
