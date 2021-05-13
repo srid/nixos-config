@@ -84,7 +84,7 @@
     google-chrome
     htop
     mpv
-    nodejs-12_x # Need this for https://nixos.wiki/wiki/Vscode
+    nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode
     obsidian
     psmisc
     ripgrep
