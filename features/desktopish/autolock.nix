@@ -2,7 +2,7 @@
 
 {
   services.xserver.xautolock = {
-    enable = true;
+    enable = false;
     time = 5; # mins
 
     # Some modes freeze P71, so explicitly select a mode that is known to be stable.
