@@ -76,12 +76,12 @@ rec {
     };
 
     doom-emacs = {
-      enable = true;
+      enable = false;
       doomPrivateDir = ./config/doom.d;
     };
 
     neovim = {
-      enable = true;
+      enable = false;
       package = neovim-nightly;
       viAlias = true;
       # withNodeJs = true;

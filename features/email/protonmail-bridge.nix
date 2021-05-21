@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = [ pkgs.protonmail-bridge ];
-  services.gnome3.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   # Before starting the service, use `protonmail-bridge --cli` and run 'login'
   # to configure.

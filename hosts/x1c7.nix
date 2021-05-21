@@ -23,6 +23,12 @@
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
+  # Try to fix default shitty sound experience on Carbon
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+  };
+
   # FIXME: https://github.com/NixOS/nixpkgs/pull/97972#issuecomment-834774554
   services.tlp.enable = false;
 
@@ -58,16 +64,17 @@
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pulsemixer
     brave
     fzf
     gnome3.gnome-tweaks
@@ -79,9 +86,10 @@
     vscode
     mpv
     alacritty
-    nheko  # Element.io desktop app
+    nheko # Element.io desktop app
     youtube-dl
-    newsflash  # RSS reader
+    newsflash # RSS reader
+    # snes9x-gtk
   ];
 
   services = {
