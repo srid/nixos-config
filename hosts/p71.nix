@@ -65,7 +65,10 @@
   #services.xserver.desktopManager.gnome.enable = true;
 
   services.openssh.enable = true;
-  services.ipfs.enable = true;
+  services.ipfs = {
+  	enable = true;
+	user = "srid";
+  };
   services.netdata.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
