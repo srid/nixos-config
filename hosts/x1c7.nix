@@ -86,10 +86,10 @@
     vscode
     mpv
     alacritty
-    nheko # Element.io desktop app
     youtube-dl
     newsflash # RSS reader
     # snes9x-gtk
+    obsidian
   ];
 
   services = {
