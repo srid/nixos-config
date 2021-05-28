@@ -25,6 +25,7 @@ rec {
     gh
     procs # no more: ps -ef | grep 
     tealdeer
+    zellij
     # ^ easy to forget these; write SRS?
   ];
 
@@ -117,7 +118,6 @@ rec {
         ll = "${pkgs.lsd}/bin/lsd -l";
         ls = "l";
         h = "himalaya";
-        tldr = "${pkgs.tealdeer}/bin/tldr";
       };
       sessionVariables = { };
     };
