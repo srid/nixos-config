@@ -113,8 +113,11 @@ rec {
       shellAliases = {
         g = "git";
         t = "tig";
-        l = "ls --color=always";
+        l = "${pkgs.lsd}/bin/lsd";
+        ll = "${pkgs.lsd}/bin/lsd -l";
+        ls = "l";
         h = "himalaya";
+        tldr = "${pkgs.tealdeer}/bin/tldr";
       };
       sessionVariables = { };
     };
