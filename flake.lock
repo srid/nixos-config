@@ -247,11 +247,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1620589237,
-        "narHash": "sha256-jZQNkolyEXewhDlC8SIYrAELmyxuwmN84dbGYNDMIXs=",
+        "lastModified": 1622670430,
+        "narHash": "sha256-3+dvIyOZrgrvUqz76AnMy0hw2zRZV8fdHUgki6wTWgI=",
         "owner": "soywod",
         "repo": "himalaya",
-        "rev": "36d3cd63475ed63cd78c9328cc0fbed310b481f6",
+        "rev": "27638be387940f6f3fbf1542b96d2131967af944",
         "type": "github"
       },
       "original": {
@@ -467,17 +467,17 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1622194753,
-        "narHash": "sha256-76qtvFp/vFEz46lz5iZMJ0mnsWQYmuGYlb0fHgKqqMg=",
+        "lastModified": 1622545032,
+        "narHash": "sha256-1Y+2LFqnMBEH9OZzMBdLWl6GWFt/xzNz0V5X+m05Ing=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "540dccb2aeaffa9dc69bfdc41c55abd7ccc6baa3",
+        "rev": "1c2986bbb806c57f9470bf3231d8da7250ab9091",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "540dccb2aeaffa9dc69bfdc41c55abd7ccc6baa3",
+        "rev": "1c2986bbb806c57f9470bf3231d8da7250ab9091",
         "type": "github"
       }
     },

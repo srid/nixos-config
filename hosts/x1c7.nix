@@ -87,9 +87,9 @@
     mpv
     alacritty
     youtube-dl
-    newsflash # RSS reader
     # snes9x-gtk
     obsidian
+    inkscape
   ];
 
   services = {
