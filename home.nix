@@ -82,7 +82,7 @@ rec {
     };
 
     neovim = {
-      enable = false;
+      enable = true;
       package = neovim-nightly;
       viAlias = true;
       # withNodeJs = true;
