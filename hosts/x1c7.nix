@@ -90,6 +90,7 @@
     # snes9x-gtk
     obsidian
     inkscape
+    newsflash
   ];
 
   services = {
