@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official # cache.
-    nixpkgs.url = "github:nixos/nixpkgs/fbfb79400a08bf754e32b4d4fc3f7d8f8055cf94";
+    nixpkgs.url = "github:nixos/nixpkgs/432fc2d9a67f92e05438dff5fdc2b39d33f77997";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -57,8 +57,8 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          #./features/desktopish
-          ./features/server-mode.nix
+          ./features/desktopish/fonts.nix
+          # ./features/server-mode.nix
           ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine

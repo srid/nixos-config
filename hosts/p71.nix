@@ -9,8 +9,9 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
+  # https://notes.srid.ca/rtl8821cu
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
   fileSystems."/" =
     {
@@ -33,7 +34,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -58,12 +59,12 @@
   programs.mosh.enable = true;
 
   # Enable the X11 windowing system.
-  #services.xserver = {
-  #  enable = true;
-  #  videoDrivers = [ "nvidia" "intel" ];
-  #};
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" "intel" ];
+  };
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   services.openssh.enable = true;
   services.ipfs = {
