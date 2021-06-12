@@ -40,6 +40,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
   nix = {

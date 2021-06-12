@@ -10,6 +10,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
     {
@@ -66,8 +67,8 @@
 
   services.openssh.enable = true;
   services.ipfs = {
-  	enable = true;
-	user = "srid";
+    enable = true;
+    user = "srid";
   };
   services.netdata.enable = true;
 
