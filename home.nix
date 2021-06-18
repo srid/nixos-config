@@ -26,6 +26,7 @@ rec {
     procs # no more: ps -ef | grep 
     tealdeer
     zellij
+    dust
     # ^ easy to forget these; write SRS?
   ];
 

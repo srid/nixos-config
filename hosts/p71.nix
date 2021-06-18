@@ -56,15 +56,14 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp4s0.useDHCP = true;
 
-  programs.mosh.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" "intel" ];
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   services.openssh.enable = true;
   services.ipfs = {
@@ -73,10 +72,9 @@
   };
   services.netdata.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.srid = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+  programs = {
+    mosh.enable = true;
+    steam.enable = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -97,7 +95,11 @@
     vscode
   ];
 
-
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.srid = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
