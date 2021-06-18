@@ -31,6 +31,7 @@
 
           # Features common to all of my machines
           ./features/self-ide.nix
+          ./features/desktopish
           ./features/caches
           ./features/current-location.nix
           ./features/passwordstore.nix
@@ -59,15 +60,14 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ./features/desktopish/fonts.nix
+          #./features/desktopish/fonts.nix
           # ./features/server-mode.nix
-          ./features/postgrest.nix
+          # ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          ./features/desktopish
           ./features/email
         ];
     };

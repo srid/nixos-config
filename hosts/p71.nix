@@ -61,8 +61,8 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" "intel" ];
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    #displayManager.gdm.enable = true;
+    #desktopManager.gnome.enable = true;
   };
 
   services.openssh.enable = true;
@@ -77,13 +77,15 @@
     steam.enable = true;
   };
 
+  programs.adb.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     aria2
     brave
     fzf
-    gnome3.gnome-tweaks
+    # gnome3.gnome-tweaks
     google-chrome
     htop
     mpv
@@ -98,7 +100,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "adbusers" ];
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
