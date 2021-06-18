@@ -12,4 +12,10 @@
     # Tap to click
     touchpad.tapping = true;
   };
+
+  hardware.trackpoint = {
+    enable = true;
+    sensitivity = 160;
+    speed = 150;
+  };
 }
