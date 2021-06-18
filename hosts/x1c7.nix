@@ -79,6 +79,7 @@
     brave
     fzf
     gnome3.gnome-tweaks
+    gnome3.gnome-sound-recorder
     google-chrome
     htop
     ripgrep

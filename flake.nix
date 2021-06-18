@@ -14,6 +14,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:srid/nix-doom-emacs";
+    emanote.url = "github:srid/emanote";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
@@ -38,6 +39,7 @@
           ./features/docker.nix
           # ./features/emacs.nix
           ./features/monitor-brightness.nix
+          ./features/ema/emanote.nix
 
           # home-manager configuration
           home-manager.nixosModules.home-manager
