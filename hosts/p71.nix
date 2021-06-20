@@ -30,6 +30,9 @@
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -86,7 +89,7 @@
     brave
     fzf
     # gnome3.gnome-tweaks
-    google-chrome
+    # google-chrome
     htop
     mpv
     nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode
@@ -95,12 +98,13 @@
     ripgrep
     signal-desktop
     vscode
+    pulsemixer
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "adbusers" ];
+    extraGroups = [ "wheel" "networkmanager" "adbusers" "audio" ];
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
