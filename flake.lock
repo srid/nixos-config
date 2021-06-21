@@ -123,6 +123,7 @@
         "ema": "ema",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils_2",
+        "heist": "heist",
         "nixpkgs": [
           "emanote",
           "ema",
@@ -133,11 +134,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1624116460,
-        "narHash": "sha256-KQq927+rtLsWxov4Sf3nCnjqpsL6oFARV1bdOx0BESQ=",
+        "lastModified": 1624291415,
+        "narHash": "sha256-0OlJhz5OW/QXJ/qvHFSncNfLYyU4vnYmAUkMgv8Hyac=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "78c9a2cf39d20fd90015e810b6d244cc270df49e",
+        "rev": "5501ae08611c6d21661f332b7a77e23bbf7ab0a5",
         "type": "github"
       },
       "original": {
@@ -346,6 +347,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "heist": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1624205223,
+        "narHash": "sha256-+bcrEKjB/kDRAqOunCD/cKBBVOJUTmY9RoCQ++I42oM=",
+        "owner": "srid",
+        "repo": "heist",
+        "rev": "a8be6f93656f87199e03b9dfb9979dc061614108",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "ref": "emanote",
+        "repo": "heist",
         "type": "github"
       }
     },
