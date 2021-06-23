@@ -1,6 +1,6 @@
 # Srid's XMonad configuration
 
-See https://www.srid.ca/xmonad-conf-ide.html
+See https://www.srid.ca/xmonad-conf-ide
 
 ## Reloading running XMonad
 
