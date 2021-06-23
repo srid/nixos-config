@@ -1,5 +1,21 @@
 { config, pkgs, ... }:
-
+let
+  caffeine =
+    pkgs.writeScriptBin "caffeine"
+      '' 
+        #!${pkgs.runtimeShell}
+        set -xe
+        HOURS=$*
+        SECS=`expr 1 + 60 \* 60 \* $HOURS`
+        date
+        ${pkgs.xautolock}/bin/xautolock -disable
+        ${pkgs.cowsay}/bin/cowsay "Autolock de-activated for next $HOURS hours"
+        sleep $SECS
+        date
+        ${pkgs.xautolock}/bin/xautolock -enable
+        ${pkgs.cowsay}/bin/cowsay "Autolock re-activated."
+      '';
+in
 {
   services.xserver.xautolock = {
     enable = true;
@@ -28,5 +44,13 @@
         ${pkgs.xautolock}/bin/xautolock -enable
         ${pkgs.cowsay}/bin/cowsay "Welcome back!"
       '')
+    # Run this before watching a movie
+    (pkgs.writeScriptBin "caffeine-2hr"
+      '' 
+        #!${pkgs.runtimeShell}
+        set -xe
+        ${caffeine} 2
+      '')
+    caffeine
   ];
 }

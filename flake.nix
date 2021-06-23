@@ -5,8 +5,8 @@
     # To update nixpkgs (and thus NixOS), pick the nixos-unstable rev from
     # https://status.nixos.org/
     # 
-    # This ensures that we always use the official # cache.
-    nixpkgs.url = "github:nixos/nixpkgs/33d42ad7cf2769ce6364ed4e52afa8e9d1439d58";
+    # This ensures that we always use the official nix cache.
+    nixpkgs.url = "github:nixos/nixpkgs/7e567a3d092b7de69cdf5deaeb8d9526de230916";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";

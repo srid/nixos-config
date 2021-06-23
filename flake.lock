@@ -134,11 +134,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1624291415,
-        "narHash": "sha256-0OlJhz5OW/QXJ/qvHFSncNfLYyU4vnYmAUkMgv8Hyac=",
+        "lastModified": 1624417136,
+        "narHash": "sha256-o/47k1POFGe70HqvjNLk3dFcc2Gv6C5OLThfMpuKgPc=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "5501ae08611c6d21661f332b7a77e23bbf7ab0a5",
+        "rev": "96fb6d8701e2b50f66784ec0ae3c474e529bbda6",
         "type": "github"
       },
       "original": {
@@ -612,17 +612,17 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1624024598,
-        "narHash": "sha256-X++38oH5MKEmPW4/2WdMaHQvwJzO8pJfbnzMD7DbG1E=",
+        "lastModified": 1624271441,
+        "narHash": "sha256-26QNDCdRE5mPOWYJrPGpVzgrJ3ZxqvWOONfeMsjryz4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "33d42ad7cf2769ce6364ed4e52afa8e9d1439d58",
+        "rev": "7e567a3d092b7de69cdf5deaeb8d9526de230916",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "33d42ad7cf2769ce6364ed4e52afa8e9d1439d58",
+        "rev": "7e567a3d092b7de69cdf5deaeb8d9526de230916",
         "type": "github"
       }
     },
