@@ -134,11 +134,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1624495811,
-        "narHash": "sha256-gt1Jftv3imzXMZsjggvFwDibDnQ1wrzi+mpMxz6pY2I=",
+        "lastModified": 1624564624,
+        "narHash": "sha256-qkE1/NNNKhtJ2UxJBGz4P4w/UhKlOiYlDrxKvlwLdX4=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "5f7bd315dd8d477a0071d2165b3148b9168ae3d6",
+        "rev": "747b802d4f23f85f597a827c039a8f67f2f6b01f",
         "type": "github"
       },
       "original": {
