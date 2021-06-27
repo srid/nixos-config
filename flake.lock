@@ -134,11 +134,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1624564624,
-        "narHash": "sha256-qkE1/NNNKhtJ2UxJBGz4P4w/UhKlOiYlDrxKvlwLdX4=",
+        "lastModified": 1624804241,
+        "narHash": "sha256-J9wu8G/QdrCv7XutYQBt2I5BhE87bQT5ym6I8MvkmfE=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "747b802d4f23f85f597a827c039a8f67f2f6b01f",
+        "rev": "e8545c736be6c4783341ea289372f924b8e5b8a8",
         "type": "github"
       },
       "original": {
@@ -788,11 +788,11 @@
     "tagtree": {
       "flake": false,
       "locked": {
-        "lastModified": 1623279971,
-        "narHash": "sha256-O8VHrbFDDLP6wo6BFK9UN1fHQyYsHYElJzYfT1B7O4c=",
+        "lastModified": 1624654230,
+        "narHash": "sha256-/oMuPj360ZAXFJwTwoDFKKwn5jfIbsl7+IBPDFv5oEE=",
         "owner": "srid",
         "repo": "tagtree",
-        "rev": "59d84f738722800f3a0ef942213a725eeb511900",
+        "rev": "667c5a5073eddb8ddd875726b1fb6c41e09f0591",
         "type": "github"
       },
       "original": {
