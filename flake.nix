@@ -31,6 +31,7 @@
 
           # Features common to all of my machines
           ./features/self-ide.nix
+          ./features/block-socialmedia.nix
           ./features/desktopish
           ./features/caches
           ./features/current-location.nix

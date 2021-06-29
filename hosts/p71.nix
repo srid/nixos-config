@@ -77,7 +77,6 @@
 
   programs = {
     mosh.enable = true;
-    steam.enable = true;
   };
 
   programs.adb.enable = true;
@@ -99,7 +98,6 @@
     signal-desktop
     vscode
     pulsemixer
-    treesheets
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
