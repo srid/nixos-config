@@ -64,8 +64,6 @@
   programs.mosh.enable = true;
 
   services.xserver.enable = true;
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
 
   users.users.srid = {
     isNormalUser = true;
@@ -84,15 +82,12 @@
     htop
     ripgrep
     signal-desktop
-    vlc
     vscode
     mpv
     alacritty
     youtube-dl
-    # snes9x-gtk
     obsidian
     inkscape
-    newsflash
   ];
 
   services = {

@@ -15,4 +15,8 @@
     #./sway.nix
     # ./taffybar  # Disabled, because it rarely works
   ];
+
+  environment.systemPackages = with pkgs; [
+    acpi
+  ];
 }
