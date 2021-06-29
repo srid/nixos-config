@@ -19,5 +19,8 @@
 
       127.0.0.1 facebook.com
       127.0.0.1 www.facebook.com
+
+      127.0.0.1 app.slack.com
+      127.0.0.1 discord.com
     '';
 }
