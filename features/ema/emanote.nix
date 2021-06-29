@@ -16,7 +16,7 @@ in
     };
     serviceConfig = {
       Restart = "always";
-      ExecStart = "${emanote}/bin/emanote -C /home/srid/Documents/Notes";
+      ExecStart = "${emanote}/bin/emanote --layers /home/srid/Documents/Notes";
     };
   };
 }
