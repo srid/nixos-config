@@ -29,6 +29,7 @@ rec {
     dust
     ripgrep
     htop
+    bottom # htop alternative
     fzf
     # ^ easy to forget these; write SRS?
   ];

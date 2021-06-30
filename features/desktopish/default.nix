@@ -22,6 +22,8 @@
     mpv
     pulsemixer
     xorg.xmessage
+    maim
+    xclip
   ];
 
 }
