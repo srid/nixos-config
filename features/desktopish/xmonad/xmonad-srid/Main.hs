@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeApplications #-}
 
 import qualified Data.Map.Strict as M
 import XMonad
+import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks)
 import XMonad.Layout.NoBorders (withBorder)
@@ -22,14 +22,20 @@ main = do
         { modMask = mod4Mask, -- Use Super instead of Alt
           terminal = "alacritty", -- "myst",
           layoutHook =
-            borderSpacing $
+            borderSpacingBetweenWindows $
               avoidStruts $
                 ThreeColMid 1 (3 / 100) (1 / 2) ||| layoutHook def,
+          logHook =
+            pointerFollowsFocus,
           keys = myKeys,
           -- https://htmlcolorcodes.com/
           focusedBorderColor = "#50CBE8"
         }
-    -- Add border spacing between windows
+
+    pointerFollowsFocus =
+      let centerOfWindow = ((0.5, 0.5), (0, 0))
+       in uncurry updatePointer centerOfWindow
+
     myKeys baseConfig@XConfig {modMask = modKey} =
       keys def baseConfig
         <> M.fromList
@@ -38,7 +44,8 @@ main = do
             ((modKey, xK_b), sendMessage ToggleStruts)
             -- ...
           ]
-    borderSpacing =
+
+    borderSpacingBetweenWindows =
       withBorder 5
         . spacingRaw
           -- Apply borders only when there are 2 or more windows
