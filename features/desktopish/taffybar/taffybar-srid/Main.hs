@@ -1,6 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 
+import Control.Exception (SomeException, catch)
+import Control.Monad.Reader (ReaderT (ReaderT), runReaderT)
 import Data.Foldable (traverse_)
 import GI.Gtk.Objects.Widget (Widget)
 import System.Log.Logger
@@ -13,7 +16,8 @@ import System.Taffybar (startTaffybar)
 import System.Taffybar.Context (TaffyIO)
 import System.Taffybar.Information.CPU (cpuLoad)
 import System.Taffybar.SimpleConfig (SimpleTaffyConfig (endWidgets), barHeight, defaultSimpleTaffyConfig, startWidgets, toTaffyConfig)
-import System.Taffybar.Widget (defaultClockConfig, defaultWorkspacesConfig, textClockNewWith, workspacesNew)
+import System.Taffybar.Util ((<|||>))
+import System.Taffybar.Widget (WindowIconPixbufGetter, defaultClockConfig, defaultWorkspacesConfig, getWindowIconPixbuf, getWindowIconPixbufFromClass, getWindowIconPixbufFromDesktopEntry, getWindowIconPixbufFromEWMH, scaledWindowIconPixbufGetter, textClockNewWith, workspacesNew)
 import System.Taffybar.Widget.Battery (batteryIconNew)
 import System.Taffybar.Widget.CommandRunner (commandRunnerNew)
 import System.Taffybar.Widget.Generic.Graph
@@ -51,7 +55,11 @@ cfg =
     }
 
 workspacesW :: TaffyIO Widget
-workspacesW = workspacesNew defaultWorkspacesConfig
+workspacesW =
+  workspacesNew $
+    defaultWorkspacesConfig
+      { getWindowIconPixbuf = myGetWindowIconPixbuf
+      }
 
 clockW :: TaffyIO Widget
 clockW = textClockNewWith defaultClockConfig
@@ -84,3 +92,18 @@ enableDebugLogging = do
         getLogger "StatusNotifier.Tray",
         getLogger "System.Taffybar.Widget.Battery"
       ]
+
+-- https://github.com/taffybar/taffybar/issues/403#issuecomment-870403234
+
+handleException :: WindowIconPixbufGetter -> WindowIconPixbufGetter
+handleException getter = \size windowData ->
+  ReaderT $ \c ->
+    catch (runReaderT (getter size windowData) c) $ \(_ :: SomeException) ->
+      return Nothing
+
+myGetWindowIconPixbuf :: WindowIconPixbufGetter
+myGetWindowIconPixbuf =
+  scaledWindowIconPixbufGetter $
+    handleException getWindowIconPixbufFromDesktopEntry
+      <|||> handleException getWindowIconPixbufFromClass
+      <|||> handleException getWindowIconPixbufFromEWMH
