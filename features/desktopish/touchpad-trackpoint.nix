@@ -11,12 +11,23 @@
 
     # Tap to click
     touchpad.tapping = true;
+
   };
 
   hardware.trackpoint = {
     enable = true;
-    sensitivity = 240;
-    speed = 250;
     device = "TPPS/2 Elan TrackPoint"; # Check with `xinput`
+    # FIXME: This doesn't have any effect. Wheras `xinput set-prop` (on CLI) does.
+    #sensitivity = 240;
+    #speed = 250;
   };
+
+  # Automating the aforementioned `xinput set-prop` ...
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xinput} --set-prop 'TPPS/2 Elan TrackPoint' 'libinput Accel Speed' 0.8
+  '';
+
+  environment.systemPackages = with pkgs; [
+    libinput # libinput CLI
+  ];
 }
