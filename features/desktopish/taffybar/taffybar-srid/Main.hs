@@ -93,17 +93,17 @@ enableDebugLogging = do
         getLogger "System.Taffybar.Widget.Battery"
       ]
 
+-- More reliable than taffybar's version:
 -- https://github.com/taffybar/taffybar/issues/403#issuecomment-870403234
-
-handleException :: WindowIconPixbufGetter -> WindowIconPixbufGetter
-handleException getter = \size windowData ->
-  ReaderT $ \c ->
-    catch (runReaderT (getter size windowData) c) $ \(_ :: SomeException) ->
-      return Nothing
-
 myGetWindowIconPixbuf :: WindowIconPixbufGetter
 myGetWindowIconPixbuf =
   scaledWindowIconPixbufGetter $
     handleException getWindowIconPixbufFromDesktopEntry
       <|||> handleException getWindowIconPixbufFromClass
       <|||> handleException getWindowIconPixbufFromEWMH
+  where
+    handleException :: WindowIconPixbufGetter -> WindowIconPixbufGetter
+    handleException getter = \size windowData ->
+      ReaderT $ \c ->
+        catch (runReaderT (getter size windowData) c) $ \(_ :: SomeException) ->
+          return Nothing
