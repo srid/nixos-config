@@ -10,7 +10,9 @@ executable taffybar-srid
   main-is:          Main.hs
   build-depends:
     , base
-    , taffybar
+    -- Use a version that fixes memory leak,
+    -- https://github.com/taffybar/taffybar/blob/master/CHANGELOG.md
+    , taffybar >= 3.2.2
     , xmonad
     , xmonad-contrib
     , xmobar

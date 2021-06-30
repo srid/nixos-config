@@ -31,6 +31,8 @@ import System.Taffybar.Widget.Layout
     layoutNew,
   )
 
+-- FIXME: Too much memory usage, https://github.com/srid/nixos-config/issues/8
+
 main :: IO ()
 main = do
   -- enableDebugLogging
@@ -48,8 +50,8 @@ cfg =
           -- scratchW,
           -- FIXME: doesn't work
           -- menuWidgetNew Nothing,
-          layoutNew defaultLayoutConfig,
-          cpuW
+          layoutNew defaultLayoutConfig
+          -- cpuW
         ],
       barHeight = 50
     }
