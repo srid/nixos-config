@@ -9,6 +9,7 @@
     ./touchpad-trackpoint.nix
     ./autolock.nix
     ./redshift.nix
+    ./gnome-things.nix
 
     # WMish things
     ./xmonad
@@ -22,15 +23,5 @@
     pulsemixer
     xorg.xmessage
   ];
-
-  #
-  # Various GNOME non-sense that must be enabled to work with WMs
-  #
-
-  services.gnome.at-spi2-core.enable = true;
-
-  # https://github.com/taffybar/taffybar/issues/403
-  services.xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-  gtk.iconCache.enable = true;
 
 }
