@@ -9,7 +9,6 @@ version:             0.1.0.0
 -- description:
 -- bug-reports:
 -- license:
-license-file:        LICENSE
 author:              Sridhar Ratnakumar
 maintainer:          srid@srid.ca
 -- copyright:
@@ -21,7 +20,7 @@ executable xmobar-srid
   main-is:             Main.hs
   -- other-modules:
   -- other-extensions:
-  build-depends:       base >=4.13 && <4.14
+  build-depends:       base
                       , xmobar
                       , text
   -- hs-source-dirs:

@@ -4,4 +4,4 @@ import Xmobar
 
 main :: IO ()
 main =
-  xmobarMain
+  xmobar defaultConfig
