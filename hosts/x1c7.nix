@@ -59,8 +59,6 @@
 
   programs.mosh.enable = true;
 
-  # FIXME: https://github.com/NixOS/nixpkgs/pull/97972#issuecomment-834774554
-  # services.tlp.enable = false;
   services.xserver.enable = true;
   services.openssh.enable = true;
 

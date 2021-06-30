@@ -20,5 +20,6 @@
     acpi
     mpv
     pulsemixer
+    xorg.xmessage
   ];
 }
