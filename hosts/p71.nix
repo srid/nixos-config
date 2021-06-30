@@ -87,8 +87,6 @@
     aria2
     brave
     fzf
-    # gnome3.gnome-tweaks
-    # google-chrome
     htop
     mpv
     nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode

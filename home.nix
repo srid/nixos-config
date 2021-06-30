@@ -27,6 +27,9 @@ rec {
     tealdeer
     zellij
     dust
+    ripgrep
+    htop
+    fzf
     # ^ easy to forget these; write SRS?
   ];
 

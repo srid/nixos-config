@@ -29,9 +29,6 @@
     support32Bit = true;
   };
 
-  # FIXME: https://github.com/NixOS/nixpkgs/pull/97972#issuecomment-834774554
-  services.tlp.enable = false;
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -39,7 +36,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "ntfs" ];
 
   nixpkgs.config.allowUnfree = true;
@@ -53,7 +50,6 @@
 
   networking.hostName = "x1c7";
   networking.networkmanager.enable = true;
-
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
@@ -63,42 +59,23 @@
 
   programs.mosh.enable = true;
 
+  # FIXME: https://github.com/NixOS/nixpkgs/pull/97972#issuecomment-834774554
+  # services.tlp.enable = false;
   services.xserver.enable = true;
+  services.openssh.enable = true;
 
   users.users.srid = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pulsemixer
     brave
-    fzf
-    gnome3.gnome-tweaks
-    gnome3.gnome-sound-recorder
-    google-chrome
-    htop
-    ripgrep
     signal-desktop
     vscode
-    mpv
-    alacritty
-    youtube-dl
     obsidian
     inkscape
   ];
-
-  services = {
-    openssh.enable = true;
-  };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

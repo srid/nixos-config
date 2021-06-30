@@ -15,7 +15,8 @@
 
   hardware.trackpoint = {
     enable = true;
-    sensitivity = 160;
-    speed = 150;
+    sensitivity = 240;
+    speed = 250;
+    device = "TPPS/2 Elan TrackPoint"; # Check with `xinput`
   };
 }

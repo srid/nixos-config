@@ -13,10 +13,12 @@
     # WMish things
     ./xmonad
     #./sway.nix
-    # ./taffybar  # Disabled, because it rarely works
+    ./taffybar # Disabled, because it rarely works
   ];
 
   environment.systemPackages = with pkgs; [
     acpi
+    mpv
+    pulsemixer
   ];
 }
