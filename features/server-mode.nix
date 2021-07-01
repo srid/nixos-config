@@ -1,4 +1,3 @@
- 
 { config, pkgs, ... }:
 
 {
@@ -10,6 +9,6 @@
       SCHED_POWERSAVE_ON_AC = 1;
     };
   };
-  # This machine is now a long-running home-server with a bluetooth keyboard
+  # This machine is now a long-running home-server
   services.logind.lidSwitch = "ignore";
 }

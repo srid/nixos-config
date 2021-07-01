@@ -32,7 +32,7 @@
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
-
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -58,15 +58,6 @@
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp4s0.useDHCP = true;
-
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = false;
-    videoDrivers = [ "nvidia" "intel" ];
-    #displayManager.gdm.enable = true;
-    #desktopManager.gnome.enable = true;
-  };
 
   services.openssh.enable = true;
   services.ipfs = {
