@@ -9,3 +9,5 @@ Once the new `xmonad` binary is in $PATH (as a result of running `nixos-rebuild`
 ```
 xmonad --restart
 ```
+
+In VSCode, just press <kbd>Ctrl+Shift+B</kbd>.
