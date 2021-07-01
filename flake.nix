@@ -31,14 +31,12 @@
 
           # Features common to all of my machines
           ./features/self-ide.nix
-          ./features/block-socialmedia.nix
           ./features/caches
           ./features/current-location.nix
           ./features/passwordstore.nix
           ./features/syncthing.nix
           ./features/protonvpn.nix
           ./features/docker.nix
-          # ./features/emacs.nix
           ./features/monitor-brightness.nix
           ./features/ema/emanote.nix
 
@@ -60,7 +58,6 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          #./features/desktopish/fonts.nix
           ./features/server-mode.nix
           # ./features/postgrest.nix
         ];
@@ -70,6 +67,7 @@
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
           ./features/email
           ./features/desktopish
+          ./features/block-socialmedia.nix
         ];
     };
 }
