@@ -57,11 +57,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1624894901,
-        "narHash": "sha256-lrPvzAkvuELlPzXVSOw93AsCexWg3JKr/IbJ9dgqIlc=",
+        "lastModified": 1625150322,
+        "narHash": "sha256-dlZ734zRKknbqP40kzP4LSgJTz841HGvgcQ7ThpNBD0=",
         "owner": "srid",
         "repo": "ema",
-        "rev": "bf23158bc3d9456bb22b6e3e96a0b1d536e26f27",
+        "rev": "6684300f7c5b663f9bc6d28985ca5789f0144bd8",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1625005210,
-        "narHash": "sha256-XLSnuH6K7wXmKiKiSRc0ramFlrKyfg1zx/0bz8llwaE=",
+        "lastModified": 1625151116,
+        "narHash": "sha256-TrfqCSkwMsy8+F/yk10PfPjVPNp06QLrmZeWZQseN0s=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "ff0838d7038e6828ace33cdc863447b270dd5457",
+        "rev": "e1ffaf7b4b410aab0b82c3f9ce49cf4765ca826f",
         "type": "github"
       },
       "original": {
