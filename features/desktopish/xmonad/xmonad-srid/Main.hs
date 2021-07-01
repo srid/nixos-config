@@ -23,8 +23,7 @@ main = do
           terminal = "alacritty", -- "myst",
           layoutHook =
             borderSpacingBetweenWindows $
-              avoidStruts $
-                ThreeColMid 1 (3 / 100) (1 / 2) ||| layoutHook def,
+              avoidStruts $ myThreeCol ||| layoutHook def,
           logHook =
             pointerFollowsFocus,
           keys = myKeys,
@@ -32,6 +31,11 @@ main = do
           focusedBorderColor = "#50CBE8"
         }
 
+    myThreeCol =
+      ThreeColMid
+        1 -- Master window count
+        (3 / 100) -- Resize delta
+        (1 / 2) -- Initial column size
     pointerFollowsFocus =
       let centerOfWindow = ((0.5, 0.5), (0, 0))
        in uncurry updatePointer centerOfWindow
@@ -39,7 +43,8 @@ main = do
     myKeys baseConfig@XConfig {modMask = modKey} =
       keys def baseConfig
         <> M.fromList
-          [ ((modKey, xK_q), restart "/run/current-system/sw/bin/xmonad" True),
+          [ -- Disable it, to prevent accidental press.
+            -- ((modKey, xK_q), restart "/run/current-system/sw/bin/xmonad" True),
             ((modKey, xK_f), spawn "screenshot"),
             ((modKey, xK_b), sendMessage ToggleStruts)
             -- ...

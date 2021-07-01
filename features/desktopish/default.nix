@@ -23,8 +23,6 @@
     mpv
     pulsemixer
     xorg.xmessage
-    maim
-    xclip
   ];
 
   services.xserver = {
