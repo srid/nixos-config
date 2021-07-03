@@ -61,7 +61,7 @@
 
   services.openssh.enable = true;
   services.ipfs = {
-    enable = true;
+    enable = false;
     user = "srid";
   };
   services.netdata.enable = true;
