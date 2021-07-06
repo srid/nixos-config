@@ -6,14 +6,14 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/3a8d7958a610cd3fec3a6f424480f91a1b259185";
+    nixpkgs.url = "github:nixos/nixpkgs/09c38c29f2c719cd76ca17a596c2fdac9e186ceb";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nix-doom-emacs.url = "github:srid/nix-doom-emacs";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
     emanote.url = "github:srid/emanote";
   };
 

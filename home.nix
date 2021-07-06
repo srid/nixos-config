@@ -20,6 +20,7 @@ rec {
   ];
 
   home.packages = with pkgs; [
+    gnumake
     cachix
     tig
     gh
@@ -82,7 +83,7 @@ rec {
     };
 
     doom-emacs = {
-      enable = false;
+      enable = true;
       doomPrivateDir = ./config/doom.d;
     };
 
