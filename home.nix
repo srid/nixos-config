@@ -33,6 +33,8 @@ rec {
     bottom # htop alternative
     fzf
     # ^ easy to forget these; write SRS?
+    hledger
+    hledger-web
   ];
 
   programs = {
