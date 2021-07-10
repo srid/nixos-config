@@ -32,9 +32,12 @@ rec {
     htop
     bottom # htop alternative
     fzf
+    aria2
     # ^ easy to forget these; write SRS?
     hledger
     hledger-web
+    # latex
+    texlive.combined.scheme-full
   ];
 
   programs = {
@@ -85,7 +88,7 @@ rec {
     };
 
     doom-emacs = {
-      enable = true;
+      enable = false;
       doomPrivateDir = ./config/doom.d;
     };
 
