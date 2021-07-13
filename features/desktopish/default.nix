@@ -15,7 +15,7 @@
     ./xmonad
     #./sway.nix
     # ./taffybar # Disabled, because it rarely works
-    ./xmobar
+    # ./xmobar
   ];
 
   environment.systemPackages = with pkgs; [
