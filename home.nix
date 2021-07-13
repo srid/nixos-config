@@ -85,7 +85,7 @@ rec {
     };
 
     doom-emacs = {
-      enable = true;
+      # enable = true;
       doomPrivateDir = ./config/doom.d;
     };
 
