@@ -58,7 +58,10 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ./features/server-mode.nix
+          ./features/email
+          ./features/desktopish
+          ./features/block-socialmedia.nix
+          #./features/server-mode.nix
           # ./features/postgrest.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
