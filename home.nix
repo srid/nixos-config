@@ -27,6 +27,7 @@ rec {
     procs # no more: ps -ef | grep 
     tealdeer
     zellij
+    unzip
     dust
     ripgrep
     htop

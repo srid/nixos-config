@@ -68,6 +68,7 @@
 
   programs = {
     mosh.enable = true;
+    steam.enable = true;
   };
 
   programs.adb.enable = true;
@@ -75,10 +76,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    aria2
     brave
-    fzf
-    htop
     mpv
     nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode
     obsidian
