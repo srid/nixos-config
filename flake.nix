@@ -60,7 +60,7 @@
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/email
           ./features/desktopish
-          ./features/virtualbox
+          ./features/virtualbox.nix
           ./features/block-socialmedia.nix
           #./features/server-mode.nix
           # ./features/postgrest.nix
