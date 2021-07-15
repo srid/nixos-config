@@ -1,10 +1,7 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, system, ... }:
 let
   nix-thunk =
     (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
-  himalayaSrc = inputs.himalaya;
-  himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
-  neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
 rec {
   # Let Home Manager install and manage itself.
@@ -14,10 +11,6 @@ rec {
   # paths it should manage.
   home.username = "srid";
   home.homeDirectory = "/home/srid";
-
-  imports = [
-    inputs.nix-doom-emacs.hmModule
-  ];
 
   home.packages = with pkgs; [
     gnumake
@@ -37,8 +30,6 @@ rec {
     # ^ easy to forget these; write SRS?
     hledger
     hledger-web
-    # latex
-    texlive.combined.scheme-full
   ];
 
   programs = {
@@ -88,29 +79,16 @@ rec {
       '';
     };
 
-    doom-emacs = {
-      enable = false;
-      doomPrivateDir = ./config/doom.d;
-    };
-
     neovim = {
       enable = true;
-      package = neovim-nightly;
       viAlias = true;
-      # withNodeJs = true;
 
       extraPackages = [
-        himalaya
       ];
 
       plugins = with pkgs.vimPlugins; [
         vim-airline
         papercolor-theme
-
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "himalaya";
-          src = himalayaSrc + "/vim";
-        })
       ];
 
       extraConfig = ''
@@ -132,6 +110,12 @@ rec {
         h = "himalaya";
       };
       sessionVariables = { };
+
+      # For WSL
+      profileExtra = ''
+        if [ -e /home/srid/.nix-profile/etc/profile.d/nix.sh ]; then . /home/srid/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+        export NIX_PATH=$$HOME/.nix-defexpr/channels$${NIX_PATH:+:}$$NIX_PATH
+      '';
     };
 
     starship = {
