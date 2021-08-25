@@ -38,7 +38,7 @@ rec {
     hledger
     hledger-web
     # latex
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
   ];
 
   programs = {
