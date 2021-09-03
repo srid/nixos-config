@@ -61,6 +61,7 @@
 
   services.xserver.enable = true;
   services.openssh.enable = true;
+  services.fprintd.enable = true;
 
   users.users.srid = {
     isNormalUser = true;

@@ -5,8 +5,6 @@ in
 {
   environment.systemPackages = [ emanote ];
 
-  # Before starting the service, use `protonmail-bridge --cli` and run 'login'
-  # to configure.
   systemd.user.services.emanote = {
     description = "Emanote ~/Documents/Notes";
     after = [ "network.target" ];
