@@ -36,9 +36,12 @@ rec {
     aria2
     # ^ easy to forget these; write SRS?
     hledger
-    hledger-web
     # latex
     # texlive.combined.scheme-full
+    git-remote-gcrypt
+
+    nodePackages.mermaid-cli
+    asciidoctor
   ];
 
   programs = {

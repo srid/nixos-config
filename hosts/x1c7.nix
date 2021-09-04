@@ -29,6 +29,9 @@
     support32Bit = true;
   };
 
+  # TODO: upstream to nixos-hardware
+  hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
