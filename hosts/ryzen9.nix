@@ -113,7 +113,7 @@
   services = {
     openssh = {
       enable = true;
-      # permitRootLogin = "no"; -- distributed-build.nix requires it
+      permitRootLogin = "prohibit-password"; # distributed-build.nix requires it
       passwordAuthentication = false;
     };
     fail2ban = {
