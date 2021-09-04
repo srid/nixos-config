@@ -4,3 +4,9 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 - `flake.nix`: Install things I need natively on NixOS desktop & laptop computers
 
 VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
+
+## Install notes
+
+- Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
+- Digital Ocean: https://github.com/elitak/nixos-infect
+- X1 Carbon: https://notes.srid.ca/x1c7-install
