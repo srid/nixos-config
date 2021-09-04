@@ -113,10 +113,16 @@
   services = {
     openssh = {
       enable = true;
-      permitRootLogin = "no";
+      # permitRootLogin = "no"; -- distributed-build.nix requires it
       passwordAuthentication = false;
     };
-    fail2ban.enable = true;
+    fail2ban = {
+      enable = true;
+      ignoreIP = [
+        # quebec
+        "70.53.187.43"
+      ];
+    };
 
     netdata.enable = true;
   };
