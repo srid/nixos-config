@@ -59,10 +59,8 @@
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/distributed-build
-          ./features/email
           ./features/desktopish
           ./features/virtualbox.nix
-          ./features/block-socialmedia.nix
           #./features/server-mode.nix
           # ./features/postgrest.nix
         ];
@@ -71,9 +69,8 @@
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
           ./features/distributed-build.nix
-          ./features/email
           ./features/gnome.nix
-          #./features/block-socialmedia.nix
+          ./features/desktopish/guiapps.nix
         ];
       nixosConfigurations.ryzen9 = mkHomeMachine
         ./hosts/ryzen9.nix

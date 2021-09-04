@@ -15,5 +15,4 @@
     gnome-icon-theme
   ];
 
-
 }

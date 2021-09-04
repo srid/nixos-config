@@ -71,15 +71,6 @@
     extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
   };
 
-  environment.systemPackages = with pkgs; [
-    brave
-    signal-desktop
-    vscode
-    obsidian
-    inkscape
-    zeroad
-  ];
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

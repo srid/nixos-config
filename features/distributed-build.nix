@@ -3,7 +3,7 @@
 # https://nixos.wiki/wiki/Distributed_build
 {
   nix.buildMachines = [{
-    hostName = "ryzen9";
+    hostName = "162.55.241.231";
     system = "x86_64-linux";
     # if the builder supports building for multiple architectures, 
     # replace the previous line by, e.g.,

@@ -10,6 +10,7 @@
     ./autolock.nix
     ./redshift.nix
     ./gnome-things.nix
+    ./guiapps.nix
 
     # WMish things
     ./xmonad

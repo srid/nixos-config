@@ -60,32 +60,11 @@
   networking.interfaces.wlp4s0.useDHCP = true;
 
   services.openssh.enable = true;
-  services.ipfs = {
-    enable = true;
-    user = "srid";
-  };
   services.netdata.enable = true;
 
   programs = {
     mosh.enable = true;
-    steam.enable = true;
   };
-
-  programs.adb.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    brave
-    mpv
-    nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode
-    obsidian
-    psmisc
-    ripgrep
-    signal-desktop
-    vscode
-    pulsemixer
-  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
