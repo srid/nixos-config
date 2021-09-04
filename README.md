@@ -9,4 +9,4 @@ VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
 
 - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
 - Digital Ocean: https://github.com/elitak/nixos-infect
-- X1 Carbon: https://notes.srid.ca/x1c7-install
+- X1 Carbon: https://www.srid.ca/x1c7-install
