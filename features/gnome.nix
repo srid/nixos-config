@@ -5,4 +5,7 @@
     desktopManager.gnome.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    gnome3.gnome-tweak-tool
+  ];
 }
