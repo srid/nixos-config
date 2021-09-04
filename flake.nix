@@ -58,6 +58,7 @@
         ./hosts/p71.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+          ./features/distributed-build
           ./features/email
           ./features/desktopish
           ./features/virtualbox.nix
@@ -69,6 +70,7 @@
         ./hosts/x1c7.nix
         [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ./features/distributed-build.nix
           ./features/email
           ./features/gnome.nix
           #./features/block-socialmedia.nix
