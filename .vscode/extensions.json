@@ -2,6 +2,7 @@
     "recommendations": [
         "bbenoist.nix",
         "b4dm4n.nixpkgs-fmt",
-        "jnoortheen.nix-ide"
+        "jnoortheen.nix-ide",
+        "arrterian.nix-env-selector"
     ]
 }
