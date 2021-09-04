@@ -73,5 +73,10 @@
           ./features/gnome.nix
           #./features/block-socialmedia.nix
         ];
+      nixosConfigurations.ryzen9 = mkHomeMachine
+        ./hosts/ryzen9.nix
+        [
+        ];
     };
+
 }
