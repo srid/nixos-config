@@ -6,7 +6,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.supportedFilesystems = [ "ntfs" ];
@@ -14,21 +14,23 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/4200ca92-3b3c-4a41-98d5-92bbc0a5597e";
+    { device = "/dev/disk/by-uuid/8d755446-15a4-4260-8a13-7529b585666b";
       fsType = "ext4";
     };
+
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/68eed875-bd65-4178-bca6-3e1db074ed46";
+
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/7C8B-3F49";
+    { device = "/dev/nvme0n1p1";
       fsType = "vfat";
     };
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/b03a08aa-1c9c-4674-b03b-ec59003306f5"; }];
+
+  swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
+
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
@@ -69,7 +71,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "adbusers" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
