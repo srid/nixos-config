@@ -66,6 +66,7 @@
           #./features/virtualbox.nix
           #./features/server-mode.nix
           # ./features/postgrest.nix
+          ./features/devserver-mode.nix
         ];
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix
@@ -78,6 +79,7 @@
       nixosConfigurations.ryzen9 = mkHomeMachine
         ./hosts/ryzen9.nix
         [
+          ./features/devserver-mode.nix
         ];
     };
 

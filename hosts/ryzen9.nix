@@ -109,7 +109,6 @@
     trustedUsers = [ "root" "srid" ];
   };
 
-
   services = {
     openssh = {
       enable = true;
@@ -132,7 +131,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    psmisc
+    cryptsetup
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
