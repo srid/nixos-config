@@ -2,8 +2,8 @@
 let
   nix-thunk =
     (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
-  himalayaSrc = inputs.himalaya;
-  himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
+  #himalayaSrc = inputs.himalaya;
+  #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
 rec {
@@ -96,7 +96,7 @@ rec {
     };
 
     doom-emacs = {
-      enable = true;
+      enable = false;
       doomPrivateDir = ./config/doom.d;
     };
 
@@ -107,17 +107,17 @@ rec {
       # withNodeJs = true;
 
       extraPackages = [
-        himalaya
+        # himalaya
       ];
 
       plugins = with pkgs.vimPlugins; [
         vim-airline
         papercolor-theme
 
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "himalaya";
-          src = himalayaSrc + "/vim";
-        })
+        #(pkgs.vimUtils.buildVimPlugin {
+        #  name = "himalaya";
+        #  src = himalayaSrc + "/vim";
+        #})
       ];
 
       extraConfig = ''
@@ -136,7 +136,7 @@ rec {
         l = "${pkgs.lsd}/bin/lsd";
         ll = "${pkgs.lsd}/bin/lsd -l";
         ls = "l";
-        h = "himalaya";
+        #h = "himalaya";
       };
       sessionVariables = { };
     };
