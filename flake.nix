@@ -54,6 +54,8 @@
       };
     in
     {
+      # The "name" in nixosConfigurations.${name} should match the `hostname`
+      # 
       nixosConfigurations.p71 = mkHomeMachine
         ./hosts/p71.nix
         [

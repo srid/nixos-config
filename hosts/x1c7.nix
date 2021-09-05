@@ -65,6 +65,7 @@
   services.xserver.enable = true;
   services.openssh.enable = true;
   services.fprintd.enable = true;
+  services.logind.lidSwitchDocked = "suspend";
 
   users.users.srid = {
     isNormalUser = true;
