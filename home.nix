@@ -156,7 +156,7 @@ rec {
     enable = true;
     matchBlocks = {
       "p71" = {
-        hostname = "192.168.2.25";
+        hostname = "192.168.2.76";
       };
       "ryzen9" = {
         hostname = "162.55.241.231";
