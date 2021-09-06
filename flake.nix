@@ -10,6 +10,7 @@
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -25,62 +26,64 @@
         inherit system;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
-        modules = ([
-          # System configuration
-          configurationNix
+        modules = (
+          [
+            # System configuration
+            configurationNix
 
-          # Features common to all of my machines
-          ./features/self-ide.nix
-          ./features/caches
-          ./features/current-location.nix
-          ./features/passwordstore.nix
-          ./features/syncthing.nix
-          ./features/protonvpn.nix
-          ./features/docker.nix
-          ./features/monitor-brightness.nix
-          ./features/ema/emanote.nix
+            # Features common to all of my machines
+            ./features/self-ide.nix
+            ./features/caches
+            ./features/current-location.nix
+            ./features/passwordstore.nix
+            ./features/syncthing.nix
+            ./features/protonvpn.nix
+            ./features/docker.nix
+            ./features/monitor-brightness.nix
+            ./features/ema/emanote.nix
 
-          # home-manager configuration
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.srid = import ./home.nix {
-              inherit inputs system;
-              pkgs = import nixpkgs { inherit system; };
-            };
-          }
-        ] ++ extraModules);
+            # home-manager configuration
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.srid = import ./home.nix {
+                inherit inputs system;
+                pkgs = import nixpkgs { inherit system; };
+              };
+            }
+          ] ++ extraModules
+        );
       };
     in
-    {
-      # The "name" in nixosConfigurations.${name} should match the `hostname`
-      # 
-      nixosConfigurations.p71 = mkHomeMachine
-        ./hosts/p71.nix
-        [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ./features/desktopish
-          #./features/gnome.nix
-          ./features/desktopish/guiapps.nix
-          #./features/virtualbox.nix
-          #./features/server-mode.nix
-          # ./features/postgrest.nix
-          ./features/devserver-mode.nix
-        ];
-      nixosConfigurations.x1c7 = mkHomeMachine
-        ./hosts/x1c7.nix
-        [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          ./features/distributed-build.nix
-          ./features/gnome.nix
-          ./features/desktopish/guiapps.nix
-        ];
-      nixosConfigurations.ryzen9 = mkHomeMachine
-        ./hosts/ryzen9.nix
-        [
-          ./features/devserver-mode.nix
-        ];
-    };
+      {
+        # The "name" in nixosConfigurations.${name} should match the `hostname`
+        # 
+        nixosConfigurations.p71 = mkHomeMachine
+          ./hosts/p71.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+            ./features/desktopish
+            #./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+            #./features/virtualbox.nix
+            #./features/server-mode.nix
+            # ./features/postgrest.nix
+            ./features/devserver-mode.nix
+          ];
+        nixosConfigurations.x1c7 = mkHomeMachine
+          ./hosts/x1c7.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+            ./features/distributed-build.nix
+            ./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+          ];
+        nixosConfigurations.ryzen9 = mkHomeMachine
+          ./hosts/ryzen9.nix
+          [
+            ./features/devserver-mode.nix
+          ];
+      };
 
 }

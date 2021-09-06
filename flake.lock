@@ -391,7 +391,9 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1630428740,
@@ -434,7 +436,7 @@
       "inputs": {
         "flake-compat": "flake-compat_4",
         "neovim-flake": "neovim-flake",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1630570608,
@@ -462,7 +464,7 @@
         "explain-pause-mode": "explain-pause-mode",
         "flake-utils": "flake-utils_5",
         "nix-straight": "nix-straight",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nose": "nose",
         "ob-racket": "ob-racket",
         "org": "org",
@@ -568,20 +570,6 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1630633415,
-        "narHash": "sha256-QLhxPPAJnD1mLCo88rziWpjcmFw1vcqxT0gy0FKr/mU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "876fb5677c2623bcf7428072fa16e56c30a3ef40",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
         "lastModified": 1630248577,
         "narHash": "sha256-9d/yq96TTrnF7qjA6wPYk+rYjWAXwfUmwk3qewezSeg=",
         "owner": "nixos",
@@ -596,7 +584,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1626852498,
         "narHash": "sha256-lOXUJvi0FJUXHTVSiC5qsMRtEUgqM4mGZpMESLuGhmo=",
@@ -611,7 +599,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1630761588,
         "narHash": "sha256-7GXckvZy7DGh2KIyfdArqwnyeSc5Owy1fumEDQyd8eY=",
@@ -764,7 +752,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_6"
       }
     },
     "rotate-text": {
