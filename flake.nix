@@ -82,7 +82,8 @@
         nixosConfigurations.ryzen9 = mkHomeMachine
           ./hosts/ryzen9.nix
           [
-            ./features/devserver-mode.nix
+            ./features/server/harden.nix
+            ./features/server/devserver.nix
           ];
       };
 

@@ -106,25 +106,12 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    allowedUsers = [ "root" "srid" ];
     trustedUsers = [ "root" "srid" ];
   };
 
-  services = {
-    openssh = {
-      enable = true;
-      permitRootLogin = "prohibit-password"; # distributed-build.nix requires it
-      passwordAuthentication = false;
-    };
-    fail2ban = {
-      enable = true;
-      ignoreIP = [
-        # quebec
-        "70.53.187.43"
-      ];
-    };
 
-    netdata.enable = true;
-  };
+  services.netdata.enable = true;
 
   programs = {
     mosh.enable = true;
@@ -139,11 +126,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "adbusers" "audio" ];
   };
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
