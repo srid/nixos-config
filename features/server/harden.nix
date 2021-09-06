@@ -19,4 +19,5 @@
       ];
     };
   };
+  nix.allowedUsers = [ "root" "srid" ];
 }
