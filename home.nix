@@ -133,8 +133,8 @@ rec {
       shellAliases = {
         g = "git";
         t = "tig";
-        l = "${pkgs.lsd}/bin/lsd";
-        ll = "${pkgs.lsd}/bin/lsd -l";
+        l = "${pkgs.exa}/bin/exa";
+        ll = "${pkgs.exa}/bin/exa -l";
         ls = "l";
         #h = "himalaya";
       };
