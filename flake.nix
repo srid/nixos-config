@@ -55,36 +55,36 @@
         );
       };
     in
-      {
-        # The "name" in nixosConfigurations.${name} should match the `hostname`
-        # 
-        nixosConfigurations.p71 = mkHomeMachine
-          ./hosts/p71.nix
-          [
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-            ./features/desktopish
-            #./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-            #./features/virtualbox.nix
-            #./features/server-mode.nix
-            # ./features/postgrest.nix
-            ./features/devserver-mode.nix
-          ];
-        nixosConfigurations.x1c7 = mkHomeMachine
-          ./hosts/x1c7.nix
-          [
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-            ./features/distributed-build.nix
-            ./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-          ];
-        nixosConfigurations.ryzen9 = mkHomeMachine
-          ./hosts/ryzen9.nix
-          [
-            ./features/server/harden.nix
-            ./features/server/devserver.nix
-            ./features/ema/emanote.nix
-          ];
-      };
+    {
+      # The "name" in nixosConfigurations.${name} should match the `hostname`
+      # 
+      nixosConfigurations.p71 = mkHomeMachine
+        ./hosts/p71.nix
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+          ./features/desktopish
+          #./features/gnome.nix
+          ./features/desktopish/guiapps.nix
+          #./features/virtualbox.nix
+          #./features/server-mode.nix
+          # ./features/postgrest.nix
+          ./features/server/devserver.nix
+        ];
+      nixosConfigurations.x1c7 = mkHomeMachine
+        ./hosts/x1c7.nix
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ./features/distributed-build.nix
+          ./features/gnome.nix
+          ./features/desktopish/guiapps.nix
+        ];
+      nixosConfigurations.ryzen9 = mkHomeMachine
+        ./hosts/ryzen9.nix
+        [
+          ./features/server/harden.nix
+          ./features/server/devserver.nix
+          ./features/ema/emanote.nix
+        ];
+    };
 
 }
