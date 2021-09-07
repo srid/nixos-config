@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     brave
     vscode
+    vlc
   ];
 
 }

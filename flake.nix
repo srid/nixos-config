@@ -40,7 +40,6 @@
             ./features/protonvpn.nix
             ./features/docker.nix
             ./features/monitor-brightness.nix
-            ./features/ema/emanote.nix
 
             # home-manager configuration
             home-manager.nixosModules.home-manager
@@ -84,6 +83,7 @@
           [
             ./features/server/harden.nix
             ./features/server/devserver.nix
+            ./features/ema/emanote.nix
           ];
       };
 
