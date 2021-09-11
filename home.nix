@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ bare ? false, pkgs, inputs, system, ... }:
 let
   nix-thunk =
     (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
@@ -15,11 +15,10 @@ rec {
   home.username = "srid";
   home.homeDirectory = "/home/srid";
 
-  imports = [
-    inputs.nix-doom-emacs.hmModule
-  ];
+  imports = pkgs.lib.optional (!bare)
+    inputs.nix-doom-emacs.hmModule;
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs; lib.optionals (!bare) [
     gnumake
     cachix
     tig
@@ -157,9 +156,6 @@ rec {
     matchBlocks = {
       "p71" = {
         hostname = "192.168.2.76";
-      };
-      "ryzen9" = {
-        hostname = "162.55.241.231";
       };
     };
   };

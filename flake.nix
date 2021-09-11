@@ -21,21 +21,8 @@
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      # Features common to all of my machines
-      commonModules = [
-        ./features/self-ide.nix
-        ./features/caches
-        ./features/current-location.nix
-        ./features/passwordstore.nix
-        ./features/syncthing.nix
-        ./features/protonvpn.nix
-        ./features/server/harden.nix
-      ];
-      graphicsCommonModules = [
-        ./features/monitor-brightness.nix
-      ];
       # Make configuration for any computer I use in my home office.
-      mkHomeMachine = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
+      mkHomeMachine = bare: configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
@@ -44,17 +31,26 @@
             # System configuration
             configurationNix
 
+            # common
+            ./features/self-ide.nix
+            ./features/caches
+            ./features/current-location.nix
+            ./features/passwordstore.nix
+            ./features/syncthing.nix
+            ./features/protonvpn.nix
+            ./features/server/harden.nix
+
             # home-manager configuration
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.srid = import ./home.nix {
-                inherit inputs system;
+                inherit inputs system bare;
                 pkgs = import nixpkgs { inherit system; };
               };
             }
-          ] ++ commonModules ++ extraModules
+          ] ++ extraModules
         );
       };
     in
@@ -62,8 +58,9 @@
       # The "name" in nixosConfigurations.${name} should match the `hostname`
       # 
       nixosConfigurations.p71 = mkHomeMachine
+        false
         ./hosts/p71.nix
-        (graphicsCommonModules ++ [
+        [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/desktopish
           #./features/gnome.nix
@@ -75,7 +72,7 @@
           #./features/server-mode.nix
           # ./features/postgrest.nix
           ./features/server/devserver.nix
-        ]);
+        ];
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix
         [
@@ -85,6 +82,7 @@
           ./features/desktopish/guiapps.nix
         ];
       nixosConfigurations.facade = mkHomeMachine
+        true
         ./hosts/facade.nix
         [
         ];
