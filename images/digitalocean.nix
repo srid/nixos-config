@@ -23,7 +23,7 @@ let
     # Make sure that SSH is available
     networking.firewall.allowedTCPPorts = [ 22 ];
     services.sshd.enable = true;
-    users.users.root.openssh.authorizedKeys.keys = import ../sshkeys.nix;
+    users.users.root.openssh.authorizedKeys.keys = [ (builtins.readFile ../id_rsa.pub) ];
 
     # Use more aggressive compression then the default.
     virtualisation.digitalOceanImage.compressionMethod = "bzip2";
