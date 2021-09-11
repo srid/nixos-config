@@ -20,6 +20,9 @@ let
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@".enable = false;
 
+    # sufficient swap for functioning nix-build on 1G droplets
+    swapDevices = [{ device = "/swapfile"; size = 2048; }];
+
     # Make sure that SSH is available
     networking.firewall.allowedTCPPorts = [ 22 ];
     services.sshd.enable = true;
