@@ -9,37 +9,38 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "ntfs" ];
   # https://notes.srid.ca/rtl8821cu
   boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8d755446-15a4-4260-8a13-7529b585666b";
+    {
+      device = "/dev/disk/by-uuid/8d755446-15a4-4260-8a13-7529b585666b";
       fsType = "ext4";
     };
 
   boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/68eed875-bd65-4178-bca6-3e1db074ed46";
 
   fileSystems."/boot" =
-    { device = "/dev/nvme0n1p1";
+    {
+      device = "/dev/nvme0n1p1";
       fsType = "vfat";
     };
 
   swapDevices = [ ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
-
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
   services.xserver.videoDrivers = [ "nvidia" "intel" ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -52,7 +53,6 @@
 
   networking.hostName = "p71"; # Define your hostname.
   networking.networkmanager.enable = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config

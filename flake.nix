@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/bc06c93905f60a82d6ebbb78f78cf289257860cc";
+    nixpkgs.url = "github:nixos/nixpkgs/4f6d8095fd51954120a1d08ea5896fe42dc3923b";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -55,37 +55,41 @@
         );
       };
     in
-      {
-        # The "name" in nixosConfigurations.${name} should match the `hostname`
-        # 
-        nixosConfigurations.p71 = mkHomeMachine
-          ./hosts/p71.nix
-          [
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-            ./features/desktopish
-            #./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-            #./features/virtualbox.nix
-            #./features/server-mode.nix
-            # ./features/postgrest.nix
-            ./features/server/devserver.nix
-          ];
-        nixosConfigurations.x1c7 = mkHomeMachine
-          ./hosts/x1c7.nix
-          [
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-            ./features/distributed-build.nix
-            ./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-          ];
-        nixosConfigurations.ryzen9 = mkHomeMachine
-          ./hosts/ryzen9.nix
-          [
-            ./features/server/harden.nix
-            ./features/server/devserver.nix
-            ./features/ema/emanote.nix
-            ./features/lxd.nix
-          ];
-      };
+    {
+      # The "name" in nixosConfigurations.${name} should match the `hostname`
+      # 
+      nixosConfigurations.p71 = mkHomeMachine
+        ./hosts/p71.nix
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+          ./features/desktopish
+          #./features/gnome.nix
+          ./features/desktopish/guiapps.nix
+          ./features/server/devserver.nix
+          ./features/ema/emanote.nix
+          #./features/virtualbox.nix
+          ./features/lxd.nix
+          #./features/server-mode.nix
+          # ./features/postgrest.nix
+          ./features/server/devserver.nix
+          ./features/server/harden.nix
+        ];
+      nixosConfigurations.x1c7 = mkHomeMachine
+        ./hosts/x1c7.nix
+        [
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+          ./features/distributed-build.nix
+          ./features/gnome.nix
+          ./features/desktopish/guiapps.nix
+        ];
+      nixosConfigurations.ryzen9 = mkHomeMachine
+        ./hosts/ryzen9.nix
+        [
+          ./features/server/harden.nix
+          ./features/server/devserver.nix
+          ./features/ema/emanote.nix
+          ./features/lxd.nix
+        ];
+    };
 
 }
