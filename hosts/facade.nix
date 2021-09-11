@@ -6,6 +6,8 @@
     (modulesPath + "/virtualisation/digital-ocean-config.nix")
   ];
 
+  swapDevices = [{ device = "/swapfile"; size = 2048; }];
+
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixUnstable;
