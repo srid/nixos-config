@@ -21,6 +21,19 @@
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
     let
       system = "x86_64-linux";
+      # Features common to all of my machines
+      commonModules = [
+        ./features/self-ide.nix
+        ./features/caches
+        ./features/current-location.nix
+        ./features/passwordstore.nix
+        ./features/syncthing.nix
+        ./features/protonvpn.nix
+        ./features/server/harden.nix
+      ];
+      graphicsCommonModules = [
+        ./features/monitor-brightness.nix
+      ];
       # Make configuration for any computer I use in my home office.
       mkHomeMachine = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
@@ -30,16 +43,6 @@
           [
             # System configuration
             configurationNix
-
-            # Features common to all of my machines
-            ./features/self-ide.nix
-            ./features/caches
-            ./features/current-location.nix
-            ./features/passwordstore.nix
-            ./features/syncthing.nix
-            ./features/protonvpn.nix
-            ./features/docker.nix
-            ./features/monitor-brightness.nix
 
             # home-manager configuration
             home-manager.nixosModules.home-manager
@@ -51,7 +54,7 @@
                 pkgs = import nixpkgs { inherit system; };
               };
             }
-          ] ++ extraModules
+          ] ++ commonModules ++ extraModules
         );
       };
     in
@@ -60,7 +63,7 @@
       # 
       nixosConfigurations.p71 = mkHomeMachine
         ./hosts/p71.nix
-        [
+        (graphicsCommonModules ++ [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
           ./features/desktopish
           #./features/gnome.nix
@@ -72,8 +75,7 @@
           #./features/server-mode.nix
           # ./features/postgrest.nix
           ./features/server/devserver.nix
-          ./features/server/harden.nix
-        ];
+        ]);
       nixosConfigurations.x1c7 = mkHomeMachine
         ./hosts/x1c7.nix
         [
@@ -82,13 +84,9 @@
           ./features/gnome.nix
           ./features/desktopish/guiapps.nix
         ];
-      nixosConfigurations.ryzen9 = mkHomeMachine
-        ./hosts/ryzen9.nix
+      nixosConfigurations.facade = mkHomeMachine
+        ./hosts/facade.nix
         [
-          ./features/server/harden.nix
-          ./features/server/devserver.nix
-          ./features/ema/emanote.nix
-          ./features/lxd.nix
         ];
     };
 

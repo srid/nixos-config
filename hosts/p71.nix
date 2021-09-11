@@ -73,7 +73,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
-  users.users.srid.openssh.authorizedKeys.keys = import ./sshkeys.nix;
+  users.users.srid.openssh.authorizedKeys.keys = [ (builtins.readFile ../id_rsa.pub) ];
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
