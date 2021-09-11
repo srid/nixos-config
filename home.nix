@@ -15,8 +15,8 @@ rec {
   home.username = "srid";
   home.homeDirectory = "/home/srid";
 
-  imports = pkgs.lib.optional (!bare)
-    inputs.nix-doom-emacs.hmModule;
+  #imports = pkgs.lib.optional (!bare)
+  #  inputs.nix-doom-emacs.hmModule;
 
   home.packages = with pkgs; lib.optionals (!bare) [
     gnumake
@@ -94,10 +94,10 @@ rec {
       '';
     };
 
-    doom-emacs = {
-      enable = false;
-      doomPrivateDir = ./config/doom.d;
-    };
+    #doom-emacs = {
+    #  enable = false;
+    #  doomPrivateDir = ./config/doom.d;
+    #};
 
     neovim = {
       enable = true;
