@@ -33,6 +33,7 @@
 
             # common
             ./features/self-ide.nix
+            ./features/takemessh
             ./features/caches
             ./features/current-location.nix
             ./features/passwordstore.nix

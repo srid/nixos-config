@@ -66,6 +66,7 @@
 
   programs = {
     mosh.enable = true;
+    ssh.startAgent = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -73,7 +74,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
-  users.users.srid.openssh.authorizedKeys.keys = [ (builtins.readFile ../id_rsa.pub) ];
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
