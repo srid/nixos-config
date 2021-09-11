@@ -63,6 +63,13 @@
 
   services.openssh.enable = true;
   services.netdata.enable = true;
+  services = {
+    syncthing = {
+      enable = true;
+      user = "srid";
+      dataDir = "/home/srid";
+    };
+  };
 
   programs = {
     mosh.enable = true;

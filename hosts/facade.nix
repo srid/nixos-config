@@ -23,6 +23,13 @@
 
   services.netdata.enable = true;
   services.do-agent.enable = true;
+  services = {
+    syncthing = {
+      enable = true;
+      user = "srid";
+      dataDir = "/volume";
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
