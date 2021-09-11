@@ -100,7 +100,7 @@ rec {
     #};
 
     neovim = {
-      enable = true;
+      enable = !bare;
       package = neovim-nightly;
       viAlias = true;
       # withNodeJs = true;
