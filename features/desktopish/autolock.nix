@@ -30,6 +30,8 @@ in
   };
 
   environment.systemPackages = [
+    # TODO: replace this with https://github.com/jD91mZM2/xidlehook
+    #
     # A script to disable auto-suspend until unlocking the computer the next
     # time. The idea is to leave this running on desktop, whilst taking my
     # laptop to another room and ssh to the desktop.

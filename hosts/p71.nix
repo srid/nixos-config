@@ -73,6 +73,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
+  users.users.srid.openssh.authorizedKeys.keys = import ./sshkeys.nix;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

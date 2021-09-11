@@ -1,5 +1,5 @@
 all:
-	sudo nixos-rebuild switch && systemctl restart --user emanote
+	sudo nixos-rebuild switch -j auto && systemctl restart --user emanote
 	
 	
 freeupboot:
