@@ -7,11 +7,14 @@ VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
 
 ## Non-NixOS
 
-WIP
+First time run,
 
 ```
-make home2
+ln -s /path/to/here ~/.config/nixpkgs  # Why? See Makefile
+make home
 ```
+
+Afterwards, feel free to use `home-manager switch`.
 
 ## Install notes
 

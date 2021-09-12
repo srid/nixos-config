@@ -1,11 +1,13 @@
 all:
 	sudo nixos-rebuild switch -j auto && systemctl restart --user emanote
 
-home:
+# Not sure why this doesn't reliably work
+homeBroken:
 	nix build --no-link ".#homeConfigurations."`whoami`@`hostname`".activationPackage"
 	./result/activate
 
-home2:
+# This requires the symlink to be setup; see README
+home:
 	PATH="${HOME}/.nix-profile/bin/:${PATH}" home-manager  switch
 	
 freeupboot:
