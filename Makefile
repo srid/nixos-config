@@ -1,5 +1,8 @@
 all:
 	sudo nixos-rebuild switch -j auto && systemctl restart --user emanote
+
+home:
+	nix build ".#homeConfigurations."`whoami`@`hostname`".activationPackage"
 	
 	
 freeupboot:

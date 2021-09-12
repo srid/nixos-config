@@ -5,6 +5,15 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 
 VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
 
+## Non-NixOS
+
+WIP
+
+```
+make home
+./result/activate
+```
+
 ## Install notes
 
 - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205

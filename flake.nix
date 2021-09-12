@@ -86,6 +86,25 @@
         ./hosts/facade.nix
         [
         ];
+
+      # non-NixOS systems
+      homeConfigurations =
+        let
+          username = "srid";
+        in
+        {
+          "${username}@P71" = home-manager.lib.homeManagerConfiguration {
+            configuration = { pkgs, ... }: {
+              programs.home-manager.enable = true;
+              home.packages = [ pkgs.tig ];
+            };
+
+            inherit username;
+            system = "x86_64-linux";
+            homeDirectory = "/home/${username}";
+            stateVersion = "21.05";
+          };
+        };
     };
 
 }
