@@ -7,8 +7,8 @@
             "label": "Build System",
             "type": "shell",
             // TODO: Run in tmux (for those cases which kills X server)
-            "command": "sudo",
-            "args": ["nixos-rebuild", "switch"],
+            "command": "make",
+            "args": [],
             "problemMatcher": [],
             "group": {
                 "kind": "build",

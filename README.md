@@ -3,7 +3,7 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 - `home.nix`: Only install things that are needed in all platforms (VMs, VPS, WSL2, etc.)
 - `flake.nix`: Install things I need natively on NixOS desktop & laptop computers
 
-VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
+VSCode note: <kbd>Ctrl+Shift+B</kbd> will run effectuate the new configuration (by running `make`).
 
 ## Non-NixOS
 
