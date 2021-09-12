@@ -93,11 +93,7 @@
       homeConfigurations =
         let
           username = "srid";
-          hostname = "P71";
-        in
-        {
-          # WSL ubuntu
-          "${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
+          mkHomeConfig = home-manager.lib.homeManagerConfiguration {
             inherit username system;
             homeDirectory = "/home/${username}";
             configuration = import ./home.nix {
@@ -106,6 +102,10 @@
               pkgs = import nixpkgs { inherit system; };
             };
           };
+        in
+        {
+          "P71" = mkHomeConfig;
+          "x1c7" = mkHomeConfig;
         };
     };
 
