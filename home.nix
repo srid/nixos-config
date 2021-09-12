@@ -135,6 +135,12 @@ rec {
       bashrcExtra = ''
         . ~/.nix-profile/etc/profile.d/nix.sh
         export PATH=$HOME/.nix-profile/bin:$PATH
+
+        # https://github.com/nix-community/home-manager/issues/1871#issuecomment-852739277
+        for completion_script in ~/.nix-profile/share/bash-completion/completions/*
+        do
+          source "$completion_script"
+        done
       '';
     };
 
