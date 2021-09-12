@@ -10,8 +10,7 @@ VSCode note: <kbd>Ctrl+Shift+B</kbd> will run `sudo nixos-rebuild switch`.
 WIP
 
 ```
-make home
-./result/activate
+make home2
 ```
 
 ## Install notes

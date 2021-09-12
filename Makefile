@@ -2,8 +2,11 @@ all:
 	sudo nixos-rebuild switch -j auto && systemctl restart --user emanote
 
 home:
-	nix build ".#homeConfigurations."`whoami`@`hostname`".activationPackage"
-	
+	nix build --no-link ".#homeConfigurations."`whoami`@`hostname`".activationPackage"
+	./result/activate
+
+home2:
+	PATH="${HOME}/.nix-profile/bin/:${PATH}" home-manager  switch
 	
 freeupboot:
 	# Delete all but the last few generations

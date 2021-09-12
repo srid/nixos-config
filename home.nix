@@ -124,19 +124,37 @@ rec {
     bash = {
       enable = true;
       shellAliases = {
-        g = "git";
-        t = "tig";
+        g = "${pkgs.git}/bin/git";
+        t = "${pkgs.tig}/bin/tig";
         l = "${pkgs.exa}/bin/exa";
         ll = "${pkgs.exa}/bin/exa -l";
         ls = "l";
         #h = "himalaya";
       };
       sessionVariables = { };
+      bashrcExtra = ''
+        . ~/.nix-profile/etc/profile.d/nix.sh
+        export PATH=$HOME/.nix-profile/bin:$PATH
+      '';
     };
 
-    starship = {
-      enable = true;
-    };
+    starship =
+      {
+        enable = true;
+        settings = {
+          username = {
+            format = "[$user](bold blue) ";
+            disabled = false;
+            show_always = true;
+          };
+          hostname = {
+            ssh_only = false;
+            format = "on [$hostname](bold red) ";
+            trim_at = ".companyname.com";
+            disabled = false;
+          };
+        };
+      };
 
     bat.enable = true;
     autojump.enable = false;
