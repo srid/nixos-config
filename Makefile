@@ -1,5 +1,17 @@
+include /etc/lsb-release
+export $(shell sed 's/=.*//' /etc/lsb-release)
+
 all:
-	sudo nixos-rebuild switch -j auto && systemctl restart --user emanote
+	# FIXME: Should just check for nixos instead.
+	@if [ "${DISTRIB_ID}" = "Ubuntu" ]; then  \
+		make home;\
+	else \
+		make nixos;\
+	fi
+
+nixos:
+	sudo nixos-rebuild switch -j auto 
+	systemctl restart --user emanote
 
 # Not sure why this doesn't reliably work
 homeBroken:

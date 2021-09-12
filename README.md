@@ -11,7 +11,7 @@ First time run,
 
 ```
 ln -s /path/to/here ~/.config/nixpkgs  # Why? See Makefile
-make home
+make
 ```
 
 Afterwards, feel free to use `home-manager switch`.
