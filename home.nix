@@ -1,5 +1,4 @@
-# HACK: bare
-{ bare ? false, pkgs, inputs, system, ... }:
+{ pkgs, inputs, system, ... }:
 let
   #himalayaSrc = inputs.himalaya;
   #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
@@ -7,18 +6,12 @@ let
   emanote = inputs.emanote.outputs.defaultPackage.${system};
 in
 rec {
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "srid";
-  home.homeDirectory = "/home/srid";
 
   #imports = pkgs.lib.optional (!bare)
   #  inputs.nix-doom-emacs.hmModule;
 
-  home.packages = with pkgs; lib.optionals (!bare) [
+  home.packages = [
     emanote
 
     gnumake
@@ -55,7 +48,7 @@ rec {
     #};
 
     neovim = {
-      enable = !bare;
+      enable = true;
       package = neovim-nightly;
       viAlias = true;
       # withNodeJs = true;

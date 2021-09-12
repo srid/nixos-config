@@ -93,19 +93,27 @@
       homeConfigurations =
         let
           username = "srid";
-          mkHomeConfig = home-manager.lib.homeManagerConfiguration {
+          baseConfiguration = {
+            programs.home-manager.enable = true;
+            home.username = "srid";
+            home.homeDirectory = "/home/srid";
+          };
+          mkHomeConfig = cfg: home-manager.lib.homeManagerConfiguration {
             inherit username system;
             homeDirectory = "/home/${username}";
-            configuration = import ./home.nix {
-              inherit inputs system;
-              bare = false;
-              pkgs = import nixpkgs { inherit system; };
-            };
+            configuration = baseConfiguration // cfg;
           };
         in
         {
-          "P71" = mkHomeConfig;
-          "x1c7" = mkHomeConfig;
+          "P71" = mkHomeConfig (import ./home.nix {
+            inherit inputs system;
+            pkgs = import nixpkgs { inherit system; };
+          });
+          # FIXME: This is broken on Clear Linux
+          "x1c7" = mkHomeConfig {
+            programs.git = import ./home/git.nix;
+            programs.tmux = import ./home/tmux.nix;
+          };
         };
     };
 

@@ -1,9 +1,9 @@
 
 all:
-	@if [ test -d /etc/nixos ]; then  \
+	@if [[ -d "/etc/nixos" ]]; then  \
 		make nixos;\
 	else \
-		make home;\
+		make h;\
 	fi
 
 nixos:
@@ -11,12 +11,12 @@ nixos:
 	systemctl restart --user emanote
 
 # Not sure why this doesn't reliably work
-home0:
-	nix build --no-link ".#homeConfigurations."`hostname`".activationPackage"
+h0:
+	nix build ".#homeConfigurations."`hostname`".activationPackage"
 	./result/activate
 
 # This requires the symlink to be setup; see README
-home:
+h:
 	PATH="${HOME}/.nix-profile/bin/:${PATH}" home-manager  switch
 	
 freeupboot:

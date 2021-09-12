@@ -10,7 +10,7 @@ VSCode note: <kbd>Ctrl+Shift+B</kbd> will run effectuate the new configuration (
 First time run,
 
 ```
-make home0
+make h0
 ln -s /path/to/here ~/.config/nixpkgs  # Why? See Makefile
 ```
 
