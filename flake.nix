@@ -57,35 +57,56 @@
     {
       # The "name" in nixosConfigurations.${name} should match the `hostname`
       # 
-      nixosConfigurations.p71 = mkHomeMachine
-        false
-        ./hosts/p71.nix
-        [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ./features/desktopish
-          #./features/gnome.nix
-          ./features/desktopish/guiapps.nix
-          ./features/server/devserver.nix
-          ./features/ema/emanote.nix
-          #./features/virtualbox.nix
-          ./features/lxd.nix
-          #./features/server-mode.nix
-          # ./features/postgrest.nix
-          ./features/server/devserver.nix
-        ];
-      nixosConfigurations.x1c7 = mkHomeMachine
-        ./hosts/x1c7.nix
-        [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          ./features/distributed-build.nix
-          ./features/gnome.nix
-          ./features/desktopish/guiapps.nix
-        ];
-      nixosConfigurations.facade = mkHomeMachine
-        true
-        ./hosts/facade.nix
-        [
-        ];
+      nixosConfigurations = {
+        p71 = mkHomeMachine
+          false
+          ./hosts/p71.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+            ./features/desktopish
+            #./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+            ./features/server/devserver.nix
+            ./features/ema/emanote.nix
+            #./features/virtualbox.nix
+            ./features/lxd.nix
+            #./features/server-mode.nix
+            # ./features/postgrest.nix
+            ./features/server/devserver.nix
+          ];
+        x1c7 = mkHomeMachine
+          ./hosts/x1c7.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+            ./features/distributed-build.nix
+            ./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+          ];
+        facade = mkHomeMachine
+          true
+          ./hosts/facade.nix
+          [
+          ];
+      };
+
+      # non-NixOS systems
+      homeConfigurations =
+        let
+          username = "srid";
+          hostname = "P71";
+        in
+        {
+          # WSL ubuntu
+          "${username}@${hostname}" = home-manager.lib.homeManagerConfiguration {
+            inherit username system;
+            homeDirectory = "/home/${username}";
+            configuration = import ./home.nix {
+              inherit inputs system;
+              bare = false;
+              pkgs = import nixpkgs { inherit system; };
+            };
+          };
+        };
     };
 
 }

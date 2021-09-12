@@ -1,7 +1,6 @@
+# HACK: bare
 { bare ? false, pkgs, inputs, system, ... }:
 let
-  nix-thunk =
-    (import (builtins.fetchTarball "https://github.com/obsidiansystems/nix-thunk/archive/master.tar.gz") { }).command;
   #himalayaSrc = inputs.himalaya;
   #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
@@ -40,11 +39,6 @@ rec {
 
     # latex
     # texlive.combined.scheme-full
-
-    git-remote-gcrypt
-
-    nodePackages.mermaid-cli
-    asciidoctor
   ];
 
   programs = {
@@ -130,19 +124,37 @@ rec {
     bash = {
       enable = true;
       shellAliases = {
-        g = "git";
-        t = "tig";
+        g = "${pkgs.git}/bin/git";
+        t = "${pkgs.tig}/bin/tig";
         l = "${pkgs.exa}/bin/exa";
         ll = "${pkgs.exa}/bin/exa -l";
         ls = "l";
         #h = "himalaya";
       };
       sessionVariables = { };
+      bashrcExtra = ''
+        . ~/.nix-profile/etc/profile.d/nix.sh
+        export PATH=$HOME/.nix-profile/bin:$PATH
+      '';
     };
 
-    starship = {
-      enable = true;
-    };
+    starship =
+      {
+        enable = true;
+        settings = {
+          username = {
+            format = "[$user](bold blue) ";
+            disabled = false;
+            show_always = true;
+          };
+          hostname = {
+            ssh_only = false;
+            format = "on [$hostname](bold red) ";
+            trim_at = ".companyname.com";
+            disabled = false;
+          };
+        };
+      };
 
     bat.enable = true;
     autojump.enable = false;
@@ -154,9 +166,9 @@ rec {
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      "p71" = {
-        hostname = "192.168.2.76";
-      };
+      #"p71" = {
+      #  hostname = "192.168.2.76";
+      #};
     };
   };
 
@@ -168,5 +180,5 @@ rec {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.03";
+  # home.stateVersion = "21.03";
 }
