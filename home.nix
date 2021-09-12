@@ -4,6 +4,7 @@ let
   #himalayaSrc = inputs.himalaya;
   #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+  emanote = inputs.emanote.outputs.defaultPackage.${system};
 in
 rec {
   # Let Home Manager install and manage itself.
@@ -18,6 +19,8 @@ rec {
   #  inputs.nix-doom-emacs.hmModule;
 
   home.packages = with pkgs; lib.optionals (!bare) [
+    emanote
+
     gnumake
     cachix
     tig
