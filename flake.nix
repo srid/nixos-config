@@ -37,7 +37,6 @@
             ./features/caches
             ./features/current-location.nix
             ./features/passwordstore.nix
-            ./features/protonvpn.nix
             ./features/server/harden.nix
 
             # home-manager configuration
