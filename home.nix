@@ -14,13 +14,10 @@ rec {
   home.packages = [
     emanote
 
-    gnumake
     cachix
     tig
-    gh
     procs # no more: ps -ef | grep 
     tealdeer
-    zellij
     unzip
     dust
     ripgrep
