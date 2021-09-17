@@ -83,6 +83,7 @@
         ryzen9 = mkHomeMachine
           ./hosts/ryzen9.nix
           [
+            ./features/server/devserver.nix
           ];
       };
 
