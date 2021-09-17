@@ -22,7 +22,7 @@
     let
       system = "x86_64-linux";
       # Make configuration for any computer I use in my home office.
-      mkHomeMachine = bare: configurationNix: extraModules: nixpkgs.lib.nixosSystem {
+      mkHomeMachine = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
@@ -45,7 +45,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.srid = import ./home.nix {
-                inherit inputs system bare;
+                inherit inputs system;
                 pkgs = import nixpkgs { inherit system; };
               };
             }
@@ -58,7 +58,6 @@
       # 
       nixosConfigurations = {
         p71 = mkHomeMachine
-          false
           ./hosts/p71.nix
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
@@ -81,9 +80,8 @@
             ./features/gnome.nix
             ./features/desktopish/guiapps.nix
           ];
-        facade = mkHomeMachine
-          true
-          ./hosts/facade.nix
+        ryzen9 = mkHomeMachine
+          ./hosts/ryzen9.nix
           [
           ];
       };
