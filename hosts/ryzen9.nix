@@ -9,7 +9,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "ahci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [];
 
   fileSystems."/" =
     {
@@ -17,7 +17,7 @@
       fsType = "ext4";
     };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   nix.maxJobs = lib.mkDefault 32;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
@@ -57,11 +57,13 @@
 
   networking.interfaces."enp35s0" = {
     ipv4 = {
-      addresses = [{
-        # Server main IPv4 address
-        address = "162.55.89.216";
-        prefixLength = 24;
-      }];
+      addresses = [
+        {
+          # Server main IPv4 address
+          address = "162.55.89.216";
+          prefixLength = 24;
+        }
+      ];
 
       routes = [
         # Default IPv4 gateway route
@@ -74,17 +76,21 @@
     };
 
     ipv6 = {
-      addresses = [{
-        address = "2a01:4f8:271:1967::1";
-        prefixLength = 64;
-      }];
+      addresses = [
+        {
+          address = "2a01:4f8:271:1967::1";
+          prefixLength = 64;
+        }
+      ];
 
       # Default IPv6 route
-      routes = [{
-        address = "::";
-        prefixLength = 0;
-        via = "fe80::1";
-      }];
+      routes = [
+        {
+          address = "::";
+          prefixLength = 0;
+          via = "fe80::1";
+        }
+      ];
     };
   };
 
@@ -103,6 +109,14 @@
   };
 
   services.netdata.enable = true;
+  services = {
+    syncthing = {
+      enable = true;
+      user = "srid";
+      dataDir = "/extra0";
+    };
+  };
+
 
   programs = {
     mosh.enable = true;
