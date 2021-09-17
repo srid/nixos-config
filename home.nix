@@ -12,6 +12,7 @@ rec {
   #  inputs.nix-doom-emacs.hmModule;
 
   home.packages = with pkgs; [
+    gnumake
     emanote
 
     cachix
@@ -82,17 +83,17 @@ rec {
         ls = "l";
         #h = "himalaya";
       };
-      sessionVariables = { };
-      bashrcExtra = ''
-        . ~/.nix-profile/etc/profile.d/nix.sh
-        export PATH=$HOME/.nix-profile/bin:$PATH
-
-        # https://github.com/nix-community/home-manager/issues/1871#issuecomment-852739277
-        for completion_script in ~/.nix-profile/share/bash-completion/completions/*
-        do
-          source "$completion_script"
-        done
-      '';
+      sessionVariables = {};
+      # XXX: These are needed only on non-NixOS Linux (on NixOS, they are broken)
+      #bashrcExtra = ''
+      #  . ~/.nix-profile/etc/profile.d/nix.sh
+      #  export PATH=$HOME/.nix-profile/bin:$PATH
+      #  # https://github.com/nix-community/home-manager/issues/1871#issuecomment-852739277
+      #  for completion_script in ~/.nix-profile/share/bash-completion/completions/*
+      #  do
+      #    source "$completion_script"
+      #  done
+      #'';
     };
 
     starship =

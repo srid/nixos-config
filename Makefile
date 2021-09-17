@@ -8,7 +8,7 @@ all:
 
 nixos:
 	sudo nixos-rebuild switch -j auto 
-	systemctl restart --user emanote
+	# systemctl restart --user emanote
 
 # Not sure why this doesn't reliably work
 h0:
