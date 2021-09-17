@@ -11,7 +11,7 @@ rec {
   #imports = pkgs.lib.optional (!bare)
   #  inputs.nix-doom-emacs.hmModule;
 
-  home.packages = [
+  home.packages = with pkgs; [
     emanote
 
     cachix
