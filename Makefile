@@ -1,6 +1,6 @@
 
 all:
-	@if [[ -d "/etc/nixos" ]]; then  \
+	@if [ -d "/etc/nixos" ]; then  \
 		make nixos;\
 	else \
 		make h;\
