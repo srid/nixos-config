@@ -11,6 +11,9 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-vscode-server = {
+      url = "github:iosmanthus/nixos-vscode-server/add-flake";
+    };
     himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -83,6 +86,7 @@
           wsl = mkComputer
             ./hosts/wsl.nix
             [
+	    	./features/server/devserver.nix
             ];
         };
 

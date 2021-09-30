@@ -39,6 +39,16 @@ in
 
   security.sudo.wheelNeedsPassword = false;
 
+  services.openssh.enable = true;
+  services = {
+    syncthing = {
+      enable = true;
+      user = "srid";
+      dataDir = "/home/srid";
+    };
+  };
+
+
   # Disable systemd units that don't make sense on WSL
   systemd.services."serial-getty@ttyS0".enable = false;
   systemd.services."serial-getty@hvc0".enable = false;

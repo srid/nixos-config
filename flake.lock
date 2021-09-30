@@ -520,6 +520,25 @@
         "type": "github"
       }
     },
+    "nixos-vscode-server": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1621309617,
+        "narHash": "sha256-wVraqnUMkDzVRoicKB9hwd16u53lls8gDN2Df6CmoK8=",
+        "owner": "iosmanthus",
+        "repo": "nixos-vscode-server",
+        "rev": "b7d30b8afb614ea9da284ca8e9687689ae8fcfbd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iosmanthus",
+        "ref": "add-flake",
+        "repo": "nixos-vscode-server",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1632583719,
@@ -599,6 +618,22 @@
       }
     },
     "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1632660378,
+        "narHash": "sha256-sjA8eQlnyDjDLyAyq3XlJmN0nqW0ftl/pb7VnMg86L0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "31ffc50c571e6683e9ecc9dbcbd4a8e9914b4497",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1632660378,
         "narHash": "sha256-sjA8eQlnyDjDLyAyq3XlJmN0nqW0ftl/pb7VnMg86L0=",
@@ -735,7 +770,8 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_6"
+        "nixos-vscode-server": "nixos-vscode-server",
+        "nixpkgs": "nixpkgs_7"
       }
     },
     "rotate-text": {
