@@ -16,6 +16,7 @@ in
   environment.etc.hosts.enable = false;
   environment.etc."resolv.conf".enable = false;
 
+  networking.hostName = "thebeast";
   networking.dhcpcd.enable = false;
 
   users.users.${defaultUser} = {
