@@ -35,7 +35,19 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-   };
+  };
+
+  # https://github.com/NixOS/nixpkgs/issues/124753#issuecomment-851618324
+  nixpkgs.overlays =
+    let pinentry_only_curses = self: super: {
+      pinentry = super.pinentry.override {
+        enabledFlavors = [ "curses" ];
+      };
+    };
+    in
+    [
+      pinentry_only_curses
+    ];
 
   security.sudo.wheelNeedsPassword = false;
 
