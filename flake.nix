@@ -87,6 +87,7 @@
           ./hosts/thebeast.nix
           [
             ./features/server/devserver.nix
+            ./features/ema/emanote.nix
           ];
       };
 
