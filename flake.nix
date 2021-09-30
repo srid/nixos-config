@@ -36,7 +36,6 @@
             ./features/caches
             ./features/current-location.nix
             ./features/passwordstore.nix
-            ./features/server/harden.nix
 
             # home-manager configuration
             home-manager.nixosModules.home-manager
@@ -65,6 +64,7 @@
               ./features/desktopish/guiapps.nix
               ./features/server/devserver.nix
               ./features/ema/emanote.nix
+           ./features/server/harden.nix
               #./features/virtualbox.nix
               ./features/lxd.nix
               #./features/server-mode.nix
@@ -75,14 +75,14 @@
             ./hosts/x1c7.nix
             [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+           ./features/server/harden.nix
               ./features/distributed-build.nix
               ./features/gnome.nix
               ./features/desktopish/guiapps.nix
             ];
-          ryzen9 = mkComputer
-            ./hosts/ryzen9.nix
+          wsl = mkComputer
+            ./hosts/wsl.nix
             [
-              ./features/server/devserver.nix
             ];
         };
 
