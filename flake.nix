@@ -54,70 +54,70 @@
         );
       };
     in
-      {
-        # The "name" in nixosConfigurations.${name} should match the `hostname`
-        # 
-        nixosConfigurations = {
-          p71 = mkComputer
-            ./hosts/p71.nix
-            [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-              ./features/desktopish
-              #./features/gnome.nix
-              ./features/desktopish/guiapps.nix
-              ./features/server/devserver.nix
-              ./features/ema/emanote.nix
-           ./features/server/harden.nix
-              #./features/virtualbox.nix
-              ./features/lxd.nix
-              #./features/server-mode.nix
-              # ./features/postgrest.nix
-              ./features/server/devserver.nix
-            ];
-          x1c7 = mkComputer
-            ./hosts/x1c7.nix
-            [
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-           ./features/server/harden.nix
-              ./features/distributed-build.nix
-              ./features/gnome.nix
-              ./features/desktopish/guiapps.nix
-            ];
-          wsl = mkComputer
-            ./hosts/wsl.nix
-            [
-	    	./features/server/devserver.nix
-            ];
-        };
-
-        # non-NixOS systems
-        homeConfigurations =
-          let
-            username = "srid";
-            baseConfiguration = {
-              programs.home-manager.enable = true;
-              home.username = "srid";
-              home.homeDirectory = "/home/srid";
-            };
-            mkHomeConfig = cfg: home-manager.lib.homeManagerConfiguration {
-              inherit username system;
-              homeDirectory = "/home/${username}";
-              configuration = baseConfiguration // cfg;
-            };
-          in
-            {
-              "P71" = mkHomeConfig (
-                import ./home.nix {
-                  inherit inputs system;
-                  pkgs = import nixpkgs { inherit system; };
-                }
-              );
-              # FIXME: This is broken on Clear Linux
-              "x1c7" = mkHomeConfig {
-                programs.git = import ./home/git.nix;
-                programs.tmux = import ./home/tmux.nix;
-              };
-            };
+    {
+      # The "name" in nixosConfigurations.${name} should match the `hostname`
+      # 
+      nixosConfigurations = {
+        p71 = mkComputer
+          ./hosts/p71.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+            ./features/desktopish
+            #./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+            ./features/server/devserver.nix
+            ./features/ema/emanote.nix
+            ./features/server/harden.nix
+            #./features/virtualbox.nix
+            ./features/lxd.nix
+            #./features/server-mode.nix
+            # ./features/postgrest.nix
+            ./features/server/devserver.nix
+          ];
+        x1c7 = mkComputer
+          ./hosts/x1c7.nix
+          [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+            ./features/server/harden.nix
+            ./features/distributed-build.nix
+            ./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+          ];
+        thebeast = mkComputer
+          ./hosts/thebeast.nix
+          [
+            ./features/server/devserver.nix
+          ];
       };
+
+      # non-NixOS systems
+      homeConfigurations =
+        let
+          username = "srid";
+          baseConfiguration = {
+            programs.home-manager.enable = true;
+            home.username = "srid";
+            home.homeDirectory = "/home/srid";
+          };
+          mkHomeConfig = cfg: home-manager.lib.homeManagerConfiguration {
+            inherit username system;
+            homeDirectory = "/home/${username}";
+            configuration = baseConfiguration // cfg;
+          };
+        in
+        {
+          "P71" = mkHomeConfig (
+            import ./home.nix {
+              inherit inputs system;
+              pkgs = import nixpkgs { inherit system; };
+            }
+          );
+          # FIXME: This is broken on Clear Linux
+          "x1c7" = mkHomeConfig {
+            programs.git = import ./home/git.nix;
+            programs.tmux = import ./home/tmux.nix;
+          };
+        };
+    };
 
 }

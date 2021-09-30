@@ -3,7 +3,7 @@
 with lib;
 let
   defaultUser = "srid";
-  syschdemd = import ./wsl/syschdemd.nix { inherit lib pkgs config defaultUser; };
+  syschdemd = import ./thebeast/syschdemd.nix { inherit lib pkgs config defaultUser; };
 in
 {
   imports = [
@@ -17,7 +17,6 @@ in
   environment.etc."resolv.conf".enable = false;
 
   networking.dhcpcd.enable = false;
-  networking.hostName = "wsl";
 
   users.users.${defaultUser} = {
     isNormalUser = true;
