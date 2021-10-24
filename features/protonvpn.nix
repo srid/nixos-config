@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     protonvpn-cli
+    protonvpn-gui
   ];
 
   security.sudo.extraRules = [

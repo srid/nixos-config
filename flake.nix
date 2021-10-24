@@ -66,6 +66,7 @@
             ./features/kde.nix
             ./features/desktopish/guiapps.nix
             ./features/server/devserver.nix
+            ./features/protonvpn.nix
             ./features/ema/emanote.nix
             ./features/server/harden.nix
             #./features/virtualbox.nix
