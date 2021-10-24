@@ -70,7 +70,7 @@
             ./features/ema/emanote.nix
             ./features/server/harden.nix
             #./features/virtualbox.nix
-            #./features/lxd.nix
+            ./features/lxd.nix
             #./features/server-mode.nix
             # ./features/postgrest.nix
             ./features/server/devserver.nix
