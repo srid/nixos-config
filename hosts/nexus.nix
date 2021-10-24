@@ -12,28 +12,23 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "ntfs" ];
   # https://notes.srid.ca/rtl8821cu
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
+  # boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/8d755446-15a4-4260-8a13-7529b585666b";
+    { device = "/dev/disk/by-uuid/9d13f366-37bd-474b-b6c8-9fae17dbc5dc";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/68eed875-bd65-4178-bca6-3e1db074ed46";
-
   fileSystems."/boot" =
-    {
-      device = "/dev/nvme0n1p1";
+    { device = "/dev/disk/by-uuid/8F9C-EB2B";
       fsType = "vfat";
     };
 
   swapDevices = [ ];
-
 
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
@@ -51,18 +46,10 @@
     trustedUsers = [ "root" "srid" ];
   };
 
-  networking.hostName = "p71"; # Define your hostname.
+  networking.hostName = "nexus"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp0s31f6.useDHCP = true;
-  networking.interfaces.wlp4s0.useDHCP = true;
-
   services.openssh.enable = true;
-  services.netdata.enable = true;
   services = {
     syncthing = {
       enable = true;
@@ -81,6 +68,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -93,6 +81,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 
 }

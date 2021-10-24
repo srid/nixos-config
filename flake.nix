@@ -58,18 +58,18 @@
       # The "name" in nixosConfigurations.${name} should match the `hostname`
       # 
       nixosConfigurations = {
-        p71 = mkComputer
-          ./hosts/p71.nix
+        nexus = mkComputer
+          ./hosts/nexus.nix
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-            ./features/desktopish
-            #./features/gnome.nix
+            #./features/desktopish
+            ./features/kde.nix
             ./features/desktopish/guiapps.nix
             ./features/server/devserver.nix
             ./features/ema/emanote.nix
             ./features/server/harden.nix
             #./features/virtualbox.nix
-            ./features/lxd.nix
+            #./features/lxd.nix
             #./features/server-mode.nix
             # ./features/postgrest.nix
             ./features/server/devserver.nix
