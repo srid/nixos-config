@@ -19,25 +19,39 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0c60d1a3-f5da-4687-a982-46a3c2580839";
+    {
+      device = "/dev/disk/by-uuid/0c60d1a3-f5da-4687-a982-46a3c2580839";
       fsType = "ext4";
     };
 
   boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/1642e4f1-8098-4db5-9327-5c5f8827a2c0";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F0E7-9C8C";
+    {
+      device = "/dev/disk/by-uuid/F0E7-9C8C";
       fsType = "vfat";
     };
 
   swapDevices = [ ];
 
   # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  # hardware.video.hidpi.enable = lib.mkDefault true;
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
+
   services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  # On KDE+nvidia, display scaling can only be set here.
+  services.xserver.dpi = 170;
+  # Not sure how to merge two screens in KDE
+  # cf. https://github.com/srid/nix-config/blob/master/device/p71/graphics.nix
+  # These are the default.
+  services.xserver.deviceSection = ''
+    Option         "Twinview"
+  '';
+  services.xserver.serverLayoutSection = ''
+    Option "Xinerama" "off"
+  '';
 
   nixpkgs.config.allowUnfree = true;
   nix = {
