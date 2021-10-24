@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/31ffc50c571e6683e9ecc9dbcbd4a8e9914b4497";
+    nixpkgs.url = "github:nixos/nixpkgs/34ad3ffe08adfca17fcb4e4a47bb5f3b113687be";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
