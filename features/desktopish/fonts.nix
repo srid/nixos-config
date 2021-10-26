@@ -11,6 +11,7 @@
       noto-fonts-emoji
       fira-code
       cascadia-code
+      nerdfonts
     ];
   };
 }

@@ -65,6 +65,7 @@
             #./features/desktopish
             ./features/kde.nix
             ./features/desktopish/guiapps.nix
+            ./features/desktopish/fonts.nix
             ./features/server/devserver.nix
             ./features/protonvpn.nix
             ./features/ema/emanote.nix

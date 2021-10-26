@@ -133,11 +133,11 @@
         "windicss": "windicss"
       },
       "locked": {
-        "lastModified": 1634675645,
-        "narHash": "sha256-qzMshYsSqeJD0HIZ93niNypTS1ojnmA469aNiE88lDs=",
+        "lastModified": 1635273350,
+        "narHash": "sha256-NE63clMe2JQSPVOv08ld/oOFS78XJOzWbYI8SJt2qZM=",
         "owner": "srid",
         "repo": "emanote",
-        "rev": "5ae79f4017bf591dee2ee6c6039db5e1ccd921b4",
+        "rev": "228029bbe7320ea816e523c8eb7b628133b03639",
         "type": "github"
       },
       "original": {
@@ -506,11 +506,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1629975021,
-        "narHash": "sha256-+z4pK5yvoIKAIPGnyxt7I7Y9yX72HFP2krppGENpn6I=",
+        "lastModified": 1633793047,
+        "narHash": "sha256-XSMlHMVPKwcEqyHGdFj/ZeGMeZeKNwVExOfLlxcg4oE=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "342048461da7fc743e588ee744080c045613a226",
+        "rev": "3aabf78bfcae62f5f99474f2ebbbe418f1c6e54f",
         "type": "github"
       },
       "original": {
