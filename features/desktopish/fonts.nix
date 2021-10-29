@@ -12,6 +12,7 @@
       fira-code
       cascadia-code
       nerdfonts
+      b612
     ];
   };
 }

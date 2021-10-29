@@ -5,6 +5,14 @@
     vscode
     vlc
     steam
+
+    # X stuff
+    xorg.xdpyinfo
+    xorg.xrandr
+    xclip
+    xsel
+    arandr
+    autorandr
   ];
 
   # https://github.com/NixOS/nixpkgs/issues/47932#issuecomment-447508411

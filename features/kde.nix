@@ -6,10 +6,5 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xorg.xdpyinfo
-    xorg.xrandr
-    xsel
-    arandr
-    autorandr
   ];
 }
