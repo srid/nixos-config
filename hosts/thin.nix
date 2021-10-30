@@ -23,6 +23,7 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
+  services.xserver.dpi = 170;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -50,6 +51,13 @@
 
   services.xserver.enable = true;
   services.openssh.enable = true;
+  services = {
+    syncthing = {
+      enable = true;
+      user = "srid";
+      dataDir = "/home/srid";
+    };
+  };
 
   users.users.srid = {
     isNormalUser = true;

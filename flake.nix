@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/34ad3ffe08adfca17fcb4e4a47bb5f3b113687be";
+    nixpkgs.url = "github:nixos/nixpkgs/2deb07f3ac4eeb5de1c12c4ba2911a2eb1f6ed61";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -62,6 +62,7 @@
           ./hosts/nexus.nix
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
+            ./features/server/harden.nix
             #./features/desktopish
             ./features/kde.nix
             ./features/desktopish/guiapps.nix
@@ -69,21 +70,23 @@
             ./features/server/devserver.nix
             ./features/protonvpn.nix
             ./features/ema/emanote.nix
-            ./features/server/harden.nix
             #./features/virtualbox.nix
             ./features/lxd.nix
             #./features/server-mode.nix
             # ./features/postgrest.nix
             ./features/server/devserver.nix
           ];
-        x1c7 = mkComputer
-          ./hosts/x1c7.nix
+        thin = mkComputer
+          ./hosts/thin.nix
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
             ./features/server/harden.nix
-            ./features/distributed-build.nix
-            ./features/gnome.nix
+            #./features/distributed-build.nix
+            ./features/kde.nix
             ./features/desktopish/guiapps.nix
+            ./features/desktopish/fonts.nix
+            ./features/protonvpn.nix
+            ./features/ema/emanote.nix
           ];
         thebeast = mkComputer
           ./hosts/thebeast.nix
