@@ -19,16 +19,12 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/0c60d1a3-f5da-4687-a982-46a3c2580839";
+    { device = "/dev/disk/by-uuid/25d3748c-b6fc-43d6-819a-e916821bd06e";
       fsType = "ext4";
     };
-
-  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/1642e4f1-8098-4db5-9327-5c5f8827a2c0";
-
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/ccc661bc-c59f-4172-b6e0-2ba54d34de5c";
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/F0E7-9C8C";
+    { device = "/dev/disk/by-uuid/A782-D559";
       fsType = "vfat";
     };
 
@@ -37,21 +33,21 @@
   # high-resolution display
   # hardware.video.hidpi.enable = lib.mkDefault true;
 
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
+  #hardware.pulseaudio.enable = true;
+  #hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
 
-  services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  # services.xserver.videoDrivers = [ "nvidia" "intel" ];
   # On KDE+nvidia, display scaling can only be set here.
-  services.xserver.dpi = 170;
+  #services.xserver.dpi = 170;
   # Not sure how to merge two screens in KDE
   # cf. https://github.com/srid/nix-config/blob/master/device/p71/graphics.nix
   # These are the default.
-  services.xserver.deviceSection = ''
-    Option         "Twinview"
-  '';
-  services.xserver.serverLayoutSection = ''
-    Option "Xinerama" "off"
-  '';
+  #services.xserver.deviceSection = ''
+  #  Option         "Twinview"
+  #'';
+  #services.xserver.serverLayoutSection = ''
+  #  Option "Xinerama" "off"
+  #'';
 
   nixpkgs.config.allowUnfree = true;
   nix = {
@@ -84,12 +80,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

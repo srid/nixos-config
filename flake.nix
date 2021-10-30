@@ -64,11 +64,10 @@
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
             ./features/server/harden.nix
             ./features/server/devserver.nix
-            ./features/ema/emanote.nix
-            #./features/virtualbox.nix
+            ./features/server/unlaptop.nix
+            #./features/ema/emanote.nix
             ./features/lxd.nix
-            ./features/unlaptop.nix
-            # ./features/postgrest.nix
+            ./features/docker.nix
           ];
         thin = mkComputer
           ./hosts/thin.nix
