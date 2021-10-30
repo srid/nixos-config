@@ -5,40 +5,28 @@
     [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
-
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/e0516457-2611-4fbd-afdd-b96618c15fc9";
+      device = "/dev/disk/by-uuid/eca209c7-aef3-4854-baf0-a82deeba3791";
       fsType = "ext4";
     };
+  boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/c9c2c496-6ae0-4310-bd74-c180847f3774";
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/5C46-63E4";
+      device = "/dev/disk/by-uuid/B3E6-2C4C";
       fsType = "vfat";
     };
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/0bb9c031-1533-40bb-81ae-f956ba84568d"; }];
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
-  # Try to fix default shitty sound experience on Carbon
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-  };
-
-  # TODO: upstream to nixos-hardware
-  hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -51,7 +39,7 @@
     trustedUsers = [ "root" "srid" ];
   };
 
-  networking.hostName = "x1c7";
+  networking.hostName = "thin";
   networking.networkmanager.enable = true;
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -59,8 +47,6 @@
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp0s20f3.useDHCP = true;
-
-  programs.mosh.enable = true;
 
   services.xserver.enable = true;
   services.openssh.enable = true;
