@@ -25,6 +25,9 @@
   hardware.video.hidpi.enable = lib.mkDefault true;
   services.xserver.dpi = 170;
 
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
