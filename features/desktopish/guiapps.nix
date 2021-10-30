@@ -5,6 +5,7 @@
     vscode
     vlc
     steam
+    qbittorrent
 
     # X stuff
     xorg.xdpyinfo

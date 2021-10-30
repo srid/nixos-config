@@ -65,7 +65,7 @@
             ./features/server/harden.nix
             ./features/server/devserver.nix
             ./features/server/unlaptop.nix
-            #./features/ema/emanote.nix
+            ./features/ema/emanote.nix
             ./features/lxd.nix
             ./features/docker.nix
           ];
@@ -79,7 +79,7 @@
             ./features/desktopish/guiapps.nix
             ./features/desktopish/fonts.nix
             ./features/protonvpn.nix
-            ./features/ema/emanote.nix
+            #./features/ema/emanote.nix
           ];
         thebeast = mkComputer
           ./hosts/thebeast.nix

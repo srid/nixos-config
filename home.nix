@@ -26,7 +26,6 @@ rec {
     bottom # htop alternative
     fzf
     aria2
-    qbittorrent
     # ^ easy to forget these; write SRS?
 
     hledger
@@ -126,7 +125,7 @@ rec {
     enable = true;
     matchBlocks = {
       "thick" = {
-        hostname = "192.168.2.15";
+        hostname = "192.168.2.14";
       };
     };
   };
