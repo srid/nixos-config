@@ -65,6 +65,7 @@
             ./features/server/harden.nix
             ./features/server/devserver.nix
             ./features/server/unlaptop.nix
+            ./features/server/wakeonlan.nix
             ./features/ema/emanote.nix
             ./features/lxd.nix
             ./features/docker.nix

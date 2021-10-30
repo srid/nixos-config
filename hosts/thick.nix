@@ -19,12 +19,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/25d3748c-b6fc-43d6-819a-e916821bd06e";
+    {
+      device = "/dev/disk/by-uuid/25d3748c-b6fc-43d6-819a-e916821bd06e";
       fsType = "ext4";
     };
   boot.initrd.luks.devices."crypted".device = "/dev/disk/by-uuid/ccc661bc-c59f-4172-b6e0-2ba54d34de5c";
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A782-D559";
+    {
+      device = "/dev/disk/by-uuid/A782-D559";
       fsType = "vfat";
     };
 
