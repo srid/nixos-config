@@ -26,6 +26,7 @@ rec {
     bottom # htop alternative
     fzf
     aria2
+    wol
     # ^ easy to forget these; write SRS?
 
     hledger
