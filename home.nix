@@ -84,7 +84,7 @@ rec {
         ls = "l";
         #h = "himalaya";
       };
-      sessionVariables = {};
+      sessionVariables = { };
       # XXX: These are needed only on non-NixOS Linux (on NixOS, they are broken)
       #bashrcExtra = ''
       #  . ~/.nix-profile/etc/profile.d/nix.sh
@@ -125,9 +125,9 @@ rec {
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      #"p71" = {
-      #  hostname = "192.168.2.76";
-      #};
+      "thick" = {
+        hostname = "192.168.2.15";
+      };
     };
   };
 
