@@ -62,7 +62,7 @@
     trustedUsers = [ "root" "srid" ];
   };
 
-  networking.hostName = "nexus"; # Define your hostname.
+  networking.hostName = "thick"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   services.openssh.enable = true;

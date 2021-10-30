@@ -58,23 +58,17 @@
       # The "name" in nixosConfigurations.${name} should match the `hostname`
       # 
       nixosConfigurations = {
-        nexus = mkComputer
-          ./hosts/nexus.nix
+        thick = mkComputer
+          ./hosts/thick.nix
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
             ./features/server/harden.nix
-            #./features/desktopish
-            ./features/kde.nix
-            ./features/desktopish/guiapps.nix
-            ./features/desktopish/fonts.nix
             ./features/server/devserver.nix
-            ./features/protonvpn.nix
             ./features/ema/emanote.nix
             #./features/virtualbox.nix
             ./features/lxd.nix
-            #./features/server-mode.nix
+            ./features/unlaptop.nix
             # ./features/postgrest.nix
-            ./features/server/devserver.nix
           ];
         thin = mkComputer
           ./hosts/thin.nix
@@ -112,12 +106,6 @@
           };
         in
         {
-          "P71" = mkHomeConfig (
-            import ./home.nix {
-              inherit inputs system;
-              pkgs = import nixpkgs { inherit system; };
-            }
-          );
           # FIXME: This is broken on Clear Linux
           "x1c7" = mkHomeConfig {
             programs.git = import ./home/git.nix;
