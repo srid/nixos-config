@@ -8,7 +8,16 @@
     };
   };
 
+  networking.interfaces."enp0s31f6".wakeOnLan.enable = true;
+
   environment.systemPackages = with pkgs; [
+    # ethtool can be used to manually enable wakeOnLan, eg:
+    #
+    #    sudo ethtool -s enp0s31f6 wol g
+    #
+    # on verify its status:
+    #
+    #    sudo ethtool enp0s31f6 | grep Wake-on
     ethtool
   ];
 }
