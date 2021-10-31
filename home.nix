@@ -27,6 +27,7 @@ rec {
     fzf
     aria2
     wol
+    pulsemixer
     # ^ easy to forget these; write SRS?
 
     hledger

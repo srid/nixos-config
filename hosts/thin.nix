@@ -20,7 +20,11 @@
       device = "/dev/disk/by-uuid/B3E6-2C4C";
       fsType = "vfat";
     };
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  # X1C7 throttling is already shit, so put this in performance mode.
+  # See also: https://discourse.nixos.org/t/how-to-switch-cpu-governor-on-battery-power/8446/5
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
   services.xserver.dpi = 170;

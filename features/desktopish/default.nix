@@ -22,7 +22,6 @@
   environment.systemPackages = with pkgs; [
     acpi
     mpv
-    pulsemixer
     xorg.xmessage
     xclip
   ];
