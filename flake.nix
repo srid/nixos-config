@@ -69,6 +69,7 @@
             ./features/ema/emanote.nix
             ./features/lxd.nix
             ./features/docker.nix
+            ./features/postgres.nix
           ];
         thin = mkComputer
           ./hosts/thin.nix
