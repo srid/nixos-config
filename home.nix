@@ -98,6 +98,15 @@ rec {
       #'';
     };
 
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv = {
+        enable = true;
+        enableFlakes = true;
+      };
+    };
+
     starship =
       {
         enable = true;
