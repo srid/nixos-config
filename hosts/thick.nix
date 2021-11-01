@@ -71,6 +71,10 @@
       dataDir = "/home/srid";
     };
   };
+  services.ipfs = {
+    enable = true;
+    autoMigrate = true;
+  };
 
   programs = {
     mosh.enable = true;
