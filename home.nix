@@ -14,6 +14,7 @@ rec {
   home.packages = with pkgs; [
     gnumake
     emanote
+    git-crypt
 
     cachix
     tig
