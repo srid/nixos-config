@@ -21,13 +21,13 @@
       fsType = "vfat";
     };
 
-  # X1C7 throttling is already shit, so put this in performance mode.
+  # If X1C7 throttling is already shit (and working docked), put this in "performance" mode.
   # See also: https://discourse.nixos.org/t/how-to-switch-cpu-governor-on-battery-power/8446/5
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
-  services.xserver.dpi = 170;
+  services.xserver.dpi = 192;
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
@@ -56,7 +56,6 @@
   networking.interfaces.enp0s31f6.useDHCP = true;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  services.xserver.enable = true;
   services.openssh.enable = true;
   services = {
     syncthing = {
@@ -68,7 +67,7 @@
 
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
 
   # This value determines the NixOS release from which the default
@@ -77,6 +76,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
-
+  system.stateVersion = "21.11"; # Did you read the comment?
 }
