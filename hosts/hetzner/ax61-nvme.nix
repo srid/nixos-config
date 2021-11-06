@@ -9,7 +9,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "ahci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [];
+  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
@@ -17,7 +17,7 @@
       fsType = "ext4";
     };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 32;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
@@ -99,7 +99,6 @@
     hostName = "ryzen9";
   };
 
-  nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''

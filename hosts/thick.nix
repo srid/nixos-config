@@ -51,7 +51,6 @@
     Option "Xinerama" "off"
   '';
 
-  nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''

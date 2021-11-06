@@ -38,7 +38,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''

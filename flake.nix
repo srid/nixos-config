@@ -24,14 +24,16 @@
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
     let
       system = "x86_64-linux";
+      # Add nixpkgs overlays and config here. They apply to system and home-manager builds.
       pkgs = import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
         overlays = [
           (import inputs.emacs-overlay)
         ];
       };
       mkComputer = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit system pkgs;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
         modules = (
