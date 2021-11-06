@@ -66,6 +66,10 @@
             ./features/server/devserver.nix
             ./features/server/unlaptop.nix
             ./features/server/wakeonlan.nix
+            ./features/kde.nix
+            ./features/desktopish/guiapps.nix
+            ./features/desktopish/fonts.nix
+            ./features/protonvpn.nix
             ./features/ema/emanote.nix
             ./features/lxd.nix
             ./features/docker.nix

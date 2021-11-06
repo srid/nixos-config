@@ -33,23 +33,23 @@
   swapDevices = [ ];
 
   # high-resolution display
-  # hardware.video.hidpi.enable = lib.mkDefault true;
+  hardware.video.hidpi.enable = lib.mkDefault true;
 
-  #hardware.pulseaudio.enable = true;
-  #hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
 
-  # services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
   # On KDE+nvidia, display scaling can only be set here.
-  #services.xserver.dpi = 170;
+  services.xserver.dpi = 170;
   # Not sure how to merge two screens in KDE
   # cf. https://github.com/srid/nix-config/blob/master/device/p71/graphics.nix
   # These are the default.
-  #services.xserver.deviceSection = ''
-  #  Option         "Twinview"
-  #'';
-  #services.xserver.serverLayoutSection = ''
-  #  Option "Xinerama" "off"
-  #'';
+  services.xserver.deviceSection = ''
+    Option         "Twinview"
+  '';
+  services.xserver.serverLayoutSection = ''
+    Option "Xinerama" "off"
+  '';
 
   nixpkgs.config.allowUnfree = true;
   nix = {
