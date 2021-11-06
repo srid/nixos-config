@@ -8,8 +8,7 @@ in
 rec {
 
 
-  #imports = pkgs.lib.optional (!bare)
-  #  inputs.nix-doom-emacs.hmModule;
+  imports = [ inputs.nix-doom-emacs.hmModule ];
 
   home.packages = with pkgs; [
     gnumake
@@ -43,10 +42,10 @@ rec {
 
     tmux = import ./home/tmux.nix;
 
-    #doom-emacs = {
-    #  enable = false;
-    #  doomPrivateDir = ./config/doom.d;
-    #};
+    doom-emacs = {
+      enable = true;
+      doomPrivateDir = ./config/doom.d;
+    };
 
     neovim = {
       enable = true;
