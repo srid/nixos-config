@@ -15,6 +15,9 @@ rec {
     emanote
     git-crypt
 
+    # https://github.com/nix-community/emacs-overlay
+    emacsPgtkGcc
+
     cachix
     tig
     procs # no more: ps -ef | grep 
@@ -43,7 +46,7 @@ rec {
     tmux = import ./home/tmux.nix;
 
     doom-emacs = {
-      enable = true;
+      enable = false;
       doomPrivateDir = ./config/doom.d;
     };
 

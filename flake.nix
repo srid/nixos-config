@@ -24,6 +24,12 @@
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
     let
       system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (import inputs.emacs-overlay)
+        ];
+      };
       mkComputer = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
         inherit system;
         # Arguments to pass to all modules.
@@ -45,10 +51,10 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.srid = import ./home.nix {
-                inherit inputs system;
-                pkgs = import nixpkgs { inherit system; };
-              };
+              home-manager.users.srid = import ./home.nix
+                {
+                  inherit inputs system pkgs;
+                };
             }
           ] ++ extraModules
         );
