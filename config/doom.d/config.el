@@ -9,7 +9,7 @@
 (setq user-full-name "Sridhar Ratnakumar"
       user-mail-address "srid@srid.ca")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; Doom exposes Five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
 ;; + `doom-font'
@@ -21,11 +21,12 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Iosevka"))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-flatwhite)
+(setq doom-theme 'leuven)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -52,17 +53,3 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
-;; https://github.com/bbatsov/super-save
-(use-package super-save
-  :ensure t
-  :config
-  (super-save-mode +1)
-  (setq super-save-auto-save-when-idle t
-        super-save-idle-duration 0.5)
-  )
-
-(after! markdown-mode
-  (setq markdown-enable-wiki-links t)
-  (setq markdown-link-space-sub-char " ")
-  (setq markdown-wiki-link-search-type '(project)))
