@@ -17,11 +17,16 @@ rec {
 
     # https://github.com/nix-community/emacs-overlay
     (emacsWithPackagesFromUsePackage {
+      config = ./config/init.el;
       package = emacsPgtkGcc;
       extraEmacsPackages = epkgs: [
-        epkgs.emacs-sqlite3
+        epkgs.emacsql-sqlite
+        epkgs.emacsql-sqlite3
+        epkgs.vterm
       ];
     })
+    sqlite
+    gcc
 
     cachix
     tig
