@@ -16,7 +16,12 @@ rec {
     git-crypt
 
     # https://github.com/nix-community/emacs-overlay
-    emacsPgtkGcc
+    (emacsWithPackagesFromUsePackage {
+      package = emacsPgtkGcc;
+      extraEmacsPackages = epkgs: [
+        epkgs.emacs-sqlite3
+      ];
+    })
 
     cachix
     tig
@@ -45,6 +50,8 @@ rec {
 
     tmux = import ./home/tmux.nix;
 
+    # Leaving this disabled, as it doesn't look like nix-doom-emacs is being
+    # maintained or kept up to date anymore.
     doom-emacs = {
       enable = false;
       doomPrivateDir = ./config/doom.d;
