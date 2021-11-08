@@ -12,6 +12,7 @@
     qbittorrent
 
     # X stuff
+    caffeine-ng
     xorg.xdpyinfo
     xorg.xrandr
     xclip
