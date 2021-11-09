@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     brave
     onlyoffice-bin
+    obsidian
 
     simplescreenrecorder
     obs-studio
