@@ -71,7 +71,7 @@
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
             ./features/server/harden.nix
-            ./features/server/devserver.nix
+            # ./features/server/devserver.nix
             ./features/server/unlaptop.nix
             ./features/server/wakeonlan.nix
             ./features/kde.nix
@@ -94,12 +94,6 @@
             ./features/desktopish/fonts.nix
             ./features/protonvpn.nix
             #./features/ema/emanote.nix
-          ];
-        thebeast = mkComputer
-          ./hosts/thebeast.nix
-          [
-            ./features/server/devserver.nix
-            ./features/ema/emanote.nix
           ];
       };
 

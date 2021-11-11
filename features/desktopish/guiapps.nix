@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  imports = [
+    ./vscode.nix
+  ];
+
   # Apps I use on desktops and laptops
   environment.systemPackages = with pkgs; [
     brave
@@ -8,7 +12,6 @@
     simplescreenrecorder
     obs-studio
 
-    vscode
     vlc
     qbittorrent
 
