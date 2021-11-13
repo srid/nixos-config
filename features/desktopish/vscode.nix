@@ -8,6 +8,8 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # (vscode-with-extensions.override
+    #  { vscodeExtensions = with vscode-extensions; [ ms-vsliveshare.vsliveshare ]; })
     vscode
     nodejs-14_x # Need this for https://nixos.wiki/wiki/Vscode server
   ];
