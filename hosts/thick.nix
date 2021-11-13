@@ -69,9 +69,12 @@
       user = "srid";
       dataDir = "/home/srid";
     };
+    neo4j = {
+      enable = false;
+    };
   };
   services.ipfs = {
-    enable = true;
+    enable = true; # 8080 conflicts with playground-server
     autoMigrate = true;
   };
 

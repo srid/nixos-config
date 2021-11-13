@@ -12,19 +12,21 @@ rec {
 
   home.packages = with pkgs; [
     gnumake
+    # psutils -- collides with tex
+    usbutils
     emanote
     git-crypt
 
     # https://github.com/nix-community/emacs-overlay
-    (emacsWithPackagesFromUsePackage {
+    /* (emacsWithPackagesFromUsePackage {
       config = ./config/init.el;
       package = emacsPgtkGcc;
       extraEmacsPackages = epkgs: [
-        epkgs.emacsql-sqlite
-        epkgs.emacsql-sqlite3
-        epkgs.vterm
+      epkgs.emacsql-sqlite
+      epkgs.emacsql-sqlite3
+      epkgs.vterm
       ];
-    })
+      }) */
     sqlite
     gcc
 
