@@ -12,6 +12,7 @@ rec {
 
   home.packages = with pkgs; [
     gnumake
+    psmisc
     # psutils -- collides with tex
     usbutils
     emanote
