@@ -6,7 +6,7 @@ let
     ''
       #!${pkgs.runtimeShell}
       # Use fc-list to lookup font names
-      exec ${pkgs.st}/bin/st -f "CascadiaCode:pixelsize=26" $*
+      exec ${pkgs.st}/bin/st -f "Iosevka:pixelsize=26" $*
     '';
 in
 {

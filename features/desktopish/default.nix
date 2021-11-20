@@ -15,7 +15,7 @@
     # WMish things
     ./xmonad
     #./taffybar # Disabled, because it rarely works (and memory hungry)
-    #./xmobar  # shit UX
+    ./xmobar # shit UX
   ];
 
   environment.systemPackages = with pkgs; [
