@@ -12,6 +12,7 @@
     ./gnome-keyring.nix
     ./guiapps.nix
     ./polybar.nix
+    ./hotplug.nix
 
     # WMish things
     ./xmonad
