@@ -8,11 +8,13 @@ in
     description = "Xmobar";
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
-      # ExecStart = "${xmobarPkg}/bin/xmobar-srid";
-      ExecStart = "${pkgs.xmobar}/bin/xmobar -v -x 2 -f xft:Consolas:size=12 -c '[Run PipeReader \"/etc/nixos/pipe\" \"thepipe\"]' -t \"%%thepipe%%\"";
+      ExecStart = "${xmobarPkg}/bin/xmobar-srid";
+      # ExecStart = "${pkgs.xmobar}/bin/xmobar -v -x 2 -f xft:Consolas:size=12 -c '[Run PipeReader \"/etc/nixos/pipe\" \"thepipe\"]' -t \"%%thepipe%%\"";
       Restart = "on-abnormal";
     };
   };
+
+  environment.systemPackages = [ xmobarPkg ];
 
   # Battery widget requires this.
   services.upower = {
