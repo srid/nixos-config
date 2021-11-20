@@ -14,9 +14,8 @@
 
     # WMish things
     ./xmonad
-    #./sway.nix
-    # ./taffybar # Disabled, because it rarely works
-    # ./xmobar
+    #./taffybar # Disabled, because it rarely works (and memory hungry)
+    #./xmobar  # shit UX
   ];
 
   environment.systemPackages = with pkgs; [

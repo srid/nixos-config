@@ -24,7 +24,7 @@ in
     # Some modes freeze P71, so explicitly select a mode that is known to be stable.
     locker = "${pkgs.xlockmore}/bin/xlock -mode space";
 
-    # Suspend asap after lock. 
+    # Suspend after lock. 
     killtime = 10; # mins
     killer = "${pkgs.systemd}/bin/systemctl suspend";
   };

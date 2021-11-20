@@ -8,10 +8,7 @@
 
     dmenu
     gmrun
-    xmobar
     dzen2
-    # For taffybar?
-    hicolor-icon-theme
   ];
 
   services.xserver = {
