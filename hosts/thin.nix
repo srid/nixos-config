@@ -25,9 +25,6 @@
   # See also: https://discourse.nixos.org/t/how-to-switch-cpu-governor-on-battery-power/8446/5
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
-  services.xserver.dpi = 192;
 
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
