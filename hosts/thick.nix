@@ -38,8 +38,6 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
 
-  hardware.bluetooth.enable = true;
-
   services.xserver.videoDrivers = [ "nvidia" "intel" ];
   # On KDE+nvidia, display scaling can only be set here.
   services.xserver.dpi = 170;
