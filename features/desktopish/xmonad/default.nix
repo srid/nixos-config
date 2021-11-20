@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+
+let
+  myXmonadProject = ./xmonad-srid;
+in
 {
   environment.systemPackages = with pkgs; [
     xorg.xdpyinfo
@@ -15,11 +19,14 @@
     enable = true;
     windowManager.xmonad = {
       enable = true;
-      extraPackages = haskellPackages: [
-        haskellPackages.xmonad-contrib
+      haskellPackages = pkgs.haskellPackages.extend
+        (import "${myXmonadProject}/overlay.nix" { inherit pkgs; });
+      extraPackages = hpkgs: with pkgs.haskell.lib; [
+        hpkgs.xmonad-contrib
+        hpkgs.xmonad-extras
       ];
-      enableContribAndExtras = true;
-      config = pkgs.lib.readFile ./xmonad-srid/Main.hs;
+      # enableContribAndExtras = true;  -- using our own
+      config = pkgs.lib.readFile "${myXmonadProject}/Main.hs";
     };
   };
   services.xserver.displayManager.defaultSession = "none+xmonad";

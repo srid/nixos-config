@@ -43,7 +43,7 @@ main = do
     myTabbed :: ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest.Simplest Window
     myTabbed =
       -- FIXME: This doesn't work reliably.
-      tabbed shrinkText $ def {decoHeight = 10, activeColor = "#50CBE8", fontName = "xft:DejaVu Sans Mono:size=12"}
+      tabbed shrinkText $ def {decoHeight = 10, activeColor = "#50CBE8", fontName = "xft:CascadiaCode:size=16"}
 
     pointerFollowsFocus =
       let centerOfWindow = ((0.5, 0.5), (0, 0))
