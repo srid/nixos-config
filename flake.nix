@@ -86,11 +86,10 @@
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
             ./features/server/harden.nix
-            #./features/distributed-build.nix
+            ./features/distributed-build.nix
             # ./features/kde.nix
             ./features/desktopish
             ./features/protonvpn.nix
-            #./features/ema/emanote.nix
           ];
       };
 

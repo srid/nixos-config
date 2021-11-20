@@ -4,7 +4,7 @@
 {
   nix.buildMachines = [
     {
-      hostName = "162.55.89.216";
+      hostName = "thick";
       system = "x86_64-linux";
       # if the builder supports building for multiple architectures, 
       # replace the previous line by, e.g.,
@@ -12,7 +12,7 @@
       maxJobs = 16;
       speedFactor = 3;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [];
+      mandatoryFeatures = [ ];
     }
   ];
   nix.distributedBuilds = true;
