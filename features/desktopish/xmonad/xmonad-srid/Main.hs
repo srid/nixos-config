@@ -19,7 +19,7 @@ main = do
   where
     cfg =
       def
-        { -- modMask = mod4Mask, -- Use Super instead of Alt
+        { modMask = mod4Mask, -- Use Super instead of Alt (Using Alt messes up bash shortcuts)
           terminal = "alacritty", -- "myst",
           layoutHook =
             borderSpacingBetweenWindows $

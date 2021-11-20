@@ -26,4 +26,8 @@
     };
   };
   services.xserver.displayManager.defaultSession = "none+xmonad";
+
+  services.autorandr = {
+    enable = true;
+  };
 }

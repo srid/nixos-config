@@ -22,6 +22,5 @@
     xclip
     xsel
     arandr
-    autorandr
   ];
 }
