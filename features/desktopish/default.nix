@@ -9,7 +9,7 @@
     ./touchpad-trackpoint.nix
     ./autolock.nix
     ./redshift.nix
-    ./gnome-things.nix
+    ./gnome-keyring.nix
     ./guiapps.nix
 
     # WMish things
