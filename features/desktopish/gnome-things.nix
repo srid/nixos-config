@@ -3,6 +3,7 @@
   # Various GNOME non-sense that must be enabled to work with WMs
   #
 
+  services.gnome.gnome-keyring.enable = true;
   services.gnome.at-spi2-core.enable = true;
 
   # https://github.com/taffybar/taffybar/issues/403
