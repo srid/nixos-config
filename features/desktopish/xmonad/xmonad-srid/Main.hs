@@ -5,8 +5,12 @@ import XMonad
 import XMonad.Actions.UpdatePointer (updatePointer)
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks)
+import XMonad.Layout.Decoration (Decoration, DefaultShrinker, ModifiedLayout)
+import XMonad.Layout.DwmStyle (Theme (decoHeight))
 import XMonad.Layout.NoBorders (withBorder)
+import qualified XMonad.Layout.Simplest as Simplest
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
+import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns (ThreeCol (..))
 
 -- NOTE:
@@ -23,7 +27,7 @@ main = do
           terminal = "alacritty", -- "myst",
           layoutHook =
             borderSpacingBetweenWindows $
-              avoidStruts $ myThreeCol ||| layoutHook def,
+              avoidStruts $ myThreeCol ||| myTabbed ||| layoutHook def,
           logHook =
             pointerFollowsFocus,
           keys = myKeys,
@@ -36,6 +40,11 @@ main = do
         1 -- Master window count
         (3 / 100) -- Resize delta
         (1 / 2) -- Initial column size
+    myTabbed :: ModifiedLayout (Decoration TabbedDecoration DefaultShrinker) Simplest.Simplest Window
+    myTabbed =
+      -- FIXME: This doesn't work reliably.
+      tabbed shrinkText $ def {decoHeight = 10, activeColor = "#50CBE8", fontName = "xft:DejaVu Sans Mono:size=12"}
+
     pointerFollowsFocus =
       let centerOfWindow = ((0.5, 0.5), (0, 0))
        in uncurry updatePointer centerOfWindow
