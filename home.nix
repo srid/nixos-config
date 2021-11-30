@@ -48,10 +48,6 @@ rec {
 
     hledger
     hledger-web
-
-    # latex
-    texlive.combined.scheme-full
-    # texlive.combined.scheme-basic
   ];
 
   programs = {
@@ -102,7 +98,7 @@ rec {
         l = "${pkgs.exa}/bin/exa";
         ll = "${pkgs.exa}/bin/exa -l";
         ls = "l";
-        #h = "himalaya";
+        pux = "sh -c \"tmux -S $(pwd).tmux attach\"";
       };
       sessionVariables = { };
       # XXX: These are needed only on non-NixOS Linux (on NixOS, they are broken)
@@ -122,7 +118,6 @@ rec {
       enableBashIntegration = true;
       nix-direnv = {
         enable = true;
-        enableFlakes = true;
       };
     };
 
