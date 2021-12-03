@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/8a308775674e178495767df90c419425474582a1";
+    nixpkgs.url = "github:nixos/nixpkgs/6daa4a5c045d40e6eae60a3b6e427e8700f1c07f";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -87,9 +87,11 @@
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
             ./features/server/harden.nix
             ./features/distributed-build.nix
-            # ./features/kde.nix
-            ./features/desktopish
+            ./features/gnome.nix
+            ./features/desktopish/guiapps.nix
+            ./features/desktopish/fonts.nix
             ./features/protonvpn.nix
+            #./features/desktopish
           ];
       };
 
