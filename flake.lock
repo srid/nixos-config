@@ -366,6 +366,23 @@
         "type": "github"
       }
     },
+    "hercules-ci-agent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1637162411,
+        "narHash": "sha256-cou5C/MeoFSaKnZp326ciMv/bjqzJw0m+JX1SQnrHzQ=",
+        "owner": "hercules-ci",
+        "repo": "hercules-ci-agent",
+        "rev": "d8a96f2367f1381a188dc498fa243747ce827b1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "ref": "master",
+        "repo": "hercules-ci-agent",
+        "type": "github"
+      }
+    },
     "himalaya": {
       "inputs": {
         "crate2nix": "crate2nix",
@@ -766,6 +783,7 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "emanote": "emanote",
+        "hercules-ci-agent": "hercules-ci-agent",
         "himalaya": "himalaya",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
