@@ -19,10 +19,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
     emanote.url = "github:srid/emanote";
-    hercules-ci-agent = {
-      url = "github:hercules-ci/hercules-ci-agent/master";
-      flake = true;
-    };
+    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, ... }:
