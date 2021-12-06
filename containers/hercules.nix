@@ -2,8 +2,9 @@
 
 # A separate container to run Hercules effects
 # https://docs.hercules-ci.com/hercules-ci/effects/
+#
+# TODO: Prevent access to local network, while allowing internet access
 {
-  # TODO: hercules ci cache here
   nix.binaryCachePublicKeys = [
     "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
   ];
@@ -28,7 +29,8 @@
       ];
       services.hercules-ci-agent.enable = true;
       services.hercules-ci-agent.settings.concurrentTasks = 4;
-      services.hercules-ci-agent.settings.nixUserIsTrusted = lib.mkForce false;
+      nix.allowedUsers = [ "*" ];
+      nix.trustedUsers = [ "*" ];
 
       networking.firewall.allowedTCPPorts = [ ];
     };
