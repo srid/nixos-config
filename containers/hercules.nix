@@ -11,6 +11,14 @@
     "https://hercules-ci.cachix.org"
   ];
 
+  # FIXME: User id of `hercules-ci-agent` won't match that of guest, so we do
+  # this. But it compromises security.  See
+  # https://github.com/hercules-ci/hercules-ci-agent/issues/345#issuecomment-986329977
+  # 
+  # TODO: Find a way to resolve this.
+  nix.allowedUsers = [ "*" ];
+  nix.trustedUsers = [ "*" ];
+
   containers.hercules = {
     ephemeral = false;
     autoStart = true;
@@ -20,6 +28,7 @@
       ];
       services.hercules-ci-agent.enable = true;
       services.hercules-ci-agent.settings.concurrentTasks = 4;
+      services.hercules-ci-agent.settings.nixUserIsTrusted = lib.mkForce false;
 
       networking.firewall.allowedTCPPorts = [ ];
     };

@@ -57,7 +57,6 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    trustedUsers = [ "root" "srid" ];
   };
 
   networking.hostName = "thick"; # Define your hostname.

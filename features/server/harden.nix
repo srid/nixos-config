@@ -20,4 +20,5 @@
     };
   };
   nix.allowedUsers = [ "root" "srid" ];
+  nix.trustedUsers = [ "root" "srid" ];
 }

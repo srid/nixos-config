@@ -105,7 +105,6 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    trustedUsers = [ "root" "srid" ];
   };
 
   services.netdata.enable = true;
