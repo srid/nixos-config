@@ -48,6 +48,7 @@
             ./features/caches
             ./features/current-location.nix
             ./features/passwordstore.nix
+            ./features/dev/nix-direnv.nix
 
             # home-manager configuration
             home-manager.nixosModules.home-manager
