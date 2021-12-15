@@ -99,6 +99,7 @@ rec {
         ll = "${pkgs.exa}/bin/exa -l";
         ls = "l";
         pux = "sh -c \"tmux -S $(pwd).tmux attach\"";
+        pux-iterm = "sh -c \"tmux -S $(pwd).tmux -CC attach\"";
       };
       sessionVariables = { };
       # XXX: These are needed only on non-NixOS Linux (on NixOS, they are broken)
@@ -118,7 +119,6 @@ rec {
       enableBashIntegration = true;
       nix-direnv = {
         enable = true;
-        enableFlakes = true;
       };
     };
 
