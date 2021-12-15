@@ -1,7 +1,7 @@
 {
   enable = true;
   shortcut = "a";
-  aggressiveResize = true;
+  # aggressiveResize = true; -- Disabled to be iTerm-friendly
   baseIndex = 1;
   newSession = true;
   # Stop tmux+escape craziness.
