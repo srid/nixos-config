@@ -6,7 +6,9 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/a2e281f5770247855b85d70c43454ba5bff34613";
+    nixpkgs.url = "github:nixos/nixpkgs/03ec468b14067729a285c2c7cfa7b9434a04816c";
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
@@ -22,7 +24,7 @@
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, ... }:
+  outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
     let
       system = "x86_64-linux";
       # Add nixpkgs overlays and config here. They apply to system and home-manager builds.
@@ -94,6 +96,17 @@
             ./features/protonvpn.nix
             #./features/desktopish
           ];
+      };
+
+      darwinConfigurations."air" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {
+          rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+        };
+        modules = [
+          ./hosts/darwin.nix
+          ./features/nix-direnv.nix
+        ];
       };
 
       # non-NixOS systems
