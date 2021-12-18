@@ -1,14 +1,15 @@
+OS := $(shell uname)
+
 
 all:
-	@if [ -d "/etc/nixos" ]; then  \
-		make nixos;\
-	else \
-		make h;\
-	fi
+	echo "fuck you shell scripting"
 
 nixos:
 	sudo nixos-rebuild switch -j auto 
 	# systemctl restart --user emanote
+
+macos:
+	$$(nix build --extra-experimental-features "flakes nix-command" .#darwinConfigurations.air.system --no-link --json | jq -r '.[].outputs.out')/sw/bin/darwin-rebuild switch --flake .
 
 # Not sure why this doesn't reliably work
 h0:
