@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -xe
 PROJECT=$(basename `pwd`)
-tmux new-session -A -s $PROJECT make
+tmux new-session -A -s $PROJECT sh -c 'sudo nixos-rebuild switch; echo "Press enter to quit"; read '
