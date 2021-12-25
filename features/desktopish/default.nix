@@ -23,6 +23,7 @@
   environment.systemPackages = with pkgs; [
     acpi
     mpv
+    youtube-dl
     xorg.xmessage
   ];
 
