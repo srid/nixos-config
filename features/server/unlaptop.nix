@@ -9,6 +9,7 @@
       SCHED_POWERSAVE_ON_AC = 1;
     };
   };
-  # This machine is now a long-running home-server
-  services.logind.lidSwitch = "ignore";
+  # Uncomment this if leaving the laptop with lid closed at all times 
+  # (currently I don't; I want lid close to suspend it)
+  # services.logind.lidSwitch = "ignore";
 }
