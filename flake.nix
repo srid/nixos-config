@@ -21,6 +21,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
     emanote.url = "github:srid/emanote";
+    banyan.url = "github:srid/banyan";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
   };
 
@@ -101,6 +102,8 @@
       darwinConfigurations."air" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = {
+          inherit inputs;
+          system = "aarch64-darwin";
           rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
         };
         modules = [

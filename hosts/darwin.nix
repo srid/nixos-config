@@ -1,4 +1,4 @@
-{ config, pkgs, rosettaPkgs, ... }:
+{ config, pkgs, inputs, system, rosettaPkgs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
@@ -30,6 +30,21 @@
     extra-platforms = aarch64-darwin x86_64-darwin
     experimental-features = nix-command flakes
   '';
+
+  launchd.user.agents.banyan =
+    let
+      banyan = inputs.banyan.outputs.defaultPackage.${system};
+    in
+    {
+      serviceConfig = {
+        ProgramArguments =
+          [ "${banyan}/bin/banyan" ];
+        EnvironmentVariables = {
+          PORT = "9909";
+        };
+        WorkingDirectory = "/Users/srid/code/banyan";
+      };
+    };
 
   nixpkgs.config.allowBroken = true;
 
