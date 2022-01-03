@@ -10,7 +10,9 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Kernel w/ clear linux like patches: https://github.com/NixOS/nixpkgs/issues/63708#issuecomment-1003875463
+  boot.kernelPackages = pkgs.linuxPackages_xanmod;
   boot.supportedFilesystems = [ "ntfs" ];
   # https://notes.srid.ca/rtl8821cu
   # boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
@@ -40,6 +42,7 @@
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
 
   services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  hardware.nvidia.modesetting.enable = true; # Required for Wayland+GDM, apparently.
   # On KDE+nvidia, display scaling can only be set here.
   services.xserver.dpi = 170;
   # Not sure how to merge two screens in KDE

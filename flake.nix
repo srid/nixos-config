@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/eac07edbd20ed4908b98790ba299250b5527ecdf";
+    nixpkgs.url = "github:nixos/nixpkgs/59bfda72480496f32787cec8c557182738b1bd3f";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -75,10 +75,11 @@
           [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
             ./features/server/harden.nix
-            ./features/server/unlaptop.nix
+            #./features/server/unlaptop.nix
             ./features/server/wakeonlan.nix
-            #./features/kde.nix
-            #./features/desktopish/guiapps.nix
+            #./features/server/devserver.nix
+            ./features/gnome.nix
+            ./features/desktopish/guiapps.nix
             #./features/desktopish/fonts.nix
             #./features/protonvpn.nix
             ./features/lxd.nix
