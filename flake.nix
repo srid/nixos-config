@@ -20,8 +20,8 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
-    emanote.url = "github:srid/emanote";
-    banyan.url = "github:srid/banyan";
+    emanote.url = "github:srid/emanote/master";
+    banyan.url = "github:srid/banyan/master";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
   };
 

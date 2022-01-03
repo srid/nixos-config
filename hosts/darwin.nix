@@ -42,7 +42,7 @@
         EnvironmentVariables = {
           PORT = "9909";
         };
-        WorkingDirectory = "/Users/srid/code/banyan";
+        WorkingDirectory = "/Users/srid/Banyan";
       };
     };
 
