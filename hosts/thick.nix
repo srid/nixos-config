@@ -41,19 +41,20 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true; ## If compatibility with 32-bit applications is desired.
 
-  services.xserver.videoDrivers = [ "nvidia" "intel" ];
-  hardware.nvidia.modesetting.enable = true; # Required for Wayland+GDM, apparently.
+  # services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  services.xserver.videoDrivers = [ "intel" ];
+  #hardware.nvidia.modesetting.enable = true; # Required for Wayland+GDM, apparently.
   # On KDE+nvidia, display scaling can only be set here.
   services.xserver.dpi = 170;
   # Not sure how to merge two screens in KDE
   # cf. https://github.com/srid/nix-config/blob/master/device/p71/graphics.nix
   # These are the default.
-  services.xserver.deviceSection = ''
-    Option         "Twinview"
-  '';
-  services.xserver.serverLayoutSection = ''
-    Option "Xinerama" "off"
-  '';
+  #services.xserver.deviceSection = ''
+  #  Option         "Twinview"
+  #'';
+  #services.xserver.serverLayoutSection = ''
+  #  Option "Xinerama" "off"
+  #'';
 
   nix = {
     package = pkgs.nixFlakes;
