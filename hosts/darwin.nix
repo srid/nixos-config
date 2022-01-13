@@ -11,6 +11,7 @@
     tig
     tmux
     pass
+    pandoc
 
     mpv
     youtube-dl
