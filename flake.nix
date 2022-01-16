@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/ff377a78794d412a35245e05428c8f95fef3951f";
+    nixpkgs.url = "github:nixos/nixpkgs/5aaed40d22f0d9376330b6fa413223435ad6fee5";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
