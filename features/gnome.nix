@@ -6,6 +6,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome3.gnome-tweak-tool
+    gnome.gnome-tweaks
   ];
 }
