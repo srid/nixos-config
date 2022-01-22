@@ -17,6 +17,7 @@ rec {
     usbutils
     emanote
     git-crypt
+    ghcid
 
     # https://github.com/nix-community/emacs-overlay
     /* (emacsWithPackagesFromUsePackage {
