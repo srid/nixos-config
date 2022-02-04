@@ -13,7 +13,7 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/103b602f-50d7-4fb4-b44e-3765533ecd80";
+      device = "/dev/disk/by-uuid/480156e1-b229-4f5b-883a-34b7e5a9e0e9";
       fsType = "ext4";
     };
 
@@ -21,6 +21,7 @@
 
   nix.maxJobs = lib.mkDefault 32;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Use GRUB2 as the boot loader.
   # We don't use systemd-boot because Hetzner uses BIOS legacy boot.
@@ -28,7 +29,7 @@
   boot.loader.grub = {
     enable = true;
     efiSupport = false;
-    devices = [ "/dev/nvme0n1" "/dev/nvme1n1" ];
+    devices = [ "/dev/nvme1n1" "/dev/nvme0n1" ];
   };
 
   # The madm RAID was created with a certain hostname, which madm will consider
@@ -45,7 +46,7 @@
   # We do not worry about plugging disks into the wrong machine because
   # we will never exchange disks between machines.
   environment.etc."mdadm.conf".text = ''
-    HOMEHOST ryzen9
+    HOMEHOST now
   '';
 
   # The RAIDs are assembled in stage1, so we need to make the config
@@ -55,49 +56,42 @@
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
 
-  networking.interfaces."enp8s0" = {
+  networking.interfaces."enp7s0" = {
     ipv4 = {
-      addresses = [
-        {
-          # Server main IPv4 address
-          address = "162.55.241.231";
-          prefixLength = 24;
-        }
-      ];
+      addresses = [{
+        # Server main IPv4 address
+        address = "136.243.12.116";
+        prefixLength = 24;
+      }];
 
       routes = [
         # Default IPv4 gateway route
         {
           address = "0.0.0.0";
           prefixLength = 0;
-          via = "162.55.241.193";
+          via = "136.243.12.65";
         }
       ];
     };
 
     ipv6 = {
-      addresses = [
-        {
-          address = "2a01:4f8:272:4ec9::1";
-          prefixLength = 64;
-        }
-      ];
+      addresses = [{
+        address = "2a01:4f8:211:25c9::1";
+        prefixLength = 64;
+      }];
 
       # Default IPv6 route
-      routes = [
-        {
-          address = "::";
-          prefixLength = 0;
-          via = "fe80::1";
-        }
-      ];
+      routes = [{
+        address = "::";
+        prefixLength = 0;
+        via = "fe80::1";
+      }];
     };
   };
 
   networking = {
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
-    hostName = "ryzen9";
-
+    hostName = "now";
   };
 
   nix = {
@@ -117,10 +111,13 @@
     cryptsetup
   ];
 
+  services.openssh.permitRootLogin = "prohibit-password";
+  services.openssh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "adbusers" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   # This value determines the NixOS release from which the default
@@ -129,6 +126,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
 
 }

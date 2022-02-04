@@ -98,6 +98,10 @@
             ./features/protonvpn.nix
             #./features/desktopish
           ];
+        now = mkComputer
+          ./hosts/hetzner/ax101.nix
+          [
+          ];
       };
 
       darwinConfigurations."air" = darwin.lib.darwinSystem {
