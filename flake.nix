@@ -50,7 +50,7 @@
             ./features/takemessh
             ./features/caches
             ./features/current-location.nix
-            ./features/passwordstore.nix
+            #./features/passwordstore.nix
 
             # home-manager configuration
             home-manager.nixosModules.home-manager
@@ -101,6 +101,8 @@
         now = mkComputer
           ./hosts/hetzner/ax101.nix
           [
+            ./features/server/harden.nix
+            ./features/server/devserver.nix
           ];
       };
 
