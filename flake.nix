@@ -103,6 +103,7 @@
           [
             ./features/server/harden.nix
             ./features/server/devserver.nix
+            ./features/hercules.nix
           ];
       };
 
