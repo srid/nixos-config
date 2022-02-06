@@ -119,17 +119,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
-  security.sudo.extraRules = [
-    {
-      users = [ "srid" ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
+  security.sudo.wheelNeedsPassword = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
