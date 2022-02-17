@@ -6,5 +6,5 @@
     inputs.hercules-ci-agent.nixosModules.agent-service
   ];
   services.hercules-ci-agent.enable = true;
-  services.hercules-ci-agent.settings.concurrentTasks = 4;
+  services.hercules-ci-agent.settings.concurrentTasks = 16;
 }
