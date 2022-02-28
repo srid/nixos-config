@@ -103,10 +103,6 @@
 
   services.netdata.enable = true;
 
-  programs = {
-    mosh.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     cryptsetup
   ];

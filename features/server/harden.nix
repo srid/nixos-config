@@ -1,9 +1,13 @@
 { pkgs, ... }: {
 
+  # Firewall
   networking.firewall.enable = true;
+
   security.sudo.execWheelOnly = true;
+
   security.auditd.enable = true;
   security.audit.enable = true;
+
   services = {
     openssh = {
       enable = true;
