@@ -11,7 +11,6 @@ nixos:
 macos:
 	sudo ls
 	$$(nix build --extra-experimental-features "flakes nix-command" .#darwinConfigurations.air.system --no-link --json | jq -r '.[].outputs.out')/sw/bin/darwin-rebuild switch --flake .
-	launchctl start org.nixos.banyan
 
 # Not sure why this doesn't reliably work
 h0:

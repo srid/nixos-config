@@ -17,6 +17,8 @@
     mpv
     youtube-dl
 
+    xclip
+
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
     # 
@@ -32,21 +34,6 @@
     extra-platforms = aarch64-darwin x86_64-darwin
     experimental-features = nix-command flakes
   '';
-
-  launchd.user.agents.banyan =
-    let
-      banyan = inputs.banyan.outputs.defaultPackage.${system};
-    in
-    {
-      serviceConfig = {
-        ProgramArguments =
-          [ "${banyan}/bin/banyan" ];
-        EnvironmentVariables = {
-          PORT = "9909";
-        };
-        WorkingDirectory = "/Users/srid/Banyan";
-      };
-    };
 
   nixpkgs.config.allowBroken = true;
 
