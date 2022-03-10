@@ -109,6 +109,11 @@
 
   services.openssh.permitRootLogin = "prohibit-password";
   services.openssh.enable = true;
+  services.syncthing = {
+    enable = true;
+    user = "srid";
+    dataDir = "/home/srid/priv/syncthing";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
