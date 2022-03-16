@@ -23,6 +23,8 @@
     ema.url = "github:srid/ema/master";
     emanote.url = "github:srid/emanote/master";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
+    cardano-system.url = "github:cardano-system/cardano-system";
+    # cardano-system.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
@@ -104,6 +106,16 @@
             ./features/server/harden.nix
             ./features/server/devserver.nix
             ./features/hercules.nix
+            # Cardano
+            inputs.cardano-system.modules.cardano-node
+            inputs.cardano-system.modules.cardano-wallet
+            inputs.cardano-system.modules.plutus-chain-index
+            inputs.cardano-system.defaults
+            {
+              services.cardano-node.enable = true;
+              services.plutus-chain-index.enable = true;
+              services.cardano-wallet.enable = true;
+            }
           ];
       };
 
