@@ -2,10 +2,5 @@
     "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix",
     "editor.defaultFormatter": "B4dM4n.nixpkgs-fmt",
     "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#33038C",
-        "titleBar.activeBackground": "#4804C4",
-        "titleBar.activeForeground": "#FCFBFF"
-    }
+    "editor.formatOnType": true
 }

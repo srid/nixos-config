@@ -3,7 +3,6 @@ let
   #himalayaSrc = inputs.himalaya;
   #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
-  emanote = inputs.emanote.outputs.defaultPackage.${system};
 in
 rec {
 
@@ -16,7 +15,6 @@ rec {
     lsof
     # psutils -- collides with tex
     usbutils
-    emanote
     git-crypt
     ghcid
 

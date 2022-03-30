@@ -19,7 +19,7 @@
 
   swapDevices = [ ];
 
-  nix.maxJobs = lib.mkDefault 32;
+  nix.settings.max-jobs = lib.mkDefault 32;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
@@ -95,7 +95,7 @@
   };
 
   nix = {
-    package = pkgs.nixUnstable;
+    # package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -114,6 +114,7 @@
     user = "srid";
     dataDir = "/home/srid/priv/syncthing";
   };
+  services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {

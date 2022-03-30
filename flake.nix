@@ -20,9 +20,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
-    ema.url = "github:srid/ema/master";
-    emanote.url = "github:srid/emanote/master";
-    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/stable";
+    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
@@ -36,34 +34,31 @@
           (import inputs.emacs-overlay)
         ];
       };
-      mkComputer = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
+      # Configuration common to all of my systems (servers, desktops, laptops)
+      commonFeatures = [
+        ./features/self-ide.nix
+        ./features/takemessh
+        ./features/caches
+        ./features/current-location.nix
+        #./features/passwordstore.nix
+      ];
+      homeFeatures = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.srid = import ./home.nix
+            {
+              inherit inputs system pkgs;
+            };
+        }
+      ];
+      mkComputer = extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
-        modules = (
-          [
-            # System configuration for this host
-            configurationNix
-
-            # Configuration common to all of my systems (servers, desktops, laptops)
-            ./features/self-ide.nix
-            ./features/takemessh
-            ./features/caches
-            ./features/current-location.nix
-            #./features/passwordstore.nix
-
-            # home-manager configuration
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.srid = import ./home.nix
-                {
-                  inherit inputs system pkgs;
-                };
-            }
-          ] ++ extraModules
-        );
+        modules =
+          commonFeatures ++ homeFeatures ++ extraModules;
       };
     in
     {
@@ -71,36 +66,18 @@
       # 
       nixosConfigurations = {
         thick = mkComputer
-          ./hosts/thick.nix
           [
+            ./hosts/thick.nix
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-            ./features/server/harden.nix
-            #./features/server/unlaptop.nix
-            ./features/server/wakeonlan.nix
-            #./features/server/devserver.nix
-            ./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-            #./features/desktopish/fonts.nix
-            #./features/protonvpn.nix
-            ./features/lxd.nix
-            ./features/docker.nix
-            ./features/postgres.nix
           ];
         thin = mkComputer
-          ./hosts/thin.nix
           [
+            ./hosts/thin.nix
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-            ./features/server/harden.nix
-            ./features/distributed-build.nix
-            ./features/gnome.nix
-            ./features/desktopish/guiapps.nix
-            ./features/desktopish/fonts.nix
-            ./features/protonvpn.nix
-            #./features/desktopish
           ];
         now = mkComputer
-          ./hosts/hetzner/ax101.nix
           [
+            ./hosts/hetzner/ax101.nix
             ./features/server/harden.nix
             ./features/server/devserver.nix
             ./features/hercules.nix
