@@ -1,7 +1,5 @@
 { pkgs, inputs, system, ... }:
 let
-  #himalayaSrc = inputs.himalaya;
-  #himalaya = import ./features/email/himalaya.nix { inherit pkgs inputs system; };
   neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
 rec {
@@ -69,17 +67,11 @@ rec {
       # withNodeJs = true;
 
       extraPackages = [
-        # himalaya
       ];
 
       plugins = with pkgs.vimPlugins; [
         vim-airline
         papercolor-theme
-
-        #(pkgs.vimUtils.buildVimPlugin {
-        #  name = "himalaya";
-        #  src = himalayaSrc + "/vim";
-        #})
       ];
 
       extraConfig = ''

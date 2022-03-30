@@ -16,7 +16,6 @@
     nixos-vscode-server = {
       url = "github:iosmanthus/nixos-vscode-server/add-flake";
     };
-    himalaya.url = "github:soywod/himalaya";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
