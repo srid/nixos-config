@@ -83,10 +83,11 @@
             ./features/server/devserver.nix
             ./features/hercules.nix
           ];
-        vpn = pkgs.lib.makeOverridable pkgs.lib.nixosSystem {
+        vpn = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit system inputs; };
           modules = [
+            inputs.nixos-shell.nixosModules.nixos-shell
             {
               virtualisation.memorySize = 8 * 1024;
               virtualisation.cores = 2;
@@ -98,8 +99,8 @@
                 mountHome = false;
                 mountNixProfile = false;
                 extraMounts = {
-                  "/home/srid/Downloads" = {
-                    target = "/Downloads";
+                  "/Downloads" = {
+                    target = "/home/srid/Downloads";
                     cache = "none";
                   };
                 };
