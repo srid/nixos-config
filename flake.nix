@@ -20,6 +20,8 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
+
+    nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
@@ -81,6 +83,32 @@
             ./features/server/devserver.nix
             ./features/hercules.nix
           ];
+        corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit system inputs; };
+          modules = [
+            inputs.nixos-shell.nixosModules.nixos-shell
+            {
+              virtualisation.memorySize = 8 * 1024;
+              virtualisation.cores = 2;
+              virtualisation.diskSize = 20 * 1024;
+              environment.systemPackages = with pkgs; [
+                protonvpn-cli
+                aria2
+              ];
+              nixos-shell.mounts = {
+                mountHome = false;
+                mountNixProfile = false;
+                extraMounts = {
+                  "/Downloads" = {
+                    target = "/home/srid/Downloads";
+                    cache = "none";
+                  };
+                };
+              };
+            }
+          ];
+        };
       };
 
       darwinConfigurations."air" = darwin.lib.darwinSystem {
