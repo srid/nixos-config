@@ -83,7 +83,7 @@
             ./features/server/devserver.nix
             ./features/hercules.nix
           ];
-        vpn = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
+        corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit system inputs; };
           modules = [
@@ -94,6 +94,7 @@
               virtualisation.diskSize = 20 * 1024;
               environment.systemPackages = with pkgs; [
                 protonvpn-cli
+                aria2
               ];
               nixos-shell.mounts = {
                 mountHome = false;
