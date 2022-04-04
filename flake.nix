@@ -81,6 +81,17 @@
             ./features/server/devserver.nix
             ./features/hercules.nix
           ];
+        vpn = pkgs.lib.makeOverridable pkgs.lib.nixosSystem {
+          inherit system pkgs;
+          specialArgs = { inherit system inputs; };
+          modules = [
+            {
+              environment.systemPackages = with pkgs; [
+                protonvpn
+              ];
+            }
+          ];
+        };
       };
 
       darwinConfigurations."air" = darwin.lib.darwinSystem {

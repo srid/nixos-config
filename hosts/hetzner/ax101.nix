@@ -105,6 +105,7 @@
 
   environment.systemPackages = with pkgs; [
     cryptsetup
+    nixos-shell
   ];
 
   services.openssh.permitRootLogin = "prohibit-password";
