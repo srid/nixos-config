@@ -20,6 +20,8 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
+
+    nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:

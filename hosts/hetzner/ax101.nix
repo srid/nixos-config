@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, pkgs, lib, inputs, modulesPath, ... }:
 
 {
   imports =
@@ -105,7 +105,7 @@
 
   environment.systemPackages = with pkgs; [
     cryptsetup
-    nixos-shell
+    inputs.nixos-shell.defaultPackage.${system}
   ];
 
   services.openssh.permitRootLogin = "prohibit-password";
