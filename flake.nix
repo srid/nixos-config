@@ -92,6 +92,16 @@
               environment.systemPackages = with pkgs; [
                 protonvpn-cli
               ];
+              nixos-shell.mounts = {
+                mountHome = false;
+                mountNixProfile = false;
+                extraMounts = {
+                  "/home/srid/Downloads" = {
+                    target = "/Downloads";
+                    cache = "none";
+                  };
+                };
+              };
             }
           ];
         };
