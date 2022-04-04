@@ -86,6 +86,9 @@
           specialArgs = { inherit system inputs; };
           modules = [
             {
+              virtualisation.memorySize = 1024;
+              virtualisation.cores = 2;
+              virtualisation.diskSize = 20 * 1024;
               environment.systemPackages = with pkgs; [
                 protonvpn
               ];
