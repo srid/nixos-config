@@ -16,6 +16,7 @@
     ];
 
     extraConfig = ''
+      set -g default-terminal "tmux-256color"
       # Mouse works as expected
       set-option -g mouse on
       # easy-to-remember split pane commands
