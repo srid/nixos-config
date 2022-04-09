@@ -127,7 +127,10 @@
                 ];
                 programs.zsh = {
                   enable = true;
-                } // (import ./home/shellcommon.nix);
+                  initExtra = ''
+                    export PATH=$HOME/.nix-profile/bin:/run/current-system/sw/bin/:$PATH
+                  '';
+                } // (import ./home/shellcommon.nix { inherit pkgs; });
                 home.stateVersion = "21.11";
               };
             }

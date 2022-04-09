@@ -11,7 +11,6 @@
     tig
     pass
     pandoc
-    neovim-nightly
 
     mpv
     youtube-dl

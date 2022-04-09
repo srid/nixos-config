@@ -60,7 +60,7 @@ rec {
       #    source "$completion_script"
       #  done
       #'';
-    } // (import ./home/shellcommon.nix);
+    } // (import ./home/shellcommon.nix { inherit pkgs; });
 
     direnv = {
       enable = true;

@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   shellAliases = {
     g = "${pkgs.git}/bin/git";
@@ -8,5 +9,4 @@
     pux = "sh -c \"tmux -S $(pwd).tmux attach\"";
     pux-iterm = "sh -c \"tmux -S $(pwd).tmux -CC attach\"";
   };
-  sessionVariables = { };
 }
