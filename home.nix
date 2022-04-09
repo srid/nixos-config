@@ -50,16 +50,6 @@ rec {
     };
     bash = {
       enable = true;
-      shellAliases = {
-        g = "${pkgs.git}/bin/git";
-        t = "${pkgs.tig}/bin/tig";
-        l = "${pkgs.exa}/bin/exa";
-        ll = "${pkgs.exa}/bin/exa -l";
-        ls = "l";
-        pux = "sh -c \"tmux -S $(pwd).tmux attach\"";
-        pux-iterm = "sh -c \"tmux -S $(pwd).tmux -CC attach\"";
-      };
-      sessionVariables = { };
       # XXX: These are needed only on non-NixOS Linux (on NixOS, they are broken)
       #bashrcExtra = ''
       #  . ~/.nix-profile/etc/profile.d/nix.sh
@@ -70,7 +60,7 @@ rec {
       #    source "$completion_script"
       #  done
       #'';
-    };
+    } // (import ./home/shellcommon.nix);
 
     direnv = {
       enable = true;

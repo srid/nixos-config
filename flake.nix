@@ -127,10 +127,7 @@
                 ];
                 programs.zsh = {
                   enable = true;
-                  shellAliases = {
-                    g = "${pkgs.git}/bin/git";
-                  };
-                };
+                } // (import ./home/shellcommon.nix);
                 home.stateVersion = "21.11";
               };
             }
