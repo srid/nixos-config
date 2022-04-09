@@ -11,7 +11,7 @@
       s = "status";
       st = "status";
       b = "branch";
-      p = "pull --rebase";
+      # p = "pull --rebase";
       pu = "push";
     };
     ignores = [ "*~" "*.swp" ];

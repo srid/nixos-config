@@ -115,13 +115,21 @@
             ./features/caches/oss.nix
             home-manager.darwinModules.home-manager
             {
+              # TODO: Refactor-DRY with Linux's home.nix
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.srid = { pkgs, ... }: {
                 imports = [
                   ./home/git.nix
                   ./home/tmux.nix
                   ./home/neovim.nix
+                  ./home/starship.nix
                 ];
+                programs.zsh = {
+                  enable = true;
+                  shellAliases = {
+                    g = "${pkgs.git}/bin/git";
+                  };
+                };
                 home.stateVersion = "21.11";
               };
             }
