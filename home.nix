@@ -1,3 +1,4 @@
+# Linux only. Will want to consolidate with macOS.
 { pkgs, inputs, system, ... }:
 rec {
   imports = [
@@ -17,16 +18,6 @@ rec {
     git-crypt
     ghcid
 
-    # https://github.com/nix-community/emacs-overlay
-    /* (emacsWithPackagesFromUsePackage {
-      config = ./config/init.el;
-      package = emacsPgtkGcc;
-      extraEmacsPackages = epkgs: [
-      epkgs.emacsql-sqlite
-      epkgs.emacsql-sqlite3
-      epkgs.vterm
-      ];
-      }) */
     sqlite
     gcc
 
