@@ -111,6 +111,12 @@
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
           ./features/caches/oss.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.users.srid = {
+              home.stateVersion = "21.11";
+            };
+          }
         ];
       };
     };
