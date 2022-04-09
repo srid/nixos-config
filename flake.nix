@@ -118,6 +118,7 @@
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.srid = { pkgs, ... }: {
                 imports = [
+                  ./home/git.nix
                   ./home/tmux.nix
                   ./home/neovim.nix
                 ];

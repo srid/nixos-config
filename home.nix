@@ -3,6 +3,7 @@ rec {
   imports = [
     inputs.nix-doom-emacs.hmModule
     ./home/tmux.nix
+    ./home/git.nix
   ];
 
   home.packages = with pkgs; [
@@ -47,7 +48,6 @@ rec {
   ];
 
   programs = {
-    git = import ./home/git.nix;
 
     # Leaving this disabled, as it doesn't look like nix-doom-emacs is being
     # maintained or kept up to date anymore.
