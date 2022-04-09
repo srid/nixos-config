@@ -112,6 +112,7 @@
         modules = [
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
+          ./features/caches/oss.nix
         ];
       };
     };
