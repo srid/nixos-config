@@ -122,6 +122,7 @@
                   ./home/git.nix
                   ./home/tmux.nix
                   ./home/neovim.nix
+                  ./home/terminal.nix
                   # https://github.com/NixOS/nixpkgs/issues/160876
                   # ./home/starship.nix
                 ];

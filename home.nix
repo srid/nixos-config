@@ -7,6 +7,7 @@ rec {
     ./home/git.nix
     ./home/neovim.nix
     ./home/starship.nix
+    ./home/terminal.nix
   ];
 
   home.packages = with pkgs; [
@@ -70,11 +71,6 @@ rec {
       };
     };
 
-    bat.enable = true;
-    autojump.enable = false;
-    zoxide.enable = true;
-    fzf.enable = true;
-    jq.enable = true;
   };
 
   programs.ssh = {
