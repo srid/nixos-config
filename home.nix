@@ -56,7 +56,7 @@ rec {
     # Leaving this disabled, as it doesn't look like nix-doom-emacs is being
     # maintained or kept up to date anymore.
     doom-emacs = {
-      enable = false;
+      enable = true;
       doomPrivateDir = ./config/doom.d;
     };
 
