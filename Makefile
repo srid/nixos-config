@@ -2,14 +2,13 @@ OS := $(shell uname)
 
 
 all:
-	echo "fuck you shell scripting"
+	$(error Choose a platform (eg: 'make macos'))
 
 nixos:
 	sudo nixos-rebuild switch -j auto 
-	# systemctl restart --user emanote
 
 macos:
-	sudo ls
+	sudo ls # cache sudo
 	$$(nix build --extra-experimental-features "flakes nix-command" .#darwinConfigurations.air.system --no-link --json | jq -r '.[].outputs.out')/sw/bin/darwin-rebuild switch --flake .
 
 # Not sure why this doesn't reliably work

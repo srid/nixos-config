@@ -18,7 +18,7 @@
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
 
     nixos-shell.url = "github:Mic92/nixos-shell";
@@ -123,6 +123,19 @@
         modules = [
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
+          /*
+            home-manager.nixosModules.home-manager
+            {
+            home-manager.users.srid = pkgs.lib.mkMerge [
+            inputs.nix-doom-emacs.hmModule
+            ({ pkgs, ... }: {
+            programs.doom-emacs = {
+            enable = true;
+            doomPrivateDir = ./config/doom.d;
+            };
+            })
+            ];
+            }*/
         ];
       };
 
