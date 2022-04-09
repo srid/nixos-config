@@ -112,7 +112,6 @@
           modules = [
             overlayModule
             ./hosts/darwin.nix
-            ./features/nix-direnv.nix
             ./features/caches/oss.nix
             home-manager.darwinModules.home-manager
             {
@@ -124,6 +123,7 @@
                   ./home/tmux.nix
                   ./home/neovim.nix
                   ./home/terminal.nix
+                  ./home/direnv.nix
                   # https://github.com/NixOS/nixpkgs/issues/160876
                   # ./home/starship.nix
                 ];
