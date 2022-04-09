@@ -117,7 +117,10 @@
             {
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.srid = { pkgs, ... }: {
-                imports = [ ./home/neovim.nix ];
+                imports = [
+                  ./home/tmux.nix
+                  ./home/neovim.nix
+                ];
                 home.stateVersion = "21.11";
               };
             }

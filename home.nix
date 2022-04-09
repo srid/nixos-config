@@ -1,6 +1,9 @@
 { pkgs, inputs, system, ... }:
 rec {
-  imports = [ inputs.nix-doom-emacs.hmModule ];
+  imports = [
+    inputs.nix-doom-emacs.hmModule
+    ./home/tmux.nix
+  ];
 
   home.packages = with pkgs; [
     gnumake
@@ -45,8 +48,6 @@ rec {
 
   programs = {
     git = import ./home/git.nix;
-
-    tmux = import ./home/tmux.nix;
 
     # Leaving this disabled, as it doesn't look like nix-doom-emacs is being
     # maintained or kept up to date anymore.

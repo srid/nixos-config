@@ -9,7 +9,6 @@
     ripgrep
     sd
     tig
-    tmux
     pass
     pandoc
     neovim-nightly
