@@ -89,9 +89,11 @@
           modules = [
             inputs.nixos-shell.nixosModules.nixos-shell
             {
-              virtualisation.memorySize = 8 * 1024;
-              virtualisation.cores = 2;
-              virtualisation.diskSize = 20 * 1024;
+              virtualisation = {
+                memorySize = 8 * 1024;
+                cores = 2;
+                diskSize = 20 * 1024;
+              };
               environment.systemPackages = with pkgs; [
                 protonvpn-cli
                 aria2
