@@ -18,6 +18,12 @@
 
       telescope-nvim
       telescope-zoxide
+
+      nvim-hs-vim
+
+      # Language support
+      vim-nix
+      haskell-vim
     ];
 
     extraConfig = ''
