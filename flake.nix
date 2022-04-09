@@ -29,7 +29,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (import inputs.emacs-overlay)
+          (import inputs.emacs-overlay.overlay)
           (import inputs.neovim-nightly-overlay.overlay)
         ];
       };
@@ -109,6 +109,7 @@
         modules = [
           {
             nixpkgs.overlays = [
+              (inputs.emacs-overlay.overlay)
               (inputs.neovim-nightly-overlay.overlay)
             ];
           }
