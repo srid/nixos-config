@@ -12,7 +12,7 @@
     tmux
     pass
     pandoc
-    neovim
+    neovim-nightly
 
     mpv
     youtube-dl

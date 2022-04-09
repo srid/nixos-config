@@ -13,14 +13,11 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-vscode-server = {
-      url = "github:iosmanthus/nixos-vscode-server/add-flake";
-    };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nixos-vscode-server.url = "github:iosmanthus/nixos-vscode-server/add-flake";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
-
     nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
@@ -31,7 +28,10 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ (import inputs.emacs-overlay) ];
+        overlays = [
+          (import inputs.emacs-overlay)
+          (import inputs.neovim-nightly-overlay.overlay)
+        ];
       };
       # Configuration common to all of my systems (servers, desktops, laptops)
       commonFeatures = [
@@ -90,11 +90,9 @@
               nixos-shell.mounts = {
                 mountHome = false;
                 mountNixProfile = false;
-                extraMounts = {
-                  "/Downloads" = {
-                    target = "/home/srid/Downloads";
-                    cache = "none";
-                  };
+                extraMounts."/Downloads" = {
+                  target = "/home/srid/Downloads";
+                  cache = "none";
                 };
               };
             }
@@ -105,11 +103,15 @@
       darwinConfigurations."air" = mkMacosSystem {
         system = "aarch64-darwin";
         specialArgs = {
-          inherit inputs;
-          system = "aarch64-darwin";
+          inherit inputs system;
           rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
         };
         modules = [
+          {
+            nixpkgs.overlays = [
+              (inputs.neovim-nightly-overlay.overlay)
+            ];
+          }
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
           ./features/caches/oss.nix
