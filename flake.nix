@@ -31,9 +31,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          (import inputs.emacs-overlay)
-        ];
+        overlays = [ (import inputs.emacs-overlay) ];
       };
       # Configuration common to all of my systems (servers, desktops, laptops)
       commonFeatures = [
@@ -41,7 +39,6 @@
         ./features/takemessh
         ./features/caches
         ./features/current-location.nix
-        #./features/passwordstore.nix
       ];
       homeFeatures = [
         home-manager.nixosModules.home-manager
@@ -54,35 +51,27 @@
             };
         }
       ];
-      mkComputer = extraModules: nixpkgs.lib.nixosSystem {
+      mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         # Arguments to pass to all modules.
         specialArgs = { inherit system inputs; };
         modules =
           commonFeatures ++ homeFeatures ++ extraModules;
       };
+      mkMacosSystem = darwin.lib.darwinSystem;
     in
     {
-      # The "name" in nixosConfigurations.${name} should match the `hostname`
-      # 
       nixosConfigurations = {
-        thick = mkComputer
-          [
-            ./hosts/thick.nix
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p53
-          ];
-        thin = mkComputer
-          [
-            ./hosts/thin.nix
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-          ];
-        now = mkComputer
+        # My beefy development computer
+        now = mkLinuxSystem
           [
             ./hosts/hetzner/ax101.nix
             ./features/server/harden.nix
             ./features/server/devserver.nix
             ./features/hercules.nix
           ];
+        # This is run in qemu only.
+        # > nixos-shell --flake github:srid/nixos-config#corsair
         corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           specialArgs = { inherit system inputs; };
@@ -113,7 +102,7 @@
         };
       };
 
-      darwinConfigurations."air" = darwin.lib.darwinSystem {
+      darwinConfigurations."air" = mkMacosSystem {
         system = "aarch64-darwin";
         specialArgs = {
           inherit inputs;
@@ -123,44 +112,8 @@
         modules = [
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
-          /*
-            home-manager.nixosModules.home-manager
-            {
-            home-manager.users.srid = pkgs.lib.mkMerge [
-            inputs.nix-doom-emacs.hmModule
-            ({ pkgs, ... }: {
-            programs.doom-emacs = {
-            enable = true;
-            doomPrivateDir = ./config/doom.d;
-            };
-            })
-            ];
-            }*/
         ];
       };
-
-      # non-NixOS systems
-      homeConfigurations =
-        let
-          username = "srid";
-          baseConfiguration = {
-            programs.home-manager.enable = true;
-            home.username = "srid";
-            home.homeDirectory = "/home/srid";
-          };
-          mkHomeConfig = cfg: home-manager.lib.homeManagerConfiguration {
-            inherit username system;
-            homeDirectory = "/home/${username}";
-            configuration = baseConfiguration // cfg;
-          };
-        in
-        {
-          # FIXME: This is broken on Clear Linux
-          "x1c7" = mkHomeConfig {
-            programs.git = import ./home/git.nix;
-            programs.tmux = import ./home/tmux.nix;
-          };
-        };
     };
 
 }
