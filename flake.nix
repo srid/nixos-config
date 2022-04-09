@@ -100,25 +100,32 @@
         };
       };
 
-      darwinConfigurations."air" = mkMacosSystem {
-        system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs system;
-          rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+      darwinConfigurations."air" =
+        let system = "aarch64-darwin"; in
+        mkMacosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs system;
+            rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+          };
+          modules = [
+            overlayModule
+            ./hosts/darwin.nix
+            ./features/nix-direnv.nix
+            ./features/caches/oss.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.users.srid = { pkgs, ... }: {
+                programs.neovim = {
+                  enable = true;
+                  package = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+                  viAlias = true;
+                };
+                home.stateVersion = "21.11";
+              };
+            }
+          ];
         };
-        modules = [
-          overlayModule
-          ./hosts/darwin.nix
-          ./features/nix-direnv.nix
-          ./features/caches/oss.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.users.srid = {
-              home.stateVersion = "21.11";
-            };
-          }
-        ];
-      };
     };
 
 }
