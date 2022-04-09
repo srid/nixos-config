@@ -1,6 +1,8 @@
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs.tig ];
   programs.git = {
-    # package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = "Sridhar Ratnakumar";
     userEmail = "srid@srid.ca";

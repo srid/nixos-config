@@ -1,6 +1,7 @@
 OS := $(shell uname)
 
 
+# TODO: Automatically detect platform.
 all:
 	$(error Choose a platform (eg: 'make macos'))
 

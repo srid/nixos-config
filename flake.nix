@@ -46,10 +46,20 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit system inputs; };
-          home-manager.users.srid = import ./home.nix
-            {
-              inherit inputs system pkgs;
-            };
+          home-manager.users.srid = {
+            imports = [
+              ./home/tmux.nix
+              ./home/git.nix
+              ./home/neovim.nix
+              ./home/starship.nix
+              ./home/terminal.nix
+              ./home/direnv.nix
+            ];
+
+            programs.bash = {
+              enable = true;
+            } // (import ./home/shellcommon.nix { inherit pkgs; });
+          };
         }
       ];
       mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
@@ -115,7 +125,6 @@
             ./features/caches/oss.nix
             home-manager.darwinModules.home-manager
             {
-              # TODO: Refactor-DRY with Linux's home.nix
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.srid = { pkgs, ... }: {
                 imports = [
