@@ -115,12 +115,9 @@
             ./features/caches/oss.nix
             home-manager.darwinModules.home-manager
             {
+              home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.srid = { pkgs, ... }: {
-                programs.neovim = {
-                  enable = true;
-                  package = inputs.neovim-nightly-overlay.packages.${system}.neovim;
-                  viAlias = true;
-                };
+                imports = [ ./home/neovim.nix ];
                 home.stateVersion = "21.11";
               };
             }
