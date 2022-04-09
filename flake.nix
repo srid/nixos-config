@@ -24,17 +24,17 @@
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
     let
       system = "x86_64-linux";
-      # Add nixpkgs overlays and config here. They apply to system and home-manager builds.
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (import inputs.emacs-overlay.overlay)
-          (import inputs.neovim-nightly-overlay.overlay)
-        ];
-      };
+      pkgs = nixpkgs.legacyPackages.${system};
+      overlayModule =
+        {
+          nixpkgs.overlays = [
+            (inputs.emacs-overlay.overlay)
+            (inputs.neovim-nightly-overlay.overlay)
+          ];
+        };
       # Configuration common to all of my systems (servers, desktops, laptops)
       commonFeatures = [
+        overlayModule
         ./features/self-ide.nix
         ./features/takemessh
         ./features/caches
@@ -107,12 +107,7 @@
           rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
         };
         modules = [
-          {
-            nixpkgs.overlays = [
-              (inputs.emacs-overlay.overlay)
-              (inputs.neovim-nightly-overlay.overlay)
-            ];
-          }
+          overlayModule
           ./hosts/darwin.nix
           ./features/nix-direnv.nix
           ./features/caches/oss.nix
