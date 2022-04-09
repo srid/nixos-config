@@ -11,10 +11,13 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       # Status bar for vim
-      vim-airline
+      # vim-airline
+      lualine-nvim
 
       # Preferred theme
       papercolor-theme
+      nightfox-nvim
+      nvim-treesitter
 
       telescope-nvim
       telescope-zoxide
@@ -28,20 +31,22 @@
 
     extraConfig = ''
       set nobackup
-
+      set termguicolors " 24-bit colors
+      set background=dark
+      colorscheme duskfox
       " Use spave instead of \ as leader key, like doom-emacs
       map <Space> <Leader>
-
-      " papercolor-theme
-      " set t_Co=256   " This is may or may not needed.
-      set background=dark
-      colorscheme PaperColor
 
       " telescope
       nnoremap <leader>ff <cmd>Telescope find_files<cr>
       nnoremap <leader>fg <cmd>Telescope live_grep<cr>
       nnoremap <leader>fb <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+      
+      " luiline
+      lua << END
+      require('lualine').setup()
+      END
     '';
   };
 
