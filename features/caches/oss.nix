@@ -5,6 +5,6 @@
   ];
   nix.binaryCaches = [
     "https://srid.cachix.org"
-    "nix-community.cachix.org"
+    "https://nix-community.cachix.org"
   ];
 }
