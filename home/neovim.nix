@@ -15,9 +15,8 @@
       lualine-nvim
 
       # Preferred theme
-      papercolor-theme
-      nightfox-nvim
       nvim-treesitter
+      aurora
 
       telescope-nvim
       telescope-zoxide
@@ -32,8 +31,7 @@
     extraConfig = ''
       set nobackup
       set termguicolors " 24-bit colors
-      set background=dark
-      colorscheme duskfox
+      colorscheme aurora
       " Use spave instead of \ as leader key, like doom-emacs
       map <Space> <Leader>
 
