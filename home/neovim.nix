@@ -12,7 +12,8 @@
     plugins = with pkgs.vimPlugins; [
       # Status bar for vim
       # vim-airline
-      lualine-nvim
+      # lualine-nvim
+      feline-nvim
 
       # Preferred theme
       nvim-treesitter
@@ -46,7 +47,7 @@
       
       " luiline
       lua << END
-      require('lualine').setup()
+      require('feline').setup()
       END
 
       " bufferline
