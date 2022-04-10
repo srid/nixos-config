@@ -15,6 +15,9 @@
       # lualine-nvim
       feline-nvim
 
+      # For working mouse support when running inside tmux
+      terminus
+
       # Preferred theme
       nvim-treesitter
       aurora
