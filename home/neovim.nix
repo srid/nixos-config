@@ -5,6 +5,7 @@
     package = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 
     extraPackages = [
+      pkgs.lazygit
     ];
 
     # Full list here,
@@ -17,6 +18,8 @@
 
       # For working mouse support when running inside tmux
       terminus
+
+      lazygit-nvim
 
       # Preferred theme
       nvim-treesitter
