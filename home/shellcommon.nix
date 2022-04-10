@@ -2,7 +2,7 @@
 {
   shellAliases = {
     g = "${pkgs.git}/bin/git";
-    t = "${pkgs.tig}/bin/tig";
+    lg = "${pkgs.lazygit}/bin/lazygit";
     l = "${pkgs.exa}/bin/exa";
     ll = "${pkgs.exa}/bin/exa -l";
     ls = "l";

@@ -8,7 +8,6 @@
     aria2
     ripgrep
     sd
-    tig
     pass
     pandoc
 

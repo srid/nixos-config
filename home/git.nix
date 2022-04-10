@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.tig ];
+  home.packages = [ pkgs.lazygit ];
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
