@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   shellAliases = {
+    e = "nvim";
     g = "${pkgs.git}/bin/git";
     lg = "${pkgs.lazygit}/bin/lazygit";
     l = "${pkgs.exa}/bin/exa";
