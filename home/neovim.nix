@@ -4,6 +4,24 @@
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 
+    coc = {
+      enable = true;
+      settings = {
+        languageserver = {
+          haskell = {
+            command = "haskell-language-server-wrapper";
+            args = [ "--lsp" ];
+            rootPatterns = [
+              "*.cabal"
+              "cabal.project"
+              "hie.yaml"
+            ];
+            filetypes = [ "haskell" "lhaskell" ];
+          };
+        };
+      };
+    };
+
     extraPackages = [
       pkgs.lazygit
     ];
