@@ -40,6 +40,9 @@
       # Preferred theme
       tokyonight-nvim
       sonokai
+      dracula-vim
+      gruvbox
+      papercolor-theme
       (pkgs.vimUtils.buildVimPlugin {
         name = "eldar";
         src = inputs.vim-eldar;
