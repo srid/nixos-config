@@ -74,13 +74,6 @@
       nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
       nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
-      " telescope
-      nnoremap <leader>ff <cmd>Telescope find_files<cr>
-      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-      nnoremap <leader>fb <cmd>Telescope buffers<cr>
-      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-      
-
       lua << EOF
       ${builtins.readFile ./neovim.lua}
       EOF

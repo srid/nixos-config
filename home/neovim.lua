@@ -35,4 +35,9 @@ nmap("b]", ":BufferLineCyclePrev<cr>")
 nmap("be", ":BufferLineSortByExtension<cr>")
 nmap("bd", ":BufferLineSortByDirectory<cr>")
 
+-- telescope setup
+nmap("<leader>ff", ":Telescope find_files<cr>")
+nmap("<leader>fg", ":Telescope live_grep<cr>")
+nmap("<leader>fb", ":Telescope buffers<cr>")
+nmap("<leader>fh", ":Telescope help_tags<cr>")
 
