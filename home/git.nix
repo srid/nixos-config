@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.lazygit ];
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
@@ -25,6 +24,19 @@
       pull.rebase = "false";
       # For supercede
       core.symlinks = true;
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      # This looks better with the kitty theme.
+      gui.theme = {
+        lightTheme = false;
+        activeBorderColor = [ "white" "bold" ];
+        inactiveBorderColor = [ "white" ];
+        selectedLineBgColor = [ "reverse" "white" ];
+      };
     };
   };
 }
