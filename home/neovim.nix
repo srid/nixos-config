@@ -42,6 +42,23 @@
 
       # Doom-emacs like experience
       { 
+        plugin = vim-which-key;
+        type = "lua";
+        # TODO: How to port this to Lua?
+        config = ''
+          vim.cmd([[
+          map <Space> <Leader>
+          let g:mapleader = "\<Space>"
+          let g:maplocalleader = ','
+          nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+          nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+          ]])
+          '';
+      }
+      # TODO: Don't know how to configure this correctly
+      # nvim-whichkey-setup-lua
+
+      { 
         plugin = telescope-nvim;
         type = "lua";
         config = ''
@@ -70,10 +87,6 @@
           '';
       }
 
-      vim-which-key
-      # TODO: Don't know how to configure this correctly
-      # nvim-whichkey-setup-lua
-
       # Buffer tabs
       {
         plugin = bufferline-nvim;
@@ -96,16 +109,9 @@
       vim-markdown
     ];
 
-    # Note: Lua based config is in ./neovim.lua
+    # Add library code here for use in the Lua config from the
+    # plugins list above.
     extraConfig = ''
-      " which-key
-      " TODO: How to port this to Lua?
-      map <Space> <Leader>
-      let g:mapleader = "\<Space>"
-      let g:maplocalleader = ','
-      nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-      nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-
       lua << EOF
       ${builtins.readFile ./neovim.lua}
       EOF
