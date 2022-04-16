@@ -49,7 +49,17 @@
       # nvim-whichkey-setup-lua
 
       # Buffer tabs
-      bufferline-nvim
+      {
+        plugin = bufferline-nvim;
+        type = "lua";
+        config = ''
+          require("bufferline").setup{ }
+          nmap("[b", ":BufferLineCycleNext<cr>")
+          nmap("b]", ":BufferLineCyclePrev<cr>")
+          nmap("be", ":BufferLineSortByExtension<cr>")
+          nmap("bd", ":BufferLineSortByDirectory<cr>")
+          '';
+      }
 
       # Developing plugins in Haskell
       nvim-hs-vim

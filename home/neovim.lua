@@ -36,18 +36,10 @@ require('lualine').setup {
   }
 }
 
--- bufferline setup
-require("bufferline").setup{ }
-nmap("[b", ":BufferLineCycleNext<cr>")
-nmap("b]", ":BufferLineCyclePrev<cr>")
-nmap("be", ":BufferLineSortByExtension<cr>")
-nmap("bd", ":BufferLineSortByDirectory<cr>")
-
 -- telescope setup
 nmap("<leader>ff", ":Telescope find_files<cr>")
 nmap("<leader>fg", ":Telescope live_grep<cr>")
 nmap("<leader>fb", ":Telescope buffers<cr>")
 nmap("<leader>fh", ":Telescope help_tags<cr>")
 nmap("<leader>fz", ":Telescope zoxide list<cr>")
-
 
