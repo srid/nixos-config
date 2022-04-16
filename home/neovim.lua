@@ -29,11 +29,3 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
--- lualine setup
-require('lualine').setup {
-  options = {
-    theme = 'tokyonight'
-  }
-}
-
-
