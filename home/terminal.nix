@@ -7,9 +7,6 @@
     ripgrep
     htop
 
-    # Meta
-    kitty
-
     # Haskell dev
     ghcid
   ];
@@ -20,5 +17,16 @@
     zoxide.enable = true;
     fzf.enable = true;
     jq.enable = true;
+
+    # Better terminal, with good rendering.
+    kitty = {
+      enable = true;
+      # Pick "name" from https://github.com/kovidgoyal/kitty-themes/blob/master/themes.json
+      theme = "Tokyo Night";
+      font = {
+        name = "Monaco";
+        size = 14;
+      };
+    };
   };
 }
