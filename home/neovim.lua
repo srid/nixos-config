@@ -16,6 +16,14 @@ end
 -- Config
 -- ------
 
+vim.cmd([[
+set nobackup
+set termguicolors " 24-bit colors
+" let g:tokyonight_style = "day"
+let g:tokyonight_italic_functions = 1
+colorscheme tokyonight
+]])
+
 -- I don't care about tabs.
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2

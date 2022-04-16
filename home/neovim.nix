@@ -45,6 +45,8 @@
       telescope-nvim
       telescope-zoxide
       vim-which-key
+      # TODO: Don't know how to configure this correctly
+      # nvim-whichkey-setup-lua
 
       # Buffer tabs
       bufferline-nvim
@@ -60,15 +62,9 @@
 
     # Note: Lua based config is in ./neovim.lua
     extraConfig = ''
-      set nobackup
-      set termguicolors " 24-bit colors
-      " let g:tokyonight_style = "day"
-      let g:tokyonight_italic_functions = 1
-      colorscheme tokyonight
-      " Use space instead of \ as leader key, like doom-emacs
-      map <Space> <Leader>
-
       " which-key
+      " TODO: How to port this to Lua?
+      map <Space> <Leader>
       let g:mapleader = "\<Space>"
       let g:maplocalleader = ','
       nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
