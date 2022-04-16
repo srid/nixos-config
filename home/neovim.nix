@@ -57,6 +57,7 @@
       # Language support
       vim-nix
       haskell-vim
+      vim-markdown
     ];
 
     extraConfig = ''
