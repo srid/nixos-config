@@ -36,6 +36,7 @@
 
       lazygit-nvim
 
+      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       # Preferred theme
       tokyonight-nvim
       sonokai
