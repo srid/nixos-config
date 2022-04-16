@@ -30,7 +30,6 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       # Status bar for vim
-      lualine-nvim
 
       # For working mouse support when running inside tmux
       terminus
@@ -42,8 +41,35 @@
       tokyonight-nvim
 
       # Doom-emacs like experience
-      telescope-nvim
-      telescope-zoxide
+      { 
+        plugin = telescope-nvim;
+        type = "lua";
+        config = ''
+          nmap("<leader>ff", ":Telescope find_files<cr>")
+          nmap("<leader>fg", ":Telescope live_grep<cr>")
+          nmap("<leader>fb", ":Telescope buffers<cr>")
+          nmap("<leader>fh", ":Telescope help_tags<cr>")
+          '';
+      }
+      { 
+        plugin = telescope-zoxide;
+        type = "lua";
+        config = ''
+          nmap("<leader>fz", ":Telescope zoxide list<cr>")
+          '';
+      }
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = ''
+          require('lualine').setup {
+            options = {
+              theme = 'tokyonight'
+            }
+          }
+          '';
+      }
+
       vim-which-key
       # TODO: Don't know how to configure this correctly
       # nvim-whichkey-setup-lua
