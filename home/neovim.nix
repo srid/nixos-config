@@ -30,7 +30,6 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       # Status bar for vim
-      # vim-airline
       # lualine-nvim
       feline-nvim
 
@@ -41,8 +40,6 @@
 
       # Preferred theme
       nvim-treesitter
-      aurora
-      oceanic-next
       tokyonight-nvim
 
       telescope-nvim
@@ -63,10 +60,6 @@
     extraConfig = ''
       set nobackup
       set termguicolors " 24-bit colors
-      let g:oceanic_next_terminal_bold = 1
-      let g:oceanic_next_terminal_italic = 1
-      " colorscheme OceanicNext
-      " colorscheme aurora
       " let g:tokyonight_style = "day"
       let g:tokyonight_italic_functions = 1
       colorscheme tokyonight
