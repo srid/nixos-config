@@ -84,13 +84,6 @@
       lua << EOF
       ${builtins.readFile ./neovim.lua}
       EOF
-
-      " bufferline
-      " TODO: Move these to lua
-      nnoremap <silent>[b :BufferLineCycleNext<CR>
-      nnoremap <silent>b] :BufferLineCyclePrev<CR>
-      nnoremap <silent>be :BufferLineSortByExtension<CR>
-      nnoremap <silent>bd :BufferLineSortByDirectory<CR>
     '';
   };
 
