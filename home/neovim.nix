@@ -42,6 +42,7 @@
       # Preferred theme
       nvim-treesitter
       aurora
+      oceanic-next
 
       telescope-nvim
       telescope-zoxide
@@ -59,7 +60,10 @@
     extraConfig = ''
       set nobackup
       set termguicolors " 24-bit colors
-      colorscheme aurora
+      let g:oceanic_next_terminal_bold = 1
+      let g:oceanic_next_terminal_italic = 1
+      colorscheme OceanicNext
+      " colorscheme aurora
       " Use spave instead of \ as leader key, like doom-emacs
       map <Space> <Leader>
 
