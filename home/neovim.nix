@@ -37,8 +37,8 @@
       lazygit-nvim
 
       # Preferred theme
-      nvim-treesitter
       tokyonight-nvim
+      sonokai
 
       # Doom-emacs like experience
       { 
