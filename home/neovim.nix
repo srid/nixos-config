@@ -40,6 +40,10 @@
       # Preferred theme
       tokyonight-nvim
       sonokai
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "eldar";
+        src = inputs.vim-eldar;
+      })
 
       # Doom-emacs like experience
       { 

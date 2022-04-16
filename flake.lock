@@ -751,7 +751,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-shell": "nixos-shell",
         "nixos-vscode-server": "nixos-vscode-server",
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_8",
+        "vim-eldar": "vim-eldar"
       }
     },
     "rotate-text": {
@@ -767,6 +768,22 @@
       "original": {
         "owner": "debug-ito",
         "repo": "rotate-text.el",
+        "type": "github"
+      }
+    },
+    "vim-eldar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1579240147,
+        "narHash": "sha256-O4TaWcrlhjqGIvAf6QvzUgE3ExcbTELR9JKc9waarMQ=",
+        "owner": "agude",
+        "repo": "vim-eldar",
+        "rev": "6c7117688e654abe89246a9baa42ab2ee8dd1304",
+        "type": "github"
+      },
+      "original": {
+        "owner": "agude",
+        "repo": "vim-eldar",
         "type": "github"
       }
     }
