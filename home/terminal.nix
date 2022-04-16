@@ -7,6 +7,9 @@
     ripgrep
     htop
 
+    # Meta
+    kitty
+
     # Haskell dev
     ghcid
   ];
