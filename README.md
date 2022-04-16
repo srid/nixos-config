@@ -5,13 +5,13 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 ### NixOS
 
 ```sh-session
-make nixos
+make nixos  # Or, just `make`
 ```
 
 ### macOS 
 
 ```sh-session
-make darwin
+make darwin # Or, just `make`
 ```
 
 ## Install notes

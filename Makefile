@@ -1,9 +1,12 @@
-OS := $(shell uname)
 
-
-# TODO: Automatically detect platform.
 all:
-	$(error Choose a platform (eg: 'make macos'))
+	if [[ "`uname`" == 'Darwin' ]]; then \
+		echo macOS; \
+	  make macos; \
+	else \
+		echo NixOS; \
+	  make  nixos; \
+	fi
 
 nixos:
 	sudo nixos-rebuild switch -j auto 
