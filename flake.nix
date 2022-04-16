@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/c48167590e3258daac6ab12a41bc2b7341e9b2ec";
+    nixpkgs.url = "github:nixos/nixpkgs/5181d5945eda382ff6a9ca3e072ed6ea9b547fee";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -133,8 +133,7 @@
                   ./home/neovim.nix
                   ./home/terminal.nix
                   ./home/direnv.nix
-                  # https://github.com/NixOS/nixpkgs/issues/160876
-                  # ./home/starship.nix
+                  ./home/starship.nix
                 ];
                 programs.zsh = {
                   enable = true;
