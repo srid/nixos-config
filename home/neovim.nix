@@ -41,6 +41,7 @@
       nvim-treesitter
       tokyonight-nvim
 
+      # Doom-emacs like experience
       telescope-nvim
       telescope-zoxide
       vim-which-key
@@ -48,6 +49,7 @@
       # Buffer tabs
       bufferline-nvim
 
+      # Developing plugins in Haskell
       nvim-hs-vim
 
       # Language support
@@ -56,13 +58,14 @@
       vim-markdown
     ];
 
+    # Note: Lua based config is in ./neovim.lua
     extraConfig = ''
       set nobackup
       set termguicolors " 24-bit colors
       " let g:tokyonight_style = "day"
       let g:tokyonight_italic_functions = 1
       colorscheme tokyonight
-      " Use spave instead of \ as leader key, like doom-emacs
+      " Use space instead of \ as leader key, like doom-emacs
       map <Space> <Leader>
 
       " which-key
@@ -77,19 +80,13 @@
       nnoremap <leader>fb <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       
-      " lualine
-      lua << END
-      require('lualine').setup {
-        options = {
-          theme = 'tokyonight'
-        }
-      }
-      END
+
+      lua << EOF
+      ${builtins.readFile ./neovim.lua}
+      EOF
 
       " bufferline
-      lua << EOF
-      require("bufferline").setup{}
-      EOF
+      " TODO: Move these to lua
       nnoremap <silent>[b :BufferLineCycleNext<CR>
       nnoremap <silent>b] :BufferLineCyclePrev<CR>
       nnoremap <silent>be :BufferLineSortByExtension<CR>
