@@ -30,8 +30,7 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vim/plugins/generated.nix
     plugins = with pkgs.vimPlugins; [
       # Status bar for vim
-      # lualine-nvim
-      feline-nvim
+      lualine-nvim
 
       # For working mouse support when running inside tmux
       terminus
@@ -78,9 +77,13 @@
       nnoremap <leader>fb <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       
-      " luiline
+      " lualine
       lua << END
-      require('feline').setup()
+      require('lualine').setup {
+        options = {
+          theme = 'tokyonight'
+        }
+      }
       END
 
       " bufferline
