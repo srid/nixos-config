@@ -101,10 +101,8 @@
         type = "lua";
         config = ''
           require("bufferline").setup{ }
-          nmap("[b", ":BufferLineCycleNext<cr>")
-          nmap("b]", ":BufferLineCyclePrev<cr>")
-          nmap("be", ":BufferLineSortByExtension<cr>")
-          nmap("bd", ":BufferLineSortByDirectory<cr>")
+          nmap("<leader>b", ":BufferLineCycleNext<cr>")
+          nmap("<leader>B", ":BufferLineCyclePrev<cr>")
           '';
       }
 
