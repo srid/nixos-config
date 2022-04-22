@@ -135,6 +135,7 @@
                   ./home/git.nix
                   ./home/tmux.nix
                   ./home/neovim.nix
+                  ./home/email.nix
                   ./home/terminal.nix
                   ./home/direnv.nix
                   ./home/starship.nix
