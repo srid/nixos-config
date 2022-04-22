@@ -23,6 +23,8 @@
     neovim-nightly-overlay.inputs.neovim-flake.url = "github:neovim/neovim/v0.7.0?dir=contrib";
     vim-eldar.url = "github:agude/vim-eldar";
     vim-eldar.flake = false;
+    himalaya.url = "github:soywod/himalaya";
+    himalaya.flake = false;
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:

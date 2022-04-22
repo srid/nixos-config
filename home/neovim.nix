@@ -24,6 +24,7 @@
 
     extraPackages = [
       pkgs.lazygit
+      pkgs.himalaya
     ];
 
     # Full list here,
@@ -46,6 +47,10 @@
       (pkgs.vimUtils.buildVimPlugin {
         name = "eldar";
         src = inputs.vim-eldar;
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "himalaya";
+        src = inputs.himalaya + /vim;
       })
 
       # Doom-emacs like experience

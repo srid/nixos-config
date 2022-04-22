@@ -286,6 +286,22 @@
         "type": "github"
       }
     },
+    "himalaya": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647810768,
+        "narHash": "sha256-CXchZbXX7NH2ZXeAoPph3qxxdcAdDVZLBmOMwxFu+Yo=",
+        "owner": "soywod",
+        "repo": "himalaya",
+        "rev": "fe8f9eab7c4f1e7c470ac8cea48594d38580f8dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soywod",
+        "repo": "himalaya",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -745,6 +761,7 @@
         "darwin": "darwin",
         "emacs-overlay": "emacs-overlay",
         "hercules-ci-agent": "hercules-ci-agent",
+        "himalaya": "himalaya",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-doom-emacs": "nix-doom-emacs",
