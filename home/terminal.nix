@@ -27,6 +27,14 @@
         name = "Monaco";
         size = 14;
       };
+      keybindings = {
+        "kitty_mod+e" = "kitten hints"; # https://sw.kovidgoyal.net/kitty/kittens/hints/
+      };
+      settings = {
+        # https://github.com/kovidgoyal/kitty/issues/371#issuecomment-1095268494
+        # mouse_map = "left click ungrabbed no-op";
+        # Ctrl+Shift+click to open URL.
+      };
     };
 
     nix-index = {
