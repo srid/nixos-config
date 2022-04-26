@@ -19,6 +19,7 @@
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     nixos-shell.url = "github:Mic92/nixos-shell";
 
+    # Vim & its plugins (not in nixpkgs)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.neovim-flake.url = "github:neovim/neovim/v0.7.0?dir=contrib";
     vim-eldar.url = "github:agude/vim-eldar";
