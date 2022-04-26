@@ -29,8 +29,6 @@
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
       overlayModule =
         {
           nixpkgs.overlays = [
@@ -38,87 +36,96 @@
             (inputs.neovim-nightly-overlay.overlay)
           ];
         };
-      # Configuration common to all of my systems (servers, desktops, laptops)
-      commonFeatures = [
-        overlayModule
-        ./features/self-ide.nix
-        ./features/takemessh
-        ./features/caches
-        ./features/current-location.nix
-      ];
-      homeFeatures = [
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit system inputs; };
-          home-manager.users.srid = {
-            imports = [
-              ./home/tmux.nix
-              ./home/git.nix
-              ./home/neovim.nix
-              ./home/starship.nix
-              ./home/terminal.nix
-              ./home/direnv.nix
-            ];
-
-            programs.bash = {
-              enable = true;
-            } // (import ./home/shellcommon.nix { inherit pkgs; });
-          };
-        }
-      ];
-      mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        # Arguments to pass to all modules.
-        specialArgs = { inherit system inputs; };
-        modules =
-          commonFeatures ++ homeFeatures ++ extraModules;
-      };
-      mkMacosSystem = darwin.lib.darwinSystem;
     in
     {
-      nixosConfigurations = {
-        # My beefy development computer
-        now = mkLinuxSystem
-          [
-            ./hosts/hetzner/ax101.nix
-            ./features/server/harden.nix
-            ./features/server/devserver.nix
-            ./features/hercules.nix
+      # Configurations for Linux (NixOS) systems
+      nixosConfigurations =
+        let
+          system = "x86_64-linux";
+          pkgs = nixpkgs.legacyPackages.${system};
+          # Configuration common to all Linux systems
+          commonFeatures = [
+            overlayModule
+            ./features/self-ide.nix
+            ./features/takemessh
+            ./features/caches
+            ./features/current-location.nix
           ];
-        # This is run in qemu only.
-        # > nixos-shell --flake github:srid/nixos-config#corsair
-        corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          specialArgs = { inherit system inputs; };
-          modules = [
-            inputs.nixos-shell.nixosModules.nixos-shell
+          homeFeatures = [
+            home-manager.nixosModules.home-manager
             {
-              virtualisation = {
-                memorySize = 8 * 1024;
-                cores = 2;
-                diskSize = 20 * 1024;
-              };
-              environment.systemPackages = with pkgs; [
-                protonvpn-cli
-                aria2
-              ];
-              nixos-shell.mounts = {
-                mountHome = false;
-                mountNixProfile = false;
-                extraMounts."/Downloads" = {
-                  target = "/home/srid/Downloads";
-                  cache = "none";
-                };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit system inputs; };
+              home-manager.users.srid = {
+                imports = [
+                  ./home/tmux.nix
+                  ./home/git.nix
+                  ./home/neovim.nix
+                  ./home/starship.nix
+                  ./home/terminal.nix
+                  ./home/direnv.nix
+                ];
+
+                programs.bash = {
+                  enable = true;
+                } // (import ./home/shellcommon.nix { inherit pkgs; });
               };
             }
           ];
+          mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
+            # Arguments to pass to all modules.
+            specialArgs = { inherit system inputs; };
+            modules =
+              commonFeatures ++ homeFeatures ++ extraModules;
+          };
+        in
+        {
+          # My beefy development computer
+          now = mkLinuxSystem
+            [
+              ./hosts/hetzner/ax101.nix
+              ./features/server/harden.nix
+              ./features/server/devserver.nix
+              ./features/hercules.nix
+            ];
+          # This is run in qemu only.
+          # > nixos-shell --flake github:srid/nixos-config#corsair
+          corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
+            specialArgs = { inherit system inputs; };
+            modules = [
+              inputs.nixos-shell.nixosModules.nixos-shell
+              {
+                virtualisation = {
+                  memorySize = 8 * 1024;
+                  cores = 2;
+                  diskSize = 20 * 1024;
+                };
+                environment.systemPackages = with pkgs; [
+                  protonvpn-cli
+                  aria2
+                ];
+                nixos-shell.mounts = {
+                  mountHome = false;
+                  mountNixProfile = false;
+                  extraMounts."/Downloads" = {
+                    target = "/home/srid/Downloads";
+                    cache = "none";
+                  };
+                };
+              }
+            ];
+          };
         };
-      };
 
+      # Configurations for macOS systems (using nix-darwin)
       darwinConfigurations."air" =
-        let system = "aarch64-darwin"; in
+        let
+          system = "aarch64-darwin";
+          mkMacosSystem = darwin.lib.darwinSystem;
+        in
         mkMacosSystem {
           inherit system;
           specialArgs = {
