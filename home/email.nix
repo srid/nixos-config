@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
   realName = "Sridhar Ratnakumar";
   # IMAP/SMTP settings for standard email servers
   servers = {
@@ -29,10 +29,11 @@ let
       };
     };
   };
-in {
+in
+{
   programs.himalaya = {
     enable = true;
-    settings = {};
+    settings = { };
   };
   accounts.email.accounts = {
     proton = servers.protonmail // {
@@ -41,7 +42,7 @@ in {
       himalaya.enable = true;
       address = "srid@srid.ca";
       userName = "hey@srid.ca";
-      passwordCommand = "cat /Users/srid/.protonmail.password";  # Temporary password from ProtonMail Bridge, so I don't care
+      passwordCommand = "cat /Users/srid/.protonmail.password"; # Temporary password from ProtonMail Bridge, so I don't care
     };
     icloud = servers.icloud // {
       inherit realName;

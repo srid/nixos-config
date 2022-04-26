@@ -1,7 +1,8 @@
 { pkgs, inputs, system, ... }:
-let 
-    nvim = inputs.neovim-nightly-overlay.packages.${system}.neovim;
-in {
+let
+  nvim = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+in
+{
   programs.neovim = {
     enable = true;
     package = nvim;
@@ -56,7 +57,7 @@ in {
       })
 
       # Doom-emacs like experience
-      { 
+      {
         plugin = vim-which-key;
         type = "lua";
         # TODO: How to port this to Lua?
@@ -68,12 +69,12 @@ in {
           nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
           nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
           ]])
-          '';
+        '';
       }
       # TODO: Don't know how to configure this correctly
       # nvim-whichkey-setup-lua
 
-      { 
+      {
         plugin = telescope-nvim;
         type = "lua";
         config = ''
@@ -81,16 +82,16 @@ in {
           nmap("<leader>fg", ":Telescope live_grep<cr>")
           nmap("<leader>fb", ":Telescope buffers<cr>")
           nmap("<leader>fh", ":Telescope help_tags<cr>")
-          '';
+        '';
       }
-      { 
+      {
         plugin = telescope-zoxide;
         type = "lua";
         config = ''
           nmap("<leader>fz", ":Telescope zoxide list<cr>")
-          '';
+        '';
       }
-      { 
+      {
         plugin = telescope-file-browser-nvim;
         type = "lua";
         config = ''
@@ -115,7 +116,7 @@ in {
           -- you need to call load_extension, somewhere after setup function:
           require("telescope").load_extension "file_browser"
           nmap("<leader>fb", ":Telescope file_browser<cr>")
-          '';
+        '';
       }
 
       {
@@ -127,7 +128,7 @@ in {
               theme = 'tokyonight'
             }
           }
-          '';
+        '';
       }
 
       # Buffer tabs
@@ -138,7 +139,7 @@ in {
           require("bufferline").setup{ }
           nmap("<leader>b", ":BufferLineCycleNext<cr>")
           nmap("<leader>B", ":BufferLineCyclePrev<cr>")
-          '';
+        '';
       }
 
       # Developing plugins in Haskell
@@ -146,7 +147,7 @@ in {
 
       # Language support
       vim-nix
-      { 
+      {
         plugin = haskell-vim;
         type = "lua";
         config = ''
@@ -158,7 +159,7 @@ in {
           let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
           let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
           ]])
-          '';
+        '';
       }
       vim-markdown
     ];
