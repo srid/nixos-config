@@ -115,7 +115,8 @@ in
           -- To get telescope-file-browser loaded and working with telescope,
           -- you need to call load_extension, somewhere after setup function:
           require("telescope").load_extension "file_browser"
-          nmap("<leader>fb", ":Telescope file_browser<cr>")
+          nmap("<leader>fb", ":Telescope file_browser path=%:p:h<cr>")
+          nmap("<leader>fB", ":Telescope file_browser<cr>")
         '';
       }
 
