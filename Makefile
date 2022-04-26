@@ -13,7 +13,8 @@ nixos:
 
 macos:
 	sudo ls # cache sudo
-	$$(nix build --extra-experimental-features "flakes nix-command" .#darwinConfigurations.air.system --no-link --json | jq -r '.[].outputs.out')/sw/bin/darwin-rebuild switch --flake .
+	# The `TERM` needs to be set to workaround kitty issue: `tput: unknown terminal "xterm-kitty"`
+	TERM=xterm $$(nix build --extra-experimental-features "flakes nix-command" .#darwinConfigurations.air.system --no-link --json | jq -r '.[].outputs.out')/sw/bin/darwin-rebuild switch --flake .
 
 freeupboot:
 	# Delete all but the last few generations
