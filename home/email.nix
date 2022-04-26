@@ -41,7 +41,7 @@ in {
       himalaya.enable = true;
       address = "srid@srid.ca";
       userName = "hey@srid.ca";
-      passwordCommand = "cat /Users/srid/.protonmail.password";  # Local only, so I don't care
+      passwordCommand = "cat /Users/srid/.protonmail.password";  # Temporary password from ProtonMail Bridge, so I don't care
     };
     icloud = servers.icloud // {
       inherit realName;

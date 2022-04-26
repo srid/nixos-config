@@ -2,7 +2,7 @@
 {
   shellAliases = {
     e = "nvim";
-    ee = "nvim $(fzf)";
+    ee = "nvim \"$(fzf)\"";
     g = "${pkgs.git}/bin/git";
     lg = "lazygit";
     ls = "${pkgs.exa}/bin/exa";
