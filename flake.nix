@@ -122,44 +122,51 @@
         };
 
       # Configurations for macOS systems (using nix-darwin)
-      darwinConfigurations."air" =
+      darwinConfigurations =
         let
           system = "aarch64-darwin";
           mkMacosSystem = darwin.lib.darwinSystem;
-        in
-        mkMacosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs system;
-            rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+          defaultMacosSystem = mkMacosSystem {
+            inherit system;
+            specialArgs = {
+              inherit inputs system;
+              rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+            };
+            modules = [
+              overlayModule
+              ./hosts/darwin.nix
+              ./features/caches/oss.nix
+              home-manager.darwinModules.home-manager
+              {
+                home-manager.extraSpecialArgs = { inherit system inputs; };
+                home-manager.users.srid = { pkgs, ... }: {
+                  imports = [
+                    ./home/git.nix
+                    ./home/tmux.nix
+                    ./home/neovim.nix
+                    ./home/email.nix
+                    ./home/terminal.nix
+                    ./home/direnv.nix
+                    ./home/starship.nix
+                  ];
+                  programs.zsh = {
+                    enable = true;
+                    initExtra = ''
+                      export PATH=$HOME/.nix-profile/bin:/run/current-system/sw/bin/:$PATH
+                    '';
+                  } // (import ./home/shellcommon.nix { inherit pkgs; });
+                  home.stateVersion = "21.11";
+                };
+              }
+            ];
           };
-          modules = [
-            overlayModule
-            ./hosts/darwin.nix
-            ./features/caches/oss.nix
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit system inputs; };
-              home-manager.users.srid = { pkgs, ... }: {
-                imports = [
-                  ./home/git.nix
-                  ./home/tmux.nix
-                  ./home/neovim.nix
-                  ./home/email.nix
-                  ./home/terminal.nix
-                  ./home/direnv.nix
-                  ./home/starship.nix
-                ];
-                programs.zsh = {
-                  enable = true;
-                  initExtra = ''
-                    export PATH=$HOME/.nix-profile/bin:/run/current-system/sw/bin/:$PATH
-                  '';
-                } // (import ./home/shellcommon.nix { inherit pkgs; });
-                home.stateVersion = "21.11";
-              };
-            }
-          ];
+        in
+        {
+          # These are indexed, by convention, using hostnames.
+          # For example, if `sky.local` is the hostname of your Mac, then use
+          # `sky` here.
+          air = defaultMacosSystem;
+          sky = defaultMacosSystem;
         };
     };
 
