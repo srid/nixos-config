@@ -3,12 +3,14 @@ let
   nvim = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 in
 {
+  imports = [
+    ./neovim/coc.nix
+  ];
   programs.neovim = {
     enable = true;
     package = nvim;
 
     coc = {
-      enable = true;
       settings = {
         languageserver = {
           haskell = {
