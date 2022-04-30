@@ -8,11 +8,6 @@
           command = "/run/current-system/sw/bin/nixos-rebuild";
           options = [ "NOPASSWD" ];
         }
-        # HACK: See thin.nix power commands
-        {
-          command = "/run/current-system/sw/bin/systemctl";
-          options = [ "NOPASSWD" ];
-        }
       ];
     }
   ];
