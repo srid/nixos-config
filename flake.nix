@@ -6,7 +6,7 @@
     # https://status.nixos.org/
     # 
     # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/5181d5945eda382ff6a9ca3e072ed6ea9b547fee";
+    nixpkgs.url = "github:nixos/nixpkgs/e10da1c7f542515b609f8dfbcf788f3d85b14936";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -26,6 +26,8 @@
     vim-eldar.flake = false;
     himalaya.url = "github:soywod/himalaya";
     himalaya.flake = false;
+    zk-nvim.url = "github:mickael-menu/zk-nvim";
+    zk-nvim.flake = false;
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:

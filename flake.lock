@@ -610,17 +610,17 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1649986882,
-        "narHash": "sha256-cNsInUFq1MbuvaEmv8x6jetWnmAU+osMpnwKumtjksI=",
+        "lastModified": 1651007983,
+        "narHash": "sha256-GNay7yDPtLcRcKCNHldug85AhAvBpTtPEJWSSDYBw8U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5181d5945eda382ff6a9ca3e072ed6ea9b547fee",
+        "rev": "e10da1c7f542515b609f8dfbcf788f3d85b14936",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5181d5945eda382ff6a9ca3e072ed6ea9b547fee",
+        "rev": "e10da1c7f542515b609f8dfbcf788f3d85b14936",
         "type": "github"
       }
     },
@@ -769,7 +769,8 @@
         "nixos-shell": "nixos-shell",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_8",
-        "vim-eldar": "vim-eldar"
+        "vim-eldar": "vim-eldar",
+        "zk-nvim": "zk-nvim"
       }
     },
     "rotate-text": {
@@ -801,6 +802,22 @@
       "original": {
         "owner": "agude",
         "repo": "vim-eldar",
+        "type": "github"
+      }
+    },
+    "zk-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644774268,
+        "narHash": "sha256-/2uR8DMtI01nVlyydUoVUBj/yB/FOWmNSz6vgpRK800=",
+        "owner": "mickael-menu",
+        "repo": "zk-nvim",
+        "rev": "d705faa82da042e7a75f7d244afd27c2d8f20830",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mickael-menu",
+        "repo": "zk-nvim",
         "type": "github"
       }
     }
