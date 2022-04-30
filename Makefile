@@ -10,7 +10,7 @@ all:
 	fi
 
 nixos-system:
-	sudo nixos-rebuild switch -j auto 
+	nixos-rebuild --use-remote-sudo switch -j auto
 
 macos-system:
 	sudo ls # cache sudo
