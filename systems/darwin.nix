@@ -8,6 +8,7 @@
     ripgrep
     sd
     pandoc
+    nodejs # Required for VSCode's webhint extension
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
