@@ -2,7 +2,7 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 
 To build,
 
-```sh-session
+```sh
 # First, edit nixosConfigurations or darwinConfigurations in flake.nix to add
 # your system's hostname
 make
