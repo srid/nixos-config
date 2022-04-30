@@ -22,6 +22,6 @@ make
 
 ## Directory layout 
 
-- `nixos`: nixos config (includes nix-darwin)
 - `home`: home-manager config
+- `nixos`: nixos config (includes nix-darwin)
 - `systems`: top-level configuration.nix('ish) for various kinds of system

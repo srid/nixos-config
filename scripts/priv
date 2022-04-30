@@ -1,4 +1,0 @@
-set -x
-
-sudo cryptsetup luksOpen /dev/nvme0n1p3 crypted0
-sudo mount /dev/mapper/crypted0 /extra0

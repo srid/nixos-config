@@ -104,9 +104,21 @@
   services.netdata.enable = true;
 
   environment.systemPackages = with pkgs; [
-    cryptsetup
     lsof
     inputs.nixos-shell.defaultPackage.${system}
+
+    # Encrypted private directory stuff
+    # See https://srid.ca/vf.enc
+    cryptsetup
+    (pkgs.writeShellApplication {
+      name = "now-mount-priv";
+      runtimeInputs = [ cryptsetup ];
+      text = ''
+        set -x
+        sudo cryptsetup luksOpen /dev/nvme0n1p3 crypted0
+        sudo mount /dev/mapper/crypted0 /extra0
+      '';
+    })
   ];
 
   services.openssh.permitRootLogin = "prohibit-password";
