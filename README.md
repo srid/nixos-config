@@ -3,14 +3,17 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 To build,
 
 ```sh-session
+# First, edit nixosConfigurations or darwinConfigurations in flake.nix to add
+# your system's hostname
 make
 ```
 
 ## Install notes
 
-- Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
-- Digital Ocean: https://github.com/elitak/nixos-infect
-- X1 Carbon: https://www.srid.ca/x1c7-install
+- NixOS Linux (clone this repo at `/etc/nixos`)
+  - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
+  - Digital Ocean: https://github.com/elitak/nixos-infect
+  - X1 Carbon: https://www.srid.ca/x1c7-install
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
