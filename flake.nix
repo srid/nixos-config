@@ -14,8 +14,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-vscode-server.url = "github:iosmanthus/nixos-vscode-server/add-flake";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     nixos-shell.url = "github:Mic92/nixos-shell";
 
@@ -35,7 +33,6 @@
       overlayModule =
         {
           nixpkgs.overlays = [
-            (inputs.emacs-overlay.overlay)
             (inputs.neovim-nightly-overlay.overlay)
           ];
         };
