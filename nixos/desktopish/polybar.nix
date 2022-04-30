@@ -6,7 +6,7 @@
     description = "Polybar";
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.polybar}/bin/polybar -c /etc/nixos/config/polybar example";
+      ExecStart = "${pkgs.polybar}/bin/polybar -c /etc/nixos/nixos/desktopish/polybar example";
       Restart = "on-abnormal";
     };
   };
