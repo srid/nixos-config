@@ -5,32 +5,16 @@ in
 {
   imports = [
     ./neovim/coc.nix
+    ./neovim/haskell.nix
+    ./neovim/zk.nix
   ];
   programs.neovim = {
     enable = true;
     package = nvim;
 
-    coc = {
-      settings = {
-        languageserver = {
-          haskell = {
-            command = "haskell-language-server-wrapper";
-            args = [ "--lsp" ];
-            rootPatterns = [
-              "*.cabal"
-              "cabal.project"
-              "hie.yaml"
-            ];
-            filetypes = [ "haskell" "lhaskell" ];
-          };
-        };
-      };
-    };
-
     extraPackages = [
       pkgs.lazygit
       pkgs.himalaya
-      pkgs.zk
     ];
 
     # Full list here,
@@ -151,52 +135,8 @@ in
 
       # Language support
       vim-nix
-      {
-        plugin = haskell-vim;
-        type = "lua";
-        config = ''
-          vim.cmd([[
-          let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-          let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-          let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-          let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-          let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-          let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-          ]])
-        '';
-      }
+
       vim-markdown
-      {
-        plugin = 
-          (pkgs.vimUtils.buildVimPlugin {
-            name = "zk-nvim";
-            src = inputs.zk-nvim;
-          });
-        type = "lua";
-        config = ''
-          require("zk").setup({
-            -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-            -- it's recommended to use "telescope" or "fzf"
-            picker = "telescope",
-
-            lsp = {
-              -- `config` is passed to `vim.lsp.start_client(config)`
-              config = {
-                cmd = { "zk", "lsp" },
-                name = "zk",
-                -- on_attach = ...
-                -- etc, see `:h vim.lsp.start_client()`
-              },
-
-              -- automatically attach buffers in a zk notebook that match the given filetypes
-              auto_attach = {
-                enabled = true,
-                filetypes = { "markdown" },
-              },
-            },
-          })
-          '';
-      }
     ];
 
     # Add library code here for use in the Lua config from the

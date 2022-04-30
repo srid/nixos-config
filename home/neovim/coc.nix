@@ -6,7 +6,7 @@
     };
 
     extraPackages = [
-      pkgs.nodejs  # coc requires nodejs
+      pkgs.nodejs # coc requires nodejs
     ];
   };
 }
