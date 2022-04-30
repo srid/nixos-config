@@ -24,4 +24,4 @@ make
 
 - `nixos`: nixos config (includes nix-darwin)
 - `home`: home-manager config
-- `hosts`: top-level configuration.nix('ish) for various kinds of system
+- `systems`: top-level configuration.nix('ish) for various kinds of system

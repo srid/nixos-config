@@ -85,7 +85,7 @@
           # My beefy development computer
           now = mkLinuxSystem
             [
-              ./hosts/hetzner/ax101.nix
+              ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix
               ./nixos/server/devserver.nix
               ./nixos/hercules.nix
@@ -133,7 +133,7 @@
             };
             modules = [
               overlayModule
-              ./hosts/darwin.nix
+              ./systems/darwin.nix
               ./nixos/caches/oss.nix
               home-manager.darwinModules.home-manager
               {
