@@ -1,17 +1,9 @@
 This repository contains the Nix / NixOS configuration for all of my systems. Start from `flakes.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)).
 
-## Platforms
-
-### NixOS
+To build,
 
 ```sh-session
-make nixos  # Or, just `make`
-```
-
-### macOS 
-
-```sh-session
-make darwin # Or, just `make`
+make
 ```
 
 ## Install notes
