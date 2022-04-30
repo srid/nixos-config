@@ -49,10 +49,10 @@
           # Configuration common to all Linux systems
           commonFeatures = [
             overlayModule
-            ./features/self-ide.nix
-            ./features/takemessh
-            ./features/caches
-            ./features/current-location.nix
+            ./nixos/self-ide.nix
+            ./nixos/takemessh
+            ./nixos/caches
+            ./nixos/current-location.nix
           ];
           homeFeatures = [
             home-manager.nixosModules.home-manager
@@ -89,9 +89,9 @@
           now = mkLinuxSystem
             [
               ./hosts/hetzner/ax101.nix
-              ./features/server/harden.nix
-              ./features/server/devserver.nix
-              ./features/hercules.nix
+              ./nixos/server/harden.nix
+              ./nixos/server/devserver.nix
+              ./nixos/hercules.nix
             ];
           # This is run in qemu only.
           # > nixos-shell --flake github:srid/nixos-config#corsair
@@ -137,7 +137,7 @@
             modules = [
               overlayModule
               ./hosts/darwin.nix
-              ./features/caches/oss.nix
+              ./nixos/caches/oss.nix
               home-manager.darwinModules.home-manager
               {
                 home-manager.extraSpecialArgs = { inherit system inputs; };
