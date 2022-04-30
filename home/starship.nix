@@ -10,7 +10,7 @@
       hostname = {
         ssh_only = false;
         format = "on [$hostname](bold red) ";
-        trim_at = ".companyname.com";
+        trim_at = ".local";
         disabled = false;
       };
     };
