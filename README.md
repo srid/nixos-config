@@ -27,3 +27,9 @@ make darwin # Or, just `make`
     - Run `make`.[^cleanup] That's it. Re-open your shell.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
+
+## Directory layout 
+
+- `nixos`: nixos config (includes nix-darwin)
+- `home`: home-manager config
+- `hosts`: top-level configuration.nix('ish) for various kinds of system
