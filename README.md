@@ -33,3 +33,7 @@ make
 - `home`: home-manager config
 - `nixos`: nixos config (includes nix-darwin)
 - `systems`: top-level configuration.nix('ish) for various kinds of system
+
+## Tips
+
+- To update NixOS (and other inputs) run `nix flake update`

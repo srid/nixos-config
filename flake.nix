@@ -2,11 +2,7 @@
   description = "Srid's NixOS configuration";
 
   inputs = {
-    # To update nixpkgs (and thus NixOS), pick the nixos-unstable rev from
-    # https://status.nixos.org/
-    # 
-    # This ensures that we always use the official nix cache.
-    nixpkgs.url = "github:nixos/nixpkgs/e10da1c7f542515b609f8dfbcf788f3d85b14936";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
