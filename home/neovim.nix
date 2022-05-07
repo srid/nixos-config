@@ -4,9 +4,13 @@ let
 in
 {
   imports = [
+    ./neovim/telescope.nix
     ./neovim/coc.nix
     ./neovim/haskell.nix
     ./neovim/zk.nix
+    # which-key must be the last import for it to recognize the keybindings of
+    # previous imports.
+    ./neovim/which-key.nix
   ];
   programs.neovim = {
     enable = true;
@@ -42,70 +46,6 @@ in
         name = "himalaya";
         src = inputs.himalaya + /vim;
       })
-
-      # Doom-emacs like experience
-      {
-        plugin = vim-which-key;
-        type = "lua";
-        # TODO: How to port this to Lua?
-        config = ''
-          vim.cmd([[
-          map <Space> <Leader>
-          let g:mapleader = "\<Space>"
-          let g:maplocalleader = ','
-          nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-          nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-          ]])
-        '';
-      }
-      # TODO: Don't know how to configure this correctly
-      # nvim-whichkey-setup-lua
-
-      {
-        plugin = telescope-nvim;
-        type = "lua";
-        config = ''
-          nmap("<leader>ff", ":Telescope find_files<cr>")
-          nmap("<leader>fg", ":Telescope live_grep<cr>")
-          nmap("<leader>fb", ":Telescope buffers<cr>")
-          nmap("<leader>fh", ":Telescope help_tags<cr>")
-        '';
-      }
-      {
-        plugin = telescope-zoxide;
-        type = "lua";
-        config = ''
-          nmap("<leader>fz", ":Telescope zoxide list<cr>")
-        '';
-      }
-      {
-        plugin = telescope-file-browser-nvim;
-        type = "lua";
-        config = ''
-          -- You don't need to set any of these options.
-          -- IMPORTANT!: this is only a showcase of how you can set default options!
-          require("telescope").setup {
-            extensions = {
-              file_browser = {
-                theme = "ivy",
-                mappings = {
-                  ["i"] = {
-                    -- your custom insert mode mappings
-                  },
-                  ["n"] = {
-                    -- your custom normal mode mappings
-                  },
-                },
-              },
-            },
-          }
-          -- To get telescope-file-browser loaded and working with telescope,
-          -- you need to call load_extension, somewhere after setup function:
-          require("telescope").load_extension "file_browser"
-          nmap("<leader>fb", ":Telescope file_browser path=%:p:h<cr>")
-          nmap("<leader>fB", ":Telescope file_browser<cr>")
-        '';
-      }
 
       {
         plugin = lualine-nvim;
