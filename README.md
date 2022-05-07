@@ -10,14 +10,19 @@ make
 
 ## Install notes
 
-- NixOS Linux (clone this repo at `/etc/nixos`)
-  - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
-  - Digital Ocean: https://github.com/elitak/nixos-infect
-  - X1 Carbon: https://www.srid.ca/x1c7-install
+- NixOS Linux
+  - Install NixOS
+    - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
+    - Digital Ocean: https://github.com/elitak/nixos-infect
+    - X1 Carbon: https://www.srid.ca/x1c7-install
+  - Clone this repo at `/etc/nixos`
+  - Edit `flake.nix` and add your Linux's hostname in the `nixosConfigurations` set.
+  - Run `make`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
+    - Clone this repo anywhere
     - Edit `flake.nix` and add your Mac's [hostname](https://support.apple.com/en-ca/guide/mac-help/mchlp2322/mac) in the `darwinConfigurations` set.
     - Run `make`.[^cleanup] That's it. Re-open your shell.
 
