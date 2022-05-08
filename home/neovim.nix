@@ -29,7 +29,13 @@ in
       # For working mouse support when running inside tmux
       terminus
 
-      lazygit-nvim
+      { 
+        plugin = lazygit-nvim;
+        type = "lua";
+        config = ''
+          nmap("<leader>gg", ":LazyGit<cr>")
+        '';
+      }
 
       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       # Preferred theme
