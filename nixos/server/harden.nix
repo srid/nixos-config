@@ -18,8 +18,6 @@
     fail2ban = {
       enable = true;
       ignoreIP = [
-        # quebec
-        "70.53.237.50"
       ];
     };
   };
