@@ -29,7 +29,7 @@ in
       # For working mouse support when running inside tmux
       terminus
 
-      { 
+      {
         plugin = lazygit-nvim;
         type = "lua";
         config = ''
