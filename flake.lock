@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "coc-rust-analyzer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651367943,
+        "narHash": "sha256-5rrZGeSCl/l/SWiQ9aBvHxV4TyoWq9p+4ULk08/kZpY=",
+        "owner": "fannheyward",
+        "repo": "coc-rust-analyzer",
+        "rev": "77c09df6927b86862651977a1433c0b1f817437f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fannheyward",
+        "repo": "coc-rust-analyzer",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -418,6 +434,7 @@
     },
     "root": {
       "inputs": {
+        "coc-rust-analyzer": "coc-rust-analyzer",
         "darwin": "darwin",
         "flake-utils": "flake-utils",
         "hercules-ci-agent": "hercules-ci-agent",

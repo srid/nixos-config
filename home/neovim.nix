@@ -7,6 +7,7 @@ in
     ./neovim/telescope.nix
     ./neovim/coc.nix
     ./neovim/haskell.nix
+    ./neovim/rust.nix
     ./neovim/zk.nix
     # which-key must be the last import for it to recognize the keybindings of
     # previous imports.

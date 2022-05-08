@@ -24,6 +24,8 @@
     himalaya.flake = false;
     zk-nvim.url = "github:mickael-menu/zk-nvim";
     zk-nvim.flake = false;
+    coc-rust-analyzer.url = "github:fannheyward/coc-rust-analyzer";
+    coc-rust-analyzer.flake = false;
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
