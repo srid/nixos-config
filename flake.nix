@@ -6,6 +6,8 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -163,6 +165,22 @@
           air = defaultMacosSystem;
           sky = defaultMacosSystem;
         };
-    };
+
+
+    } //
+    inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-darwin" ] (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            treefmt
+            nixpkgs-fmt
+            # To enable webhint to analyze source files
+            nodejs
+          ];
+        };
+      }
+    );
 
 }
