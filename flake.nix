@@ -11,7 +11,8 @@
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-vscode-server.url = "github:iosmanthus/nixos-vscode-server/add-flake";
+    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixos-vscode-server.flake = false;
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     nixos-shell.url = "github:Mic92/nixos-shell";
 
@@ -65,6 +66,7 @@
                   ./home/starship.nix
                   ./home/terminal.nix
                   ./home/direnv.nix
+                  ./home/vscode-server.nix
                 ];
 
                 programs.bash = {
@@ -87,7 +89,6 @@
             [
               ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix
-              ./nixos/server/devserver.nix
               ./nixos/hercules.nix
             ];
           # This is run in qemu only.

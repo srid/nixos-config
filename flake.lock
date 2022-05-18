@@ -287,20 +287,17 @@
       }
     },
     "nixos-vscode-server": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_6"
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1621309617,
-        "narHash": "sha256-wVraqnUMkDzVRoicKB9hwd16u53lls8gDN2Df6CmoK8=",
-        "owner": "iosmanthus",
+        "lastModified": 1648830510,
+        "narHash": "sha256-U+UGKbZajc2NqDvBL7hCYshAiaXgiBv5rNFIqLl0X7M=",
+        "owner": "msteen",
         "repo": "nixos-vscode-server",
-        "rev": "b7d30b8afb614ea9da284ca8e9687689ae8fcfbd",
+        "rev": "d2343b5eb47b811856085f3eff4d899a32b2c136",
         "type": "github"
       },
       "original": {
-        "owner": "iosmanthus",
-        "ref": "add-flake",
+        "owner": "msteen",
         "repo": "nixos-vscode-server",
         "type": "github"
       }
@@ -382,22 +379,6 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1621073999,
-        "narHash": "sha256-Cp99YreSFedcWovxNmO8g8qFYltQQJPRLfuot6Z7iGE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "83d907fd760d9ee4f49b4b7e4b1c6682f137b573",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_7": {
-      "locked": {
         "lastModified": 1651726670,
         "narHash": "sha256-dSGdzB49SEvdOJvrQWfQYkAefewXraHIV08Vz6iDXWQ=",
         "owner": "nixos",
@@ -444,7 +425,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-shell": "nixos-shell",
         "nixos-vscode-server": "nixos-vscode-server",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "vim-eldar": "vim-eldar",
         "zk-nvim": "zk-nvim"
       }

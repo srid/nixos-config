@@ -53,6 +53,11 @@
   # available there.
   boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
 
+  # https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = "524288";
+  };
+
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
 
