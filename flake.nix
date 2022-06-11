@@ -40,6 +40,7 @@
             (inputs.neovim-nightly-overlay.overlay)
           ];
         };
+      userName = "srid";
     in
     {
       # Configurations for Linux (NixOS) systems
@@ -61,7 +62,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit system inputs; };
-              home-manager.users.srid = {
+              home-manager.users.${userName} = {
                 imports = [
                   ./home/tmux.nix
                   ./home/git.nix
@@ -115,7 +116,7 @@
                   mountHome = false;
                   mountNixProfile = false;
                   extraMounts."/Downloads" = {
-                    target = "/home/srid/Downloads";
+                    target = "/home/${userName}/Downloads";
                     cache = "none";
                   };
                 };
@@ -144,7 +145,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = { inherit system inputs; };
-                home-manager.users.srid = { pkgs, ... }: {
+                home-manager.users.${userName} = { pkgs, ... }: {
                   imports = [
                     ./home/git.nix
                     ./home/tmux.nix
@@ -157,7 +158,7 @@
                   programs.zsh = {
                     enable = true;
                     initExtra = ''
-                      export PATH=/etc/profiles/per-user/srid/bin:/run/current-system/sw/bin/:$PATH
+                      export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
                     '';
                   } // (import ./home/shellcommon.nix { inherit pkgs; });
                   home.stateVersion = "21.11";
