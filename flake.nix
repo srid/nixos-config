@@ -157,7 +157,7 @@
                   programs.zsh = {
                     enable = true;
                     initExtra = ''
-                      export PATH=$HOME/.nix-profile/bin:/run/current-system/sw/bin/:$PATH
+                      export PATH=/etc/profiles/per-user/srid/bin:/run/current-system/sw/bin/:$PATH
                     '';
                   } // (import ./home/shellcommon.nix { inherit pkgs; });
                   home.stateVersion = "21.11";
