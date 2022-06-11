@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, system, ... }:
 {
   # Key packages required on nixos and macos
   home.packages = with pkgs; [
@@ -9,6 +9,8 @@
 
     # Haskell dev
     ghcid
+
+    inputs.comma.packages.${system}.default
   ];
 
   programs = {

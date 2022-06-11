@@ -15,6 +15,8 @@
     nixos-vscode-server.flake = false;
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     nixos-shell.url = "github:Mic92/nixos-shell";
+    comma.url = "github:nix-community/comma";
+    comma.inputs.nixpkgs.follows = "nixpkgs";
 
     # Vim & its plugins (not in nixpkgs)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
