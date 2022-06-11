@@ -9,6 +9,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     flake-utils.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    # See https://nix-community.github.io/home-manager/index.html#ch-nix-flakes
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
@@ -140,6 +141,8 @@
               ./nixos/caches/oss.nix
               home-manager.darwinModules.home-manager
               {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = { inherit system inputs; };
                 home-manager.users.srid = { pkgs, ... }: {
                   imports = [
