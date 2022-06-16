@@ -95,7 +95,12 @@
               ./nixos/server/harden.nix
               ./nixos/hercules.nix
             ];
-          # This is run in qemu only.
+
+          # For downloading stuff off internet in VPN.
+          #
+          # This is run in qemu only, which is useful to keep the host machine
+          # directly connected to the network (for acccess from outside).
+          #
           # > nixos-shell --flake github:srid/nixos-config#corsair
           corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
             inherit system pkgs;
