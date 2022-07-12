@@ -22,10 +22,13 @@
     # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" { })
   ];
 
-  nix.extraOptions = ''
-    extra-platforms = aarch64-darwin x86_64-darwin
-    experimental-features = nix-command flakes
-  '';
+  nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
+    extraOptions = ''
+      extra-platforms = aarch64-darwin x86_64-darwin
+      experimental-features = nix-command flakes
+    '';
+  };
 
   nixpkgs.config.allowBroken = true;
 
