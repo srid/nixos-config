@@ -15,6 +15,7 @@ make
     - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
     - Digital Ocean: https://github.com/elitak/nixos-infect
     - X1 Carbon: https://www.srid.ca/x1c7-install
+    - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` and add your Linux's hostname in the `nixosConfigurations` set, as well as update `userName`.
   - Run `make`. That's it. Re-open your shell.
