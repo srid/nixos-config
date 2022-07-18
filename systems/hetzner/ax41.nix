@@ -19,7 +19,7 @@
 
   swapDevices = [ ];
 
-  nix.max-jobs = lib.mkDefault 32;
+  nix.settings.max-jobs = lib.mkDefault 12;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   # Use GRUB2 as the boot loader.
