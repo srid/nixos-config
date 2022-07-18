@@ -50,7 +50,7 @@
 
   # The RAIDs are assembled in stage1, so we need to make the config
   # available there.
-  boot.initrd.mdadmConf = config.environment.etc."mdadm.conf".text;
+  boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
 
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
