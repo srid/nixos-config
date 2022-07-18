@@ -76,6 +76,7 @@
                 programs.bash = {
                   enable = true;
                 } // (import ./home/shellcommon.nix { inherit pkgs; });
+                home.stateVersion = "22.11";
               };
             }
           ];
@@ -88,12 +89,12 @@
           };
         in
         {
-          # My beefy development computer
-          now = mkLinuxSystem
+          # My Linux development computer (on Hetzner)
+          pinch = mkLinuxSystem
             [
-              ./systems/hetzner/ax101.nix
+              ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-              ./nixos/hercules.nix
+              # ./nixos/hercules.nix
             ];
 
           # For downloading stuff off internet in VPN.

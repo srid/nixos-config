@@ -6,22 +6,21 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ahci" ];
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "usbhid" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/480156e1-b229-4f5b-883a-34b7e5a9e0e9";
+      device = "/dev/disk/by-uuid/bede3321-d976-475a-ace3-33c8977a590a";
       fsType = "ext4";
     };
 
   swapDevices = [ ];
 
-  nix.settings.max-jobs = lib.mkDefault 32;
+  nix.settings.max-jobs = lib.mkDefault 12;
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Use GRUB2 as the boot loader.
   # We don't use systemd-boot because Hetzner uses BIOS legacy boot.
@@ -29,7 +28,7 @@
   boot.loader.grub = {
     enable = true;
     efiSupport = false;
-    devices = [ "/dev/nvme1n1" "/dev/nvme0n1" ];
+    devices = [ "/dev/nvme0n1" "/dev/nvme1n1" ];
   };
 
   # The madm RAID was created with a certain hostname, which madm will consider
@@ -46,21 +45,21 @@
   # We do not worry about plugging disks into the wrong machine because
   # we will never exchange disks between machines.
   environment.etc."mdadm.conf".text = ''
-    HOMEHOST now
+    HOMEHOST pinch
   '';
 
   # The RAIDs are assembled in stage1, so we need to make the config
   # available there.
-  boot.initrd.services.swraid.mdadmConf = config.environment.etc."mdadm.conf".text;
+  boot.initrd.mdadmConf = config.environment.etc."mdadm.conf".text;
 
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
 
-  networking.interfaces."enp7s0" = {
+  networking.interfaces."enp41s0" = {
     ipv4 = {
       addresses = [{
         # Server main IPv4 address
-        address = "136.243.12.116";
+        address = "88.198.33.237";
         prefixLength = 24;
       }];
 
@@ -69,14 +68,14 @@
         {
           address = "0.0.0.0";
           prefixLength = 0;
-          via = "136.243.12.65";
+          via = "88.198.33.225";
         }
       ];
     };
 
     ipv6 = {
       addresses = [{
-        address = "2a01:4f8:211:25c9::1";
+        address = "2a01:4f8:a0:305f::1";
         prefixLength = 64;
       }];
 
@@ -89,13 +88,13 @@
     };
   };
 
+
   networking = {
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
-    hostName = "now";
+    hostName = "pinch";
   };
 
   nix = {
-    # package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -105,29 +104,10 @@
 
   environment.systemPackages = with pkgs; [
     lsof
-    inputs.nixos-shell.defaultPackage.${system}
-
-    # Encrypted private directory stuff
-    # See https://srid.ca/vf.enc
-    cryptsetup
-    (pkgs.writeShellApplication {
-      name = "now-mount-priv";
-      runtimeInputs = [ cryptsetup ];
-      text = ''
-        set -x
-        sudo cryptsetup luksOpen /dev/nvme0n1p3 crypted0
-        sudo mount /dev/mapper/crypted0 /extra0
-      '';
-    })
   ];
 
   services.openssh.permitRootLogin = "prohibit-password";
   services.openssh.enable = true;
-  services.syncthing = {
-    enable = true;
-    user = "srid";
-    dataDir = "/home/srid/priv/syncthing";
-  };
   services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -137,12 +117,6 @@
   };
   security.sudo.wheelNeedsPassword = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "20.03";
 
 }
