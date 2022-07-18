@@ -31,13 +31,14 @@ in
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart =
-        let pgrstConf = pkgs.writeText "pgrst.conf" ''
-          db-uri = "postgres://postgres@localhost/postgres"
-          db-schema = "chronicle"
-          # TODO: change when going production
-          db-anon-role = "postgres"
-          server-port = 7000
-        '';
+        let
+          pgrstConf = pkgs.writeText "pgrst.conf" ''
+            db-uri = "postgres://postgres@localhost/postgres"
+            db-schema = "chronicle"
+            # TODO: change when going production
+            db-anon-role = "postgres"
+            server-port = 7000
+          '';
         in
         "${postgrest}/bin/postgrest ${pgrstConf}";
       Restart = "always";
