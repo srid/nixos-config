@@ -76,6 +76,7 @@
                 programs.bash = {
                   enable = true;
                 } // (import ./home/shellcommon.nix { inherit pkgs; });
+                home.stateVersion = "22.11";
               };
             }
           ];
