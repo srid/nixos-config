@@ -145,7 +145,7 @@
             modules = [
               overlayModule
               ./systems/darwin.nix
-              ./nixos/caches/oss.nix
+              ./nixos/caches
               home-manager.darwinModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
