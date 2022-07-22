@@ -20,6 +20,21 @@
     rosettaPkgs.idris2
     #rosettaPkgs.coq
     # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" { })
+
+    # Kill the process with the port open
+    # Used only to kill stale ghc.
+    (pkgs.writeShellApplication {
+      name = "fuckport";
+      runtimeInputs = [ jc jq ];
+      text = ''
+        lsof -i :"$1"
+        THEPID=$(lsof -i :"$1" | jc --lsof 2> /dev/null | jq '.[].pid')
+        echo "KILL $THEPID ?"
+        read -r
+        kill "$THEPID"
+      '';
+    })
+
   ];
 
   nix = {
