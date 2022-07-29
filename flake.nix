@@ -94,7 +94,6 @@
             [
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-              # ./nixos/hercules.nix
             ];
 
           # For downloading stuff off internet in VPN.
