@@ -45,14 +45,6 @@ in
       dracula-vim
       gruvbox
       papercolor-theme
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "eldar";
-        src = inputs.vim-eldar;
-      })
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "himalaya";
-        src = inputs.himalaya + /vim;
-      })
 
       {
         plugin = lualine-nvim;

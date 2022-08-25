@@ -22,10 +22,6 @@
     # Vim & its plugins (not in nixpkgs)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.neovim-flake.url = "github:neovim/neovim/v0.7.0?dir=contrib";
-    vim-eldar.url = "github:agude/vim-eldar";
-    vim-eldar.flake = false;
-    himalaya.url = "github:soywod/himalaya";
-    himalaya.flake = false;
     zk-nvim.url = "github:mickael-menu/zk-nvim";
     zk-nvim.flake = false;
     coc-rust-analyzer.url = "github:fannheyward/coc-rust-analyzer";

@@ -180,22 +180,6 @@
         "type": "github"
       }
     },
-    "himalaya": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1647810768,
-        "narHash": "sha256-CXchZbXX7NH2ZXeAoPph3qxxdcAdDVZLBmOMwxFu+Yo=",
-        "owner": "soywod",
-        "repo": "himalaya",
-        "rev": "fe8f9eab7c4f1e7c470ac8cea48594d38580f8dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "soywod",
-        "repo": "himalaya",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -460,14 +444,12 @@
         "darwin": "darwin",
         "flake-utils": "flake-utils",
         "hercules-ci-agent": "hercules-ci-agent",
-        "himalaya": "himalaya",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
         "nixos-shell": "nixos-shell",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_5",
-        "vim-eldar": "vim-eldar",
         "zk-nvim": "zk-nvim"
       }
     },
@@ -498,22 +480,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "vim-eldar": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1579240147,
-        "narHash": "sha256-O4TaWcrlhjqGIvAf6QvzUgE3ExcbTELR9JKc9waarMQ=",
-        "owner": "agude",
-        "repo": "vim-eldar",
-        "rev": "6c7117688e654abe89246a9baa42ab2ee8dd1304",
-        "type": "github"
-      },
-      "original": {
-        "owner": "agude",
-        "repo": "vim-eldar",
         "type": "github"
       }
     },
