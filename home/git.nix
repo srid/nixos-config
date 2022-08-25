@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  home.packages = [ pkgs.git-lfs ];
+
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
