@@ -450,7 +450,25 @@
         "nixos-shell": "nixos-shell",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_5",
+        "smos": "smos",
         "zk-nvim": "zk-nvim"
+      }
+    },
+    "smos": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1654691963,
+        "narHash": "sha256-blu6CYXxBNIPtRlw2KiZYKE7I8B26uUF1AE65SkrbfA=",
+        "owner": "yusdacra",
+        "repo": "smos",
+        "rev": "c11222bc1c836746dbaf1fdffea92509ce775faf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yusdacra",
+        "ref": "chore/fix-nix-flakes",
+        "repo": "smos",
+        "type": "github"
       }
     },
     "utils": {

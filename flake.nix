@@ -21,6 +21,8 @@
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
+    smos.url = "github:yusdacra/smos/chore/fix-nix-flakes"; # https://github.com/NorfairKing/smos/pull/243
+    smos.flake = false;
 
     # Vim & its plugins (not in nixpkgs)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -156,6 +158,7 @@
                     ./home/neovim.nix
                     ./home/email.nix
                     ./home/terminal.nix
+                    ./home/smos.nix
                     ./home/direnv.nix
                     ./home/starship.nix
                   ];
