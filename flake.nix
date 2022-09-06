@@ -2,20 +2,23 @@
   description = "Srid's NixOS configuration";
 
   inputs = {
+    # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
-
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-hardware.url = github:NixOS/nixos-hardware/master;
-    # See https://nix-community.github.io/home-manager/index.html#ch-nix-flakes
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Supportive inputs
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-shell.url = "github:Mic92/nixos-shell";
+    nixos-hardware.url = github:NixOS/nixos-hardware/master;
+
+    # Software inputs
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.flake = false;
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
-    nixos-shell.url = "github:Mic92/nixos-shell";
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
 
