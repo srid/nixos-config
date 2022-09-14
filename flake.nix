@@ -11,7 +11,6 @@
 
     # Supportive inputs
     flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.nixpkgs.follows = "nixpkgs";
     nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-hardware.url = github:NixOS/nixos-hardware/master;
 
@@ -33,13 +32,15 @@
 
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
     let
-      overlayModule =
+      userName = "srid";
+      platformIndependentModules = [
+        ./nixos/caches
         {
           nixpkgs.overlays = [
             (inputs.neovim-nightly-overlay.overlay)
           ];
-        };
-      userName = "srid";
+        }
+      ];
     in
     {
       # Configurations for Linux (NixOS) systems
@@ -48,11 +49,9 @@
           system = "x86_64-linux";
           pkgs = nixpkgs.legacyPackages.${system};
           # Configuration common to all Linux systems
-          commonFeatures = [
-            overlayModule
+          commonFeatures = platformIndependentModules ++ [
             ./nixos/self-ide.nix
             ./nixos/takemessh
-            ./nixos/caches
             ./nixos/current-location.nix
           ];
           homeFeatures = [
@@ -140,10 +139,8 @@
               inherit inputs system;
               rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
             };
-            modules = [
-              overlayModule
+            modules = platformIndependentModules ++ [
               ./systems/darwin.nix
-              ./nixos/caches
               home-manager.darwinModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;
