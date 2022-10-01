@@ -22,8 +22,6 @@
     comma.inputs.nixpkgs.follows = "nixpkgs";
 
     # Vim & its plugins (not in nixpkgs)
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.neovim-flake.url = "github:neovim/neovim/v0.7.0?dir=contrib";
     zk-nvim.url = "github:mickael-menu/zk-nvim";
     zk-nvim.flake = false;
     coc-rust-analyzer.url = "github:fannheyward/coc-rust-analyzer";
@@ -35,11 +33,6 @@
       userName = "srid";
       platformIndependentModules = [
         ./nixos/caches
-        {
-          nixpkgs.overlays = [
-            (inputs.neovim-nightly-overlay.overlay)
-          ];
-        }
       ];
     in
     {

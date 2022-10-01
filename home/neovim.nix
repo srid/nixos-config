@@ -1,7 +1,4 @@
 { pkgs, inputs, system, ... }:
-let
-  nvim = inputs.neovim-nightly-overlay.packages.${system}.neovim;
-in
 {
   imports = [
     ./neovim/telescope.nix
@@ -15,7 +12,6 @@ in
   ];
   programs.neovim = {
     enable = true;
-    package = nvim;
 
     extraPackages = [
       pkgs.lazygit
