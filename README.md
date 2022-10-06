@@ -38,3 +38,4 @@ make
 ## Tips
 
 - To update NixOS (and other inputs) run `nix flake update`
+- To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.

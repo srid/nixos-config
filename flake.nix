@@ -183,6 +183,7 @@
             nodejs
           ];
         };
+        formatter = pkgs.nixpkgs-fmt;
       }
     );
 
