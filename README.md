@@ -37,5 +37,7 @@ make
 
 ## Tips
 
-- To update NixOS (and other inputs) run `nix flake update`
+- To update NixOS (and other inputs) run `nix flake update`[^selective]
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
+
+[^selective]: You may also update the inputs selectively, viz.: `nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager`
