@@ -110,7 +110,7 @@
   services.openssh.enable = true;
 
   services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";  # Tailscale recommends this
+  networking.firewall.checkReversePath = "loose"; # Tailscale recommends this
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.srid = {
