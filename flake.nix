@@ -146,6 +146,7 @@
                     ./home/neovim.nix
                     ./home/email.nix
                     ./home/terminal.nix
+                    ./home/emacs.nix
                     ./home/direnv.nix
                     ./home/starship.nix
                   ];
