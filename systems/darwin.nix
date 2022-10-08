@@ -48,6 +48,8 @@
 
   nixpkgs.config.allowBroken = true;
 
+  security.pam.enableSudoTouchIdAuth = true;
+
   # For home-manager to work.
   users.users.srid.name = "srid";
   users.users.srid.home = "/Users/srid";
