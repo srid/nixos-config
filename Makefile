@@ -18,7 +18,7 @@ macos-system:
 
 # Update the primary inputs
 #
-# Typically run as: `make update all`
+# Typically run as: `make update all` followed by a git commit.
 update:
 	nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
 
