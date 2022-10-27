@@ -20,6 +20,10 @@
     fzf.enable = true;
     jq.enable = true;
 
+    atuin = {
+      enable = true;
+    };
+
     # Better terminal, with good rendering.
     kitty = {
       enable = true;
