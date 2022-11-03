@@ -163,14 +163,8 @@
           };
         in
         {
-          # These are indexed, by convention, using hostnames.
-          # For example, if `sky.local` is the hostname of your Mac, then use
-          # `sky` here.
-          air = defaultMacosSystem;
-          sky = defaultMacosSystem;
+          default = defaultMacosSystem;
         };
-
-
     } //
     inputs.flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-darwin" ] (system:
       let pkgs = nixpkgs.legacyPackages.${system};
@@ -184,6 +178,32 @@
           ];
         };
         formatter = pkgs.nixpkgs-fmt;
+        apps.default =
+          let
+            bashCmdApp = name: cmd: {
+              type = "app";
+              program =
+                let
+                  pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+                in
+                (pkgs.writeShellApplication {
+                  inherit name;
+                  text = ''
+                    set -x
+                    ${cmd}
+                  '';
+                }) + "/bin/${name}";
+            };
+          in
+          if system == "aarch64-darwin" then
+            bashCmdApp "darwin" ''
+              ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
+                 switch --flake ${self}#default
+            ''
+          else
+            bashCmdApp "linux" ''
+              nixos-rebuild --use-remote-sudo switch -j auto
+            '';
       }
     );
 
