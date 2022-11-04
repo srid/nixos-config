@@ -24,7 +24,7 @@ nix run
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
     - Clone this repo anywhere
-    - Edit `flake.nix` and add your Mac's [hostname](https://support.apple.com/en-ca/guide/mac-help/mchlp2322/mac) in the `darwinConfigurations` set, as well update `userName`.
+    - Edit `flake.nix` to update `userName`.
     - Run `nix run`.[^cleanup] That's it. Re-open your shell.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
