@@ -180,12 +180,10 @@
         formatter = pkgs.nixpkgs-fmt;
         apps.default =
           let
+            # Create a flake app that wraps the given bash CLI.
             bashCmdApp = name: cmd: {
               type = "app";
               program =
-                let
-                  pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
-                in
                 (pkgs.writeShellApplication {
                   inherit name;
                   text = ''
