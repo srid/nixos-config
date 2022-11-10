@@ -1,6 +1,6 @@
 # Update the primary inputs
 #
-# Typically run as: `make update all` followed by a git commit.
+# Typically run as: `make update && nix run` followed by a git commit.
 update:
 	nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
 
