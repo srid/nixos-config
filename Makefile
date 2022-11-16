@@ -1,3 +1,6 @@
+all:
+	echo
+
 # Update the primary inputs
 #
 # Typically run as: `make update && nix run` followed by a git commit.
