@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -29,5 +29,11 @@
       bind - split-window -v -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
     '';
+  };
+
+  programs.tmate = {
+    enable = true;
+    # FIXME: This causes tmate to hang.
+    # extraConfig = config.xdg.configFile."tmux/tmux.conf".text;
   };
 }
