@@ -104,6 +104,7 @@
 
   environment.systemPackages = with pkgs; [
     lsof
+    nil
   ];
 
   services.openssh.permitRootLogin = "prohibit-password";
