@@ -45,6 +45,15 @@
       extra-platforms = aarch64-darwin x86_64-darwin
       experimental-features = nix-command flakes repl-flake
     '';
+    # https://nixos.wiki/wiki/Distributed_build
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "88.198.33.237"; # pinch
+        system = "x86_64-linux";
+        maxJobs = 4;
+      }
+    ];
   };
 
   nixpkgs.config.allowBroken = true;
