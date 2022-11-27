@@ -51,7 +51,7 @@
       {
         hostName = "88.198.33.237"; # pinch
         system = "x86_64-linux";
-        maxJobs = 4;
+        maxJobs = 10;
       }
     ];
   };
