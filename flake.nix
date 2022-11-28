@@ -12,7 +12,7 @@
     # Supportive inputs
     flake-utils.url = "github:numtide/flake-utils";
     nixos-shell.url = "github:Mic92/nixos-shell";
-    nixos-hardware.url = github:NixOS/nixos-hardware/master;
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # Software inputs
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
@@ -20,6 +20,7 @@
     hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
+    emanote.url = "github:EmaApps/emanote";
 
     # Vim & its plugins (not in nixpkgs)
     zk-nvim.url = "github:mickael-menu/zk-nvim";

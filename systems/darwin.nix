@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, system, rosettaPkgs, ... }:
+{ config, pkgs, lib, inputs, system, rosettaPkgs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
@@ -55,8 +55,21 @@
       }
     ];
   };
-
   nixpkgs.config.allowBroken = true;
+
+  # TODO: Upstream to emanote
+  # launchctl start org.nixos.emanote
+  launchd.user.agents.emanote = {
+    serviceConfig.ProgramArguments = [
+      (lib.getExe inputs.emanote.packages.${system}.default)
+      "-L"
+      "/Users/srid/Keybase/Notes"
+      "run"
+      "-p"
+      "7000"
+    ];
+    serviceConfig.RunAtLoad = true;
+  };
 
   security.pam.enableSudoTouchIdAuth = true;
 
