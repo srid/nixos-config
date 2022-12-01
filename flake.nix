@@ -106,39 +106,6 @@
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
             ];
-
-          # For downloading stuff off internet in VPN.
-          #
-          # This is run in qemu only, which is useful to keep the host machine
-          # directly connected to the network (for acccess from outside).
-          #
-          # > nixos-shell --flake github:srid/nixos-config#corsair
-          corsair = pkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
-            inherit system pkgs;
-            specialArgs = { inherit system inputs; };
-            modules = [
-              inputs.nixos-shell.nixosModules.nixos-shell
-              {
-                virtualisation = {
-                  memorySize = 8 * 1024;
-                  cores = 2;
-                  diskSize = 20 * 1024;
-                };
-                environment.systemPackages = with pkgs; [
-                  protonvpn-cli
-                  aria2
-                ];
-                nixos-shell.mounts = {
-                  mountHome = false;
-                  mountNixProfile = false;
-                  extraMounts."/Downloads" = {
-                    target = "/home/${userName}/Downloads";
-                    cache = "none";
-                  };
-                };
-              }
-            ];
-          };
         };
 
       # Configurations for macOS systems (using nix-darwin)
