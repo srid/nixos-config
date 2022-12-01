@@ -35,6 +35,14 @@
       platformIndependentModules = [
         ./nixos/caches
       ];
+      platformIndependentHomeModules = [
+        ./home/tmux.nix
+        ./home/neovim.nix
+        ./home/emacs.nix
+        ./home/starship.nix
+        ./home/terminal.nix
+        ./home/direnv.nix
+      ];
     in
     {
       # Configurations for Linux (NixOS) systems
@@ -55,16 +63,11 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit system inputs; };
               home-manager.users.${userName} = { pkgs, ... }: {
-                imports = [
-                  ./home/tmux.nix
+                imports = platformIndependentHomeModules ++ [
                   (import ./home/git.nix {
                     userName = "Sridhar Ratnakumar";
                     userEmail = "srid@srid.ca";
                   })
-                  ./home/neovim.nix
-                  ./home/starship.nix
-                  ./home/terminal.nix
-                  ./home/direnv.nix
                   ./home/vscode-server.nix
                 ];
 
@@ -74,17 +77,11 @@
                 home.stateVersion = "22.11";
               };
               home-manager.users."uday" = {
-                imports = [
-                  ./home/tmux.nix
+                imports = platformIndependentHomeModules ++ [
                   (import ./home/git.nix {
                     userName = "Uday Kiran";
                     userEmail = "udaycruise2903@gmail.com";
                   })
-                  ./home/neovim.nix
-                  ./home/starship.nix
-                  ./home/terminal.nix
-                  ./home/direnv.nix
-                  ./home/vscode-server.nix
                 ];
                 programs.bash.enable = true;
                 home.stateVersion = "22.11";
@@ -127,18 +124,11 @@
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = { inherit system inputs; };
                 home-manager.users.${userName} = { pkgs, ... }: {
-                  imports = [
+                  imports = platformIndependentHomeModules ++ [
                     (import ./home/git.nix {
                       userName = "Sridhar Ratnakumar";
                       userEmail = "srid@srid.ca";
                     })
-                    ./home/tmux.nix
-                    ./home/neovim.nix
-                    ./home/email.nix
-                    ./home/terminal.nix
-                    ./home/emacs.nix
-                    ./home/direnv.nix
-                    ./home/starship.nix
                   ];
                   programs.zsh = {
                     enable = true;
