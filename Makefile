@@ -1,3 +1,5 @@
+# TODO: Move these to nix apps
+
 all:
 	echo
 
