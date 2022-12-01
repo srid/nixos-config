@@ -1,3 +1,4 @@
+{ userName, userEmail }:
 { pkgs, ... }:
 {
   home.packages = [ pkgs.git-lfs ];
@@ -5,8 +6,7 @@
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = "Sridhar Ratnakumar";
-    userEmail = "srid@srid.ca";
+    inherit userName userEmail;
     aliases = {
       co = "checkout";
       ci = "commit";
