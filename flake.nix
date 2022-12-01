@@ -161,7 +161,10 @@
                 home-manager.extraSpecialArgs = { inherit system inputs; };
                 home-manager.users.${userName} = { pkgs, ... }: {
                   imports = [
-                    ./home/git.nix
+                    (import ./home/git.nix {
+                      userName = "Sridhar Ratnakumar";
+                      userEmail = "srid@srid.ca";
+                    })
                     ./home/tmux.nix
                     ./home/neovim.nix
                     ./home/email.nix
