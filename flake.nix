@@ -33,7 +33,7 @@
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [ ];
-      perSystem = { self', inputs', config, pkgs, system, ... }: {
+      perSystem = { self', inputs', config, pkgs, lib, system, ... }: {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             nixpkgs-fmt
@@ -64,7 +64,7 @@
             ''
           else
             bashCmdApp "linux" ''
-              nixos-rebuild --use-remote-sudo switch -j auto
+              ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
             '';
       };
       flake =
