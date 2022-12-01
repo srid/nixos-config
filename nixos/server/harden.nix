@@ -21,6 +21,6 @@
       ];
     };
   };
-  nix.settings.allowed-users = [ "root" "srid" ];
+  nix.settings.allowed-users = [ "root" "@users" ];
   nix.settings.trusted-users = [ "root" "srid" ];
 }
