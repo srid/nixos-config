@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  programs.emacs = {
+    enable = true;
+  };
+
   # https://docs.doomemacs.org/latest/modules/term/vterm/
   #
   # Sadly, this doesn't work yet. This is the blocker:
