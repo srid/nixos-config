@@ -22,5 +22,5 @@
     };
   };
   nix.settings.allowed-users = [ "root" "srid" ];
-  nix.settings.trusted-users = [ "root" "srid" ];
+  nix.settings.trusted-users = [ "root" "srid" "uday" ];
 }
