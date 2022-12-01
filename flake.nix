@@ -70,6 +70,21 @@
                 } // (import ./home/shellcommon.nix { inherit pkgs; });
                 home.stateVersion = "22.11";
               };
+              home-manager.users."uday" = {
+                imports = [
+                  ./home/tmux.nix
+                  ./home/git.nix
+                  ./home/neovim.nix
+                  ./home/starship.nix
+                  ./home/terminal.nix
+                  ./home/direnv.nix
+                  ./home/vscode-server.nix
+                ];
+                programs.bash = {
+                  enable = true;
+                } // (import ./home/shellcommon.nix { inherit pkgs; });
+                home.stateVersion = "22.11";
+              };
             }
           ];
           mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
