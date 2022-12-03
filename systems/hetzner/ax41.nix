@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, modulesPath, ... }:
+{ config, pkgs, lib, inputs, modulesPath, flake, ... }:
 
 {
   imports =
@@ -114,7 +114,7 @@
   networking.firewall.checkReversePath = "loose"; # Tailscale recommends this
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.srid = {
+  users.users.${flake.config.people.myself} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };

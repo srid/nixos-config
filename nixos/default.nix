@@ -34,7 +34,10 @@ in
     lib.mkLinuxSystem = extraModules: inputs.nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # Arguments to pass to all modules.
-      specialArgs = { inherit system inputs; };
+      specialArgs = {
+        inherit system inputs;
+        flake = { inherit config; };
+      };
       modules = [
         self.nixosModules.default
       ] ++ extraModules;

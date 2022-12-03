@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, flake, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -8,7 +8,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "srid" ];
+      users = [ flake.config.people.myself ];
       commands = [
         {
           command = "${pkgs.protonvpn-cli}/bin/protonvpn";

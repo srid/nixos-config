@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, system, flake, ... }:
 let
   emanote = inputs.emanote.outputs.defaultPackage.${system};
 in
@@ -12,9 +12,9 @@ in
       PORT = "7000";
     };
     serviceConfig = {
-      User = "srid";
+      User = flake.config.people.myself;
       Restart = "always";
-      ExecStart = "${emanote}/bin/emanote -L /home/srid/Documents/Notes";
+      ExecStart = "${emanote}/bin/emanote -L /home/${flake.config.people.myself}/Documents/Notes";
     };
   };
 }

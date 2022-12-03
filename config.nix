@@ -19,6 +19,8 @@ let
         type = lib.types.str;
         description = ''
           The name of the user that represents myself.
+
+          Admin user in all contexts.
         '';
       };
     };

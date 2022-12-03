@@ -22,6 +22,7 @@
       system = "aarch64-darwin";
       specialArgs = {
         inherit inputs system;
+        flake = { inherit config; };
         rosettaPkgs = import inputs.nixpkgs { system = "x86_64-darwin"; };
       };
       modules = [
