@@ -16,9 +16,19 @@
           };
         })
       ];
+      myself = {
+        home-manager.users.${config.people.myself} = { pkgs, ... }: {
+          imports = [
+            self.homeModules.common-darwin
+            ../home/shellcommon.nix
+            ../home/git.nix
+          ];
+        };
+      };
       default.imports = [
         self.darwinModules.common
         self.darwinModules.home
+        self.darwinModules.myself
       ];
     };
     lib-darwin.mkMacosSystem = inputs.darwin.lib.darwinSystem rec {
@@ -30,15 +40,6 @@
       modules = [
         self.darwinModules.default
         ../systems/darwin.nix
-        {
-          home-manager.users.${config.people.myself} = { pkgs, ... }: {
-            imports = [
-              self.homeModules.common-darwin
-              ../home/shellcommon.nix
-              ../home/git.nix
-            ];
-          };
-        }
       ];
     };
   };

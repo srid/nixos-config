@@ -31,9 +31,19 @@
           };
         }
       ];
+      myself = {
+        home-manager.users.${config.people.myself} = { pkgs, ... }: {
+          imports = [
+            self.homeModules.common-linux
+            ../home/shellcommon.nix
+            ../home/git.nix
+          ];
+        };
+      };
       default.imports = [
         self.nixosModules.common
         self.nixosModules.home
+        self.nixosModules.myself
         ./self-ide.nix
         ./takemessh
         ./current-location.nix
@@ -46,15 +56,6 @@
       specialArgs = { inherit system inputs; };
       modules = [
         self.nixosModules.default
-        {
-          home-manager.users.${config.people.myself} = { pkgs, ... }: {
-            imports = [
-              self.homeModules.common-linux
-              ../home/shellcommon.nix
-              ../home/git.nix
-            ];
-          };
-        }
       ] ++ extraModules;
     };
   };
