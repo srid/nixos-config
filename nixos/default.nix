@@ -19,18 +19,16 @@
           };
         })
       ];
-      other-people.imports = [
+      other-people = {
         # Temporarily sharing with Uday.
-        {
-          users.users.uday.isNormalUser = true;
-          home-manager.users."uday" = {
-            imports = [
-              self.homeModules.common-linux
-              ../home/git.nix
-            ];
-          };
-        }
-      ];
+        users.users.uday.isNormalUser = true;
+        home-manager.users."uday" = {
+          imports = [
+            self.homeModules.common-linux
+            ../home/git.nix
+          ];
+        };
+      };
       myself = {
         home-manager.users.${config.people.myself} = { pkgs, ... }: {
           imports = [
