@@ -127,7 +127,6 @@
           nixosConfigurations =
             let
               system = "x86_64-linux";
-              pkgs = nixpkgs.legacyPackages.${system};
               homeModules = [
                 {
                   home-manager.users.${userName} = { pkgs, ... }: {
@@ -146,7 +145,7 @@
                 }
               ];
               mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
-                inherit system pkgs;
+                inherit system;
                 # Arguments to pass to all modules.
                 specialArgs = { inherit system inputs; };
                 modules =
