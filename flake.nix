@@ -70,9 +70,6 @@
       flake =
         let
           userName = "srid";
-          platformIndependentModules = [
-            ./nixos/caches
-          ];
           platformIndependentHomeModules = [
             ./home/tmux.nix
             ./home/neovim.nix
@@ -83,17 +80,26 @@
           ];
         in
         {
+          # Configuration common to all Linux systems
+          nixosModules.default = {
+            imports = [
+              ./nixos/caches
+              ./nixos/self-ide.nix
+              ./nixos/takemessh
+              ./nixos/current-location.nix
+            ];
+          };
+          # Configuration common to macOS Linux systems
+          darwinModules.default = {
+            imports = [
+              ./nixos/caches
+            ];
+          };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
             let
               system = "x86_64-linux";
               pkgs = nixpkgs.legacyPackages.${system};
-              # Configuration common to all Linux systems
-              commonFeatures = platformIndependentModules ++ [
-                ./nixos/self-ide.nix
-                ./nixos/takemessh
-                ./nixos/current-location.nix
-              ];
               homeFeatures = [
                 home-manager.nixosModules.home-manager
                 {
@@ -108,7 +114,6 @@
                       })
                       ./home/vscode-server.nix
                     ];
-
                     programs.bash = {
                       enable = true;
                     } // (import ./home/shellcommon.nix { inherit pkgs; });
@@ -131,7 +136,7 @@
                 # Arguments to pass to all modules.
                 specialArgs = { inherit system inputs; };
                 modules =
-                  commonFeatures ++ homeFeatures ++ extraModules;
+                  [ self.nixosModules.default ] ++ homeFeatures ++ extraModules;
               };
             in
             {
@@ -154,7 +159,8 @@
                   inherit inputs system;
                   rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
                 };
-                modules = platformIndependentModules ++ [
+                modules = [
+                  self.darwinModules.default
                   ./systems/darwin.nix
                   home-manager.darwinModules.home-manager
                   {
