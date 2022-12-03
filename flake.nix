@@ -49,20 +49,8 @@
             [
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-
               # Temporarily sharing with Uday.
-              {
-                users.users.uday.isNormalUser = true;
-                home-manager.users."uday" = {
-                  imports = [
-                    self.homeModules.common-linux
-                    (import ./home/git.nix {
-                      userName = "Uday Kiran";
-                      userEmail = "udaycruise2903@gmail.com";
-                    })
-                  ];
-                };
-              }
+              (import ./uday.nix { inherit self; })
             ];
         };
         # Configurations for my only[^1] macOS machine (using nix-darwin)
