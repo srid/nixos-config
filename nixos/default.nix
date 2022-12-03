@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, inputs, config, ... }:
 {
   # Configuration common to all Linux systems
   flake = {
@@ -28,14 +28,14 @@
         ];
     };
 
-    lib.mkLinuxSystem = userName: extraModules: inputs.nixpkgs.lib.nixosSystem rec {
+    lib.mkLinuxSystem = extraModules: inputs.nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       # Arguments to pass to all modules.
       specialArgs = { inherit system inputs; };
       modules = [
         self.nixosModules.default
         {
-          home-manager.users.${userName} = { pkgs, ... }: {
+          home-manager.users.${config.myUserName} = { pkgs, ... }: {
             imports = [
               self.homeModules.common-linux
               ../home/shellcommon.nix

@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, inputs, config, ... }:
 {
   # Configuration common to all macOS systems
   flake = {
@@ -20,7 +20,7 @@
         self.darwinModules.home
       ];
     };
-    lib-darwin.mkMacosSystem = userName: inputs.darwin.lib.darwinSystem rec {
+    lib-darwin.mkMacosSystem = inputs.darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
       specialArgs = {
         inherit inputs system;
@@ -30,7 +30,7 @@
         self.darwinModules.default
         ../systems/darwin.nix
         {
-          home-manager.users.${userName} = { pkgs, ... }: {
+          home-manager.users.${config.myUserName} = { pkgs, ... }: {
             imports = [
               self.homeModules.common-darwin
               ../home/shellcommon.nix

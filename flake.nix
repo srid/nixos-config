@@ -33,6 +33,7 @@
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
+        ./config.nix
         ./home
         ./nixos
         ./nix-darwin
@@ -44,39 +45,36 @@
         };
         formatter = pkgs.nixpkgs-fmt;
       };
-      flake =
-        let
-          userName = "srid";
-        in
-        {
-          # Configurations for Linux (NixOS) systems
-          nixosConfigurations = {
-            # My Linux development computer (on Hetzner)
-            pinch = self.lib.mkLinuxSystem userName
-              [
-                ./systems/hetzner/ax41.nix
-                ./nixos/server/harden.nix
+      myUserName = "srid";
+      flake = {
+        # Configurations for Linux (NixOS) systems
+        nixosConfigurations = {
+          # My Linux development computer (on Hetzner)
+          pinch = self.lib.mkLinuxSystem
+            [
+              ./systems/hetzner/ax41.nix
+              ./nixos/server/harden.nix
 
-                # Temporarily sharing with Uday.
-                {
-                  users.users.uday.isNormalUser = true;
-                  home-manager.users."uday" = {
-                    imports = [
-                      self.homeModules.common-linux
-                      (import ./home/git.nix {
-                        userName = "Uday Kiran";
-                        userEmail = "udaycruise2903@gmail.com";
-                      })
-                    ];
-                  };
-                }
-              ];
-          };
-
-          # Configurations for macOS systems (using nix-darwin)
-          darwinConfigurations = {
-            default = self.lib-darwin.mkMacosSystem userName;
-          };
+              # Temporarily sharing with Uday.
+              {
+                users.users.uday.isNormalUser = true;
+                home-manager.users."uday" = {
+                  imports = [
+                    self.homeModules.common-linux
+                    (import ./home/git.nix {
+                      userName = "Uday Kiran";
+                      userEmail = "udaycruise2903@gmail.com";
+                    })
+                  ];
+                };
+              }
+            ];
         };
+
+        # Configurations for macOS systems (using nix-darwin)
+        darwinConfigurations = {
+          default = self.lib-darwin.mkMacosSystem;
+        };
+      };
     };
 }
