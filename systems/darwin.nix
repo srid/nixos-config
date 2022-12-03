@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, system, rosettaPkgs, ... }:
+{ config, pkgs, lib, inputs, system, flake, rosettaPkgs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
@@ -63,7 +63,7 @@
     serviceConfig.ProgramArguments = [
       (lib.getExe inputs.emanote.packages.${system}.default)
       "-L"
-      "/Users/srid/Keybase/Notes"
+      "/Users/${flake.config.people.myself}/Keybase/Notes"
       "run"
       "-p"
       "7000"
@@ -74,8 +74,10 @@
   security.pam.enableSudoTouchIdAuth = true;
 
   # For home-manager to work.
-  users.users.srid.name = "srid";
-  users.users.srid.home = "/Users/srid";
+  users.users.${flake.config.people.myself} = {
+    name = flake.config.people.myself;
+    home = "/Users/${flake.config.people.myself}";
+  };
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix

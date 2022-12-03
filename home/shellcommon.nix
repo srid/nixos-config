@@ -1,5 +1,5 @@
 { pkgs, ... }:
-{
+let
   shellAliases = {
     e = "nvim";
     ee = "nvim \"$(fzf)\"";
@@ -15,4 +15,8 @@
     # TODO: Gotta specify ~/.todo/config in Nix
     t = "${pkgs.todo-txt-cli}/bin/todo.sh";
   };
+in
+{
+  programs.bash = { inherit shellAliases; };
+  programs.zsh = { inherit shellAliases; };
 }

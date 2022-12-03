@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, flake, ... }: {
   virtualisation.lxd.enable = true;
 
-  users.users.srid = {
+  users.users.${flake.config.people.myself} = {
     extraGroups = [ "lxd" ];
   };
 }

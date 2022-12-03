@@ -1,6 +1,6 @@
 # TODO: GNOME support via https://extensions.gnome.org/extension/2645/brightness-control-using-ddcutil/
 
-{ pkgs, ... }: {
+{ pkgs, flake, ... }: {
   # ddcutils requires i2c
   hardware.i2c.enable = true;
 
@@ -15,7 +15,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "srid" ];
+      users = [ flake.config.people.myself ];
       commands = [
         {
           command = "${pkgs.ddcutil}/bin/ddcutil";
@@ -25,7 +25,7 @@
     }
   ];
 
-  users.users.srid = {
+  users.users.${flake.config.people.myself} = {
     extraGroups = [ "i2c" ];
   };
 

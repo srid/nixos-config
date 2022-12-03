@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, flake, ... }: {
 
   # Firewall
   networking.firewall.enable = true;
@@ -22,5 +22,5 @@
     };
   };
   nix.settings.allowed-users = [ "root" "@users" ];
-  nix.settings.trusted-users = [ "root" "srid" ];
+  nix.settings.trusted-users = [ "root" flake.config.people.myself ];
 }
