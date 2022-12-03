@@ -18,6 +18,20 @@
           };
         })
       ];
+      other-people.imports = [
+        # Temporarily sharing with Uday.
+        {
+          users.users.uday.isNormalUser = true;
+          home-manager.users."uday" = {
+            imports = [
+              self.homeModules.common-linux
+              (import ../home/git.nix {
+                user = config.people.users.uday;
+              })
+            ];
+          };
+        }
+      ];
       default.imports =
         self.nixosModules.common.imports ++
         self.nixosModules.home.imports ++
@@ -35,13 +49,12 @@
       modules = [
         self.nixosModules.default
         {
-          home-manager.users.${config.myUserName} = { pkgs, ... }: {
+          home-manager.users.${config.people.myself} = { pkgs, ... }: {
             imports = [
               self.homeModules.common-linux
               ../home/shellcommon.nix
               (import ../home/git.nix {
-                userName = "Sridhar Ratnakumar";
-                userEmail = "srid@srid.ca";
+                user = config.people.users.${config.people.myself};
               })
             ];
           };

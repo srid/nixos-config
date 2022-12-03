@@ -40,7 +40,19 @@
         ./activate.nix
       ];
 
-      myUserName = "srid";
+      people = {
+        myself = "srid";
+        users = {
+          srid = {
+            name = "Sridhar Ratnakumar";
+            email = "srid@srid.ca";
+          };
+          uday = {
+            name = "Uday Kiran";
+            email = "udaycruise2903@gmail.com";
+          };
+        };
+      };
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
@@ -49,8 +61,8 @@
             [
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-              # Temporarily sharing with Uday.
-              (import ./uday.nix { inherit self; })
+              # I share my Hetzner server with other people who need it.
+              self.nixosModules.other-people
             ];
         };
         # Configurations for my only[^1] macOS machine (using nix-darwin)

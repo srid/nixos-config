@@ -30,13 +30,12 @@
         self.darwinModules.default
         ../systems/darwin.nix
         {
-          home-manager.users.${config.myUserName} = { pkgs, ... }: {
+          home-manager.users.${config.people.myself} = { pkgs, ... }: {
             imports = [
               self.homeModules.common-darwin
               ../home/shellcommon.nix
               (import ../home/git.nix {
-                userName = "Sridhar Ratnakumar";
-                userEmail = "srid@srid.ca";
+                user = config.people.users.${config.people.myself};
               })
             ];
           };
