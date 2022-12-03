@@ -82,25 +82,46 @@
         {
           # Configuration common to all Linux systems
           nixosModules = {
-            common = {
-              imports = [
-                ./nixos/caches
-              ];
-            };
-            default = inputs.nixpkgs.lib.mkMerge [
-              self.nixosModules.common
+            common.imports = [
+              ./nixos/caches
+            ];
+            home.imports = [
+              home-manager.nixosModules.home-manager
               ({
-                imports = [
-                  ./nixos/self-ide.nix
-                  ./nixos/takemessh
-                  ./nixos/current-location.nix
-                ];
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                  system = "x86_64-linux";
+                };
               })
             ];
+            default.imports =
+              self.nixosModules.common.imports ++
+              self.nixosModules.home.imports ++
+              [
+                ./nixos/self-ide.nix
+                ./nixos/takemessh
+                ./nixos/current-location.nix
+              ];
           };
-          # Configuration common to macOS Linux systems
+          # Configuration common to all macOS systems
           darwinModules = {
-            default = self.nixosModules.common;
+            common = self.nixosConfig.common;
+            home.imports = [
+              home-manager.darwinModules.home-manager
+              ({
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                  system = "aarch64-darwin";
+                };
+              })
+            ];
+            default.imports =
+              self.darwinModules.common ++
+              self.darwinModules.home.imports;
           };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
@@ -108,11 +129,7 @@
               system = "x86_64-linux";
               pkgs = nixpkgs.legacyPackages.${system};
               homeModules = [
-                home-manager.nixosModules.home-manager
                 {
-                  home-manager.useGlobalPkgs = true;
-                  home-manager.useUserPackages = true;
-                  home-manager.extraSpecialArgs = { inherit system inputs; };
                   home-manager.users.${userName} = { pkgs, ... }: {
                     imports = platformIndependentHomeModules ++ [
                       (import ./home/git.nix {
@@ -174,11 +191,7 @@
                 modules = [
                   self.darwinModules.default
                   ./systems/darwin.nix
-                  home-manager.darwinModules.home-manager
                   {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.extraSpecialArgs = { inherit system inputs; };
                     home-manager.users.${userName} = { pkgs, ... }: {
                       imports = platformIndependentHomeModules ++ [
                         (import ./home/git.nix {
