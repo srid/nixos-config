@@ -74,8 +74,10 @@
   security.pam.enableSudoTouchIdAuth = true;
 
   # For home-manager to work.
-  users.users.${flake.config.people.myself}.name = flake.config.people.myself;
-  users.users.${flake.config.people.myself}.home = "/Users/${flake.config.people.myself}";
+  users.users.${flake.config.people.myself} = {
+    name = flake.config.people.myself;
+    home = "/Users/${flake.config.people.myself}";
+  };
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
