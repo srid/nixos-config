@@ -81,19 +81,26 @@
         in
         {
           # Configuration common to all Linux systems
-          nixosModules.default = {
-            imports = [
-              ./nixos/caches
-              ./nixos/self-ide.nix
-              ./nixos/takemessh
-              ./nixos/current-location.nix
+          nixosModules = {
+            common = {
+              imports = [
+                ./nixos/caches
+              ];
+            };
+            default = inputs.nixpkgs.lib.mkMerge [
+              self.nixosModules.common
+              ({
+                imports = [
+                  ./nixos/self-ide.nix
+                  ./nixos/takemessh
+                  ./nixos/current-location.nix
+                ];
+              })
             ];
           };
           # Configuration common to macOS Linux systems
-          darwinModules.default = {
-            imports = [
-              ./nixos/caches
-            ];
+          darwinModules = {
+            default = self.nixosModules.common;
           };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
