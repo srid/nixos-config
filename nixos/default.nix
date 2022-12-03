@@ -1,27 +1,26 @@
 { self, inputs, config, ... }:
+let
+  mkHomeModule = name: extraModules: {
+    users.users.${name}.isNormalUser = true;
+    home-manager.users.${name} = {
+      imports = [
+        self.homeModules.common-linux
+        ../home/git.nix
+      ] ++ extraModules;
+    };
+  };
+in
 {
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {
-      other-people = {
-        # Temporarily sharing with Uday.
-        users.users.uday.isNormalUser = true;
-        home-manager.users."uday" = {
-          imports = [
-            self.homeModules.common-linux
-            ../home/git.nix
-          ];
-        };
-      };
-      myself = {
-        home-manager.users.${config.people.myself} = { pkgs, ... }: {
-          imports = [
-            self.homeModules.common-linux
-            ../home/shellcommon.nix
-            ../home/git.nix
-          ];
-        };
-      };
+      guests.imports = [
+        # Temporarily sharing with Uday, until he gets better machine.
+        (mkHomeModule "uday" [ ])
+      ];
+      myself = mkHomeModule "srid" [
+        ../home/shellcommon.nix
+      ];
       default.imports = [
         self.nixosModules.home-manager
         self.nixosModules.myself

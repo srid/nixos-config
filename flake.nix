@@ -61,7 +61,7 @@
             ./systems/hetzner/ax41.nix
             ./nixos/server/harden.nix
             # I share my Hetzner server with other people who need it.
-            self.nixosModules.other-people
+            self.nixosModules.guests
           ];
         };
         # Configurations for my only[^1] macOS machine (using nix-darwin)
