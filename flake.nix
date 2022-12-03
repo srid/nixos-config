@@ -39,12 +39,7 @@
         ./nix-darwin
         ./activate.nix
       ];
-      perSystem = { pkgs, ... }: {
-        devShells.default = pkgs.mkShell {
-          buildInputs = [ pkgs.nixpkgs-fmt ];
-        };
-        formatter = pkgs.nixpkgs-fmt;
-      };
+
       myUserName = "srid";
       flake = {
         # Configurations for Linux (NixOS) systems
@@ -70,11 +65,17 @@
               }
             ];
         };
-
         # Configurations for macOS systems (using nix-darwin)
         darwinConfigurations = {
           default = self.lib-darwin.mkMacosSystem;
         };
+      };
+
+      perSystem = { pkgs, ... }: {
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ pkgs.nixpkgs-fmt ];
+        };
+        formatter = pkgs.nixpkgs-fmt;
       };
     };
 }
