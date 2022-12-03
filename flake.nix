@@ -126,7 +126,6 @@
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
             let
-              system = "x86_64-linux";
               homeModules = [
                 {
                   home-manager.users.${userName} = { pkgs, ... }: {
@@ -144,8 +143,8 @@
                   };
                 }
               ];
-              mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
-                inherit system;
+              mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem rec {
+                system = "x86_64-linux";
                 # Arguments to pass to all modules.
                 specialArgs = { inherit system inputs; };
                 modules =
@@ -179,10 +178,9 @@
           # Configurations for macOS systems (using nix-darwin)
           darwinConfigurations =
             let
-              system = "aarch64-darwin";
               mkMacosSystem = darwin.lib.darwinSystem;
-              defaultMacosSystem = mkMacosSystem {
-                inherit system;
+              defaultMacosSystem = mkMacosSystem rec {
+                system = "aarch64-darwin";
                 specialArgs = {
                   inherit inputs system;
                   rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
