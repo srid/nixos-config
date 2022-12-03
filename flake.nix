@@ -140,11 +140,10 @@
                         userName = "Sridhar Ratnakumar";
                         userEmail = "srid@srid.ca";
                       })
+                      ./home/shellcommon.nix
                       ./home/vscode-server.nix
                     ];
-                    programs.bash = {
-                      enable = true;
-                    } // (import ./home/shellcommon.nix { inherit pkgs; });
+                    programs.bash.enable = true;
                   };
                 }
               ];
@@ -201,13 +200,14 @@
                           userName = "Sridhar Ratnakumar";
                           userEmail = "srid@srid.ca";
                         })
+                        ./home/shellcommon.nix
                       ];
                       programs.zsh = {
                         enable = true;
                         initExtra = ''
                           export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
                         '';
-                      } // (import ./home/shellcommon.nix { inherit pkgs; });
+                      };
                       home.stateVersion = "21.11";
                     };
                   }
