@@ -35,9 +35,7 @@
             imports = [
               self.homeModules.common-darwin
               ../home/shellcommon.nix
-              (import ../home/git.nix {
-                user = config.people.myself;
-              })
+              ../home/git.nix
             ];
           };
         }

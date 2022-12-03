@@ -1,4 +1,3 @@
-{ user }:
 { pkgs, config, flake, ... }:
 {
   home.packages = [ pkgs.git-lfs ];
@@ -6,8 +5,8 @@
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = flake.config.people.users.${user}.name;
-    userEmail = flake.config.people.users.${user}.email;
+    userName = flake.config.people.users.${config.home.username}.name;
+    userEmail = flake.config.people.users.${config.home.username}.email;
     aliases = {
       co = "checkout";
       ci = "commit";

@@ -26,9 +26,7 @@
           home-manager.users."uday" = {
             imports = [
               self.homeModules.common-linux
-              (import ../home/git.nix {
-                user = "uday";
-              })
+              ../home/git.nix
             ];
           };
         }
@@ -54,9 +52,7 @@
             imports = [
               self.homeModules.common-linux
               ../home/shellcommon.nix
-              (import ../home/git.nix {
-                user = config.people.myself;
-              })
+              ../home/git.nix
             ];
           };
         }
