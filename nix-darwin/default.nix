@@ -12,6 +12,7 @@
           home-manager.extraSpecialArgs = {
             inherit inputs;
             system = "aarch64-darwin";
+            flake = { inherit config; };
           };
         })
       ];
@@ -35,7 +36,7 @@
               self.homeModules.common-darwin
               ../home/shellcommon.nix
               (import ../home/git.nix {
-                user = config.people.users.${config.people.myself};
+                user = config.people.myself;
               })
             ];
           };

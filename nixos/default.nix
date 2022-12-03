@@ -15,6 +15,7 @@
           home-manager.extraSpecialArgs = {
             inherit inputs;
             system = "x86_64-linux";
+            flake = { inherit config; };
           };
         })
       ];
@@ -26,7 +27,7 @@
             imports = [
               self.homeModules.common-linux
               (import ../home/git.nix {
-                user = config.people.users.uday;
+                user = "uday";
               })
             ];
           };
@@ -54,7 +55,7 @@
               self.homeModules.common-linux
               ../home/shellcommon.nix
               (import ../home/git.nix {
-                user = config.people.users.${config.people.myself};
+                user = config.people.myself;
               })
             ];
           };
