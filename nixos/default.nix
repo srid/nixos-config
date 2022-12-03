@@ -3,10 +3,6 @@
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {
-      # These imports are platform independent.
-      common.imports = [
-        ./caches
-      ];
       other-people = {
         # Temporarily sharing with Uday.
         users.users.uday.isNormalUser = true;
@@ -27,9 +23,9 @@
         };
       };
       default.imports = [
-        self.nixosModules.common
         self.nixosModules.home-manager
         self.nixosModules.myself
+        ./caches
         ./self-ide.nix
         ./takemessh
         ./current-location.nix

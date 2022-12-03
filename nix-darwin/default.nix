@@ -3,7 +3,6 @@
   # Configuration common to all macOS systems
   flake = {
     darwinModules = {
-      common = self.nixosModules.common;
       myself = {
         home-manager.users.${config.people.myself} = { pkgs, ... }: {
           imports = [
@@ -14,9 +13,9 @@
         };
       };
       default.imports = [
-        self.darwinModules.common
         self.darwinModules.home-manager
         self.darwinModules.myself
+        ../nixos/caches
       ];
     };
     lib-darwin.mkMacosSystem = extraModules: inputs.darwin.lib.darwinSystem rec {
