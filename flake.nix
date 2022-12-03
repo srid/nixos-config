@@ -119,16 +119,6 @@
                     } // (import ./home/shellcommon.nix { inherit pkgs; });
                     home.stateVersion = "22.11";
                   };
-                  home-manager.users."uday" = {
-                    imports = platformIndependentHomeModules ++ [
-                      (import ./home/git.nix {
-                        userName = "Uday Kiran";
-                        userEmail = "udaycruise2903@gmail.com";
-                      })
-                    ];
-                    programs.bash.enable = true;
-                    home.stateVersion = "22.11";
-                  };
                 }
               ];
               mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem {
@@ -145,6 +135,21 @@
                 [
                   ./systems/hetzner/ax41.nix
                   ./nixos/server/harden.nix
+
+                  # Temporarily sharing with Uday.
+                  {
+                    users.users.uday.isNormalUser = true;
+                    home-manager.users."uday" = {
+                      imports = platformIndependentHomeModules ++ [
+                        (import ./home/git.nix {
+                          userName = "Uday Kiran";
+                          userEmail = "udaycruise2903@gmail.com";
+                        })
+                      ];
+                      programs.bash.enable = true;
+                      home.stateVersion = "22.11";
+                    };
+                  }
                 ];
             };
 
