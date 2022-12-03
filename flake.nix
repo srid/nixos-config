@@ -127,6 +127,24 @@
                 ./home/direnv.nix
               ];
             };
+            common-linux = {
+              imports = [
+                self.homeModules.common
+                ./home/vscode-server.nix
+              ];
+              programs.bash.enable = true;
+            };
+            common-darwin = {
+              imports = [
+                self.homeModules.common
+              ];
+              programs.zsh = {
+                enable = true;
+                initExtra = ''
+                  export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
+                '';
+              };
+            };
           };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
@@ -135,15 +153,13 @@
                 {
                   home-manager.users.${userName} = { pkgs, ... }: {
                     imports = [
-                      self.homeModules.common
+                      self.homeModules.common-linux
                       (import ./home/git.nix {
                         userName = "Sridhar Ratnakumar";
                         userEmail = "srid@srid.ca";
                       })
                       ./home/shellcommon.nix
-                      ./home/vscode-server.nix
                     ];
-                    programs.bash.enable = true;
                   };
                 }
               ];
@@ -167,13 +183,12 @@
                     users.users.uday.isNormalUser = true;
                     home-manager.users."uday" = {
                       imports = [
-                        self.homeModules.common
+                        self.homeModules.common-linux
                         (import ./home/git.nix {
                           userName = "Uday Kiran";
                           userEmail = "udaycruise2903@gmail.com";
                         })
                       ];
-                      programs.bash.enable = true;
                     };
                   }
                 ];
@@ -195,20 +210,13 @@
                   {
                     home-manager.users.${userName} = { pkgs, ... }: {
                       imports = [
-                        self.homeModules.common
+                        self.homeModules.common-darwin
                         (import ./home/git.nix {
                           userName = "Sridhar Ratnakumar";
                           userEmail = "srid@srid.ca";
                         })
                         ./home/shellcommon.nix
                       ];
-                      programs.zsh = {
-                        enable = true;
-                        initExtra = ''
-                          export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
-                        '';
-                      };
-                      home.stateVersion = "21.11";
                     };
                   }
                 ];
