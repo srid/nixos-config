@@ -34,8 +34,9 @@ nix run
 
 ## Directory layout 
 
-- `home`: home-manager config
-- `nixos`: nixos config (includes nix-darwin)
+- `home`: home-manager config (shared between Linux and macOS)
+- `nixos`: nixos config for Linux
+- `nix-darwin`: nix-darwin config for macOS
 - `systems`: top-level configuration.nix('ish) for various kinds of system
 
 ## Tips
