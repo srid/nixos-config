@@ -31,14 +31,13 @@
           };
         }
       ];
-      default.imports =
-        self.nixosModules.common.imports ++
-        self.nixosModules.home.imports ++
-        [
-          ./self-ide.nix
-          ./takemessh
-          ./current-location.nix
-        ];
+      default.imports = [
+        self.nixosModules.common
+        self.nixosModules.home
+        ./self-ide.nix
+        ./takemessh
+        ./current-location.nix
+      ];
     };
 
     lib.mkLinuxSystem = extraModules: inputs.nixpkgs.lib.nixosSystem rec {
