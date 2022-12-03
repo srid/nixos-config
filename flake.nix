@@ -36,40 +36,13 @@
         ./home
         ./nixos
         ./nix-darwin
+        ./activate.nix
       ];
-      perSystem = { self', inputs', config, pkgs, lib, system, ... }: {
+      perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            nixpkgs-fmt
-            # To enable webhint to analyze source files
-            nodejs
-          ];
+          buildInputs = [ pkgs.nixpkgs-fmt ];
         };
         formatter = pkgs.nixpkgs-fmt;
-        apps.default =
-          let
-            # Create a flake app that wraps the given bash CLI.
-            bashCmdApp = name: cmd: {
-              type = "app";
-              program =
-                (pkgs.writeShellApplication {
-                  inherit name;
-                  text = ''
-                    set -x
-                    ${cmd}
-                  '';
-                }) + "/bin/${name}";
-            };
-          in
-          if system == "aarch64-darwin" then
-            bashCmdApp "darwin" ''
-              ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
-                switch --flake ${self}#default
-            ''
-          else
-            bashCmdApp "linux" ''
-              ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
-            '';
       };
       flake =
         let
