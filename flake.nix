@@ -210,11 +210,11 @@
                     home-manager.users.${userName} = { pkgs, ... }: {
                       imports = [
                         self.homeModules.common-darwin
+                        ./home/shellcommon.nix
                         (import ./home/git.nix {
                           userName = "Sridhar Ratnakumar";
                           userEmail = "srid@srid.ca";
                         })
-                        ./home/shellcommon.nix
                       ];
                     };
                   }
