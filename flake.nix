@@ -102,7 +102,7 @@
 
           # Configurations for macOS systems (using nix-darwin)
           darwinConfigurations = {
-            default = self.lib.mkMacosSystem userName;
+            default = self.lib-darwin.mkMacosSystem userName;
           };
         };
     };

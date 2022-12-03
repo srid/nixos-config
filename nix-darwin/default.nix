@@ -3,7 +3,7 @@
   # Configuration common to all macOS systems
   flake = {
     darwinModules = {
-      common = self.nixosConfig.common;
+      common = self.nixosModules.common;
       home.imports = [
         inputs.home-manager.darwinModules.home-manager
         ({
@@ -16,10 +16,12 @@
         })
       ];
       default.imports =
-        self.darwinModules.common ++
+        [
+          self.darwinModules.common
+        ] ++
         self.darwinModules.home.imports;
     };
-    mkMacosSystem = userName: inputs.darwin.lib.darwinSystem rec {
+    lib-darwin.mkMacosSystem = userName: inputs.darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
       specialArgs = {
         inherit inputs system;
