@@ -23,7 +23,13 @@
       imports = [
         self.homeModules.common
       ];
+
       programs.zsh.enable = true;
+      # To put nix and home-manager-installed packages in PATH.
+      home.sessionPath = [
+        "/etc/profiles/per-user/$USER/bin"
+        "/run/current-system/sw/bin"
+      ];
     };
   };
 }

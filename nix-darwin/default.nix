@@ -15,11 +15,10 @@
           };
         })
       ];
-      default.imports =
-        [
-          self.darwinModules.common
-        ] ++
-        self.darwinModules.home.imports;
+      default.imports = [
+        self.darwinModules.common
+        self.darwinModules.home
+      ];
     };
     lib-darwin.mkMacosSystem = userName: inputs.darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
@@ -40,9 +39,6 @@
                 userEmail = "srid@srid.ca";
               })
             ];
-            programs.zsh.initExtra = ''
-              export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
-            '';
           };
         }
       ];
