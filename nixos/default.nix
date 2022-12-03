@@ -18,7 +18,7 @@ in
         # Temporarily sharing with Uday, until he gets better machine.
         (mkHomeModule "uday" [ ])
       ];
-      myself = mkHomeModule "srid" [
+      myself = mkHomeModule config.people.myself [
         ../home/shellcommon.nix
       ];
       default.imports = [
