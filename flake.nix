@@ -77,86 +77,33 @@
         in
         {
           # Configurations for Linux (NixOS) systems
-          nixosConfigurations =
-            let
-              mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem rec {
-                system = "x86_64-linux";
-                # Arguments to pass to all modules.
-                specialArgs = { inherit system inputs; };
-                modules = [
-                  self.nixosModules.default
-                  {
-                    home-manager.users.${userName} = { pkgs, ... }: {
-                      imports = [
-                        self.homeModules.common-linux
-                        ./home/shellcommon.nix
-                        (import ./home/git.nix {
-                          userName = "Sridhar Ratnakumar";
-                          userEmail = "srid@srid.ca";
-                        })
-                      ];
-                    };
-                  }
-                ] ++ extraModules;
-              };
-            in
-            {
-              # My Linux development computer (on Hetzner)
-              pinch = mkLinuxSystem
-                [
-                  ./systems/hetzner/ax41.nix
-                  ./nixos/server/harden.nix
+          nixosConfigurations = {
+            # My Linux development computer (on Hetzner)
+            pinch = self.lib.mkLinuxSystem userName
+              [
+                ./systems/hetzner/ax41.nix
+                ./nixos/server/harden.nix
 
-                  # Temporarily sharing with Uday.
-                  {
-                    users.users.uday.isNormalUser = true;
-                    home-manager.users."uday" = {
-                      imports = [
-                        self.homeModules.common-linux
-                        (import ./home/git.nix {
-                          userName = "Uday Kiran";
-                          userEmail = "udaycruise2903@gmail.com";
-                        })
-                      ];
-                    };
-                  }
-                ];
-            };
+                # Temporarily sharing with Uday.
+                {
+                  users.users.uday.isNormalUser = true;
+                  home-manager.users."uday" = {
+                    imports = [
+                      self.homeModules.common-linux
+                      (import ./home/git.nix {
+                        userName = "Uday Kiran";
+                        userEmail = "udaycruise2903@gmail.com";
+                      })
+                    ];
+                  };
+                }
+              ];
+          };
 
           # Configurations for macOS systems (using nix-darwin)
-          darwinConfigurations =
-            let
-              mkMacosSystem = darwin.lib.darwinSystem;
-              defaultMacosSystem = mkMacosSystem rec {
-                system = "aarch64-darwin";
-                specialArgs = {
-                  inherit inputs system;
-                  rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
-                };
-                modules = [
-                  self.darwinModules.default
-                  ./systems/darwin.nix
-                  {
-                    home-manager.users.${userName} = { pkgs, ... }: {
-                      imports = [
-                        self.homeModules.common-darwin
-                        ./home/shellcommon.nix
-                        (import ./home/git.nix {
-                          userName = "Sridhar Ratnakumar";
-                          userEmail = "srid@srid.ca";
-                        })
-                      ];
-                      programs.zsh.initExtra = ''
-                        export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
-                      '';
-                    };
-                  }
-                ];
-              };
-            in
-            {
-              default = defaultMacosSystem;
-            };
+          darwinConfigurations = {
+            default = self.lib.mkMacosSystem userName;
+          };
         };
     };
 }
