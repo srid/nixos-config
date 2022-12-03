@@ -65,7 +65,9 @@
               }
             ];
         };
-        # Configurations for macOS systems (using nix-darwin)
+        # Configurations for my only[^1] macOS machine (using nix-darwin)
+        #
+        # [^1]: This is why attr key is 'default'.
         darwinConfigurations = {
           default = self.lib-darwin.mkMacosSystem;
         };
