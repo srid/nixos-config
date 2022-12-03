@@ -31,7 +31,7 @@
         self.darwinModules.myself
       ];
     };
-    lib-darwin.mkMacosSystem = inputs.darwin.lib.darwinSystem rec {
+    lib-darwin.mkMacosSystem = extraModules: inputs.darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
       specialArgs = {
         inherit inputs system;
@@ -39,8 +39,7 @@
       };
       modules = [
         self.darwinModules.default
-        ../systems/darwin.nix
-      ];
+      ] ++ extraModules;
     };
   };
 }

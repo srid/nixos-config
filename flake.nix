@@ -57,19 +57,20 @@
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
           # My Linux development computer (on Hetzner)
-          pinch = self.lib.mkLinuxSystem
-            [
-              ./systems/hetzner/ax41.nix
-              ./nixos/server/harden.nix
-              # I share my Hetzner server with other people who need it.
-              self.nixosModules.other-people
-            ];
+          pinch = self.lib.mkLinuxSystem [
+            ./systems/hetzner/ax41.nix
+            ./nixos/server/harden.nix
+            # I share my Hetzner server with other people who need it.
+            self.nixosModules.other-people
+          ];
         };
         # Configurations for my only[^1] macOS machine (using nix-darwin)
         #
         # [^1]: This is why attr key is 'default'.
         darwinConfigurations = {
-          default = self.lib-darwin.mkMacosSystem;
+          default = self.lib-darwin.mkMacosSystem [
+            ./systems/darwin.nix
+          ];
         };
       };
 
