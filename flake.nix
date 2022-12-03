@@ -100,7 +100,7 @@
             let
               system = "x86_64-linux";
               pkgs = nixpkgs.legacyPackages.${system};
-              homeFeatures = [
+              homeModules = [
                 home-manager.nixosModules.home-manager
                 {
                   home-manager.useGlobalPkgs = true;
@@ -136,7 +136,7 @@
                 # Arguments to pass to all modules.
                 specialArgs = { inherit system inputs; };
                 modules =
-                  [ self.nixosModules.default ] ++ homeFeatures ++ extraModules;
+                  [ self.nixosModules.default ] ++ homeModules ++ extraModules;
               };
             in
             {
