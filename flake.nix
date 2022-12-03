@@ -70,14 +70,6 @@
       flake =
         let
           userName = "srid";
-          platformIndependentHomeModules = [
-            ./home/tmux.nix
-            ./home/neovim.nix
-            ./home/emacs.nix
-            ./home/starship.nix
-            ./home/terminal.nix
-            ./home/direnv.nix
-          ];
         in
         {
           # Configuration common to all Linux systems
@@ -123,13 +115,27 @@
               self.darwinModules.common ++
               self.darwinModules.home.imports;
           };
+          homeModules = {
+            common = {
+              home.stateVersion = "22.11";
+              imports = [
+                ./home/tmux.nix
+                ./home/neovim.nix
+                ./home/emacs.nix
+                ./home/starship.nix
+                ./home/terminal.nix
+                ./home/direnv.nix
+              ];
+            };
+          };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
             let
               homeModules = [
                 {
                   home-manager.users.${userName} = { pkgs, ... }: {
-                    imports = platformIndependentHomeModules ++ [
+                    imports = [
+                      self.homeModules.common
                       (import ./home/git.nix {
                         userName = "Sridhar Ratnakumar";
                         userEmail = "srid@srid.ca";
@@ -139,7 +145,6 @@
                     programs.bash = {
                       enable = true;
                     } // (import ./home/shellcommon.nix { inherit pkgs; });
-                    home.stateVersion = "22.11";
                   };
                 }
               ];
@@ -162,14 +167,14 @@
                   {
                     users.users.uday.isNormalUser = true;
                     home-manager.users."uday" = {
-                      imports = platformIndependentHomeModules ++ [
+                      imports = [
+                        self.homeModules.common
                         (import ./home/git.nix {
                           userName = "Uday Kiran";
                           userEmail = "udaycruise2903@gmail.com";
                         })
                       ];
                       programs.bash.enable = true;
-                      home.stateVersion = "22.11";
                     };
                   }
                 ];
@@ -190,7 +195,8 @@
                   ./systems/darwin.nix
                   {
                     home-manager.users.${userName} = { pkgs, ... }: {
-                      imports = platformIndependentHomeModules ++ [
+                      imports = [
+                        self.homeModules.common
                         (import ./home/git.nix {
                           userName = "Sridhar Ratnakumar";
                           userEmail = "srid@srid.ca";
