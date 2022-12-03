@@ -149,26 +149,25 @@
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
             let
-              homeModules = [
-                {
-                  home-manager.users.${userName} = { pkgs, ... }: {
-                    imports = [
-                      self.homeModules.common-linux
-                      (import ./home/git.nix {
-                        userName = "Sridhar Ratnakumar";
-                        userEmail = "srid@srid.ca";
-                      })
-                      ./home/shellcommon.nix
-                    ];
-                  };
-                }
-              ];
               mkLinuxSystem = extraModules: nixpkgs.lib.nixosSystem rec {
                 system = "x86_64-linux";
                 # Arguments to pass to all modules.
                 specialArgs = { inherit system inputs; };
-                modules =
-                  [ self.nixosModules.default ] ++ homeModules ++ extraModules;
+                modules = [
+                  self.nixosModules.default
+                  {
+                    home-manager.users.${userName} = { pkgs, ... }: {
+                      imports = [
+                        self.homeModules.common-linux
+                        ./home/shellcommon.nix
+                        (import ./home/git.nix {
+                          userName = "Sridhar Ratnakumar";
+                          userEmail = "srid@srid.ca";
+                        })
+                      ];
+                    };
+                  }
+                ] ++ extraModules;
               };
             in
             {
