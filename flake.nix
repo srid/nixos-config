@@ -53,24 +53,31 @@
           };
         };
       };
+
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
           # My Linux development computer (on Hetzner)
-          pinch = self.lib.mkLinuxSystem [
-            ./systems/hetzner/ax41.nix
-            ./nixos/server/harden.nix
-            # I share my Hetzner server with other people who need it.
-            self.nixosModules.guests
-          ];
+          pinch = self.lib.mkLinuxSystem {
+            imports = [
+              self.nixosModules.default # Defined in nixos/default.nix
+              ./systems/hetzner/ax41.nix
+              ./nixos/server/harden.nix
+              # I share my Hetzner server with other people who need it.
+              self.nixosModules.guests
+            ];
+          };
         };
         # Configurations for my only[^1] macOS machine (using nix-darwin)
         #
         # [^1]: This is why attr key is 'default'.
         darwinConfigurations = {
-          default = self.lib-darwin.mkMacosSystem [
-            ./systems/darwin.nix
-          ];
+          default = self.lib-darwin.mkMacosSystem {
+            imports = [
+              self.darwinModules.default # Defined in nix-darwin/default.nix
+              ./systems/darwin.nix
+            ];
+          };
         };
       };
 
