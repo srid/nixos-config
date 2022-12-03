@@ -32,7 +32,11 @@
   outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
-      imports = [ ];
+      imports = [
+        ./home
+        ./nixos
+        ./nix-darwin
+      ];
       perSystem = { self', inputs', config, pkgs, lib, system, ... }: {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
@@ -72,80 +76,6 @@
           userName = "srid";
         in
         {
-          # Configuration common to all Linux systems
-          nixosModules = {
-            common.imports = [
-              ./nixos/caches
-            ];
-            home.imports = [
-              home-manager.nixosModules.home-manager
-              ({
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = {
-                  inherit inputs;
-                  system = "x86_64-linux";
-                };
-              })
-            ];
-            default.imports =
-              self.nixosModules.common.imports ++
-              self.nixosModules.home.imports ++
-              [
-                ./nixos/self-ide.nix
-                ./nixos/takemessh
-                ./nixos/current-location.nix
-              ];
-          };
-          # Configuration common to all macOS systems
-          darwinModules = {
-            common = self.nixosConfig.common;
-            home.imports = [
-              home-manager.darwinModules.home-manager
-              ({
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = {
-                  inherit inputs;
-                  system = "aarch64-darwin";
-                };
-              })
-            ];
-            default.imports =
-              self.darwinModules.common ++
-              self.darwinModules.home.imports;
-          };
-          homeModules = {
-            common = {
-              home.stateVersion = "22.11";
-              imports = [
-                ./home/tmux.nix
-                ./home/neovim.nix
-                ./home/emacs.nix
-                ./home/starship.nix
-                ./home/terminal.nix
-                ./home/direnv.nix
-              ];
-            };
-            common-linux = {
-              imports = [
-                self.homeModules.common
-                ./home/vscode-server.nix
-              ];
-              programs.bash.enable = true;
-            };
-            common-darwin = {
-              imports = [
-                self.homeModules.common
-              ];
-              programs.zsh = {
-                enable = true;
-                initExtra = ''
-                  export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
-                '';
-              };
-            };
-          };
           # Configurations for Linux (NixOS) systems
           nixosConfigurations =
             let
@@ -216,6 +146,9 @@
                           userEmail = "srid@srid.ca";
                         })
                       ];
+                      programs.zsh.initExtra = ''
+                        export PATH=/etc/profiles/per-user/${userName}/bin:/run/current-system/sw/bin/:$PATH
+                      '';
                     };
                   }
                 ];
