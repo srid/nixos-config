@@ -4,18 +4,6 @@
   flake = {
     darwinModules = {
       common = self.nixosModules.common;
-      home.imports = [
-        inputs.home-manager.darwinModules.home-manager
-        ({
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "aarch64-darwin";
-            flake = { inherit config; };
-          };
-        })
-      ];
       myself = {
         home-manager.users.${config.people.myself} = { pkgs, ... }: {
           imports = [
@@ -27,7 +15,7 @@
       };
       default.imports = [
         self.darwinModules.common
-        self.darwinModules.home
+        self.darwinModules.home-manager
         self.darwinModules.myself
       ];
     };

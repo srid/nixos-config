@@ -7,18 +7,6 @@
       common.imports = [
         ./caches
       ];
-      home.imports = [
-        inputs.home-manager.nixosModules.home-manager
-        ({
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "x86_64-linux";
-            flake = { inherit config; };
-          };
-        })
-      ];
       other-people = {
         # Temporarily sharing with Uday.
         users.users.uday.isNormalUser = true;
@@ -40,7 +28,7 @@
       };
       default.imports = [
         self.nixosModules.common
-        self.nixosModules.home
+        self.nixosModules.home-manager
         self.nixosModules.myself
         ./self-ide.nix
         ./takemessh
