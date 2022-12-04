@@ -30,15 +30,5 @@ in
         ./current-location.nix
       ];
     };
-
-    lib.mkLinuxSystem = mod: inputs.nixpkgs.lib.nixosSystem rec {
-      system = "x86_64-linux";
-      # Arguments to pass to all modules.
-      specialArgs = {
-        inherit system inputs;
-        flake = { inherit config; };
-      };
-      modules = [ mod ];
-    };
   };
 }

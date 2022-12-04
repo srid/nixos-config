@@ -33,11 +33,11 @@
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
+        ./lib.nix
         ./config.nix
         ./home
         ./nixos
         ./nix-darwin
-        ./activate.nix
       ];
 
       people = {
@@ -68,11 +68,9 @@
             ];
           };
         };
-        # Configurations for my only[^1] macOS machine (using nix-darwin)
-        #
-        # [^1]: This is why attr key is 'default'.
+        # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
-          default = self.lib-darwin.mkMacosSystem {
+          default = self.lib.mkMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./systems/darwin.nix
@@ -81,11 +79,12 @@
         };
       };
 
-      perSystem = { pkgs, ... }: {
+      perSystem = { pkgs, config, ... }: {
         devShells.default = pkgs.mkShell {
           buildInputs = [ pkgs.nixpkgs-fmt ];
         };
         formatter = pkgs.nixpkgs-fmt;
+        apps.default = config.apps.activate;
       };
     };
 }

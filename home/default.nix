@@ -33,33 +33,5 @@
         ];
       };
     };
-    nixosModules.home-manager = {
-      imports = [
-        inputs.home-manager.nixosModules.home-manager
-        ({
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "x86_64-linux";
-            flake = { inherit config; };
-          };
-        })
-      ];
-    };
-    darwinModules.home-manager = {
-      imports = [
-        inputs.home-manager.darwinModules.home-manager
-        ({
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "aarch64-darwin";
-            flake = { inherit config; };
-          };
-        })
-      ];
-    };
   };
 }
