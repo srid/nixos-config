@@ -41,7 +41,14 @@ nix run
 
 ## Tips
 
-- To update NixOS (and other inputs) run `nix flake update`[^selective]
+- To update NixOS (and other inputs) run `nix flake update`
+  - You may also update a subset of inputs, e.g.
+      ```sh-session
+      nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
+      ```
+- To free up disk space,
+    ```sh-session
+    sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +2
+    sudo nixos-rebuild boot
+    ```
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
-
-[^selective]: You may also update the inputs selectively, viz.: `nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager`
