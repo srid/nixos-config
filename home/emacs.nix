@@ -1,8 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, inputs, system, ... }:
 
 {
   programs.emacs = {
     enable = true;
+    package = (inputs.emacs-overlay.packages.${system}.emacsPgtk.override {
+      withXwidgets = true;
+    }).overrideAttrs (oa: {
+      buildInputs = oa.buildInputs ++ [ pkgs.darwin.apple_sdk.frameworks.WebKit ];
+    });
   };
 
   # https://docs.doomemacs.org/latest/modules/term/vterm/
