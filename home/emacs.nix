@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, lib, inputs, system, ... }:
 
 {
   programs.emacs = {
@@ -6,7 +6,8 @@
     package = (inputs.emacs-overlay.packages.${system}.emacsPgtk.override {
       withXwidgets = true;
     }).overrideAttrs (oa: {
-      buildInputs = oa.buildInputs ++ [ pkgs.darwin.apple_sdk.frameworks.WebKit ];
+      buildInputs = oa.buildInputs ++ lib.optionals pkgs.stdenv.isDarwin
+        [ pkgs.darwin.apple_sdk.frameworks.WebKit ];
     });
   };
 
