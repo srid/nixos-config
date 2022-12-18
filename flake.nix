@@ -22,6 +22,9 @@
     comma.inputs.nixpkgs.follows = "nixpkgs";
     emanote.url = "github:EmaApps/emanote";
 
+    # Emacs
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+
     # Vim & its plugins (not in nixpkgs)
     zk-nvim.url = "github:mickael-menu/zk-nvim";
     zk-nvim.flake = false;
