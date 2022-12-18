@@ -4,7 +4,6 @@
         "b4dm4n.nixpkgs-fmt",
         "jnoortheen.nix-ide",
         "arrterian.nix-env-selector",
-        "mattn.lisp",
-        "ms-vscode.makefile-tools"
+        "mattn.lisp"
     ]
 }
