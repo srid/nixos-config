@@ -4,8 +4,6 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
-      inputs.agenix.nixosModule
-      inputs.nix-serve-ng.nixosModules.default
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "ahci" "usbhid" ];
@@ -13,11 +11,10 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/bede3321-d976-475a-ace3-33c8977a590a";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/bede3321-d976-475a-ace3-33c8977a590a";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -113,24 +110,7 @@
   services.openssh.enable = true;
   services.tailscale.enable = true;
 
-  age.secrets.cache-priv-key.file = ../../secrets/cache-priv-key.age;
-  services.nix-serve = {
-    enable = true;
-    secretKeyFile = config.age.secrets.cache-priv-key.path;
-  };
-  services.nginx = {
-    enable = true;
-    virtualHosts."cache.srid.ca" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/".extraConfig = ''
-        proxy_pass http://localhost:${toString config.services.nix-serve.port};
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      '';
-    };
-  };
+  services.nginx.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "srid@srid.ca";

@@ -74,6 +74,11 @@
               ./nixos/hercules.nix
               # I share my Hetzner server with other people who need it.
               self.nixosModules.guests
+              # I host a Nix cache
+              (import ./nixos/cache-server.nix {
+                keyName = "cache-priv-key";
+                domain = "cache.srid.ca";
+              })
             ];
           };
         };
