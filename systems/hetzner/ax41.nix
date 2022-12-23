@@ -4,6 +4,8 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
+      inputs.agenix.nixosModule
+      inputs.nix-serve-ng.nixosModules.default
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "ahci" "usbhid" ];
@@ -54,7 +56,7 @@
 
   # Network (Hetzner uses static IP assignments, and we don't use DHCP here)
   networking.useDHCP = false;
-
+  networking.firewall.checkReversePath = "loose"; # Tailscale recommends this
   networking.interfaces."enp41s0" = {
     ipv4 = {
       addresses = [{
@@ -109,9 +111,29 @@
 
   services.openssh.permitRootLogin = "prohibit-password";
   services.openssh.enable = true;
-
   services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose"; # Tailscale recommends this
+
+  age.secrets.cache-priv-key.file = ../../secrets/cache-priv-key.age;
+  services.nix-serve = {
+    enable = true;
+    secretKeyFile = config.age.secrets.cache-priv-key.path;
+  };
+  services.nginx = {
+    enable = true;
+    virtualHosts."cache.srid.ca" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/".extraConfig = ''
+        proxy_pass http://localhost:${toString config.services.nix-serve.port};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      '';
+    };
+  };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  security.acme.acceptTerms = true;
+  security.acme.defaults.email = "srid@srid.ca";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${flake.config.people.myself} = {
@@ -121,5 +143,4 @@
   security.sudo.wheelNeedsPassword = false;
 
   system.stateVersion = "20.03";
-
 }

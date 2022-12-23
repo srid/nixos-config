@@ -11,6 +11,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
     # Supportive inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
@@ -67,6 +69,7 @@
               self.nixosModules.default # Defined in nixos/default.nix
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
+              ./nixos/hercules.nix
               # I share my Hetzner server with other people who need it.
               self.nixosModules.guests
             ];
@@ -83,9 +86,12 @@
         };
       };
 
-      perSystem = { pkgs, config, ... }: {
+      perSystem = { pkgs, config, inputs', ... }: {
         devShells.default = pkgs.mkShell {
-          buildInputs = [ pkgs.nixpkgs-fmt ];
+          buildInputs = [
+            pkgs.nixpkgs-fmt
+            inputs'.agenix.packages.agenix
+          ];
         };
         formatter = pkgs.nixpkgs-fmt;
         apps.default = config.apps.activate;
