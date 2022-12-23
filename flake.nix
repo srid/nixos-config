@@ -19,7 +19,6 @@
     # Software inputs
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.flake = false;
-    hercules-ci-agent.url = "github:hercules-ci/hercules-ci-agent/master";
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
     emanote.url = "github:EmaApps/emanote";
