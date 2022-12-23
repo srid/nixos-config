@@ -12,6 +12,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    hci.url = "github:hercules-ci/hercules-ci-agent";
+
     # Supportive inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
