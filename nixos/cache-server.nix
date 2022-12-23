@@ -11,6 +11,7 @@
     enable = true;
     secretKeyFile = config.age.secrets.${keyName}.path;
   };
+  nix.settings.trusted-users = [ "nix-serve" ];
   services.nginx = {
     virtualHosts.${domain} = {
       forceSSL = true;
