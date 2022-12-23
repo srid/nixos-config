@@ -14,6 +14,8 @@
     agenix.url = "github:ryantm/agenix";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
+    hci.url = "github:hercules-ci/hercules-ci-agent";
+
     # Supportive inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-hardware.url = "github:NixOS/nixos-hardware";

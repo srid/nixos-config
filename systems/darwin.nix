@@ -75,7 +75,14 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  services.hercules-ci-agent.enable = true;
+  # TODO: use agenix to manage 
+  # - secrets
+  # - ssh keys
+  services.hercules-ci-agent = {
+    enable = true;
+    # cache push to ssh fix is in master branch only. --Dec 23, 2022
+    package = inputs.hci.packages.${system}.hercules-ci-agent;
+  };
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   # programs.zsh.enable = true; # default shell on catalina
