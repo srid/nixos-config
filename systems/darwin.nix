@@ -75,6 +75,8 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
+  services.hercules-ci-agent.enable = true;
+
   # Create /etc/bashrc that loads the nix-darwin environment.
   # programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;

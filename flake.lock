@@ -62,16 +62,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1671196037,
-        "narHash": "sha256-2+J98SeczFWonbqFLMEAQC7vZEe6I2gM17XYvEmG52I=",
-        "owner": "lnl7",
+        "lastModified": 1671736733,
+        "narHash": "sha256-5Hbq4oZlsozOEyoOmJKqxbBeO/J8u89j3XZfavjsI3I=",
+        "owner": "hercules-ci",
         "repo": "nix-darwin",
-        "rev": "adb8ac0453c8b2c40f5bffb578453dbaee838952",
+        "rev": "5311f8ded0bccf2a4e5fcafb75a240197c09b959",
         "type": "github"
       },
       "original": {
-        "owner": "lnl7",
-        "ref": "master",
+        "owner": "hercules-ci",
+        "ref": "add-hercules-ci-agent",
         "repo": "nix-darwin",
         "type": "github"
       }

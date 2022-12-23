@@ -5,7 +5,9 @@
     # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    darwin.url = "github:lnl7/nix-darwin/master";
+    # darwin.url = "github:lnl7/nix-darwin/master";
+    # https://github.com/LnL7/nix-darwin/pull/586
+    darwin.url = "github:hercules-ci/nix-darwin/add-hercules-ci-agent";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
