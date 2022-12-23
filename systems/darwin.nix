@@ -12,6 +12,7 @@
     nodejs # Required for VSCode's webhint extension
     nil
     nixpkgs-fmt
+    emanote
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
@@ -57,20 +58,6 @@
     ];
   };
   nixpkgs.config.allowBroken = true;
-
-  # TODO: Upstream to emanote
-  # launchctl start org.nixos.emanote
-  launchd.user.agents.emanote = {
-    serviceConfig.ProgramArguments = [
-      (lib.getExe inputs.emanote.packages.${system}.default)
-      "-L"
-      "/Users/${flake.config.people.myself}/Keybase/Notes"
-      "run"
-      "-p"
-      "7000"
-    ];
-    serviceConfig.RunAtLoad = true;
-  };
 
   security.pam.enableSudoTouchIdAuth = true;
 
