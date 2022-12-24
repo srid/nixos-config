@@ -7,7 +7,6 @@
     wget
     ripgrep
     sd
-    gh
     pandoc
     nodejs # Required for VSCode's webhint extension
     nil
