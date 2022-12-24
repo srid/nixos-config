@@ -67,10 +67,6 @@
     home = "/Users/${flake.config.people.myself}";
   };
 
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
-
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -78,9 +74,9 @@
   # TODO: use agenix to manage 
   # - secrets
   # - ssh keys
+  # TODO: consolidate with nixos/hercules.nix
   services.hercules-ci-agent = {
     enable = true;
-    # cache push to ssh fix is in master branch only. --Dec 23, 2022
     package = inputs.hci.packages.${system}.hercules-ci-agent;
   };
 

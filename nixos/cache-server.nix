@@ -6,12 +6,15 @@
     inputs.nix-serve-ng.nixosModules.default
   ];
 
+  # Cache server
   age.secrets.${keyName}.file = ../secrets/${keyName}.age;
   services.nix-serve = {
     enable = true;
     secretKeyFile = config.age.secrets.${keyName}.path;
   };
   nix.settings.trusted-users = [ "nix-serve" ];
+
+  # Web servr
   services.nginx = {
     virtualHosts.${domain} = {
       forceSSL = true;
