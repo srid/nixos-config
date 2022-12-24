@@ -13,6 +13,7 @@
     nil
     nixpkgs-fmt
     emanote
+    _1password
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
