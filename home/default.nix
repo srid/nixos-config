@@ -30,7 +30,7 @@
         # TODO: Use sessionPath after https://github.com/nix-community/home-manager/issues/3324
         programs.zsh.initExtra = ''
           export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:$PATH
-          # For 1Password CLI
+          # For 1Password CLI. This requires `pkgs.gh` to be installed.
           source $HOME/.config/op/plugins.sh
         '';
       };
