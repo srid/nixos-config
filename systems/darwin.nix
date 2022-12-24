@@ -51,7 +51,7 @@
     distributedBuilds = true;
     buildMachines = [
       {
-        hostName = (import ../hetzner/ax41.info.nix).publicIP;
+        hostName = (import ./hetzner/ax41.info.nix).publicIP;
         system = "x86_64-linux";
         maxJobs = 10;
       }
