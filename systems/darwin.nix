@@ -58,6 +58,7 @@
     ];
   };
   nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnfree = true;
 
   security.pam.enableSudoTouchIdAuth = true;
 
