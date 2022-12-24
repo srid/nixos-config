@@ -58,7 +58,7 @@
     ipv4 = {
       addresses = [{
         # Server main IPv4 address
-        address = "88.198.33.237";
+        address = (import ./ax41.info.nix).publicIP;
         prefixLength = 24;
       }];
 
