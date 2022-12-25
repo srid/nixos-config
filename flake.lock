@@ -292,11 +292,11 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix"
       },
       "locked": {
-        "lastModified": 1671131253,
-        "narHash": "sha256-LKVuohzil/Hbwqy7D+3d5Liv3CbljSDdOQ4+E7QyusU=",
+        "lastModified": 1671911658,
+        "narHash": "sha256-1mrYh+6Hz8y2szNIgWGqHQWIJ3mDxs8ceAA7A8O0ymc=",
         "owner": "hercules-ci",
         "repo": "hercules-ci-agent",
-        "rev": "c8ade27f903c8ddb0309ff810f612d3e557146c2",
+        "rev": "fc43b406a0fbd6ff10ee670bf3d248c0343393e9",
         "type": "github"
       },
       "original": {
