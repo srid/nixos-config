@@ -13,6 +13,7 @@
     gh
     nixpkgs-fmt
     emanote
+    inputs.hci.packages.${system}.hercules-ci-cli
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
