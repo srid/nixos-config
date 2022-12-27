@@ -50,16 +50,7 @@
 
       people = {
         myself = "srid";
-        users = {
-          srid = {
-            name = "Sridhar Ratnakumar";
-            email = "srid@srid.ca";
-          };
-          uday = {
-            name = "Uday Kiran";
-            email = "udaycruise2903@gmail.com";
-          };
-        };
+        users = import ./users.nix;
       };
 
       flake = {

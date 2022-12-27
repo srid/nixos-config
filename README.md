@@ -19,8 +19,7 @@ nix run
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` and 
     - add your Linux's hostname in the `nixosConfigurations` set, as well as
-    - update `people.myself` to your desired username.
-      - put your SSH keys in `./nixos/takemessh`
+    - update `users.nix` to contain your user(s) information
   - Run `nix run`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)

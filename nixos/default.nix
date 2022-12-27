@@ -27,7 +27,7 @@ in
         inputs.agenix.nixosModule
         ./caches
         ./self-ide.nix
-        ./takemessh
+        ./ssh-authorize.nix
         ./current-location.nix
       ];
     };

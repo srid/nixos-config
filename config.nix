@@ -8,6 +8,12 @@ let
       email = lib.mkOption {
         type = lib.types.str;
       };
+      sshKeyPub = lib.mkOption {
+        type = lib.types.str;
+        description = ''
+          SSH public key
+        '';
+      };
     };
   };
   peopleSubmodule = lib.types.submodule {
