@@ -26,9 +26,11 @@
         ];
 
         programs.zsh.enable = true;
-        # To put nix and home-manager-installed packages in PATH.
-        # TODO: Use sessionPath after https://github.com/nix-community/home-manager/issues/3324
-        programs.zsh.initExtra = ''
+        # This must be envExtra (rather than initExtra), because doom-emacs requires it
+        # https://github.com/doomemacs/doomemacs/issues/687#issuecomment-409889275
+        #
+        # But also see: 'doom env', which is what works.
+        programs.zsh.envExtra = ''
           export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:$PATH
           # For 1Password CLI. This requires `pkgs.gh` to be installed.
           source $HOME/.config/op/plugins.sh
