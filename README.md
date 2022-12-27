@@ -19,14 +19,17 @@ nix run
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` and 
     - add your Linux's hostname in the `nixosConfigurations` set, as well as
-    - update `users.nix` to contain your user(s) information
+    - update `people.myself` to your own username.
+      - change `users.nix` to contain your user(s) information
   - Run `nix run`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
     - Clone this repo anywhere
-    - Edit `flake.nix` to update `people.myself` to your desired username.
+    - Edit `flake.nix` and
+      - update `people.myself` to your own username.
+        - change `users.nix` to contain your user(s) information
     - Run `nix run`.[^cleanup] That's it. Re-open your shell.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
