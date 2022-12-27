@@ -18,14 +18,14 @@ nix run
     - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
-  - Edit `users/default.nix:config` to contain your users
+  - Edit `users/config.nix` to contain your users
   - Run `nix run`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
     - Clone this repo anywhere
-    - Edit `users/default.nix:config` to contain your users
+    - Edit `users/config.nix` to contain your users
     - Run `nix run`.[^cleanup] That's it. Re-open your shell.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
