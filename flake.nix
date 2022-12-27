@@ -48,7 +48,6 @@
         ./nix-darwin
       ];
 
-
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {

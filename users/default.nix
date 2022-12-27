@@ -39,9 +39,6 @@ in
     };
   };
   config = {
-    people = {
-      myself = "srid";
-      users = import ./info.nix;
-    };
+    people = import ./config.nix;
   };
 }

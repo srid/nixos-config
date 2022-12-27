@@ -1,6 +1,6 @@
 let
   keys =
-    (import ../users/info.nix).srid.sshKeys
+    (import ../users/config.nix).users.ssrid.sshKeys
     ++ [
       (import ../systems/hetzner/ax41.info.nix).hostKeyPub
     ];
