@@ -20,7 +20,7 @@
     ignores = [ "*~" "*.swp" ];
     extraConfig = {
       init.defaultBranch = "master"; # based.
-      core.editor = "nvim";
+      core.editor = "emacsclient";
       #protocol.keybase.allow = "always";
       credential.helper = "store --file ~/.git-credentials";
       pull.rebase = "false";
