@@ -8,10 +8,10 @@ let
       email = lib.mkOption {
         type = lib.types.str;
       };
-      sshKeyPub = lib.mkOption {
-        type = lib.types.str;
+      sshKeys = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
         description = ''
-          SSH public key
+          SSH public keys
         '';
       };
     };
