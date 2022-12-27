@@ -13,9 +13,8 @@
             [ pkgs.darwin.apple_sdk.frameworks.WebKit ];
         });
       in
-      myEmacs.passthru.pkgs.emacsWithPackages (epkgs: [
+      (pkgs.emacsPackagesFor myEmacs).emacsWithPackages (epkgs: [
         epkgs.vterm
       ]);
   };
-
 }
