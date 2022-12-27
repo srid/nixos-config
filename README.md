@@ -33,10 +33,11 @@ nix run
 ## Directory layout 
 
 - `home`: home-manager config (shared between Linux and macOS)
-- `nixos`: nixos config for Linux
-- `nix-darwin`: nix-darwin config for macOS
-- `systems`: top-level configuration.nix('ish) for various kinds of system
+- `nixos`: nixos modules for Linux
+- `nix-darwin`: nix-darwin modules for macOS
 - `users`: user information
+- `secrets`: agenix secrets (encrypted using ssh keys)
+- `systems`: top-level configuration.nix('ish) for various systems
 
 ## Tips
 
