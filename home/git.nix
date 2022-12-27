@@ -19,7 +19,7 @@
     };
     ignores = [ "*~" "*.swp" ];
     extraConfig = {
-      init.defaultBranch = "master"; # based.
+      init.defaultBranch = "master"; # https://srid.ca/unwoke
       core.editor = "emacsclient";
       #protocol.keybase.allow = "always";
       credential.helper = "store --file ~/.git-credentials";
