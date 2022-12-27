@@ -42,16 +42,12 @@
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
         ./lib.nix
-        ./config.nix
+        ./users
         ./home
         ./nixos
         ./nix-darwin
       ];
 
-      people = {
-        myself = "srid";
-        users = import ./users.nix;
-      };
 
       flake = {
         # Configurations for Linux (NixOS) systems

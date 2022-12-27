@@ -38,4 +38,10 @@ in
       type = peopleSubmodule;
     };
   };
+  config = {
+    people = {
+      myself = "srid";
+      users = import ./info.nix;
+    };
+  };
 }

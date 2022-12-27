@@ -17,19 +17,15 @@ nix run
     - X1 Carbon: https://www.srid.ca/x1c7-install
     - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
   - Clone this repo at `/etc/nixos`
-  - Edit `flake.nix` and 
-    - add your Linux's hostname in the `nixosConfigurations` set, as well as
-    - update `people.myself` to your own username.
-      - change `users.nix` to contain your user(s) information
+  - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
+  - Edit `users/default.nix:config` to contain your users
   - Run `nix run`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
     - Clone this repo anywhere
-    - Edit `flake.nix` and
-      - update `people.myself` to your own username.
-        - change `users.nix` to contain your user(s) information
+    - Edit `users/default.nix:config` to contain your users
     - Run `nix run`.[^cleanup] That's it. Re-open your shell.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
@@ -40,6 +36,7 @@ nix run
 - `nixos`: nixos config for Linux
 - `nix-darwin`: nix-darwin config for macOS
 - `systems`: top-level configuration.nix('ish) for various kinds of system
+- `users`: user information
 
 ## Tips
 
