@@ -18,6 +18,21 @@
         "type": "github"
       }
     },
+    "check-flake": {
+      "locked": {
+        "lastModified": 1662502605,
+        "narHash": "sha256-jAT55UhabAxLAVGanxjnNdzH2/oX2ZjLsL4i2jPIP+g=",
+        "owner": "srid",
+        "repo": "check-flake",
+        "rev": "48a17393ed4fcd523399d6602c283775b5127295",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "check-flake",
+        "type": "github"
+      }
+    },
     "coc-rust-analyzer": {
       "flake": false,
       "locked": {
@@ -57,22 +72,6 @@
         "type": "github"
       }
     },
-    "commonmark-wikilink": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1667660916,
-        "narHash": "sha256-ZyYSsihq5nqP/YmkL2Tlr+XVwUu+3MquThpyc0yx65c=",
-        "owner": "srid",
-        "repo": "commonmark-wikilink",
-        "rev": "72c880b5dbe8521f8c424c7bd39cb11b26e8dbb8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "commonmark-wikilink",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -97,15 +96,15 @@
     "ema": {
       "flake": false,
       "locked": {
-        "lastModified": 1668883024,
-        "narHash": "sha256-fftvlkkAZgtExQ3vIiUPJbxIkMPDuvTi0XAZqo7jtNM=",
-        "owner": "EmaApps",
+        "lastModified": 1671908068,
+        "narHash": "sha256-1U5uBaYsH+YT8IFLEzuAqo7H7ifsOQMp8b8FLG38YVs=",
+        "owner": "srid",
         "repo": "ema",
-        "rev": "7cc73addf8191c4a2fbe157e6c02d9fed9644c3b",
+        "rev": "9fc92a132eaeedc4556eb9c17bd79ab7d96c2aaf",
         "type": "github"
       },
       "original": {
-        "owner": "EmaApps",
+        "owner": "srid",
         "repo": "ema",
         "type": "github"
       }
@@ -131,24 +130,26 @@
     },
     "emanote": {
       "inputs": {
-        "commonmark-wikilink": "commonmark-wikilink",
+        "check-flake": "check-flake",
         "ema": "ema",
         "flake-parts": "flake-parts",
+        "flake-root": "flake-root",
         "haskell-flake": "haskell-flake",
         "heist": "heist",
         "heist-extra": "heist-extra",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1669586795,
-        "narHash": "sha256-WUuADWLqlSTHKCMPSG2SbFA3JlM7y+VkjOPdijQ0FAs=",
-        "owner": "EmaApps",
+        "lastModified": 1671893597,
+        "narHash": "sha256-JJEKhxOuNy/J/svXLlW05WBNTfK6mLhmLy8l/VK6TKM=",
+        "owner": "srid",
         "repo": "emanote",
-        "rev": "24ca8d95ac2aec8a02a128382081ac076451d018",
+        "rev": "0cf5b5958eba440254d5ea3bbc2ff7652e4e255b",
         "type": "github"
       },
       "original": {
-        "owner": "EmaApps",
+        "owner": "srid",
         "repo": "emanote",
         "type": "github"
       }
@@ -236,6 +237,21 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-root": {
+      "locked": {
+        "lastModified": 1671378805,
+        "narHash": "sha256-yqGxyzMN2GuppwG3dTWD1oiKxi+jGYP7D1qUSc5vKhI=",
+        "owner": "srid",
+        "repo": "flake-root",
+        "rev": "dc7ba6166e478804a9da6881aa48c45d300075cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "flake-root",
         "type": "github"
       }
     },
@@ -670,6 +686,21 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_7",
         "zk-nvim": "zk-nvim"
+      }
+    },
+    "treefmt-nix": {
+      "locked": {
+        "lastModified": 1672170030,
+        "narHash": "sha256-hvTMwlutePPQ4eNMVHiI0crixCyeSTKJIDhLD/66t2g=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "c97bb3db343ccd2f04dd4e5fa8750e821560e9ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
       }
     },
     "utils": {

@@ -12,9 +12,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
-    nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
+    # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
+    nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
     # Supportive inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
@@ -25,7 +26,7 @@
     nixos-vscode-server.flake = false;
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
-    emanote.url = "github:EmaApps/emanote";
+    emanote.url = "github:srid/emanote";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
