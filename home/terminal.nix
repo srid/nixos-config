@@ -7,9 +7,6 @@
     ripgrep
     htop
 
-    # Haskell dev
-    ghcid
-
     inputs.comma.packages.${system}.default
   ];
 
