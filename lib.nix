@@ -56,43 +56,34 @@
   };
 
   perSystem = { system, pkgs, lib, ... }: {
-    # TODO: replace these with mission-control
-    apps =
-      let
-        # Create a flake app that wraps the given bash CLI.
-        bashCmdApp = name: cmd: {
-          type = "app";
-          program =
-            (pkgs.writeShellApplication {
-              inherit name;
-              text = ''
-                set -x
-                ${cmd}
-              '';
-            }) + "/bin/${name}";
-        };
-      in
-      {
-        # A rough app for activating the system locally.
-        #
-        # TODO: Replace with deploy-rs or (new) nixinate
-        activate =
+    mission-control.scripts = {
+      update-primary = {
+        description = ''
+          Update primary flake inputs
+        '';
+        exec =
+          let
+            inputs = [ "nixpkgs" "home-manager" "darwin" ];
+          in
+          ''
+            nix flake lock ${lib.foldl' (acc: x: acc + " --update-input " + x) "" inputs}
+          '';
+      };
+
+      activate = {
+        description = "Activate the current configuration for local system";
+        exec =
+          # TODO: Replace with deploy-rs or (new) nixinate
           if system == "aarch64-darwin" then
-            bashCmdApp "darwin" ''
+            ''
               ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
               switch --flake ${self}#default
             ''
           else
-            bashCmdApp "linux" ''
+            ''
               ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
             '';
-
-        update-primary =
-          let inputs = [ "nixpkgs" "home-manager" "darwin" ];
-          in bashCmdApp "update-primary" ''
-            nix flake lock ${lib.foldl' (acc: x: acc + " --update-input " + x) "" inputs}
-          '';
-
       };
+    };
   };
 }

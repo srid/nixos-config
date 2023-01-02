@@ -5,7 +5,7 @@ To build,
 ```sh
 # First, edit nixosConfigurations in flake.nix to add your system's hostname.
 # And then change `userName` to your username.
-nix run
+nix develop -c , activate
 ```
 
 ## Install notes
@@ -19,14 +19,14 @@ nix run
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
   - Edit `users/config.nix` to contain your users
-  - Run `nix run`. That's it. Re-open your shell.
+  - Run `nix develop -c , activate`. That's it. Re-open your shell.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
         - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
     - Clone this repo anywhere
     - Edit `users/config.nix` to contain your users
-    - Run `nix run`.[^cleanup] That's it. Re-open your shell.
+    - Run `nix develop -c , activate`.[^cleanup] That's it. Re-open your terminal.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
 
@@ -45,6 +45,7 @@ nix run
   - You may also update a subset of inputs, e.g.
       ```sh-session
       nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
+      # Also, in the dev shell: , update-primary
       ```
 - To free up disk space,
     ```sh-session

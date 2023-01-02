@@ -12,16 +12,19 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
-    # Supportive inputs
-    nixos-shell.url = "github:Mic92/nixos-shell";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # Devshell inputs
+    mission-control.url = "github:Platonic-Systems/mission-control";
+    mission-control.inputs.nixpkgs.follows = "nixpkgs";
+    flake-root.url = "github:srid/flake-root";
 
     # Software inputs
+    nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.flake = false;
     comma.url = "github:nix-community/comma";
@@ -47,6 +50,8 @@
         ./home
         ./nixos
         ./nix-darwin
+        inputs.mission-control.flakeModule
+        inputs.flake-root.flakeModule
       ];
 
       flake = {
@@ -81,12 +86,12 @@
       };
 
       perSystem = { pkgs, config, inputs', ... }: {
-        devShells.default = pkgs.mkShell {
+        devShells.default = config.mission-control.installToDevShell (pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt
             inputs'.agenix.packages.agenix
           ];
-        };
+        });
         formatter = pkgs.nixpkgs-fmt;
         apps.default = config.apps.activate;
       };
