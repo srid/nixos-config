@@ -19,7 +19,7 @@ nix develop -c , activate
   - Clone this repo at `/etc/nixos`
   - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
   - Edit `users/config.nix` to contain your users
-  - Run `nix develop -c , activate`. That's it. Re-open your shell.
+  - Run `nix develop -c , activate`. That's it. Re-open your terminal.
 - macOS: 
     - Install Nix normally (multi-user)
     - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
@@ -41,6 +41,7 @@ nix develop -c , activate
 
 ## Tips
 
+- Run `,` in `nix develop` shell (tip: direnv better) to see available scripts.
 - To update NixOS (and other inputs) run `nix flake update`
   - You may also update a subset of inputs, e.g.
       ```sh-session

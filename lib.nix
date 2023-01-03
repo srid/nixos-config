@@ -83,6 +83,12 @@
             ''
               ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
             '';
+        category = "Main";
+      };
+
+      fmt = {
+        description = "Autoformat repo tree";
+        exec = "nix fmt";
       };
     };
   };
