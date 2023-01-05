@@ -7,7 +7,6 @@
         imports = [
           ./tmux.nix
           ./neovim.nix
-          ./emacs.nix
           ./starship.nix
           ./terminal.nix
           ./direnv.nix
@@ -23,6 +22,7 @@
       common-darwin = {
         imports = [
           self.homeModules.common
+          ./emacs.nix
         ];
 
         programs.zsh.enable = true;
