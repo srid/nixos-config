@@ -14,6 +14,7 @@
     nixpkgs-fmt
     emanote
     inputs.hci.packages.${system}.hercules-ci-cli
+    inputs.nixpkgs-match.packages.${system}.default
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
@@ -38,24 +39,6 @@
         echo "KILL $THEPID ?"
         read -r
         kill "$THEPID"
-      '';
-    })
-
-    # Spit out the nixpkgs rev pinned by the given flake.
-    (pkgs.writeShellApplication {
-      name = "nixpkgs-rev";
-      text = ''
-        NIXPKGS=$(nix flake metadata --json "$1" | jq -r .locks.nodes.root.inputs.nixpkgs)
-        nix flake metadata --json "$1" | \
-          jq -r .locks.nodes."$NIXPKGS".locked.rev
-      '';
-    })
-
-    (pkgs.writeShellApplication {
-      name = "nixpkgs-update-using";
-      text = ''
-        REV=$(nixpkgs-rev "$1")
-        nix flake lock --update-input nixpkgs --override-input nixpkgs github:nixos/nixpkgs/"$REV"
       '';
     })
 

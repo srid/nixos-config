@@ -28,6 +28,7 @@
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
     emanote.url = "github:srid/emanote";
+    nixpkgs-match.url = "github:srid/nixpkgs-match";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
