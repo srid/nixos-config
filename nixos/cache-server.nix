@@ -12,6 +12,7 @@
     enable = true;
     secretKeyFile = config.age.secrets.${keyName}.path;
   };
+  nix.settings.allowed-users = [ "nix-serve" ];
   nix.settings.trusted-users = [ "nix-serve" ];
 
   # Web servr
