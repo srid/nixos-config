@@ -1,6 +1,9 @@
 { pkgs, lib, inputs, system, ... }:
 
 {
+  # TODO: use agenix to manage
+  # - secrets
+  # - ssh keys
   services.hercules-ci-agent = {
     enable = true;
     # nixpkgs may not always have the latest HCI.
@@ -10,11 +13,7 @@
   # Regularly optimize nix store if using CI, because CI use can produce *lots*
   # of derivations.
   nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    # NOTE: If the repos that use cache are updated as often as once a week (eg:
-    # flake.lock update action?), its cache should not be invalidated over time
-    # of idle periods.
+    automatic = ! pkgs.stdenv.isDarwin;  # Enable only on Linux
     options = "--delete-older-than 90d";
   };
 }

@@ -77,7 +77,7 @@
           default = self.lib.mkMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
-              ./nix-darwin/hercules.nix
+              ./nixos/hercules.nix
               ./systems/darwin.nix
             ];
           };
