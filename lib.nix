@@ -55,7 +55,7 @@
     };
   };
 
-  perSystem = { system, pkgs, lib, ... }: {
+  perSystem = { system, config, pkgs, lib, ... }: {
     mission-control.scripts = {
       update-primary = {
         description = ''
@@ -76,8 +76,9 @@
           # TODO: Replace with deploy-rs or (new) nixinate
           if system == "aarch64-darwin" then
             ''
+              cd "$(${lib.getExe config.flake-root.package})"
               ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
-              switch --flake ${self}#default
+                switch --flake .#default
             ''
           else
             ''

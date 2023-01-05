@@ -43,13 +43,13 @@
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
+        inputs.flake-root.flakeModule
+        inputs.mission-control.flakeModule
         ./lib.nix
         ./users
         ./home
         ./nixos
         ./nix-darwin
-        inputs.mission-control.flakeModule
-        inputs.flake-root.flakeModule
       ];
 
       flake = {
