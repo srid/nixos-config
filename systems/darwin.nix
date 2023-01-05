@@ -25,6 +25,8 @@
     #rosettaPkgs.coq
     # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" { })
 
+    # TODO: These should be moved to a separte file?
+
     # Kill the process with the port open
     # Used only to kill stale ghc.
     (pkgs.writeShellApplication {
@@ -36,6 +38,24 @@
         echo "KILL $THEPID ?"
         read -r
         kill "$THEPID"
+      '';
+    })
+
+    # Spit out the nixpkgs rev pinned by the given flake.
+    (pkgs.writeShellApplication {
+      name = "nixpkgs-rev";
+      text = ''
+        NIXPKGS=$(nix flake metadata --json "$1" | jq -r .locks.nodes.root.inputs.nixpkgs)
+        nix flake metadata --json "$1" | \
+          jq -r .locks.nodes."$NIXPKGS".locked.rev
+      '';
+    })
+
+    (pkgs.writeShellApplication {
+      name = "nixpkgs-update-using";
+      text = ''
+        REV=$(nixpkgs-rev "$1")
+        nix flake lock --update-input nixpkgs --override-input nixpkgs github:nixos/nixpkgs/"$REV"
       '';
     })
 
