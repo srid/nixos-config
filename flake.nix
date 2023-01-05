@@ -92,7 +92,6 @@
           ];
         });
         formatter = pkgs.nixpkgs-fmt;
-        apps.default = config.apps.activate;
       };
     };
 }
