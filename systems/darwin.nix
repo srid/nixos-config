@@ -93,15 +93,6 @@
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
-  # TODO: use agenix to manage 
-  # - secrets
-  # - ssh keys
-  # TODO: consolidate with nixos/hercules.nix
-  services.hercules-ci-agent = {
-    enable = true;
-    package = inputs.hci.packages.${system}.hercules-ci-agent;
-  };
-
   # Create /etc/bashrc that loads the nix-darwin environment.
   # programs.zsh.enable = true; # default shell on catalina
   # programs.fish.enable = true;
