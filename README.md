@@ -1,6 +1,8 @@
-This repository contains the Nix / NixOS configuration for all of my systems. Start from `flakes.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)).
+This repository contains the Nix / NixOS configuration for all of my systems. 
 
 ## Setup
+
+To use this repository as base configuration for your new machine running:
 
 ### NixOS Linux
 
@@ -25,7 +27,11 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
 
-## Directory layout 
+## Architecture
+
+Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-parts`](https://flake.parts/) is used as the module system. 
+
+### Directory layout 
 
 - `home`: home-manager config (shared between Linux and macOS)
 - `nixos`: nixos modules for Linux
@@ -36,10 +42,11 @@ This repository contains the Nix / NixOS configuration for all of my systems. St
 
 ## Tips
 
-- Run `,` in `nix develop` shell (tip: direnv better) to see available scripts.
+- Run `,` in `nix develop` shell (tip: direnv is better) to see available scripts.
+  - (`,` is provided by the [mission-control](https://github.com/Platonic-Systems/mission-control) module)
 - To update NixOS (and other inputs) run `nix flake update`
   - You may also update a subset of inputs, e.g.
-      ```sh-session
+      ```sh
       nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
       # Also, in the dev shell: , update-primary
       ```
