@@ -15,6 +15,6 @@
     # NOTE: If the repos that use cache are updated as often as once a week (eg:
     # flake.lock update action?), its cache should not be invalidated over time
     # of idle periods.
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 90d";
   };
 }
