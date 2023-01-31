@@ -13,7 +13,7 @@
   # Regularly optimize nix store if using CI, because CI use can produce *lots*
   # of derivations.
   nix.gc = {
-    automatic = ! pkgs.stdenv.isDarwin;  # Enable only on Linux
+    automatic = ! pkgs.stdenv.isDarwin; # Enable only on Linux
     options = "--delete-older-than 90d";
   };
 }
