@@ -1,8 +1,6 @@
 { config, pkgs, lib, inputs, system, flake, rosettaPkgs, ... }:
 
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     wget
     ripgrep
@@ -26,10 +24,11 @@
     #rosettaPkgs.coq
     # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" { })
 
-    # TODO: These should be moved to a separte file?
+    # TODO: These should be moved to a separate file?
 
     # Kill the process with the port open
     # Used only to kill stale ghc.
+    # FIXME: This doesn't work when lsof returns *multiple* processes.
     (pkgs.writeShellApplication {
       name = "fuckport";
       runtimeInputs = [ jc jq ];
@@ -62,6 +61,7 @@
     ];
   };
   nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.allowUnfree = true;
 
   security.pam.enableSudoTouchIdAuth = true;
