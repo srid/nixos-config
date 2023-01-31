@@ -72,7 +72,21 @@
               # })
             ];
           };
+          pce = self.lib.mkLinuxSystem {
+            imports = [
+              self.nixosModules.default # Defined in nixos/default.nix
+              ./systems/hetzner/ax101.nix
+              ./nixos/server/harden.nix
+              # ./nixos/hercules.nix
+              # I host a Nix cache
+              # (import ./nixos/cache-server.nix {
+              #   keyName = "cache-priv-key";
+              #   domain = "cache.srid.ca";
+              # })
+            ];
+          };
         };
+
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
           default = self.lib.mkMacosSystem {
