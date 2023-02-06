@@ -51,14 +51,14 @@
       experimental-features = nix-command flakes repl-flake
     '';
     # https://nixos.wiki/wiki/Distributed_build
-    distributedBuilds = true;
-    buildMachines = [
+    /* distributedBuilds = true;
+      buildMachines = [
       {
         hostName = (import ./hetzner/ax41.info.nix).publicIP;
         system = "x86_64-linux";
         maxJobs = 10;
       }
-    ];
+    ]; */
   };
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnsupportedSystem = true;
