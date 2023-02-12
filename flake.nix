@@ -56,22 +56,6 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          # My Linux development computer (on Hetzner)
-          pinch = self.lib.mkLinuxSystem {
-            imports = [
-              self.nixosModules.default # Defined in nixos/default.nix
-              ./systems/hetzner/ax41.nix
-              ./nixos/server/harden.nix
-              ./nixos/hercules.nix
-              # I share my Hetzner server with other people who need it.
-              self.nixosModules.guests
-              # I host a Nix cache
-              # (import ./nixos/cache-server.nix {
-              #   keyName = "cache-priv-key";
-              #   domain = "cache.srid.ca";
-              # })
-            ];
-          };
           pce = self.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
