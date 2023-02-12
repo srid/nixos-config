@@ -107,9 +107,7 @@
     nil
   ];
 
-  services.openssh.permitRootLogin = "prohibit-password";
   services.openssh.enable = true;
-  services.tailscale.enable = true;
 
   services.nginx.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 443 ];
