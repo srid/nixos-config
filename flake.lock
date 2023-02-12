@@ -526,11 +526,11 @@
     "nixos-vscode-server": {
       "flake": false,
       "locked": {
-        "lastModified": 1656601662,
-        "narHash": "sha256-oWYGxfZekFiFtakJ08Ic2rv1B77zgaGOrbIzuon8wig=",
+        "lastModified": 1676159144,
+        "narHash": "sha256-/TJD9hZ0+u7oSJkNxmAE/UlxndFkZCu1fC6re7I/DYY=",
         "owner": "msteen",
         "repo": "nixos-vscode-server",
-        "rev": "178c809a9dbd3f4df25ed7fbe23a52c35233502d",
+        "rev": "43ca5e6d4e45ae6933aaeb1850b4cdf62c25a11f",
         "type": "github"
       },
       "original": {
@@ -723,11 +723,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1675545634,
-        "narHash": "sha256-TbQeQcM5TA/wIho6xtzG+inUfiGzUXi8ewwttiQWYJE=",
+        "lastModified": 1676110339,
+        "narHash": "sha256-kOS/L8OOL2odpCOM11IevfHxcUeE0vnZUQ74EOiwXcs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0591d6b57bfeb55dfeec99a671843337bc2c3323",
+        "rev": "e5530aba13caff5a4f41713f1265b754dc2abfd8",
         "type": "github"
       },
       "original": {
