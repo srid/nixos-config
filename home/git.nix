@@ -20,7 +20,7 @@
     ignores = [ "*~" "*.swp" ];
     extraConfig = {
       init.defaultBranch = "master"; # https://srid.ca/unwoke
-      core.editor = "emacsclient";
+      core.editor = "nvim";
       #protocol.keybase.allow = "always";
       credential.helper = "store --file ~/.git-credentials";
       pull.rebase = "false";
