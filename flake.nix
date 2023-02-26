@@ -61,6 +61,7 @@
               self.nixosModules.default # Defined in nixos/default.nix
               ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix
+              ./nixos/docker.nix
               # ./nixos/hercules.nix
               # I host a Nix cache
               # (import ./nixos/cache-server.nix {
