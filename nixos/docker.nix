@@ -1,7 +1,7 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, flake, ... }: {
   virtualisation.docker.enable = true;
 
-  users.users.${config.people.myself} = {
+  users.users.${flake.config.people.myself} = {
     extraGroups = [ "docker" ];
   };
 }
