@@ -14,10 +14,6 @@ in
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {
-      guests.imports = [
-        # Temporarily sharing with Uday, until he gets better machine.
-        (mkHomeModule "uday" [ ])
-      ];
       myself = mkHomeModule config.people.myself [
         ../home/shellcommon.nix
       ];
