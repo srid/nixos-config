@@ -1,6 +1,8 @@
 # Support code for this repo. This module could be made its own external repo.
 { self, inputs, config, flake-parts-lib, lib, ... }:
 let
+  inherit (flake-parts-lib)
+    mkPerSystemOption;
   inherit (lib)
     types;
   specialArgsFor = rec {
@@ -18,17 +20,23 @@ let
 in
 {
   options = {
-    nixos-template = types.submodule {
-      options = {
-        primary-inputs = lib.mkOption {
-          type = types.listOf types.str;
-          default = [ "nixpkgs" "home-manager" "darwin" ];
-          description = ''
-            List of flake inputs to update when running `nix run .#update`.
-          '';
+    perSystem = mkPerSystemOption
+      ({ config, self', inputs', pkgs, system, ... }: {
+        options.nixos-template = lib.mkOption {
+          default = { };
+          type = types.submodule {
+            options = {
+              primary-inputs = lib.mkOption {
+                type = types.listOf types.str;
+                default = [ "nixpkgs" "home-manager" "darwin" "nixos-hardware" ];
+                description = ''
+                  List of flake inputs to update when running `nix run .#update`.
+                '';
+              };
+            };
+          };
         };
-      };
-    };
+      });
   };
   config = {
     flake = {
