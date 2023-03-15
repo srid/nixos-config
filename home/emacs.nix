@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, system, ... }:
+{ pkgs, lib, flake, system, ... }:
 
 {
   # on macOS, emacs can be launched via:
@@ -8,7 +8,7 @@
     enable = true;
     package =
       let
-        emacsPgtkWithXwidgets = inputs.emacs-overlay.packages.${system}.emacsPgtk.override {
+        emacsPgtkWithXwidgets = flake.inputs.emacs-overlay.packages.${system}.emacsPgtk.override {
           withXwidgets = true;
         };
         myEmacs = emacsPgtkWithXwidgets.overrideAttrs (oa: {

@@ -1,6 +1,6 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, flake, ... }: {
   imports = [
-    inputs.nixos-vscode-server.nixosModules.system
+    flake.inputs.nixos-vscode-server.nixosModules.system
   ];
   services.auto-fix-vscode-server.enable = true;
 

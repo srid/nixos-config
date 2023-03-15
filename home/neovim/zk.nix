@@ -1,16 +1,16 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, flake, system, ... }:
 {
   programs.neovim = {
     extraPackages = [
       pkgs.zk
     ];
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
         plugin =
           (pkgs.vimUtils.buildVimPlugin {
             name = "zk-nvim";
-            src = inputs.zk-nvim;
+            src = flake.inputs.zk-nvim;
           });
         type = "lua";
         config = ''

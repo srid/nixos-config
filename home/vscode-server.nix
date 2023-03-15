@@ -1,7 +1,7 @@
-{ pkgs, inputs, ... }:
+{ pkgs, flake, ... }:
 {
   imports = [
-    "${inputs.nixos-vscode-server}/modules/vscode-server/home.nix"
+    "${flake.inputs.nixos-vscode-server}/modules/vscode-server/home.nix"
   ];
 
   services.vscode-server.enable = true;

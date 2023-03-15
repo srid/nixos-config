@@ -1,9 +1,9 @@
 { keyName, domain }:
 
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, lib, config, flake, ... }:
 {
   imports = [
-    inputs.nix-serve-ng.nixosModules.default
+    flake.inputs.nix-serve-ng.nixosModules.default
   ];
 
   # Cache server

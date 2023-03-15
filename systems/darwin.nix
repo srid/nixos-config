@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, system, flake, rosettaPkgs, ... }:
+{ config, pkgs, lib, system, flake, rosettaPkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -11,8 +11,8 @@
     gh
     nixpkgs-fmt
     emanote
-    inputs.hci.packages.${system}.hercules-ci-cli
-    inputs.nixpkgs-match.packages.${system}.default
+    flake.inputs.hci.packages.${system}.hercules-ci-cli
+    flake.inputs.nixpkgs-match.packages.${system}.default
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
@@ -44,8 +44,8 @@
   ];
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
-    registry.nixpkgs.flake = inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
+    nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
+    registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     extraOptions = ''
       extra-platforms = aarch64-darwin x86_64-darwin
       experimental-features = nix-command flakes repl-flake

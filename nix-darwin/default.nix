@@ -1,4 +1,4 @@
-{ self, inputs, config, ... }:
+{ self, config, ... }:
 {
   # Configuration common to all macOS systems
   flake = {

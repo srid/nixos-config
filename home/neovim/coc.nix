@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, system, ... }:
 {
   programs.neovim = {
     coc = {

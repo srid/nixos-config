@@ -1,5 +1,19 @@
 # Support code for this repo. This module could be made its own external repo.
 { self, inputs, config, ... }:
+let
+  specialArgsFor = rec {
+    common = {
+      flake = { inherit inputs config; };
+    };
+    x86_64-linux = common // {
+      system = "x86_64-linux";
+    };
+    aarch64-darwin = common // {
+      system = "aarch64-darwin";
+      rosettaPkgs = import inputs.nixpkgs { system = "x86_64-darwin"; };
+    };
+  };
+in
 {
   flake = {
     # Linux home-manager module
@@ -9,11 +23,7 @@
         ({
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "x86_64-linux";
-            flake = { inherit config; };
-          };
+          home-manager.extraSpecialArgs = specialArgsFor.x86_64-linux;
         })
       ];
     };
@@ -24,11 +34,7 @@
         ({
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            inherit inputs;
-            system = "aarch64-darwin";
-            flake = { inherit config; };
-          };
+          home-manager.extraSpecialArgs = specialArgsFor.aarch64-darwin;
         })
       ];
     };
@@ -36,20 +42,13 @@
       mkLinuxSystem = mod: inputs.nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         # Arguments to pass to all modules.
-        specialArgs = {
-          inherit system inputs;
-          flake = { inherit config; };
-        };
+        specialArgs = specialArgsFor.${system};
         modules = [ mod ];
       };
 
       mkMacosSystem = mod: inputs.darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs system;
-          flake = { inherit config; };
-          rosettaPkgs = import inputs.nixpkgs { system = "x86_64-darwin"; };
-        };
+        specialArgs = specialArgsFor.${system};
         modules = [ mod ];
       };
     };

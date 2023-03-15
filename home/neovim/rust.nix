@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, flake, system, ... }:
 {
   programs.neovim = {
     coc.settings.languageserver.rust = {
@@ -16,7 +16,7 @@
         plugin =
           (pkgs.vimUtils.buildVimPlugin {
             name = "coc-rust-analyzer";
-            src = inputs.coc-rust-analyzer;
+            src = flake.inputs.coc-rust-analyzer;
           });
         type = "lua";
         config = ''
