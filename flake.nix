@@ -5,12 +5,13 @@
     # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:lnl7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-flake.url = "github:srid/nixos-flake";
 
     # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
@@ -35,11 +36,11 @@
     coc-rust-analyzer.flake = false;
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, darwin, ... }:
+  outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
-        ./lib.nix
+        inputs.nixos-flake.flakeModule
         ./users
         ./home
         ./nixos
@@ -47,7 +48,6 @@
       ];
 
       flake = {
-        flakeModule = ./lib.nix;
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
           pce = self.lib.mkLinuxSystem {

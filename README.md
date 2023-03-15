@@ -1,4 +1,4 @@
-This repository contains the Nix / NixOS configuration for all of my systems. 
+This repository contains the Nix / NixOS configuration for all of my systems. See [nixos-template](https://github.com/srid/nixos-template) for the common base.
 
 ## Setup
 
