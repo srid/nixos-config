@@ -1,6 +1,8 @@
 # Support code for this repo. This module could be made its own external repo.
-{ self, inputs, config, ... }:
+{ self, inputs, config, flake-parts-lib, lib, ... }:
 let
+  inherit (lib)
+    types;
   specialArgsFor = rec {
     common = {
       flake = { inherit inputs config; };
@@ -15,6 +17,19 @@ let
   };
 in
 {
+  options = {
+    nixos-template = types.submodule {
+      options = {
+        primary-inputs = lib.mkOption {
+          type = types.listOf types.str;
+          default = [ "nixpkgs" "home-manager" "darwin" ];
+          description = ''
+            List of flake inputs to update when running `nix run .#update`.
+          '';
+        };
+      };
+    };
+  };
   config = {
     flake = {
       # Linux home-manager module
@@ -59,7 +74,7 @@ in
       packages = {
         update =
           let
-            inputs = [ "nixpkgs" "home-manager" "darwin" ];
+            inputs = config.nixos-template.primary-inputs;
           in
           pkgs.writeShellApplication {
             name = "update-main-flake-inputs";
