@@ -55,41 +55,35 @@ in
   };
 
   perSystem = { system, config, pkgs, lib, ... }: {
-    mission-control.scripts = {
-      update-primary = {
-        description = ''
-          Update primary flake inputs
-        '';
-        exec =
-          let
-            inputs = [ "nixpkgs" "home-manager" "darwin" ];
-          in
-          ''
+    packages = {
+      update =
+        let
+          inputs = [ "nixpkgs" "home-manager" "darwin" ];
+        in
+        pkgs.writeShellApplication {
+          name = "update-main-flake-inputs";
+          text = ''
             nix flake lock ${lib.foldl' (acc: x: acc + " --update-input " + x) "" inputs}
           '';
-      };
+        };
 
-      activate = {
-        description = "Activate the current configuration for local system";
-        exec =
-          # TODO: Replace with deploy-rs or (new) nixinate
-          if system == "aarch64-darwin" then
-            ''
-              cd "$(${lib.getExe config.flake-root.package})"
-              ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
-                switch --flake .#default
-            ''
-          else
-            ''
-              ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
-            '';
-        category = "Main";
-      };
-
-      fmt = {
-        description = "Autoformat repo tree";
-        exec = "nix fmt";
-      };
+      activate =
+        pkgs.writeShellApplication {
+          name = "activate";
+          text =
+            # TODO: Replace with deploy-rs or (new) nixinate
+            if system == "aarch64-darwin" then
+              ''
+                set -x
+                ${self.darwinConfigurations.default.system}/sw/bin/darwin-rebuild \
+                  switch --flake .#default
+              ''
+            else
+              ''
+                set -x
+                ${lib.getExe pkgs.nixos-rebuild} --use-remote-sudo switch -j auto
+              '';
+        };
     };
   };
 }

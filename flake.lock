@@ -273,21 +273,6 @@
         "type": "github"
       }
     },
-    "flake-root_2": {
-      "locked": {
-        "lastModified": 1671378805,
-        "narHash": "sha256-yqGxyzMN2GuppwG3dTWD1oiKxi+jGYP7D1qUSc5vKhI=",
-        "owner": "srid",
-        "repo": "flake-root",
-        "rev": "dc7ba6166e478804a9da6881aa48c45d300075cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "flake-root",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -404,26 +389,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "mission-control": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1671493916,
-        "narHash": "sha256-7uvy37mfprmI3fbBw9E+baV1KZHR5zKfSNfPlSiliqo=",
-        "owner": "Platonic-Systems",
-        "repo": "mission-control",
-        "rev": "9acdaa469ebd3c2d6816f8a30c0c217a0da59fe2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Platonic-Systems",
-        "repo": "mission-control",
         "type": "github"
       }
     },
@@ -784,10 +749,8 @@
         "emacs-overlay": "emacs-overlay",
         "emanote": "emanote",
         "flake-parts": "flake-parts_2",
-        "flake-root": "flake-root_2",
         "hci": "hci",
         "home-manager": "home-manager",
-        "mission-control": "mission-control",
         "nix-serve-ng": "nix-serve-ng",
         "nixos-hardware": "nixos-hardware",
         "nixos-shell": "nixos-shell",

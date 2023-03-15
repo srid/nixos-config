@@ -16,11 +16,6 @@
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
-    # Devshell inputs
-    mission-control.url = "github:Platonic-Systems/mission-control";
-    mission-control.inputs.nixpkgs.follows = "nixpkgs";
-    flake-root.url = "github:srid/flake-root";
-
     # Software inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
@@ -44,8 +39,6 @@
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
-        inputs.flake-root.flakeModule
-        inputs.mission-control.flakeModule
         ./lib.nix
         ./users
         ./home
@@ -54,6 +47,7 @@
       ];
 
       flake = {
+        flakeModule = ./lib.nix;
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
           pce = self.lib.mkLinuxSystem {
@@ -85,12 +79,12 @@
       };
 
       perSystem = { pkgs, config, inputs', ... }: {
-        devShells.default = config.mission-control.installToDevShell (pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt
             inputs'.agenix.packages.agenix
           ];
-        });
+        };
         formatter = pkgs.nixpkgs-fmt;
       };
     };
