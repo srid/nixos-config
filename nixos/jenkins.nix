@@ -4,18 +4,37 @@
 # - Goto http://localhost:8080/
 #
 # TODO:
-# - JCasC Nixified for configuration
 # - Build agents (SSH slave)
 #    - macOS slave
 # - Github integration
 #   https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
 let
   port = 9091;
+  domain = "jenkins.srid.ca";
 in
 {
   services.jenkins = {
     enable = true;
     inherit port;
+    environment = {
+      CASC_JENKINS_CONFIG =
+        let
+          # Template:
+          # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
+          cfg = {
+            credentials = { };
+            jenkins = {
+              numExecutors = 6;
+              securityRealm = {
+                local = {
+                  allowsSignup = false;
+                };
+              };
+            };
+          };
+        in
+        builtins.toString (pkgs.writeText "jenkins.yml" (builtins.toJSON cfg));
+    };
     packages = with pkgs; [
       # Add packages used by Jenkins plugins here.
       nix
@@ -39,7 +58,7 @@ in
   nix.settings.trusted-users = [ "jenkins" ];
 
   services.nginx = {
-    virtualHosts."jenkins.srid.ca" = {
+    virtualHosts.${domain} = {
       forceSSL = true;
       enableACME = true;
       locations."/".extraConfig = ''

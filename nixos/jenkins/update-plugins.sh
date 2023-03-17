@@ -9,4 +9,5 @@ nix run github:Fuuzetsu/jenkinsPlugins2nix -- \
     -p git \
     -p workflow-aggregator \
     -p ssh-slaves  \
+    -p configuration-as-code \
      > ${PLUGINS_NIX}
