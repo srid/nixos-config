@@ -57,6 +57,7 @@
               ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix
               ./nixos/docker.nix
+              ./nixos/jenkins.nix
               # ./nixos/hercules.nix
               # I host a Nix cache
               # (import ./nixos/cache-server.nix {
