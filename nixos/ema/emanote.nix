@@ -1,6 +1,6 @@
-{ pkgs, system, flake, ... }:
+{ pkgs, flake, ... }:
 let
-  emanote = flake.inputs.emanote.outputs.defaultPackage.${system};
+  emanote = flake.inputs.emanote.outputs.defaultPackage.${pkgs.system};
 in
 {
   # Global service, rather than user service, as the latter doesn't work in NixOS-WSL

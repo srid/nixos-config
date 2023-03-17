@@ -1,4 +1,4 @@
-{ pkgs, system, ... }:
+{ pkgs, ... }:
 {
   programs.neovim = {
     coc.settings.languageserver.haskell = {

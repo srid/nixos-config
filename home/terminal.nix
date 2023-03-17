@@ -1,4 +1,4 @@
-{ pkgs, flake, system, ... }:
+{ pkgs, flake, ... }:
 {
   # Key packages required on nixos and macos
   home.packages = with pkgs; [
@@ -7,7 +7,7 @@
     ripgrep
     htop
 
-    flake.inputs.comma.packages.${system}.default
+    flake.inputs.comma.packages.${pkgs.system}.default
   ];
 
   programs = {

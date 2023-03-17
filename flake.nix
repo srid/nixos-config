@@ -68,7 +68,7 @@
 
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
-          default = self.lib.mkMacosSystem {
+          default = self.lib.mkARMMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./nixos/hercules.nix

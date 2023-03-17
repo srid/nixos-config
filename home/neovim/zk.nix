@@ -1,4 +1,4 @@
-{ pkgs, flake, system, ... }:
+{ pkgs, flake, ... }:
 {
   programs.neovim = {
     extraPackages = [

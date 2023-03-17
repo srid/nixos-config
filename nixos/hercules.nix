@@ -1,4 +1,4 @@
-{ pkgs, lib, flake, system, ... }:
+{ pkgs, flake, ... }:
 
 {
   # TODO: use agenix to manage
@@ -7,7 +7,7 @@
   services.hercules-ci-agent = {
     enable = true;
     # nixpkgs may not always have the latest HCI.
-    package = flake.inputs.hci.packages.${system}.hercules-ci-agent;
+    package = flake.inputs.hci.packages.${pkgs.system}.hercules-ci-agent;
   };
 
   # Regularly optimize nix store if using CI, because CI use can produce *lots*

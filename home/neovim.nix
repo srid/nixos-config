@@ -1,4 +1,4 @@
-{ pkgs, system, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./neovim/telescope.nix
