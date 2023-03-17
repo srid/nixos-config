@@ -1,8 +1,8 @@
 let
   keys =
-    (import ../users/config.nix).users.ssrid.sshKeys
+    (import ../users/config.nix).users.srid.sshKeys
     ++ [
-      (import ../systems/hetzner/ax41.info.nix).hostKeyPub
+      (import ../systems/hetzner/ax101.info.nix).hostKeyPub
     ];
 in
 # How I rekey on macOS:
