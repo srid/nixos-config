@@ -17,11 +17,12 @@ in
     ];
     inherit port;
     withCLI = true;
-    # nix run github:Fuuzetsu/jenkinsPlugins2nix -- -p github-api -p git -p workflow-aggregator -p ssh-slaves   > ./jenkins/plugins.nix
+    # ./jenkins/update-plugins.sh
     plugins = import ./jenkins/plugins.nix {
       inherit (pkgs) fetchurl stdenv;
     };
     extraJavaOptions = [
+      # Useful when the 'sh' step b0rks.
       "-Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true"
     ];
   };
