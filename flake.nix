@@ -51,7 +51,7 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          pce = self.lib.mkLinuxSystem {
+          pce = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
               ./systems/hetzner/ax101.nix
@@ -69,7 +69,7 @@
 
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
-          appreciate = self.lib.mkARMMacosSystem {
+          appreciate = self.nixos-flake.lib.mkARMMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./nixos/hercules.nix
