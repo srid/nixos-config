@@ -15,7 +15,6 @@ in
       bash # 'sh' step requires this
     ];
     inherit port;
-    withCLI = true;
     # ./jenkins/update-plugins.sh
     plugins = import ./jenkins/plugins.nix {
       inherit (pkgs) fetchurl stdenv;
