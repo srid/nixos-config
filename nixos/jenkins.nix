@@ -8,7 +8,6 @@ in
 {
   services.jenkins = {
     enable = true;
-    extraGroups = [ "wheel" ];
     packages = with pkgs; [
       # Add packages used by Jenkins plugins here.
       nix
