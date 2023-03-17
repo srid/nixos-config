@@ -79,7 +79,8 @@
         };
       };
 
-      perSystem = { pkgs, config, inputs', ... }: {
+      perSystem = { self', pkgs, config, inputs', ... }: {
+        packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt

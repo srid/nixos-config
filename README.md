@@ -14,7 +14,7 @@ To use this repository as base configuration for your new machine running:
 - Clone this repo anywhere
 - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
 - Edit `users/config.nix` to contain your users
-- Run `nix run .#activate`. That's it. Re-open your terminal.
+- Run `nix run`. That's it. Re-open your terminal.
 
 ### macOS
 
@@ -24,7 +24,7 @@ To use this repository as base configuration for your new machine running:
 - Clone this repo anywhere
 - Edit `flake.nix` to use your system hostname in the `darwinConfigurations` set
 - Edit `users/config.nix` to contain your users
-- Run `nix run .#activate`.[^cleanup] That's it. Re-open your terminal.
+- Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
 
