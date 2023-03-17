@@ -11,7 +11,7 @@ To use this repository as base configuration for your new machine running:
   - Digital Ocean: https://github.com/elitak/nixos-infect
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
-- Clone this repo at `/etc/nixos`
+- Clone this repo anywhere
 - Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
 - Edit `users/config.nix` to contain your users
 - Run `nix run .#activate`. That's it. Re-open your terminal.
