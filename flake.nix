@@ -12,6 +12,7 @@
     agenix.url = "github:ryantm/agenix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
+    # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
 
     # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
@@ -68,7 +69,7 @@
 
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
-          default = self.lib.mkARMMacosSystem {
+          appreciate = self.lib.mkARMMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./nixos/hercules.nix

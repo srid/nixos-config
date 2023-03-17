@@ -18,10 +18,11 @@ To use this repository as base configuration for your new machine running:
 
 ### macOS
 
-- [Install Nix](https://nixos.org/download.html#nix-install-macos) (must be multi-user)
+- [Install Nix](https://haskell.flake.page/nix)
 - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
     - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
 - Clone this repo anywhere
+- Edit `flake.nix` to use your system hostname in the `darwinConfigurations` set
 - Edit `users/config.nix` to contain your users
 - Run `nix run .#activate`.[^cleanup] That's it. Re-open your terminal.
 
