@@ -7,6 +7,7 @@ set -x
 nix run github:Fuuzetsu/jenkinsPlugins2nix -- \
     -p github-api \
     -p git \
+    -p github-branch-source \
     -p workflow-aggregator \
     -p ssh-slaves  \
     -p configuration-as-code \

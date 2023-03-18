@@ -178,8 +178,15 @@
     git-client = mkJenkinsPlugin {
       name = "git-client";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/git-client/4.1.0/git-client.hpi";
-        sha256 = "1c1904a7c4a6eae0dd90ef52d6a252ed12dacaa87c9b332b78be5facd0b5d43b";
+        url = "https://updates.jenkins-ci.org/download/plugins/git-client/4.2.0/git-client.hpi";
+        sha256 = "42c84f73e80fe47041d6ecd66b3f98d4f239fd460b7b727d14a78174bc8ae40e";
+        };
+      };
+    github = mkJenkinsPlugin {
+      name = "github";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/github/1.37.0/github.hpi";
+        sha256 = "9314887062bc880504dab25a3958844fe613cb9268d77f00906d11fe8c669d6d";
         };
       };
     github-api = mkJenkinsPlugin {
@@ -187,6 +194,13 @@
       src = fetchurl {
         url = "https://updates.jenkins-ci.org/download/plugins/github-api/1.303-417.ve35d9dd78549/github-api.hpi";
         sha256 = "3d241357ff65631c97b0abb130fe72c421b842923cd09efdfb363f12e910b17e";
+        };
+      };
+    github-branch-source = mkJenkinsPlugin {
+      name = "github-branch-source";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/github-branch-source/1701.v00cc8184df93/github-branch-source.hpi";
+        sha256 = "fb882a78b4fb3962a11f8175ab02d8bf05fe41321a9206dc7b7dd7a3f1d25123";
         };
       };
     instance-identity = mkJenkinsPlugin {
