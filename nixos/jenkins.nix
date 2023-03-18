@@ -22,7 +22,23 @@ in
           # Template:
           # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
           cfg = {
-            credentials = { };
+            credentials = {
+              system.domainCredentials = [
+                {
+                  credentials = [
+                    {
+                      githubApp = {
+                        appID = "307056"; # https://github.com/apps/jenkins-srid
+                        description = "Github App";
+                        id = "github-app";
+                        # FIXME! https://github.com/ryantm/agenix#builtinsreadfile-anti-pattern
+                        privateKey = builtins.readFile ./jenkins/github-app.pem;
+                      };
+                    }
+                  ];
+                }
+              ];
+            };
             jenkins = {
               numExecutors = 6;
               securityRealm = {
