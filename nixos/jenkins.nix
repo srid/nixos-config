@@ -4,10 +4,10 @@
 # - Goto http://localhost:8080/
 #
 # TODO:
-# - Build agents (SSH slave)
-#    - macOS slave
 # - Github integration
 #   https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
+# - Build agents (SSH slave)
+#    - macOS slave
 let
   port = 9091;
   domain = "jenkins.srid.ca";
@@ -37,9 +37,10 @@ in
     };
     packages = with pkgs; [
       # Add packages used by Jenkins plugins here.
-      nix
       git
       bash # 'sh' step requires this
+      nix
+      cachix
     ];
     # ./jenkins/update-plugins.sh
     plugins = import ./jenkins/plugins.nix {
