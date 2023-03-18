@@ -47,6 +47,7 @@ in
                 };
               };
             };
+            unclassified.location.url = "https://${domain}/";
           };
         in
         builtins.toString (pkgs.writeText "jenkins.yml" (builtins.toJSON cfg));
