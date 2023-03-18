@@ -4,10 +4,13 @@
 # - Goto http://localhost:8080/
 #
 # TODO:
-# - Github integration
-#   https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
+# - github-app.pem in agenix or something
+#   - CASC_JENKINS_CONFIG can be a folder of configs; put symlink to /run?
 # - Build agents (SSH slave)
 #    - macOS slave
+# - Expose build logs publicly (requiring no login)?
+# - Refactor
+#   - Make this a nixos module, with `plugins` option (requires IFD?)?
 let
   port = 9091;
   domain = "jenkins.srid.ca";
@@ -27,6 +30,8 @@ in
                 {
                   credentials = [
                     {
+                      # Instructions for creating this Github App are at:
+                      # https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
                       githubApp = {
                         appID = "307056"; # https://github.com/apps/jenkins-srid
                         description = "Github App";
