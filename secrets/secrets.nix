@@ -11,4 +11,5 @@ in
   "cache-priv-key.age".publicKeys = keys;
   "jenkins-github-app-privkey.age".publicKeys = keys;
   "srid-cachix-auth-token.age".publicKeys = keys;
+  "srid-docker-pass.age".publicKeys = keys;
 }
