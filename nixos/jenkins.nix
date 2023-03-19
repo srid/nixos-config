@@ -32,6 +32,8 @@ in
           # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/docs/features/secrets.adoc#additional-variable-substitution
           cascReadFile = path:
             "$" + "{readFile:" + path + "}";
+          cascJson = k: x:
+            "$" + "{json:" + k + ":" + x + "}";
           # Template:
           # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
           cfg = {
@@ -53,7 +55,7 @@ in
                       string = {
                         id = "cachix-auth-token";
                         description = "srid.cachix.org auth token";
-                        secret = cascReadFile config.age.secrets.srid-cachix-auth-token.path;
+                        secret = cascJson "value" (cascReadFile config.age.secrets.srid-cachix-auth-token.path);
                       };
                     }
                   ];
