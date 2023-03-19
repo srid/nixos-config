@@ -4,11 +4,10 @@
 # - Goto http://localhost:8080/
 #
 # TODO:
-# - github-app.pem in agenix or something
-#   - CASC_JENKINS_CONFIG can be a folder of configs; put symlink to /run?
+# - Secrets (eg: cachix)
 # - Build agents (SSH slave)
-#    - macOS slave
-# - Expose build logs publicly (requiring no login)?
+#    - NixOS slave: container separation?
+#    - macOS slave (later)
 # - Refactor
 #   - Make this a nixos module, with `plugins` option (requires IFD?)?
 let
@@ -19,6 +18,10 @@ in
   age.secrets.jenkins-github-app-privkey = {
     owner = "jenkins";
     file = ../secrets/jenkins-github-app-privkey.age;
+  };
+  age.secrets.srid-cachix-auth-token = {
+    owner = "jenkins";
+    file = ../secrets/srid-cachix-auth-token.age;
   };
   services.jenkins = {
     enable = true;
@@ -41,9 +44,16 @@ in
                       # https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
                       githubApp = {
                         appID = "307056"; # https://github.com/apps/jenkins-srid
-                        description = "Github App";
+                        description = "Github App - jenkins-srid";
                         id = "github-app";
                         privateKey = cascReadFile config.age.secrets.jenkins-github-app-privkey.path;
+                      };
+                    }
+                    {
+                      string = {
+                        id = "cachix-auth-token";
+                        description = "srid.cachix.org auth token";
+                        secret = cascReadFile config.age.secrets.srid-cachix-auth-token.path;
                       };
                     }
                   ];
