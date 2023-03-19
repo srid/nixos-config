@@ -1,17 +1,73 @@
 { pkgs, config, ... }:
 
-# HOWTO:
-# - Goto http://localhost:8080/
-#
 # TODO:
 # - Build agents (SSH slave)
 #    - NixOS slave: container separation?
 #    - macOS slave (later)
-# - Refactor
-#   - Make this a nixos module, with `plugins` option (requires IFD?)?
 let
+  # The port to run Jenkins on.
   port = 9091;
+  # The domain in which Jenkins is exposed to the outside world through nginx.
   domain = "jenkins.srid.ca";
+
+  # Config for configuration-as-code-plugin
+  #
+  # This enable us to configure Jenkins declaratively rather than fiddle with
+  # the UI manually.
+  # cf:
+  # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
+  cascConfig = {
+    credentials = {
+      system.domainCredentials = [
+        {
+          credentials = [
+            {
+              # Instructions for creating this Github App are at:
+              # https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
+              githubApp = {
+                appID = "307056"; # https://github.com/apps/jenkins-srid
+                description = "Github App - jenkins-srid";
+                id = "github-app";
+                privateKey = casc.readFile config.age.secrets.jenkins-github-app-privkey.path;
+              };
+            }
+            {
+              string = {
+                id = "cachix-auth-token";
+                description = "srid.cachix.org auth token";
+                secret = casc.json "value" (casc.readFile config.age.secrets.srid-cachix-auth-token.path);
+              };
+            }
+            {
+              string = {
+                id = "docker-pass";
+                description = "sridca Docker password";
+                secret = casc.json "value" (casc.readFile config.age.secrets.srid-docker-pass.path);
+              };
+            }
+          ];
+        }
+      ];
+    };
+    jenkins = {
+      numExecutors = 6;
+      securityRealm = {
+        local = {
+          allowsSignup = false;
+        };
+      };
+    };
+    unclassified.location.url = "https://${domain}/";
+  };
+
+  # Functions for working with configuration-as-code-plugin syntax.
+  # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/docs/features/secrets.adoc#additional-variable-substitution
+  casc = {
+    readFile = path:
+      "$" + "{readFile:" + path + "}";
+    json = k: x:
+      "$" + "{json:" + k + ":" + x + "}";
+  };
 in
 {
   imports = [
@@ -36,61 +92,7 @@ in
     inherit port;
     environment = {
       CASC_JENKINS_CONFIG =
-        let
-          # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/docs/features/secrets.adoc#additional-variable-substitution
-          cascReadFile = path:
-            "$" + "{readFile:" + path + "}";
-          cascJson = k: x:
-            "$" + "{json:" + k + ":" + x + "}";
-          # Template:
-          # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
-          cfg = {
-            credentials = {
-              system.domainCredentials = [
-                {
-                  credentials = [
-                    {
-                      # Instructions for creating this Github App are at:
-                      # https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
-                      githubApp = {
-                        appID = "307056"; # https://github.com/apps/jenkins-srid
-                        description = "Github App - jenkins-srid";
-                        id = "github-app";
-                        privateKey = cascReadFile config.age.secrets.jenkins-github-app-privkey.path;
-                      };
-                    }
-                    {
-                      string = {
-                        id = "cachix-auth-token";
-                        description = "srid.cachix.org auth token";
-                        secret = cascJson "value" (cascReadFile config.age.secrets.srid-cachix-auth-token.path);
-                      };
-                    }
-                    {
-                      string = {
-                        id = "docker-pass";
-                        description = "sridca Docker password";
-                        secret = cascJson "value" (cascReadFile config.age.secrets.srid-docker-pass.path);
-                      };
-                    }
-
-
-                  ];
-                }
-              ];
-            };
-            jenkins = {
-              numExecutors = 6;
-              securityRealm = {
-                local = {
-                  allowsSignup = false;
-                };
-              };
-            };
-            unclassified.location.url = "https://${domain}/";
-          };
-        in
-        builtins.toString (pkgs.writeText "jenkins.json" (builtins.toJSON cfg));
+        builtins.toString (pkgs.writeText "jenkins.json" (builtins.toJSON cascConfig));
     };
     packages = with pkgs; [
       # Add packages used by Jenkins plugins here.
