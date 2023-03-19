@@ -4,7 +4,6 @@
 # - Goto http://localhost:8080/
 #
 # TODO:
-# - Secrets (eg: cachix)
 # - Build agents (SSH slave)
 #    - NixOS slave: container separation?
 #    - macOS slave (later)
@@ -97,6 +96,8 @@ in
       # Add packages used by Jenkins plugins here.
       git
       bash # 'sh' step requires this
+      coreutils
+      which
       nix
       cachix
       docker
