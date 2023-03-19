@@ -9,4 +9,5 @@ in
   # agenix  -r -i =(op read 'op://Personal/id_rsa/private key')
 {
   "cache-priv-key.age".publicKeys = keys;
+  "jenkins-github-app-privkey.age".publicKeys = keys;
 }

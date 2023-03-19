@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 # HOWTO:
 # - Goto http://localhost:8080/
@@ -16,12 +16,19 @@ let
   domain = "jenkins.srid.ca";
 in
 {
+  age.secrets.jenkins-github-app-privkey = {
+    owner = "jenkins";
+    file = ../secrets/jenkins-github-app-privkey.age;
+  };
   services.jenkins = {
     enable = true;
     inherit port;
     environment = {
       CASC_JENKINS_CONFIG =
         let
+          # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/docs/features/secrets.adoc#additional-variable-substitution
+          cascReadFile = path:
+            "$" + "{readFile:" + path + "}";
           # Template:
           # https://github.com/mjuh/nixos-jenkins/blob/master/nixos/modules/services/continuous-integration/jenkins/jenkins.nix
           cfg = {
@@ -36,8 +43,7 @@ in
                         appID = "307056"; # https://github.com/apps/jenkins-srid
                         description = "Github App";
                         id = "github-app";
-                        # FIXME! https://github.com/ryantm/agenix#builtinsreadfile-anti-pattern
-                        privateKey = builtins.readFile ./jenkins/github-app.pem;
+                        privateKey = cascReadFile config.age.secrets.jenkins-github-app-privkey.path;
                       };
                     }
                   ];
@@ -55,7 +61,7 @@ in
             unclassified.location.url = "https://${domain}/";
           };
         in
-        builtins.toString (pkgs.writeText "jenkins.yml" (builtins.toJSON cfg));
+        builtins.toString (pkgs.writeText "jenkins.json" (builtins.toJSON cfg));
     };
     packages = with pkgs; [
       # Add packages used by Jenkins plugins here.
