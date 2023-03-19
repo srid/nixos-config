@@ -15,6 +15,11 @@ let
   domain = "jenkins.srid.ca";
 in
 {
+  imports = [
+    ./docker.nix
+  ];
+  services.jenkins.extraGroups = [ "docker" ];
+
   age.secrets.jenkins-github-app-privkey = {
     owner = "jenkins";
     file = ../secrets/jenkins-github-app-privkey.age;
@@ -22,6 +27,10 @@ in
   age.secrets.srid-cachix-auth-token = {
     owner = "jenkins";
     file = ../secrets/srid-cachix-auth-token.age;
+  };
+  age.secrets.srid-docker-pass = {
+    owner = "jenkins";
+    file = ../secrets/srid-docker-pass.age;
   };
   services.jenkins = {
     enable = true;
@@ -58,6 +67,15 @@ in
                         secret = cascJson "value" (cascReadFile config.age.secrets.srid-cachix-auth-token.path);
                       };
                     }
+                    {
+                      string = {
+                        id = "docker-pass";
+                        description = "sridca Docker password";
+                        secret = cascJson "value" (cascReadFile config.age.secrets.srid-docker-pass.path);
+                      };
+                    }
+
+
                   ];
                 }
               ];
@@ -81,6 +99,7 @@ in
       bash # 'sh' step requires this
       nix
       cachix
+      docker
     ];
     # ./jenkins/update-plugins.sh
     plugins = import ./jenkins/plugins.nix {
