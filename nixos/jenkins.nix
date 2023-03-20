@@ -22,6 +22,14 @@ let
         {
           credentials = [
             {
+              basicSSHUserPrivateKey = {
+                id = "ssh-privkey";
+                username = "jenkins";
+                privateKeySource.directEntry.privateKey =
+                  casc.readFile config.age.secrets.jenkins-ssh-privkey.path;
+              };
+            }
+            {
               # Instructions for creating this Github App are at:
               # https://github.com/jenkinsci/github-branch-source-plugin/blob/master/docs/github-app.adoc#configuration-as-code-plugin
               githubApp = {
@@ -56,6 +64,20 @@ let
           allowsSignup = false;
         };
       };
+      /*
+      nodes = [
+        {
+          permanent = {
+            name = "jenkins-agent-contaiiner";
+            remoteFS = "/var/lib/jenkins/";
+            launcher.ssh = {
+              host = "undefined";
+              port = 22;
+            };
+          };
+        }
+      ];
+      */
     };
     unclassified.location.url = "https://${domain}/";
   };
@@ -75,6 +97,10 @@ in
   ];
   services.jenkins.extraGroups = [ "docker" ];
 
+  age.secrets.jenkins-ssh-privkey = {
+    owner = "jenkins";
+    file = ../secrets/jenkins-ssh-privkey.age;
+  };
   age.secrets.jenkins-github-app-privkey = {
     owner = "jenkins";
     file = ../secrets/jenkins-github-app-privkey.age;
@@ -87,6 +113,7 @@ in
     owner = "jenkins";
     file = ../secrets/srid-docker-pass.age;
   };
+
   services.jenkins = {
     enable = true;
     inherit port;
