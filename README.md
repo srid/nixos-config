@@ -12,7 +12,7 @@ To use this repository as base configuration for your new machine running:
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname in the `nixosConfigurations` set
+- Edit `flake.nix` to use your system hostname as a key of the `nixosConfigurations` set
 - Edit `users/config.nix` to contain your users
 - Run `nix run`. That's it. Re-open your terminal.
 
@@ -22,7 +22,7 @@ To use this repository as base configuration for your new machine running:
 - Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
     - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname in the `darwinConfigurations` set
+- Edit `flake.nix` to use your system hostname as a key of the `darwinConfigurations` set
 - Edit `users/config.nix` to contain your users
 - Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
