@@ -448,11 +448,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1679940226,
-        "narHash": "sha256-/qMaJ2F62z1LxV+wD02/T1v9/+zn9DOtklgP7yqZRfA=",
+        "lastModified": 1679953801,
+        "narHash": "sha256-N/DvYtN8aXnrujpNypD1Pzu3B+Q1FLlAfUVGcsaqOdk=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "da4e19e255558d087a25038e1f6fc7163b9ad127",
+        "rev": "358f0f400ec6976209e87b2c2ec24ff52e6a93d8",
         "type": "github"
       },
       "original": {

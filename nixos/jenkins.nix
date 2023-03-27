@@ -20,6 +20,12 @@
       "configuration-as-code"
     ];
     plugins-file = "nixos/jenkins/plugins.nix";
+
+    features = {
+      cachix.enable = true;
+      docker.enable = true;
+      githubApp.enable = true;
+    };
   };
 
   services.nginx = {
