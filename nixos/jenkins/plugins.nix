@@ -45,8 +45,8 @@
     bootstrap5-api = mkJenkinsPlugin {
       name = "bootstrap5-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/bootstrap5-api/5.2.2-1/bootstrap5-api.hpi";
-        sha256 = "025f21e5ebfdde6197425f457a93ccb2ba3811c623c3c21d5f3234c4c79ff872";
+        url = "https://updates.jenkins-ci.org/download/plugins/bootstrap5-api/5.2.2-2/bootstrap5-api.hpi";
+        sha256 = "3fb41e44141bf4be1d26c50cdf39aca2a8953d36ee6c3e6f6af66cf5778e79d6";
         };
       };
     bouncycastle-api = mkJenkinsPlugin {
@@ -122,8 +122,8 @@
     configuration-as-code = mkJenkinsPlugin {
       name = "configuration-as-code";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/configuration-as-code/1569.vb_72405b_80249/configuration-as-code.hpi";
-        sha256 = "853fa7fcb19fa4d0b661ef8df953b2cf1c8e8727a8a51370dd92cd3b1ed9c56f";
+        url = "https://updates.jenkins-ci.org/download/plugins/configuration-as-code/1616.v11393eccf675/configuration-as-code.hpi";
+        sha256 = "0ee4caff28f4df2faea0b71698d93bfc0a0e3fc1a61226d4ada1c8a9af0fa1d6";
         };
       };
     credentials = mkJenkinsPlugin {
@@ -157,15 +157,15 @@
     echarts-api = mkJenkinsPlugin {
       name = "echarts-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/echarts-api/5.4.0-2/echarts-api.hpi";
-        sha256 = "a13dd94cc3a4ed4f3fcb61686ba1e15d9acab4293fcab4ad2e997e6bf16a357f";
+        url = "https://updates.jenkins-ci.org/download/plugins/echarts-api/5.4.0-3/echarts-api.hpi";
+        sha256 = "61d44c082bdccf9e2ea27feffa3d41c2988cdfa76d84a7dbf21e0e6c9445de24";
         };
       };
     font-awesome-api = mkJenkinsPlugin {
       name = "font-awesome-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/font-awesome-api/6.3.0-1/font-awesome-api.hpi";
-        sha256 = "0921f3834035368c728959a15d8e1bf26de85703f78e0c09a9e9dadd99c80dc7";
+        url = "https://updates.jenkins-ci.org/download/plugins/font-awesome-api/6.3.0-2/font-awesome-api.hpi";
+        sha256 = "e5bcec111b9612fd268786d208a06ffe6d755469cf5890593d2975337bf318db";
         };
       };
     git = mkJenkinsPlugin {
@@ -199,8 +199,8 @@
     github-branch-source = mkJenkinsPlugin {
       name = "github-branch-source";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/github-branch-source/1701.v00cc8184df93/github-branch-source.hpi";
-        sha256 = "fb882a78b4fb3962a11f8175ab02d8bf05fe41321a9206dc7b7dd7a3f1d25123";
+        url = "https://updates.jenkins-ci.org/download/plugins/github-branch-source/1703.vd5a_2b_29c6cdc/github-branch-source.hpi";
+        sha256 = "0600887314957ba66181aac02d16d40cd0e46cb49a4418a729da726b97ec70c7";
         };
       };
     instance-identity = mkJenkinsPlugin {
@@ -276,15 +276,15 @@
     job-dsl = mkJenkinsPlugin {
       name = "job-dsl";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/job-dsl/1.81.1/job-dsl.hpi";
-        sha256 = "3fdef67437ed807a66f47d844fc51b3291726b0c503d061c77a5e685f79a644c";
+        url = "https://updates.jenkins-ci.org/download/plugins/job-dsl/1.83/job-dsl.hpi";
+        sha256 = "662db3bddecfa5b9de71a55647da5da8c9c753cdbc5d0d53023412162016d3a7";
         };
       };
     jquery3-api = mkJenkinsPlugin {
       name = "jquery3-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/jquery3-api/3.6.3-1/jquery3-api.hpi";
-        sha256 = "4ecbb0dae33e23fa525e54d5ae9ed21ffaea87b4f5b403d7ba1c66f00b098bce";
+        url = "https://updates.jenkins-ci.org/download/plugins/jquery3-api/3.6.4-1/jquery3-api.hpi";
+        sha256 = "3228b5e3944e004d09a73c2b2b6548851ac725c1e955fb09c8ca577f83a490f8";
         };
       };
     jsch = mkJenkinsPlugin {
@@ -346,15 +346,15 @@
     mina-sshd-api-common = mkJenkinsPlugin {
       name = "mina-sshd-api-common";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/mina-sshd-api-common/2.9.2-50.va_0e1f42659a_a/mina-sshd-api-common.hpi";
-        sha256 = "a364ceb83947f6e94616b8b848a7527a04f7d0e4e2f1eaf0af41cc615906ca65";
+        url = "https://updates.jenkins-ci.org/download/plugins/mina-sshd-api-common/2.9.2-62.v199162f0a_2f8/mina-sshd-api-common.hpi";
+        sha256 = "e17fd867a7fde524920c9c6abfd6dcba787663e2f8ae395568ee32601cab750f";
         };
       };
     mina-sshd-api-core = mkJenkinsPlugin {
       name = "mina-sshd-api-core";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/mina-sshd-api-core/2.9.2-50.va_0e1f42659a_a/mina-sshd-api-core.hpi";
-        sha256 = "4499a7c8bb533e0f06b53860628923ddefc3ceeeffaee8031cde1487f295aba8";
+        url = "https://updates.jenkins-ci.org/download/plugins/mina-sshd-api-core/2.9.2-62.v199162f0a_2f8/mina-sshd-api-core.hpi";
+        sha256 = "3b9c97702654188cfa9f1347eae49c7ef88d965fd07daf41da4947c618868457";
         };
       };
     node-iterator-api = mkJenkinsPlugin {
@@ -409,22 +409,22 @@
     pipeline-model-api = mkJenkinsPlugin {
       name = "pipeline-model-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-api/2.2118.v31fd5b_9944b_5/pipeline-model-api.hpi";
-        sha256 = "ed6320e23aa3287f53ab1dedc4e56ad7c318479b6959b13c3b7f169ab2143377";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-api/2.2125.vddb_a_44a_d605e/pipeline-model-api.hpi";
+        sha256 = "b49344c29306471197f3559eb1d87cb7a85b6cb6129f0428f1441d867adcf2bf";
         };
       };
     pipeline-model-definition = mkJenkinsPlugin {
       name = "pipeline-model-definition";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-definition/2.2118.v31fd5b_9944b_5/pipeline-model-definition.hpi";
-        sha256 = "0bba171131e7c8af33db91302879b0ad026b55dd0213a7fc78160e3ea0621e4d";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-definition/2.2125.vddb_a_44a_d605e/pipeline-model-definition.hpi";
+        sha256 = "62f90a54af0821a724ecba00559ea62978de7ff66d24ee7fba67866c64598aa3";
         };
       };
     pipeline-model-extensions = mkJenkinsPlugin {
       name = "pipeline-model-extensions";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-extensions/2.2118.v31fd5b_9944b_5/pipeline-model-extensions.hpi";
-        sha256 = "44312fa6a8b93de1287be8f9269cb442a17518ec38b235751593674d4bbf07d8";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-model-extensions/2.2125.vddb_a_44a_d605e/pipeline-model-extensions.hpi";
+        sha256 = "67b3517f347daa9612a2625ff3381bfda2e7b40b9babaab084161aa60d512be6";
         };
       };
     pipeline-stage-step = mkJenkinsPlugin {
@@ -437,8 +437,8 @@
     pipeline-stage-tags-metadata = mkJenkinsPlugin {
       name = "pipeline-stage-tags-metadata";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-stage-tags-metadata/2.2118.v31fd5b_9944b_5/pipeline-stage-tags-metadata.hpi";
-        sha256 = "4cefb0f311c3b962c8b085bf54367d416121e7b011aede9af9ba34d9cc3eee53";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-stage-tags-metadata/2.2125.vddb_a_44a_d605e/pipeline-stage-tags-metadata.hpi";
+        sha256 = "fd2b092b8472f24bbbba3b95477782fd1aece3e6e64382461b94da1821d04350";
         };
       };
     plain-credentials = mkJenkinsPlugin {
@@ -451,8 +451,8 @@
     plugin-util-api = mkJenkinsPlugin {
       name = "plugin-util-api";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/plugin-util-api/3.1.0/plugin-util-api.hpi";
-        sha256 = "12097d17bdfb1cb44f8c3e6ccba82b14041bba83b34ef9c1f75ae33f00b62412";
+        url = "https://updates.jenkins-ci.org/download/plugins/plugin-util-api/3.2.0/plugin-util-api.hpi";
+        sha256 = "e32105a9c8017643a007cc4565a0ee8bff3a556bf93ec7ac0788c5116704e77f";
         };
       };
     project-inheritance = mkJenkinsPlugin {
@@ -626,8 +626,8 @@
     workflow-scm-step = mkJenkinsPlugin {
       name = "workflow-scm-step";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/workflow-scm-step/400.v6b_89a_1317c9a_/workflow-scm-step.hpi";
-        sha256 = "c0ed89da3228bfa5215b6a1724ca4a76dbbe2b939d8c4efdaa6a5a976a3145ed";
+        url = "https://updates.jenkins-ci.org/download/plugins/workflow-scm-step/408.v7d5b_135a_b_d49/workflow-scm-step.hpi";
+        sha256 = "f6f8892c954ca3e3a8eafcc86812b1ca3d226dd30793b19fc91f75e6557518b7";
         };
       };
     workflow-step-api = mkJenkinsPlugin {
