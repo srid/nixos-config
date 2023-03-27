@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, config, ... }:
 
 # TODO:
 # - Build agents (SSH slave)
@@ -6,15 +6,28 @@
 #    - macOS slave (later)
 {
   imports = [
-    flake.self.nixosModules.jenkins-master # Provided by https://github.com/juspay/jenkins-nix-ci
+    flake.inputs.jenkins-nix-ci.nixosModules.default # Provided by https://github.com/juspay/jenkins-nix-ci
   ];
 
+  jenkins-nix-ci = {
+    domain = "jenkins.srid.ca";
+    plugins = [
+      "github-api"
+      "git"
+      "github-branch-source"
+      "workflow-aggregator"
+      "ssh-slaves"
+      "configuration-as-code"
+    ];
+    plugins-file = "nixos/jenkins/plugins.nix";
+  };
+
   services.nginx = {
-    virtualHosts.${flake.config.jenkins-nix-ci.domain} = {
+    virtualHosts.${config.jenkins-nix-ci.domain} = {
       forceSSL = true;
       enableACME = true;
       locations."/".extraConfig = ''
-        proxy_pass http://localhost:${toString flake.config.jenkins-nix-ci.port};
+        proxy_pass http://localhost:${toString config.jenkins-nix-ci.port};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

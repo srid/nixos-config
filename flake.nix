@@ -15,8 +15,6 @@
     # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
 
     jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
-    flake-root.url = "github:srid/flake-root";
-    jenkinsPlugins2nix.url = "github:Fuuzetsu/jenkinsPlugins2nix";
 
     # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
@@ -46,26 +44,11 @@
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
         inputs.nixos-flake.flakeModule
-        inputs.jenkins-nix-ci.flakeModule
-        inputs.flake-root.flakeModule
         ./users
         ./home
         ./nixos
         ./nix-darwin
       ];
-
-      jenkins-nix-ci = {
-        domain = "jenkins.srid.ca";
-        plugins = [
-          "github-api"
-          "git"
-          "github-branch-source"
-          "workflow-aggregator"
-          "ssh-slaves"
-          "configuration-as-code"
-        ];
-        plugins-file = "nixos/jenkins/plugins.nix";
-      };
 
       flake = {
         # Configurations for Linux (NixOS) systems
@@ -108,6 +91,7 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
+            (self.nixosConfigurations."pce".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs)
           ];
         };
         formatter = pkgs.nixpkgs-fmt;
