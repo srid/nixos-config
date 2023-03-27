@@ -519,7 +519,6 @@
       },
       "original": {
         "owner": "juspay",
-        "ref": "flake-module",
         "repo": "jenkins-nix-ci",
         "type": "github"
       }

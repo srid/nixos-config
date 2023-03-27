@@ -12,10 +12,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci/flake-module";
+    # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
+
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     flake-root.url = "github:srid/flake-root";
     jenkinsPlugins2nix.url = "github:Fuuzetsu/jenkinsPlugins2nix";
-    # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
 
     # CI server
     hci.url = "github:hercules-ci/hercules-ci-agent";
