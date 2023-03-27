@@ -20,7 +20,6 @@ in
       default.imports = [
         self.nixosModules.home-manager
         self.nixosModules.myself
-        inputs.agenix.nixosModule
         ./caches
         ./self-ide.nix
         ./ssh-authorize.nix

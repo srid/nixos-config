@@ -1,7 +1,7 @@
 { pkgs, flake, ... }:
 
 {
-  # TODO: use agenix to manage
+  # TODO: use sops-nix to manage
   # - secrets
   # - ssh keys
   services.hercules-ci-agent = {

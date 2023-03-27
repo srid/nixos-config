@@ -9,7 +9,6 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.url = "github:ryantm/agenix";
     sops-nix.url = "github:Mic92/sops-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
@@ -109,7 +108,6 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-            inputs'.agenix.packages.agenix
           ];
         };
         formatter = pkgs.nixpkgs-fmt;

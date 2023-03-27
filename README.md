@@ -38,7 +38,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 - `nixos`: nixos modules for Linux
 - `nix-darwin`: nix-darwin modules for macOS
 - `users`: user information
-- `secrets`: agenix secrets (encrypted using ssh keys)
+- `secrets.yaml` (and `.sops.yaml`):  sops-nix secrets
 - `systems`: top-level configuration.nix('ish) for various systems
 
 ## Tips
