@@ -1,4 +1,4 @@
-{ keyName, domain }:
+{ domain }:
 
 { pkgs, lib, config, flake, ... }:
 {

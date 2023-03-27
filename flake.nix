@@ -9,14 +9,13 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    sops-nix.url = "github:Mic92/sops-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
     # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
 
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
-
     # CI server
+    sops-nix.url = "github:Mic92/sops-nix";
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
@@ -61,12 +60,6 @@
               ./nixos/server/harden.nix
               ./nixos/docker.nix
               ./nixos/jenkins.nix
-              # ./nixos/hercules.nix
-              # I host a Nix cache
-              # (import ./nixos/cache-server.nix {
-              #   keyName = "cache-priv-key";
-              #   domain = "cache.srid.ca";
-              # })
             ];
             sops.defaultSopsFile = ./secrets.yaml;
           };
