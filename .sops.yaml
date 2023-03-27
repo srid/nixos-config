@@ -1,0 +1,9 @@
+keys:
+  - &admin_srid age1zdwstn787x2a7hllksjk0zpdx3wdvy3fju8hk33a583jtv3d8q9qsvzfan
+  - &server_pce age1k2efalw74pce98ff2qa45hadkgew5q43gluefr7l4y4cqg6ul5ms8rlcep
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+      - age:
+        - *admin_srid
+        - *server_pce

@@ -10,8 +10,12 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
+    sops-nix.url = "github:Mic92/sops-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci/flake-module";
+    flake-root.url = "github:srid/flake-root";
+    jenkinsPlugins2nix.url = "github:Fuuzetsu/jenkinsPlugins2nix";
     # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
 
     # CI server
@@ -42,11 +46,26 @@
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
         inputs.nixos-flake.flakeModule
+        inputs.jenkins-nix-ci.flakeModule
+        inputs.flake-root.flakeModule
         ./users
         ./home
         ./nixos
         ./nix-darwin
       ];
+
+      jenkins-nix-ci = {
+        domain = "jenkins.srid.ca";
+        plugins = [
+          "github-api"
+          "git"
+          "github-branch-source"
+          "workflow-aggregator"
+          "ssh-slaves"
+          "configuration-as-code"
+        ];
+        plugins-file = "nixos/jenkins/plugins.nix";
+      };
 
       flake = {
         # Configurations for Linux (NixOS) systems
@@ -54,6 +73,8 @@
           pce = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
+              self.nixosModules.jenkins-master
+              inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix
               ./nixos/docker.nix
@@ -65,6 +86,7 @@
               #   domain = "cache.srid.ca";
               # })
             ];
+            sops.defaultSopsFile = ./secrets.yaml;
           };
         };
 
@@ -85,6 +107,8 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt
+            pkgs.sops
+            pkgs.ssh-to-age
             inputs'.agenix.packages.agenix
           ];
         };
