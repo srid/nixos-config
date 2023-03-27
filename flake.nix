@@ -73,7 +73,6 @@
           pce = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
-              self.nixosModules.jenkins-master
               inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax101.nix
               ./nixos/server/harden.nix

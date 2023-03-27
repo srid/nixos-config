@@ -5,6 +5,10 @@
 #    - NixOS slave: container separation?
 #    - macOS slave (later)
 {
+  imports = [
+    flake.self.nixosModules.jenkins-master # Provided by https://github.com/juspay/jenkins-nix-ci
+  ];
+
   services.nginx = {
     virtualHosts.${flake.config.jenkins-nix-ci.domain} = {
       forceSSL = true;
