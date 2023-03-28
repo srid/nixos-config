@@ -1,9 +1,5 @@
 { flake, config, ... }:
 
-# TODO:
-# - Build agents (SSH slave)
-#    - NixOS slave: container separation?
-#    - macOS slave (later)
 {
   imports = [
     flake.inputs.jenkins-nix-ci.nixosModules.default # Provided by https://github.com/juspay/jenkins-nix-ci
