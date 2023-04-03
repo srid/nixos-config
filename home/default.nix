@@ -11,6 +11,12 @@
           ./terminal.nix
           ./direnv.nix
         ];
+        programs.nushell = {
+          enable = true;
+          envFile.text = ''
+            let-env PATH = ($env.PATH | split row (char esep) | prepend $"/etc/profiles/per-user/($env.USER)/bin" | prepend '/run/current-system/sw/bin/')
+          '';
+        };
       };
       common-linux = {
         imports = [

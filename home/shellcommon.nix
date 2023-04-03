@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   # These aliases should work on all shells.
   shellAliasesSimple = {
@@ -20,4 +20,6 @@ in
 {
   programs.bash = { inherit shellAliases; };
   programs.zsh = { inherit shellAliases; };
+  programs.nushell.extraConfig =
+    lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "alias ${k} = ${v}") shellAliasesSimple);
 }
