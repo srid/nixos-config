@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    asciinema
     wget
     ripgrep
     sd
