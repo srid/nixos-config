@@ -1,10 +1,14 @@
 { pkgs, ... }:
 let
-  shellAliases = {
+  # These aliases should work on all shells.
+  shellAliasesSimple = {
     e = "nvim";
-    ee = "nvim \"$(fzf)\"";
     g = "${pkgs.git}/bin/git";
     lg = "lazygit";
+  };
+  # These aliases should work on bash/zsh.
+  shellAliases = shellAliasesSimple // {
+    ee = "nvim \"$(fzf)\"";
     ls = "${pkgs.exa}/bin/exa";
     l = "ls";
     ll = "ls -l";
