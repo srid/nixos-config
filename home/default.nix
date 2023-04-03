@@ -22,7 +22,7 @@
       common-darwin = {
         imports = [
           self.homeModules.common
-          ./emacs.nix
+          # ./emacs.nix
         ];
 
         programs.zsh.enable = true;
