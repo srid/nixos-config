@@ -11,9 +11,6 @@ let
     lt = "ls --tree";
     # Project tmux. 
     pux = "sh -c \"tmux -S $(pwd).tmux attach\"";
-
-    # TODO: Gotta specify ~/.todo/config in Nix
-    t = "${pkgs.todo-txt-cli}/bin/todo.sh";
   };
 in
 {
