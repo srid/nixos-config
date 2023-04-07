@@ -3,7 +3,7 @@ let
   shellAliases = {
     e = "nvim";
     ee = ''
-      fzf --bind "enter:execute(nvim {})"
+      nvim (fzf)
     '';
     g = "git";
     lg = "lazygit";
