@@ -23,8 +23,6 @@
     nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.flake = false;
-    comma.url = "github:nix-community/comma";
-    comma.inputs.nixpkgs.follows = "nixpkgs";
     emanote.url = "github:srid/emanote";
     nixpkgs-match.url = "github:srid/nixpkgs-match";
 

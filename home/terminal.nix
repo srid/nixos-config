@@ -7,8 +7,6 @@
     ripgrep
     htop
     nix-output-monitor
-
-    flake.inputs.comma.packages.${pkgs.system}.default
   ];
 
   programs = {
