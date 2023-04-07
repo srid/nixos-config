@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, flake, ... }:
+
 {
   # Key packages required on nixos and macos
   home.packages = with pkgs; [
@@ -7,6 +8,28 @@
     ripgrep
     htop
     nix-output-monitor
+
+    # Open zellij for current project.
+    # TODO: Use https://github.com/DeterminateSystems/nuenv via overlay.
+    (pkgs.writeShellApplication {
+      name = "zux";
+      runtimeInputs = [ pkgs.zellij pkgs.nushell ];
+      text =
+        let
+          script = pkgs.writeTextFile {
+            name = "zux.nu";
+            text = ''
+              let PRJ = (zoxide query -i)
+              let NAME = ($PRJ | parse $"($env.HOME)/{relPath}" | get relPath | first | str replace -a / ／)
+              echo $"Launching zellij for ($PRJ)"
+              cd $PRJ ; exec zellij attach -c $NAME
+            '';
+          };
+        in
+        ''
+          exec nu ${script}
+        '';
+    })
 
     # Open tmux for current project.
     (pkgs.writeShellApplication {
