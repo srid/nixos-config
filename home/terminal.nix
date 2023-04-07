@@ -45,6 +45,7 @@
       enable = true;
       settings = {
         theme = if pkgs.system == "aarch64-darwin" then "dracula" else "default";
+        # https://github.com/nix-community/home-manager/issues/3854
         themes.dracula = {
           fg = [ 248 248 242 ];
           bg = [ 40 42 54 ];
@@ -78,6 +79,8 @@
         # mouse_map = "left click ungrabbed no-op";
         # Ctrl+Shift+click to open URL.
         confirm_os_window_close = "0";
+        # https://github.com/kovidgoyal/kitty/issues/847
+        macos_option_as_alt = "yes";
       };
     };
 
