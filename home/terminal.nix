@@ -7,6 +7,15 @@
     ripgrep
     htop
     nix-output-monitor
+
+    # Open tmux for current project.
+    (pkgs.writeShellApplication {
+      name = "pux";
+      runtimeInputs = [ pkgs.tmux ];
+      text = ''
+        tmux -S "$(pwd)".tmux attach
+      '';
+    })
   ];
 
   programs = {
