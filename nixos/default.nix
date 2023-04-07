@@ -20,6 +20,7 @@ in
       default.imports = [
         self.nixosModules.home-manager
         self.nixosModules.myself
+        ./nix.nix
         ./caches
         ./self-ide.nix
         ./ssh-authorize.nix

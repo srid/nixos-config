@@ -25,6 +25,7 @@
     nixos-vscode-server.flake = false;
     emanote.url = "github:srid/emanote";
     nixpkgs-match.url = "github:srid/nixpkgs-match";
+    nuenv.url = "github:DeterminateSystems/nuenv";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";

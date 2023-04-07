@@ -10,25 +10,14 @@
     nix-output-monitor
 
     # Open zellij for current project.
-    # TODO: Use https://github.com/DeterminateSystems/nuenv via overlay.
-    (pkgs.writeShellApplication {
+    (pkgs.nuenv.mkScript {
       name = "zux";
-      runtimeInputs = [ pkgs.zellij pkgs.nushell ];
-      text =
-        let
-          script = pkgs.writeTextFile {
-            name = "zux.nu";
-            text = ''
-              let PRJ = (zoxide query -i)
-              let NAME = ($PRJ | parse $"($env.HOME)/{relPath}" | get relPath | first | str replace -a / ／)
-              echo $"Launching zellij for ($PRJ)"
-              cd $PRJ ; exec zellij attach -c $NAME
-            '';
-          };
-        in
-        ''
-          exec nu ${script}
-        '';
+      script = ''
+        let PRJ = (zoxide query -i)
+        let NAME = ($PRJ | parse $"($env.HOME)/{relPath}" | get relPath | first | str replace -a / ／)
+        echo $"Launching zellij for ($PRJ)"
+        cd $PRJ ; exec zellij attach -c $NAME
+      '';
     })
 
     # Open tmux for current project.

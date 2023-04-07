@@ -15,6 +15,7 @@
       default.imports = [
         self.darwinModules.home-manager
         self.darwinModules.myself
+        ../nixos/nix.nix
         ../nixos/caches
       ];
     };

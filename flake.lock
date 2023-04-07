@@ -310,6 +310,21 @@
         "type": "github"
       }
     },
+    "flake-utils_4": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "haskell-flake": {
       "locked": {
         "lastModified": 1668167720,
@@ -770,6 +785,20 @@
     },
     "nixpkgs_12": {
       "locked": {
+        "lastModified": 1679793451,
+        "narHash": "sha256-JafTtgMDATE8dZOImBhWMA9RCn9AP8FVOpN+9K/tTlg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0cd51a933d91078775b300cf0f29aa3495231aa2",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_13": {
+      "locked": {
         "lastModified": 1679734080,
         "narHash": "sha256-z846xfGLlon6t9lqUzlNtBOmsgQLQIZvR6Lt2dImk1M=",
         "owner": "NixOS",
@@ -911,6 +940,25 @@
         "type": "indirect"
       }
     },
+    "nuenv": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_12",
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1680273459,
+        "narHash": "sha256-HqD+HJUKvofCAFrQWj1D8m4g8aAWT6m37BK2mhCLX94=",
+        "owner": "DeterminateSystems",
+        "repo": "nuenv",
+        "rev": "f9db325b35fef96784588cc267fcd921c94ea0e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DeterminateSystems",
+        "repo": "nuenv",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -950,8 +998,31 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_10",
         "nixpkgs-match": "nixpkgs-match",
+        "nuenv": "nuenv",
         "sops-nix": "sops-nix_2",
         "zk-nvim": "zk-nvim"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nuenv",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1679970108,
+        "narHash": "sha256-8OfySbY1hhBzj0Iz90k4se6oFCGS3+ke31vkd0d4k/o=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "26ef1a2029239e204e51ab3402f8aae5aa1187ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -975,7 +1046,7 @@
     },
     "sops-nix_2": {
       "inputs": {
-        "nixpkgs": "nixpkgs_12",
+        "nixpkgs": "nixpkgs_13",
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
