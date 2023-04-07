@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }:
+{ pkgs, ... }:
 {
   # Key packages required on nixos and macos
   home.packages = with pkgs; [
@@ -13,7 +13,11 @@
       name = "pux";
       runtimeInputs = [ pkgs.tmux ];
       text = ''
-        tmux -S "$(pwd)".tmux attach
+        PRJ="''$(zoxide query -i)"
+        echo "Launching tmux for ''$PRJ"
+        set -x
+        cd "''$PRJ" && \
+          exec tmux -S "''$PRJ".tmux attach
       '';
     })
   ];
@@ -24,6 +28,10 @@
     zoxide.enable = true;
     fzf.enable = true;
     jq.enable = true;
+
+    zellij = {
+      enable = true;
+    };
 
     # Better terminal, with good rendering.
     kitty = {

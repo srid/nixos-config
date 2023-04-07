@@ -1,4 +1,4 @@
-{ self, inputs, config, ... }:
+{ self, ... }:
 {
   flake = {
     homeModules = {
