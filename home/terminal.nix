@@ -49,6 +49,7 @@
         # https://github.com/kovidgoyal/kitty/issues/371#issuecomment-1095268494
         # mouse_map = "left click ungrabbed no-op";
         # Ctrl+Shift+click to open URL.
+        confirm_os_window_close = "0";
       };
     };
 
