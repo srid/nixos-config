@@ -36,4 +36,19 @@
     # FIXME: This causes tmate to hang.
     # extraConfig = config.xdg.configFile."tmux/tmux.conf".text;
   };
+
+  home.packages = [
+    # Open tmux for current project.
+    (pkgs.writeShellApplication {
+      name = "pux";
+      runtimeInputs = [ pkgs.tmux ];
+      text = ''
+        PRJ="''$(zoxide query -i)"
+        echo "Launching tmux for ''$PRJ"
+        set -x
+        cd "''$PRJ" && \
+          exec tmux -S "''$PRJ".tmux attach
+      '';
+    })
+  ];
 }
