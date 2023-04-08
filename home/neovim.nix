@@ -42,6 +42,16 @@
       gruvbox
       papercolor-theme
 
+      # File browser
+      {
+        plugin = nvim-tree-lua;
+        type = "lua";
+        config = ''
+          require("nvim-tree").setup()
+        '';
+      }
+      nvim-web-devicons
+
       {
         plugin = lualine-nvim;
         type = "lua";
