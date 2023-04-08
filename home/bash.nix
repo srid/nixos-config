@@ -1,3 +1,3 @@
 {
   programs.bash.enable = true;
-};
+}
