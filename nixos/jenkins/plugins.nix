@@ -122,8 +122,8 @@
     configuration-as-code = mkJenkinsPlugin {
       name = "configuration-as-code";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/configuration-as-code/1616.v11393eccf675/configuration-as-code.hpi";
-        sha256 = "0ee4caff28f4df2faea0b71698d93bfc0a0e3fc1a61226d4ada1c8a9af0fa1d6";
+        url = "https://updates.jenkins-ci.org/download/plugins/configuration-as-code/1625.v27444588cc3d/configuration-as-code.hpi";
+        sha256 = "413a8a73982f2e87dc3a55110ab8d8f292f4b6b5508de21f4fbae6c7005f2ecf";
         };
       };
     credentials = mkJenkinsPlugin {
@@ -381,15 +381,29 @@
     pipeline-build-step = mkJenkinsPlugin {
       name = "pipeline-build-step";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-build-step/487.va_823138eee8b_/pipeline-build-step.hpi";
-        sha256 = "01db32de84bd43857590788a9cca2f60578f5c67fdb3816eab46b3eda7594774";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-build-step/488.v8993df156e8d/pipeline-build-step.hpi";
+        sha256 = "e546e1443229a93cd9adcf05033f499b12cda0b29156974fb5e5e98a5f57e795";
+        };
+      };
+    pipeline-graph-analysis = mkJenkinsPlugin {
+      name = "pipeline-graph-analysis";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-graph-analysis/202.va_d268e64deb_3/pipeline-graph-analysis.hpi";
+        sha256 = "3ea34acec187c036d5e688192dcd75e70fc1c6b1018969c1c04ae7f1e6bb3410";
+        };
+      };
+    pipeline-graph-view = mkJenkinsPlugin {
+      name = "pipeline-graph-view";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-graph-view/183.v9e27732d970f/pipeline-graph-view.hpi";
+        sha256 = "b59c385a5ae48db674e6d060f85da453b1141e98f8ca81b017bdd8ca6f1cf67f";
         };
       };
     pipeline-groovy-lib = mkJenkinsPlugin {
       name = "pipeline-groovy-lib";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-groovy-lib/629.vb_5627b_ee2104/pipeline-groovy-lib.hpi";
-        sha256 = "f8a10d0784b6548678ba6758effc1267df0fa62fa86191648355c303cd042746";
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-groovy-lib/656.va_a_ceeb_6ffb_f7/pipeline-groovy-lib.hpi";
+        sha256 = "80648aa71176b01695886288a89c56487ad9195ea678a4cdd033c69b7147e026";
         };
       };
     pipeline-input-step = mkJenkinsPlugin {
@@ -439,6 +453,13 @@
       src = fetchurl {
         url = "https://updates.jenkins-ci.org/download/plugins/pipeline-stage-tags-metadata/2.2125.vddb_a_44a_d605e/pipeline-stage-tags-metadata.hpi";
         sha256 = "fd2b092b8472f24bbbba3b95477782fd1aece3e6e64382461b94da1821d04350";
+        };
+      };
+    pipeline-utility-steps = mkJenkinsPlugin {
+      name = "pipeline-utility-steps";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/pipeline-utility-steps/2.15.1/pipeline-utility-steps.hpi";
+        sha256 = "cf415612a7fe9f6f3155a50b751ebf71bfa1a72c0a7b889105bb4c2df059c260";
         };
       };
     plain-credentials = mkJenkinsPlugin {
@@ -598,22 +619,22 @@
     workflow-cps = mkJenkinsPlugin {
       name = "workflow-cps";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/workflow-cps/3641.vf58904a_b_b_5d8/workflow-cps.hpi";
-        sha256 = "e2d62c1dd6d2d51b3cf1d3bff9901052dfca3f0f0da5b4df670cc7c7b4379771";
+        url = "https://updates.jenkins-ci.org/download/plugins/workflow-cps/3653.v07ea_433c90b_4/workflow-cps.hpi";
+        sha256 = "7e9d151fd51747f2727274044113dd939255e136eb2c3f3d26d9243ebe153f64";
         };
       };
     workflow-durable-task-step = mkJenkinsPlugin {
       name = "workflow-durable-task-step";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/workflow-durable-task-step/1234.v019404b_3832a/workflow-durable-task-step.hpi";
-        sha256 = "d3a1eebc10aece2a9c5cafd3c4c457d641dc201cf92b86ef80ae0e151ea11507";
+        url = "https://updates.jenkins-ci.org/download/plugins/workflow-durable-task-step/1241.v1a_63e465f943/workflow-durable-task-step.hpi";
+        sha256 = "e59161dc69c6189ffb6dd2c5a0e8603a7b1861d7a7b09ed1c2b5e025a9fa73d5";
         };
       };
     workflow-job = mkJenkinsPlugin {
       name = "workflow-job";
       src = fetchurl {
-        url = "https://updates.jenkins-ci.org/download/plugins/workflow-job/1284.v2fe8ed4573d4/workflow-job.hpi";
-        sha256 = "c1eda23a02c4599b209901cd8340bc705e472432a73337b8d6e01b329ca3f3f2";
+        url = "https://updates.jenkins-ci.org/download/plugins/workflow-job/1289.vd1c337fd5354/workflow-job.hpi";
+        sha256 = "5bd44193b84159d118ee8aa0fd163d8d4a7aa062f113f9043a2a5c0e9938c617";
         };
       };
     workflow-multibranch = mkJenkinsPlugin {

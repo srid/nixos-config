@@ -14,6 +14,8 @@
       "workflow-aggregator"
       "ssh-slaves"
       "configuration-as-code"
+      "pipeline-graph-view"
+      "pipeline-utility-steps"
     ];
     plugins-file = "nixos/jenkins/plugins.nix";
 
@@ -21,6 +23,7 @@
       cachix.enable = true;
       docker.enable = true;
       githubApp.enable = true;
+      nix.enable = true;
     };
   };
 
