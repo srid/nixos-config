@@ -23,7 +23,7 @@
   };
 
   home.packages = [
-    # Open zellij for current project.
+    # Open zellij by prompting for CWD
     (pkgs.nuenv.mkScript {
       name = "zux";
       script = ''
