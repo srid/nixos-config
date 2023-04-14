@@ -8,6 +8,8 @@
     enable = true;
     package =
       let
+        # Pgtk won't be available until emacs 29; so we must use the nightly overlay
+        # cf. https://github.com/NixOS/nixpkgs/issues/192692#issuecomment-1256872679
         emacsPgtkWithXwidgets = flake.inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.override {
           withXwidgets = true;
         };
@@ -20,4 +22,9 @@
         epkgs.vterm
       ]);
   };
+
+  home.packages = with pkgs; [
+    # For org-roam
+    graphviz
+  ];
 }
