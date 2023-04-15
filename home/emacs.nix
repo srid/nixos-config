@@ -26,5 +26,8 @@
   home.packages = with pkgs; [
     # For org-roam
     graphviz
+    # Doom prerequisites
+    fd
+    ripgrep
   ];
 }
