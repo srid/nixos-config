@@ -29,6 +29,7 @@
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
 
     # Vim & its plugins (not in nixpkgs)
     zk-nvim.url = "github:mickael-menu/zk-nvim";
