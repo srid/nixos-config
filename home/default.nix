@@ -11,7 +11,7 @@
           ./terminal.nix
           ./direnv.nix
           ./zellij.nix
-          ./nushell.nix
+          # ./nushell.nix (intergrates extremely poorly with the system)
         ];
       };
       common-linux = {
