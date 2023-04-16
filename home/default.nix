@@ -12,6 +12,7 @@
           ./direnv.nix
           ./zellij.nix
           # ./nushell.nix (intergrates extremely poorly with the system)
+          ./powershell.nix
         ];
       };
       common-linux = {
