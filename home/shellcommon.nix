@@ -1,13 +1,10 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   shellAliases = {
     e = "nvim";
-    ee = ''
-      nvim (fzf)
-    '';
     g = "git";
     lg = "lazygit";
-    # TODO: Add 'l' alias, after https://www.nushell.sh/blog/2023-04-04-nushell_0_78.html#aliases-now-can-shadow
+    l = lib.getExe pkgs.exa;
   };
 in
 {

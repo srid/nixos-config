@@ -111,4 +111,14 @@
     '';
   };
 
+  home.packages = [
+    (pkgs.writeShellApplication {
+      name = "ee";
+      text = ''
+        set -x
+        exec nvim "$(fzf)"
+      '';
+    })
+  ];
+
 }
