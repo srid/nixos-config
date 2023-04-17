@@ -7,6 +7,14 @@
 
   jenkins-nix-ci = {
     domain = "jenkins.srid.ca";
+    nodes.containerSlaves = {
+      externalInterface = "enp7s0";
+      hostAddress = "85.10.192.137";
+      containers = {
+        jenkins-slave-nixos-1.localAddress = "192.168.100.11";
+        jenkins-slave-nixos-2.localAddress = "192.168.100.12";
+      };
+    };
     plugins = [
       "github-api"
       "git"
