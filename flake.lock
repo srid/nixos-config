@@ -717,16 +717,15 @@
         "jenkinsPlugins2nix": "jenkinsPlugins2nix"
       },
       "locked": {
-        "lastModified": 1681820719,
-        "narHash": "sha256-BDsBjlnE6w9fPkinxsmMuEbHfRn7zCgL3/QJHtlqt6s=",
+        "lastModified": 1681842757,
+        "narHash": "sha256-rkHR0qssTMYoq3gOpmnHFwfNXRYvi5zSlrKlGJHZdD4=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "938e5971ffc2ebc645fd8bf50f1f8bec11177d90",
+        "rev": "09ddc19982d5506f5836cb15d2c29da0b63a2b8e",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "ssh-slave",
         "repo": "jenkins-nix-ci",
         "type": "github"
       }

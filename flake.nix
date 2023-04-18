@@ -11,11 +11,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
-    # nixos-flake.url = "path:/Users/srid/code/nixos-flake";
+    # nixos-flake.url = "path:/home/srid/code/nixos-flake";
 
     # CI server
     sops-nix.url = "github:Mic92/sops-nix";
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci/ssh-slave";
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
@@ -84,7 +84,7 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-            (self.nixosConfigurations."pce".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs)
+            self.nixosConfigurations."pce".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins
           ];
         };
         formatter = pkgs.nixpkgs-fmt;
