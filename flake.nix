@@ -15,7 +15,7 @@
 
     # CI server
     sops-nix.url = "github:Mic92/sops-nix";
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci/ssh-slave";
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
