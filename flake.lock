@@ -94,6 +94,22 @@
         "type": "github"
       }
     },
+    "devour-flake_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682365390,
+        "narHash": "sha256-2YxaoF3toOwdGZ9OIjsEy/BAX4Ws/xnp/D4D41Tltz8=",
+        "owner": "srid",
+        "repo": "devour-flake",
+        "rev": "fcf0a1eeec775f1b9c3335bd8d69f4acafec8a87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "devour-flake",
+        "type": "github"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -747,15 +763,16 @@
     "jenkins-nix-ci": {
       "inputs": {
         "cachix": "cachix",
+        "devour-flake": "devour-flake_2",
         "flake-outputs": "flake-outputs",
         "jenkinsPlugins2nix": "jenkinsPlugins2nix"
       },
       "locked": {
-        "lastModified": 1681999760,
-        "narHash": "sha256-xhWyw8sRQr+WJwn5bP6sAz1QPN8deqIMQ7DttYNcWPE=",
+        "lastModified": 1682365893,
+        "narHash": "sha256-HRb4OJwgz9idJXN3hMJB1Ch26cv8+EvZ3td9a03aQ6Y=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "e8755e4b78bfb967e49235649b8f0f8238f527ff",
+        "rev": "0142ce53b797e12c1c2dd1775f8f1c267ac42be1",
         "type": "github"
       },
       "original": {
