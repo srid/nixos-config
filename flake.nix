@@ -54,6 +54,12 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
+          actual = self.nixos-flake.lib.mkLinuxSystem {
+            imports = [
+              self.nixosModules.default # Defined in nixos/default.nix
+            ];
+            services.openssh.enable = true;
+          };
           pce = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
