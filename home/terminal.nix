@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }:
+{ pkgs, ... }:
 
 {
   # Key packages required on nixos and macos
@@ -8,6 +8,7 @@
     ripgrep
     htop
     nix-output-monitor
+    devour-flake
   ];
 
   programs = {
