@@ -11,6 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
+    disko.url = github:nix-community/disko;
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     # nixos-flake.url = "path:/home/srid/code/nixos-flake";
 
     # CI server
@@ -54,12 +56,117 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          actual = self.nixos-flake.lib.mkLinuxSystem {
+          actual = self.nixos-flake.lib.mkLinuxSystem ({ modulesPath, ... }: {
             imports = [
+              (modulesPath + "/installer/scan/not-detected.nix")
               self.nixosModules.default # Defined in nixos/default.nix
+              inputs.disko.nixosModules.disko
             ];
             services.openssh.enable = true;
-          };
+            boot.loader.grub = {
+              devices = [ "/dev/nvme0n1" ]; # "/dev/nvme1n1" ];
+              efiSupport = true;
+              efiInstallAsRemovable = true;
+            };
+            boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" ];
+            nixpkgs.hostPlatform = "x86_64-linux";
+            # powerManagement.cpuFreqGovernor = "ondemand";
+            hardware.cpu.intel.updateMicrocode = true;
+            hardware.enableRedistributableFirmware = true;
+
+            networking.hostName = "actual";
+            networking.useDHCP = false;
+            networking.interfaces."eth0".ipv4.addresses = [
+              {
+                address = "167.235.115.189"; # your IPv4 here
+                prefixLength = 24;
+              }
+            ];
+            networking.interfaces."eth0".ipv6.addresses = [
+              {
+                address = "2a01:4f8:2200:17c6::1"; # Your IPv6 here
+                prefixLength = 64;
+              }
+            ];
+            networking.defaultGateway = "167.235.115.129";
+            networking.nameservers = [ "8.8.8.8" ];
+            disko.devices =
+              let disks = [ "/dev/nvme0n1" ]; # "/dev/nvme1n1" ];
+              in {
+                disk = inputs.nixpkgs.lib.genAttrs disks (dev: {
+                  device = dev;
+                  type = "disk";
+                  content = {
+                    type = "table";
+                    format = "gpt";
+                    partitions = [
+                      {
+                        name = "boot";
+                        # type = "partition";
+                        start = "0";
+                        end = "1M";
+                        part-type = "primary";
+                        flags = [ "bios_grub" ];
+                      }
+                      {
+                        # type = "partition";
+                        name = "ESP";
+                        start = "1MiB";
+                        end = "100MiB";
+                        bootable = true;
+                        content = {
+                          type = "mdraid";
+                          name = "boot";
+                        };
+                      }
+                      {
+                        name = "root";
+                        # type = "partition";
+                        start = "100MiB";
+                        end = "100%";
+                        part-type = "primary";
+                        bootable = true;
+                        content = {
+                          type = "lvm_pv";
+                          vg = "pool";
+                        };
+                      }
+                    ];
+                  };
+                });
+                mdadm = {
+                  boot = {
+                    type = "mdadm";
+                    level = 1;
+                    metadata = "1.0";
+                    content = {
+                      type = "filesystem";
+                      format = "vfat";
+                      mountpoint = "/boot";
+                    };
+                  };
+                };
+                lvm_vg = {
+                  pool = {
+                    type = "lvm_vg";
+                    lvs = {
+                      root = {
+                        # type = "lvm_lv";
+                        size = "100%FREE";
+                        content = {
+                          type = "filesystem";
+                          format = "ext4";
+                          mountpoint = "/";
+                          mountOptions = [
+                            "defaults"
+                          ];
+                        };
+                      };
+                    };
+                  };
+                };
+              };
+          });
           pce = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
