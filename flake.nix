@@ -62,6 +62,7 @@
               self.nixosModules.default # Defined in nixos/default.nix
               inputs.disko.nixosModules.disko
             ];
+            system.stateVersion = "22.11";
             services.openssh.enable = true;
             boot.loader.grub = {
               devices = [ "/dev/nvme0n1" "/dev/nvme1n1" ];

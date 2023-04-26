@@ -94,12 +94,6 @@
     hostName = "pce";
   };
 
-  nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes repl-flake
-    '';
-  };
-
   services.netdata.enable = true;
   services.tailscale.enable = true;
 
