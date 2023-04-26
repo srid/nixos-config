@@ -114,7 +114,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
-  security.sudo.wheelNeedsPassword = false;
 
   system.stateVersion = "20.03";
 }

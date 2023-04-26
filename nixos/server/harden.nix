@@ -4,6 +4,7 @@
   networking.firewall.enable = true;
 
   security.sudo.execWheelOnly = true;
+  security.sudo.wheelNeedsPassword = false;
 
   security.auditd.enable = true;
   security.audit.enable = true;
