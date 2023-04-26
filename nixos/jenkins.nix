@@ -8,8 +8,8 @@
   jenkins-nix-ci = {
     domain = "jenkins.srid.ca";
     nodes.containerSlaves = {
-      externalInterface = "enp7s0";
-      hostAddress = "85.10.192.137";
+      externalInterface = "eth0";
+      hostAddress = "167.235.115.189";
       containers = {
         jenkins-slave-nixos-1.localAddress = "192.168.100.11";
         jenkins-slave-nixos-2.localAddress = "192.168.100.12";
