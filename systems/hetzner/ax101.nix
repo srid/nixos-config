@@ -94,18 +94,11 @@
     hostName = "pce";
   };
 
-  nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes repl-flake
-    '';
-  };
-
   services.netdata.enable = true;
   services.tailscale.enable = true;
 
   environment.systemPackages = with pkgs; [
     lsof
-    nil
     nixpkgs-fmt
   ];
 
@@ -121,7 +114,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
   };
-  security.sudo.wheelNeedsPassword = false;
 
   system.stateVersion = "20.03";
 }

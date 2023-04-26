@@ -11,6 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
+    disko.url = github:nix-community/disko;
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     # nixos-flake.url = "path:/home/srid/code/nixos-flake";
 
     # CI server
@@ -54,11 +56,11 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          pce = self.nixos-flake.lib.mkLinuxSystem {
+          actual = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
               inputs.sops-nix.nixosModules.sops
-              ./systems/hetzner/ax101.nix
+              ./systems/hetzner/ex101.nix
               ./nixos/server/harden.nix
               ./nixos/docker.nix
               ./nixos/jenkins.nix
@@ -86,8 +88,7 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-
-          ] ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."pce".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
+          ] ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."actual".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
         };
         formatter = pkgs.nixpkgs-fmt;
       };

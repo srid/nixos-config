@@ -8,7 +8,6 @@
     sd
     pandoc
     nodejs # Required for VSCode's webhint extension
-    nil
     gh
     nixpkgs-fmt
     emanote
@@ -44,6 +43,7 @@
 
   ];
 
+  # TODO: Use nix.nix?
   nix = {
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
