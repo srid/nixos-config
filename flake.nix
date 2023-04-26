@@ -64,7 +64,7 @@
             ];
             services.openssh.enable = true;
             boot.loader.grub = {
-              devices = [ "/dev/nvme0n1" ]; # "/dev/nvme1n1" ];
+              devices = [ "/dev/nvme0n1" "/dev/nvme1n1" ];
               efiSupport = true;
               efiInstallAsRemovable = true;
             };
@@ -90,9 +90,8 @@
             ];
             networking.defaultGateway = "167.235.115.129";
             networking.nameservers = [ "8.8.8.8" ];
-            disko.devices = import ./disko/working.nix {
+            disko.devices = import ./disko/two-raids-on-two-disks.nix {
               lib = inputs.nixpkgs.lib;
-              disks = [ "/dev/nvme0n1" ]; # "/dev/nvme1n1" ];
             };
           });
           pce = self.nixos-flake.lib.mkLinuxSystem {
