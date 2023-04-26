@@ -32,7 +32,7 @@
   ];
   networking.defaultGateway = "167.235.115.129";
   networking.nameservers = [ "8.8.8.8" ];
-  disko.devices = import ../../disko/two-raids-on-two-disks.nix {
+  disko.devices = import ./disko/two-raids-on-two-disks.nix {
     inherit lib;
   };
 }
