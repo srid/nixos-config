@@ -9,6 +9,8 @@
     htop
     nix-output-monitor
     devour-flake
+    nil
+    nixpkgs-fmt
   ];
 
   programs = {

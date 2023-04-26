@@ -8,7 +8,6 @@
     sd
     pandoc
     nodejs # Required for VSCode's webhint extension
-    nil
     gh
     nixpkgs-fmt
     emanote

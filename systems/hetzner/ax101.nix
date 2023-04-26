@@ -99,7 +99,6 @@
 
   environment.systemPackages = with pkgs; [
     lsof
-    nil
     nixpkgs-fmt
   ];
 
