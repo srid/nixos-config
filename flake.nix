@@ -59,17 +59,11 @@
           actual = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
-              ./systems/hetzner/ex101.nix
-            ];
-          };
-          pce = self.nixos-flake.lib.mkLinuxSystem {
-            imports = [
-              self.nixosModules.default # Defined in nixos/default.nix
               inputs.sops-nix.nixosModules.sops
-              ./systems/hetzner/ax101.nix
+              ./systems/hetzner/ex101.nix
               ./nixos/server/harden.nix
               ./nixos/docker.nix
-              ./nixos/jenkins.nix
+              # ./nixos/jenkins.nix
             ];
             sops.defaultSopsFile = ./secrets.yaml;
           };
