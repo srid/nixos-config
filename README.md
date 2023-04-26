@@ -7,7 +7,7 @@ To use this repository as base configuration for your new machine running:
 ### NixOS Linux
 
 - Install NixOS
-  - Hetzner dedicated from Linux Rescue system: https://github.com/serokell/nixos-install-scripts/pull/1#pullrequestreview-746593205
+  - Hetzner dedicated from Linux Rescue system: https://github.com/numtide/nixos-anywhere (example: #35)
   - Digital Ocean: https://github.com/elitak/nixos-infect
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
