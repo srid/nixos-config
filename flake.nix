@@ -88,8 +88,7 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-
-          ] ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."pce".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
+          ]; #  ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."actual".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
         };
         formatter = pkgs.nixpkgs-fmt;
       };
