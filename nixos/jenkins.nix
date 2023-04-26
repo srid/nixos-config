@@ -35,7 +35,13 @@
     };
   };
 
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "srid@srid.ca";
+  };
+  networking.firewall.allowedTCPPorts = [ 443 ];
   services.nginx = {
+    enable = true;
     virtualHosts.${config.jenkins-nix-ci.domain} = {
       forceSSL = true;
       enableACME = true;
