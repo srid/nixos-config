@@ -11,9 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
-    disko.url = github:nix-community/disko;
+    disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    # nixos-flake.url = "path:/home/srid/code/nixos-flake";
 
     # CI server
     sops-nix.url = "github:Mic92/sops-nix";
