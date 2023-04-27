@@ -64,6 +64,7 @@
               ./nixos/docker.nix
               ./nixos/jenkins.nix
             ];
+            services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.yaml;
           };
         };
