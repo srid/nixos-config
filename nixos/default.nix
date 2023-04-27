@@ -1,27 +1,28 @@
-{ self, inputs, config, ... }:
-let
-  mkHomeModule = name: extraModules: {
-    users.users.${name}.isNormalUser = true;
-    home-manager.users.${name} = {
-      imports = [
-        self.homeModules.common-linux
-        ../home/git.nix
-      ] ++ extraModules;
-    };
-  };
-in
+{ self, config, ... }:
+
 {
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {
-      myself = mkHomeModule config.people.myself [
-        ../home/terminal.nix
+      myself = {
+        users.users.${config.people.myself}.isNormalUser = true;
+        home-manager.users.${config.people.myself} = {
+          imports = [
+            self.homeModules.common-linux
+          ];
+        };
+      };
+
+      # Common to all platforms
+      common.imports = [
+        ./nix.nix
+        ./caches
       ];
+
       default.imports = [
         self.nixosModules.home-manager
         self.nixosModules.myself
-        ./nix.nix
-        ./caches
+        self.nixosModules.common
         ./self-ide.nix
         ./ssh-authorize.nix
         ./current-location.nix

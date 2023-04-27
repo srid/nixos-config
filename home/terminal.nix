@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
+# Platform-independent terminal setup
 {
-  # Key packages required on nixos and macos
   home.packages = with pkgs; [
     # Unixy tools
     ripgrep
