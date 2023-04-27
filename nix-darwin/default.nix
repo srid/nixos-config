@@ -7,7 +7,7 @@
         home-manager.users.${config.people.myself} = { pkgs, ... }: {
           imports = [
             self.homeModules.common-darwin
-            ../home/shellcommon.nix
+            ../home/terminal.nix
             ../home/git.nix
           ];
         };

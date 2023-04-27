@@ -15,7 +15,7 @@ in
   flake = {
     nixosModules = {
       myself = mkHomeModule config.people.myself [
-        ../home/shellcommon.nix
+        ../home/terminal.nix
       ];
       default.imports = [
         self.nixosModules.home-manager
