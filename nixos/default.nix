@@ -4,7 +4,7 @@
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {
-      # Common to all platforms
+      # NixOS modules that are known to work on nix-darwin.
       common.imports = [
         ./nix.nix
         ./caches
