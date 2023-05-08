@@ -15,8 +15,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # CI server
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
     jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
+    # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
@@ -65,7 +66,8 @@
               ./nixos/jenkins.nix
             ];
             services.tailscale.enable = true;
-            sops.defaultSopsFile = ./secrets.yaml;
+            sops.defaultSopsFile = ./secrets.json;
+            sops.defaultSopsFormat = "json";
           };
         };
 
