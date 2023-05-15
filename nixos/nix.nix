@@ -14,6 +14,7 @@
   };
 
   nix = {
+    package = pkgs.nixUnstable; # Need 2.15 for bug fixes
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {
