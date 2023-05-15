@@ -15,8 +15,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     # CI server
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
     jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
+    # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
     hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
@@ -65,7 +66,8 @@
               ./nixos/jenkins.nix
             ];
             services.tailscale.enable = true;
-            sops.defaultSopsFile = ./secrets.yaml;
+            sops.defaultSopsFile = ./secrets.json;
+            sops.defaultSopsFormat = "json";
           };
         };
 
@@ -82,13 +84,23 @@
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.jenkins-nix-ci.overlay
+          ];
+        };
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-          ] ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."actual".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
+            (
+              let nixosConfig = self.nixosConfigurations.actual;
+              in nixosConfig.config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs
+            )
+          ];
         };
         formatter = pkgs.nixpkgs-fmt;
       };
