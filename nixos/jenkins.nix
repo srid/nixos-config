@@ -1,4 +1,4 @@
-{ flake, config, ... }:
+{ flake, config, pkgs, ... }:
 
 {
   imports = [
@@ -7,12 +7,19 @@
 
   jenkins-nix-ci = {
     domain = "jenkins.srid.ca";
-    nodes.containerSlaves = {
-      externalInterface = "eth0";
-      hostAddress = "167.235.115.189";
-      containers = {
-        jenkins-slave-nixos-1.localAddress = "192.168.100.11";
-        jenkins-slave-nixos-2.localAddress = "192.168.100.12";
+    nodes = {
+      containerSlaves = {
+        externalInterface = "eth0";
+        hostAddress = "167.235.115.189";
+        containers = {
+          jenkins-slave-nixos-1.hostIP = "192.168.100.11";
+          jenkins-slave-nixos-2.hostIP = "192.168.100.12";
+        };
+      };
+      sshSlaves.biryani = {
+        hostIP = "100.97.32.60"; # Tailscale IP
+        numExecutors = 4;
+        labelString = "macos aarch64-darwin x86_64-darwin";
       };
     };
     plugins = [

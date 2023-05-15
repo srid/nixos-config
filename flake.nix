@@ -84,13 +84,23 @@
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.jenkins-nix-ci.overlay
+          ];
+        };
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-          ] ++ lib.optionals (system == "x86_64-linux") [ self.nixosConfigurations."actual".config.jenkins-nix-ci.nix-prefetch-jenkins-plugins ];
+            (
+              let nixosConfig = self.nixosConfigurations.actual;
+              in nixosConfig.config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs
+            )
+          ];
         };
         formatter = pkgs.nixpkgs-fmt;
       };
