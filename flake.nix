@@ -63,6 +63,7 @@
               ./systems/hetzner/ex101.nix
               ./nixos/server/harden.nix
               ./nixos/docker.nix
+              ./nixos/lxd.nix
               ./nixos/jenkins.nix
             ];
             services.tailscale.enable = true;
