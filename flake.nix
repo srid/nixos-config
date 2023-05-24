@@ -23,8 +23,8 @@
 
     # Software inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.flake = false;
+    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     emanote.url = "github:srid/emanote";
     nixpkgs-match.url = "github:srid/nixpkgs-match";
     nuenv.url = "github:DeterminateSystems/nuenv";

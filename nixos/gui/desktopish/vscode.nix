@@ -1,8 +1,10 @@
 { pkgs, flake, ... }: {
-  imports = [
-    flake.inputs.nixos-vscode-server.nixosModules.system
+  /* imports = [
+    flake.inputs.nixos-vscode-server.nixosModules.default
   ];
-  services.auto-fix-vscode-server.enable = true;
+  services.vscode-server.enable = true;
+  services.vscode-server.installPath = "~/.vscode-server-insiders";
+  */
 
   # https://unix.stackexchange.com/q/659901/14042
   services.gnome.gnome-keyring.enable = true;
