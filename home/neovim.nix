@@ -15,7 +15,6 @@
 
     extraPackages = [
       pkgs.lazygit
-      pkgs.himalaya
     ];
 
     # Full list here,
