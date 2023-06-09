@@ -12,6 +12,7 @@
     devour-flake
     nil
     nixpkgs-fmt
+    shfmt
   ];
 
   home.shellAliases = {
