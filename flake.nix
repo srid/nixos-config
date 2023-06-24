@@ -30,6 +30,7 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
     devour-flake.url = "github:srid/devour-flake";
     devour-flake.flake = false;
+    nixd.url = "github:nix-community/nixd";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -89,6 +90,8 @@
           inherit system;
           overlays = [
             inputs.jenkins-nix-ci.overlay
+            inputs.nixd.overlays.default
+            inputs.nuenv.overlays.default
           ];
         };
         packages.default = self'.packages.activate;

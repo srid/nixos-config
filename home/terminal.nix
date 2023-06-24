@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ flake, pkgs, lib, ... }:
 
 # Platform-independent terminal setup
 {
@@ -11,6 +11,10 @@
     nix-output-monitor
     devour-flake
     nil
+    # nixd FIXME: why does this not work?
+    flake.inputs.nixd.packages.${pkgs.system}.nixd
+
+    # nixd
     nixpkgs-fmt
     shfmt
   ];
