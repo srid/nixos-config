@@ -19,11 +19,13 @@
     shfmt
   ];
 
-  home.shellAliases = {
+  home.shellAliases = rec {
     e = "nvim";
     g = "git";
     lg = "lazygit";
     l = lib.getExe pkgs.exa;
+    t = tree;
+    tree = "${lib.getExe pkgs.exa} -T";
   };
 
   programs = {
