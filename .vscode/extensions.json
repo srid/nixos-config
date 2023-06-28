@@ -4,6 +4,7 @@
         "b4dm4n.nixpkgs-fmt",
         "jnoortheen.nix-ide",
         "arrterian.nix-env-selector",
-        "mattn.lisp"
+        "mattn.lisp",
+        "thenuprojectcontributors.vscode-nushell-lang"
     ]
 }
