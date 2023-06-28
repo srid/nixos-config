@@ -14,7 +14,6 @@
     # nixd FIXME: why does this not work?
     flake.inputs.nixd.packages.${pkgs.system}.nixd
 
-    # nixd
     nixpkgs-fmt
     shfmt
   ];

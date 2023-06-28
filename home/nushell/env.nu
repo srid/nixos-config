@@ -5,5 +5,3 @@ let-env PATH = (
     | prepend '/run/current-system/sw/bin/'
     | prepend '/Applications/Docker.app/Contents/Resources/bin/'
 )
-
-
