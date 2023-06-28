@@ -28,7 +28,7 @@
           self.homeModules.common
           ./zsh.nix
           ./kitty.nix
-          ./emacs.nix
+          # ./emacs.nix
         ];
       };
     };
