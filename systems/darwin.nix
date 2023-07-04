@@ -13,6 +13,7 @@
     emanote
     flake.inputs.hci.packages.${pkgs.system}.hercules-ci-cli
     flake.inputs.nixpkgs-match.packages.${pkgs.system}.default
+    wezterm
 
     # We must install Agda globally so that Doom-Emacs' agda config can
     # recognize it. It doesn't matter that our projects use Nix/direnv.
