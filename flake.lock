@@ -50,11 +50,11 @@
     "devour-flake_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1683069808,
-        "narHash": "sha256-bGNE/S3Bttj6z0afcmppz394NyJoLtfBj/Nb2u+KM6Q=",
+        "lastModified": 1688415872,
+        "narHash": "sha256-lsFVQODpaVtGVjFC6D1yAFECOhkNfejXJ7SwhxkzYck=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "4fbbf950b201adcde1472f4253a647cee3cc1735",
+        "rev": "06e1ccbd53517c457cf33e0d7de95fea693bfb11",
         "type": "github"
       },
       "original": {
@@ -724,11 +724,11 @@
         "jenkinsPlugins2nix": "jenkinsPlugins2nix"
       },
       "locked": {
-        "lastModified": 1684871448,
-        "narHash": "sha256-ipqCzhEdY5Jxmt/cKSXl2LFfudo64Zli7C3lWCaWL9g=",
+        "lastModified": 1688416910,
+        "narHash": "sha256-r5oEf2Mq3989I0u2KIha6fH6F4dIdJbRIvYX1nk0HCk=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "8053f97eeefcc17fd9f2c846ad0a8859a1461d28",
+        "rev": "24db005848d27ff1b273ff869c9b65d63f954a46",
         "type": "github"
       },
       "original": {

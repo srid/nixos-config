@@ -46,6 +46,7 @@
     acceptTerms = true;
     defaults.email = "srid@srid.ca";
   };
+  # Allow 80 during acme renewal
   networking.firewall.allowedTCPPorts = [ 443 ];
   services.nginx = {
     enable = true;
