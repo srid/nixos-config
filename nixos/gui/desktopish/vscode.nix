@@ -1,9 +1,9 @@
-{ pkgs, flake, ... }: {
+{ pkgs, ... }: {
   /* imports = [
     flake.inputs.nixos-vscode-server.nixosModules.default
-  ];
-  services.vscode-server.enable = true;
-  services.vscode-server.installPath = "~/.vscode-server-insiders";
+    ];
+    services.vscode-server.enable = true;
+    services.vscode-server.installPath = "~/.vscode-server-insiders";
   */
 
   # https://unix.stackexchange.com/q/659901/14042
