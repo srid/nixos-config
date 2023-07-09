@@ -13,6 +13,7 @@
     nil
     # nixd FIXME: why does this not work?
     flake.inputs.nixd.packages.${pkgs.system}.nixd
+    flake.inputs.nixci.packages.${pkgs.system}.default
 
     nixpkgs-fmt
     shfmt

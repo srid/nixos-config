@@ -31,6 +31,7 @@
     devour-flake.url = "github:srid/devour-flake";
     devour-flake.flake = false;
     nixd.url = "github:nix-community/nixd";
+    nixci.url = "github:srid/nixci";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -92,6 +93,7 @@
             inputs.jenkins-nix-ci.overlay
             inputs.nixd.overlays.default
             inputs.nuenv.overlays.default
+            inputs.nixci.overlays.default
           ];
         };
         packages.default = self'.packages.activate;
