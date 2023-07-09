@@ -10,6 +10,9 @@
     overlays = [
       flake.inputs.nuenv.overlays.nuenv
       (self: super: { devour-flake = self.callPackage flake.inputs.devour-flake { }; })
+      flake.inputs.nixd.overlays.default
+      flake.inputs.nuenv.overlays.default
+      flake.inputs.nixci.overlays.default
     ];
   };
 

@@ -10,10 +10,9 @@
     # Useful for Nix development
     nix-output-monitor
     devour-flake
+    nixci
     nil
-    # nixd FIXME: why does this not work?
-    flake.inputs.nixd.packages.${pkgs.system}.nixd
-    flake.inputs.nixci.packages.${pkgs.system}.default
+    nixd
 
     nixpkgs-fmt
     shfmt

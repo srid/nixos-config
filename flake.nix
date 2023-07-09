@@ -87,15 +87,15 @@
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+        # NOTE: These overlays apply to the Nix shell only. See `nix.nix` for
+        # system overlays.
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
             inputs.jenkins-nix-ci.overlay
-            inputs.nixd.overlays.default
-            inputs.nuenv.overlays.default
-            inputs.nixci.overlays.default
           ];
         };
+
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           buildInputs = [
