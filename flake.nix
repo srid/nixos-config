@@ -39,12 +39,16 @@
     zk-nvim.flake = false;
     coc-rust-analyzer.url = "github:fannheyward/coc-rust-analyzer";
     coc-rust-analyzer.flake = false;
+
+    # Devshell
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
+        inputs.treefmt-nix.flakeModule
         inputs.nixos-flake.flakeModule
         ./users
         ./home
@@ -93,6 +97,11 @@
           ];
         };
 
+        treefmt = {
+          nixpkgs-fmt.enable = true;
+          settings.nixpkgs-fmt.excludes = [ "nixos/jenkins/plugins.nix" ];
+        };
+
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           buildInputs = [
@@ -105,7 +114,7 @@
             )
           ];
         };
-        formatter = pkgs.nixpkgs-fmt;
+        formatter = config.treefmt.build.wrapper;
       };
     };
 }
