@@ -55,3 +55,4 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
     sudo nixos-rebuild boot
     ```
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
+- To build all flake outputs (locally or in CI), run `nix run github:srid/nixci`

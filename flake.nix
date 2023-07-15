@@ -100,7 +100,12 @@
         treefmt.config = {
           projectRootFile = "flake.nix";
           programs.nixpkgs-fmt.enable = true;
-          settings.formatter.nixpkgs-fmt.excludes = [ "nixos/jenkins/plugins.nix" ];
+          settings.formatter.nixpkgs-fmt.excludes =
+            let
+              nixosConfig = self.nixosConfigurations.actual;
+              jenkinsPluginsFile = nixosConfig.config.jenkins-nix-ci.plugins-file;
+            in
+            [ jenkinsPluginsFile ];
         };
 
         packages.default = self'.packages.activate;
