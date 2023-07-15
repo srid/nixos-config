@@ -31,6 +31,7 @@
       "configuration-as-code"
       "pipeline-graph-view"
       "pipeline-utility-steps"
+      "role-strategy"
     ];
     plugins-file = "nixos/jenkins/plugins.nix";
 

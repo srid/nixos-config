@@ -490,6 +490,13 @@
         sha256 = "9b09a256f8a81edc984b688de07c795c22122585c5ce0148e703d20cbce4dfd8";
         };
       };
+    role-strategy = mkJenkinsPlugin {
+      name = "role-strategy";
+      src = fetchurl {
+        url = "https://updates.jenkins-ci.org/download/plugins/role-strategy/666.va_e39b_132a_519/role-strategy.hpi";
+        sha256 = "18ef1f219e5904196310ae3e69bc3e7c0cc0abcac2a200460e8e54c542d03d08";
+        };
+      };
     run-condition = mkJenkinsPlugin {
       name = "run-condition";
       src = fetchurl {
