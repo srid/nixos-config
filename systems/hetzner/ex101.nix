@@ -11,7 +11,7 @@
     efiInstallAsRemovable = true;
   };
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" ];
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];  # For cross-compiling, https://discourse.nixos.org/t/how-do-i-cross-compile-a-flake/12062/4?u=srid
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # For cross-compiling, https://discourse.nixos.org/t/how-do-i-cross-compile-a-flake/12062/4?u=srid
   nixpkgs.hostPlatform = "x86_64-linux";
   # powerManagement.cpuFreqGovernor = "ondemand";
   hardware.cpu.intel.updateMicrocode = true;

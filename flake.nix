@@ -97,9 +97,10 @@
           ];
         };
 
-        treefmt = {
-          nixpkgs-fmt.enable = true;
-          settings.nixpkgs-fmt.excludes = [ "nixos/jenkins/plugins.nix" ];
+        treefmt.config = {
+          projectRootFile = "flake.nix";
+          programs.nixpkgs-fmt.enable = true;
+          settings.formatter.nixpkgs-fmt.excludes = [ "nixos/jenkins/plugins.nix" ];
         };
 
         packages.default = self'.packages.activate;
