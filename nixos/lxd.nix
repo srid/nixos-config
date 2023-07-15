@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }: {
+{ flake, ... }: {
   virtualisation.lxd.enable = true;
 
   users.users.${flake.config.people.myself} = {

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, flake, ... }:
+{ flake, ... }:
 
 {
   # Let me login

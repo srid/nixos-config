@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 # https://nixos.wiki/wiki/Distributed_build
 {
   nix.buildMachines = [
