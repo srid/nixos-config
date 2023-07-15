@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
   userSubmodule = lib.types.submodule {
     options = {
