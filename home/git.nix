@@ -1,5 +1,7 @@
 { pkgs, config, flake, ... }:
 {
+  imports = [ ./git_delta.nix ];
+
   home.packages = [ pkgs.git-lfs ];
 
   programs.git = {
