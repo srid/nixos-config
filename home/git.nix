@@ -1,7 +1,5 @@
 { pkgs, config, flake, ... }:
 {
-  imports = [ ./git_delta.nix ];
-
   home.packages = [ pkgs.git-lfs ];
 
   programs.git = {
@@ -20,6 +18,15 @@
       pu = "push";
     };
     ignores = [ "*~" "*.swp" ];
+    delta = {
+      enable = true;
+      options = {
+        features = "decorations";
+        navigate = true;
+        light = false;
+        side-by-side = true;
+      };
+    };
     extraConfig = {
       init.defaultBranch = "master"; # https://srid.ca/unwoke
       core.editor = "nvim";
