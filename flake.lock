@@ -962,11 +962,11 @@
         "nixci": "nixci"
       },
       "locked": {
-        "lastModified": 1689280822,
-        "narHash": "sha256-tg+NotjbnFpv8uHTJZddT7c9PvLVIl8MeDUbDMBhIBY=",
+        "lastModified": 1689634732,
+        "narHash": "sha256-yiS2iiAhd8Giv8mL5BxYu5nKBWLbXvJcBo7uiMmIbSA=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "3e56cb4e5434b1f79fdaca3d8cbea01641c7d6c3",
+        "rev": "146d091e8ce3ff7e75ff181ff85ca547d8f5fd33",
         "type": "github"
       },
       "original": {
@@ -1173,11 +1173,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1689280486,
-        "narHash": "sha256-9tGpCTLdExkz4TiNmhE+ZMun72WBaFik2kYsaqfRoHY=",
+        "lastModified": 1689634119,
+        "narHash": "sha256-yhT+FnceG3cUH5QrGXEnRRoDDsFwP8NOEjLZxjq7ilU=",
         "owner": "srid",
         "repo": "nixci",
-        "rev": "8ba0cfa19ac4cdeb793830f6b7b35cfc4646886e",
+        "rev": "dec9ad187ee9e58dbc78e28c97e2e66d43be0ff6",
         "type": "github"
       },
       "original": {
