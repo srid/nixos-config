@@ -27,6 +27,7 @@
         imports = [
           self.homeModules.common
           ./zsh.nix
+          ./bash.nix
           ./kitty.nix
           # ./emacs.nix
         ];
