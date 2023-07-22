@@ -13,7 +13,7 @@
           ./direnv.nix
           ./zellij.nix
           ./nushell.nix
-          ./powershell.nix
+          # ./powershell.nix
         ];
       };
       common-linux = {
@@ -28,8 +28,8 @@
           self.homeModules.common
           ./zsh.nix
           ./bash.nix
-          ./kitty.nix
           # ./emacs.nix
+          # ./kitty.nix
         ];
       };
     };
