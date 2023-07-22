@@ -12,11 +12,13 @@
       flake.inputs.nuenv.overlays.nuenv
       flake.inputs.nixd.overlays.default
       flake.inputs.nuenv.overlays.default
+      (self: super: {
+        fuckport = pkgs.callPackage ../scripts/fuckport.nix { };
+      })
     ];
   };
 
   nix = {
-    package = pkgs.nixUnstable; # Need 2.15 for bug fixes
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {

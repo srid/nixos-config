@@ -6,16 +6,21 @@
     # Unixy tools
     ripgrep
     fd
+    sd
 
     # Useful for Nix development
-    nix-output-monitor
     devour-flake
     nixci
     nil
     nixd
-
     nixpkgs-fmt
-    shfmt
+
+    # Publishing
+    asciinema
+
+    # Dev
+    gh
+    fuckport
   ];
 
   home.shellAliases = rec {

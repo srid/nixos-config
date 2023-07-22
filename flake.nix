@@ -1,5 +1,5 @@
 {
-  description = "Srid's NixOS configuration";
+  description = "Srid's NixOS / nix-darwin configuration";
 
   inputs = {
     # Principle inputs
@@ -18,7 +18,6 @@
     sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
     jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
-    hci.url = "github:hercules-ci/hercules-ci-agent";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
     # Software inputs
@@ -80,7 +79,6 @@
           appreciate = self.nixos-flake.lib.mkARMMacosSystem {
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
-              ./nixos/hercules.nix
               ./systems/darwin.nix
             ];
           };
