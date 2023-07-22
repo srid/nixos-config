@@ -24,11 +24,6 @@ in
 {
   imports = [ flake.inputs.nix-doom-emacs.hmModule ];
 
-  #programs.emacs = {
-  #  enable = true;
-  #  inherit package;
-  #};
-
   programs.doom-emacs = {
     enable = true;
     # Disabling until https://github.com/nix-community/nix-doom-emacs/issues/409
