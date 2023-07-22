@@ -12,9 +12,7 @@
       flake.inputs.nuenv.overlays.nuenv
       flake.inputs.nixd.overlays.default
       flake.inputs.nuenv.overlays.default
-      (self: super: {
-        fuckport = pkgs.callPackage ../scripts/fuckport.nix { };
-      })
+      (import ../packages/overlay.nix)
     ];
   };
 
