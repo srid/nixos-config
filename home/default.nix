@@ -28,8 +28,8 @@
           self.homeModules.common
           ./zsh.nix
           ./bash.nix
-          # ./emacs.nix
           # ./kitty.nix
+          ./emacs.nix
         ];
       };
     };
