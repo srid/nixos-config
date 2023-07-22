@@ -44,7 +44,7 @@
   };
 
   outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
         inputs.treefmt-nix.flakeModule
