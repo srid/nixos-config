@@ -28,6 +28,7 @@ in
     enable = true;
     # Disabling until https://github.com/nix-community/nix-doom-emacs/issues/409
     # emacsPackage = package;
+    emacsPackage = pkgs.emacs29-pgtk;
     doomPrivateDir = ./emacs/doom;
   };
 
