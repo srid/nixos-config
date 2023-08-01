@@ -17,7 +17,7 @@
   };
 
   nix = {
-    package = pkgs.nixVersions.nix_2_16; # https://twitter.com/zimbatm/status/1685611948560224256
+    package = pkgs.nixUnstable;
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {
