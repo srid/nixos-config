@@ -76,7 +76,8 @@
 
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations = {
-          appreciate = self.nixos-flake.lib.mkARMMacosSystem {
+          appreciate = self.nixos-flake.lib.mkMacosSystem {
+            nixpkgs.hostPlatform = "aarch64-darwin";
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./systems/darwin.nix
@@ -94,6 +95,8 @@
             inputs.jenkins-nix-ci.overlay
           ];
         };
+
+        nixos-flake.primary-inputs = [ "nixpkgs" "home-manager" "nix-darwin" "nixos-flake" ];
 
         treefmt.config = {
           projectRootFile = "flake.nix";
