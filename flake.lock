@@ -893,14 +893,18 @@
         "nixci": "nixci"
       },
       "locked": {
-        "lastModified": 1692128575,
-        "narHash": "sha256-UD0ZCztVoUDHxLghikrrYmLO8ISeJNTjr1r+6Rv9seg=",
-        "path": "/home/srid/code/jenkins-nix-ci",
-        "type": "path"
+        "lastModified": 1692128853,
+        "narHash": "sha256-MBqLi3IjJZxuts0uY/6sJEZf+SqXVHb+WN1d2yD+fFs=",
+        "owner": "juspay",
+        "repo": "jenkins-nix-ci",
+        "rev": "d6de0b7d955fe5b1ca5e82bfe03b230d757ce419",
+        "type": "github"
       },
       "original": {
-        "path": "/home/srid/code/jenkins-nix-ci",
-        "type": "path"
+        "owner": "juspay",
+        "ref": "nix-system",
+        "repo": "jenkins-nix-ci",
+        "type": "github"
       }
     },
     "jenkinsPlugins2nix": {
