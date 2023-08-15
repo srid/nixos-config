@@ -68,11 +68,11 @@
     "devour-flake": {
       "flake": false,
       "locked": {
-        "lastModified": 1688415872,
-        "narHash": "sha256-lsFVQODpaVtGVjFC6D1yAFECOhkNfejXJ7SwhxkzYck=",
+        "lastModified": 1690227672,
+        "narHash": "sha256-CZedJtbZlWAbv/b/aYgOEFd9vcTBn/oJNI3p29UitLk=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "06e1ccbd53517c457cf33e0d7de95fea693bfb11",
+        "rev": "61f215b93d9b9367377903ad8a76563fe0172af7",
         "type": "github"
       },
       "original": {
@@ -84,15 +84,16 @@
     "devour-flake_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1689266154,
-        "narHash": "sha256-epZ+5PoftyPlb8c5mMaWEqGrSfnI4zju6gCU8sMXW4g=",
+        "lastModified": 1689267783,
+        "narHash": "sha256-CZedJtbZlWAbv/b/aYgOEFd9vcTBn/oJNI3p29UitLk=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "d70b535bbf64933e73c92be3304fe3c6b19c0540",
+        "rev": "f4d8c8eaade5fefe0d466c4bb90215d387eadc23",
         "type": "github"
       },
       "original": {
         "owner": "srid",
+        "ref": "v2",
         "repo": "devour-flake",
         "type": "github"
       }
@@ -871,11 +872,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1691312444,
-        "narHash": "sha256-J9e9dGwAPTX+UlAn8jehoyaEq6fwK+L+gunfx0cYT4E=",
+        "lastModified": 1692081771,
+        "narHash": "sha256-LWhyDz3gi1RzTcW6e6iwfs4VuDWFajOexBKygNIqvQM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "903e06d734bcae48efb79b9afd51b406d2744179",
+        "rev": "18791781ea86cbec6bce8bcb847444b9c73b8b3b",
         "type": "github"
       },
       "original": {
@@ -892,17 +893,14 @@
         "nixci": "nixci"
       },
       "locked": {
-        "lastModified": 1689634732,
-        "narHash": "sha256-yiS2iiAhd8Giv8mL5BxYu5nKBWLbXvJcBo7uiMmIbSA=",
-        "owner": "juspay",
-        "repo": "jenkins-nix-ci",
-        "rev": "146d091e8ce3ff7e75ff181ff85ca547d8f5fd33",
-        "type": "github"
+        "lastModified": 1692128575,
+        "narHash": "sha256-UD0ZCztVoUDHxLghikrrYmLO8ISeJNTjr1r+6Rv9seg=",
+        "path": "/home/srid/code/jenkins-nix-ci",
+        "type": "path"
       },
       "original": {
-        "owner": "juspay",
-        "repo": "jenkins-nix-ci",
-        "type": "github"
+        "path": "/home/srid/code/jenkins-nix-ci",
+        "type": "path"
       }
     },
     "jenkinsPlugins2nix": {
@@ -962,11 +960,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1691275315,
-        "narHash": "sha256-9WN0IA0vNZSNxKHpy/bYvPnCw4VH/nr5iBv7c+7KUts=",
+        "lastModified": 1691963303,
+        "narHash": "sha256-zqvt4N4Ic06BrGo02itCIPTEKzVnGT0BtGbIr+aUGqE=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "829041cf10c4f6751a53c0a11ca2fd22ff0918d6",
+        "rev": "3fcd83783a1e2ddad0f14821da4186a95bc76c50",
         "type": "github"
       },
       "original": {
@@ -1081,11 +1079,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1689634119,
-        "narHash": "sha256-yhT+FnceG3cUH5QrGXEnRRoDDsFwP8NOEjLZxjq7ilU=",
+        "lastModified": 1690121761,
+        "narHash": "sha256-ZzEewI0WRosSaHzy6u+i2GJTb2tDPIOpXCq0u04dS+Y=",
         "owner": "srid",
         "repo": "nixci",
-        "rev": "dec9ad187ee9e58dbc78e28c97e2e66d43be0ff6",
+        "rev": "c653a44ed31ced883210a429b16722791cf14e77",
         "type": "github"
       },
       "original": {
@@ -1432,11 +1430,11 @@
     },
     "nixpkgs_14": {
       "locked": {
-        "lastModified": 1691276849,
-        "narHash": "sha256-RNnrzxhW38SOFIF6TY/WaX7VB3PCkYFEeRE5YZU+wHw=",
+        "lastModified": 1691990649,
+        "narHash": "sha256-gMbKOiX1HwClRP9lADaaV/lnZr93NEaOFe4ApDx/zd8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5faab29808a2d72f4ee0c44c8e850e4e6ada972f",
+        "rev": "6e287913f7b1ef537c97aa301b67c34ea46b640f",
         "type": "github"
       },
       "original": {
