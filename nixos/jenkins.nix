@@ -8,18 +8,12 @@
   jenkins-nix-ci = {
     domain = "jenkins.srid.ca";
     nodes = {
-      containerSlaves = { config, ... }: {
+      containerSlaves = {
         externalInterface = "eth0";
         hostAddress = "167.235.115.189";
-        max-jobs =
-          let
-            logicalCores = 32;
-            numContainers = builtins.length (lib.attrNames config.containers);
-          in
-          logicalCores / numContainers;
-        containers = {
-          jenkins-slave-nixos-1.hostIP = "192.168.100.11";
-          # jenkins-slave-nixos-2.hostIP = "192.168.100.12";
+        containers.jenkins-slave-nixos-1 = {
+          hostIP = "192.168.100.11";
+          numExecutors = 4;
         };
       };
       sshSlaves.biryani = {

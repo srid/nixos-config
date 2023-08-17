@@ -893,11 +893,11 @@
         "nixci": "nixci"
       },
       "locked": {
-        "lastModified": 1692301613,
-        "narHash": "sha256-6Qd2QNvcJb52P/ZhsJOz63CqkU+RYxOE3oMyN7YVn90=",
+        "lastModified": 1692301937,
+        "narHash": "sha256-/MXCQxzLXuwrp0und/SdmSO7fwX78ZeYUdM0ejty3zI=",
         "owner": "juspay",
         "repo": "jenkins-nix-ci",
-        "rev": "0a45b83560b4fdaa0ba59d0cb6ffd33a52092e02",
+        "rev": "cd38c321b7d4b4e7621ec62bfdbf6a4c37028d30",
         "type": "github"
       },
       "original": {
