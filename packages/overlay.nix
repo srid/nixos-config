@@ -1,3 +1,3 @@
 self: super: {
-  fuckport = self.callPackage ./fuckport.nix {};
+  fuckport = self.callPackage ./fuckport.nix { };
 }

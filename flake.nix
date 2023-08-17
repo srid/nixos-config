@@ -16,7 +16,7 @@
 
     # CI server
     sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci/nix-system"; # https://github.com/juspay/jenkins-nix-ci/pull/33
+    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
 
