@@ -12,7 +12,6 @@
     devour-flake
     nixci
     nil
-    nixd
     nixpkgs-fmt
 
     # Publishing
