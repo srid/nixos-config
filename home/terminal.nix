@@ -29,7 +29,6 @@
     l = lib.getExe pkgs.exa;
     t = tree;
     tree = "${lib.getExe pkgs.exa} -T";
-    j = "just";
   };
 
   programs = {

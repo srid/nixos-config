@@ -13,6 +13,7 @@
           ./direnv.nix
           ./zellij.nix
           ./nushell.nix
+          ./just.nix
           # ./powershell.nix
         ];
       };
