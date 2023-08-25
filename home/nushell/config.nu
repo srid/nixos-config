@@ -1,3 +1,3 @@
-let-env config = {
+$env.config = {
   edit_mode: vi
 }

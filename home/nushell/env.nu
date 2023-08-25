@@ -1,4 +1,4 @@
-let-env PATH = (
+$env.PATH = (
     $env.PATH
     | split row (char esep)
     | prepend $"/etc/profiles/per-user/($env.USER)/bin"
