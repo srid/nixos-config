@@ -47,8 +47,8 @@
     acceptTerms = true;
     defaults.email = "srid@srid.ca";
   };
-  # Allow 80 during acme renewal
-  networking.firewall.allowedTCPPorts = [ 443 ];
+  # NOTE: Allow 80 during acme renewal
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   services.nginx = {
     enable = true;
     virtualHosts.${config.jenkins-nix-ci.domain} = {
