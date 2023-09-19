@@ -28,5 +28,4 @@
     };
   };
   nix.settings.allowed-users = [ "root" "@users" ];
-  nix.settings.trusted-users = [ "root" flake.config.people.myself ];
 }
