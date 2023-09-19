@@ -39,5 +39,6 @@
     jq.enable = true;
     nix-index.enable = true;
     htop.enable = true;
+    # rio.enable = true;
   };
 }
