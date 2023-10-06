@@ -12,7 +12,7 @@
           ./git.nix
           ./direnv.nix
           ./zellij.nix
-          ./nushell.nix
+          # ./nushell.nix
           ./just.nix
           # ./powershell.nix
         ];
