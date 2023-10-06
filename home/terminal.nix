@@ -20,6 +20,7 @@
     # Dev
     gh
     fuckport
+    mood
   ];
 
   home.shellAliases = rec {
