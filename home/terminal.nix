@@ -26,9 +26,9 @@
     e = "nvim";
     g = "git";
     lg = "lazygit";
-    l = lib.getExe pkgs.eza;
+    l = lib.getExe pkgs.lsd;
     t = tree;
-    tree = "${lib.getExe pkgs.eza} -T";
+    tree = "${lib.getExe pkgs.lsd} --tree";
   };
 
   programs = {
