@@ -29,6 +29,7 @@
     l = lib.getExe pkgs.lsd;
     t = tree;
     tree = "${lib.getExe pkgs.lsd} --tree";
+    beep = "say 'beep'";
   };
 
   programs = {
