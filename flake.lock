@@ -942,16 +942,15 @@
     },
     "nixos-flake": {
       "locked": {
-        "lastModified": 1698590247,
-        "narHash": "sha256-5GXtJNzTlLqnYkJnrA7co5kLbU0P8T9xueMeAS9zbwY=",
+        "lastModified": 1698598244,
+        "narHash": "sha256-YbvPFt+9CbCiqnuS0dTx+P+W1YRCqzhLXen94sef3Kk=",
         "owner": "srid",
         "repo": "nixos-flake",
-        "rev": "d09bc1369e73e56f2c783352cbe88761ad26b6e0",
+        "rev": "f6b7757ad88483afca306c9f3bf387887fba7284",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "darwinModules_",
         "repo": "nixos-flake",
         "type": "github"
       }
