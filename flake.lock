@@ -517,11 +517,11 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1668450977,
-        "narHash": "sha256-cfLhMhnvXn6x1vPm+Jow3RiFAUSCw/l1utktCw5rVA4=",
+        "lastModified": 1698579227,
+        "narHash": "sha256-KVWjFZky+gRuWennKsbo6cWyo7c/z/VgCte5pR9pEKg=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "d591857e9d7dd9ddbfba0ea02b43b927c3c0f1fa",
+        "rev": "f76e870d64779109e41370848074ac4eaa1606ec",
         "type": "github"
       },
       "original": {
@@ -1116,15 +1116,16 @@
     },
     "nixos-flake": {
       "locked": {
-        "lastModified": 1692742948,
-        "narHash": "sha256-19LQQFGshuQNrrXZYVt+mWY0O3NbhEXeMy3MZwzYZGo=",
+        "lastModified": 1698590095,
+        "narHash": "sha256-VmSP4wfl2kJjOkglHdhBbkfnbalrk5o6oR1q5Xgxwv0=",
         "owner": "srid",
         "repo": "nixos-flake",
-        "rev": "2c25190ceacdaaae7e8afbecfa87096bb499a431",
+        "rev": "a9c4d806691aa8b141768451e4fe1dee8eedb98c",
         "type": "github"
       },
       "original": {
         "owner": "srid",
+        "ref": "darwinModules_",
         "repo": "nixos-flake",
         "type": "github"
       }
@@ -1218,11 +1219,11 @@
     "nixpkgs-lib_2": {
       "locked": {
         "dir": "lib",
-        "lastModified": 1665349835,
-        "narHash": "sha256-UK4urM3iN80UXQ7EaOappDzcisYIuEURFRoGQ/yPkug=",
+        "lastModified": 1696019113,
+        "narHash": "sha256-X3+DKYWJm93DRSdC5M6K5hLqzSya9BjibtBsuARoPco=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "34c5293a71ffdb2fe054eb5288adc1882c1eb0b1",
+        "rev": "f5892ddac112a1e9b3612c39af1b72987ee5783a",
         "type": "github"
       },
       "original": {

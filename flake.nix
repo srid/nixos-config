@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake";
+    nixos-flake.url = "github:srid/nixos-flake/darwinModules_";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -44,7 +44,7 @@
   };
 
   outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit (inputs) self; } {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
         inputs.treefmt-nix.flakeModule

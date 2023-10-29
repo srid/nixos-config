@@ -12,7 +12,7 @@
       };
 
       default.imports = [
-        self.darwinModules.home-manager
+        self.darwinModules_.home-manager
         self.darwinModules.my-home
         self.nixosModules.common
       ];
