@@ -28,6 +28,7 @@
     nixpkgs-match.url = "github:srid/nixpkgs-match";
     nuenv.url = "github:DeterminateSystems/nuenv";
     nixd.url = "github:nix-community/nixd";
+    nixci.url = "github:srid/nixci";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
