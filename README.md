@@ -56,3 +56,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
     ```
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
 - To build all flake outputs (locally or in CI), run `nix run nixpkgs#nixci`
+
+## Discussion
+
+If you wish to discuss about this config, [join the Zulip](https://nixos.zulipchat.com/login/?next=/).
