@@ -9,6 +9,7 @@ To use this repository as base configuration for your new machine running:
 - Install NixOS
   - Hetzner dedicated from Linux Rescue system: https://github.com/numtide/nixos-anywhere (see [blog post](https://galowicz.de/2023/04/05/single-command-server-bootstrap/); example PR: https://github.com/srid/nixos-config/pull/35 where I had to configure networking manually)
   - Digital Ocean: https://github.com/elitak/nixos-infect
+    - Better way: [Custom image](https://nixos.zulipchat.com/#narrow/stream/413948-nixos/topic/Deploying.20to.20DigitalOcean)
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
