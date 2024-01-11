@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.bash = {
     # https://just.systems/man/en/chapter_63.html
@@ -8,4 +9,5 @@
   };
 
   home.shellAliases.j = "just";
+  home.packages = with pkgs; [ just ];
 }
