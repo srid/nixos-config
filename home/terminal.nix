@@ -23,17 +23,18 @@
     fuckport
   ];
 
-  home.shellAliases = rec {
+  home.shellAliases = {
     e = "nvim";
     g = "git";
     lg = "lazygit";
-    l = lib.getExe pkgs.lsd;
-    t = tree;
-    tree = "${lib.getExe pkgs.lsd} --tree";
     beep = "say 'beep'";
   };
 
   programs = {
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
     bat.enable = true;
     autojump.enable = false;
     zoxide.enable = true;

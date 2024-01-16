@@ -7,6 +7,7 @@
         imports = [
           ./tmux.nix
           ./neovim.nix
+          ./helix.nix
           ./starship.nix
           ./terminal.nix
           ./git.nix
