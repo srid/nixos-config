@@ -6,7 +6,7 @@
   ];
   nix.settings.substituters = [
     #"https://nix-community.cachix.org"
-    "https://nammayatri.cachix.org"
-    "https://cache.garnix.io"
+    "https://cache.garnix.io?priority=41"
+    "https://nammayatri.cachix.org?priority=42"
   ];
 }
