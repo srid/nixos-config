@@ -7,10 +7,21 @@
 {
   imports = [ flake.inputs.nix-doom-emacs.hmModule ];
 
+  # If using doom emacs ...
   programs.doom-emacs = {
-    enable = true;
+    # enable = true;
     emacsPackage = pkgs.emacs29-pgtk;
     doomPrivateDir = ./emacs/doom;
+  };
+
+  # If using vanilla emacs ...
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs29-pgtk;
+    extraPackages = epkgs: [
+      epkgs.org-roam
+      epkgs.vterm
+    ];
   };
 
   home.packages = with pkgs; [
