@@ -17,7 +17,8 @@
     '';
 
     initExtra = ''
-      ${lib.getExe pkgs.fortune} | ${lib.getExe pkgs.charasay} say -r
+      # Show random quote: https://github.com/srid/actual
+      ${lib.getExe pkgs.actual}
     '';
   };
 }

@@ -29,6 +29,8 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
     nixd.url = "github:nix-community/nixd";
     nixci.url = "github:srid/nixci";
+    actual.url = "github:srid/actual";
+    actual.inputs.nixpkgs.follows = "nixpkgs";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
