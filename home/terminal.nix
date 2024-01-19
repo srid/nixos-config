@@ -31,6 +31,10 @@
   };
 
   programs = {
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     lsd = {
       enable = true;
       enableAliases = true;
@@ -40,7 +44,6 @@
     zoxide.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    nix-index.enable = true;
     htop.enable = true;
     # rio.enable = true;
   };

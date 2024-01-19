@@ -20,6 +20,4 @@
       ${lib.getExe pkgs.fortune} | ${lib.getExe pkgs.charasay} say -r
     '';
   };
-
-  programs.nix-index.enableZshIntegration = true;
 }
