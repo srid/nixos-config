@@ -39,9 +39,10 @@ in
     };
   };
   config =
-    let 
+    let
       cfg = config.services.personal-github-runners;
-    in {
+    in
+    {
       sops.secrets = lib.listToAttrs (builtins.map
         (name: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
           mode = "0440";
@@ -49,12 +50,13 @@ in
         cfg.repositories);
 
       # TODO: Run inside container
-      services.github-runners = lib.listToAttrs (builtins.map 
+      services.github-runners = lib.listToAttrs (builtins.map
         (name: lib.nameValuePair name (cfg.runnerConfig // {
           enable = true;
           tokenFile = config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
           url = "https://github.com/${cfg.owner}/${name}";
-        })) cfg.repositories);
+        }))
+        cfg.repositories);
 
       nix.settings.trusted-users =
         lib.mapAttrsToList
