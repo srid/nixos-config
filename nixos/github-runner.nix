@@ -1,18 +1,17 @@
 /* Module for setting up personal github runners
 
-  TODOs
+TODOs
 
-  - [ ] Write a token creation script:
-  ```sh
-  $ gh api \
-  --method POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/srid/haskell-flake/actions/runners/registration-token
-  ```
+- [ ] Run runners in containers
+- [ ] Write a token creation script:
+```sh
+$ gh api \
+--method POST \
+-H "Accept: application/vnd.github+json" \
+-H "X-GitHub-Api-Version: 2022-11-28" \
+/repos/srid/haskell-flake/actions/runners/registration-token
+```
   - [ ] Can we automate that to write directly to secrets.json?
-
-  - [ ] Run in containers
 
 */
 { pkgs, lib, config, ... }:
