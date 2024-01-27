@@ -45,9 +45,11 @@ in
             default = [
               # My repositories configured to use self-hosted runners
               # 
-              # For each entry, make sure the token exists in secrets.json (use
-              # the `gh` command above to create this token from CLI)
+              # *Before* adding an entry, make sure the token exists in
+              # secrets.json (use the `gh` command above to create this token
+              # from CLI)
               "emanote"
+              "haskell-flake"
             ];
           };
           sopsPrefix = lib.mkOption {
