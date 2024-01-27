@@ -114,7 +114,7 @@
 
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
-          buildInputs = [
+          packages = [
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
