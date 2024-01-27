@@ -3,6 +3,8 @@
   TODOs
 
   - [x] Run runners in containers
+    - [ ] Unbreak cachix? https://github.com/cachix/cachix-action/issues/169 
+      - [ ] Or switch to nix-serve or attic
   - [ ] Write a token creation script:
   ```sh
   $ gh api \
