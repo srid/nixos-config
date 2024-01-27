@@ -33,7 +33,7 @@
     gc = {
       automatic = true;
       dates = "03:15";
-      options = "-delete-older-than 180d"; # Arguments to pass to nix-collect-garbage
+      options = "--delete-older-than 180d"; # Arguments to pass to nix-collect-garbage
     };
   };
 }
