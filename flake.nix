@@ -70,6 +70,7 @@
               ./nixos/docker.nix
               ./nixos/lxd.nix
               ./nixos/jenkins.nix
+              ./nixos/github-runner.nix
             ];
             services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.json;
