@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
     # macOS GUI programs
     wezterm
-    utm
   ];
 
   security.pam.enableSudoTouchIdAuth = true;
