@@ -10,53 +10,58 @@ in
     services.personal-github-runners = lib.mkOption {
       default = { };
       type = types.submodule {
-        owner = lib.mkOption {
-          type = types.str;
-          default = "srid";
-        };
-        repositories = lib.mkOption {
-          type = types.listOf types.str;
-          default = [
-            # My repositories configured to use self-hosted runners
-            "emanote"
-          ];
-        };
-        sopsPrefix = lib.mkOption {
-          type = types.str;
-          default = "gh-selfhosted-tokens";
-        };
-        runnerConfig = lib.mkOption {
-          type = types.deferredModule;
-          default = {
-            extraPackages = [ pkgs.cachix pkgs.nixci ];
-            extraLabels = [ "nixos" ];
+        options = {
+          owner = lib.mkOption {
+            type = types.str;
+            default = "srid";
+          };
+          repositories = lib.mkOption {
+            type = types.listOf types.str;
+            default = [
+              # My repositories configured to use self-hosted runners
+              # For each entry, make sure the token exists in secrets.json
+              "emanote"
+            ];
+          };
+          sopsPrefix = lib.mkOption {
+            type = types.str;
+            default = "gh-selfhosted-tokens";
+          };
+          runnerConfig = lib.mkOption {
+            type = types.lazyAttrsOf types.raw;
+            default = {
+              extraPackages = [ pkgs.cachix pkgs.nixci ];
+              extraLabels = [ "nixos" ];
+            };
           };
         };
       };
     };
   };
-  config = {
-    sops.secrets = {
-      "gh-selfhosted-tokens/emanote".mode = "0440";
-    };
+  config =
+    let 
+      cfg = config.services.personal-github-runners;
+    in {
+      sops.secrets = lib.listToAttrs (builtins.map
+        (name: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
+          mode = "0440";
+        })
+        cfg.repositories);
 
-    # TODO: Run inside container
-    services.github-runners = {
-      emanote = {
-        enable = true;
-        name = "emanote";
-        tokenFile = config.sops.secrets."gh-selfhosted-tokens/emanote".path;
-        url = "https://github.com/srid/emanote";
-        extraPackages = [ pkgs.cachix pkgs.nixci ];
-        extraLabels = [ "nixos" ];
-      };
+      # TODO: Run inside container
+      services.github-runners = lib.listToAttrs (builtins.map 
+        (name: lib.nameValuePair name (cfg.runnerConfig // {
+          enable = true;
+          tokenFile = config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
+          url = "https://github.com/${cfg.owner}/${name}";
+        })) cfg.repositories);
+
+      nix.settings.trusted-users =
+        lib.mapAttrsToList
+          (name: runner:
+            if runner.user == null
+            then getRunnerUser name
+            else runner.user)
+          config.services.github-runners;
     };
-    nix.settings.trusted-users =
-      lib.mapAttrsToList
-        (name: runner:
-          if runner.user == null
-          then getRunnerUser name
-          else runner.user)
-        config.services.github-runners;
-  };
 }
