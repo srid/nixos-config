@@ -29,12 +29,6 @@
       flake-registry = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
       trusted-users = [ "root" (if pkgs.stdenv.isDarwin then flake.config.people.myself else "@wheel") ];
     };
-  } // lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
-    gc = {
-      automatic = true;
-      dates = "03:15";
-      options = "--delete-older-than 180d"; # Arguments to pass to nix-collect-garbage
-    };
   };
 }
 
