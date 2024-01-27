@@ -2,7 +2,9 @@
 
   TODOs
 
-  - [ ] Run runners in containers
+  - [x] Run runners in containers
+  - [ ] Unbreak cachix? https://github.com/cachix/cachix-action/issues/169 
+      - [ ] Or switch to nix-serve or attic
   - [ ] Write a token creation script:
   ```sh
   $ gh api \
@@ -14,12 +16,9 @@
   - [ ] Can we automate that to write directly to secrets.json?
 
 */
-{ pkgs, lib, config, ... }:
+top@{ pkgs, lib, config, ... }:
 let
   inherit (lib) types;
-  getRunnerUser = name:
-    # systemd DynamicUser
-    "github-runner-${name}";
 in
 {
   options = {
@@ -27,20 +26,37 @@ in
       default = { };
       type = types.submodule {
         options = {
+          localAddress = lib.mkOption {
+            type = types.str;
+            default =
+              (builtins.head (builtins.head (lib.attrValues config.networking.interfaces)).ipv4.addresses).address;
+          };
+          runnerUid = lib.mkOption {
+            type = types.int;
+            default = 1234;
+            description = ''
+              Shared UID between host and containers, so guest nix can access /nix/store of host.
+            '';
+          };
           owner = lib.mkOption {
             type = types.str;
             default = "srid";
           };
           repositories = lib.mkOption {
-            type = types.listOf types.str;
-            default = [
-              # My repositories configured to use self-hosted runners
-              # 
-              # For each entry, make sure the token exists in secrets.json (use
-              # the `gh` command above to create this token from CLI)
-              "emanote"
-              "haskell-flake"
-            ];
+            type = types.attrsOf types.str;
+            description = ''
+              My repositories configured to use self-hosted runners
+              
+              *Before* adding an entry, make sure the token exists in
+              secrets.json (use the `gh` command above to create this token
+              from CLI)
+
+              Maps to container IP address to assign.
+            '';
+            default = {
+              "emanote" = "192.168.100.20";
+              "haskell-flake" = "192.168.100.21";
+            };
           };
           sopsPrefix = lib.mkOption {
             type = types.str;
@@ -54,6 +70,7 @@ in
                 nixci
                 which
                 coreutils
+                docker
               ];
               extraLabels = [ "nixos" ];
             };
@@ -67,27 +84,56 @@ in
       cfg = config.services.personal-github-runners;
     in
     {
-      sops.secrets = lib.listToAttrs (builtins.map
-        (name: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
+      sops.secrets = lib.mapAttrs'
+        (name: _: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
           mode = "0440";
         })
-        cfg.repositories);
+        cfg.repositories;
 
-      # TODO: Run inside container
-      services.github-runners = lib.listToAttrs (builtins.map
-        (name: lib.nameValuePair name (cfg.runnerConfig // {
-          enable = true;
-          tokenFile = config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
-          url = "https://github.com/${cfg.owner}/${name}";
-        }))
-        cfg.repositories);
+      containers =
+        lib.mapAttrs'
+          (name: hostAddress:
+            let tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
+            in lib.nameValuePair "github-runner-${name}" {
+              inherit (cfg) localAddress;
+              inherit hostAddress;
+              autoStart = true;
+              bindMounts."${tokenFile}" = {
+                hostPath = tokenFile;
+                isReadOnly = true;
+              };
+              config = { config, pkgs, ... }: {
+                system.stateVersion = "23.11";
+                users.users."github-runner-${name}" = {
+                  uid = cfg.runnerUid;
+                  isSystemUser = true;
+                  group = "github-runner-${name}";
+                };
+                users.groups."github-runner-${name}" = { };
+                nix.settings = {
+                  trusted-users = [ "github-runner-${name}" ]; # for cachix
+                  experimental-features = "nix-command flakes repl-flake";
+                  max-jobs = "auto";
+                };
+                services.github-runners."${name}" = cfg.runnerConfig // {
+                  enable = true;
+                  inherit tokenFile;
+                  url = "https://github.com/${cfg.owner}/${name}";
+                };
+              };
+            })
+          cfg.repositories;
 
-      nix.settings.trusted-users =
-        lib.mapAttrsToList
-          (name: runner:
-            if runner.user == null
-            then getRunnerUser name
-            else runner.user)
-          config.services.github-runners;
+      users.users."github-runner" = {
+        uid = cfg.runnerUid;
+        isSystemUser = true;
+        group = "github-runner";
+      };
+      users.groups.github-runner = { };
+
+      nix.settings = {
+        trusted-users = [ "github-runner" ];
+        allowed-users = [ "github-runner" ];
+      };
     };
 }
