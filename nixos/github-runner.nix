@@ -5,14 +5,14 @@ let
     "github-runner-${name}";
 in
 {
-  sops.secrets."gh-selfhosted-runners/emanote".owner = getRunnerUser "emanote";
+  sops.secrets."gh-selfhosted-tokens/emanote".mode = "0440";
 
   # TODO: Run inside container
   services.github-runners = {
     emanote = {
       enable = true;
       name = "emanote";
-      tokenFile = config.sops.secrets."gh-selfhosted-runners/emanote".path;
+      tokenFile = config.sops.secrets."gh-selfhosted-tokens/emanote".path;
       url = "https://github.com/srid/emanote";
       extraPackages = [ pkgs.cachix pkgs.nixci ];
       extraLabels = [ "nixos" ];
