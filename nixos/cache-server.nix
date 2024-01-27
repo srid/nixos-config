@@ -15,7 +15,7 @@
   nix.settings.allowed-users = [ "nix-serve" ];
   nix.settings.trusted-users = [ "nix-serve" ];
 
-  # Web servr
+  # Web server
   services.nginx = {
     virtualHosts.${domain} = {
       forceSSL = true;

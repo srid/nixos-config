@@ -19,6 +19,7 @@
     jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
     # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
+    nix-serve-ng.inputs.nixpkgs.follows = "nixpkgs";
 
     # Software inputs
     nixos-shell.url = "github:Mic92/nixos-shell";
@@ -71,6 +72,7 @@
               ./nixos/lxd.nix
               ./nixos/jenkins.nix
               ./nixos/github-runner.nix
+              (import ./nixos/cache-server.nix { domain = "cache.srid.ca"; })
             ];
             services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.json;
