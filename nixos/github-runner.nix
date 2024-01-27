@@ -1,23 +1,19 @@
 { pkgs, lib, config, ... }:
+let
+  getRunnerUser = name:
+    # systemd DynamicUser
+    "github-runner-${name}";
+in
 {
+  sops.secrets."gh-selfhosted-runners/emanote".owner = getRunnerUser "emanote";
+
   # TODO: Run inside container
   services.github-runners = {
-    emanote-runner = {
+    emanote = {
       enable = true;
-      name = "emanote-runner";
-      # TODO: use sops-nix
-      tokenFile = "/home/srid/runner.token";
+      name = "emanote";
+      tokenFile = config.sops.secrets."gh-selfhosted-runners/emanote".path;
       url = "https://github.com/srid/emanote";
-      extraPackages = [ pkgs.cachix pkgs.nixci ];
-      extraLabels = [ "nixos" ];
-    };
-
-    sridcircle-runner = {
-      enable = true;
-      name = "sridcircle-runner";
-      # TODO: use sops-nix
-      tokenFile = "/home/srid/sridcircle-runner.token";
-      url = "https://github.com/SridCircle";
       extraPackages = [ pkgs.cachix pkgs.nixci ];
       extraLabels = [ "nixos" ];
     };
@@ -26,9 +22,7 @@
     lib.mapAttrsToList
       (name: runner:
         if runner.user == null
-        then
-        # systemd DynamicUser
-          "github-runner-${name}"
+        then getRunnerUser name
         else runner.user)
       config.services.github-runners;
 }
