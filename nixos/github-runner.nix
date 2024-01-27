@@ -21,6 +21,7 @@ in
               # My repositories configured to use self-hosted runners
               # For each entry, make sure the token exists in secrets.json
               "emanote"
+              "haskell-flake"
             ];
           };
           sopsPrefix = lib.mkOption {
@@ -30,7 +31,12 @@ in
           runnerConfig = lib.mkOption {
             type = types.lazyAttrsOf types.raw;
             default = {
-              extraPackages = [ pkgs.cachix pkgs.nixci ];
+              extraPackages = with pkgs; [
+                cachix
+                nixci
+                which
+                coreutils
+              ];
               extraLabels = [ "nixos" ];
             };
           };
