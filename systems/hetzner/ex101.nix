@@ -2,6 +2,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     flake.inputs.disko.nixosModules.disko
+    ./nixos-container.nix
   ];
   system.stateVersion = "22.11";
   services.openssh.enable = true;
