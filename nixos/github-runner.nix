@@ -1,8 +1,8 @@
 /* Module for setting up personal github runners
 
-TODOs
+  TODOs
 
-- [ ] Write a token creation script:
+  - [ ] Write a token creation script:
   ```sh
   $ gh api \
   --method POST \
@@ -12,7 +12,7 @@ TODOs
   ```
   - [ ] Can we automate that to write directly to secrets.json?
 
-- [ ] Run in containers
+  - [ ] Run in containers
 
 */
 { pkgs, lib, config, ... }:
@@ -36,7 +36,9 @@ in
             type = types.listOf types.str;
             default = [
               # My repositories configured to use self-hosted runners
-              # For each entry, make sure the token exists in secrets.json
+              # 
+              # For each entry, make sure the token exists in secrets.json (use
+              # the `gh` command above to create this token from CLI)
               "emanote"
               "haskell-flake"
             ];
