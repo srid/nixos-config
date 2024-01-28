@@ -1,10 +1,16 @@
 /* Module for setting up personal github runners
 
+  Limitations
+  - A runner can run only one job at a time: https://github.com/orgs/community/discussions/26769
+      - This makes sharing an org-wide runner less useful.
+
   TODOs
 
   - [x] Run runners in containers
+  - [ ] macOS runners: https://github.com/LnL7/nix-darwin/issues/582
+  - [ ] Support github orgs
   - [ ] Unbreak cachix? https://github.com/cachix/cachix-action/issues/169 
-      - [ ] Or switch to nix-serve or attic
+      - [x] Or switch to nix-serve or attic
   - [ ] Write a token creation script:
   ```sh
   $ gh api \
@@ -13,7 +19,7 @@
   -H "X-GitHub-Api-Version: 2022-11-28" \
   /repos/srid/haskell-flake/actions/runners/registration-token
   ```
-  - [ ] Can we automate that to write directly to secrets.json?
+      - [ ] Can we automate that to write directly to secrets.json?
 
 */
 top@{ pkgs, lib, config, ... }:
