@@ -28,6 +28,9 @@ in
         options = {
           localAddress = lib.mkOption {
             type = types.str;
+            description = ''
+              IP address of the host that will run containers.
+            '';
             default =
               (builtins.head (builtins.head (lib.attrValues config.networking.interfaces)).ipv4.addresses).address;
           };
@@ -35,7 +38,9 @@ in
             type = types.int;
             default = 1234;
             description = ''
-              Shared UID between host and containers, so guest nix can access /nix/store of host.
+              Shared UID between host and containers.
+              
+              This allows the guest nix processes to access /nix/store of the host.
             '';
           };
           owner = lib.mkOption {
