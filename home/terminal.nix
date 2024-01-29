@@ -7,6 +7,7 @@
     ripgrep
     fd
     sd
+    ncdu
     moreutils # ts, etc.
 
     # Useful for Nix development
