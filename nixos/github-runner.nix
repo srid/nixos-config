@@ -32,33 +32,23 @@ in
       default = { };
       type = types.submodule {
         options = {
-          localAddress = lib.mkOption {
-            type = types.str;
-            description = ''
-              IP address of the host that will run containers.
-            '';
-            default =
-              (builtins.head (builtins.head (lib.attrValues config.networking.interfaces)).ipv4.addresses).address;
-          };
           owner = lib.mkOption {
             type = types.str;
             default = "srid";
           };
           repositories = lib.mkOption {
-            type = types.attrsOf types.str;
+            type = types.listOf types.str;
             description = ''
               My repositories configured to use self-hosted runners
               
               *Before* adding an entry, make sure the token exists in
               secrets.json (use the `gh` command above to create this token
               from CLI)
-
-              Maps to container IP address to assign.
             '';
-            default = {
-              "emanote" = "192.168.100.20";
-              "haskell-flake" = "192.168.100.21";
-            };
+            default = [
+              "emanote"
+              "haskell-flake"
+            ];
           };
           sopsPrefix = lib.mkOption {
             type = types.str;
@@ -91,24 +81,22 @@ in
           isSystemUser = true;
           group = user;
         };
-        users.groups.${user} = {};
+        users.groups.${user} = { };
       };
     in
     userModule // {
 
-      sops.secrets = lib.mapAttrs'
-        (name: _: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
+      sops.secrets = lib.listToAttrs (builtins.map
+        (name: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
           mode = "0440";
         })
-        cfg.repositories;
+        cfg.repositories);
 
       containers =
-        lib.mapAttrs'
-          (name: hostAddress:
+        lib.listToAttrs (builtins.map
+          (name:
             let tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
             in lib.nameValuePair "github-runner-${name}" {
-              inherit (cfg) localAddress;
-              inherit hostAddress;
               autoStart = true;
               bindMounts."${tokenFile}" = {
                 hostPath = tokenFile;
@@ -129,7 +117,7 @@ in
                 };
               };
             })
-          cfg.repositories;
+          cfg.repositories);
 
       nix.settings = {
         trusted-users = [ user ];
