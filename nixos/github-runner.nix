@@ -40,15 +40,6 @@ in
             default =
               (builtins.head (builtins.head (lib.attrValues config.networking.interfaces)).ipv4.addresses).address;
           };
-          runnerUid = lib.mkOption {
-            type = types.int;
-            default = 1234;
-            description = ''
-              Shared UID between host and containers.
-              
-              This allows the guest nix processes to access /nix/store of the host.
-            '';
-          };
           owner = lib.mkOption {
             type = types.str;
             default = "srid";
@@ -93,8 +84,18 @@ in
   config =
     let
       cfg = config.services.personal-github-runners;
+      user = "github-runner";
+      userModule = {
+        users.users.${user} = {
+          uid = 1099;
+          isSystemUser = true;
+          group = user;
+        };
+        users.groups.${user} = {};
+      };
     in
-    {
+    userModule // {
+
       sops.secrets = lib.mapAttrs'
         (name: _: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
           mode = "0440";
@@ -115,36 +116,24 @@ in
               };
               config = { config, pkgs, ... }: {
                 system.stateVersion = "23.11";
-                users.users."github-runner-${name}" = {
-                  uid = cfg.runnerUid;
-                  isSystemUser = true;
-                  group = "github-runner-${name}";
-                };
-                users.groups."github-runner-${name}" = { };
+                imports = [ userModule ];
                 nix.settings = {
-                  trusted-users = [ "github-runner-${name}" ]; # for cachix
+                  trusted-users = [ user ]; # for cachix
                   experimental-features = "nix-command flakes repl-flake";
                   max-jobs = "auto";
                 };
                 services.github-runners."${name}" = cfg.runnerConfig // {
                   enable = true;
-                  inherit tokenFile;
+                  inherit user tokenFile;
                   url = "https://github.com/${cfg.owner}/${name}";
                 };
               };
             })
           cfg.repositories;
 
-      users.users."github-runner" = {
-        uid = cfg.runnerUid;
-        isSystemUser = true;
-        group = "github-runner";
-      };
-      users.groups.github-runner = { };
-
       nix.settings = {
-        trusted-users = [ "github-runner" ];
-        allowed-users = [ "github-runner" ];
+        trusted-users = [ user ];
+        allowed-users = [ user ];
       };
     };
 }
