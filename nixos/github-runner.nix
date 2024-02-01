@@ -54,8 +54,21 @@ in
             type = types.str;
             default = "gh-selfhosted-tokens";
           };
+          nixosConfig = lib.mkOption {
+            type = types.deferredModule;
+            description = ''
+              NixOS configuration for the GitHub Runner container
+            '';
+            default = { pkgs, ... }: {
+              nix.settings = {
+                experimental-features = "nix-command flakes repl-flake";
+                max-jobs = "auto";
+              };
+            };
+          };
           runnerConfig = lib.mkOption {
             type = types.lazyAttrsOf types.raw;
+            description = ''Configuration for the GitHub Runner'';
             default = {
               extraPackages = with pkgs; [
                 cachix
@@ -104,12 +117,11 @@ in
               };
               config = { config, pkgs, ... }: {
                 system.stateVersion = "23.11";
-                imports = [ userModule ];
-                nix.settings = {
-                  trusted-users = [ user ]; # for cachix
-                  experimental-features = "nix-command flakes repl-flake";
-                  max-jobs = "auto";
-                };
+                imports = [
+                  userModule
+                  cfg.nixosConfig
+                ];
+                nix.settings.trusted-users = [ user ]; # for cachix
                 services.github-runners."${name}" = cfg.runnerConfig // {
                   enable = true;
                   inherit user tokenFile;
