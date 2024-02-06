@@ -89,6 +89,13 @@
               ./systems/darwin.nix
             ];
           };
+          naivete = self.nixos-flake.lib.mkMacosSystem {
+            nixpkgs.hostPlatform = "aarch64-darwin";
+            imports = [
+              self.darwinModules.default # Defined in nix-darwin/default.nix
+              ./systems/darwin.nix
+            ];
+          };
         };
       };
 
