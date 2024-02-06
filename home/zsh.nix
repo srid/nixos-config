@@ -8,7 +8,7 @@
     #
     # But also see: 'doom env', which is what works.
     envExtra = ''
-      export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:$PATH
+      export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:/usr/local/bin:$PATH
       # For 1Password CLI. This requires `pkgs.gh` to be installed.
       source $HOME/.config/op/plugins.sh
       # Because, adding it in .ssh/config is not enough.
