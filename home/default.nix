@@ -1,10 +1,11 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake = {
     homeModules = {
       common = {
         home.stateVersion = "22.11";
         imports = [
+          inputs.nixvim.homeManagerModules.nixvim
           ./tmux.nix
           ./neovim.nix
           ./helix.nix
