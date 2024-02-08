@@ -2,7 +2,7 @@
   programs.nixvim = {
     enable = true;
 
-    colorschemes.gruvbox.enable = true;
+    colorschemes.one.enable = true;
     plugins = {
       lightline.enable = true;
       lsp = {
