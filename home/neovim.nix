@@ -3,8 +3,20 @@
     enable = true;
 
     colorschemes.ayu.enable = true;
+    options = {
+      expandtab = true;
+      shiftwidth = 4;
+      smartindent = true;
+      tabstop = 4;
+    };
+    globals = {
+      mapleader = " ";
+    };
     plugins = {
       lightline.enable = true;
+      treesitter.enable = true;
+      lsp-lines.enable = true;
+      illuminate.enable = true;
       lsp = {
         enable = true;
         servers = {
