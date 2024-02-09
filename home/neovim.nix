@@ -15,8 +15,6 @@
     plugins = {
       lightline.enable = true;
       treesitter.enable = true;
-      lsp-lines.enable = true;
-      illuminate.enable = true;
       lsp = {
         enable = true;
         servers = {
