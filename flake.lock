@@ -1017,6 +1017,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1707016097,
+        "narHash": "sha256-V4lHr6hFQ3rK650dh64Xffxsf4kse9vUYWsM+ldjkco=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "3e3dad2808379c522138e2e8b0eb73500721a237",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-serve-ng": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1836,6 +1856,7 @@
         "jenkins-nix-ci": "jenkins-nix-ci",
         "nix-darwin": "nix-darwin",
         "nix-doom-emacs": "nix-doom-emacs",
+        "nix-index-database": "nix-index-database",
         "nix-serve-ng": "nix-serve-ng",
         "nixci": "nixci",
         "nixd": "nixd",

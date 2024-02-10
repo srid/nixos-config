@@ -32,6 +32,8 @@
     nixci.url = "github:srid/nixci";
     actual.url = "github:srid/actual";
     actual.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
@@ -113,7 +115,13 @@
           ];
         };
 
-        nixos-flake.primary-inputs = [ "nixpkgs" "home-manager" "nix-darwin" "nixos-flake" ];
+        nixos-flake.primary-inputs = [
+          "nixpkgs"
+          "home-manager"
+          "nix-darwin"
+          "nixos-flake"
+          "nix-index-database"
+        ];
 
         treefmt.config = {
           projectRootFile = "flake.nix";
