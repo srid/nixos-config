@@ -13,6 +13,7 @@
     # Useful for Nix development
     devour-flake
     nixci
+    nix-health
     nil
     nixpkgs-fmt
 

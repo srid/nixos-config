@@ -30,6 +30,7 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
     nixd.url = "github:nix-community/nixd";
     nixci.url = "github:srid/nixci";
+    nix-browser.url = "github:juspay/nix-browser";
     actual.url = "github:srid/actual";
     actual.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -74,6 +75,7 @@
               inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
+              ./nixos/github-runner.nix
             ];
             services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.json;
