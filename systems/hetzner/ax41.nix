@@ -36,7 +36,7 @@
         prefixLength = 64;
       }
     ];
-    defaultGateway = "65.109.35.129";  # `ip route | grep default`
+    defaultGateway = "65.109.35.129"; # `ip route | grep default`
     nameservers = [ "8.8.8.8" ];
   };
   disko.devices = import ./disko/two-raids-on-two-disks.nix {
