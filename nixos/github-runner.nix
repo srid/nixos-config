@@ -53,6 +53,7 @@ in
           sopsPrefix = lib.mkOption {
             type = types.str;
             default = "gh-selfhosted-tokens";
+            readOnly = true;
           };
           nixosConfig = lib.mkOption {
             type = types.deferredModule;
