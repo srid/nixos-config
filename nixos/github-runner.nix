@@ -48,6 +48,7 @@ in
             default = [
               "emanote"
               "haskell-flake"
+              "nixos-config"
             ];
           };
           sopsPrefix = lib.mkOption {
