@@ -1,18 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (pkgs) stdenv;
-  _1passwordAgentSock =
-    if stdenv.isDarwin then
-      ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"''
-    else
-      "~/.1password/agent.sock";
 in
 {
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      "*".extraOptions = {
-        identityAgent = _1passwordAgentSock;
+      # Configure 1Password agent only on macOS; whilst using agent forwarding
+      # to make it available to Linux machines.
+      "*".extraOptions = lib.mkIf stdenv.isDarwin {
+        identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
       };
       immediacy = {
         hostname = "65.109.35.172";
