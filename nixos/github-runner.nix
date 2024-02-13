@@ -46,7 +46,7 @@ in
               from CLI)
             '';
             default = [
-              #"emanote"
+              "emanote"
               "haskell-flake"
             ];
           };
