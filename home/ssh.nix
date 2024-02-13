@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   inherit (pkgs) stdenv;
   _1passwordAgentSock =
     if stdenv.isDarwin then
-      "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+      ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"''
     else
-      "${config.home.homeDirectory}/.1password/agent.sock";
+      "~/.1password/agent.sock";
 in
 {
   programs.ssh = {
@@ -28,7 +28,7 @@ in
       # https://developer.1password.com/docs/ssh/agent/advanced/#match-key-with-host
       "bitbucket.org" = {
         identitiesOnly = true;
-        identityFile = "${config.home.homeDirectory}/.ssh/juspay.pub";
+        identityFile = "~/.ssh/juspay.pub";
       };
     };
   };
