@@ -49,6 +49,7 @@ in
               "emanote"
               "haskell-flake"
               "nixos-config"
+              "ema"
             ];
           };
           sopsPrefix = lib.mkOption {
@@ -100,18 +101,15 @@ in
       };
     in
     userModule // {
-
-      sops.secrets = lib.listToAttrs (builtins.map
-        (name: lib.nameValuePair "${cfg.sopsPrefix}/${name}" {
-          mode = "0440";
-        })
-        cfg.repositories);
+      sops.secrets."${cfg.sopsPrefix}/srid".mode = "0440";
 
       containers =
         lib.listToAttrs (builtins.map
           (name:
-            let tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/${name}".path;
-            in lib.nameValuePair "github-runner-${name}" {
+            let
+              tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/srid".path;
+            in
+            lib.nameValuePair "github-runner-${name}" {
               autoStart = true;
               bindMounts."${tokenFile}" = {
                 hostPath = tokenFile;
