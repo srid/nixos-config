@@ -16,7 +16,7 @@
   services = {
     openssh = {
       enable = true;
-      settings.PermitRootLogin = "prohibit-password"; # distributed-build.nix requires it
+      settings.PermitRootLogin = "no";
       settings.PasswordAuthentication = false;
       allowSFTP = false;
     };

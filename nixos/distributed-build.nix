@@ -1,5 +1,6 @@
 # https://nixos.wiki/wiki/Distributed_build
 {
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
   nix.buildMachines = [
     {
       hostName = "thick";
