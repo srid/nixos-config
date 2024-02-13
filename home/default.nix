@@ -12,6 +12,7 @@
           ./helix.nix
           ./starship.nix
           ./terminal.nix
+          ./nix.nix
           ./git.nix
           ./direnv.nix
           ./zellij.nix
