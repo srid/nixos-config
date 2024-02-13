@@ -14,6 +14,9 @@
     };
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" ];
     binfmt.emulatedSystems = [ "aarch64-linux" ]; # For cross-compiling, https://discourse.nixos.org/t/how-do-i-cross-compile-a-flake/12062/4?u=srid
+    swraid.mdadmConf = ''
+      MAILADDR srid@srid.ca
+    '';
   };
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware = {
