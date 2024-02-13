@@ -11,6 +11,10 @@ To use this repository as base configuration for your new machine running:
 
 - Install NixOS
   - Hetzner dedicated from Linux Rescue system: https://github.com/numtide/nixos-anywhere (see [blog post](https://galowicz.de/2023/04/05/single-command-server-bootstrap/); example PR: https://github.com/srid/nixos-config/pull/35 where I had to configure networking manually)
+    - Copy from existing configuration (eg: ax41.nix)
+    - Make networking configuration changes. 
+    - Run nixos-anywhere from a Linux system, targetting `root@<ip>`
+    - Wait for reboot; `ssh srid@<ip>`; profit!
   - Digital Ocean
     - Legacy/manual approach: [nixos-infect](https://github.com/elitak/nixos-infect)
     - Modern/automate approach: Custom image + colerama; cf. [Zulip](https://nixos.zulipchat.com/#narrow/stream/413948-nixos/topic/Deploying.20to.20DigitalOcean) and [example](https://github.com/fpindia/fpindia-chat)

@@ -68,6 +68,17 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
+          immediacy = self.nixos-flake.lib.mkLinuxSystem {
+            imports = [
+              self.nixosModules.default # Defined in nixos/default.nix
+              ./systems/hetzner/ax41.nix
+              ./nixos/server/harden.nix
+            ];
+            services.tailscale.enable = true;
+            #sops.defaultSopsFile = ./secrets.json;
+            #sops.defaultSopsFormat = "json";
+          };
+
           actual = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
