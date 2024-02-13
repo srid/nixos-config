@@ -12,7 +12,7 @@ in
         identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
       };
       immediacy = {
-        hostname = "65.109.35.172";
+        hostname = "100.127.24.29";
         user = "srid";
         forwardAgent = true;
       };
