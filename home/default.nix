@@ -10,6 +10,7 @@
           ./tmux.nix
           ./neovim.nix
           ./helix.nix
+          ./ssh.nix
           ./starship.nix
           ./terminal.nix
           ./nix.nix
