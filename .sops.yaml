@@ -2,6 +2,7 @@ keys:
   - &admin_srid age1zdwstn787x2a7hllksjk0zpdx3wdvy3fju8hk33a583jtv3d8q9qsvzfan
   - &server_pce age1k2efalw74pce98ff2qa45hadkgew5q43gluefr7l4y4cqg6ul5ms8rlcep
   - &server_actual age1jd7cj3jj9g8qkch5k62gqm6fy62ufpx7q6hx06lwuvug4z8ya4uqu6u2ft
+  - &server_immediacy age1cng52vahpnm8g3gcqf2n8w3jp74pvly3hjyn2zzrhjhaar6epa6szs9dqu
 creation_rules:
   - path_regex: secrets.json$
     key_groups:
@@ -9,3 +10,4 @@ creation_rules:
         - *admin_srid
         - *server_pce
         - *server_actual
+        - *server_immediacy
