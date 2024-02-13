@@ -1,24 +1,19 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
-with lib;
+{ config, pkgs, ... }:
 let
   inherit (pkgs) stdenv;
+  _1passwordAgentSock =
+    if stdenv.isDarwin then
+      "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    else
+      "${config.home.homeDirectory}/.1password/agent.sock";
 in
 {
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      "*".extraOptions = mkMerge [
-        (mkIf (!stdenv.isDarwin) {
-          identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
-        })
-        (mkIf (stdenv.isDarwin) {
-          identityAgent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-        })
-      ];
+      "*".extraOptions = {
+        identityAgent = _1passwordAgentSock;
+      };
       actual = {
         hostname = "167.205.125.179";
         forwardAgent = true;
