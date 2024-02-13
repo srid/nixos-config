@@ -1088,11 +1088,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1698598109,
-        "narHash": "sha256-LHLP4lixuvSBtH6NOmjdJXn74aYOx0xULKDo98P3dnk=",
+        "lastModified": 1707646725,
+        "narHash": "sha256-a5sl4NIjLOd7Gw2pwsHZA4WHkAH7OIadhBGueDebEr8=",
         "owner": "srid",
         "repo": "nixci",
-        "rev": "49a15197c4d6258a50c1d7fad1c7465f36effd1f",
+        "rev": "12cdbf8442f8e45b0d78bf76ea69eaa35eeff475",
         "type": "github"
       },
       "original": {
