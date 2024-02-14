@@ -43,6 +43,12 @@
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    # https://github.com/nix-community/nix-doom-emacs/issues/409#issuecomment-1753412481
+    nix-straight = {
+      url = "github:codingkoi/nix-straight.el?ref=codingkoi/apply-librephoenixs-fix";
+      flake = false;
+    };
+    nix-doom-emacs.inputs.nix-straight.follows = "nix-straight";
 
     # Vim & its plugins (not in nixpkgs)
     zk-nvim.url = "github:mickael-menu/zk-nvim";
