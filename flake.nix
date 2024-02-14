@@ -81,9 +81,9 @@
               ./nixos/server/harden.nix
               ./nixos/easy-github-runners.nix
             ];
-            services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
+            services.tailscale.enable = true;
             services.easy-github-runners = {
               "srid/emanote" = { };
               "srid/haskell-flake" = { };

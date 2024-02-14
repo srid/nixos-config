@@ -11,7 +11,6 @@
     moreutils # ts, etc.
 
     # Useful for Nix development
-    devour-flake
     nixci
     nix-health
     nil
