@@ -21,6 +21,7 @@ let
 in
 {
   options = {
+    # TODO: Make this general enough to support organizations and other users.
     services.personal-github-runners = lib.mkOption {
       default = { };
       type = types.submodule {
@@ -49,6 +50,9 @@ in
             type = types.str;
             default = "gh-selfhosted-tokens";
             readOnly = true;
+            description = ''
+              sops-nix parent key path containing the tokens
+            '';
           };
           nixosConfig = lib.mkOption {
             type = types.deferredModule;
@@ -96,6 +100,11 @@ in
     userModule // {
       sops.secrets."${cfg.sopsPrefix}/${cfg.owner}".mode = "0440";
 
+      nix.settings = {
+        trusted-users = [ user ];
+        allowed-users = [ user ];
+      };
+
       containers =
         lib.listToAttrs (builtins.map
           (name:
@@ -126,9 +135,5 @@ in
             })
           cfg.repositories);
 
-      nix.settings = {
-        trusted-users = [ user ];
-        allowed-users = [ user ];
-      };
     };
 }
