@@ -137,7 +137,7 @@
           programs.nixpkgs-fmt.enable = true;
           settings.formatter.nixpkgs-fmt.excludes =
             let
-              nixosConfig = self.nixosConfigurations.actual;
+              nixosConfig = self.nixosConfigurations.immediacy;
               jenkinsPluginsFile = nixosConfig.config.jenkins-nix-ci.plugins-file;
             in
             [ jenkinsPluginsFile ];
@@ -150,7 +150,7 @@
             pkgs.sops
             pkgs.ssh-to-age
             (
-              let nixosConfig = self.nixosConfigurations.actual;
+              let nixosConfig = self.nixosConfigurations.immediacy;
               in nixosConfig.config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs
             )
           ];
