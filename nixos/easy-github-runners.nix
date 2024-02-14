@@ -29,6 +29,12 @@ in
         options = {
           owner = lib.mkOption {
             type = types.str;
+            description = ''
+              The owner of this repo/org.
+
+              The PAC token of this owner must be able to setup runners for this
+              repo/org.
+            '';
             default = lib.head (lib.splitString "/" config.githubPath);
           };
           url = lib.mkOption {
