@@ -1,8 +1,8 @@
-{ flake, config, lib, ... }:
+{ config, ... }:
 
 {
   imports = [
-    flake.inputs.jenkins-nix-ci.nixosModules.default # Provided by https://github.com/juspay/jenkins-nix-ci
+    # flake.inputs.jenkins-nix-ci.nixosModules.default # Provided by https://github.com/juspay/jenkins-nix-ci
   ];
 
   jenkins-nix-ci = {

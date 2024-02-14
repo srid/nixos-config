@@ -113,15 +113,6 @@
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
-        # NOTE: These overlays apply to the Nix shell only. See `nix.nix` for
-        # system overlays.
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [
-            inputs.jenkins-nix-ci.overlay
-          ];
-        };
-
         nixos-flake.primary-inputs = [
           "nixpkgs"
           "home-manager"
