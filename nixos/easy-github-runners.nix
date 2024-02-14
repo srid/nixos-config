@@ -23,7 +23,10 @@ in
       description = ''
         Attrset of runners.
 
-        The key is either org name or the repo path.
+        The key will be used to identify the runner name. It could be either org
+        name or the repo path, unless you want to run multiple runners per
+        org/repo, in which case choose a suitably unique key while setting org
+        name or repo path in `githubPath` option.
       '';
       type = types.lazyAttrsOf (types.submodule ({ config, name, ... }: {
         options = {
