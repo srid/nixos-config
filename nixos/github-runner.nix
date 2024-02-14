@@ -11,15 +11,8 @@
   - [ ] Support github orgs
   - [ ] Unbreak cachix? https://github.com/cachix/cachix-action/issues/169 
       - [x] Or switch to nix-serve or attic
-  - [ ] Write a token creation script:
-  ```sh
-  $ gh api \
-  --method POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/srid/haskell-flake/actions/runners/registration-token
-  ```
-      - [ ] Can we automate that to write directly to secrets.json?
+  - [ ] Document PAC token
+      - For user accounts, create a legacy PAC token with 'repo' scope. New-style could also work. 
 
 */
 top@{ pkgs, lib, config, ... }:
@@ -101,15 +94,18 @@ in
       };
     in
     userModule // {
-      sops.secrets."${cfg.sopsPrefix}/srid".mode = "0440";
+      sops.secrets."${cfg.sopsPrefix}/${cfg.owner}".mode = "0440";
 
       containers =
         lib.listToAttrs (builtins.map
           (name:
             let
-              tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/srid".path;
+              tokenFile = top.config.sops.secrets."${cfg.sopsPrefix}/${cfg.owner}".path;
+              githubPath = "${cfg.owner}/${name}";
+              url = "https://github.com/${githubPath}";
+              githubPathLegal = lib.replaceStrings [ "/" ] [ "-" ] githubPath;
             in
-            lib.nameValuePair "github-runner-${name}" {
+            lib.nameValuePair ''github-runner-${githubPathLegal}'' {
               autoStart = true;
               bindMounts."${tokenFile}" = {
                 hostPath = tokenFile;
@@ -122,10 +118,9 @@ in
                   cfg.nixosConfig
                 ];
                 nix.settings.trusted-users = [ user ]; # for cachix
-                services.github-runners."${name}" = cfg.runnerConfig // {
+                services.github-runners."${githubPathLegal}" = cfg.runnerConfig // {
                   enable = true;
-                  inherit user tokenFile;
-                  url = "https://github.com/${cfg.owner}/${name}";
+                  inherit user url tokenFile;
                 };
               };
             })
