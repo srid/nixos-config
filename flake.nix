@@ -16,8 +16,6 @@
 
     # CI server
     sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
-    jenkins-nix-ci.url = "github:juspay/jenkins-nix-ci";
-    # jenkins-nix-ci.url = "path:/home/srid/code/jenkins-nix-ci";
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
     nix-serve-ng.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -135,12 +133,6 @@
         treefmt.config = {
           projectRootFile = "flake.nix";
           programs.nixpkgs-fmt.enable = true;
-          settings.formatter.nixpkgs-fmt.excludes =
-            let
-              nixosConfig = self.nixosConfigurations.immediacy;
-              jenkinsPluginsFile = nixosConfig.config.jenkins-nix-ci.plugins-file;
-            in
-            [ jenkinsPluginsFile ];
         };
 
         packages.default = self'.packages.activate;
@@ -149,10 +141,6 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
-            (
-              let nixosConfig = self.nixosConfigurations.immediacy;
-              in nixosConfig.config.jenkins-nix-ci.nix-prefetch-jenkins-plugins pkgs
-            )
           ];
         };
         formatter = config.treefmt.build.wrapper;
