@@ -20,18 +20,12 @@ in
 {
   options = {
     # TODO: Make this general enough to support organizations and other users.
-    services.personal-github-runners = lib.mkOption {
+    services.easy-github-runners = lib.mkOption {
       description = ''
         Attrset of runners.
 
         The key is either org name or the repo path.
       '';
-      default = {
-        "srid/emanote" = { };
-        "srid/haskell-flake" = { };
-        "srid/nixos-config" = { };
-        "srid/ema" = { };
-      };
       type = types.lazyAttrsOf (types.submodule ({ config, name, ... }: {
         options = {
           owner = lib.mkOption {
@@ -96,7 +90,7 @@ in
   };
   config =
     let
-      cfg = config.services.personal-github-runners;
+      cfg = config.services.easy-github-runners;
       user = "github-runner";
       userModule = {
         users.users.${user} = {

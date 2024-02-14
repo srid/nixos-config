@@ -81,11 +81,17 @@
               inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-              ./nixos/github-runner.nix
+              ./nixos/easy-github-runners.nix
             ];
             services.tailscale.enable = true;
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
+            services.easy-github-runners = {
+              "srid/emanote" = { };
+              "srid/haskell-flake" = { };
+              "srid/nixos-config" = { };
+              "srid/ema" = { };
+            };
           };
         };
 
