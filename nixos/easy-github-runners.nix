@@ -1,4 +1,4 @@
-/* Module for setting up personal github runners
+/* Module for setting up personal or org-wide github runners
 
   Limitations
   - A runner can run only one job at a time: https://github.com/orgs/community/discussions/26769
@@ -19,7 +19,6 @@ let
 in
 {
   options = {
-    # TODO: Make this general enough to support organizations and other users.
     services.easy-github-runners = lib.mkOption {
       description = ''
         Attrset of runners.
