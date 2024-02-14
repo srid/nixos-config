@@ -87,23 +87,6 @@
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
           };
-
-          actual = self.nixos-flake.lib.mkLinuxSystem {
-            imports = [
-              self.nixosModules.default # Defined in nixos/default.nix
-              inputs.sops-nix.nixosModules.sops
-              ./systems/hetzner/ex101.nix
-              ./nixos/server/harden.nix
-              ./nixos/docker.nix
-              ./nixos/lxd.nix
-              ./nixos/jenkins.nix
-              ./nixos/github-runner.nix
-              (import ./nixos/cache-server.nix { domain = "cache.srid.ca"; })
-            ];
-            services.tailscale.enable = true;
-            sops.defaultSopsFile = ./secrets.json;
-            sops.defaultSopsFormat = "json";
-          };
         };
 
         # Configurations for my (only) macOS machine (using nix-darwin)
