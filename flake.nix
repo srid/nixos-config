@@ -88,7 +88,9 @@
               "srid/emanote" = { };
               "srid/haskell-flake" = { };
               "srid/nixos-config" = { };
+              "srid/nixos-flake" = { };
               "srid/ema" = { };
+              "srid/orgate" = { };
               "EmaApps/orgself".owner = "srid";
             };
           };
