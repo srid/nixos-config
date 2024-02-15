@@ -17,6 +17,13 @@
       # p = "pull --rebase";
       pu = "push";
     };
+    iniContent = {
+      # Branch with most recent change comes first
+      branch.sort = "-committerdate";
+      # Remember and auto-resolve merge conflicts
+      # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+      rerere.enabled = true;
+    };
     ignores = [ "*~" "*.swp" ];
     delta = {
       enable = true;
