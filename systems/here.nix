@@ -18,6 +18,8 @@
   };
   nixpkgs.hostPlatform = "aarch64-linux";
 
+  hardware.parallels.enable = true;
+
   networking = {
     hostName = "here";
     networkmanager.enable = true;
