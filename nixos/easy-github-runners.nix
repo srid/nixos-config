@@ -87,7 +87,6 @@ in
                 nixci
                 which
                 coreutils
-                docker
               ];
               extraLabels = [ "nixos" ];
             };
