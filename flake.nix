@@ -73,6 +73,15 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
+          here = self.nixos-flake.lib.mkLinuxSystem {
+            imports = [
+              self.nixosModules.common # Defined in nixos/default.nix
+              ./systems/here.nix
+              ./nixos/server/harden.nix
+            ];
+            services.tailscale.enable = true;
+          };
+
           immediacy = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
@@ -135,6 +144,8 @@
             pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
+            pkgs.nixos-rebuild
+            pkgs.just
           ];
         };
         formatter = config.treefmt.build.wrapper;
