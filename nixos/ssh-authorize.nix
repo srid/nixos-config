@@ -9,6 +9,9 @@
     in
     {
       root.openssh.authorizedKeys.keys = myKeys;
-      ${people.myself}.openssh.authorizedKeys.keys = myKeys;
+      ${people.myself} = {
+        openssh.authorizedKeys.keys = myKeys;
+        isNormalUser = true;
+      };
     };
 }
