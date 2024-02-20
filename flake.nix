@@ -76,10 +76,17 @@
           here = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.common # Defined in nixos/default.nix
+              inputs.sops-nix.nixosModules.sops
               ./systems/here.nix
               ./nixos/server/harden.nix
+              ./nixos/easy-github-runners.nix
             ];
+            sops.defaultSopsFile = ./secrets.json;
+            sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
+            services.easy-github-runners = {
+              "srid/emanote" = { };
+            };
           };
 
           immediacy = self.nixos-flake.lib.mkLinuxSystem {
@@ -93,8 +100,8 @@
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
+            # TODO: Move these to 'here' VM.
             services.easy-github-runners = {
-              "srid/emanote" = { };
               "srid/haskell-flake" = { };
               "srid/nixos-config" = { };
               "srid/nixos-flake" = { };
