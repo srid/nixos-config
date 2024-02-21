@@ -1,4 +1,4 @@
-This repository contains the Nix / NixOS configuration for all of my systems. See [nixos-flake](https://github.com/srid/nixos-flake) if you want to create your own configuration from scratch.
+This repository contains the Nix / NixOS configuration for all of my systems. See [nixos-flake](https://community.flake.parts/nixos-flake) if you want to create your own configuration from scratch.
 
 ## Setup
 
