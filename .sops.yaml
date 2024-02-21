@@ -3,7 +3,7 @@ keys:
   - &server_pce age1k2efalw74pce98ff2qa45hadkgew5q43gluefr7l4y4cqg6ul5ms8rlcep
   - &server_actual age1jd7cj3jj9g8qkch5k62gqm6fy62ufpx7q6hx06lwuvug4z8ya4uqu6u2ft
   - &server_immediacy age1cng52vahpnm8g3gcqf2n8w3jp74pvly3hjyn2zzrhjhaar6epa6szs9dqu
-  - &server_here age1fxllmnxnqke34c26y8pcz49tc5ur5qfagxjdryp2km8m0s0ev4mqz09gs6
+  - &server_here age16p9z44nct6jw9eg7v0q0c2e7whcsq8nhc0qmfwatfjajw5mam3gq9gflyk
 creation_rules:
   - path_regex: secrets.json$
     key_groups:
