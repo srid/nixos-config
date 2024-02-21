@@ -85,6 +85,7 @@
             sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
             services.easy-github-runners = {
+              "srid/ema" = { };
               "srid/emanote" = { };
               "srid/nixos-config" = { };
               "srid/nixos-flake" = { };
@@ -98,17 +99,10 @@
               inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax41.nix
               ./nixos/server/harden.nix
-              ./nixos/easy-github-runners.nix
             ];
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
-            # TODO: Move these to 'here' VM.
-            services.easy-github-runners = {
-              "srid/ema" = { };
-              "srid/orgate" = { };
-              "EmaApps/orgself".owner = "srid";
-            };
           };
         };
 
