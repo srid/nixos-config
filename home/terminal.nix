@@ -15,6 +15,7 @@
     nix-health
     nil
     nixpkgs-fmt
+    just
 
     # Publishing
     asciinema
