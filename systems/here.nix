@@ -6,6 +6,7 @@
   ];
   system.stateVersion = "23.11";
   services.openssh.enable = true;
+  services.ntp.enable = true; # Accurate time in Parallels VM?
   boot = {
     loader = {
       systemd-boot.enable = true;
