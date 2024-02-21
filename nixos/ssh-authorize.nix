@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, lib, ... }:
 
 {
   # Let me login
@@ -11,6 +11,7 @@
       root.openssh.authorizedKeys.keys = myKeys;
       ${people.myself} = {
         openssh.authorizedKeys.keys = myKeys;
+      } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
       };
     };
