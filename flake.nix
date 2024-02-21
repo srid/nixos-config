@@ -86,6 +86,8 @@
             services.tailscale.enable = true;
             services.easy-github-runners = {
               "srid/emanote" = { };
+              "srid/nixos-config" = { };
+              "srid/nixos-flake" = { };
             };
           };
 
@@ -103,8 +105,6 @@
             # TODO: Move these to 'here' VM.
             services.easy-github-runners = {
               "srid/haskell-flake" = { };
-              "srid/nixos-config" = { };
-              "srid/nixos-flake" = { };
               "srid/ema" = { };
               "srid/orgate" = { };
               "EmaApps/orgself".owner = "srid";
