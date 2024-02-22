@@ -5,7 +5,8 @@
     # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nix-darwin.url = "github:lnl7/nix-darwin";
+    # nix-darwin.url = "github:lnl7/nix-darwin";
+    nix-darwin.url = "github:LoganBarnett/nix-darwin/linux-builder-big-config"; # https://github.com/LnL7/nix-darwin/pull/878 (for 'systems')
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -113,6 +114,7 @@
             imports = [
               self.darwinModules.default # Defined in nix-darwin/default.nix
               ./systems/darwin.nix
+              ./systems/darwin/ci.nix
             ];
           };
           naivete = self.nixos-flake.lib.mkMacosSystem {
