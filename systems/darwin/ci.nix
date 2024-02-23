@@ -1,7 +1,44 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
 {
-  # TODO: GitHub Runners
+  # TODO: Refactor this into a module, like easy-github-runners.nix
+  services.github-runners =
+    let
+      srid = {
+        common = {
+          enable = true;
+          # TODO: Document instructions
+          # - chmod og-rwx; chown github-runner
+          # TODO: Use a secret manager. 1Password?
+          tokenFile = "/run/mykeys/gh-token-runner";
+          extraPackages = with pkgs; [
+            nixci
+            cachix
+            which
+            coreutils
+          ];
+        };
+        repos = {
+          emanote = {
+            url = "https://github.com/srid/emanote";
+            num = 2;
+          };
+        };
+      };
+    in
+    lib.listToAttrs (lib.concatLists (lib.flip lib.mapAttrsToList srid.repos
+      (k: { url, num }:
+        lib.flip builtins.map (lib.range 1 num) (idx:
+          let
+            name = "${k}-${builtins.toString idx}";
+            value = srid.common // {
+              inherit url;
+            };
+          in
+          lib.nameValuePair (builtins.trace name name) value)
+      )));
+  users.knownGroups = [ "github-runner" ];
+  users.knownUsers = [ "github-runner" ];
 
   # To build Linux derivations whilst on macOS.
   # 

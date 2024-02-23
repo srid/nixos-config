@@ -28,7 +28,7 @@
     nixpkgs-match.url = "github:srid/nixpkgs-match";
     nuenv.url = "github:DeterminateSystems/nuenv";
     nixd.url = "github:nix-community/nixd";
-    nixci.url = "github:srid/nixci";
+    nixci.url = "github:srid/nixci/build-systems";
     nix-browser.url = "github:juspay/nix-browser";
     actual.url = "github:srid/actual";
     actual.inputs.nixpkgs.follows = "nixpkgs";
@@ -87,7 +87,7 @@
             services.tailscale.enable = true;
             services.easy-github-runners = {
               "srid/ema" = { };
-              "srid/emanote" = { };
+              # "srid/emanote" = { }; -- running on macOS
               "srid/nixos-config" = { };
               "srid/nixos-flake" = { };
               "srid/haskell-flake" = { };
