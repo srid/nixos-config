@@ -9,7 +9,7 @@
           enable = true;
           # TODO: Document instructions
           # - chmod og-rwx; chown github-runner
-          # TODO: Use a secret manager. 1Password?
+          # TODO: Use a secret manager. 1Password? https://github.com/LnL7/nix-darwin/issues/882
           tokenFile = "/run/mykeys/gh-token-runner";
           extraPackages = with pkgs; [
             nixci
@@ -23,6 +23,14 @@
             url = "https://github.com/srid/emanote";
             num = 2;
           };
+          nixos-config = {
+            url = "https://github.com/srid/nixos-config";
+            num = 2;
+          };
+          nixos-flake = {
+            url = "https://github.com/srid/nixos-flake";
+            num = 3;
+          };
         };
       };
     in
@@ -35,7 +43,7 @@
               inherit url;
             };
           in
-          lib.nameValuePair (builtins.trace name name) value)
+          lib.nameValuePair name value)
       )));
   users.knownGroups = [ "github-runner" ];
   users.knownUsers = [ "github-runner" ];

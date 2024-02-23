@@ -87,9 +87,6 @@
             services.tailscale.enable = true;
             services.easy-github-runners = {
               "srid/ema" = { };
-              # "srid/emanote" = { }; -- running on macOS
-              "srid/nixos-config" = { };
-              "srid/nixos-flake" = { };
               "srid/haskell-flake" = { };
             };
           };
