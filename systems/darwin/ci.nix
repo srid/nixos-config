@@ -22,7 +22,7 @@
         # Larger linux-builder cores, ram, and disk.
         cores = 6;
         memorySize = lib.mkForce (1024 * 16);
-        diskSize = lib.mkForce (1024 * 1); # In MB.
+        diskSize = lib.mkForce (1024 * 1024 * 1); # In MB.
       };
     };
   };
