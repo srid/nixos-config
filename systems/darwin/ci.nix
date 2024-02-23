@@ -23,6 +23,10 @@
             url = "https://github.com/srid/emanote";
             num = 2;
           };
+          ema = {
+            url = "https://github.com/srid/ema";
+            num = 2;
+          };
           nixos-config = {
             url = "https://github.com/srid/nixos-config";
             num = 2;

@@ -86,7 +86,7 @@
             sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
             services.easy-github-runners = {
-              "srid/ema" = { };
+              # TODO: move to macOS runner, after figuring how to run tests (in Nix?)
               "srid/haskell-flake" = { };
             };
           };
