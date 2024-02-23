@@ -1,12 +1,17 @@
 name: "CI"
+
 on:
   push:
     branches:
       - master
   pull_request:
+
 jobs:
-  build:
+  nix:
     runs-on: self-hosted
+    strategy:
+      matrix:
+        system: [aarch64-linux, aarch64-darwin]
     steps:
       - uses: actions/checkout@v4
-      - run: nixci
+      - run: nixci --build-systems "github:nix-systems/${{ matrix.system }}"
