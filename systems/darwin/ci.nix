@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ flake, pkgs, lib, ... }:
 
 {
   # TODO: Refactor this into a module, like easy-github-runners.nix
@@ -57,14 +57,16 @@
   users.knownUsers = [ "github-runner" ];
 
   # If not using linux-builder, use a VM
-  users.users.srid.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPGfskkyhM0wefy0Sex2t5GENEHTIZAWrb9LzRN0R9x"
-  ];
-  /* nix.buildMachines = [ {
-    hostName = "here";
-    sshUser = "srid";
-    sshKey = "/var/root/.ssh/id_rsa";
-  }]; */
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    hostName = "linux-builder";
+    systems = [ "aarch64-linux" "x86_64-linux" ];
+    supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+    maxJobs = 6; # 6 cores
+    protocol = "ssh-ng";
+    sshUser = flake.config.people.myself;
+    sshKey = "/etc/ssh/ssh_host_ed25519_key";
+  }];
 
   # To build Linux derivations whilst on macOS.
   # 
