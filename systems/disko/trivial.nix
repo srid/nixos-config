@@ -1,8 +1,11 @@
+# A trivial disk configuration with single root partition taking whole disk
+# space.
+{ device, ... }:
 {
   disk = {
     main = {
+      inherit device;
       type = "disk";
-      device = "/dev/sda";
       content = {
         type = "gpt";
         partitions = {

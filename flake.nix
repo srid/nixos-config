@@ -79,7 +79,7 @@
               self.nixosModules.common # Defined in nixos/default.nix
               inputs.sops-nix.nixosModules.sops
               ./systems/here.nix
-              ./nixos/server/harden.nix
+              ./nixos/server/harden
             ];
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
@@ -89,15 +89,9 @@
           linux-builder = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               ./nixos/ssh-authorize.nix
+              ./nixos/server/harden/basics.nix
               ./systems/linux-builder.nix
               ({ flake, ... }: {
-                # See harden.nix
-                networking.firewall.enable = true;
-                security.sudo.execWheelOnly = true;
-                security.sudo.wheelNeedsPassword = false;
-                users.users.${flake.config.people.myself} = {
-                  extraGroups = [ "wheel" ];
-                };
                 nix.settings.trusted-users = [ "root" flake.config.people.myself ];
               })
             ];
@@ -109,7 +103,7 @@
               self.nixosModules.default # Defined in nixos/default.nix
               inputs.sops-nix.nixosModules.sops
               ./systems/hetzner/ax41.nix
-              ./nixos/server/harden.nix
+              ./nixos/server/harden
             ];
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";

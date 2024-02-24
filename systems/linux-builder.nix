@@ -26,7 +26,7 @@
     networkmanager.enable = true;
   };
   time.timeZone = "America/New_York";
-  disko.devices = import ./disko/vm.nix;
+  disko.devices = import ./disko/trivial.nix { device = "/dev/sda"; };
 
   users.users.${flake.config.people.myself}.openssh.authorizedKeys.keys = [
     # macos /etc/ssh/ssh_host_ed25519_key.pub
