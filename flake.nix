@@ -74,21 +74,9 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          here = self.nixos-flake.lib.mkLinuxSystem {
-            imports = [
-              self.nixosModules.common # Defined in nixos/default.nix
-              inputs.sops-nix.nixosModules.sops
-              ./systems/here.nix
-              ./nixos/server/harden
-            ];
-            sops.defaultSopsFile = ./secrets.json;
-            sops.defaultSopsFormat = "json";
-            services.tailscale.enable = true;
-          };
-
           linux-builder = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
-              ./nixos/ssh-authorize.nix
+              ./nixos/self/primary-as-admin.nix
               ./nixos/server/harden/basics.nix
               ./systems/linux-builder.nix
               ({ flake, ... }: {

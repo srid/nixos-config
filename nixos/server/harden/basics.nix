@@ -1,4 +1,4 @@
-{ flake, ... }: {
+{
 
   # Firewall
   networking.firewall.enable = true;
@@ -7,16 +7,9 @@
   security.auditd.enable = true;
   security.audit.enable = true;
 
-  # Make me a sudoer without password
-  security.sudo.execWheelOnly = true;
-  security.sudo.wheelNeedsPassword = false;
-  users.users.${flake.config.people.myself} = {
-    extraGroups = [ "wheel" ];
-  };
-
   # Standard openssh protections
   #
-  # Which goes with the password-less sudo above for the ssh-authorized user.
+  # See primary-as-admin.nix to setup passwordless setup.
   services = {
     openssh = {
       enable = true;

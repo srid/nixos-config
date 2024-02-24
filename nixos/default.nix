@@ -8,7 +8,7 @@
       common.imports = [
         ./nix.nix
         ./caches
-        ./ssh-authorize.nix
+        ./self/primary-as-admin.nix
       ];
 
       my-home = {
@@ -24,7 +24,7 @@
         self.nixosModules.home-manager
         self.nixosModules.my-home
         self.nixosModules.common
-        ./self-ide.nix
+        ./self/self-ide.nix
         ./current-location.nix
       ];
     };
