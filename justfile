@@ -1,6 +1,9 @@
 default:
     @just --list
 
+fmt:
+    nix fmt
+
 # Remote deploy to a host
 remote-deploy host='linux-builder':
     nixos-rebuild switch --fast --use-remote-sudo \
