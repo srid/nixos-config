@@ -1,11 +1,19 @@
 { flake, modulesPath, lib, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    flake.inputs.self.nixosModules.default # Defined in nixos/default.nix
+    flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.disko.nixosModules.disko
     ./nixos-container.nix
+    ../../nixos/server/harden
   ];
   system.stateVersion = "23.11";
+
+  sops.defaultSopsFile = ./secrets.json;
+  sops.defaultSopsFormat = "json";
+  services.tailscale.enable = true;
   services.openssh.enable = true;
+
   boot = {
     loader.grub = {
       devices = [ "/dev/nvme0n1" "/dev/nvme1n1" ];

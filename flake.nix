@@ -74,40 +74,18 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          linux-builder = self.nixos-flake.lib.mkLinuxSystem
-            ./systems/linux-builder.nix;
-
-          immediacy = self.nixos-flake.lib.mkLinuxSystem {
-            imports = [
-              self.nixosModules.default # Defined in nixos/default.nix
-              inputs.sops-nix.nixosModules.sops
-              ./systems/hetzner/ax41.nix
-              ./nixos/server/harden
-            ];
-            sops.defaultSopsFile = ./secrets.json;
-            sops.defaultSopsFormat = "json";
-            services.tailscale.enable = true;
-          };
+          linux-builder =
+            self.nixos-flake.lib.mkLinuxSystem
+              ./systems/linux-builder.nix;
+          immediacy =
+            self.nixos-flake.lib.mkLinuxSystem
+              ./systems/hetzner/ax41.nix;
         };
 
         # Configurations for my (only) macOS machine (using nix-darwin)
-        darwinConfigurations = {
-          appreciate = self.nixos-flake.lib.mkMacosSystem {
-            nixpkgs.hostPlatform = "aarch64-darwin";
-            imports = [
-              self.darwinModules.default # Defined in nix-darwin/default.nix
-              ./systems/darwin.nix
-              ./systems/darwin/ci.nix
-            ];
-          };
-          naivete = self.nixos-flake.lib.mkMacosSystem {
-            nixpkgs.hostPlatform = "aarch64-darwin";
-            imports = [
-              self.darwinModules.default # Defined in nix-darwin/default.nix
-              ./systems/darwin.nix
-            ];
-          };
-        };
+        darwinConfigurations.appreciate =
+          self.nixos-flake.lib.mkMacosSystem
+            ./systems/darwin.nix;
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {

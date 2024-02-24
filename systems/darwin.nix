@@ -2,6 +2,13 @@
 
 # See nix-darwin/default.nix for other modules in use.
 {
+  imports = [
+    flake.inputs.self.darwinModules.default
+    ./darwin/ci.nix
+  ];
+
+  nixpkgs.hostPlatform = "aarch64-darwin";
+
   environment.systemPackages = with pkgs; [
     # macOS GUI programs
     wezterm
