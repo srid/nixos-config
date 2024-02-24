@@ -35,6 +35,10 @@
             url = "https://github.com/srid/nixos-flake";
             num = 3;
           };
+          haskell-flake = {
+            url = "https://github.com/srid/haskell-flake";
+            num = 2;
+          };
         };
       };
     in

@@ -80,15 +80,10 @@
               inputs.sops-nix.nixosModules.sops
               ./systems/here.nix
               ./nixos/server/harden.nix
-              ./nixos/easy-github-runners.nix
             ];
             sops.defaultSopsFile = ./secrets.json;
             sops.defaultSopsFormat = "json";
             services.tailscale.enable = true;
-            services.easy-github-runners = {
-              # TODO: move to macOS runner, after figuring how to run tests (in Nix?)
-              "srid/haskell-flake" = { };
-            };
           };
 
           immediacy = self.nixos-flake.lib.mkLinuxSystem {
