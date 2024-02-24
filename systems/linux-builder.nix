@@ -1,4 +1,12 @@
-# My Linux VM running on macOS
+/* My Linux VM running on macOS
+
+  ## Using Parallels to create a NixOS VM
+
+  - Boot into a NixOS graphical installer
+  - Open terminal, and set a root password using `sudo su -` and `passwd root`
+  - Authorize yourself to login to the root user using `ssh-copy-id -o PreferredAuthentications=password root@linux-builder`
+  - Run nixos-anywhere (see justfile; `j remote-deploy`)
+*/
 { flake, modulesPath, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
