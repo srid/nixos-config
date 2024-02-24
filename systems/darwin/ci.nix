@@ -71,6 +71,7 @@
     ];
     config = { pkgs, lib, ... }: {
       boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+      nix.settings.experimental-features = "nix-command flakes repl-flake";
       virtualisation = {
         # Larger linux-builder cores, ram, and disk.
         cores = 6;
