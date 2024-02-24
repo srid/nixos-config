@@ -28,7 +28,7 @@
     nixpkgs-match.url = "github:srid/nixpkgs-match";
     nuenv.url = "github:DeterminateSystems/nuenv";
     nixd.url = "github:nix-community/nixd";
-    nixci.url = "github:srid/nixci/build-systems";
+    nixci.url = "github:srid/nixci";
     nix-browser.url = "github:juspay/nix-browser";
     actual.url = "github:srid/actual";
     actual.inputs.nixpkgs.follows = "nixpkgs";

@@ -130,16 +130,15 @@
     "devour-flake": {
       "flake": false,
       "locked": {
-        "lastModified": 1708698505,
+        "lastModified": 1708783000,
         "narHash": "sha256-UYva75UjgL2izR5tVzgTBBvtYyCPiKTtn1UjCZyR3Zw=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "552e88feab693689e90572dbeb0c626e18e04554",
+        "rev": "bb0e0443291899a3f3fd85f87d2849f917692b1e",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "build-systems",
         "repo": "devour-flake",
         "type": "github"
       }
@@ -1066,16 +1065,15 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1708714761,
-        "narHash": "sha256-Uh6FEKpjhv3fr7t8qbrq+EeyeSe3Qa+URcUbuKFvCfg=",
+        "lastModified": 1708786287,
+        "narHash": "sha256-MFqPvrnvvVBW3yIs7OGaG72FS7pl+bfJaqEHtAVYr+c=",
         "owner": "srid",
         "repo": "nixci",
-        "rev": "ca54fda15db5fc73592928e529e8aef0907b42c9",
+        "rev": "5b46c28f49da3d275d82a9d980ae8c93d5228ba4",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "build-systems",
         "repo": "nixci",
         "type": "github"
       }
