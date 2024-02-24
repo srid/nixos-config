@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ flake, pkgs, lib, ... }:
 
 {
   # TODO: Refactor this into a module, like easy-github-runners.nix
@@ -56,6 +56,18 @@
   users.knownGroups = [ "github-runner" ];
   users.knownUsers = [ "github-runner" ];
 
+  # If not using linux-builder, use a VM
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    hostName = "linux-builder";
+    systems = [ "aarch64-linux" "x86_64-linux" ];
+    supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+    maxJobs = 6; # 6 cores
+    protocol = "ssh-ng";
+    sshUser = flake.config.people.myself;
+    sshKey = "/etc/ssh/ssh_host_ed25519_key";
+  }];
+
   # To build Linux derivations whilst on macOS.
   # 
   # NOTES:
@@ -64,7 +76,7 @@
   # - To update virtualisation configuration, you have to disable, delete
   #   /private/var/lib/darwin-builder/ and re-enable.
   nix.linux-builder = {
-    enable = true;
+    enable = false;
     systems = [
       "x86_64-linux"
       "aarch64-linux"
