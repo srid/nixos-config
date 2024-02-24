@@ -4,7 +4,7 @@
 {
   imports = [
     flake.inputs.self.darwinModules.default
-    ./darwin/ci.nix
+    ../nix-darwin/ci.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";

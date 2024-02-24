@@ -4,7 +4,7 @@
     flake.inputs.self.nixosModules.default # Defined in nixos/default.nix
     flake.inputs.sops-nix.nixosModules.sops
     flake.inputs.disko.nixosModules.disko
-    ./nixos-container.nix
+    ../../nixos/nixos-container.nix
     ../../nixos/server/harden
   ];
   system.stateVersion = "23.11";
@@ -50,7 +50,7 @@
     defaultGateway = "65.109.35.129"; # `ip route | grep default`
     nameservers = [ "8.8.8.8" ];
   };
-  disko.devices = import ../disko/two-raids-on-two-disks.nix {
+  disko.devices = import ../../nixos/disko/two-raids-on-two-disks.nix {
     inherit lib;
   };
 }

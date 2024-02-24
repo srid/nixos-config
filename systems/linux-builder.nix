@@ -32,7 +32,7 @@
       MAILADDR srid@srid.ca
     '';
   };
-  disko.devices = import ./disko/trivial.nix { device = "/dev/sda"; };
+  disko.devices = import ../nixos/disko/trivial.nix { device = "/dev/sda"; };
   networking = {
     hostName = "linux-builder";
     networkmanager.enable = true;
