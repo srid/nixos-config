@@ -56,6 +56,16 @@
   users.knownGroups = [ "github-runner" ];
   users.knownUsers = [ "github-runner" ];
 
+  # If not using linux-builder, use a VM
+  users.users.srid.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPGfskkyhM0wefy0Sex2t5GENEHTIZAWrb9LzRN0R9x"
+  ];
+  /* nix.buildMachines = [ {
+    hostName = "here";
+    sshUser = "srid";
+    sshKey = "/var/root/.ssh/id_rsa";
+  }]; */
+
   # To build Linux derivations whilst on macOS.
   # 
   # NOTES:
@@ -64,7 +74,7 @@
   # - To update virtualisation configuration, you have to disable, delete
   #   /private/var/lib/darwin-builder/ and re-enable.
   nix.linux-builder = {
-    enable = true;
+    enable = false;
     systems = [
       "x86_64-linux"
       "aarch64-linux"

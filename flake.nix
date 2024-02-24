@@ -86,6 +86,24 @@
             services.tailscale.enable = true;
           };
 
+          linux-builder = self.nixos-flake.lib.mkLinuxSystem {
+            imports = [
+              ./nixos/ssh-authorize.nix
+              ./systems/linux-builder.nix
+              ({ flake, ... }: {
+                # See harden.nix
+                networking.firewall.enable = true;
+                security.sudo.execWheelOnly = true;
+                security.sudo.wheelNeedsPassword = false;
+                users.users.${flake.config.people.myself} = {
+                  extraGroups = [ "wheel" ];
+                };
+                nix.settings.trusted-users = [ "root" flake.config.people.myself ];
+              })
+            ];
+            nixpkgs.config.allowUnfree = true; # for parallels
+          };
+
           immediacy = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
               self.nixosModules.default # Defined in nixos/default.nix
