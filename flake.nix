@@ -74,17 +74,8 @@
       flake = {
         # Configurations for Linux (NixOS) systems
         nixosConfigurations = {
-          linux-builder = self.nixos-flake.lib.mkLinuxSystem {
-            imports = [
-              ./nixos/self/primary-as-admin.nix
-              ./nixos/server/harden/basics.nix
-              ./systems/linux-builder.nix
-              ({ flake, ... }: {
-                nix.settings.trusted-users = [ "root" flake.config.people.myself ];
-              })
-            ];
-            nixpkgs.config.allowUnfree = true; # for parallels
-          };
+          linux-builder = self.nixos-flake.lib.mkLinuxSystem
+            ./systems/linux-builder.nix;
 
           immediacy = self.nixos-flake.lib.mkLinuxSystem {
             imports = [
