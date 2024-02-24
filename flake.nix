@@ -5,8 +5,7 @@
     # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    # nix-darwin.url = "github:lnl7/nix-darwin";
-    nix-darwin.url = "github:LoganBarnett/nix-darwin/linux-builder-big-config"; # https://github.com/LnL7/nix-darwin/pull/878 (for 'systems')
+    nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -49,12 +48,6 @@
     };
     nix-doom-emacs.inputs.nix-straight.follows = "nix-straight";
 
-    # Vim & its plugins (not in nixpkgs)
-    zk-nvim.url = "github:mickael-menu/zk-nvim";
-    zk-nvim.flake = false;
-    coc-rust-analyzer.url = "github:fannheyward/coc-rust-analyzer";
-    coc-rust-analyzer.flake = false;
-
     # Devshell
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
@@ -89,18 +82,24 @@
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+        # Flake inputs we want to update periodically
+        # Run: `nix run .#update`.
         nixos-flake.primary-inputs = [
           "nixpkgs"
           "home-manager"
           "nix-darwin"
           "nixos-flake"
           "nix-index-database"
+          "nixvim"
+          "emacs-overlay"
+          "nix-doom-emacs"
         ];
 
         treefmt.config = {
           projectRootFile = "flake.nix";
           programs.nixpkgs-fmt.enable = true;
         };
+        formatter = config.treefmt.build.wrapper;
 
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
@@ -112,7 +111,6 @@
             pkgs.just
           ];
         };
-        formatter = config.treefmt.build.wrapper;
       };
     };
 }
