@@ -65,15 +65,10 @@
       ];
 
       flake = {
-        # Configurations for Linux (NixOS) systems
-        nixosConfigurations = {
-          linux-builder =
-            self.nixos-flake.lib.mkLinuxSystem
-              ./systems/linux-builder.nix;
-          immediacy =
-            self.nixos-flake.lib.mkLinuxSystem
-              ./systems/hetzner/ax41.nix;
-        };
+        # Configurations for my NixOS VM (running on Mac)
+        nixosConfigurations.linux-builder =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/linux-builder.nix;
 
         # Configurations for my (only) macOS machine (using nix-darwin)
         darwinConfigurations.appreciate =
