@@ -65,15 +65,15 @@
       ];
 
       flake = {
-        # Configurations for my NixOS VM (running on Mac)
-        nixosConfigurations.linux-builder =
-          self.nixos-flake.lib.mkLinuxSystem
-            ./systems/linux-builder.nix;
-
-        # Configurations for my (only) macOS machine (using nix-darwin)
+        # Configuration for my M1 Macbook Max (using nix-darwin)
         darwinConfigurations.appreciate =
           self.nixos-flake.lib.mkMacosSystem
             ./systems/darwin.nix;
+
+        # Configuration for a NixOS VM (running on my Mac)
+        nixosConfigurations.linux-builder =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/linux-builder.nix;
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
@@ -98,6 +98,7 @@
 
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
+          inputsFrom = [ config.treefmt.build.devShell ];
           packages = [
             pkgs.nixpkgs-fmt
             pkgs.sops

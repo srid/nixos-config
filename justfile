@@ -2,7 +2,7 @@ default:
     @just --list
 
 fmt:
-    nix fmt
+    treefmt
 
 # Remote deploy to a host
 remote-deploy host='linux-builder':
