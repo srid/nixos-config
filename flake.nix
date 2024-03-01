@@ -100,7 +100,6 @@
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];
           packages = [
-            pkgs.nixpkgs-fmt
             pkgs.sops
             pkgs.ssh-to-age
             pkgs.nixos-rebuild
