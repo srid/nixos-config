@@ -18,3 +18,11 @@ remote-install host='linux-builder':
         --build-on-remote \
         --flake .#{{host}} \
         root@{{host}}
+
+# Run this after editing .sops.yaml
+sops-updatekeys:
+    sops updatekeys secrets.json
+
+# Edit or view the secrets
+sops-edit:
+    sops secrets.json
