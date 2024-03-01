@@ -11,8 +11,8 @@ in
       "*".extraOptions = lib.mkIf stdenv.isDarwin {
         identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
       };
-      immediacy = {
-        hostname = "100.127.24.29";
+      vanjaram = {
+        hostname = "100.94.107.36";
         user = "srid";
         forwardAgent = true;
       };
