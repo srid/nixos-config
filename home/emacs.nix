@@ -9,7 +9,7 @@
 
   # If using doom emacs ...
   programs.doom-emacs = {
-    enable = true;
+    enable = false;
     emacsPackage = pkgs.emacs29-pgtk;
     doomPrivateDir = ./emacs/doom;
   };
