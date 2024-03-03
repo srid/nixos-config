@@ -27,6 +27,7 @@
 
   home.shellAliases = {
     e = "nvim";
+    ee = "nvim $(fzf)";
     g = "git";
     lg = "lazygit";
     beep = "say 'beep'";
