@@ -3,7 +3,7 @@
     enable = true;
 
     # Theme
-    colorschemes.ayu.enable = true;
+    colorschemes.tokyonight.enable = true;
 
     # Settings
     options = {
