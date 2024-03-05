@@ -6,5 +6,7 @@
     ../../nixos/nix.nix
   ];
 
+  programs.nix-ld.enable = true; # For vscode-server
+
   virtualisation.docker.enable = true;
 }
