@@ -11,14 +11,12 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     flake.inputs.disko.nixosModules.disko
-    ../nixos/self/primary-as-admin.nix
-    ../nixos/server/harden/basics.nix
-    # Parallels VM support
-    {
-      hardware.parallels.enable = true;
-      nixpkgs.config.allowUnfree = true; # for parallels
-      services.ntp.enable = true; # Accurate time in Parallels VM?
-    }
+    ../../nixos/self/primary-as-admin.nix
+    ../../nixos/server/harden/basics.nix
+    ../../nixos/current-location.nix
+    ./parallels-vm.nix
+    # Dev
+    ./dev.nix
   ];
 
   # Basics
@@ -32,12 +30,11 @@
       MAILADDR srid@srid.ca
     '';
   };
-  disko.devices = import ../nixos/disko/trivial.nix { device = "/dev/sda"; };
+  disko.devices = import ../../nixos/disko/trivial.nix { device = "/dev/sda"; };
   networking = {
     hostName = "linux-builder";
     networkmanager.enable = true;
   };
-  time.timeZone = "America/New_York";
 
   # Distributed Builder
   nixpkgs.hostPlatform = "aarch64-linux";
@@ -47,5 +44,4 @@
     # macos /etc/ssh/ssh_host_ed25519_key.pub
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPGfskkyhM0wefy0Sex2t5GENEHTIZAWrb9LzRN0R9x"
   ];
-  nix.settings.trusted-users = [ "root" flake.config.people.myself ];
 }
