@@ -19,6 +19,7 @@
 
     # Publishing
     asciinema
+    twitter-convert
 
     # Dev
     gh
