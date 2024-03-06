@@ -36,6 +36,7 @@
           ./bash.nix
           # ./kitty.nix
           ./emacs.nix
+          ./himalaya.nix
         ];
       };
     };
