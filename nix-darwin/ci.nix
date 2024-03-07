@@ -27,6 +27,10 @@
             url = "https://github.com/srid/ema";
             num = 2;
           };
+          nixci = {
+            url = "https://github.com/srid/nixci";
+            num = 2;
+          };
           nixos-config = {
             url = "https://github.com/srid/nixos-config";
             num = 2;
