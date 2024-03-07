@@ -12,6 +12,11 @@ let
   };
 in
 {
+  home.shellAliases = {
+    H = "himalaya";
+    Hd = "himalaya message delete";
+  };
+
   programs.himalaya = {
     enable = true;
   };
@@ -23,8 +28,11 @@ in
       address = "happyandharmless@icloud.com";
       aliases = [ "srid@srid.ca" ];
       userName = "happyandharmless";
-      passwordCommand = "op read op://Personal/iCloud/password";
-      himalaya.enable = true;
+      passwordCommand = "op read op://Personal/iCloud/himalaya";
+      himalaya = {
+        enable = true;
+        settings.sync.enable = true;
+      };
     };
   };
 }
