@@ -43,6 +43,11 @@
             url = "https://github.com/srid/haskell-flake";
             num = 2;
           };
+          # Temp
+          double-conversion-ex = {
+            url = "https://github.com/srid/double-conversion-ex";
+            num = 1;
+          };
         };
       };
     in
