@@ -16,6 +16,11 @@
             cachix
             which
             coreutils
+            # https://github.com/actions/upload-pages-artifact/blob/56afc609e74202658d3ffba0e8f6dda462b719fa/action.yml#L40
+            (pkgs.runCommandNoCC "gtar" { } ''
+              mkdir -p $out/bin
+              ln -s ${lib.getExe pkgs.gnutar} $out/bin/gtar
+            '')
           ];
         };
         repos = {
@@ -25,7 +30,7 @@
           };
           ema = {
             url = "https://github.com/srid/ema";
-            num = 2;
+            num = 3;
           };
           nixci = {
             url = "https://github.com/srid/nixci";
