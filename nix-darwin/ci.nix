@@ -10,6 +10,10 @@
           # TODO: Document instructions
           # - chmod og-rwx; chown github-runner
           # TODO: Use a secret manager. 1Password? https://github.com/LnL7/nix-darwin/issues/882
+          # > OAuth app tokens and personal access tokens (classic) need the 
+          # > admin:org scope to use this endpoint. If the repository is private, 
+          # > the repo scope is also required.
+          # https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#list-self-hosted-runners-for-an-organization
           tokenFile = "/run/mykeys/gh-token-runner";
           extraPackages = with pkgs; [
             nixci
@@ -48,14 +52,13 @@
             url = "https://github.com/srid/haskell-flake";
             num = 2;
           };
+          heist-extra = {
+            url = "https://github.com/srid/heist-extra";
+            num = 2;
+          };
           unionmount = {
             url = "https://github.com/srid/unionmount";
             num = 2;
-          };
-          # Temp
-          double-conversion-ex = {
-            url = "https://github.com/srid/double-conversion-ex";
-            num = 1;
           };
         };
       };
