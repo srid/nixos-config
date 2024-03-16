@@ -32,6 +32,7 @@
     ee = "nvim $(fzf)";
     g = "git";
     lg = "lazygit";
+    l = "ls";
     beep = "say 'beep'";
   };
 
