@@ -25,6 +25,7 @@
     gh
     fuckport
     sshuttle-via
+    entr
   ];
 
   home.shellAliases = {
