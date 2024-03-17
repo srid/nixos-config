@@ -7,7 +7,9 @@
 let
   myEmacs = pkgs.emacs29-macport.override {
     # ⚠️ Broken on Darwin
-    # https://github.com/NixOS/nixpkgs/issues/110218
+    # cf.
+    # - https://github.com/NixOS/nixpkgs/issues/110218
+    # - https://github.com/NixOS/nixpkgs/pull/185714
     # withXwidgets = true;
 
     # ^ We need xwidgets for embedded browser in Emacs, which is useful for
