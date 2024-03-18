@@ -25,6 +25,8 @@
               mkdir -p $out/bin
               ln -s ${lib.getExe pkgs.gnutar} $out/bin/gtar
             '')
+            # For nixos-flake
+            sd
           ];
         };
         repos = {
