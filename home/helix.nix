@@ -1,17 +1,23 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
-  programs.helix = {
+  options = {
+    my.helix = {
+      markdown.enable = lib.mkEnableOption "Enable markdown support" // { default = true; };
+    };
+  };
+
+  config.programs.helix = {
     enable = true;
-    extraPackages = with pkgs; [
-      marksman
-    ];
+    extraPackages = lib.optional config.my.helix.markdown.enable pkgs.marksman;
     settings = {
       theme = "snazzy";
-      editor .true-color = true;
-      keys.insert.j.j = "normal_mode";
-      # Shortcut to save file, in any mode.
-      keys.insert."C-s" = [ ":write" "normal_mode" ];
-      keys.normal."C-s" = ":write";
+      editor.true-color = true;
+      keys = {
+        insert.j.j = "normal_mode";
+        # Shortcut to save file, in any mode.
+        insert."C-s" = [ ":write" "normal_mode" ];
+        normal."C-s" = ":write";
+      };
 
       editor.lsp = {
         display-messages = true;
