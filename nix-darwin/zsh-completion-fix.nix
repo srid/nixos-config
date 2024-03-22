@@ -10,7 +10,7 @@
     })
   ];
 
-  # Even though we enable zsh in home-manager, we still need to enable to
+  # Even though we enable zsh in home-manager, we still need to enable the
   # nix-darwin module to make completions work.
   programs.zsh.enable = true;
 }
