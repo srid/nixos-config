@@ -1,21 +1,19 @@
-{ config, pkgs, flake, ... }:
+{ pkgs, flake, ... }:
 
 # See nix-darwin/default.nix for other modules in use.
 {
   imports = [
     flake.inputs.self.darwinModules.default
     ../nix-darwin/ci.nix
+    ../nix-darwin/zsh-completion-fix.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  environment = {
-    systemPackages = with pkgs; [
-      # macOS GUI programs
-      wezterm
-    ];
-    pathsToLink = [ "/share/zsh" ];
-  };
+  environment.systemPackages = with pkgs; [
+    # macOS GUI programs
+    wezterm
+  ];
 
   security.pam.enableSudoTouchIdAuth = true;
 
