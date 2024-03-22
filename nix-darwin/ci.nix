@@ -58,7 +58,7 @@
           };
           haskell-flake = {
             url = "https://github.com/srid/haskell-flake";
-            num = 2;
+            num = 2 * 7;
           };
           heist-extra = {
             url = "https://github.com/srid/heist-extra";
