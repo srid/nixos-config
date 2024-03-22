@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.zsh = {
@@ -19,6 +19,11 @@
     initExtra = ''
       # Show random quote: https://github.com/srid/actual
       ${lib.getExe pkgs.actual}
+    '';
+
+    initExtraBeforeCompInit = ''
+      # Fix broken autocompletion. See https://github.com/nix-community/home-manager/issues/2562.
+      fpath+=("${config.home.profileDirectory}"/share/zsh/site-functions "${config.home.profileDirectory}"/share/zsh/$ZSH_VERSION/functions "${config.home.profileDirectory}"/share/zsh/vendor-completions)
     '';
   };
 }
