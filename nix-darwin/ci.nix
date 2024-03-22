@@ -16,19 +16,23 @@
           # https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#list-self-hosted-runners-for-an-organization
           tokenFile = "/run/mykeys/gh-token-runner";
           extraPackages = with pkgs; [
+            # Standard nix tools
             nixci
             cachix
-            which
+
+            # For nixos-flake
+            sd
+
+            # Tools already available in standard GitHub Runners; so we provide
+            # them here:
             coreutils
+            which
+            jq
             # https://github.com/actions/upload-pages-artifact/blob/56afc609e74202658d3ffba0e8f6dda462b719fa/action.yml#L40
             (pkgs.runCommandNoCC "gtar" { } ''
               mkdir -p $out/bin
               ln -s ${lib.getExe pkgs.gnutar} $out/bin/gtar
             '')
-            # For nixos-flake
-            sd
-            # Some useful tools
-            jq
           ];
         };
         repos = {
