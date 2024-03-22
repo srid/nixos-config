@@ -27,6 +27,8 @@
             '')
             # For nixos-flake
             sd
+            # Some useful tools
+            jq
           ];
         };
         repos = {
