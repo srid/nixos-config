@@ -10,13 +10,13 @@
 { flake, modulesPath, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    flake.inputs.disko.nixosModules.disko
-    ../../nixos/self/primary-as-admin.nix
-    ../../nixos/server/harden/basics.nix
-    ../../nixos/current-location.nix
+    ./hardware-configuration.nix
+    ../../../nixos/self/primary-as-admin.nix
+    ../../../nixos/server/harden/basics.nix
+    ../../../nixos/current-location.nix
     ./parallels-vm.nix
     # Dev
-    ./dev.nix
+    # ./dev.nix
   ];
 
   # Basics
@@ -30,10 +30,8 @@
       MAILADDR srid@srid.ca
     '';
   };
-  disko.devices = import ../../nixos/disko/trivial.nix { device = "/dev/sda"; };
   networking = {
-    hostName = "linux-builder";
-    networkmanager.enable = true;
+    hostName = "parallels-linux-builder";
   };
 
   # Distributed Builder
@@ -42,6 +40,6 @@
   services.openssh.enable = true;
   users.users.${flake.config.people.myself}.openssh.authorizedKeys.keys = [
     # macos /etc/ssh/ssh_host_ed25519_key.pub
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPGfskkyhM0wefy0Sex2t5GENEHTIZAWrb9LzRN0R9x"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICra+ZidiwrHGjcGnyqPvHcZDvnGivbLMayDyecPYDh0"
   ];
 }
