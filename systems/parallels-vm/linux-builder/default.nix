@@ -11,9 +11,9 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     flake.inputs.disko.nixosModules.disko
-    ../../nixos/self/primary-as-admin.nix
-    ../../nixos/server/harden/basics.nix
-    ../../nixos/current-location.nix
+    ../../../nixos/self/primary-as-admin.nix
+    ../../../nixos/server/harden/basics.nix
+    ../../../nixos/current-location.nix
     ./parallels-vm.nix
     # Dev
     ./dev.nix
@@ -30,7 +30,7 @@
       MAILADDR srid@srid.ca
     '';
   };
-  disko.devices = import ../../nixos/disko/trivial.nix { device = "/dev/sda"; };
+  disko.devices = import ../../../nixos/disko/trivial.nix { device = "/dev/sda"; };
   networking = {
     hostName = "linux-builder";
     networkmanager.enable = true;
