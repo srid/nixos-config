@@ -90,12 +90,6 @@
       )));
   users.knownGroups = [ "github-runner" ];
   users.knownUsers = [ "github-runner" ];
-  users.users."_github-runner" = {
-    uid = 555;
-  };
-  users.groups."_github-runner" = {
-    gid = 556;
-  };
 
   # If not using linux-builder, use a VM
   nix.distributedBuilds = true;
