@@ -7,6 +7,8 @@
       srid = {
         common = {
           enable = true;
+          user = null;
+          group = null;
           # TODO: Document instructions
           # - chmod og-rwx; chown github-runner
           # TODO: Use a secret manager. 1Password? https://github.com/LnL7/nix-darwin/issues/882
@@ -14,7 +16,7 @@
           # > admin:org scope to use this endpoint. If the repository is private, 
           # > the repo scope is also required.
           # https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#list-self-hosted-runners-for-an-organization
-          tokenFile = "/run/mykeys/gh-token-runner";
+          tokenFile = "/var/run/mykeys/gh-token-runner";
           extraPackages = with pkgs; [
             # Standard nix tools
             nixci
@@ -68,6 +70,10 @@
             url = "https://github.com/srid/unionmount";
             num = 2;
           };
+          dioxus-desktop-template = {
+            url = "https://github.com/srid/dioxus-desktop-template";
+            num = 2;
+          };
         };
       };
     in
@@ -84,6 +90,12 @@
       )));
   users.knownGroups = [ "github-runner" ];
   users.knownUsers = [ "github-runner" ];
+  users.users."_github-runner" = {
+    uid = 555;
+  };
+  users.groups."_github-runner" = {
+    gid = 556;
+  };
 
   # If not using linux-builder, use a VM
   nix.distributedBuilds = true;
