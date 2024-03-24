@@ -12,6 +12,7 @@
       smartindent = true;
       tabstop = 2;
       number = true;
+      clipboard = "unnamedplus";
     };
 
     # Keymaps
@@ -45,6 +46,10 @@
           "<leader>ff" = {
             desc = "file finder";
             action = "find_files";
+          };
+          "<leader>fg" = {
+            desc = "find via grep";
+            action = "live_grep";
           };
         };
         extensions = {
