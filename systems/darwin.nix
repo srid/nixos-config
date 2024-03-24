@@ -4,7 +4,7 @@
 {
   imports = [
     flake.inputs.self.darwinModules.default
-    ../nix-darwin/ci.nix
+    # ../nix-darwin/ci.nix
     ../nix-darwin/zsh-completion-fix.nix
   ];
 
@@ -12,7 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     # macOS GUI programs
-    wezterm
+    # wezterm
   ];
 
   security.pam.enableSudoTouchIdAuth = true;

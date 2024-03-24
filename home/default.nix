@@ -9,7 +9,7 @@
           inputs.nix-index-database.hmModules.nix-index
           ./tmux.nix
           ./neovim.nix
-          ./helix.nix
+          # ./helix.nix
           ./ssh.nix
           ./starship.nix
           ./terminal.nix
@@ -33,10 +33,10 @@
         imports = [
           self.homeModules.common
           ./zsh.nix
-          ./bash.nix
+          # ./bash.nix
           # ./kitty.nix
-          ./emacs.nix
-          ./himalaya.nix
+          # ./emacs.nix
+          # ./himalaya.nix
         ];
       };
     };
