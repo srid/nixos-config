@@ -7,8 +7,6 @@
       srid = {
         common = {
           enable = true;
-          user = null;
-          group = null;
           # TODO: Document instructions
           # - chmod og-rwx; chown github-runner
           # TODO: Use a secret manager. 1Password? https://github.com/LnL7/nix-darwin/issues/882
