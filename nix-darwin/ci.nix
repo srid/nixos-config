@@ -1,6 +1,12 @@
 { flake, pkgs, lib, ... }:
 
 {
+  # Choose one or the other.
+  imports = [
+    # ../systems/parallels-vm/linux-builder/nix-darwin/use.nix
+    ./linux-builder.nix
+  ];
+
   # TODO: Refactor this into a module, like easy-github-runners.nix
   services.github-runners =
     let
@@ -73,7 +79,6 @@
             url = "https://github.com/srid/unionmount";
             num = 2;
           };
-          
           */
         };
       };
@@ -89,45 +94,4 @@
           in
           lib.nameValuePair name value)
       )));
-
-  # If not using linux-builder, use a VM
-  /*
-    nix.distributedBuilds = true;
-    nix.buildMachines = [{
-    hostName = "linux-builder";
-    systems = [ "aarch64-linux" "x86_64-linux" ];
-    supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
-    maxJobs = 6; # 6 cores
-    protocol = "ssh-ng";
-    sshUser = flake.config.people.myself;
-    sshKey = "/etc/ssh/ssh_host_ed25519_key";
-    }];
-  */
-
-  # To build Linux derivations whilst on macOS.
-  # 
-  # NOTES:
-  # - For first `nix run`, comment out all but the `enable` option, so binary cache is used. You may have to `sudo pkill nix-daemon` first.
-  #   - After this, uncomment the configuration and `nix run`; this time, it will use the remote builder.
-  # - To SSH, `sudo su -` and then `ssh -i /etc/nix/builder_ed25519  builder@linux-builder`.
-  #   Unfortunately, a simple `ssh linux-builder` will not work (Too many authentication failures).
-  # - To update virtualisation configuration, you have to disable; delete
-  #   /private/var/lib/darwin-builder/ and re-enable.
-  nix.linux-builder = {
-    enable = true;
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-    config = { lib, ... }: {
-      boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-      nix.settings.experimental-features = "nix-command flakes repl-flake";
-      virtualisation = {
-        # Larger linux-builder cores, ram, and disk.
-        cores = 6;
-        memorySize = lib.mkForce (1024 * 16);
-        diskSize = lib.mkForce (1024 * 1024 * 1); # In MB.
-      };
-    };
-  };
 }
