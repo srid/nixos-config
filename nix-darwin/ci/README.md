@@ -34,10 +34,15 @@ The author has observed the official "linux-builder" to be slow, in comparison t
     - `ssh parallels@parallels-linux-builder` and `sudo sh -c 'cp /home/parallels/.ssh/authorized_keys /root/.ssh'`
     - Verify `ssh root@parallels-linux-builder` works.
         - `service gdm stop` (we don't need)
+- Adjust the mac host keys
 
 ```
 j remote-install
 ```
+
+As root, run `ssh -i /etc/ssh/ssh_host_ed25519_key srid@parallels-linux-builder ` to access it as known host.
+
+
 
 ### Via linux-builder
 
