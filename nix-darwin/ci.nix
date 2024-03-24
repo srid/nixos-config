@@ -14,7 +14,7 @@
           # > admin:org scope to use this endpoint. If the repository is private, 
           # > the repo scope is also required.
           # https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#list-self-hosted-runners-for-an-organization
-          tokenFile = "/var/run/mykeys/gh-token-runner";
+          tokenFile = "/run/mykeys/gh-token-runner";
           extraPackages = with pkgs; [
             # Standard nix tools
             nixci
