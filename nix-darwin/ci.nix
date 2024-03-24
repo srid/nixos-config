@@ -14,7 +14,7 @@
           # > admin:org scope to use this endpoint. If the repository is private, 
           # > the repo scope is also required.
           # https://docs.github.com/en/rest/actions/self-hosted-runners?apiVersion=2022-11-28#list-self-hosted-runners-for-an-organization
-          tokenFile = "/run/mykeys/gh-token-runner";
+          tokenFile = "/run/github-token-ci";
           extraPackages = with pkgs; [
             # Standard nix tools
             nixci
@@ -44,12 +44,17 @@
             url = "https://github.com/srid/ema";
             num = 3;
           };
-          nixci = {
-            url = "https://github.com/srid/nixci";
+          dioxus-desktop-template = {
+            url = "https://github.com/srid/dioxus-desktop-template";
             num = 2;
           };
           nixos-config = {
             url = "https://github.com/srid/nixos-config";
+            num = 2;
+          };
+          /*
+          nixci = {
+            url = "https://github.com/srid/nixci";
             num = 2;
           };
           nixos-flake = {
@@ -68,10 +73,8 @@
             url = "https://github.com/srid/unionmount";
             num = 2;
           };
-          dioxus-desktop-template = {
-            url = "https://github.com/srid/dioxus-desktop-template";
-            num = 2;
-          };
+          
+          */
         };
       };
     in
@@ -86,12 +89,11 @@
           in
           lib.nameValuePair name value)
       )));
-  users.knownGroups = [ "github-runner" ];
-  users.knownUsers = [ "github-runner" ];
 
   # If not using linux-builder, use a VM
-  nix.distributedBuilds = true;
-  nix.buildMachines = [{
+  /*
+    nix.distributedBuilds = true;
+    nix.buildMachines = [{
     hostName = "linux-builder";
     systems = [ "aarch64-linux" "x86_64-linux" ];
     supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
@@ -99,22 +101,25 @@
     protocol = "ssh-ng";
     sshUser = flake.config.people.myself;
     sshKey = "/etc/ssh/ssh_host_ed25519_key";
-  }];
+    }];
+  */
 
   # To build Linux derivations whilst on macOS.
   # 
   # NOTES:
+  # - For first `nix run`, comment out all but the `enable` option, so binary cache is used. You may have to `sudo pkill nix-daemon` first.
+  #   - After this, uncomment the configuration and `nix run`; this time, it will use the remote builder.
   # - To SSH, `sudo su -` and then `ssh -i /etc/nix/builder_ed25519  builder@linux-builder`.
   #   Unfortunately, a simple `ssh linux-builder` will not work (Too many authentication failures).
-  # - To update virtualisation configuration, you have to disable, delete
+  # - To update virtualisation configuration, you have to disable; delete
   #   /private/var/lib/darwin-builder/ and re-enable.
   nix.linux-builder = {
-    enable = false;
+    enable = true;
     systems = [
       "x86_64-linux"
       "aarch64-linux"
     ];
-    config = { pkgs, lib, ... }: {
+    config = { lib, ... }: {
       boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
       nix.settings.experimental-features = "nix-command flakes repl-flake";
       virtualisation = {

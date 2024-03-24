@@ -4,7 +4,7 @@
 {
   imports = [
     flake.inputs.self.darwinModules.default
-    # ../nix-darwin/ci.nix
+    ../nix-darwin/ci.nix
     ../nix-darwin/zsh-completion-fix.nix
   ];
 
