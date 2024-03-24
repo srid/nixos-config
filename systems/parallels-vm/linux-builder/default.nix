@@ -40,6 +40,6 @@
   services.openssh.enable = true;
   users.users.${flake.config.people.myself}.openssh.authorizedKeys.keys = [
     # macos /etc/ssh/ssh_host_ed25519_key.pub
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPGfskkyhM0wefy0Sex2t5GENEHTIZAWrb9LzRN0R9x"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICra+ZidiwrHGjcGnyqPvHcZDvnGivbLMayDyecPYDh0"
   ];
 }
