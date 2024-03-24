@@ -4,7 +4,7 @@
   # If not using linux-builder, use a VM
   nix.distributedBuilds = true;
   nix.buildMachines = [{
-    hostName = "linux-builder";
+    hostName = "parallels-linux-builder";
     systems = [ "aarch64-linux" "x86_64-linux" ];
     supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
     maxJobs = 6; # 6 cores

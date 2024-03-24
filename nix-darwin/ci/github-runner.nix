@@ -4,7 +4,7 @@
   # Choose one or the other.
   imports = [
     # ../../systems/parallels-vm/linux-builder/nix-darwin/use.nix
-    ./linux-builder.nix
+    # ./linux-builder.nix
   ];
 
   # TODO: Refactor this into a module, like easy-github-runners.nix
