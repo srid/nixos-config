@@ -79,6 +79,10 @@
             url = "https://github.com/srid/unionmount";
             num = 2;
           };
+          commonmark-wikilink = {
+            url = "https://github.com/srid/commonmark-wikilink";
+            num = 2;
+          };
         };
       };
     in
