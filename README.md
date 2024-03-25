@@ -32,7 +32,6 @@ To use this repository as base configuration for your new machine running:
 ### macOS
 
 - [Install Nix](https://nixos.asia/en/install)
-- Install [nix-darwin](https://github.com/LnL7/nix-darwin) 
     - This will create a `~/.nixpkgs/darwin-configuration.nix`, but we do not need that. 
 - Clone this repo anywhere
 - Edit `flake.nix` to use your system hostname as a key of the `darwinConfigurations` set
