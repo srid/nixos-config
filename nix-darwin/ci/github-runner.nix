@@ -13,6 +13,7 @@
       srid = {
         common = {
           enable = true;
+          replace = true;
           # TODO: Document instructions
           # - chmod og-rwx; chown github-runner
           # TODO: Use a secret manager. 1Password? https://github.com/LnL7/nix-darwin/issues/882
@@ -58,7 +59,6 @@
             url = "https://github.com/srid/nixos-config";
             num = 2;
           };
-          /*
           nixci = {
             url = "https://github.com/srid/nixci";
             num = 2;
@@ -79,7 +79,6 @@
             url = "https://github.com/srid/unionmount";
             num = 2;
           };
-          */
         };
       };
     in

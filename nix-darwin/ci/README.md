@@ -42,8 +42,10 @@ j remote-install
 
 As root, run `ssh -i /etc/ssh/ssh_host_ed25519_key srid@parallels-linux-builder ` to access it as known host.
 
-
-
 ### Via linux-builder
 
 See `nix-darwin/linux-builder`. Follow the instructions.
+
+## See also
+
+- [Zulip notes](https://nixos.zulipchat.com/#narrow/stream/413948-nixos/topic/Self-hosted.20GitHub.20runners)
