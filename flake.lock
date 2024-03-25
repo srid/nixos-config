@@ -114,11 +114,11 @@
     "devour-flake": {
       "flake": false,
       "locked": {
-        "lastModified": 1708783000,
-        "narHash": "sha256-UYva75UjgL2izR5tVzgTBBvtYyCPiKTtn1UjCZyR3Zw=",
+        "lastModified": 1709858306,
+        "narHash": "sha256-Vey9n9hIlWiSAZ6CCTpkrL6jt4r2JvT2ik9wa2bjeC0=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "bb0e0443291899a3f3fd85f87d2849f917692b1e",
+        "rev": "17b711b9deadbbc5629cb7d2b64cf86ae72af3fa",
         "type": "github"
       },
       "original": {
@@ -1080,11 +1080,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1709333168,
-        "narHash": "sha256-jaNEzGsekNYfxKOXqUI2PaMTlS4LwfYEyO5/65m0hXk=",
+        "lastModified": 1711376279,
+        "narHash": "sha256-izPxIiSqiKtw3JKfDKWtIoYx7YEcHAQWw3g00myZCGs=",
         "owner": "srid",
         "repo": "nixci",
-        "rev": "c3a5eb69e94e131b7a409d4d6926a561ea7ff96e",
+        "rev": "a53dedbaed2050bf57ba2957895c985d891aae77",
         "type": "github"
       },
       "original": {
