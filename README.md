@@ -51,7 +51,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 - `nixos`: nixos modules for Linux
 - `nix-darwin`: nix-darwin modules for macOS
 - `users`: user information
-- `secrets.yaml` (and `.sops.yaml`):  sops-nix secrets
+- `secrets.json` (and `.sops.yaml`):  sops-nix secrets
 - `systems`: top-level configuration.nix('ish) for various systems
 
 ## Tips
@@ -68,7 +68,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
     sudo nixos-rebuild boot
     ```
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
-- To build all flake outputs (locally or in CI), run `nix run nixpkgs#nixci`
+- To build all flake outputs (locally or in CI), run `nix --accept-flake-config run github:srid/nixci`
 
 ## Discussion
 
