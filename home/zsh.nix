@@ -5,6 +5,13 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
 
     # This must be envExtra (rather than initExtra), because doom-emacs requires it
     # https://github.com/doomemacs/doomemacs/issues/687#issuecomment-409889275
