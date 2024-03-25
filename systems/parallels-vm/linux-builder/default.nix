@@ -16,7 +16,7 @@
     ../../../nixos/current-location.nix
     ./parallels-vm.nix
     # Dev
-    # ./dev.nix
+    ./dev.nix
   ];
 
   # Basics
