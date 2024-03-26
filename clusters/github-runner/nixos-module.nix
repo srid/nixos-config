@@ -6,6 +6,7 @@ let
   user = "github-runner";
   group = "github-runner";
   tokenFile = "/run/keys/github-runner-token.secret"; # See colmena keys in top-level flake.nix
+  repos = import ./repos.nix;
   # Convenient function to create multiple runners per single personal repo.
   mkPersonalRunners = user:
     lib.concatMapAttrs (repoName: meta:
@@ -50,19 +51,13 @@ in
   nix.settings.trusted-users = [ user ];
 
   # Runners
-  services.github-runners = mkPersonalRunners "srid" {
-    haskell-flake.num = 2 * 7;
-    nixos-config.num = 2;
-    nixos-flake.num = 2 * 5;
-    perpetuum.num = 2;
-  };
+  services.github-runners = mkPersonalRunners "srid" repos.srid;
 
   # macOS remote builder
   nix.distributedBuilds = true;
   nix.buildMachines = [{
     hostName = hostIP;
     systems = [ "aarch64-darwin" "x86_64-darwin" ];
-    # supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
     maxJobs = 6; # 6 cores
     protocol = "ssh-ng";
     sshUser = user;
