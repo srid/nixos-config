@@ -44,6 +44,8 @@
         ./nix-darwin
       ];
 
+      # Colmena deployment configuration
+      # See https://github.com/juspay/colmena-flake
       colmena-parts.deployment =
         let
           read1Password = field:
@@ -67,10 +69,9 @@
             ./systems/darwin.nix;
 
         # Configuration for a NixOS VM (running on my Mac)
-        nixosConfigurations = {
-          github-runner = self.nixos-flake.lib.mkLinuxSystem
+        nixosConfigurations.github-runner =
+          self.nixos-flake.lib.mkLinuxSystem
             ./systems/github-runner.nix;
-        };
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
@@ -83,8 +84,6 @@
           "nixos-flake"
           "nix-index-database"
           "nixvim"
-          "emacs-overlay"
-          "nix-doom-emacs"
         ];
 
         treefmt.config = {
