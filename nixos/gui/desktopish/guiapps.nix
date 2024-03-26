@@ -10,9 +10,6 @@
     # onlyoffice-bin
     obsidian
 
-    _1password
-    _1password-gui
-
     simplescreenrecorder
     obs-studio
 

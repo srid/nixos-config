@@ -7,6 +7,7 @@
         imports = [
           inputs.nixvim.homeManagerModules.nixvim
           inputs.nix-index-database.hmModules.nix-index
+          ./_1password.nix
           ./tmux.nix
           ./neovim.nix
           # ./helix.nix
