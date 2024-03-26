@@ -1,13 +1,17 @@
 # TODO: WIP
 # - [x] Intial config
-# - [ ] Colmena deploy, with keys from 1Password.
-# - [ ] Github Runners
+# - [x] Colmena deploy, with keys from 1Password.
+# - [x] Github Runners
 # - [ ] Distributed builder to host (macOS)
+# - [ ] Refactor, to allow multiple repos (then remove easy-github-runners.nix)
 { flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  user = "github-runner";
+  group = "github-runner";
+  tokenFile = "/run/keys/github-runner-token.secret";  # See colmena keys in top-level flake.nix
 in
 {
   imports = [
@@ -32,23 +36,21 @@ in
   services.openssh.enable = true;
 
   # Runners
-  users.users.github-runner = {
+  users.users.${user} = {
+    inherit group;
     isSystemUser = true;
-    group = "github-runner";
   };
-  users.groups.github-runner = { };
-  nix.settings.trusted-users = [ "github-runner" ];
+  users.groups.${group} = { };
+  nix.settings.trusted-users = [ user ];
   services.github-runners = {
     perpetuum = {
+      inherit user group tokenFile;
       enable = true;
       replace = true;
-      tokenFile = "/run/keys/github-runner-token.secret";
       extraPackages = with pkgs; [
         coreutils
         nixci
       ];
-      user = "github-runner";
-      group = "github-runner";
       url = "https://github.com/srid/perpetuum";
       name = "perpetuum-1";
     };
