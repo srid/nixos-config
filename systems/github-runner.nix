@@ -3,7 +3,7 @@
 # - [x] Colmena deploy, with keys from 1Password.
 # - [x] Github Runners
 # - [ ] Distributed builder to host (macOS)
-# - [ ] Refactor, to allow multiple repos (then remove easy-github-runners.nix)
+# - [x] Refactor, to allow multiple repos (then remove easy-github-runners.nix)
 { flake, pkgs, lib, ... }:
 
 let

@@ -1,3 +1,4 @@
+# TODO: Remove in favour of systems/github-runner.nix
 { flake, pkgs, lib, ... }:
 
 {
@@ -7,7 +8,6 @@
     # ./linux-builder.nix
   ];
 
-  # TODO: Refactor this into a module, like easy-github-runners.nix
   services.github-runners =
     let
       srid = {
