@@ -77,6 +77,7 @@
             targetHost = "github-runner";
             targetUser = "srid";
             keys."github-runner-token.secret" = {
+              user = "github-runner";
               keyCommand = read1Password "github-runner-token";
             };
           };
