@@ -51,6 +51,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 - `users`: user information
 - `secrets.json` (and `.sops.yaml`):  sops-nix secrets
 - `systems`: top-level configuration.nix('ish) for various systems
+- `clusters`: Features that span more than 1 system
 
 ## Tips
 
