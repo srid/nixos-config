@@ -3,7 +3,7 @@
 {
   # Choose one or the other.
   imports = [
-    ../../systems/parallels-vm/nix-darwin/use.nix
+    ../../systems/parallels-vm/linux-builder/use.nix
     # ./linux-builder.nix
   ];
 
