@@ -66,6 +66,21 @@
         "type": "github"
       }
     },
+    "colmena-flake": {
+      "locked": {
+        "lastModified": 1711476729,
+        "narHash": "sha256-Qgbafdn8cakqnSKD6tC1G6+5LrKs12c+vs9PoQ8Hq14=",
+        "owner": "juspay",
+        "repo": "colmena-flake",
+        "rev": "8a659d55529918012234e662413a3758a2ba3db1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "colmena-flake",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -1791,6 +1806,7 @@
     "root": {
       "inputs": {
         "actual": "actual",
+        "colmena-flake": "colmena-flake",
         "disko": "disko",
         "emacs-overlay": "emacs-overlay",
         "emanote": "emanote",

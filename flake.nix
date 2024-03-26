@@ -13,6 +13,7 @@
     nixos-flake.url = "github:srid/nixos-flake";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    colmena-flake.url = "github:juspay/colmena-flake";
 
     # CI server
     sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
@@ -59,11 +60,27 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         inputs.nixos-flake.flakeModule
+        inputs.colmena-flake.flakeModules.default
         ./users
         ./home
         ./nixos
         ./nix-darwin
       ];
+
+      colmena-parts.deployment =
+        let
+          read1Password = field:
+            [ "op" "read" "op://Personal/nixos-config/${field}" ];
+        in
+        {
+          github-runner = {
+            targetHost = "github-runner";
+            targetUser = "srid";
+            keys."github-runner-token.secret" = {
+              keyCommand = read1Password "github-runner-token";
+            };
+          };
+        };
 
       flake = {
         # Configuration for my M1 Macbook Max (using nix-darwin)
@@ -109,6 +126,7 @@
             pkgs.ssh-to-age
             pkgs.nixos-rebuild
             pkgs.just
+            pkgs.colmena
           ];
         };
       };
