@@ -4,7 +4,7 @@
 # - [x] Github Runners
 # - [ ] Distributed builder to host (macOS)
 # - [ ] Refactor, to allow multiple repos (then remove easy-github-runners.nix)
-{ flake, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -12,6 +12,23 @@ let
   user = "github-runner";
   group = "github-runner";
   tokenFile = "/run/keys/github-runner-token.secret"; # See colmena keys in top-level flake.nix
+  # Convenient function to create multiple runners per single personal repo.
+  mkPersonalRunners = user:
+    lib.concatMapAttrs (repoName: meta:
+      lib.listToAttrs (lib.flip builtins.map (lib.range 1 meta.num) (idx:
+        let
+          name = "perpetuum-${builtins.toString idx}";
+        in
+        lib.nameValuePair name {
+          inherit user group tokenFile name;
+          enable = true;
+          replace = true;
+          extraPackages = with pkgs; [
+            coreutils
+            nixci
+          ];
+          url = "https://github.com/${user}/${repoName}";
+        })));
 in
 {
   imports = [
@@ -42,17 +59,7 @@ in
   };
   users.groups.${group} = { };
   nix.settings.trusted-users = [ user ];
-  services.github-runners = {
-    perpetuum = {
-      inherit user group tokenFile;
-      enable = true;
-      replace = true;
-      extraPackages = with pkgs; [
-        coreutils
-        nixci
-      ];
-      url = "https://github.com/srid/perpetuum";
-      name = "perpetuum-1";
-    };
+  services.github-runners = mkPersonalRunners "srid" {
+    perpetuum.num = 2;
   };
 }
