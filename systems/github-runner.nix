@@ -2,8 +2,9 @@
 # - [x] Intial config
 # - [x] Colmena deploy, with keys from 1Password.
 # - [x] Github Runners
-# - [ ] Distributed builder to host (macOS)
+# - [x] Distributed builder to host (macOS)
 # - [x] Refactor, to allow multiple repos (then remove easy-github-runners.nix)
+# - [ ] Refactor into own dir
 { flake, pkgs, lib, ... }:
 
 let
@@ -29,6 +30,7 @@ let
           ];
           url = "https://github.com/${user}/${repoName}";
         })));
+  hostIP = "10.37.129.2"; # Find out using `ifconfig` on host, looking for bridge101
 in
 {
   imports = [
@@ -62,4 +64,16 @@ in
   services.github-runners = mkPersonalRunners "srid" {
     perpetuum.num = 2;
   };
+
+  # macOS remote builder
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    hostName = hostIP;
+    systems = [ "aarch64-darwin" "x86_64-darwin" ];
+    # supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+    maxJobs = 6; # 6 cores
+    protocol = "ssh-ng";
+    sshUser = user;
+    sshKey = "/etc/ssh/ssh_host_ed25519_key";
+  }];
 }
