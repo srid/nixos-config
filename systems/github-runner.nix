@@ -11,7 +11,7 @@ let
   inherit (inputs) self;
   user = "github-runner";
   group = "github-runner";
-  tokenFile = "/run/keys/github-runner-token.secret";  # See colmena keys in top-level flake.nix
+  tokenFile = "/run/keys/github-runner-token.secret"; # See colmena keys in top-level flake.nix
 in
 {
   imports = [
