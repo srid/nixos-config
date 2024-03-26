@@ -15,22 +15,11 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     colmena-flake.url = "github:juspay/colmena-flake";
 
-    # CI server
-    nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
-    nix-serve-ng.inputs.nixpkgs.follows = "nixpkgs";
-
     # Software inputs
-    nixos-shell.url = "github:Mic92/nixos-shell";
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
-    emanote.url = "github:srid/emanote";
-    nixpkgs-match.url = "github:srid/nixpkgs-match";
-    nuenv.url = "github:DeterminateSystems/nuenv";
-    nixd.url = "github:nix-community/nixd";
     nixci.url = "github:srid/nixci";
     nix-browser.url = "github:juspay/nix-browser";
-    actual.url = "github:srid/actual";
-    actual.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -118,10 +107,9 @@
         packages.default = self'.packages.activate;
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];
-          packages = [
-            pkgs.nixos-rebuild
-            pkgs.just
-            pkgs.colmena
+          packages = with pkgs; [
+            just
+            colmena
           ];
         };
       };

@@ -8,9 +8,6 @@
       allowUnfree = true;
     };
     overlays = [
-      flake.inputs.nuenv.overlays.nuenv
-      flake.inputs.nixd.overlays.default
-      flake.inputs.nuenv.overlays.default
       (import flake.inputs.emacs-overlay)
       (import ../packages/overlay.nix { inherit flake; inherit (pkgs) system; })
     ];
@@ -31,4 +28,3 @@
     };
   };
 }
-
