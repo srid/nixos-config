@@ -32,11 +32,11 @@
     },
     "colmena-flake": {
       "locked": {
-        "lastModified": 1711476729,
-        "narHash": "sha256-Qgbafdn8cakqnSKD6tC1G6+5LrKs12c+vs9PoQ8Hq14=",
+        "lastModified": 1711493191,
+        "narHash": "sha256-boxs2M0It0Bh7CGZnEbZJohA+wphXNTjUZ32D9y1KUE=",
         "owner": "juspay",
         "repo": "colmena-flake",
-        "rev": "8a659d55529918012234e662413a3758a2ba3db1",
+        "rev": "0a9118df5e2e20db9f0e81f273ce906e26a286f3",
         "type": "github"
       },
       "original": {

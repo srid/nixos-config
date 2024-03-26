@@ -46,7 +46,7 @@
 
       # Colmena deployment configuration
       # See https://github.com/juspay/colmena-flake
-      colmena-parts.deployment =
+      colmena-flake.deployment =
         let
           read1Password = field:
             [ "op" "read" "op://Personal/nixos-config/${field}" ];
@@ -74,7 +74,7 @@
             ./systems/github-runner.nix;
       };
 
-      perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
+      perSystem = { self', pkgs, lib, config, ... }: {
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake.primary-inputs = [
