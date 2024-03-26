@@ -51,8 +51,9 @@ in
 
   # Runners
   services.github-runners = mkPersonalRunners "srid" {
-    perpetuum.num = 2;
     haskell-flake.num = 2 * 7;
+    nixos-config.num = 2 * 5;
+    perpetuum.num = 2;
   };
 
   # macOS remote builder
