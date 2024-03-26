@@ -8,7 +8,6 @@
       allowUnfree = true;
     };
     overlays = [
-      (import flake.inputs.emacs-overlay)
       (import ../packages/overlay.nix { inherit flake; inherit (pkgs) system; })
     ];
   };

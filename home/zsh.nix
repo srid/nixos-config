@@ -13,10 +13,6 @@
       }
     ];
 
-    # This must be envExtra (rather than initExtra), because doom-emacs requires it
-    # https://github.com/doomemacs/doomemacs/issues/687#issuecomment-409889275
-    #
-    # But also see: 'doom env', which is what works.
     envExtra = ''
       export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:/usr/local/bin:$PATH
 
