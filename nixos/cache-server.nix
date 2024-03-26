@@ -7,7 +7,7 @@
   ];
 
   # Cache server
-  sops.secrets."cache-server/private-key".owner = "root";
+  # sops.secrets."cache-server/private-key".owner = "root";
   services.nix-serve = {
     enable = true;
     secretKeyFile = config.sops.secrets."cache-server/private-key".path;

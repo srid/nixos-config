@@ -16,7 +16,6 @@
     colmena-flake.url = "github:juspay/colmena-flake";
 
     # CI server
-    sops-nix.url = "github:juspay/sops-nix/json-nested"; # https://github.com/Mic92/sops-nix/pull/328
     nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
     nix-serve-ng.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -120,8 +119,6 @@
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];
           packages = [
-            pkgs.sops
-            pkgs.ssh-to-age
             pkgs.nixos-rebuild
             pkgs.just
             pkgs.colmena

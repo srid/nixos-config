@@ -1355,22 +1355,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1683504292,
-        "narHash": "sha256-jlZbBIKGa6IMGkcJkQ08pbKnouTAPfeq1fD5I7l/rBw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ba0086c178d4ed60a7899f739caea553eca2e046",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-22.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1682526928,
@@ -1431,22 +1415,6 @@
       }
     },
     "nixpkgs_14": {
-      "locked": {
-        "lastModified": 1683475240,
-        "narHash": "sha256-sy6MYoCaIZsOenYplbzVXI4Ce9Bp/vIOpuFa97+a6wc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e040aab15638aaf8d0786894851a2b1ca09a7baf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_15": {
       "locked": {
         "lastModified": 1680945546,
         "narHash": "sha256-8FuaH5t/aVi/pR1XxnF0qi4WwMYC+YxlfdsA0V+TEuQ=",
@@ -1828,7 +1796,6 @@
         "nixpkgs-match": "nixpkgs-match",
         "nixvim": "nixvim",
         "nuenv": "nuenv",
-        "sops-nix": "sops-nix",
         "treefmt-nix": "treefmt-nix_4"
       }
     },
@@ -1948,26 +1915,6 @@
       "original": {
         "owner": "sensorflo",
         "repo": "sln-mode",
-        "type": "github"
-      }
-    },
-    "sops-nix": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_14",
-        "nixpkgs-stable": "nixpkgs-stable"
-      },
-      "locked": {
-        "lastModified": 1683576450,
-        "narHash": "sha256-seuxApVNHAjbDV2OkRVQ1vzuaOBQcJ/WEyzIlAA+3oU=",
-        "owner": "juspay",
-        "repo": "sops-nix",
-        "rev": "f4b1471b239dcc55cd8e8a8f3fc410c73511e62b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "juspay",
-        "ref": "json-nested",
-        "repo": "sops-nix",
         "type": "github"
       }
     },
@@ -2177,7 +2124,7 @@
     },
     "treefmt-nix_4": {
       "inputs": {
-        "nixpkgs": "nixpkgs_15"
+        "nixpkgs": "nixpkgs_14"
       },
       "locked": {
         "lastModified": 1689243103,
