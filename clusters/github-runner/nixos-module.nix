@@ -18,15 +18,29 @@ let
           enable = true;
           replace = true;
           extraPackages = with pkgs; [
-            coreutils
+            # Standard nix tools
             nixci
+            cachix
+
+            # For nixos-flake
+            sd
+
+            # Tools already available in standard GitHub Runners; so we provide
+            # them here:
+            coreutils
+            which
+            jq
+            # https://github.com/actions/upload-pages-artifact/blob/56afc609e74202658d3ffba0e8f6dda462b719fa/action.yml#L40
+            (pkgs.runCommandNoCC "gtar" { } ''
+              mkdir -p $out/bin
+              ln -s ${lib.getExe pkgs.gnutar} $out/bin/gtar
+            '')
           ];
           url = "https://github.com/${user}/${repoName}";
         })));
   hostIP = "10.37.129.2"; # Find out using `ifconfig` on host, looking for bridge101
 in
 {
-
   # User
   users.users.${user} = {
     inherit group;
@@ -38,6 +52,7 @@ in
   # Runners
   services.github-runners = mkPersonalRunners "srid" {
     perpetuum.num = 2;
+    haskell-flake.num = 2 * 7;
   };
 
   # macOS remote builder
