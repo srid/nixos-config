@@ -28,5 +28,6 @@ in
       efi.canTouchEfiVariables = true;
     };
   };
+  nix.settings.trusted-users = [ "root" "@wheel" ];
   services.openssh.enable = true;
 }
