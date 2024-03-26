@@ -72,9 +72,13 @@
             ./systems/darwin.nix;
 
         # Configuration for a NixOS VM (running on my Mac)
-        nixosConfigurations.parallels-linux-builder =
-          self.nixos-flake.lib.mkLinuxSystem
-            ./systems/parallels-vm/linux-builder;
+        nixosConfigurations = {
+          parallels-linux-builder =
+            self.nixos-flake.lib.mkLinuxSystem
+              ./systems/parallels-vm/linux-builder;
+          github-runner = self.nixos-flake.lib.mkLinuxSystem
+            ./systems/github-runner.nix;
+        };
       };
 
       perSystem = { self', system, pkgs, lib, config, inputs', ... }: {

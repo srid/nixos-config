@@ -14,7 +14,7 @@
     ../../../nixos/self/primary-as-admin.nix
     ../../../nixos/server/harden/basics.nix
     ../../../nixos/current-location.nix
-    ./parallels-vm.nix
+    ../../../nixos/parallels-vm.nix
     # Dev
     ./dev.nix
   ];
