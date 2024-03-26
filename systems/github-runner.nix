@@ -1,4 +1,8 @@
 # TODO: WIP
+# - [x] Intial config
+# - [ ] Colmena deploy, with keys from 1Password.
+# - [ ] Github Runners
+# - [ ] Distributed builder to host (macOS)
 { flake, pkgs, lib, ... }:
 
 let
@@ -24,7 +28,5 @@ in
       efi.canTouchEfiVariables = true;
     };
   };
-
   services.openssh.enable = true;
-
 }
