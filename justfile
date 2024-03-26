@@ -4,20 +4,9 @@ default:
 fmt:
     treefmt
 
-# Remote deploy to a host
-remote-deploy host='parallels-linux-builder':
-    nixos-rebuild switch --fast --use-remote-sudo \
-        --flake .#{{host}} \
-        --target-host $USER@{{host}} \
-        --build-host $USER@{{host}}
-
-# First install on a remote machine
-remote-install host='parallels-linux-builder':
-    nix run github:nix-community/nixos-anywhere \
-        -- \
-        --build-on-remote \
-        --flake .#{{host}} \
-        root@{{host}}
+# Deploy to github-runner VM
+github-runner:
+    colmena apply --build-on-target
 
 # Run this after editing .sops.yaml
 sops-updatekeys:
