@@ -7,7 +7,7 @@
 
   programs.zsh.envExtra = ''
     # For 1Password CLI. This requires `pkgs.gh` to be installed.
-    source $HOME/.config/op/plugins.sh
+    # source $HOME/.config/op/plugins.sh
   '';
 
   programs.ssh = {
