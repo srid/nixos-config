@@ -46,7 +46,7 @@
       ];
 
       distributed-github-runner = {
-        tokenFile =  "/run/keys/github-runner-token.secret";
+        tokenFile = "/run/keys/github-runner-token.secret";
       };
 
       # Colmena deployment configuration
