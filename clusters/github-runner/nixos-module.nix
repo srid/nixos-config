@@ -7,6 +7,7 @@ let
   group = "github-runner";
   tokenFile = "/run/keys/github-runner-token.secret"; # See colmena keys in top-level flake.nix
   repos = import ./repos.nix;
+  runner-pkgs = (import ./runner-pkgs.nix { inherit pkgs lib; });
   # Convenient function to create multiple runners per single personal repo.
   mkPersonalRunners = user:
     lib.concatMapAttrs (repoName: meta:
@@ -18,24 +19,12 @@ let
           inherit user group tokenFile name;
           enable = true;
           replace = true;
-          extraPackages = with pkgs; [
+          extraPackages = with pkgs; runner-pkgs ++ [
             # Standard nix tools
             nixci
             cachix
-
             # For nixos-flake
             sd
-
-            # Tools already available in standard GitHub Runners; so we provide
-            # them here:
-            coreutils
-            which
-            jq
-            # https://github.com/actions/upload-pages-artifact/blob/56afc609e74202658d3ffba0e8f6dda462b719fa/action.yml#L40
-            (pkgs.runCommandNoCC "gtar" { } ''
-              mkdir -p $out/bin
-              ln -s ${lib.getExe pkgs.gnutar} $out/bin/gtar
-            '')
           ];
           url = "https://github.com/${user}/${repoName}";
         })));
