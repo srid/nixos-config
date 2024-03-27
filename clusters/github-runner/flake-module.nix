@@ -1,10 +1,11 @@
-{ self, lib, flake-parts-lib, ... }:
+{ config, self, lib, flake-parts-lib, ... }:
 
 let
   inherit (flake-parts-lib)
     mkPerSystemOption;
   inherit (lib)
     types;
+  cfg = config.distributed-github-runner;
 in
 {
   options.distributed-github-runner = {
@@ -41,7 +42,7 @@ in
       nixosModule = lib.mkOption {
         type = types.deferredModule;
         description = "The NixOS module to use for the GitHub runner";
-        internal = true;
+        readOnly = true;
       };
     };
   };
