@@ -42,7 +42,12 @@
         ./home
         ./nixos
         ./nix-darwin
+        ./clusters/github-runner/flake-module.nix
       ];
+
+      distributed-github-runner = {
+        tokenFile =  "/run/keys/github-runner-token.secret";
+      };
 
       # Colmena deployment configuration
       # See https://github.com/juspay/colmena-flake
