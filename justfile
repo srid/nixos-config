@@ -11,4 +11,4 @@ gr-deploy:
 # Re-animate the VM that was suspended until now.
 gr-animate:
     colmena upload-keys
-    ssh -t github-runner "sudo systemctl start github-runner-*"
+    ssh -t github-runner "sudo systemctl restart --all github-runner-*"
