@@ -19,7 +19,6 @@
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixci.url = "github:srid/nixci";
-    nix-browser.url = "github:juspay/nix-browser";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
