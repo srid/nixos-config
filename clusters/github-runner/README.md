@@ -13,6 +13,10 @@ While we could use the `nix-darwin` module for Github Runners, we do it the othe
   - The Linux VM's `/etc/ssh/ssh_host_ed25519_key` is used to authorize itself to connect to the Mac.
 - The author has observed the official "linux-builder" to be slow, in comparison to a Parallels VM. Prefer setting up a Parallels VM if you can.
 
+## Known Issues
+
+- GitHub token must be provided to avoid the "API rate limit exceeded" error (which can happen if you do all this on your laptop and work around the world). See https://github.com/srid/nixos-config/issues/54
+
 ## Usage
 
 - `/systems/darwin.nix` (macOS config)
