@@ -51,14 +51,25 @@
             [ "op" "read" "op://Personal/nixos-config/${field}" ];
         in
         {
-          github-runner = {
-            targetHost = "github-runner";
-            targetUser = "srid";
-            keys."github-runner-token.secret" = {
+          github-runner =
+            let
               user = "github-runner";
-              keyCommand = read1Password "github-runner-token";
+            in
+            {
+              targetHost = "github-runner";
+              targetUser = "srid";
+              keys = {
+                "github-runner-token.secret" = {
+                  inherit user;
+                  keyCommand = read1Password "github-runner-token";
+                };
+                "nix-conf-gh-token.secret" = {
+                  user = "root";
+                  permissions = "0440";
+                  keyCommand = read1Password "nix-conf-gh-token";
+                };
+              };
             };
-          };
         };
 
       flake = {

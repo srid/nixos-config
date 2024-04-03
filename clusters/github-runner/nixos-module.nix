@@ -39,6 +39,11 @@ in
   users.groups.${group} = { };
   nix.settings.trusted-users = [ user ];
 
+  # No way to do this: https://github.com/NixOS/nix/issues/6536
+  #nix.extraOptions = ''
+  #  !include /run/keys/nix-conf-gh-token.secret
+  #'';
+
   # Runners
   services.github-runners = mkPersonalRunners "srid" repos.srid;
 
