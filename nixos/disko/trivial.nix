@@ -4,8 +4,8 @@
   disko.devices = {
     disk = {
       main = {
-        # When using disko-install, we will overwrite this value from the commandline
-        device = "/dev/disk/by-id/some-disk-id";
+        # TODO: Don't hardcode (this file is used by multiple systems)
+        device = "/dev/nvme0n1";
         type = "disk";
         content = {
           type = "gpt";

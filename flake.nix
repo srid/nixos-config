@@ -82,6 +82,11 @@
         nixosConfigurations.github-runner =
           self.nixos-flake.lib.mkLinuxSystem
             ./systems/github-runner.nix;
+
+        # Hetzner dedicated
+        nixosConfigurations.immediacy =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/ax41.nix;
       };
 
       perSystem = { self', pkgs, lib, config, ... }: {
