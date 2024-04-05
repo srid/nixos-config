@@ -1,6 +1,9 @@
 { pkgs, config, flake, ... }:
 {
-  home.packages = [ pkgs.git-lfs ];
+  home.packages = with pkgs; [
+    git-lfs
+    git-filter-repo
+  ];
 
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
