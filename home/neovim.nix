@@ -6,7 +6,7 @@
     colorschemes.tokyonight.enable = true;
 
     # Settings
-    options = {
+    opts = {
       expandtab = true;
       shiftwidth = 2;
       smartindent = true;
@@ -42,7 +42,7 @@
       };
       telescope = {
         enable = true;
-        keymaps = {
+        settings.keymaps = {
           "<leader>ff" = {
             desc = "file finder";
             action = "find_files";
@@ -53,7 +53,7 @@
           };
         };
         extensions = {
-          file_browser.enable = true;
+          file-browser.enable = true;
         };
       };
 
