@@ -43,6 +43,7 @@ in
   networking.defaultGateway = "65.109.84.193";
   networking.nameservers = [ "8.8.8.8" ];
 
-
   services.openssh.enable = true;
+
+  programs.nix-ld.enable = true; # for vscode server
 }
