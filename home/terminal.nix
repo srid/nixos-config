@@ -13,7 +13,6 @@
     # Useful for Nix development
     nixci
     nix-health
-    nil
     nixpkgs-fmt
     just
 
