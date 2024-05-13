@@ -21,6 +21,7 @@
     nixci.url = "github:srid/nixci";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    actualism-app.url = "github:srid/actualism-app";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

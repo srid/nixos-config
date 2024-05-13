@@ -12,6 +12,7 @@ in
     "${self}/nixos/nix.nix"
     "${self}/nixos/self/primary-as-admin.nix"
     "${self}/nixos/docker.nix"
+    "${self}/nixos/actualism-app.nix"
     # "${self}/nixos/server/harden/basics.nix"
   ];
 
