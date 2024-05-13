@@ -5,11 +5,11 @@ let
   inherit (inputs) self;
 in
 {
-  
+
   networking.firewall = {
-    allowedTCPPorts = [ 
-      80 
-      443 
+    allowedTCPPorts = [
+      80
+      443
     ];
   };
   # actualism-app (temp host)
