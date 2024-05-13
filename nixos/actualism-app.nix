@@ -6,12 +6,18 @@ let
 in
 {
   
-  networking.firewall.allowedTCPPorts = [ 8080 ];
+  networking.firewall = {
+    allowedTCPPorts = [ 
+      80 
+      443 
+    ];
+  };
   # actualism-app (temp host)
   services.nginx = {
     enable = true;
     virtualHosts."www.actualism.app" = {
-      # enableACME = true;
+      enableACME = true;
+      addSSL = true;
       # forceSSL = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
@@ -19,12 +25,10 @@ in
       };
     };
   };
-  /* security.acme = {
+  security.acme = {
     acceptTerms = true;
-    certs = {
-      "www.actualism.app".email = "srid@srid.ca";
-    };
-  }; */
+    defaults.email = "srid@srid.ca";
+  };
   systemd.services.actualism-app = {
     enable = true;
     description = "actualism-app server";
