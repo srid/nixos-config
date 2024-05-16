@@ -1,6 +1,11 @@
 default:
     @just --list
 
+# Activate local configuration
+activate:
+    nix run
+
+# Format the nix source tree
 fmt:
     treefmt
 
