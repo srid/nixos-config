@@ -23,5 +23,15 @@
       };
     };
   };
+
+  programs.git = {
+    # Bitbucket git access and policies
+    includes = [{
+      condition = "gitdir:~/juspay/**";
+      contents = {
+        user.email = "sridhar.ratnakumar@juspay.in";
+      };
+    }];
+  };
 }
 
