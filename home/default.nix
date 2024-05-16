@@ -21,6 +21,7 @@
           # ./nushell.nix
           ./just.nix
           # ./powershell.nix
+          ./juspay.nix
         ];
       };
       common-linux = {
