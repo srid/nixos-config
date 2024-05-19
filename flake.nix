@@ -55,6 +55,10 @@
           immediacy = {
             targetHost = "immediacy";
             targetUser = "srid";
+            keys."hedgedoc.env" = {
+              user = "hedgedoc";
+              keyCommand = read1Password "hedgedoc.env";
+            };
           };
           github-runner =
             let
