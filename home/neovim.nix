@@ -1,6 +1,8 @@
+{ pkgs, ... }:
+
 {
   programs.nixvim = {
-    enable = true;
+    enable = pkgs.stdenv.isDarwin; # nixvim uses IFD; so not using it on Linux (breaks colmena apply)
 
     # Theme
     colorschemes.tokyonight.enable = true;

@@ -52,6 +52,10 @@
             [ "op" "read" "op://Personal/nixos-config/${field}" ];
         in
         {
+          immediacy = {
+            targetHost = "immediacy";
+            targetUser = "srid";
+          };
           github-runner =
             let
               user = "github-runner";
