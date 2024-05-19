@@ -25,7 +25,12 @@
     fuckport
     sshuttle-via
     entr
+
+    # Fonts
+    cascadia-code
   ];
+
+  fonts.fontconfig.enable = true;
 
   home.shellAliases = {
     e = "nvim";
