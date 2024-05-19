@@ -7,5 +7,6 @@
     nixos-flake.num = 2 * 5;
     perpetuum.num = 2;
     emanote.num = 2;
+    nixci.num = 2;
   };
 }
