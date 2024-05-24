@@ -96,6 +96,11 @@
         nixosConfigurations.immediacy =
           self.nixos-flake.lib.mkLinuxSystem
             ./systems/ax41.nix;
+
+        # VM on macOS
+        nixosConfigurations.enjoy =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/enjoy.nix;
       };
 
       perSystem = { self', pkgs, lib, config, ... }: {
