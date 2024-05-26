@@ -98,7 +98,7 @@
             ./systems/ax41.nix;
       };
 
-      perSystem = { self', pkgs, lib, config, ... }: {
+      perSystem = { self', pkgs, system, config, ... }: {
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake.primary-inputs = [
@@ -117,12 +117,20 @@
         formatter = config.treefmt.build.wrapper;
 
         packages.default = self'.packages.activate;
+
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];
           packages = with pkgs; [
             just
             colmena
             nixd
+          ];
+        };
+        # Make our overlay available to the devShell
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
           ];
         };
       };
