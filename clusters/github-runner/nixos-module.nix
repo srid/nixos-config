@@ -19,6 +19,7 @@ let
           inherit user group tokenFile name;
           enable = true;
           replace = true;
+          ephemeral = true;
           extraPackages = with pkgs; runner-pkgs ++ [
             # Standard nix tools
             nixci
