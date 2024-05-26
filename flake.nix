@@ -122,6 +122,7 @@
           packages = with pkgs; [
             just
             colmena
+            nixd
           ];
         };
       };
