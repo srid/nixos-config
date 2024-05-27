@@ -2,6 +2,7 @@ default:
     @just --list
 
 # Activate local configuration
+[group('main')]
 activate:
     nix run
 
@@ -14,20 +15,20 @@ deploy:
     colmena apply --build-on-target
 
 # Deploy to github-runner VM
-[group('gr')]
+[group('github-runner')]
 gr-deploy:
     colmena apply --build-on-target --on github-runner
 
 # Re-animate the VM that was suspended until now.
-[group('gr')]
+[group('github-runner')]
 gr-animate:
     colmena upload-keys
     ssh -t github-runner "sudo systemctl restart --all github-runner-*"
 
-[group('gr')]
+[group('github-runner')]
 gr-inspect:
     ssh -t github-runner "sudo systemctl status --all github-runner-*"
 
-[group('gr')]
+[group('github-runner')]
 gr-ssh:
     ssh -t github-runner
