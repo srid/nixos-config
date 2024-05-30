@@ -37,7 +37,7 @@
           ./zsh.nix
           # ./bash.nix
           # ./kitty.nix
-          # ./himalaya.nix
+          ./himalaya.nix
         ];
       };
     };

@@ -1,4 +1,5 @@
 let
+  # https://pimalaya.org/himalaya/cli/latest/configuration/icloud-mail.html
   iCloudMailSettings = {
     imap = {
       host = "imap.mail.me.com";
@@ -28,10 +29,13 @@ in
       address = "happyandharmless@icloud.com";
       aliases = [ "srid@srid.ca" ];
       userName = "happyandharmless";
-      passwordCommand = "op read op://Personal/iCloud/himalaya";
+      passwordCommand = "op read op://Personal/iCloud-Apple/himalaya";
       himalaya = {
         enable = true;
-        settings.sync.enable = true;
+        # Disabled because of https://todo.sr.ht/~soywod/pimalaya/213
+        settings.sync = {
+          enable = true;
+        };
       };
     };
   };
