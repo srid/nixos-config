@@ -4,7 +4,7 @@
   flake = {
     darwinModules = {
       my-home = {
-        home-manager.users.${config.people.myself} = { pkgs, ... }: {
+        home-manager.users.${config.people.myself} = {
           imports = [
             self.homeModules.common-darwin
           ];

@@ -15,7 +15,9 @@ in
 {
   home.shellAliases = {
     H = "himalaya";
+    Hr = "himalaya message read";
     Hd = "himalaya message delete";
+    Hs = "himalaya account sync";
   };
 
   programs.himalaya = {
@@ -32,7 +34,7 @@ in
       passwordCommand = "op read op://Personal/iCloud-Apple/himalaya";
       himalaya = {
         enable = true;
-        # Disabled because of https://todo.sr.ht/~soywod/pimalaya/213
+        # Don't forget to run `himalaya account sync` first!
         settings.sync = {
           enable = true;
         };
