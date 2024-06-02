@@ -1,5 +1,3 @@
-{ config, pkgs, lib, ... }:
-
 let
   domain = "pad.srid.ca";
   port = 9112;
