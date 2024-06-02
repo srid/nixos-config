@@ -6,7 +6,7 @@
   users.users =
     let
       people = flake.config.people;
-      myKeys = people.users.${people.myself}.sshKeys;
+      myKeys = [ people.users.${people.myself}.sshKey ];
     in
     {
       root.openssh.authorizedKeys.keys = myKeys;
