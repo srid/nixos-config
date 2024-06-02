@@ -28,6 +28,10 @@
 
     # Fonts
     cascadia-code
+
+    # Txns
+    hledger
+    hledger-web
   ];
 
   fonts.fontconfig.enable = true;
