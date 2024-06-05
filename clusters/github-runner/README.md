@@ -16,6 +16,7 @@ While we could use the `nix-darwin` module for Github Runners, we do it the othe
 ## Known Issues
 
 - GitHub token must be provided to avoid the "API rate limit exceeded" error (which can happen if you do all this on your laptop and work around the world). See https://github.com/srid/nixos-config/issues/54
+- GitHub runner might crash due to out of sync time on the VM. If you are Parallels, you should [sync time from Mac](https://kb.parallels.com/113271).
 
 ## Usage
 
