@@ -32,6 +32,8 @@
     # Txns
     hledger
     hledger-web
+
+    gnupg
   ];
 
   fonts.fontconfig.enable = true;
