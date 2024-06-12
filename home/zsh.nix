@@ -14,7 +14,7 @@
     ];
 
     envExtra = ''
-      export PATH=/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin/:/usr/local/bin:$PATH
+      export PATH=/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/system/sw/bin:/usr/local/bin:$PATH
 
       # Because, adding it in .ssh/config is not enough.
       # cf. https://developer.1password.com/docs/ssh/get-started#step-4-configure-your-ssh-or-git-client
