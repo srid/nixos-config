@@ -1,4 +1,5 @@
 let
+  # https://pimalaya.org/himalaya/cli/latest/configuration/icloud-mail.html
   iCloudMailSettings = {
     imap = {
       host = "imap.mail.me.com";
@@ -14,7 +15,9 @@ in
 {
   home.shellAliases = {
     H = "himalaya";
+    Hr = "himalaya message read";
     Hd = "himalaya message delete";
+    Hs = "himalaya account sync";
   };
 
   programs.himalaya = {
@@ -28,10 +31,13 @@ in
       address = "happyandharmless@icloud.com";
       aliases = [ "srid@srid.ca" ];
       userName = "happyandharmless";
-      passwordCommand = "op read op://Personal/iCloud/himalaya";
+      passwordCommand = "op read op://Personal/iCloud-Apple/himalaya";
       himalaya = {
         enable = true;
-        settings.sync.enable = true;
+        # Don't forget to run `himalaya account sync` first!
+        settings.sync = {
+          enable = true;
+        };
       };
     };
   };

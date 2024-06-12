@@ -1,12 +1,14 @@
+{ pkgs, ... }:
+
 {
   programs.nixvim = {
-    enable = true;
+    enable = pkgs.stdenv.isDarwin; # nixvim uses IFD; so not using it on Linux (breaks colmena apply)
 
     # Theme
     colorschemes.tokyonight.enable = true;
 
     # Settings
-    options = {
+    opts = {
       expandtab = true;
       shiftwidth = 2;
       smartindent = true;
@@ -42,7 +44,7 @@
       };
       telescope = {
         enable = true;
-        keymaps = {
+        settings.keymaps = {
           "<leader>ff" = {
             desc = "file finder";
             action = "find_files";
@@ -53,7 +55,7 @@
           };
         };
         extensions = {
-          file_browser.enable = true;
+          file-browser.enable = true;
         };
       };
 

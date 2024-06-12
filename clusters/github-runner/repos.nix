@@ -6,5 +6,7 @@
     nixos-config.num = 2;
     nixos-flake.num = 2 * 5;
     perpetuum.num = 2;
+    emanote.num = 2;
+    nixci.num = 2;
   };
 }

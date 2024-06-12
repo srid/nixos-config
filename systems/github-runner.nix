@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -10,6 +10,7 @@ in
     "${self}/nixos/disko/trivial.nix"
     "${self}/nixos/parallels-vm.nix"
     "${self}/nixos/nix.nix"
+    "${self}/nixos/current-location.nix"
     "${self}/nixos/self/primary-as-admin.nix"
     "${self}/nixos/server/harden/basics.nix"
     "${self}/clusters/github-runner/nixos-module.nix"

@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake";
+    nixos-flake.url = "github:srid/nixos-flake/deploy";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     colmena-flake.url = "github:juspay/colmena-flake";
@@ -19,9 +19,9 @@
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixci.url = "github:srid/nixci";
-    nix-browser.url = "github:juspay/nix-browser";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    actualism-app.url = "github:srid/actualism-app";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
@@ -57,14 +57,33 @@
             [ "op" "read" "op://Personal/nixos-config/${field}" ];
         in
         {
-          github-runner = {
-            targetHost = "github-runner";
+          immediacy = {
+            targetHost = "immediacy";
             targetUser = "srid";
-            keys."github-runner-token.secret" = {
-              user = "github-runner";
-              keyCommand = read1Password "github-runner-token";
+            keys."hedgedoc.env" = {
+              user = "hedgedoc";
+              keyCommand = read1Password "hedgedoc.env";
             };
           };
+          github-runner =
+            let
+              user = "github-runner";
+            in
+            {
+              targetHost = "github-runner";
+              targetUser = "srid";
+              keys = {
+                "github-runner-token.secret" = {
+                  inherit user;
+                  keyCommand = read1Password "github-runner-token";
+                };
+                "nix-conf-gh-token.secret" = {
+                  user = "root";
+                  permissions = "0440";
+                  keyCommand = read1Password "nix-conf-gh-token";
+                };
+              };
+            };
         };
 
       flake = {
@@ -77,19 +96,26 @@
         nixosConfigurations.github-runner =
           self.nixos-flake.lib.mkLinuxSystem
             ./systems/github-runner.nix;
+
+        # Hetzner dedicated
+        nixosConfigurations.immediacy =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/ax41.nix;
       };
 
-      perSystem = { self', pkgs, lib, config, ... }: {
+      perSystem = { self', pkgs, system, config, ... }: {
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
-        nixos-flake.primary-inputs = [
-          "nixpkgs"
-          "home-manager"
-          "nix-darwin"
-          "nixos-flake"
-          "nix-index-database"
-          "nixvim"
-        ];
+        nixos-flake = {
+          primary-inputs = [
+            "nixpkgs"
+            "home-manager"
+            "nix-darwin"
+            "nixos-flake"
+            "nix-index-database"
+            "nixvim"
+          ];
+        };
 
         treefmt.config = {
           projectRootFile = "flake.nix";
@@ -98,11 +124,20 @@
         formatter = config.treefmt.build.wrapper;
 
         packages.default = self'.packages.activate;
+
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];
           packages = with pkgs; [
             just
             colmena
+            nixd
+          ];
+        };
+        # Make our overlay available to the devShell
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
           ];
         };
       };

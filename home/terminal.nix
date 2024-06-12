@@ -13,7 +13,6 @@
     # Useful for Nix development
     nixci
     nix-health
-    nil
     nixpkgs-fmt
     just
 
@@ -26,7 +25,18 @@
     fuckport
     sshuttle-via
     entr
+
+    # Fonts
+    cascadia-code
+
+    # Txns
+    hledger
+    hledger-web
+
+    gnupg
   ];
+
+  fonts.fontconfig.enable = true;
 
   home.shellAliases = {
     e = "nvim";

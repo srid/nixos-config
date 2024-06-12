@@ -21,6 +21,7 @@
           # ./nushell.nix
           ./just.nix
           # ./powershell.nix
+          ./juspay.nix
         ];
       };
       common-linux = {
@@ -36,8 +37,7 @@
           ./zsh.nix
           # ./bash.nix
           # ./kitty.nix
-          # ./emacs.nix
-          # ./himalaya.nix
+          ./himalaya.nix
         ];
       };
     };

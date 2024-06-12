@@ -4,7 +4,6 @@
         "b4dm4n.nixpkgs-fmt",
         "jnoortheen.nix-ide",
         "mattn.lisp",
-        "thenuprojectcontributors.vscode-nushell-lang",
         "mkhl.direnv"
     ]
 }
