@@ -26,3 +26,4 @@ While we could use the `nix-darwin` module for Github Runners, we do it the othe
 ## See also
 
 - [Zulip notes](https://nixos.zulipchat.com/#narrow/stream/413948-nixos/topic/Self-hosted.20GitHub.20runners)
+- Old architecture, of running the runners on macOS: https://github.com/srid/nixos-config/tree/bdf0ad9619abe9785097981dfec4fb6f3d9f1b5d/nix-darwin/ci
