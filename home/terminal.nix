@@ -7,8 +7,9 @@
     ripgrep
     fd
     sd
-    ncdu
     moreutils # ts, etc.
+    # Broken, https://github.com/NixOS/nixpkgs/issues/299680
+    # ncdu
 
     # Useful for Nix development
     nixci
