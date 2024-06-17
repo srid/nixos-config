@@ -1,7 +1,6 @@
 { pkgs, config, flake, ... }:
 {
   home.packages = with pkgs; [
-    git-lfs
     git-filter-repo
   ];
 
@@ -28,6 +27,7 @@
       rerere.enabled = true;
     };
     ignores = [ "*~" "*.swp" ];
+    lfs.enable = true;
     delta = {
       enable = true;
       options = {
