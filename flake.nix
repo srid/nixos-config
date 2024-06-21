@@ -99,7 +99,7 @@
             ./systems/ax41.nix;
       };
 
-      perSystem = { self', pkgs, system, config, ... }: {
+      perSystem = { self', inputs', pkgs, system, config, ... }: {
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake = {
@@ -127,6 +127,7 @@
             just
             colmena
             nixd
+            inputs'.ragenix.packages.default
           ];
         };
         # Make our overlay available to the devShell
