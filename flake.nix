@@ -80,7 +80,6 @@
           projectRootFile = "flake.nix";
           programs.nixpkgs-fmt.enable = true;
         };
-        formatter = config.treefmt.build.wrapper;
 
         packages.default = self'.packages.activate;
 
