@@ -66,7 +66,7 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
   sudo nixos-rebuild boot
   ```
 - To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
-- To build all flake outputs (locally or in CI), run `nix --accept-flake-config run github:srid/nixci`
+- To build all flake outputs (locally or in CI), run `nix --accept-flake-config run github:srid/nixci build`
 - For secrets management, I use [colmena](https://colmena.cli.rs/unstable/features/keys.html) along with 1Password.
 
 ## Discussion
