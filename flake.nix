@@ -14,6 +14,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     colmena-flake.url = "github:juspay/colmena-flake";
+    ragenix.url = "github:yaxitech/ragenix";
 
     # Software inputs
     nixos-vscode-server.flake = false;

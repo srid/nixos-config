@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, inputs, config, ... }:
 {
   # Configuration common to all macOS systems
   flake = {
@@ -15,6 +15,7 @@
         self.darwinModules_.home-manager
         self.darwinModules.my-home
         self.nixosModules.common
+        inputs.ragenix.darwinModules.default
       ];
     };
   };
