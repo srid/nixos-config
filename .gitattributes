@@ -1,3 +1,2 @@
 flake.lock linguist-generated=true
 *.age linguist-generated=true
-nixos/jenkins/plugins.nix linguist-generated=true
