@@ -1,13 +1,18 @@
+{ config, ... }:
+
 let
   domain = "pad.srid.ca";
   port = 9112;
 in
 {
+  age.secrets."hedgedoc.env" = {
+    file = ../secrets/hedgedoc.env.age;
+    owner = "hedgedoc";
+  };
   services.hedgedoc = {
     enable = true;
 
-    # GitHub secrets set in colmena (see flake.nix)
-    environmentFile = "/run/keys/hedgedoc.env";
+    environmentFile = config.age.secrets."hedgedoc.env".path;
 
     settings = {
       # URL config
