@@ -6,7 +6,7 @@ let
 in
 {
   age.secrets."hedgedoc.env" = {
-    file = ../secrets/hedgedoc.env;
+    file = ../secrets/hedgedoc.env.age;
     owner = "hedgedoc";
   };
   services.hedgedoc = {
