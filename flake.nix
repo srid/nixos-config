@@ -51,11 +51,6 @@
           self.nixos-flake.lib.mkMacosSystem
             ./systems/darwin.nix;
 
-        # Configuration for a NixOS VM (running on my Mac)
-        nixosConfigurations.github-runner =
-          self.nixos-flake.lib.mkLinuxSystem
-            ./systems/github-runner.nix;
-
         # Hetzner dedicated
         nixosConfigurations.immediacy =
           self.nixos-flake.lib.mkLinuxSystem

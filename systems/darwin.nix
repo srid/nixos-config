@@ -8,7 +8,6 @@ in
   imports = [
     self.darwinModules.default
     "${self}/nix-darwin/zsh-completion-fix.nix"
-    "${self}/clusters/github-runner/darwin-module.nix"
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
