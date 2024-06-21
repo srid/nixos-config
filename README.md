@@ -50,7 +50,6 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 - `nix-darwin`: nix-darwin modules for macOS
 - `users`: user information
 - `systems`: top-level configuration.nix('ish) for various systems
-- `clusters`: Features that span more than 1 system
 
 ## Tips
 
