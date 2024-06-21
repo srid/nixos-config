@@ -78,21 +78,6 @@
         "type": "github"
       }
     },
-    "colmena-flake": {
-      "locked": {
-        "lastModified": 1711493191,
-        "narHash": "sha256-boxs2M0It0Bh7CGZnEbZJohA+wphXNTjUZ32D9y1KUE=",
-        "owner": "juspay",
-        "repo": "colmena-flake",
-        "rev": "0a9118df5e2e20db9f0e81f273ce906e26a286f3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "juspay",
-        "repo": "colmena-flake",
-        "type": "github"
-      }
-    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -1050,7 +1035,6 @@
     "root": {
       "inputs": {
         "actualism-app": "actualism-app",
-        "colmena-flake": "colmena-flake",
         "disko": "disko",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
