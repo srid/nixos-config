@@ -46,6 +46,16 @@ in
   networking.defaultGateway = "65.109.84.193";
   networking.nameservers = [ "8.8.8.8" ];
 
+  age.secrets."github-nix-ci/srid.token.age" = {
+    file = ../secrets/github-nix-ci/srid.token.age;
+    owner = "github-runner"; ## TODO(DRY):
+  };
+  services.github-nix-ci = {
+    personalRunners = {
+      "srid/nixos-config".num = 1;
+    };
+  };
+
   services.openssh.enable = true;
 
   programs.nix-ld.enable = true; # for vscode server
