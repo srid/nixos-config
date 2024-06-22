@@ -16,6 +16,7 @@
     ragenix.url = "github:yaxitech/ragenix";
 
     # Software inputs
+    github-nix-ci.url = "github:juspay/github-nix-ci";
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixci.url = "github:srid/nixci";

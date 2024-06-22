@@ -25,6 +25,7 @@
         self.nixosModules.my-home
         self.nixosModules.common
         inputs.ragenix.nixosModules.default
+        inputs.github-nix-ci.nixosModules.default
         ./self/self-ide.nix
         ./current-location.nix
       ];

@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -8,14 +8,11 @@ in
   imports = [
     self.darwinModules.default
     "${self}/nix-darwin/zsh-completion-fix.nix"
+    "${self}/nixos/github-runner.nix"
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  environment.systemPackages = with pkgs; [
-    # macOS GUI programs
-    # wezterm
-  ];
+  networking.hostName = "appreciate";
 
   security.pam.enableSudoTouchIdAuth = true;
 
