@@ -1,4 +1,4 @@
-{ pkgs, flake, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -8,14 +8,11 @@ in
   imports = [
     self.darwinModules.default
     "${self}/nix-darwin/zsh-completion-fix.nix"
+    "${self}/nixos/github-runner.nix"
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  environment.systemPackages = with pkgs; [
-    # macOS GUI programs
-    # wezterm
-  ];
+  networking.hostName = "appreciate";
 
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -23,17 +20,6 @@ in
   users.users.${flake.config.people.myself} = {
     name = flake.config.people.myself;
     home = "/Users/${flake.config.people.myself}";
-  };
-
-  networking.hostName = "appreciate";
-  age.secrets."github-nix-ci/srid.token.age" = {
-    file = ../secrets/github-nix-ci/srid.token.age;
-    owner = "_github-runner";
-  };
-  services.github-nix-ci = {
-    personalRunners = {
-      "srid/nixos-config".num = 1;
-    };
   };
 
   # Auto upgrade nix package and the daemon service.

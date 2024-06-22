@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -14,6 +14,7 @@ in
     "${self}/nixos/docker.nix"
     "${self}/nixos/actualism-app.nix"
     "${self}/nixos/hedgedoc.nix"
+    "${self}/nixos/github-runner.nix"
     # "${self}/nixos/server/harden/basics.nix"
   ];
 
@@ -45,16 +46,6 @@ in
   ];
   networking.defaultGateway = "65.109.84.193";
   networking.nameservers = [ "8.8.8.8" ];
-
-  age.secrets."github-nix-ci/srid.token.age" = {
-    file = ../secrets/github-nix-ci/srid.token.age;
-    owner = "github-runner"; ## TODO(DRY):
-  };
-  services.github-nix-ci = {
-    personalRunners = {
-      "srid/nixos-config".num = 1;
-    };
-  };
 
   services.openssh.enable = true;
 
