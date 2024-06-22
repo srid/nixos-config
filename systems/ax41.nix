@@ -15,7 +15,7 @@ in
     "${self}/nixos/actualism-app.nix"
     "${self}/nixos/hedgedoc.nix"
     "${self}/nixos/github-runner.nix"
-    # "${self}/nixos/server/harden/basics.nix"
+    "${self}/nixos/server/harden/basics.nix"
   ];
 
   system.stateVersion = "23.11";
