@@ -482,6 +482,22 @@
         "type": "github"
       }
     },
+    "github-nix-ci": {
+      "locked": {
+        "lastModified": 1719014804,
+        "narHash": "sha256-6dCBg4VFzxeHajaECK0TfNW3i4k64PD9/PwB9zumThE=",
+        "owner": "juspay",
+        "repo": "github-nix-ci",
+        "rev": "64dd97f7e6b3407d0d6ad557df2f273ec9926293",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "ref": "prep",
+        "repo": "github-nix-ci",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -1037,6 +1053,7 @@
         "actualism-app": "actualism-app",
         "disko": "disko",
         "flake-parts": "flake-parts_2",
+        "github-nix-ci": "github-nix-ci",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",

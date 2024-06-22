@@ -25,6 +25,17 @@ in
     home = "/Users/${flake.config.people.myself}";
   };
 
+  networking.hostName = "appreciate";
+  age.secrets."github-nix-ci/srid.token.age" = {
+    file = ../secrets/github-nix-ci/srid.token.age;
+    owner = "_github-runner";
+  };
+  services.github-nix-ci = {
+    personalRunners = {
+      "srid/nixos-config".num = 1;
+    };
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
