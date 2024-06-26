@@ -9,7 +9,7 @@ activate:
 # Deploy host 'immediacy'
 [group('main')]
 deploy:
-    nix run . host immediacy
+    nix run . immediacy
 
 # Format the nix source tree
 fmt:
