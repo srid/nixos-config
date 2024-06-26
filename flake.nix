@@ -62,11 +62,6 @@
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake = {
-          # https://github.com/srid/nixos-flake/pull/54
-          deploy = {
-            enable = true;
-            sshTarget = "srid@immediacy";
-          };
           primary-inputs = [
             "nixpkgs"
             "home-manager"
