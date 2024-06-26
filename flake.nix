@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake/deploy";
+    nixos-flake.url = "github:srid/nixos-flake/activate-v2";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
@@ -82,7 +82,7 @@
           programs.nixpkgs-fmt.enable = true;
         };
 
-        packages.default = self'.packages.activate;
+        packages.default = self'.packages.activate-v2;
 
         devShells.default = pkgs.mkShell {
           inputsFrom = [ config.treefmt.build.devShell ];

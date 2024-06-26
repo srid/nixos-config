@@ -18,6 +18,8 @@ in
     "${self}/nixos/server/harden/basics.nix"
   ];
 
+  nixos-flake.sshTarget = "srid@immediacy";
+
   system.stateVersion = "23.11";
   networking.hostName = "immediacy";
   nixpkgs.hostPlatform = "x86_64-linux";
