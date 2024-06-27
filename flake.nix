@@ -68,6 +68,7 @@
               programs = {
                 starship.enable = true;
                 bash.enable = true;
+                git.enable = true;
               };
               home.stateVersion = "24.05";
               # nixos-flake.sshTarget = "parallels@ubuntu";
