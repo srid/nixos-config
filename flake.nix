@@ -59,15 +59,15 @@
       };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
-        legacyPackages.homeConfigurations."parallels@ubuntu" =
+        legacyPackages.homeConfigurations."srid@ubuntu" =
           self.nixos-flake.lib.mkHomeConfiguration
             pkgs
             ({ pkgs, ... }: {
               imports = [
                 self.homeModules.common-linux
               ];
-              home.username = "parallels";
-              home.homeDirectory = "/home/parallels";
+              home.username = "srid";
+              home.homeDirectory = "/home/srid";
               home.packages = [
                 pkgs.tmate
               ];
