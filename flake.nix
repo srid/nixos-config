@@ -59,19 +59,24 @@
       };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
-        legacyPackages.homeConfigurations."parallels" =
+        legacyPackages.homeConfigurations."parallels@ubuntu" =
           self.nixos-flake.lib.mkHomeConfiguration
             pkgs
             ({ pkgs, ... }: {
+              import = [
+                self.homeModules.common-linux
+              ];
               home.username = "parallels";
               home.homeDirectory = "/home/parallels";
+              home.packages = [
+                pkgs.tmate
+              ];
               programs = {
                 starship.enable = true;
                 bash.enable = true;
                 git.enable = true;
               };
               home.stateVersion = "24.05";
-              # nixos-flake.sshTarget = "parallels@ubuntu";
             });
 
         # Flake inputs we want to update periodically
