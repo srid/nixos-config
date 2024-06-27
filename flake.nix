@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake/activate-home";
+    nixos-flake.url = "github:srid/nixos-flake";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
@@ -59,20 +59,6 @@
       };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
-        legacyPackages.homeConfigurations."parallels" =
-          self.nixos-flake.lib.mkHomeConfiguration
-            pkgs
-            ({ pkgs, ... }: {
-              home.username = "parallels";
-              home.homeDirectory = "/home/parallels";
-              programs = {
-                starship.enable = true;
-                bash.enable = true;
-              };
-              home.stateVersion = "24.05";
-              # nixos-flake.sshTarget = "parallels@ubuntu";
-            });
-
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake = {
