@@ -63,7 +63,7 @@
           self.nixos-flake.lib.mkHomeConfiguration
             pkgs
             ({ pkgs, ... }: {
-              import = [
+              imports = [
                 self.homeModules.common-linux
               ];
               home.username = "parallels";
