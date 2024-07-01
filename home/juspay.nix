@@ -21,6 +21,9 @@
         identitiesOnly = true;
         identityFile = "~/.ssh/juspay.pub";
       };
+      "ssh.bitbucket.juspay.net" = {
+        identityFile = "~/.ssh/juspay.pub";
+      };
     };
   };
 
