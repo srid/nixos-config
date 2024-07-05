@@ -2,15 +2,17 @@
 let
   # I don't care to connect to VPN on my macbook
   # So, I'll clone through an office machine
-  gitCloneThroughVanjaram =
+  gitCloneThrough = { host, user }:
     let
-      host = "vanjaram";
       port = 5445;
       gitSshRemote = "ssh.bitbucket.juspay.net";
     in
     {
       programs.ssh.matchBlocks = {
-        ${host}.dynamicForwards = [{ inherit port; }];
+        ${host} = {
+          inherit user;
+          dynamicForwards = [{ inherit port; }];
+        };
         ${gitSshRemote} = {
           user = "git";
           proxyCommand = "nc -x localhost:${builtins.toString port} %h %p";
@@ -19,7 +21,9 @@ let
     };
 in
 {
-  imports = [ gitCloneThroughVanjaram ];
+  imports = [
+    (gitCloneThrough { host = "vanjaram"; user = "srid"; })
+  ];
   programs.ssh = {
     matchBlocks = {
       # Juspay machines (through Tailscale)
