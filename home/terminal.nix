@@ -13,6 +13,7 @@
 
     # Useful for Nix development
     nixci
+    nixci-build-remote
     nix-health
     nixpkgs-fmt
     just
