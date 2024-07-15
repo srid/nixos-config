@@ -5,7 +5,7 @@ layout {
     pane size=1 borderless=true {
         plugin location="tab-bar"
     }
-    pane split_direction="vertical" {
+    pane split_direction="horizontal" {
         pane { 
           name "x86_64-linux"
           command "nixci-build-remote" 
