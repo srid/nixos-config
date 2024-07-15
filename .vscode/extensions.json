@@ -4,6 +4,7 @@
         "b4dm4n.nixpkgs-fmt",
         "jnoortheen.nix-ide",
         "mattn.lisp",
-        "mkhl.direnv"
+        "mkhl.direnv",
+        "kdl-org.kdl"
     ]
 }

@@ -1,0 +1,23 @@
+// TODO: Make it a nix module?
+// - Don't't hardcode hostnames/ systems
+// - Use nix store path for nixci-build-remote
+layout {
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    pane split_direction="vertical" {
+        pane { 
+          name "x86_64-linux"
+          command "nixci-build-remote" 
+          args "nix-infra@dosa" 
+        }
+        pane { 
+          name "aaarch64-linux"
+          command "nixci-build-remote" 
+          args "nix-infra@sambar" 
+        }
+    }
+    pane size=2 borderless=true {
+        plugin location="status-bar"
+    }
+}

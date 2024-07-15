@@ -14,6 +14,7 @@
     # Useful for Nix development
     nixci
     nixci-build-remote
+    ci
     nix-health
     nixpkgs-fmt
     just
