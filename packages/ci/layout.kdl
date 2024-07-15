@@ -12,7 +12,7 @@ layout {
           args "nix-infra@dosa" 
         }
         pane { 
-          name "aaarch64-linux"
+          name "aaarch64-darwin"
           command "nixci-build-remote" 
           args "nix-infra@sambar" 
         }
