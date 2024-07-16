@@ -1,4 +1,4 @@
-// TODO: Make it a nix module?
+// TODO: Make it a nix module? cf. https://github.com/nix-community/home-manager/issues/4485
 // - Don't't hardcode hostnames/ systems
 // - Use nix store path for nixci-build-remote
 layout {
