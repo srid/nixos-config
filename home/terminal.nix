@@ -15,7 +15,7 @@
     nixci
     nixci-build-remote
     ci
-    nix-health
+    omnix
     nixpkgs-fmt
     just
 

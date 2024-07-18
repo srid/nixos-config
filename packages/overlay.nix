@@ -9,4 +9,5 @@ self: super: {
   nixci = flake.inputs.nixci.packages.${system}.default;
   # nix-health = flake.inputs.nix-browser.packages.${system}.nix-health;
   actualism-app = flake.inputs.actualism-app.packages.${system}.default;
+  omnix = flake.inputs.omnix.packages.${system}.default;
 }
