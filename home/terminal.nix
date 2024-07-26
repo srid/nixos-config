@@ -12,8 +12,7 @@
     # ncdu
 
     # Useful for Nix development
-    nixci
-    nixci-build-remote
+    om-ci-build-remote
     ci
     omnix
     nixpkgs-fmt

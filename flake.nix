@@ -19,7 +19,6 @@
     github-nix-ci.url = "github:juspay/github-nix-ci";
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nixci.url = "github:srid/nixci";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     actualism-app.url = "github:srid/actualism-app";

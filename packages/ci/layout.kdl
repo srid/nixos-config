@@ -1,6 +1,6 @@
 // TODO: Make it a nix module? cf. https://github.com/nix-community/home-manager/issues/4485
 // - Don't't hardcode hostnames/ systems
-// - Use nix store path for nixci-build-remote
+// - Use nix store path for om-ci-build-remote
 layout {
     pane size=1 borderless=true {
         plugin location="tab-bar"
@@ -8,12 +8,12 @@ layout {
     pane split_direction="horizontal" {
         pane { 
           name "x86_64-linux"
-          command "nixci-build-remote" 
+          command "om-ci-build-remote" 
           args "nix-infra@dosa" 
         }
         pane { 
           name "aaarch64-darwin"
-          command "nixci-build-remote" 
+          command "om-ci-build-remote" 
           args "nix-infra@sambar" 
         }
     }

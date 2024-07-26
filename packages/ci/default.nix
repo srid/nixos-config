@@ -1,12 +1,12 @@
-{ writeShellApplication, nixci-build-remote, zellij, ... }:
+{ writeShellApplication, om-ci-build-remote, zellij, ... }:
 
 writeShellApplication {
   name = "ci";
-  runtimeInputs = [ nixci-build-remote zellij ];
+  runtimeInputs = [ om-ci-build-remote zellij ];
   meta.description = ''
     Run CI locally. 
 
-    Powered by nixci, zellij and your beefy machines over SSH.
+    Powered by omnix, zellij and your beefy machines over SSH.
   '';
   text = ''
     PRJ=$(basename "$(pwd)")

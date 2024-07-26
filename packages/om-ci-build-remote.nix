@@ -2,7 +2,7 @@
 { writeShellApplication, jq, nix, ... }:
 
 writeShellApplication {
-  name = "nixci-build-remote";
+  name = "om-ci-build-remote";
   runtimeInputs = [ jq nix ];
   meta.description = ''
     `nixci build`, but build remotely over SSH.
@@ -12,8 +12,8 @@ writeShellApplication {
     FLAKE=$(nix flake metadata --json | jq -r .path)
     set -x
     nix copy --to "ssh://$1" "$FLAKE"
-    nix copy --to "ssh://$1" ${inputs.nixci}
+    nix copy --to "ssh://$1" ${inputs.omnix}
     # shellcheck disable=SC2029
-    ssh "$1" nix run ${inputs.nixci}#default build "$FLAKE"
+    ssh "$1" nix run ${inputs.omnix}#default ci build "$FLAKE"
   '';
 }
