@@ -841,11 +841,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1722016826,
-        "narHash": "sha256-M8idsLs1sMq5aqLDj/RXq9dybw0A+zIrowvMZ0GBk9U=",
+        "lastModified": 1722281241,
+        "narHash": "sha256-w7zp/j1GwszrEPdsjOQZk9H9nuec2qLvMccY4hr2jp0=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "f1223f887478d3f5cabf3a4ab08f2f92e91f4552",
+        "rev": "45b32e10058b8b66ff2bafcb34c33bad35ab9f8e",
         "type": "github"
       },
       "original": {
@@ -959,11 +959,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1721249094,
-        "narHash": "sha256-p/HO8YAsGGFQ8EnYaVMgl8AiqenA4r0cIGJ6mZACpFA=",
+        "lastModified": 1722280942,
+        "narHash": "sha256-xbL+LnUrWQoW6yukTSI1KN0vfnHNus+hwXP1h6NLvhU=",
         "owner": "juspay",
         "repo": "rust-flake",
-        "rev": "658edce0b6bb521f1f54957ddbfab80f73066bee",
+        "rev": "a51532d54713d0b4a0f999da4753026af9068df2",
         "type": "github"
       },
       "original": {
