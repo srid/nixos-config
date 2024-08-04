@@ -14,6 +14,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
+    nuenv.url = "github:hallettj/nuenv/writeShellApplication";
 
     # Software inputs
     github-nix-ci.url = "github:juspay/github-nix-ci";

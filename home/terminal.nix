@@ -14,6 +14,7 @@
     # Useful for Nix development
     om-ci-build-remote
     ci
+    touchpr
     omnix
     nixpkgs-fmt
     just

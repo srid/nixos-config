@@ -8,6 +8,7 @@
       allowUnfree = true;
     };
     overlays = [
+      flake.inputs.nuenv.overlays.default
       (import ../packages/overlay.nix { inherit flake; inherit (pkgs) system; })
     ];
   };
