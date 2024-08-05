@@ -1,4 +1,11 @@
-def main [pr_url: string] {
+# cf. https://github.com/DeterminateSystems/update-flake-lock/issues/110
+
+# Force push to a GitHub PR
+#
+# Useful to trigger GitHub Actions CI
+def main [
+    pr_url: string  # GitHub PR URL
+] {
     let parsed = ($pr_url | parse -r 'https://github\.com/(?P<owner>[\w-]+)/(?P<repo>[\w-]+)/pull/(?P<pr_number>\d+)')
     
     if ($parsed | is-empty) {
