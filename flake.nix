@@ -91,6 +91,7 @@
         packages.default = self'.packages.activate;
 
         devShells.default = pkgs.mkShell {
+          meta.description = "Dev environment for nixos-config";
           inputsFrom = [ config.treefmt.build.devShell ];
           packages = with pkgs; [
             just
