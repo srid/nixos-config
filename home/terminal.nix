@@ -67,6 +67,16 @@
     fzf.enable = true;
     jq.enable = true;
     htop.enable = true;
-    wezterm.enable = true;
+    wezterm = {
+      enable = true;
+      # https://alexplescan.com/posts/2024/08/10/wezterm/
+      extraConfig = ''
+        return {
+          font = wezterm.font("Monaspace Argon");
+          color_scheme = 'Tokyo Night';
+          window_decorations = 'RESIZE';
+        }
+      '';
+    };
   };
 }
