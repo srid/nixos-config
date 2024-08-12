@@ -31,6 +31,7 @@
 
     # Fonts
     cascadia-code
+    monaspace
 
     # Txns
     hledger
