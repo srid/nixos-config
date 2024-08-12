@@ -35,7 +35,7 @@
           self.homeModules.common
           ./zsh.nix
           # ./bash.nix
-          # ./kitty.nix
+          ./wezterm
           ./himalaya.nix
           ./_1password.nix
         ];
