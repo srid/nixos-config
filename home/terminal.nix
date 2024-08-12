@@ -66,6 +66,6 @@
     fzf.enable = true;
     jq.enable = true;
     htop.enable = true;
-    rio.enable = true;
+    wezterm.enable = true;
   };
 }
