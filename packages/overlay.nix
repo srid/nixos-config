@@ -10,4 +10,5 @@ self: super: {
   # nix-health = flake.inputs.nix-browser.packages.${system}.nix-health;
   actualism-app = flake.inputs.actualism-app.packages.${system}.default;
   omnix = flake.inputs.omnix.packages.${system}.default;
+  git-merge-and-delete = self.callPackage ./git-merge-and-delete.nix { };
 }
