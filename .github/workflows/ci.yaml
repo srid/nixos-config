@@ -14,4 +14,4 @@ jobs:
         system: [x86_64-linux, aarch64-darwin]
     steps:
       - uses: actions/checkout@v4
-      - run: nixci build --systems "github:nix-systems/${{ matrix.system }}" -- --show-trace
+      - run: om ci run --systems "${{ matrix.system }}" -- --show-trace
