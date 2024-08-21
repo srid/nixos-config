@@ -104,6 +104,7 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
+            inputs.nuenv.overlays.default
             (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
           ];
         };
