@@ -9,5 +9,4 @@ return {
       mods = 'CMD|SHIFT',
       action = wezterm.action.ActivateCommandPalette,
     },
-  };
 }
