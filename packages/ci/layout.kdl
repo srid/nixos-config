@@ -6,20 +6,20 @@ layout {
         plugin location="tab-bar"
     }
     pane split_direction="horizontal" {
-        pane { 
+        pane {
           name "x86_64-linux"
-          command "om-ci-build-remote" 
-          args "nix-infra@dosa" 
+          command "om"
+          args "ci" "run" "--on" "ssh://nix-infra@dosa"
         }
-        pane { 
+        pane {
           name "aaarch64-darwin"
-          command "om-ci-build-remote" 
-          args "nix-infra@sambar" 
+          command "om"
+          args "ci" "run" "--on" "ssh://nix-infra@sambar"
         }
-        pane { 
+        pane {
           name "x86_64-darwin"
-          command "om-ci-build-remote" 
-          args "nix-infra@sambar" "--systems" "x86_64-darwin" 
+          command "om"
+          args "ci" "run" "--on" "ssh://nix-infra@sambar" "--systems" "x86_64-darwin"
         }
     }
     pane size=2 borderless=true {
