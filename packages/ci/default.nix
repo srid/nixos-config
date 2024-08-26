@@ -2,7 +2,7 @@
 
 writeShellApplication {
   name = "ci";
-  runtimeInputs = [ om-ci-build-remote zellij ];
+  runtimeInputs = [ omnix zellij ];
   meta.description = ''
     Run CI locally.
 
