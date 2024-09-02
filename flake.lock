@@ -80,11 +80,11 @@
     },
     "cargo-doc-live_2": {
       "locked": {
-        "lastModified": 1717704203,
-        "narHash": "sha256-U6r0Af8/JGiV+gzQGEjLLc34sT6MZllUUrRe0NbUiAA=",
+        "lastModified": 1724704668,
+        "narHash": "sha256-kJFYXlWUodg5WhJ0NuvrP0mCvOT/2AOIo8oGeYLXocs=",
         "owner": "srid",
         "repo": "cargo-doc-live",
-        "rev": "0a32dcc5a281dc03d5b24218641a70d4ac1236e5",
+        "rev": "b09d5d258d2498829e03014931fc19aed499b86f",
         "type": "github"
       },
       "original": {
@@ -1095,11 +1095,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1724700491,
-        "narHash": "sha256-RdBIfZ1Eo+h6B/mUZCEQuGKvo4DwPv25FvEx8dw4ZhA=",
+        "lastModified": 1725241656,
+        "narHash": "sha256-HBJFbo4iCUzainSZgANhiFdn5QbQyVoPvUIJZR8NfAM=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "2a2fbdc00578006f94b99be01bea9eaf1389710c",
+        "rev": "83c53491cb55fb5c1a21da2224390d68b9906ddb",
         "type": "github"
       },
       "original": {
@@ -1537,11 +1537,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1719887753,
-        "narHash": "sha256-p0B2r98UtZzRDM5miGRafL4h7TwGRC4DII+XXHDHqek=",
+        "lastModified": 1724338379,
+        "narHash": "sha256-kKJtaiU5Ou+e/0Qs7SICXF22DLx4V/WhG1P6+k4yeOE=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "bdb6355009562d8f9313d9460c0d3860f525bc6c",
+        "rev": "070f834771efa715f3e74cd8ab93ecc96fabc951",
         "type": "github"
       },
       "original": {
