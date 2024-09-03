@@ -16,11 +16,11 @@ layout {
           command "om"
           args "ci" "run" "--on" "ssh://nix-infra@sambar"
         }
-        pane {
-          name "x86_64-darwin"
-          command "om"
-          args "ci" "run" "--on" "ssh://nix-infra@sambar" "--systems" "x86_64-darwin"
-        }
+        // pane {
+        //   name "x86_64-darwin"
+        //   command "om"
+        //   args "ci" "run" "--on" "ssh://nix-infra@sambar" "--systems" "x86_64-darwin"
+        // }
     }
     pane size=2 borderless=true {
         plugin location="status-bar"
