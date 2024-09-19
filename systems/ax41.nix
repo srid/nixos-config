@@ -50,6 +50,7 @@ in
   networking.nameservers = [ "8.8.8.8" ];
 
   services.openssh.enable = true;
+  services.tailscale.enable = true;
 
   programs.nix-ld.enable = true; # for vscode server
 }
