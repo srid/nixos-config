@@ -80,6 +80,7 @@
             "nixos-flake"
             "nix-index-database"
             "nixvim"
+            "omnix"
           ];
         };
 

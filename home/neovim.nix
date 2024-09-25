@@ -31,6 +31,7 @@
       which-key = {
         enable = true;
       };
+      web-devicons.enable = true;
       noice = {
         # WARNING: This is considered experimental feature, but provides nice UX
         enable = true;
