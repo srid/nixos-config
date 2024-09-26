@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake";
+    nixos-flake.url = "github:srid/nixos-flake/dont-output-modules";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
@@ -51,11 +51,13 @@
         # Configuration for my M1 Macbook Max (using nix-darwin)
         darwinConfigurations.appreciate =
           self.nixos-flake.lib.mkMacosSystem
+            { home-manager = true; }
             ./systems/darwin.nix;
 
         # Hetzner dedicated
         nixosConfigurations.immediacy =
           self.nixos-flake.lib.mkLinuxSystem
+            { home-manager = true; }
             ./systems/ax41.nix;
       };
 

@@ -21,7 +21,6 @@
       };
 
       default.imports = [
-        self.nixosModules.home-manager
         self.nixosModules.my-home
         self.nixosModules.common
         inputs.ragenix.nixosModules.default
