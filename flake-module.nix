@@ -41,6 +41,16 @@ in
       )
       (builtins.readDir "${self}/modules/darwin");
 
+    nixosModules = inputs.nixpkgs.lib.mapAttrs'
+      (fn: _:
+        let
+          inherit (inputs.nixpkgs) lib;
+          name = lib.removeSuffix ".nix" fn;
+        in
+        lib.nameValuePair name "${self}/modules/nixos/${fn}"
+      )
+      (builtins.readDir "${self}/modules/nixos");
+
     homeModules = inputs.nixpkgs.lib.mapAttrs'
       (fn: _:
         let

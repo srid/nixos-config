@@ -1,12 +1,13 @@
-{ config, ... }:
+{ flake, config, ... }:
 
 let
+  inherit (flake.inputs) self;
   domain = "pad.srid.ca";
   port = 9112;
 in
 {
   age.secrets."hedgedoc.env" = {
-    file = ../secrets/hedgedoc.env.age;
+    file = self + /secrets/hedgedoc.env.age;
     owner = "hedgedoc";
   };
   services.hedgedoc = {

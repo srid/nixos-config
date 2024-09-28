@@ -9,13 +9,12 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     self.nixosModules.default
-    "${self}/nixos/disko/trivial.nix"
-    "${self}/nixos/common/primary-as-admin.nix"
-    "${self}/nixos/docker.nix"
-    "${self}/nixos/actualism-app.nix"
-    "${self}/nixos/hedgedoc.nix"
-    "${self}/nixos/github-runner.nix"
-    "${self}/nixos/server/harden/basics.nix"
+    "${self}/modules/nixos/linux/disko/trivial.nix"
+    "${self}/modules/nixos/linux/docker.nix"
+    "${self}/modules/nixos/linux/actualism-app.nix"
+    "${self}/modules/nixos/linux/hedgedoc.nix"
+    "${self}/modules/nixos/linux/server/harden/basics.nix"
+    "${self}/modules/nixos/shared/github-runner.nix"
   ];
 
   nixos-flake.sshTarget = "srid@immediacy";

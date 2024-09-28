@@ -43,7 +43,6 @@
       [
         ./flake-module.nix
         ./users
-        ./nixos
       ];
 
       perSystem = { self', pkgs, lib, system, ... }: {

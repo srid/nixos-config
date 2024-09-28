@@ -1,6 +1,7 @@
 { flake, ... }:
 let
   inherit (flake) inputs;
+  inherit (inputs) self;
 in
 {
   imports = [
@@ -8,7 +9,7 @@ in
   ];
 
   services.github-nix-ci = {
-    age.secretsDir = ../secrets;
+    age.secretsDir = self + /secrets;
     personalRunners = {
       "srid/srid".num = 1;
     };
