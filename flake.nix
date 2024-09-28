@@ -38,8 +38,8 @@
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       imports = (with builtins;
         map
-          (fn: ./flake-parts/${fn})
-          (attrNames (readDir ./flake-parts))) ++
+          (fn: ./modules/flake-parts/${fn})
+          (attrNames (readDir ./modules/flake-parts))) ++
       [
         ./flake-module.nix
         ./users
