@@ -6,7 +6,6 @@ let
   inherit (inputs.nixpkgs) lib;
 in
 {
-
   flake = {
     darwinConfigurations = inputs.nixpkgs.lib.mapAttrs'
       (fn: _:

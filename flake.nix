@@ -36,7 +36,12 @@
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      imports = [
+      imports = (with builtins;
+        map
+          (fn: ./flake-parts/${fn})
+          (attrNames (readDir ./flake-parts))) ++
+      [
+        ./flake-module.nix
         inputs.treefmt-nix.flakeModule
         inputs.nixos-flake.flakeModule
         inputs.nixos-flake.flakeModule
@@ -44,43 +49,10 @@
         ./home
         ./nixos
         ./nix-darwin
-        ./flake-parts
       ];
 
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
-        # Flake inputs we want to update periodically
-        # Run: `nix run .#update`.
-        nixos-flake = {
-          primary-inputs = [
-            "nixpkgs"
-            "home-manager"
-            "nix-darwin"
-            "nixos-flake"
-            "nix-index-database"
-            "nixvim"
-            "omnix"
-          ];
-        };
-
-        treefmt.config = {
-          projectRootFile = "flake.nix";
-          programs.nixpkgs-fmt.enable = true;
-        };
-
-        packages.default = self'.packages.activate;
-
-        devShells.default = pkgs.mkShell {
-          name = "nixos-config-shell";
-          meta.description = "Dev environment for nixos-config";
-          inputsFrom = [ config.treefmt.build.devShell ];
-          packages = with pkgs; [
-            just
-            colmena
-            nixd
-            inputs'.ragenix.packages.default
-          ];
-        };
         # Make our overlay available to the devShell
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
