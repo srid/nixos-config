@@ -11,12 +11,11 @@
       default.imports = [
         {
           users.users.${config.people.myself}.isNormalUser = true;
-          home-manager.users.${config.people.myself} = {
-            imports = [
-              self.homeModules.default
-              self.homeModules.linux-only
-            ];
-          };
+          home-manager.users.${config.people.myself} = { };
+          home-manager.sharedModules = [
+            self.homeModules.default
+            self.homeModules.linux-only
+          ];
         }
         self.nixosModules.common
         inputs.ragenix.nixosModules.default # Used in github-runner.nix & hedgedoc.nix
