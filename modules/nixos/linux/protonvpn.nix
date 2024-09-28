@@ -8,7 +8,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ flake.config.people.myself ];
+      users = [ flake.config.me.username ];
       commands = [
         {
           command = "${pkgs.protonvpn-cli}/bin/protonvpn";

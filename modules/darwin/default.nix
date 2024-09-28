@@ -7,7 +7,7 @@ in
 {
   imports = [
     {
-      home-manager.users.${config.people.myself} = { };
+      home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
         self.homeModules.default
         self.homeModules.darwin-only

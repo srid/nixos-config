@@ -15,7 +15,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ flake.config.people.myself ];
+      users = [ flake.config.me.username ];
       commands = [
         {
           command = "${pkgs.ddcutil}/bin/ddcutil";
@@ -25,7 +25,7 @@
     }
   ];
 
-  users.users.${flake.config.people.myself} = {
+  users.users.${flake.config.me.username} = {
     extraGroups = [ "i2c" ];
   };
 

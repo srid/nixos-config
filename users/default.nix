@@ -2,7 +2,10 @@
 let
   userSubmodule = lib.types.submodule {
     options = {
-      name = lib.mkOption {
+      username = lib.mkOption {
+        type = lib.types.str;
+      };
+      fullname = lib.mkOption {
         type = lib.types.str;
       };
       email = lib.mkOption {
@@ -16,29 +19,14 @@ let
       };
     };
   };
-  peopleSubmodule = lib.types.submodule {
-    options = {
-      users = lib.mkOption {
-        type = lib.types.attrsOf userSubmodule;
-      };
-      myself = lib.mkOption {
-        type = lib.types.str;
-        description = ''
-          The name of the user that represents myself.
-
-          Admin user in all contexts.
-        '';
-      };
-    };
-  };
 in
 {
   options = {
-    people = lib.mkOption {
-      type = peopleSubmodule;
+    me = lib.mkOption {
+      type = userSubmodule;
     };
   };
   config = {
-    people = import ./config.nix;
+    me = import ./config.nix;
   };
 }

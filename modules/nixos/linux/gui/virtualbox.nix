@@ -3,5 +3,5 @@
     enable = true;
     enableExtensionPack = true;
   };
-  users.extraGroups.vboxusers.members = [ flake.config.people.myself ];
+  users.extraGroups.vboxusers.members = [ flake.config.me.username ];
 }

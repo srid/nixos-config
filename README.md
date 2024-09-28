@@ -45,11 +45,11 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 
 ### Directory layout
 
+- `configurations`: top-level `flake.{}Configurations` for various systems (`nixos`, `darwin`, `home`)
 - `home`: home-manager config (shared between Linux and macOS)
 - `nixos`: nixos modules for Linux
 - `nix-darwin`: nix-darwin modules for macOS
 - `users`: user information
-- `systems`: top-level configuration.nix('ish) for various systems
 
 ## Tips
 

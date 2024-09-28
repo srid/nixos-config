@@ -1,4 +1,4 @@
-{ pkgs, config, flake, ... }:
+{ pkgs, flake, ... }:
 {
   home.packages = with pkgs; [
     git-filter-repo
@@ -7,8 +7,8 @@
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = flake.config.people.users.${config.home.username}.name;
-    userEmail = flake.config.people.users.${config.home.username}.email;
+    userName = flake.config.me.fullname;
+    userEmail = flake.config.me.email;
     aliases = {
       co = "checkout";
       ci = "commit";

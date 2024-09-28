@@ -8,8 +8,8 @@ in
 {
   imports = [
     {
-      users.users.${config.people.myself}.isNormalUser = true;
-      home-manager.users.${config.people.myself} = { };
+      users.users.${config.me.username}.isNormalUser = true;
+      home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
         self.homeModules.default
         self.homeModules.linux-only

@@ -1,7 +1,7 @@
 { flake, ... }: {
   virtualisation.lxd.enable = true;
 
-  users.users.${flake.config.people.myself} = {
+  users.users.${flake.config.me.username} = {
     extraGroups = [ "lxd" ];
   };
 }
