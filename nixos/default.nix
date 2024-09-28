@@ -6,11 +6,7 @@
     nixosModules = {
       # NixOS modules that are known to work on nix-darwin.
       # Thsi is shared with nix-darwin/default.nix
-      common.imports = [
-        ./nix.nix
-        ./caches
-        ./self/primary-as-admin.nix
-      ];
+      common = ./common;
 
       default.imports = [
         {
@@ -24,7 +20,7 @@
         self.nixosModules.common
         inputs.ragenix.nixosModules.default
         inputs.github-nix-ci.nixosModules.default
-        ./self/self-ide.nix
+        ./self-ide.nix
         ./current-location.nix
       ];
     };

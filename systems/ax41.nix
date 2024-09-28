@@ -9,8 +9,7 @@ in
     inputs.disko.nixosModules.disko
     self.nixosModules.default
     "${self}/nixos/disko/trivial.nix"
-    "${self}/nixos/nix.nix"
-    "${self}/nixos/self/primary-as-admin.nix"
+    "${self}/nixos/common/primary-as-admin.nix"
     "${self}/nixos/docker.nix"
     "${self}/nixos/actualism-app.nix"
     "${self}/nixos/hedgedoc.nix"
