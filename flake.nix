@@ -42,7 +42,6 @@
           (attrNames (readDir ./modules/flake-parts))) ++
       [
         ./flake-module.nix
-        ./users
       ];
 
       perSystem = { self', pkgs, lib, system, ... }: {
