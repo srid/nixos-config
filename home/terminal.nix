@@ -1,7 +1,13 @@
-{ pkgs, ... }:
-
 # Platform-independent terminal setup
+{ flake, pkgs, ... }:
+
+let
+  inherit (flake) inputs;
+in
 {
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+  ];
   home.packages = with pkgs; [
     # Unixy tools
     ripgrep

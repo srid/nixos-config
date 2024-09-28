@@ -18,8 +18,7 @@
           };
         }
         self.nixosModules.common
-        inputs.ragenix.nixosModules.default
-        inputs.github-nix-ci.nixosModules.default
+        inputs.ragenix.nixosModules.default # Used in github-runner.nix & hedgedoc.nix
         ./self-ide.nix
         ./current-location.nix
       ];

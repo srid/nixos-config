@@ -13,7 +13,6 @@
         }
         self.nixosModules.common
         inputs.ragenix.darwinModules.default
-        inputs.github-nix-ci.darwinModules.default
       ];
     };
   };

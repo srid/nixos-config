@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ flake, ... }:
 
+let
+  inherit (flake) inputs;
+in
 {
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+  ];
   programs.nixvim = {
     enable = true;
 

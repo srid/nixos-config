@@ -1,12 +1,11 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake = {
     homeModules = {
+      # Common to both Linux and Darwin
       common = {
         home.stateVersion = "22.11";
         imports = [
-          inputs.nixvim.homeManagerModules.nixvim
-          inputs.nix-index-database.hmModules.nix-index
           ./tmux.nix
           ./neovim.nix
           # ./helix.nix
@@ -34,7 +33,6 @@
         imports = [
           self.homeModules.common
           ./zsh.nix
-          # ./bash.nix
           ./wezterm
           ./himalaya.nix
           ./_1password.nix
