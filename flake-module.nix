@@ -7,84 +7,46 @@
 { inputs, self, ... }:
 let
   inherit (inputs.nixpkgs) lib;
+  forAllNixFiles = dir: f:
+    lib.pipe dir [
+      builtins.readDir
+      (lib.filterAttrs (_: type: type == "regular"))
+      (lib.mapAttrs' (fn: _:
+        let name = lib.removeSuffix ".nix" fn; in
+        lib.nameValuePair name (f "${dir}/${fn}")
+      ))
+    ];
 in
 {
   flake = {
-    darwinConfigurations = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          hostname = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair hostname (self.nixos-flake.lib.mkMacosSystem
-          { home-manager = true; }
-          "${self}/configurations/darwin/${fn}")
-      )
-      (builtins.readDir "${self}/configurations/darwin");
+    darwinConfigurations =
+      forAllNixFiles "${self}/configurations/darwin"
+        (fn: self.nixos-flake.lib.mkMacosSystem { home-manager = true; } fn);
 
-    nixosConfigurations = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          hostname = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair hostname (self.nixos-flake.lib.mkLinuxSystem
-          { home-manager = true; }
-          "${self}/configurations/nixos/${fn}")
-      )
-      (builtins.readDir "${self}/configurations/nixos");
+    nixosConfigurations =
+      forAllNixFiles "${self}/configurations/nixos"
+        (fn: self.nixos-flake.lib.mkLinuxSystem { home-manager = true; } fn);
 
-    darwinModules = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          name = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair name "${self}/modules/darwin/${fn}"
-      )
-      (builtins.readDir "${self}/modules/darwin");
+    darwinModules =
+      forAllNixFiles "${self}/modules/darwin"
+        (fn: fn);
 
-    nixosModules = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          name = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair name "${self}/modules/nixos/${fn}"
-      )
-      (builtins.readDir "${self}/modules/nixos");
+    nixosModules =
+      forAllNixFiles "${self}/modules/nixos"
+        (fn: fn);
 
-    homeModules = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          name = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair name "${self}/modules/home/${fn}"
-      )
-      (builtins.readDir "${self}/modules/home");
+    homeModules =
+      forAllNixFiles "${self}/modules/home"
+        (fn: fn);
 
-    overlays = lib.mapAttrs'
-      (fn: _:
-        let name = lib.removeSuffix ".nix" fn; in
-        lib.nameValuePair name (
-          import "${self}/overlays/${fn}" self.nixos-flake.lib.specialArgsFor.common
-        )
-      )
-      (builtins.readDir "${self}/overlays");
+    overlays =
+      forAllNixFiles "${self}/overlays"
+        (fn: import fn self.nixos-flake.lib.specialArgsFor.common);
   };
 
   perSystem = { pkgs, ... }: {
-    legacyPackages.homeConfigurations = inputs.nixpkgs.lib.mapAttrs'
-      (fn: _:
-        let
-          inherit (inputs.nixpkgs) lib;
-          name = lib.removeSuffix ".nix" fn;
-        in
-        lib.nameValuePair name (self.nixos-flake.lib.mkHomeConfiguration
-          pkgs
-          "${self}/configurations/home/${fn}")
-      )
-      (builtins.readDir "${self}/configurations/home");
+    legacyPackages.homeConfigurations =
+      forAllNixFiles "${self}/configurations/home"
+        (fn: self.nixos-flake.lib.mkHomeConfiguration pkgs fn);
   };
 }
