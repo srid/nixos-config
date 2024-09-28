@@ -1,7 +1,8 @@
 { flake, pkgs, lib, ... }:
 
 let
-  inherit (flake.inputs) self;
+  inherit (flake) inputs;
+  inherit (inputs) self;
 in
 {
   nixpkgs = {
@@ -11,8 +12,7 @@ in
       allowUnfree = true;
     };
     overlays = [
-      flake.inputs.nuenv.overlays.default
-      (import "${self}/packages/overlay.nix" { inherit flake; inherit (pkgs) system; })
+      (import "${self}/overlays/default.nix" self.nixos-flake.lib.specialArgsFor.common)
     ];
   };
 
