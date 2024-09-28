@@ -11,9 +11,7 @@ in
       allowUnsupportedSystem = true;
       allowUnfree = true;
     };
-    overlays = [
-      (import "${self}/overlays/default.nix" self.nixos-flake.lib.specialArgsFor.common)
-    ];
+    overlays = lib.attrValues self.overlays;
   };
 
   nix = {

@@ -52,13 +52,11 @@
       ];
 
 
-      perSystem = { self', inputs', pkgs, system, config, ... }: {
+      perSystem = { self', pkgs, lib, system, ... }: {
         # Make our overlay available to the devShell
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = builtins.map
-            (name: import "${self}/overlays/${name}" self.nixos-flake.lib.specialArgsFor.common)
-            (builtins.attrNames (builtins.readDir "${self}/overlays"));
+          overlays = lib.attrValues self.overlays;
         };
       };
     };

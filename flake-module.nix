@@ -30,6 +30,15 @@ in
           "${self}/configurations/nixos/${fn}")
       )
       (builtins.readDir "${self}/configurations/nixos");
+
+    overlays = lib.mapAttrs'
+      (fn: _:
+        let name = lib.removeSuffix ".nix" fn; in
+        lib.nameValuePair name (
+          import "${self}/overlays/${fn}" self.nixos-flake.lib.specialArgsFor.common
+        )
+      )
+      (builtins.readDir "${self}/overlays");
   };
 
   perSystem = { pkgs, ... }: {
