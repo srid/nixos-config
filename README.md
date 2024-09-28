@@ -25,16 +25,16 @@ To use this repository as base configuration for your new machine running:
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname as a key of the `nixosConfigurations` set
-- Edit `users/config.nix` to contain your users
+- Rename `./modules/nixos/??.nix` to match your current system hostname
+- Edit `config.nix` to set your primary user information
 - Run `nix run`. That's it. Re-open your terminal.
 
 ### macOS
 
 - [Install Nix](https://nixos.asia/en/install)
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname as a key of the `darwinConfigurations` set
-- Edit `users/config.nix` to contain your users
+- Rename `./modules/darwin/??.nix` to match your current system hostname
+- Edit `config.nix` to set your primary user information
 - Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
@@ -45,11 +45,14 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 
 ### Directory layout
 
-- `home`: home-manager config (shared between Linux and macOS)
-- `nixos`: nixos modules for Linux
-- `nix-darwin`: nix-darwin modules for macOS
-- `users`: user information
-- `systems`: top-level configuration.nix('ish) for various systems
+>[!TIP]
+> See `flake-module.nix` for autowiring of flake outputs based on this directory structure.
+
+- `configurations`: top-level `flake.{}Configurations` for various systems (`nixos`, `darwin`, `home`)
+- `modules`: top-level `flake.{}Modiules` for various systems (`nixos`, `darwin`, `home`, `flake-parts`)
+- `overlays`: Overlays
+- `packages`: Packages
+- `secrets`: agenix secrets configuration
 
 ## Tips
 

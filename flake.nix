@@ -36,81 +36,21 @@
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      imports = [
-        inputs.treefmt-nix.flakeModule
-        inputs.nixos-flake.flakeModule
-        inputs.nixos-flake.flakeModule
-        ./users
-        ./home
-        ./nixos
-        ./nix-darwin
+      imports = (with builtins;
+        map
+          (fn: ./modules/flake-parts/${fn})
+          (attrNames (readDir ./modules/flake-parts))) ++
+      [
+        ./flake-module.nix
       ];
 
-
-      flake = {
-        # Configuration for my M1 Macbook Max (using nix-darwin)
-        darwinConfigurations.appreciate =
-          self.nixos-flake.lib.mkMacosSystem
-            { home-manager = true; }
-            ./systems/darwin.nix;
-
-        # Hetzner dedicated
-        nixosConfigurations.immediacy =
-          self.nixos-flake.lib.mkLinuxSystem
-            { home-manager = true; }
-            ./systems/ax41.nix;
-      };
-
-      perSystem = { self', inputs', pkgs, system, config, ... }: {
-        # My Ubuntu VM
-        legacyPackages.homeConfigurations."srid@ubuntu" =
-          self.nixos-flake.lib.mkHomeConfiguration pkgs {
-            imports = [
-              self.homeModules.common-linux
-            ];
-            home.username = "srid";
-            home.homeDirectory = "/home/srid";
-          };
-
-        # Flake inputs we want to update periodically
-        # Run: `nix run .#update`.
-        nixos-flake = {
-          primary-inputs = [
-            "nixpkgs"
-            "home-manager"
-            "nix-darwin"
-            "nixos-flake"
-            "nix-index-database"
-            "nixvim"
-            "omnix"
-          ];
-        };
-
-        treefmt.config = {
-          projectRootFile = "flake.nix";
-          programs.nixpkgs-fmt.enable = true;
-        };
-
-        packages.default = self'.packages.activate;
-
-        devShells.default = pkgs.mkShell {
-          name = "nixos-config-shell";
-          meta.description = "Dev environment for nixos-config";
-          inputsFrom = [ config.treefmt.build.devShell ];
-          packages = with pkgs; [
-            just
-            colmena
-            nixd
-            inputs'.ragenix.packages.default
-          ];
-        };
+      perSystem = { self', pkgs, lib, system, ... }: {
         # Make our overlay available to the devShell
+        # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
+        # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = [
-            inputs.nuenv.overlays.default
-            (import ./packages/overlay.nix { inherit system; flake = { inherit inputs; }; })
-          ];
+          overlays = lib.attrValues self.overlays;
         };
       };
     };
