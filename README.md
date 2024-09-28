@@ -25,16 +25,16 @@ To use this repository as base configuration for your new machine running:
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname as a key of the `nixosConfigurations` set
-- Edit `users/config.nix` to contain your users
+- Rename `./modules/nixos/??.nix` to match your current system hostname
+- Edit `config.nix` to set your primary user information
 - Run `nix run`. That's it. Re-open your terminal.
 
 ### macOS
 
 - [Install Nix](https://nixos.asia/en/install)
 - Clone this repo anywhere
-- Edit `flake.nix` to use your system hostname as a key of the `darwinConfigurations` set
-- Edit `users/config.nix` to contain your users
+- Rename `./modules/darwin/??.nix` to match your current system hostname
+- Edit `config.nix` to set your primary user information
 - Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
