@@ -45,8 +45,14 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 
 ### Directory layout
 
+>[!TIP]
+> See `flake-module.nix` for autowiring of flake outputs based on this directory structure.
+
 - `configurations`: top-level `flake.{}Configurations` for various systems (`nixos`, `darwin`, `home`)
 - `modules`: top-level `flake.{}Modiules` for various systems (`nixos`, `darwin`, `home`, `flake-parts`)
+- `overlays`: Overlays
+- `packages`: Packages
+- `secrets`: agenix secrets configuration
 
 ## Tips
 

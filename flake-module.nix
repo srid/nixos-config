@@ -1,6 +1,9 @@
 # An opinionated module that creates flake outputs based on a known directory structure.
 #
 # cf. Convention over configuration
+#
+# TODO: Upstream this in some fashion. To srid/nixos-flake?
+# cf. https://github.com/juspay/nix-dev-home/issues/86
 { inputs, self, ... }:
 let
   inherit (inputs.nixpkgs) lib;
