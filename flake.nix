@@ -44,20 +44,9 @@
         ./home
         ./nixos
         ./nix-darwin
+        ./flake-parts
       ];
 
-
-      flake = {
-        darwinConfigurations.appreciate =
-          self.nixos-flake.lib.mkMacosSystem
-            { home-manager = true; }
-            ./configurations/darwin/appreciate.nix;
-
-        nixosConfigurations.immediacy =
-          self.nixos-flake.lib.mkLinuxSystem
-            { home-manager = true; }
-            ./configurations/nixos/immediacy.nix;
-      };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
         # My Ubuntu VM
