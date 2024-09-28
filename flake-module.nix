@@ -31,6 +31,16 @@ in
       )
       (builtins.readDir "${self}/configurations/nixos");
 
+    homeModules = inputs.nixpkgs.lib.mapAttrs'
+      (fn: _:
+        let
+          inherit (inputs.nixpkgs) lib;
+          name = lib.removeSuffix ".nix" fn;
+        in
+        lib.nameValuePair name "${self}/modules/home/${fn}"
+      )
+      (builtins.readDir "${self}/modules/home");
+
     overlays = lib.mapAttrs'
       (fn: _:
         let name = lib.removeSuffix ".nix" fn; in

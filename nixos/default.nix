@@ -13,7 +13,8 @@
           users.users.${config.people.myself}.isNormalUser = true;
           home-manager.users.${config.people.myself} = {
             imports = [
-              self.homeModules.common-linux
+              self.homeModules.default
+              self.homeModules.linux-only
             ];
           };
         }

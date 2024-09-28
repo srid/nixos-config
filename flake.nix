@@ -43,7 +43,6 @@
       [
         ./flake-module.nix
         ./users
-        ./home
         ./nixos
         ./nix-darwin
       ];

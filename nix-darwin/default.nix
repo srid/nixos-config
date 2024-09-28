@@ -7,7 +7,8 @@
         {
           home-manager.users.${config.people.myself} = {
             imports = [
-              self.homeModules.common-darwin
+              self.homeModules.default
+              self.homeModules.darwin-only
             ];
           };
         }

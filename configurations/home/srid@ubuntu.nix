@@ -5,7 +5,8 @@ let
 in
 {
   imports = [
-    self.homeModules.common-linux
+    self.homeModules.default
+    self.homeModules.linux-only
   ];
   home.username = "srid";
   home.homeDirectory = "/home/srid";
