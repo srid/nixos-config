@@ -44,7 +44,6 @@
         ./flake-module.nix
         ./users
         ./nixos
-        ./nix-darwin
       ];
 
       perSystem = { self', pkgs, lib, system, ... }: {

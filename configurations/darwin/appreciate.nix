@@ -8,7 +8,6 @@ in
 {
   imports = [
     self.darwinModules.default
-    "${self}/nix-darwin/zsh-completion-fix.nix"
     "${self}/nixos/github-runner.nix"
   ];
 
