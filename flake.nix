@@ -49,16 +49,6 @@
 
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
-        # My Ubuntu VM
-        legacyPackages.homeConfigurations."srid@ubuntu" =
-          self.nixos-flake.lib.mkHomeConfiguration pkgs {
-            imports = [
-              self.homeModules.common-linux
-            ];
-            home.username = "srid";
-            home.homeDirectory = "/home/srid";
-          };
-
         # Flake inputs we want to update periodically
         # Run: `nix run .#update`.
         nixos-flake = {

@@ -32,4 +32,18 @@ in
       )
       (builtins.readDir "${self}/configurations/nixos");
   };
+
+  perSystem = { pkgs, ... }: {
+    legacyPackages.homeConfigurations = inputs.nixpkgs.lib.mapAttrs'
+      (fn: _:
+        let
+          inherit (inputs.nixpkgs) lib;
+          name = lib.removeSuffix ".nix" fn;
+        in
+        lib.nameValuePair name (self.nixos-flake.lib.mkHomeConfiguration
+          pkgs
+          "${self}/configurations/home/${fn}")
+      )
+      (builtins.readDir "${self}/configurations/home");
+  };
 }
