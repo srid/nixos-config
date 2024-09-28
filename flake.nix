@@ -56,9 +56,9 @@
         # Make our overlay available to the devShell
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
-          overlays = [
-            (import "${self}/overlays/default.nix" self.nixos-flake.lib.specialArgsFor.common)
-          ];
+          overlays = builtins.map
+            (name: import "${self}/overlays/${name}" self.nixos-flake.lib.specialArgsFor.common)
+            (builtins.attrNames (builtins.readDir "${self}/overlays"));
         };
       };
     };
