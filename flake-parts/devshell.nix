@@ -1,4 +1,8 @@
+{ inputs, ... }:
 {
+  imports = [
+    inputs.treefmt-nix.flakeModule
+  ];
   perSystem = { inputs', config, pkgs, ... }: {
     devShells.default = pkgs.mkShell {
       name = "nixos-config-shell";

@@ -1,4 +1,8 @@
+{ inputs, ... }:
 {
+  imports = [
+    inputs.nixos-flake.flakeModule
+  ];
   perSystem = { self', ... }: {
     packages.default = self'.packages.activate;
 
