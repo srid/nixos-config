@@ -48,17 +48,15 @@
 
 
       flake = {
-        # Configuration for my M1 Macbook Max (using nix-darwin)
         darwinConfigurations.appreciate =
           self.nixos-flake.lib.mkMacosSystem
             { home-manager = true; }
-            ./systems/darwin.nix;
+            ./configurations/darwin/appreciate.nix;
 
-        # Hetzner dedicated
         nixosConfigurations.immediacy =
           self.nixos-flake.lib.mkLinuxSystem
             { home-manager = true; }
-            ./systems/ax41.nix;
+            ./configurations/nixos/immediacy.nix;
       };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {

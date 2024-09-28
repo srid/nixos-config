@@ -1,3 +1,4 @@
+# Configuration for my M1 Macbook Max (using nix-darwin)
 { flake, ... }:
 
 let
