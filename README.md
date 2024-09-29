@@ -48,11 +48,13 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 >[!TIP]
 > See `flake-module.nix` for autowiring of flake outputs based on this directory structure.
 
-- `configurations`: top-level `flake.{}Configurations` for various systems (`nixos`, `darwin`, `home`)
-- `modules`: top-level `flake.{}Modiules` for various systems (`nixos`, `darwin`, `home`, `flake-parts`)
-- `overlays`: Overlays
-- `packages`: Packages
-- `secrets`: agenix secrets configuration
+| Path | Corresponding flake output |
+| -- | -- |
+| `./configurations/{nixos,darwin,home}/foo.nix` |  `{nixos,darwin,home}Configurations.foo` |
+| `./mdules/{nixos,darwin,home,flake-parts}/foo.nix` | `{nixos,darwin,home,flake}Modules.foo` |
+| `./overlays/foo.nix` | `overlays.foo` |
+| `./packages` | N/A (Nix packages) |
+| `./secrets` | N/A (agenix data) | 
 
 ## Tips
 
