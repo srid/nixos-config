@@ -25,7 +25,7 @@ To use this repository as base configuration for your new machine running:
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
-- Rename `./modules/nixos/??.nix` to match your current system hostname
+- Rename `./configurations/nixos/??.nix` to match your current system hostname
 - Edit `config.nix` to set your primary user information
 - Run `nix run`. That's it. Re-open your terminal.
 
@@ -33,7 +33,7 @@ To use this repository as base configuration for your new machine running:
 
 - [Install Nix](https://nixos.asia/en/install)
 - Clone this repo anywhere
-- Rename `./modules/darwin/??.nix` to match your current system hostname
+- Rename `./configurations/darwin/??.nix` to match your current system hostname
 - Edit `config.nix` to set your primary user information
 - Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
