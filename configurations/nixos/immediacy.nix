@@ -11,7 +11,6 @@ in
     self.nixosModules.default
     "${self}/modules/nixos/linux/disko/trivial.nix"
     "${self}/modules/nixos/linux/docker.nix"
-    "${self}/modules/nixos/linux/actualism-app.nix"
     "${self}/modules/nixos/linux/hedgedoc.nix"
     "${self}/modules/nixos/linux/server/harden/basics.nix"
     "${self}/modules/nixos/shared/github-runner.nix"
