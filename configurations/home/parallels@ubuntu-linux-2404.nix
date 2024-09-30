@@ -1,4 +1,4 @@
-# My Ubuntu VM
+# My Ubuntu VM (Parallels)
 { flake, ... }:
 let
   inherit (flake.inputs) self;
