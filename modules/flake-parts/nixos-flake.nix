@@ -1,7 +1,8 @@
 { inputs, ... }:
 {
   imports = [
-    inputs.nixos-flake.flakeModule
+    inputs.nixos-flake.flakeModules.default
+    inputs.nixos-flake.flakeModules.autoWire
   ];
   perSystem = { self', ... }: {
     packages.default = self'.packages.activate;

@@ -10,7 +10,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    nixos-flake.url = "github:srid/nixos-flake";
+    nixos-flake.url = "github:srid/nixos-flake/autoWire"; # https://github.com/srid/nixos-flake/pull/74
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
@@ -39,12 +39,9 @@
       imports = (with builtins;
         map
           (fn: ./modules/flake-parts/${fn})
-          (attrNames (readDir ./modules/flake-parts))) ++
-      [
-        ./flake-module.nix
-      ];
+          (attrNames (readDir ./modules/flake-parts)));
 
-      perSystem = { self', pkgs, lib, system, ... }: {
+      perSystem = { lib, system, ... }: {
         # Make our overlay available to the devShell
         # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
         # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
