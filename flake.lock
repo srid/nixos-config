@@ -974,11 +974,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1727205591,
-        "narHash": "sha256-sfwOCIxB6JlRqE3iwbO40jgoFoHGodT+a3MLMoCHMGI=",
+        "lastModified": 1727894597,
+        "narHash": "sha256-Mk4AylBWznd0Sc3vqodQZjzrdbjNwktu22WLIluxfcw=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "9cd66bb0ba7396930a70f2c7665a6045ef0cd69d",
+        "rev": "acc51a372bca6180b1420cb44876f853aa1da39e",
         "type": "github"
       },
       "original": {
