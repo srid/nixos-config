@@ -689,22 +689,6 @@
         "type": "github"
       }
     },
-    "nixos-flake": {
-      "locked": {
-        "lastModified": 1727741402,
-        "narHash": "sha256-dUtUaG8norNNdqX9UM/31/fbpkiyBf4iKLr02agjEcI=",
-        "owner": "srid",
-        "repo": "nixos-flake",
-        "rev": "82752b478b4ae17248983a4cbc6a7dbd0acb71a1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "ref": "autoWire",
-        "repo": "nixos-flake",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1678397099,
@@ -717,6 +701,21 @@
       "original": {
         "owner": "NixOS",
         "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixos-unified": {
+      "locked": {
+        "lastModified": 1727917530,
+        "narHash": "sha256-yXjRRdwmeUeuUwANwY2630Utr3crjq43KNpXZpl5Xo8=",
+        "owner": "srid",
+        "repo": "nixos-unified",
+        "rev": "469a19843f13ed5196ef73154c4c96a1e48cf626",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "nixos-unified",
         "type": "github"
       }
     },
@@ -1048,8 +1047,8 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
-        "nixos-flake": "nixos-flake",
         "nixos-hardware": "nixos-hardware",
+        "nixos-unified": "nixos-unified",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
