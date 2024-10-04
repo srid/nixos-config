@@ -11,12 +11,13 @@ in
     self.nixosModules.default
     "${self}/modules/nixos/linux/disko/trivial.nix"
     "${self}/modules/nixos/linux/docker.nix"
+    "${self}/modules/nixos/linux/lxd.nix"
     "${self}/modules/nixos/linux/hedgedoc.nix"
     "${self}/modules/nixos/linux/server/harden/basics.nix"
     "${self}/modules/nixos/shared/github-runner.nix"
   ];
 
-  nixos-flake.sshTarget = "srid@immediacy";
+  nixos-unified.sshTarget = "srid@immediacy";
 
   system.stateVersion = "23.11";
   networking.hostName = "immediacy";
