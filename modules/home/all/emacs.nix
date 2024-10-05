@@ -10,12 +10,12 @@ in
   ];
 
   programs.doom-emacs = {
-     enable = true;
-     emacs = pkgs.emacs30;
-     doomDir = self + /doom.d;
-     experimentalFetchTree = true; # Disable if there are fetcher issues
-     extraPackages = epkgs: with epkgs; [
-       vterm
-     ];
+    enable = true;
+    emacs = pkgs.emacs30;
+    doomDir = self + /doom.d;
+    experimentalFetchTree = true; # Disable if there are fetcher issues
+    extraPackages = epkgs: with epkgs; [
+      vterm
+    ];
   };
 }
