@@ -4,5 +4,6 @@
     ./all/wezterm
     ./all/himalaya.nix
     ./all/_1password.nix
+    ./all/emacs.nix
   ];
 }
