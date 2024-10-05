@@ -706,15 +706,16 @@
     },
     "nixos-unified": {
       "locked": {
-        "lastModified": 1727917530,
-        "narHash": "sha256-yXjRRdwmeUeuUwANwY2630Utr3crjq43KNpXZpl5Xo8=",
+        "lastModified": 1728141456,
+        "narHash": "sha256-uYX5wM0yWabA2asXbuw/6034POY16OqT9+llYuMQcZk=",
         "owner": "srid",
         "repo": "nixos-unified",
-        "rev": "469a19843f13ed5196ef73154c4c96a1e48cf626",
+        "rev": "e113138c80bc3fa0632398585d226fd27667333b",
         "type": "github"
       },
       "original": {
         "owner": "srid",
+        "ref": "hm-pkgs",
         "repo": "nixos-unified",
         "type": "github"
       }
