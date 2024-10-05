@@ -14,7 +14,8 @@ in
      emacs = pkgs.emacs30;
      doomDir = self + /doom.d;
      experimentalFetchTree = true; # Disable if there are fetcher issues
-     extraPackages = epkgs: [
+     extraPackages = epkgs: with epkgs; [
+       vterm
      ];
   };
 }
