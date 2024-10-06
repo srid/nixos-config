@@ -1,5 +1,4 @@
 let
-  # https://pimalaya.org/himalaya/cli/latest/configuration/icloud-mail.html
   iCloudMailSettings = {
     imap = {
       host = "imap.mail.me.com";
@@ -9,6 +8,17 @@ let
       host = "smtp.mail.me.com";
       port = 587;
       tls.useStartTls = true;
+    };
+  };
+  GmailSettings = {
+    imap = {
+      host = "imap.gmail.com";
+      port = 993;
+    };
+    smtp = {
+      host = "smtp.gmail.com";
+      port = 465;
+      # tls.useStartTls = true;
     };
   };
 in
@@ -24,7 +34,13 @@ in
       address = "happyandharmless@icloud.com";
       aliases = [ "srid@srid.ca" ];
       userName = "happyandharmless";
-      passwordCommand = "op read op://Personal/iCloud-Apple/himalaya";
+      passwordCommand = "op read op://Personal/iCloud-Apple/home-manager";
+    };
+    "sridhar.ratnakumar@juspay.in" = GmailSettings // {
+      realName = "Sridhar Ratnakumar";
+      address = "sridhar.ratnakumar@juspay.in";
+      userName = "sridhar.ratnakumar@juspay.in";
+      passwordCommand = "op read op://Personal/Google-Juspay/home-manager";
     };
   };
 }

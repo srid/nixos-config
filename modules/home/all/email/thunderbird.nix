@@ -13,10 +13,11 @@
   };
 
   accounts.email.accounts = {
-    "srid@srid.ca" = {
-      thunderbird = {
-        enable = true;
-      };
+    "srid@srid.ca".thunderbird = {
+      enable = true;
+    };
+    "sridhar.ratnakumar@juspay.in".thunderbird = {
+      enable = true;
     };
   };
 }
