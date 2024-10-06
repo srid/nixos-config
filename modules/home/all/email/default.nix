@@ -13,17 +13,9 @@ let
   };
 in
 {
-  home.shellAliases = {
-    H = "himalaya";
-    Hr = "himalaya message read";
-    Hd = "himalaya message delete";
-    Hs = "himalaya account sync";
-  };
-
-  programs.himalaya = {
-    enable = true;
-  };
-
+  imports = [
+    ./himalaya.nix
+  ];
   accounts.email.accounts = {
     "srid@srid.ca" = iCloudMailSettings // {
       primary = true;
@@ -32,13 +24,6 @@ in
       aliases = [ "srid@srid.ca" ];
       userName = "happyandharmless";
       passwordCommand = "op read op://Personal/iCloud-Apple/himalaya";
-      himalaya = {
-        enable = true;
-        # Don't forget to run `himalaya account sync` first!
-        settings.sync = {
-          enable = true;
-        };
-      };
     };
   };
 }
