@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./himalaya.nix
+    ./thunderbird.nix
   ];
   accounts.email.accounts = {
     "srid@srid.ca" = iCloudMailSettings // {
