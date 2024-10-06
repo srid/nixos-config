@@ -16,6 +16,5 @@ in
     self.nixosModules.common
     inputs.ragenix.darwinModules.default
     ./all/zsh-completion-fix.nix
-    ./all/thunderbird.nix
   ];
 }
