@@ -16,11 +16,6 @@ in
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  # For home-manager to work.
-  users.users.${flake.config.me.username} = {
-    home = "/Users/${flake.config.me.username}";
-  };
-
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
@@ -45,9 +40,6 @@ in
       ShowStatusBar = true; # show status bar
     };
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

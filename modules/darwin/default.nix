@@ -7,6 +7,10 @@ in
 {
   imports = [
     {
+      # For home-manager to work.
+      users.users.${flake.config.me.username} = {
+        home = "/Users/${flake.config.me.username}";
+      };
       home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
         self.homeModules.default
@@ -17,4 +21,7 @@ in
     inputs.ragenix.darwinModules.default
     ./all/zsh-completion-fix.nix
   ];
+
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
 }
