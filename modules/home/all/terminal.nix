@@ -13,6 +13,7 @@ in
     ripgrep
     fd
     sd
+    wget
     moreutils # ts, etc.
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
