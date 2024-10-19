@@ -13,10 +13,12 @@ let
           inherit user;
           dynamicForwards = [{ inherit port; }];
         };
+        /*
         ${gitSshRemote} = {
           user = "git";
           proxyCommand = "nc -x localhost:${builtins.toString port} %h %p";
         };
+        */
       };
     };
 in
@@ -60,4 +62,3 @@ in
     }];
   };
 }
-
