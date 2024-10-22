@@ -8,6 +8,7 @@ in
 {
   imports = [
     self.nixosModules.default
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen4
     ./configuration.nix
   ];
 
