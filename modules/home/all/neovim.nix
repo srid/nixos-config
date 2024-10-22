@@ -51,13 +51,13 @@ in
       };
       telescope = {
         enable = true;
-        settings.keymaps = {
+        keymaps = {
           "<leader>ff" = {
-            desc = "file finder";
+            options.desc = "file finder";
             action = "find_files";
           };
           "<leader>fg" = {
-            desc = "find via grep";
+            options.desc = "find via grep";
             action = "live_grep";
           };
         };
