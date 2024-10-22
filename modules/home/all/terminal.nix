@@ -52,7 +52,6 @@ in
 
   home.shellAliases = {
     e = "nvim";
-    ee = "nvim $(fzf)";
     g = "git";
     lg = "lazygit";
     l = "ls";
