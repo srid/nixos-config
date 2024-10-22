@@ -11,7 +11,7 @@ in
     enable = true;
 
     # Theme
-    colorschemes.tokyonight.enable = true;
+    colorschemes.rose-pine.enable = true;
 
     # Settings
     opts = {
