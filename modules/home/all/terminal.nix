@@ -15,6 +15,7 @@ in
     sd
     wget
     moreutils # ts, etc.
+    gnumake
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
 
