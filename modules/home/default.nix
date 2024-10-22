@@ -2,7 +2,7 @@
   home.stateVersion = "22.11";
   imports = [
     ./all/tmux.nix
-    ./all/neovim.nix
+    ./all/neovim
     # ./helix.nix
     ./all/ssh.nix
     ./all/starship.nix

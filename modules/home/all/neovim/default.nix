@@ -10,6 +10,10 @@ in
   programs.nixvim = {
     enable = true;
 
+    imports = [
+      ./nvim-tree.nix
+    ];
+
     # Theme
     colorschemes.rose-pine.enable = true;
 
@@ -29,7 +33,6 @@ in
     };
 
     plugins = {
-
       # UI
       web-devicons.enable = true;
       lualine.enable = true;
