@@ -12,6 +12,7 @@ in
 
     imports = [
       ./nvim-tree.nix
+      ./lazygit.nix
     ];
 
     # Theme
