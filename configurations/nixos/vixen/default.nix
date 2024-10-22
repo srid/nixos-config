@@ -1,4 +1,3 @@
-# Hetzner dedicated: AX41-NVMe
 { flake, ... }:
 
 let
