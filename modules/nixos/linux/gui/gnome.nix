@@ -6,6 +6,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome.gnome-tweaks
+    # This is necessary to set CAPS to CTRL
+    gnome-tweaks
   ];
 }
