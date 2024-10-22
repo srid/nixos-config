@@ -31,13 +31,13 @@ in
     plugins = {
 
       # UI
+      web-devicons.enable = true;
       lualine.enable = true;
       bufferline.enable = true;
       treesitter.enable = true;
       which-key = {
         enable = true;
       };
-      web-devicons.enable = true;
       noice = {
         # WARNING: This is considered experimental feature, but provides nice UX
         enable = true;
@@ -63,6 +63,9 @@ in
         };
         extensions = {
           file-browser.enable = true;
+          ui-select.enable = true;
+          frecency.enable = true;
+          fzf-native.enable = true;
         };
       };
 
