@@ -5,7 +5,9 @@
     enable = true;
     settings = {
       theme = if pkgs.system == "aarch64-darwin" then "dracula" else "gruvbox-light";
-      # https://github.com/nix-community/home-manager/issues/3854
+      # NOTE: There's no way to set theme by name.
+      # See https://github.com/nix-community/home-manager/issues/3854
+      # But we can manually convert this syntax using LLM,
       # https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/themes/gruvbox.kdl
       themes.dracula = {
         fg = [ 248 248 242 ];
