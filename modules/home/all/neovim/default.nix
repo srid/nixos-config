@@ -73,9 +73,23 @@ in
         };
       };
 
-      # Dev
+      # LSP
+      # https://github.com/nix-community/nixvim/blob/main/plugins/lsp/default.nix
       lsp = {
         enable = true;
+        keymaps = {
+          lspBuf = {
+            "gd" = "definition";
+            "gD" = "references";
+            "gt" = "type_definition";
+            "gi" = "implementation";
+            "K" = "hover";
+          };
+          diagnostic = {
+            "<leader>k" = "goto_prev";
+            "<leader>j" = "goto_next";
+          };
+        };
         servers = {
           hls = {
             enable = true;
