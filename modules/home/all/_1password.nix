@@ -5,7 +5,7 @@
     gh
   ];
 
-  programs.zsh.envExtra = ''
+  programs.zsh.envExtra = lib.mkIf pkgs.stdenv.isDarwin ''
     # For 1Password CLI. This requires `pkgs.gh` to be installed.
     # source $HOME/.config/op/plugins.sh
   '';
@@ -13,10 +13,11 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      # Configure 1Password agent only on macOS; whilst using agent forwarding
-      # to make it available to Linux machines.
-      "*".extraOptions = lib.mkIf pkgs.stdenv.isDarwin {
-        identityAgent = ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'';
+      "*".extraOptions = {
+        identityAgent =
+          if pkgs.stdenv.isDarwin
+          then ''"~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"''
+          else ''"~/.1password/agent.sock"'';
       };
     };
   };
@@ -30,7 +31,10 @@
     contents = {
       user.signingKey = flake.config.me.sshKey;
       gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      gpg.ssh.program =
+        if pkgs.stdenv.isDarwin
+        then "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+        else "/run/current-system/sw/bin/op-ssh-sign";
       commit.gpgsign = true;
     };
   }];

@@ -1,6 +1,7 @@
 {
   home.stateVersion = "22.11";
   imports = [
+    ./all/_1password.nix
     ./all/tmux.nix
     ./all/neovim
     # ./helix.nix
