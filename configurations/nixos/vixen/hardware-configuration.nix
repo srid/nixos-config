@@ -16,11 +16,11 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/8951b4fa-364e-414f-ab50-4be33234913e";
+      device = "/dev/disk/by-uuid/d9360bc5-d8d1-4b0d-b365-9e753fa03531";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-1a49bb31-ddf5-4fc6-89df-d81bf85ea0c8".device = "/dev/disk/by-uuid/1a49bb31-ddf5-4fc6-89df-d81bf85ea0c8";
+  boot.initrd.luks.devices."luks-1cf2cb06-3425-45d1-8a94-faf62abd3017".device = "/dev/disk/by-uuid/1cf2cb06-3425-45d1-8a94-faf62abd3017";
 
   fileSystems."/boot" =
     {
