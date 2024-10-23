@@ -16,6 +16,7 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
+  services.fprintd.enable = true;
 
   programs.nix-ld.enable = true; # for vscode server
 
