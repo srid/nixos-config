@@ -24,6 +24,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     actualism-app.url = "github:srid/actualism-app";
     omnix.url = "github:juspay/omnix";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
