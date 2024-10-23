@@ -10,6 +10,7 @@ in
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen4
     ./configuration.nix
     (self + /modules/nixos/linux/gui/gnome.nix)
+    (self + /modules/nixos/linux/gui/desktopish/fonts.nix)
     (self + /modules/nixos/linux/gui/_1password.nix)
   ];
 
