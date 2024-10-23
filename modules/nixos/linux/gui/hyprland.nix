@@ -1,8 +1,8 @@
-{ flake, pkgs, ...}:
+{ flake, pkgs, ... }:
 
 let
-inherit (flake) inputs;
-in 
+  inherit (flake) inputs;
+in
 {
   programs.hyprland = {
     enable = true;
@@ -12,6 +12,6 @@ in
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   environment.systemPackages = [
-  pkgs.kitty
+    pkgs.kitty
   ];
 }
