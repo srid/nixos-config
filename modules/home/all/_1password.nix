@@ -1,8 +1,9 @@
 { flake, pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
-    _1password
     gh
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    _1password
   ];
 
   programs.zsh.envExtra = lib.mkIf pkgs.stdenv.isDarwin ''
