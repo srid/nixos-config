@@ -2,8 +2,12 @@
   plugins.nvim-tree.enable = true;
   keymaps = [
     {
-      action = "<cmd>NvimTreeToggle<CR>";
-      key = "<leader>ft";
+      action = "<cmd>NvimTreeFindFileToggle<CR>";
+      key = "<leader>tt";
+    }
+    {
+      action = "<cmd>NvimTreeFindFile<CR>";
+      key = "<leader>tf";
     }
   ];
 }

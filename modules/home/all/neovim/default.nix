@@ -17,6 +17,7 @@ in
 
     # Theme
     colorschemes.rose-pine.enable = true;
+    # colorschemes.onedark.enable = true;
 
     # Settings
     opts = {
@@ -38,7 +39,10 @@ in
       web-devicons.enable = true;
       lualine.enable = true;
       bufferline.enable = true;
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+      };
+      haskell-scope-highlighting.enable = true;
       which-key = {
         enable = true;
       };
@@ -60,9 +64,17 @@ in
             options.desc = "file finder";
             action = "find_files";
           };
+          "<leader>fr" = {
+            options.desc = "recent files";
+            action = "oldfiles";
+          };
           "<leader>fg" = {
             options.desc = "find via grep";
             action = "live_grep";
+          };
+          "<leader>T" = {
+            options.desc = "switch colorscheme";
+            action = "colorscheme";
           };
         };
         extensions = {
@@ -84,6 +96,7 @@ in
             "gt" = "type_definition";
             "gi" = "implementation";
             "K" = "hover";
+            "<leader>A" = "code_action";
           };
           diagnostic = {
             "<leader>k" = "goto_prev";
