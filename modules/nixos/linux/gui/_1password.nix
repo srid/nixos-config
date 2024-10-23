@@ -4,6 +4,7 @@
   # Enable the unfree 1Password packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "1password-gui"
+    "1password-cli"
     "1password"
   ];
   # Alternatively, you could also just allow all unfree packages
