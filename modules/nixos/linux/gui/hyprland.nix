@@ -21,7 +21,7 @@ in
     hyprpaper
     hyprnome
 
-    # TODO: https://github.com/nix-community/home-manager/pull/5489/files
+    # TODO: https://github.com/nix-community/home-manager/pull/5489
     hyprshade
 
     # launchers
