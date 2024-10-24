@@ -20,6 +20,8 @@ in
     kitty
     hyprpaper
     hyprnome
+
+    # TODO: https://github.com/nix-community/home-manager/pull/5489/files
     hyprshade
 
     # launchers
