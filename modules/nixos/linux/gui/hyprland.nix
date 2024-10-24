@@ -18,11 +18,13 @@ in
   }];
   environment.systemPackages = with pkgs; [
     kitty
-    hyprpaper
-    hyprnome
+    grimblast
 
     # TODO: https://github.com/nix-community/home-manager/pull/5489
     hyprshade
+
+    # TODO: https://github.com/nix-community/home-manager/issues/5899
+    hyprlock
 
     # launchers
     walker
