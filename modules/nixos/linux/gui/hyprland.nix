@@ -15,6 +15,7 @@ in
   home-manager.sharedModules = [{
     services.dunst.enable = true;
     programs.hyprlock.enable = true;
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
   }];
   environment.systemPackages = with pkgs; [
     kitty

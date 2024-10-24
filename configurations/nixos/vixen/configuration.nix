@@ -61,6 +61,7 @@
     #  wget
     brave
     vscode
+    zed-editor
   ];
 
   # This value determines the NixOS release from which the default
