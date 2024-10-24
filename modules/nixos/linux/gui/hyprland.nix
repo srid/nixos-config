@@ -11,11 +11,18 @@ in
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
+  security.pam.services.hyprlock = { };
   home-manager.sharedModules = [{
     services.dunst.enable = true;
+    programs.hyprlock.enable = true;
   }];
   environment.systemPackages = with pkgs; [
     kitty
-    wofi
+    hyprpaper
+    hyprnome
+    hyprshade
+
+    # launchers
+    walker
   ];
 }
