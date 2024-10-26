@@ -21,7 +21,6 @@ in
   services.fprintd.enable = true;
 
   programs.nix-ld.enable = true; # for vscode server
-  programs.zsh.enable = true;
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175

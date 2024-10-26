@@ -12,11 +12,14 @@
       root.openssh.authorizedKeys.keys = myKeys;
       ${me.username} = {
         openssh.authorizedKeys.keys = myKeys;
+        shell = pkgs.zsh;
       } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = true;
         extraGroups = [ "networkmanager" "wheel" ];
       };
     };
+
+  programs.zsh.enable = lib.mkIf pkgs.stdenv.isLinux true;
 
   # Make me a sudoer without password
   security = lib.optionalAttrs pkgs.stdenv.isLinux {
