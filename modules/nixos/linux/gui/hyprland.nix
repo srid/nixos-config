@@ -21,8 +21,12 @@ in
     kitty
     grimblast
 
+    acpi
+    acpilight
+
     # TODO: https://github.com/nix-community/home-manager/pull/5489
     hyprshade
+    hyprshot
 
     # TODO: https://github.com/nix-community/home-manager/issues/5899
     hyprlock
