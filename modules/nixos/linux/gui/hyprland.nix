@@ -11,11 +11,14 @@ in
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
+
   security.pam.services.hyprlock = { };
+
   home-manager.sharedModules = [{
     services.dunst.enable = true;
     programs.hyprlock.enable = true;
     home.sessionVariables.NIXOS_OZONE_WL = "1";
+
     # https://wiki.hyprland.org/0.41.0/Nix/Hyprland-on-Home-Manager/#fixing-problems-with-themes
     home.pointerCursor = {
       gtk.enable = true;
@@ -24,7 +27,6 @@ in
       name = "Bibata-Modern-Classic";
       size = 16;
     };
-
     gtk = {
       enable = true;
       theme = {
@@ -33,7 +35,7 @@ in
       };
 
       iconTheme = {
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
         name = "Adwaita";
       };
 
@@ -43,6 +45,7 @@ in
       };
     };
   }];
+
   environment.systemPackages = with pkgs; [
     kitty
     grimblast
@@ -53,11 +56,14 @@ in
     # TODO: https://github.com/nix-community/home-manager/pull/5489
     hyprshade
     hyprshot
+    hyprpaper
 
     # TODO: https://github.com/nix-community/home-manager/issues/5899
     hyprlock
 
     # launchers
     walker
+
+    wl-clipboard
   ];
 }
