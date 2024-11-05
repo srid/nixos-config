@@ -8,4 +8,5 @@
     # require enabling PolKit integration on some desktop environments (e.g. Plasma).
     polkitPolicyOwners = [ "srid" ];
   };
+  security.polkit.enable = true;
 }
