@@ -29,7 +29,7 @@ def main [
     
     let pr_details = (http get $api_url)
     let branch_name = $pr_details.head.ref
-    let clone_url = $pr_details.head.repo.clone_url
+    let clone_url = $pr_details.head.repo.ssh_url
 
     # Create a temporary directory
     let temp_dir = (mktemp -d)
