@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       mainBar = {
-        output = [ "eDP-1" ]; # Laptop screen only
+        # output = [ "eDP-1" ]; # Laptop screen only
       };
     };
   };

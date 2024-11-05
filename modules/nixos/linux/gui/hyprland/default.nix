@@ -39,6 +39,7 @@ in
     hyprshade
     hyprshot
     hyprpaper
+    playerctl
 
     # TODO: https://github.com/nix-community/home-manager/issues/5899
     hyprlock
