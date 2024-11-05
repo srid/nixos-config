@@ -18,7 +18,11 @@ in
     imports = [
       ./fix-cursor.nix
       ./waybar.nix
+      ./settings.nix
     ];
+    wayland.windowManager.hyprland = {
+      enable = true;
+    };
     services.dunst.enable = true;
     programs.hyprlock.enable = true;
     home.sessionVariables.NIXOS_OZONE_WL = "1";
