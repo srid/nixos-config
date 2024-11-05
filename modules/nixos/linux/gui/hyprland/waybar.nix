@@ -16,9 +16,10 @@
           "memory"
           "backlight"
           "battery"
+          "power-profiles-daemon"
+          "pulseaudio"
           "network"
           "tray"
-          "custom/power"
         ];
         "hyprland/workspaces" = {
           # active-only = true;
@@ -38,12 +39,58 @@
         "memory" = {
           format = "{}% ";
         };
-        network = {
-          format-wifi = "  {essid} ({signalStrength}%)";
-          format-ethernet = "  {ifname}";
-          format-disconnected = "⚠  Disconnected";
-          tooltip-format = "{ifname} via {gwaddr}";
-          on-click = "nm-connection-editor";
+        "backlight" = {
+          format = "{percent}% {icon}";
+          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+        };
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{capacity}% {icon}";
+          format-full = "{capacity}% {icon}";
+          format-charging = "{capacity}% ";
+          format-plugged = "{capacity}% ";
+          format-alt = "{time} {icon}";
+          format-icons = [ "" "" "" "" "" ];
+        };
+        "power-profiles-daemon" = {
+          format = "{icon}";
+          tooltip-format = "Power profile: {profile}\\nDriver: {driver}";
+          tooltip = true;
+          format-icons = {
+            default = "";
+            performance = "";
+            balanced = "";
+            "power-saver" = "";
+          };
+        };
+        "network" = {
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = "{ipaddr}/{cidr} ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          format-linked = "{ifname} (No IP) ";
+          format-disconnected = "Disconnected ⚠";
+          format-alt = "{ifname}: {ipaddr}/{cidr}";
+        };
+        pulseaudio = {
+          format = "{volume}% {icon} {format_source}";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+          format-muted = " {format_source}";
+          format-source = "{volume}% ";
+          format-source-muted = "";
+          format-icons = {
+            headphone = "";
+            "hands-free" = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = [ "" "" "" ]; # Assuming consistent icons for simplicity
+          };
+          on-click = "pavucontrol";
         };
         "clock" = {
           format = "{:%H:%M}  ";
