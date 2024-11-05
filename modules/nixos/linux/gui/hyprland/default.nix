@@ -15,11 +15,12 @@ in
   security.pam.services.hyprlock = { };
 
   home-manager.sharedModules = [{
-    imports = [ ./fix-cursor.nix ];
+    imports = [
+      ./fix-cursor.nix
+      ./waybar.nix
+    ];
     services.dunst.enable = true;
-    programs = {
-      hyprlock.enable = true;
-    };
+    programs.hyprlock.enable = true;
     home.sessionVariables.NIXOS_OZONE_WL = "1";
   }];
 
