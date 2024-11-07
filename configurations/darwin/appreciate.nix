@@ -8,7 +8,6 @@ in
 {
   imports = [
     self.darwinModules.default
-    "${self}/modules/nixos/shared/github-runner.nix"
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
