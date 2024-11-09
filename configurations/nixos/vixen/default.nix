@@ -25,6 +25,7 @@ in
 
   environment.systemPackages = with pkgs; [
     brave
+    google-chrome
     vscode
     zed-editor
     telegram-desktop
