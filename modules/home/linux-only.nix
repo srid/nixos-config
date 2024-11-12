@@ -4,5 +4,6 @@
     ./all/zsh.nix
     ./all/vscode-server.nix
     ./all/rio.nix
+    ./all/emacs.nix
   ];
 }
