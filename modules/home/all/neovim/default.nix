@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -33,6 +33,10 @@ in
     globals = {
       mapleader = " ";
     };
+
+    extraPlugins = [
+      pkgs.vimPlugins.outline-nvim
+    ];
 
     plugins = {
       # UI
