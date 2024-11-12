@@ -9,6 +9,11 @@ in
     inputs.nix-doom-emacs-unstraightened.hmModule
   ];
 
+  # https://docs.doomemacs.org/v21.12/modules/lang/org/#/prerequisites/nixos
+  home.packages = [
+    pkgs.texlive.combined.scheme-medium
+  ];
+
   programs.doom-emacs = {
     enable = true;
     emacs = pkgs.emacs30-pgtk;
