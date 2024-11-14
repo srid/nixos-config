@@ -24,7 +24,6 @@ in
   programs.nix-ld.enable = true; # for vscode server
 
   environment.systemPackages = with pkgs; [
-    brave
     google-chrome
     vscode
     zed-editor
