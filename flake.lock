@@ -1310,11 +1310,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1731515207,
-        "narHash": "sha256-B26m7oQVP0hG/jVbgbvw2mlmxp25m5G2YXF6OBJl9VU=",
+        "lastModified": 1731604715,
+        "narHash": "sha256-XLVkm1o9JCXyJpNKYO+NdDvrl7MCBAY19KA/oNgBKO0=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "0ed2a389d6b4c8eb78caed778e20e872d2a59973",
+        "rev": "4ef869e408383b08ed101905aafe9833567ab907",
         "type": "github"
       },
       "original": {
