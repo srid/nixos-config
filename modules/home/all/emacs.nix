@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -19,8 +19,8 @@ in
     emacs = pkgs.emacs30-pgtk;
     doomDir = self + /doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
-    extraPackages = epkgs: with epkgs; [
+    extraPackages = lib.optionals pkgs.stdenv.isLinux (epkgs: with epkgs; [
       vterm
-    ];
+    ]);
   };
 }

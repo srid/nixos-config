@@ -55,5 +55,12 @@
           config.allowUnfree = true;
         };
       };
+
+      # https://omnix.page/om/ci.html
+      flake.om.ci.default.ROOT = {
+        dir = ".";
+        steps.flake-check.enable = false; # Doesn't make sense to check nixos config on darwin!
+        steps.custom = { };
+      };
     };
 }
