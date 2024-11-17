@@ -6,10 +6,10 @@ default:
 activate:
     nix run
 
-# Deploy host 'immediacy'
+# Deploy host 'pureintent'
 [group('main')]
 deploy:
-    nix run . immediacy
+    nix run . pureintent
 
 # Format the nix source tree
 fmt:
