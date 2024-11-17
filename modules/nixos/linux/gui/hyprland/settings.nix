@@ -79,8 +79,8 @@ in
       # Laptop screen (OLED 2k)
       ",highres,auto,2"
       # Apple Studio Display
-      "DP-5,highres,auto-up,2"
-      "DP-6,disable" # Same as DP-5
+      "DP-6,highres,auto-up,2"
+      "DP-5,disable" # Same as DP-5
     ];
 
     general = {
