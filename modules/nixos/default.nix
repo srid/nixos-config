@@ -1,5 +1,5 @@
 # Configuration common to all Linux systems
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) config inputs;
@@ -13,6 +13,7 @@ in
       home-manager.sharedModules = [
         self.homeModules.default
         self.homeModules.linux-only
+        flake.inputs.bevel.homeManagerModules.${pkgs.system}.default
       ];
     }
     self.nixosModules.common
