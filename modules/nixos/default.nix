@@ -13,7 +13,6 @@ in
       home-manager.sharedModules = [
         self.homeModules.default
         self.homeModules.linux-only
-        flake.inputs.bevel.homeManagerModules.${pkgs.system}.default
       ];
     }
     self.nixosModules.common
