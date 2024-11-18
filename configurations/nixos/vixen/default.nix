@@ -14,25 +14,6 @@ in
     (self + /modules/nixos/linux/gui/desktopish/fonts.nix)
     (self + /modules/nixos/linux/gui/desktopish/steam.nix)
     (self + /modules/nixos/linux/gui/_1password.nix)
-
-    # bevel perSystem home module
-    # XXX: Can't do this in `modules/home` due to upstream design
-    {
-      home-manager.sharedModules = [
-        flake.inputs.bevel.homeManagerModules.${pkgs.system}.default
-        {
-          programs.bevel = {
-            enable = true; # Make the CLI available
-            harness = {
-              bash = {
-                enable = true; # Gather history from bash
-                bindings = true; # Bind C-p and C-r
-              };
-            };
-          };
-        }
-      ];
-    }
   ];
 
   services.openssh.enable = true;
