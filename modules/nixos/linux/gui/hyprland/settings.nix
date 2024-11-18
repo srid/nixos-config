@@ -30,6 +30,7 @@ in
       "$mainMod, C, killactive,"
       "$mainMod, J, togglesplit,"
       "$mainMod, F, fullscreen"
+      "$mainMod SHIFT, F, togglefloating"
 
       # Workspace management
       # Switch
@@ -44,6 +45,10 @@ in
       "$mainMod SHIFT, 3, movetoworkspace, 3"
       "$mainMod SHIFT, 4, movetoworkspace, 4"
       "$mainMod SHIFT, 5, movetoworkspace, 5"
+
+      "$mainMod, SPACE, togglespecialworkspace, special"
+      "$mainMod SHIFT, SPACE, movetoworkspace, special"
+
     ];
 
     # Move/resize windows with mouse
@@ -79,8 +84,8 @@ in
       # Laptop screen (OLED 2k)
       ",highres,auto,2"
       # Apple Studio Display
-      "DP-6,highres,auto-up,2"
-      "DP-5,disable" # Same as DP-5
+      "DP-5,highres,auto-up,2"
+      "DP-6,disable" # Same as DP-5
     ];
 
     general = {
