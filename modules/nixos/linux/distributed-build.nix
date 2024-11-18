@@ -1,15 +1,29 @@
 # https://nixos.wiki/wiki/Distributed_build
+{ flake, ... }:
+let
+  buildHost = "pureintent";
+  user = flake.config.me.username;
+in
 {
-  services.openssh.settings.PermitRootLogin = "prohibit-password";
+  home-manager.users."root" = {
+    programs.ssh.matchBlocks = {
+      ${buildHost} = {
+        inherit user;
+        identityFile = "/etc/ssh/ssh_host_ed25519_key";
+      };
+    };
+  };
+  # services.openssh.settings.PermitRootLogin = "prohibit-password";
   nix.buildMachines = [
     {
-      hostName = "thick";
+      hostName = buildHost;
       system = "x86_64-linux";
+      protocol = "ssh-ng";
       # if the builder supports building for multiple architectures, 
       # replace the previous line by, e.g.,
       # systems = ["x86_64-linux" "aarch64-linux"];
       maxJobs = 16;
-      speedFactor = 3;
+      speedFactor = 1;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ ];
     }

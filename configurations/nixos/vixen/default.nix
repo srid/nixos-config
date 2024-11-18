@@ -9,6 +9,7 @@ in
     self.nixosModules.default
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen4
     ./configuration.nix
+    (self + /modules/nixos/linux/distributed-build.nix)
     (self + /modules/nixos/linux/gui/hyprland)
     (self + /modules/nixos/linux/gui/gnome.nix)
     (self + /modules/nixos/linux/gui/desktopish/fonts.nix)
