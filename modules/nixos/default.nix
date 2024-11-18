@@ -1,5 +1,5 @@
 # Configuration common to all Linux systems
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) config inputs;
