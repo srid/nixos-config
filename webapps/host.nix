@@ -14,7 +14,7 @@ in
           description = name;
           wantedBy = [ "multi-user.target" ];
           serviceConfig = {
-            ExecStart = "${lib.getExe v.package}";
+            ExecStart = v.exec;
             Restart = "always";
           };
         };

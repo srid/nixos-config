@@ -11,11 +11,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1732052927,
-        "narHash": "sha256-j2ZXXDUehk5ruu1GFaVoBA8dxTSa0aFxjhJbFBPbqb0=",
+        "lastModified": 1732059822,
+        "narHash": "sha256-vWC8rZ+b2LWdO7ZnWO9LxHmHhp1Nijw5R6+kATFk4YE=",
         "owner": "srid",
         "repo": "actualism-app",
-        "rev": "83cac5782e2604b0d64aed4ec8bef438cf877220",
+        "rev": "b8f67ac0676610cf7b6de895a15ab88fcae58949",
         "type": "github"
       },
       "original": {
