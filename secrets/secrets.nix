@@ -3,8 +3,8 @@ let
   users = [ config.me.sshKey ];
 
   appreciate = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICra+ZidiwrHGjcGnyqPvHcZDvnGivbLMayDyecPYDh0";
-  immediacy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKZALEiJIrH1Kj10u+WshkQXr5NHmszza8wNLqW+2fB0";
-  systems = [ appreciate immediacy ];
+  pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBpnQ8QqgPexJqAXLgezHlmJth7WOUzfp5gC36QrcMuT";
+  systems = [ appreciate pureintent ];
 in
 {
   "hedgedoc.env.age".publicKeys = users ++ systems;
