@@ -19,8 +19,28 @@ let
       hyprshot --clipboard-only -m region
     '';
   };
+  screenrec = pkgs.writeShellApplication {
+    name = "screenrec";
+    meta.description = ''
+      Blue-light filter screen recording script for Hyprland. Stores videos in ~/Videos.
+    '';
+    runtimeInputs = with pkgs; [ wl-screenrec slurp ];
+    text = ''
+      #!/bin/sh
+      trap 'hyprshade on ${blue-light-filter}' EXIT
+      # Turn off blue light filter
+      hyprshade off
+      # Grab region and start recording.
+      cd
+      FN="$HOME/Videos/screenrec-$(date +'%Y%m%d%H%M%S').mp4"
+      echo "Selecting and recording ($FN) ... press Ctrl+C to end recording."
+      wl-screenrec -g "$(slurp)" -f "$FN"
+    '';
+  };
 in
 {
+  home.packages = [ screenrec ]; # Can't bind key, because user must C-c manually to end recording.
+
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     bind = [
