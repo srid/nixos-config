@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    ./containers.nix
   ];
 
   services.openssh.enable = true;
@@ -21,9 +22,6 @@ in
   };
 
   programs.nix-ld.enable = true; # for vscode server
-
-  environment.systemPackages = with pkgs; [
-  ];
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
