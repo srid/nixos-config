@@ -11,7 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    ./containers.nix
+    (self + /webapps/host.nix)
   ];
 
   services.openssh.enable = true;
