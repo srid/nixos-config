@@ -35,7 +35,8 @@
     nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "nixpkgs";
 
     # Devshell
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.flake = false;
   };
 
   outputs = inputs@{ self, ... }:

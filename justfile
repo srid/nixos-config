@@ -13,4 +13,4 @@ deploy:
 
 # Format the nix source tree
 fmt:
-    treefmt
+    pre-commit run --all-files
