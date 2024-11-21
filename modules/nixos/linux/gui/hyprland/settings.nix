@@ -43,6 +43,9 @@ in
 
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
+
+    source = "~/.hyprland-local.conf";
+
     bind = [
       "$mainMod, Q, exec, rio"
 
@@ -102,7 +105,10 @@ in
       "${lib.getExe pkgs.hyprshade} on ${blue-light-filter}"
     ];
 
-    monitor = [
+    /* COMMENTED OUT:
+      # Since this shit changes all the time, I'm managing it by hand in
+      # ~/.hyperland-local.conf (see `source` above)
+      monitor = [
       # Laptop screen (OLED 2k)
       ",highres,auto,2"
       # Apple Studio Display
@@ -110,7 +116,8 @@ in
       #"DP-5,disable" # Same as DP-5
       "DP-3,highres,auto-up,2"
       "DP-4,disable" # Same as DP-5
-    ];
+      ];
+    */
 
     general = {
       border_size = 2;
