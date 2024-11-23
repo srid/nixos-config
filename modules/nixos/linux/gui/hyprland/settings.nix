@@ -68,8 +68,7 @@ in
       "$mainMod SHIFT, 3, movetoworkspace, 3"
       "$mainMod SHIFT, 4, movetoworkspace, 4"
       "$mainMod SHIFT, 5, movetoworkspace, 5"
-      "$mainMod SHIFT, left, movecurrentworkspacetomonitor, t"
-      "$mainMod SHIFT, right, movecurrentworkspacetomonitor, b"
+      "$mainMod SHIFT, left, movecurrentworkspacetomonitor, +1"
 
       "$mainMod, SPACE, togglespecialworkspace, special"
       "$mainMod SHIFT, SPACE, movetoworkspace, special"
