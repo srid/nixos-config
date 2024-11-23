@@ -6,6 +6,9 @@
   ];
 
   programs.git = {
+    difftastic = {
+      enable = true;
+    };
     package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = flake.config.me.fullname;
@@ -29,15 +32,6 @@
     };
     ignores = [ "*~" "*.swp" ];
     lfs.enable = true;
-    delta = {
-      enable = true;
-      options = {
-        features = "decorations";
-        navigate = true;
-        light = false;
-        side-by-side = true;
-      };
-    };
     extraConfig = {
       init.defaultBranch = "master"; # Undo breakage due to https://srid.ca/luxury-belief
       core.editor = "nvim";
