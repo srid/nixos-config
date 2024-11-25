@@ -20,13 +20,8 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
-  services.navidrome = {
+  services.jellyfin = {
     enable = true;
-    settings = {
-      Address = "100.113.68.55";
-      Port = 4533;
-      MusicFolder = "/var/lib/navidrome/Music";
-    };
     openFirewall = true;
   };
 
