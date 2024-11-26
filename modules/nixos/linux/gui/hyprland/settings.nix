@@ -9,14 +9,14 @@ let
     meta.description = ''
       Blue-light filter screenshot script for Hyprland. Directly copies region to clipboard.
     '';
-    runtimeInputs = with pkgs; [ hyprshade hyprshot ];
+    runtimeInputs = with pkgs; [ grim slurp wl-clipboard ];
     text = ''
       #!/bin/sh
       trap 'hyprshade on ${blue-light-filter}' EXIT
       # Turn off blue light filter
       hyprshade off
       # Take a screenshot of a region and copy it to clipboard
-      hyprshot --clipboard-only -m region
+      grim -g "$(slurp -w 0 -b 00000088)" - | wl-copy
     '';
   };
   screenrec = pkgs.writeShellApplication {
