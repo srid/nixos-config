@@ -19,7 +19,7 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
-  services.fprintd.enable = true;
+  # services.fprintd.enable = true; -- bad UX
   services.syncthing = { enable = true; user = "srid"; dataDir = "/home/srid/Documents"; };
 
   programs.nix-ld.enable = true; # for vscode server
