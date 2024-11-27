@@ -1,3 +1,4 @@
+{ pkgs, lib, ... }:
 {
   programs.ssh = {
     enable = true;
@@ -10,5 +11,5 @@
     };
   };
 
-  services.ssh-agent.enable = true;
+  services.ssh-agent = lib.mkIf pkgs.stdenv.isDarwin { enable = true; };
 }
