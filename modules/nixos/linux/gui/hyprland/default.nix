@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -14,25 +14,7 @@ in
 
   security.pam.services.hyprlock = { };
 
-  home-manager.sharedModules = [{
-    imports = [
-      ./fix-cursor.nix
-      ./waybar.nix
-      ./settings.nix
-    ];
-    wayland.windowManager.hyprland = {
-      enable = true;
-    };
-    services.dunst.enable = true;
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
-
-    programs.hyprlock.enable = true;
-    programs.rofi = {
-      enable = true;
-      terminal = lib.getExe pkgs.rio;
-      plugins = [ pkgs.rofi-emoji ];
-    };
-  }];
+  home-manager.sharedModules = [ ./home ];
 
   environment.systemPackages = with pkgs; [
     kitty
