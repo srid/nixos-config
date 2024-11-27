@@ -57,6 +57,17 @@ in
       "$mainMod, F, fullscreen"
       "$mainMod SHIFT, F, togglefloating"
 
+      # Move focus
+      "$mainMod, H, movefocus, l"
+      "$mainMod, L, movefocus, r"
+      "$mainMod, K, movefocus, u"
+      "$mainMod, J, movefocus, d"
+      # Move window position
+      "$mainMod SHIFT, H, movewindow, l"
+      "$mainMod SHIFT, L, movewindow, r"
+      "$mainMod SHIFT, K, movewindow, u"
+      "$mainMod SHIFT, J, movewindow, d"
+
       # Workspace management
       # Switch
       "$mainMod, 1, workspace, 1"
