@@ -2,7 +2,6 @@
 
 let
   inherit (flake) inputs;
-  inherit (inputs) self;
 in
 {
   imports = [
@@ -17,7 +16,7 @@ in
   programs.doom-emacs = {
     enable = true;
     emacs = pkgs.emacs30-pgtk;
-    doomDir = self + /doom.d;
+    doomDir = ../../../doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
     extraPackages = lib.optionals pkgs.stdenv.isLinux (epkgs: with epkgs; [
       vterm
