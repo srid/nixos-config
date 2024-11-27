@@ -1,7 +1,6 @@
 {
   home.stateVersion = "22.11";
   imports = [
-    ./all/_1password.nix
     ./all/tmux.nix
     ./all/neovim
     # ./helix.nix
@@ -16,5 +15,8 @@
     ./all/just.nix
     # ./powershell.nix
     ./all/juspay.nix
+
+    # Comment out because of annoying password prompts
+    # ./all/_1password.nix
   ];
 }
