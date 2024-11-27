@@ -22,6 +22,7 @@ in
   services.syncthing = { enable = true; user = "srid"; dataDir = "/home/srid/Documents"; };
 
   programs.nix-ld.enable = true; # for vscode server
+  programs.steam.enable = true;
 
   environment.systemPackages = with pkgs; [
     google-chrome

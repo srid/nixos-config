@@ -9,7 +9,6 @@
     enable = true;
   };
   services.dunst.enable = true;
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.hyprlock.enable = true;
   programs.rofi = {
