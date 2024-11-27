@@ -39,7 +39,9 @@ let
   };
 in
 {
-  home.packages = [ screenrec ]; # Can't bind key, because user must C-c manually to end recording.
+  home.packages = [
+    screenrec # Can't bind key, because user must C-c manually to end recording.
+  ];
 
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
@@ -96,7 +98,7 @@ in
       ", XF86AudioPlay, exec, playerctl play-pause"
       ", XF86AudioPrev, exec, playerctl previous"
 
-      ", XF86Favorites, exec, walker"
+      ", XF86Favorites, exec, rofi -show drun"
       ", Print, exec, ${lib.getExe screenshot}"
     ];
 

@@ -46,7 +46,7 @@ in
     hyprlock
 
     # launchers
-    walker
+    rofi-wayland
 
     wl-clipboard
   ];
