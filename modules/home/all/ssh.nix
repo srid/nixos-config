@@ -3,6 +3,8 @@
   programs.ssh = {
     enable = true;
 
+    addKeysToAgent = "yes";
+
     # Note: More defined in juspay.nix
     matchBlocks = {
       pureintent = {
