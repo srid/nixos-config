@@ -99,6 +99,7 @@ in
       ", XF86AudioPrev, exec, playerctl previous"
 
       ", XF86Favorites, exec, rofi -show drun"
+      "SHIFT, XF86Favorites, exec, rofi -mode emoji -show emoji"
       ", Print, exec, ${lib.getExe screenshot}"
     ];
 

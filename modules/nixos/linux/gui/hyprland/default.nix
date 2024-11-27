@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -24,8 +24,14 @@ in
       enable = true;
     };
     services.dunst.enable = true;
-    programs.hyprlock.enable = true;
     home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    programs.hyprlock.enable = true;
+    programs.rofi = {
+      enable = true;
+      terminal = lib.getExe pkgs.rio;
+      plugins = [ pkgs.rofi-emoji ];
+    };
   }];
 
   environment.systemPackages = with pkgs; [
@@ -44,9 +50,6 @@ in
 
     # TODO: https://github.com/nix-community/home-manager/issues/5899
     hyprlock
-
-    # launchers
-    rofi-wayland
 
     wl-clipboard
   ];
