@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     git-filter-repo
-    git-squash # https://github.com/sheerun/git-squash
   ];
 
   programs.git = {
