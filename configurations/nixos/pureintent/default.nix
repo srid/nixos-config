@@ -24,6 +24,20 @@ in
     enable = true;
     openFirewall = true;
   };
+  users.users.vinoth = {
+    isNormalUser = true;
+    extraGroups = [ "jellyfin" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQAoH/iaojJSIHZmPdxZH+CrI8lKqgWA3tMRFlGI41M vinoth.ratna.kumar@gmail.com"
+    ];
+  };
+  environment.systemPackages = with pkgs; [
+    yt-dlp
+    ffmpeg
+    aria2
+    tmux
+    zellij
+  ];
 
   programs.nix-ld.enable = true; # for vscode server
 
