@@ -20,6 +20,7 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;
@@ -38,6 +39,20 @@ in
     tmux
     zellij
   ];
+  /*
+    services.transmission = {
+    enable = true;
+    group = "jellyfin";
+    openRPCPort = true;
+    settings = {
+      rpc-bind-address = "localhost";
+      rpc-whitelist-enabled = false; # ACL managed through Tailscale
+      rpc-host-whitelist = "pureintent pureintent.rooster-blues.ts.net";
+      download-dir = "/Self/Downloads";
+      trash-original-torrent-files = true;
+    };
+    };
+  */
 
   programs.nix-ld.enable = true; # for vscode server
 
