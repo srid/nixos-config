@@ -18,7 +18,7 @@ in
       ];
     }
     self.nixosModules.common
-    inputs.ragenix.darwinModules.default
+    inputs.agenix.darwinModules.default
     ./all/zsh-completion-fix.nix
   ];
 

@@ -12,7 +12,7 @@
         just
         colmena
         nixd
-        inputs'.ragenix.packages.default
+        inputs'.agenix.packages.default
       ];
     };
 
