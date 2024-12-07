@@ -12,6 +12,7 @@ in
     self.nixosModules.default
     ./configuration.nix
     (self + /webapps/host.nix)
+    ./home-media.nix
   ];
 
   services.openssh.enable = true;
@@ -20,39 +21,6 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
-
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };
-  users.users.vinoth = {
-    isNormalUser = true;
-    extraGroups = [ "jellyfin" ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQAoH/iaojJSIHZmPdxZH+CrI8lKqgWA3tMRFlGI41M vinoth.ratna.kumar@gmail.com"
-    ];
-  };
-  environment.systemPackages = with pkgs; [
-    yt-dlp
-    ffmpeg
-    aria2
-    tmux
-    zellij
-  ];
-  /*
-    services.transmission = {
-    enable = true;
-    group = "jellyfin";
-    openRPCPort = true;
-    settings = {
-      rpc-bind-address = "localhost";
-      rpc-whitelist-enabled = false; # ACL managed through Tailscale
-      rpc-host-whitelist = "pureintent pureintent.rooster-blues.ts.net";
-      download-dir = "/Self/Downloads";
-      trash-original-torrent-files = true;
-    };
-    };
-  */
 
   programs.nix-ld.enable = true; # for vscode server
 
