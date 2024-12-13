@@ -21,6 +21,12 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
+  services.syncthing = rec {
+    enable = true;
+    user = flake.config.me.username;
+    dataDir = "/home/${user}/.syncthing";
+    guiAddress = "100.113.68.55:8384";
+  };
 
   programs.nix-ld.enable = true; # for vscode server
 

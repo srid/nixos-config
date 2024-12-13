@@ -19,6 +19,11 @@ in
   services.openssh.enable = true;
   services.tailscale.enable = true;
   # services.fprintd.enable = true; -- bad UX
+  services.syncthing = rec {
+    enable = true;
+    user = flake.config.me.username;
+    dataDir = "/home/${user}/.syncthing";
+  };
 
   programs.nix-ld.enable = true; # for vscode server
   programs.steam.enable = true;
