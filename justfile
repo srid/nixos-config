@@ -24,3 +24,8 @@ gate:
 # Format the nix source tree
 fmt:
     pre-commit run --all-files
+
+# https://discourse.nixos.org/t/why-doesnt-nix-collect-garbage-remove-old-generations-from-efi-menu/17592/4
+fuckboot:
+    sudo nix-collect-garbage -d
+    sudo /run/current-system/bin/switch-to-configuration boot
