@@ -32,7 +32,6 @@ in
   environment.systemPackages = with pkgs; [
     google-chrome
     vscode
-    zed-editor
     telegram-desktop
   ];
 

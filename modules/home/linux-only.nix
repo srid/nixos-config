@@ -5,6 +5,7 @@
     ./all/vscode-server.nix
     ./all/emacs.nix
     ./all/obs.nix
+    ./all/zed
 
     # Terms
     ./all/rio.nix
