@@ -8,6 +8,7 @@
     # https://github.com/zed-industries/extensions/tree/main/extensions
     extensions = [
       "just"
+      "toml"
       "nix"
     ];
 
@@ -21,12 +22,16 @@
 
       # direnv
       load_direnv = "shell_hook";
+      languages.Nix.language_servers = [ "nixd" "!nil" ]; # Force use of nixd over nil
       lsp =
-        let useDirenv = { binary.path_lookup = true; };
-        in {
+        let
+          useDirenv = { binary.path_lookup = true; };
+        in
+        {
           haskell = useDirenv;
           rust_analyzer = useDirenv;
-          nix = useDirenv;
+          # FIXME: This won't work unless Zed is started inside of direnv shell.
+          nixd = useDirenv;
         };
 
       # Look & feel
