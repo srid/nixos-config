@@ -10,6 +10,6 @@
     # Terms
     ./all/rio.nix
     ./all/wezterm
-    ./all/kitty.nix
+    # ./all/kitty.nix
   ];
 }
