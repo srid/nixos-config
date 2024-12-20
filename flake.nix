@@ -22,6 +22,11 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index = {
+      # Fork with flake support https://github.com/gvolpe/nix-index/pull/1
+      url = "github:gvolpe/nix-index";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     actualism-app.url = "github:srid/actualism-app";
     omnix.url = "github:juspay/omnix";
     hyprland.url = "github:hyprwm/Hyprland/v0.45.2";

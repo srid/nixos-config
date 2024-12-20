@@ -60,11 +60,14 @@ in
   };
 
   programs = {
-    nix-index = {
+    # Command not found handler based on nixpkgs
+    nix-index-fork = {
       enable = true;
       enableZshIntegration = true;
+      enableNixCommand = true;
     };
     nix-index-database.comma.enable = true;
+
     lsd = {
       enable = true;
       enableAliases = true;
