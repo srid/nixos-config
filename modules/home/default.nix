@@ -7,6 +7,7 @@
     ./all/ssh.nix
     ./all/starship.nix
     ./all/terminal.nix
+    ./all/nix-index.nix
     ./all/nix.nix
     ./all/git.nix
     ./all/direnv.nix
