@@ -1,5 +1,5 @@
 # Configuration common to all macOS systems
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) config inputs;
   inherit (inputs) self;
@@ -13,6 +13,7 @@ in
       };
       home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
+        inputs.nix-index.homeManagerModules.${pkgs.system}.default
         self.homeModules.default
         self.homeModules.darwin-only
       ];

@@ -16,6 +16,7 @@
         "nix-darwin"
         "nixos-unified"
         "nix-index-database"
+        "nix-index"
         "nixvim"
         "omnix"
       ];

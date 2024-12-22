@@ -11,6 +11,7 @@ in
       users.users.${config.me.username}.isNormalUser = true;
       home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
+        inputs.nix-index.homeManagerModules.${pkgs.system}.default
         self.homeModules.default
         self.homeModules.linux-only
       ];
