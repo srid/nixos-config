@@ -900,16 +900,19 @@
     "nix-index": {
       "inputs": {
         "flake-compat": "flake-compat_2",
+        "nix-index-database": [
+          "nix-index-database"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1734697770,
-        "narHash": "sha256-pPJSqSwVQ1XagigG8sfpBweqTJp6IfEAGmxhcAk4tDg=",
+        "lastModified": 1734902568,
+        "narHash": "sha256-X4CzMp+L7jBL9gQemTvhT8rDhE+8LYqn9bAZB8TVIoU=",
         "owner": "gvolpe",
         "repo": "nix-index",
-        "rev": "dc0329df4bfe76b326756c2b7f3a811d5e910e2f",
+        "rev": "14644fb1a4bfcd1cd620c90875dd5661f26ca94a",
         "type": "github"
       },
       "original": {
@@ -925,15 +928,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1734234111,
-        "narHash": "sha256-icEMqBt4HtGH52PU5FHidgBrNJvOfXH6VQKNtnD1aw8=",
-        "owner": "nix-community",
+        "lastModified": 1734886205,
+        "narHash": "sha256-vaODlEr6aOLEmbhPrQ8j5xWr8UHcXbZx2ulvBIDMf5w=",
+        "owner": "gvolpe",
         "repo": "nix-index-database",
-        "rev": "311d6cf3ad3f56cb051ffab1f480b2909b3f754d",
+        "rev": "07f7fcb8de6ee50a472a119a02616fb1ed67a25f",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "gvolpe",
         "repo": "nix-index-database",
         "type": "github"
       }

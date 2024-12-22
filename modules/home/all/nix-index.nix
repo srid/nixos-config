@@ -1,5 +1,5 @@
 # Platform-independent terminal setup
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -15,7 +15,9 @@ in
       enable = true;
       enableZshIntegration = true;
       enableNixCommand = true;
+      database = inputs.nix-index-database.packages.${pkgs.system}.nix-index-small-database;
     };
-    nix-index-database.comma.enable = true;
+    command-not-found.enable = false;
+    # nix-index-database.comma.enable = true;
   };
 }
