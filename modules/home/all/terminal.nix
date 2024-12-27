@@ -47,8 +47,6 @@ in
     hledger-web
 
     gnupg
-
-    ghostty
   ];
 
   fonts.fontconfig.enable = true;

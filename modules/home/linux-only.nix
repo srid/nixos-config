@@ -10,6 +10,7 @@
     # Terms
     ./all/rio.nix
     ./all/wezterm
+    ./all/ghostty.nix
     # ./all/kitty.nix
   ];
 }
