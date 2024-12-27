@@ -49,7 +49,7 @@ in
     source = "~/.hyprland-local.conf";
 
     bind = [
-      "$mainMod, Q, exec, rio"
+      "$mainMod, Q, exec, ghostty"
 
       # Window management
       "$mainMod, C, killactive,"
