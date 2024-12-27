@@ -24,8 +24,9 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     actualism-app.url = "github:srid/actualism-app";
     omnix.url = "github:juspay/omnix";
-    hyprland.url = "github:hyprwm/Hyprland/v0.45.2";
+    hyprland.url = "github:hyprwm/Hyprland/v0.46.2";
     ghostty.url = "github:ghostty-org/ghostty";
+    ghostty-hm.url = "github:clo4/ghostty-hm-module";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
