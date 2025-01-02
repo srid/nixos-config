@@ -31,6 +31,7 @@ in
     asciinema
     twitter-convert
     copy-md-as-html
+    ispell
 
     # Dev
     gh
