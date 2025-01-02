@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs.ghostty = {
     enable = true;
