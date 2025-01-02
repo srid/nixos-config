@@ -18,6 +18,9 @@ in
     (self + /modules/nixos/linux/gui/desktopish/monitor-brightness.nix)
   ];
 
+  # Use latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   # services.fprintd.enable = true; -- bad UX
