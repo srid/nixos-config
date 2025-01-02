@@ -32,6 +32,7 @@ in
     twitter-convert
     copy-md-as-html
     ispell
+    pandoc
 
     # Dev
     gh
