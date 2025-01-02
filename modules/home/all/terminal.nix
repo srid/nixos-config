@@ -30,6 +30,7 @@ in
     # Publishing
     asciinema
     twitter-convert
+    copy-md-as-html
 
     # Dev
     gh

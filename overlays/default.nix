@@ -10,6 +10,7 @@ self: super: {
   fuckport = self.callPackage "${packages}/fuckport.nix" { };
   twitter-convert = self.callPackage "${packages}/twitter-convert" { };
   sshuttle-via = self.callPackage "${packages}/sshuttle-via.nix" { };
+  copy-md-as-html = self.callPackage "${packages}/copy-md-as-html.nix" { };
   ci = self.callPackage "${packages}/ci" { };
   touchpr = self.callPackage "${packages}/touchpr" { };
   actualism-app = inputs.actualism-app.packages.${self.system}.default;
