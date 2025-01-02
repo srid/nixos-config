@@ -1,5 +1,5 @@
 # Configuration common to all Linux systems
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) config inputs;
@@ -20,4 +20,6 @@ in
     ./linux/self-ide.nix
     ./linux/current-location.nix
   ];
+
+  boot.loader.grub.configurationLimit = 5; # Who needs more?
 }
