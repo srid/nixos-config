@@ -1,14 +1,22 @@
 { pkgs, flake, ... }:
+let
+  package =
+    if pkgs.stdenv.isDarwin then
+    # Upstream has broken mac package
+      pkgs.gitAndTools.gitFull.override { svnSupport = false; }
+    else
+      pkgs.gitAndTools.git;
+in
 {
   home.packages = with pkgs; [
     git-filter-repo
   ];
 
   programs.git = {
+    inherit package;
     difftastic = {
       enable = true;
     };
-    package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = flake.config.me.fullname;
     userEmail = flake.config.me.email;
