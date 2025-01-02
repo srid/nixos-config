@@ -15,6 +15,7 @@ in
     (self + /modules/nixos/linux/gui/gnome.nix)
     (self + /modules/nixos/linux/gui/desktopish/fonts.nix)
     (self + /modules/nixos/linux/gui/_1password.nix)
+    (self + /modules/nixos/linux/gui/desktopish/monitor-brightness.nix)
   ];
 
   services.openssh.enable = true;
@@ -35,8 +36,6 @@ in
     vscode
     telegram-desktop
   ];
-
-  hardware.i2c.enable = true;
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
