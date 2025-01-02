@@ -30,6 +30,7 @@ in
   programs.steam.enable = true;
 
   environment.systemPackages = with pkgs; [
+    firefox
     google-chrome
     vscode
     telegram-desktop
