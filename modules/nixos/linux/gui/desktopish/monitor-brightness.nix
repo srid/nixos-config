@@ -1,4 +1,6 @@
 # TODO: GNOME support via https://extensions.gnome.org/extension/2645/brightness-control-using-ddcutil/
+#
+# NOTE: For Apple Display, we need https://github.com/juliuszint/asdbctl
 
 { pkgs, flake, ... }: {
   # ddcutils requires i2c
