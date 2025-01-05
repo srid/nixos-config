@@ -35,6 +35,7 @@ in
 
   environment.systemPackages = with pkgs; [
     firefox
+    epiphany
     google-chrome
     vscode
     telegram-desktop
