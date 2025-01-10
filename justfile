@@ -16,10 +16,10 @@ nom:
 pureintent:
     nix run . pureintent
 
-# Deploy to nginx gate
+# Deploy to infinitude (mac)
 [group('deploy')]
-gate:
-    nix run . gate
+infinitude:
+    nix run . infinitude
 
 # Format the nix source tree
 fmt:
