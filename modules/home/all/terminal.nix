@@ -17,6 +17,7 @@ in
     moreutils # ts, etc.
     gnumake
     killall
+    television
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
 
