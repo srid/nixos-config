@@ -11,8 +11,6 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    (self + /webapps/host.nix)
-    ./home-media.nix
   ];
 
   services.openssh.enable = true;
@@ -20,12 +18,6 @@ in
   services.netdata = {
     enable = true;
     package = pkgs.netdataCloud;
-  };
-  services.syncthing = rec {
-    enable = true;
-    user = flake.config.me.username;
-    dataDir = "/home/${user}/.syncthing";
-    guiAddress = "100.113.68.55:8384";
   };
 
   programs.nix-ld.enable = true; # for vscode server

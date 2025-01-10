@@ -11,7 +11,6 @@
     aria2
     tmux
     zellij
-    vlc
   ];
 
   /* Not using this
