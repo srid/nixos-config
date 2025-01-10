@@ -1,11 +1,11 @@
 { pkgs, flake, ... }:
 let
   package =
-    if pkgs.stdenv.isDarwin then
+    #if pkgs.stdenv.isDarwin then
     # Upstream has broken mac package
-      pkgs.gitAndTools.gitFull.override { svnSupport = false; }
-    else
-      pkgs.gitAndTools.git;
+    # pkgs.gitAndTools.gitFull.override { svnSupport = false; }
+    #else
+    pkgs.gitAndTools.git;
 in
 {
   home.packages = with pkgs; [
