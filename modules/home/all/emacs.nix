@@ -18,8 +18,8 @@ in
     emacs = pkgs.emacs30-pgtk;
     doomDir = ../../../doom.d;
     experimentalFetchTree = true; # Disable if there are fetcher issues
-    extraPackages = lib.optionals pkgs.stdenv.isLinux (epkgs: with epkgs; [
+    extraPackages = epkgs: with epkgs; lib.optionals pkgs.stdenv.isLinux [
       vterm
-    ]);
+    ];
   };
 }
