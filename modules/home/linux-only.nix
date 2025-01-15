@@ -3,13 +3,13 @@
     ./all/bash.nix
     ./all/zsh.nix
     ./all/vscode-server.nix
-    ./all/emacs.nix
-    ./all/obs.nix
+    # ./all/emacs.nix
+    # ./all/obs.nix
     ./all/zed
 
     # Terms
-    ./all/rio.nix
-    ./all/wezterm
+    # ./all/rio.nix
+    # ./all/wezterm
     ./all/ghostty.nix
     # ./all/kitty.nix
   ];
