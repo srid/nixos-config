@@ -10,6 +10,7 @@ in
 
   imports = [
     self.nixosModules.default
+    (self + /modules/nixos/linux/lxd.nix)
     ./configuration.nix
   ];
 
