@@ -11,7 +11,7 @@ in
   services.github-nix-ci = {
     age.secretsDir = self + /secrets;
     personalRunners = {
-      "srid/srid".num = 1;
+      "srid/nixos-config".num = 1;
     };
   };
 }
