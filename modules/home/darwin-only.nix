@@ -1,6 +1,6 @@
 {
   imports = [
     ./all/zsh.nix
-    ./all/emacs.nix
+    # ./all/emacs.nix
   ];
 }
