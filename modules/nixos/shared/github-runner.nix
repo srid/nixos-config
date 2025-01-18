@@ -8,6 +8,10 @@ in
     inputs.github-nix-ci.nixosModules.default
   ];
 
+  nix.gc = {
+    automatic = true;
+  };
+
   services.github-nix-ci = {
     age.secretsDir = self + /secrets;
     runnerSettings = {
