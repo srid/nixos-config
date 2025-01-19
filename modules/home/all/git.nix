@@ -14,9 +14,7 @@ in
 
   programs.git = {
     inherit package;
-    difftastic = {
-      enable = true;
-    };
+    # difftastic.enable = true;
     enable = true;
     userName = flake.config.me.fullname;
     userEmail = flake.config.me.email;
