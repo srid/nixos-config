@@ -22,8 +22,12 @@ in
         nushell # https://github.com/marketplace/actions/setup-nu
       ];
     };
+
+    # Don't forget to add these repos here:
+    # https://github.com/settings/personal-access-tokens/3513625
     personalRunners = {
       "srid/nixos-config".num = 1;
+      "srid/heist-extra".num = 1;
     };
   };
 }
