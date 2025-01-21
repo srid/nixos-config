@@ -6,7 +6,7 @@
         NAME=$1
 
         echo "Building image ... "
-        METADATA=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.metadata)/tarball/nixos-system-${pkgs.system}.tar.xz
+        METADATA=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.metadata)/tarball/nixos*.tar.xz
         IMG=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.qemuImage)/nixos.qcow2
 
         echo "Importing ... "
