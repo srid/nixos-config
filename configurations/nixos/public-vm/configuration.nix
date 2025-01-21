@@ -15,7 +15,10 @@ in
     enable = true;
     settings.PasswordAuthentication = false;
   };
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
 
   # Tailscale to connect to the VM from anywhere
   services.tailscale.enable = true;
