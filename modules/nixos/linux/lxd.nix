@@ -50,7 +50,7 @@ in
   };
 
   users.users.${flake.config.me.username} = {
-    extraGroups = [ "incus" ];
+    extraGroups = [ "incus" "incus-admin" ];
   };
 
   networking.nftables.enable = true;
