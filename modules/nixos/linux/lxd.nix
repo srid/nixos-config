@@ -1,8 +1,7 @@
 # https://wiki.nixos.org/wiki/Incus
 { flake, ... }:
 let
-  lxdProvider = "incus";
-  networkName = "${lxdProvider}br0";
+  networkName = "incusbr0";
 
   # Problems? 
   # 1. Disable the service
@@ -42,24 +41,26 @@ let
         name = "default";
         driver = "dir";
         config = {
-          source = "/var/lib/${lxdProvider}/storage-pools/default";
+          source = "/var/lib/incus/storage-pools/default";
         };
       }
     ];
   };
 in
 {
-  virtualisation.${lxdProvider} = {
+  virtualisation.incus = {
     enable = true;
     preseed = preseedConfig;
   };
 
   users.users.${flake.config.me.username} = {
-    extraGroups = [ lxdProvider ];
+    extraGroups = [ "incus" ];
   };
 
   networking.nftables.enable = true;
 
-  # networking.firewall.enable = false;
-  networking.firewall.trustedInterfaces = [ networkName ];
+  networking.firewall.trustedInterfaces = [
+    networkName
+    "incusbr-1000"
+  ];
 }
