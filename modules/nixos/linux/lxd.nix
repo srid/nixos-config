@@ -4,9 +4,11 @@ let
   lxdProvider = "incus";
   networkName = "${lxdProvider}br0";
 
-  # Problems? Reset with:
-  # sudo rm -rf /var/lib/lx* /var/lib/incus/
-  # Then re-enable service
+  # Problems? 
+  # 1. Disable the service
+  # 2. Reset with: `sudo rm -rf /var/lib/lx* /var/lib/incus/`
+  # 3. Reboot
+  # 4. Then re-enable service
   preseedConfig = {
     networks = [
       {
