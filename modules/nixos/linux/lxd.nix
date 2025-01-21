@@ -8,6 +8,9 @@ let
   # 2. Reset with: `sudo rm -rf /var/lib/lx* /var/lib/incus/`
   # 3. Reboot
   # 4. Then re-enable service
+  #
+  # Getting `user-1000` related nonsense errors?
+  # Just use the default project: `incus project switch default`
   preseedConfig = {
     networks = [
       {
@@ -55,8 +58,5 @@ in
 
   networking.nftables.enable = true;
 
-  networking.firewall.trustedInterfaces = [
-    networkName
-    "incusbr-1000"
-  ];
+  networking.firewall.trustedInterfaces = [ networkName ];
 }
