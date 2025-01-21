@@ -9,12 +9,12 @@ layout {
         pane {
           name "x86_64-linux"
           command "om"
-          args "ci" "run" "--on" "ssh://nix-infra@dosa"
+          args "ci" "run" "--on" "ssh://pureintent"
         }
         pane {
           name "aaarch64-darwin"
           command "om"
-          args "ci" "run" "--on" "ssh://nix-infra@sambar"
+          args "ci" "run" "--on" "ssh://naivete"
         }
         // pane {
         //   name "x86_64-darwin"
