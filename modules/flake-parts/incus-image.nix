@@ -4,8 +4,12 @@
       name = "incus-image-import";
       text = ''
         NAME=$1
-        METADATA=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.metadata)
+
+        echo "Building image ... "
+        METADATA=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.metadata)/tarball/nixos-system-${pkgs.system}.tar.xz
         IMG=$(nix build --no-link --print-out-paths ${inputs.self}#nixosConfigurations."$NAME".config.system.build.qemuImage)/nixos.qcow2
+
+        echo "Importing ... "
         set -x
         sudo incus image import --alias srid/"$NAME" "$METADATA" "$IMG"
       '';
