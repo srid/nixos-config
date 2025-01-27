@@ -12,6 +12,7 @@
         just
         colmena
         nixd
+        nix-output-monitor
         inputs'.agenix.packages.default
       ];
     };
