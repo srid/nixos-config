@@ -1313,11 +1313,11 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1737999596,
-        "narHash": "sha256-efbeHKXzu9oMFN95SYrXFo6eMgO+CeCFVQOEo2tsMuw=",
+        "lastModified": 1738013292,
+        "narHash": "sha256-8EHfI+TxWNiFA6/P4G6ROSeVODVPw29PNTQzp+Itqp8=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "128c3160ca4b929d6ca77661cdaeb567d2af6c8d",
+        "rev": "cab9f66e6dddeffed7fcaec647249e3bd137c321",
         "type": "github"
       },
       "original": {
