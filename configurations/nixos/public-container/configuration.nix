@@ -11,7 +11,14 @@ in
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
-  networking.firewall.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+  };
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
