@@ -16,11 +16,6 @@ nom:
 pureintent:
     nix run . pureintent
 
-# Deploy to Mac Mini
-[group('deploy')]
-naivete:
-    nix run . naivete
-
 # Deploy to infinitude (mac)
 [group('deploy')]
 infinitude:
