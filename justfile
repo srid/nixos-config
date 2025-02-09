@@ -21,8 +21,8 @@ pureintent:
 infinitude:
     nix run . infinitude
 
-# Format the nix source tree
-fmt:
+# Run all pre-commit hooks on all files
+pca:
     pre-commit run --all-files
 
 # https://discourse.nixos.org/t/why-doesnt-nix-collect-garbage-remove-old-generations-from-efi-menu/17592/4

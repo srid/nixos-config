@@ -22,13 +22,13 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    actualism-app.url = "github:srid/actualism-app";
     omnix.url = "github:juspay/omnix";
     hyprland.url = "github:hyprwm/Hyprland/v0.46.2";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.treefmt-nix.follows = ""; # Don't care
     # Emacs
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "nixpkgs";
