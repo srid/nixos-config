@@ -6,6 +6,7 @@
     # ./all/emacs.nix
     # ./all/obs.nix
     ./all/zed
+    ./all/obs.nix
 
     # Terms
     # ./all/rio.nix
