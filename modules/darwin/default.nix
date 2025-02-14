@@ -20,6 +20,7 @@ in
     self.nixosModules.common
     inputs.agenix.darwinModules.default
     ./all/zsh-completion-fix.nix
+    ./all/vscode.nix
   ];
 
   # Auto upgrade nix package and the daemon service.
