@@ -22,7 +22,4 @@ in
     ./all/zsh-completion-fix.nix
     ./all/vscode.nix
   ];
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 }
