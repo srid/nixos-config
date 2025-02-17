@@ -10,7 +10,7 @@
     ./all/nix.nix
     ./all/git.nix
     ./all/direnv.nix
-    ./all/zellij.nix
+    # ./all/zellij.nix
     # ./nushell.nix
     ./all/just.nix
     # ./powershell.nix
