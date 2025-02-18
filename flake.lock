@@ -1207,11 +1207,11 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1739113213,
-        "narHash": "sha256-EOZCK/ga4WofNiHdAd3q6gJVMvY+/WJoafW8UCXS4qE=",
+        "lastModified": 1739825948,
+        "narHash": "sha256-8fNqg7TNVKjv3kusLJPb4X6A9uCztdntQpo6I/cOV7g=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "8ca85ac6e9fd06ea10a39b9ce53d7c8f3f95f260",
+        "rev": "e768c5e0abce8e36b24f2af2d4f0ba75fd72217f",
         "type": "github"
       },
       "original": {
