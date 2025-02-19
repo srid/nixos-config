@@ -3,6 +3,13 @@
 {
   programs.zellij = {
     enable = true;
+
+    # Disable the auto-start non-sense 
+    # (fucks up terminal on vscode/zed)
+    #
+    # cf. https://zellij.dev/documentation/integration#autostart-on-shell-creation
+    enableZshIntegration = false;
+
     settings = {
       theme = if pkgs.system == "aarch64-darwin" then "dracula" else "gruvbox-light";
       # NOTE: There's no way to set theme by name.
