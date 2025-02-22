@@ -9,6 +9,7 @@
     #
     # cf. https://zellij.dev/documentation/integration#autostart-on-shell-creation
     enableZshIntegration = false;
+    enableBashIntegration = false;
 
     settings = {
       theme = if pkgs.system == "aarch64-darwin" then "dracula" else "gruvbox-light";
