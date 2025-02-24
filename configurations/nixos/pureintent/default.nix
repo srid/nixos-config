@@ -21,6 +21,9 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
+  networking.firewall.allowedTCPPorts = [
+    5005 # vira
+  ];
 
   programs.nix-ld.enable = true; # for vscode server
 

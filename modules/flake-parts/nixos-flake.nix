@@ -18,6 +18,7 @@
         "nix-index-database"
         "nixvim"
         "omnix"
+        "nix-doom-emacs-unstraightened"
       ];
     };
   };
