@@ -1,3 +1,5 @@
+Workflows for [my lxd/incus configuration](https://github.com/srid/nixos-config/blob/master/modules/nixos/linux/lxd.nix).
+
 To build the image,
 
 ```sh
