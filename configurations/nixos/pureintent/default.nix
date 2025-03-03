@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -21,8 +21,28 @@ in
     enable = true;
     package = pkgs.netdataCloud;
   };
+  services.nginx = {
+    enable = true;
+    virtualHosts."pureintent" =
+      let
+        apps = {
+          vira = {
+            baseUrlPrefix = "vira";
+            port = 5005;
+          };
+        };
+      in
+      {
+        locations = lib.mapAttrs'
+          (name: value: lib.nameValuePair "/${value.baseUrlPrefix}/" {
+            proxyPass = "http://localhost:${builtins.toString value.port}/";
+            proxyWebsockets = true;
+          })
+          apps;
+      };
+  };
   networking.firewall.allowedTCPPorts = [
-    5005 # vira
+    80
   ];
 
   programs.nix-ld.enable = true; # for vscode server
