@@ -20,7 +20,7 @@ writers.writeHaskellBin "fuckport"
 
   loadFromBins ["${lsof}", "${coreutils}", "${jc}"]
 
-  data LsofRow = LsofRow 
+  data LsofRow = LsofRow
     { command :: String
     , pid :: Int
     , user :: String
@@ -35,5 +35,5 @@ writers.writeHaskellBin "fuckport"
     let v = fromJust $ decode @[LsofRow] s
     forM_ v $ \r -> do
       putStrLn $ "Killing " <> show (pid r) <> " (" <> command r <> ")"
-      kill $ pid r
+      kill ["-KILL", show (pid r)]
 ''
