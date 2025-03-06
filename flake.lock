@@ -1076,11 +1076,11 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1739825948,
-        "narHash": "sha256-8fNqg7TNVKjv3kusLJPb4X6A9uCztdntQpo6I/cOV7g=",
+        "lastModified": 1741184095,
+        "narHash": "sha256-ljyLGew0SdGZHFmNmxwmqE00mFk21eUp59wsmuOp7FQ=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "e768c5e0abce8e36b24f2af2d4f0ba75fd72217f",
+        "rev": "454cb273d9e635c14c4cc09c64fd5f881f2e2f57",
         "type": "github"
       },
       "original": {
@@ -1144,11 +1144,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1736806612,
-        "narHash": "sha256-WioA+Vk7suDK+Ek77rDlbuxV6WqwFt30JsKHrmDCSiU=",
+        "lastModified": 1741121204,
+        "narHash": "sha256-oMJsdsRzvO6l5oHqzXjhSe7D8ld06yAXwRPPrX/n/KI=",
         "owner": "juspay",
         "repo": "rust-flake",
-        "rev": "b5f39885e2fcf137bfaf75decc077f9cca2bd984",
+        "rev": "ea753dade9e283809d11c63082840657eb766e97",
         "type": "github"
       },
       "original": {
