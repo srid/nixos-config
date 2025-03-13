@@ -26,9 +26,13 @@ in
     virtualHosts."pureintent" =
       let
         apps = {
+          vira-dev = {
+            baseUrlPrefix = "vira-dev";
+            port = 5005;
+          };
           vira = {
             baseUrlPrefix = "vira";
-            port = 5005;
+            port = 5001;
           };
         };
       in
