@@ -6,6 +6,9 @@ default:
 local:
     nix run
 
+update:
+    nix run .#update
+
 # Deploy to Beelink
 [group('deploy')]
 pureintent:
