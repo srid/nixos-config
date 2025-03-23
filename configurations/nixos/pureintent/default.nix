@@ -15,6 +15,8 @@ in
     (self + /modules/nixos/shared/github-runner.nix)
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   services.netdata = {

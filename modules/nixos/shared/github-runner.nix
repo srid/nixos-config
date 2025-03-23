@@ -27,7 +27,7 @@ in
     # https://github.com/settings/personal-access-tokens/3513625
     personalRunners = {
       "srid/nixos-config".num = 1;
-      "srid/heist-extra".num = 1;
+      "srid/emanote".num = 2;
     };
   };
 }
