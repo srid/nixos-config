@@ -17,6 +17,15 @@ in
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # For flake containers to have network access!
+  networking.nat = {
+    enable = true;
+    # cf. https://github.com/NixOS/nixpkgs/issues/72580#issuecomment-1783933476
+    internalInterfaces = [ "ve-+" "ve-*" ];
+    # NOTE: Change this to your network interface name, from `ifconfig` command
+    externalInterface = "enp1s0";
+  };
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   services.netdata = {
