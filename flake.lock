@@ -1078,11 +1078,11 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1742662525,
-        "narHash": "sha256-QYRCJqKygmfz3BoRjj4ILDbEJejWyjQ/qDwFmHkYZMU=",
+        "lastModified": 1743017730,
+        "narHash": "sha256-P8vT5+uPTB9lqBTRXQG9RmuLF1FV7EZQ378IIoM1wnY=",
         "owner": "juspay",
         "repo": "omnix",
-        "rev": "e0be8b2e3204000456f3a1c91b3bf81aac50d333",
+        "rev": "c376d26bb1108ba96d7f285ae69bb5ea7f3ba4bc",
         "type": "github"
       },
       "original": {
