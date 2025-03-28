@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   fonts = {
@@ -10,9 +10,6 @@
       # If this happens , keep noto-fonts-emoji and try disabling others (nerdfonts, etc.)
       noto-fonts-emoji
       fira-code
-      cascadia-code
-      nerd-fonts._0xproto
-      nerd-fonts.droid-sans-mono
       font-awesome
     ];
   };

@@ -28,10 +28,6 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
-  services.netdata = {
-    enable = true;
-    package = pkgs.netdataCloud;
-  };
   services.nginx = {
     enable = true;
     virtualHosts."pureintent" =

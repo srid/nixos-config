@@ -16,13 +16,15 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/3741a848-da2c-4d57-8087-54a3134d19b8";
+      device = "/dev/disk/by-uuid/d9360bc5-d8d1-4b0d-b365-9e753fa03531";
       fsType = "ext4";
     };
 
+  boot.initrd.luks.devices."luks-1cf2cb06-3425-45d1-8a94-faf62abd3017".device = "/dev/disk/by-uuid/1cf2cb06-3425-45d1-8a94-faf62abd3017";
+
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/E1A4-419A";
+      device = "/dev/disk/by-uuid/665D-E58F";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
@@ -34,6 +36,7 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp102s0u1u3c2.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0f0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
