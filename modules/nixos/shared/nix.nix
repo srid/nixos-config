@@ -19,7 +19,10 @@ in
     # package = pkgs.nixVersions.latest;
 
     nixPath = [ "nixpkgs=${flake.inputs.nixpkgs}" ]; # Enables use of `nix-shell -p ...` etc
-    registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
+    registry = {
+      nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
+      nixpkgs-unstable.flake = flake.inputs.nixpkgs-unstable;
+    };
 
     settings = {
       max-jobs = "auto";
