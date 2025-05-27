@@ -51,6 +51,7 @@ in
     hledger-web
 
     gnupg
+    ffmpeg
   ];
 
   fonts.fontconfig.enable = true;
