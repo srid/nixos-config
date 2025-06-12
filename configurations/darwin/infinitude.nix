@@ -15,7 +15,8 @@ in
   nixpkgs.hostPlatform = "aarch64-darwin";
   networking.hostName = "infinitude";
 
-  services.tailscale.enable = true;
+  # Using GUI app; so disable this.
+  # services.tailscale.enable = true;
 
   system.keyboard = {
     enableKeyMapping = true;
