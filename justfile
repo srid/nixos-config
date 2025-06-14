@@ -19,6 +19,11 @@ pureintent:
 infinitude:
     nix run . infinitude
 
+# Deploy to orb nixos machine
+[group('deploy')]
+orb:
+    nix run . orb-nixos
+
 # Run all pre-commit hooks on all files
 pca:
     pre-commit run --all-files
