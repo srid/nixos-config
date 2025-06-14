@@ -5,6 +5,10 @@
 
     addKeysToAgent = "yes";
 
+    includes = [
+      "~/.orbstack/ssh/config" # https://docs.orbstack.dev/machines/ssh
+    ];
+
     # Note: More defined in juspay.nix
     matchBlocks = {
       "*" = {
