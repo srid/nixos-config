@@ -1,5 +1,5 @@
 # Configuration common to all Linux systems
-{ flake, ... }:
+{ flake, lib, ... }:
 
 let
   inherit (flake) config inputs;
@@ -8,7 +8,7 @@ in
 {
   imports = [
     {
-      users.users.${config.me.username}.isNormalUser = true;
+      users.users.${config.me.username}.isNormalUser = lib.mkDefault true;
       home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
         self.homeModules.default
