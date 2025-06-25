@@ -10,7 +10,6 @@
       inputsFrom = [ config.pre-commit.devShell ];
       packages = with pkgs; [
         just
-        colmena
         nixd
         nix-output-monitor
         inputs'.agenix.packages.default
