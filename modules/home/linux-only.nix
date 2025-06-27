@@ -11,7 +11,7 @@
     # Terms
     # ./all/rio.nix
     # ./all/wezterm
-    # ./all/ghostty.nix
+    ./all/ghostty.nix # Install it anyway for TERM to work on VMs
     # ./all/kitty.nix
   ];
 }
