@@ -6,12 +6,13 @@
     _1password
   ];
 
-  programs.zsh.envExtra = lib.mkIf pkgs.stdenv.isDarwin ''
+  /*
+    programs.zsh.envExtra = lib.mkIf pkgs.stdenv.isDarwin ''
     # For 1Password CLI. This requires `pkgs.gh` to be installed.
     # source $HOME/.config/op/plugins.sh
-  '';
+    '';
 
-  programs.ssh = {
+    programs.ssh = {
     enable = true;
     matchBlocks = {
       "*".extraOptions = {
@@ -21,13 +22,13 @@
           else ''"~/.1password/agent.sock"'';
       };
     };
-  };
+    };
 
-  # https://developer.1password.com/docs/ssh/git-commit-signing/
-  #
-  # For this to work on GitHub, you must have added the SSH pub key as a signing key, see
-  # https://1password.community/discussion/comment/667515/#Comment_667515
-  programs.git.includes = [{
+    # https://developer.1password.com/docs/ssh/git-commit-signing/
+    #
+    # For this to work on GitHub, you must have added the SSH pub key as a signing key, see
+    # https://1password.community/discussion/comment/667515/#Comment_667515
+    programs.git.includes = [{
     condition = "gitdir:~/code/**"; # Personal repos only
     contents = {
       user.signingKey = flake.config.me.sshKey;
@@ -38,5 +39,6 @@
         else "/run/current-system/sw/bin/op-ssh-sign";
       commit.gpgsign = true;
     };
-  }];
+    }];
+  */
 }

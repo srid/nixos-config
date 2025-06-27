@@ -16,7 +16,6 @@
     # ./powershell.nix
     ./all/juspay.nix
 
-    # Comment out because of annoying password prompts
-    # ./all/_1password.nix
+    ./all/_1password.nix
   ];
 }
