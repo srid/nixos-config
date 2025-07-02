@@ -17,5 +17,7 @@
     ./all/juspay.nix
 
     ./all/_1password.nix
+
+    ./all/syncthing.nix
   ];
 }
