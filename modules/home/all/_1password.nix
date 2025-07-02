@@ -1,9 +1,9 @@
-{ flake, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = with pkgs; [
     gh
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
-    _1password
+    _1password-cli
   ];
 
   /*
