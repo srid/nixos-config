@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    ./home-media.nix
     (self + /modules/nixos/linux/lxd.nix)
     (self + /modules/nixos/shared/github-runner.nix)
   ];

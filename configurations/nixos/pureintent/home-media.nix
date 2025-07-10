@@ -14,34 +14,58 @@
     vlc
   ];
 
-  /* Not using this
-    services.transmission = {
+  services.nginx = {
     enable = true;
-    group = "jellyfin";
-    openRPCPort = true;
-    settings = {
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    virtualHosts = {
+      "pureintent" = {
+        locations = {
+          # Return index.html with likns to other two sites
+          "/browse" = {
+            extraConfig = ''
+              default_type text/html;
+            '';
+            return = "200 '<ul style=\"font-size: 4em;\"><li><a href=\"/web\">Jellyfin</a> (Watch Movies)</li><li><a href=\"/transmission\">Transmission</a> (Torrent Download)</li></ul>'";
+          };
+          # Jellyfin
+          "/" = {
+            proxyPass = "http://localhost:8096";
+            proxyWebsockets = true;
+          };
+        };
+      };
+    };
+  };
+
+  /* Not using this
+        services.transmission = {
+        enable = true;
+        group = "jellyfin";
+        openRPCPort = true;
+        settings = {
       rpc-bind-address = "localhost";
       rpc-whitelist-enabled = false; # ACL managed through Tailscale
       rpc-host-whitelist = "pureintent pureintent.rooster-blues.ts.net";
       download-dir = "/Self/Downloads";
       trash-original-torrent-files = true;
-    };
-    };
-  */
+        };
+        };
+      */
 
   /* Disabled, because jellyfin has issues
-    age.secrets = {
-    "pureintent-basic-auth.age" = {
+        age.secrets = {
+        "pureintent-basic-auth.age" = {
       file = self + /secrets/pureintent-basic-auth.age;
       owner = "nginx";
-    };
-    };
-    services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    # virtualHosts."pureintent.rooster-blues.ts.net" = {
-    virtualHosts = rec {
+        };
+        };
+        services.nginx = {
+        enable = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+        # virtualHosts."pureintent.rooster-blues.ts.net" = {
+        virtualHosts = rec {
       "pureintent.rooster-blues.ts.net" = pureintent;
       "pureintent" = {
         locations = {
@@ -66,7 +90,7 @@
           };
         };
       };
-    };
-    };
-  */
+        };
+        };
+      */
 }
