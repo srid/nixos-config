@@ -28,6 +28,8 @@ in
     personalRunners = {
       "srid/nixos-config".num = 1;
       "srid/emanote".num = 2;
+      "srid/haskell-flake".num = 1;
+      "srid/nixos-unified".num = 1;
     };
   };
 }
