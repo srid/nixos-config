@@ -30,8 +30,6 @@ in
 
     # Publishing
     asciinema
-    twitter-convert
-    copy-md-as-html
     ispell
     pandoc
 
