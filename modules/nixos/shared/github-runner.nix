@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    # See https://github.com/juspay/github-nix-ci
     inputs.github-nix-ci.nixosModules.default
   ];
 
@@ -28,8 +29,8 @@ in
     personalRunners = {
       "srid/nixos-config".num = 1;
       "srid/emanote".num = 2;
-      "srid/haskell-flake".num = 1;
-      "srid/nixos-unified".num = 1;
+      "srid/haskell-flake".num = 7;
+      "srid/nixos-unified".num = 7;
     };
   };
 }
