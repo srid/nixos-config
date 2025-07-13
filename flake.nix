@@ -13,7 +13,7 @@
     nixos-unified.url = "github:srid/nixos-unified";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.url = "github:yaxitech/ragenix";
+    agenix.url = "github:ryantm/agenix";
     nuenv.url = "github:hallettj/nuenv/writeShellApplication";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
