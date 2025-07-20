@@ -28,7 +28,7 @@ in
     # https://github.com/settings/personal-access-tokens/3513625
     personalRunners = {
       "srid/nixos-config".num = 1;
-      "srid/emanote".num = 2;
+      "srid/emanote".num = 4;
       "srid/haskell-flake".num = 4;
       "srid/nixos-unified".num = 4;
     };
