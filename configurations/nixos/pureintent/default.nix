@@ -16,7 +16,8 @@ in
     (self + /modules/nixos/shared/github-runner.nix)
   ];
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # Using tart VM instead for arm builds. So disable this.
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # For flake containers to have network access!
   networking.nat = {
