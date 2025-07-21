@@ -20,14 +20,19 @@ infinitude:
     nix run . infinitude
 
 # Deploy to orb nixos machine
-[group('deploy')]
-orb:
-    nix run . orb-nixos
+# [group('deploy')]
+# orb:
+#     nix run . orb-nixos
 
 # Deploy to tart VM
 [group('deploy')]
 tart:
     nix run . infinitude-nixos
+
+# SSH to tart CM
+[group('ssh')]
+tart-ssh:
+    ssh $(tart ip nixos-vm)
 
 # Run all pre-commit hooks on all files
 pca:
