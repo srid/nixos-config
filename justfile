@@ -24,6 +24,11 @@ infinitude:
 orb:
     nix run . orb-nixos
 
+# Deploy to tart VM
+[group('deploy')]
+tart:
+    nix run . infinitude-nixos
+
 # Run all pre-commit hooks on all files
 pca:
     pre-commit run --all-files

@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.system }}
     strategy:
       matrix:
-        system: [x86_64-linux, aarch64-darwin]
+        system: [x86_64-linux, aarch64-darwin, aarch64-linux]
     steps:
       - uses: actions/checkout@v4
       - run: om ci run --systems "${{ matrix.system }}"
