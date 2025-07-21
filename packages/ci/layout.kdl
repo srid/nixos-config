@@ -9,18 +9,18 @@ layout {
         pane {
           name "x86_64-linux"
           command "om"
-          args "ci" "run" "--on" "ssh://nix-infra@dosa" "--no-link"
+          args "ci" "run" "--on" "ssh://pureintent" "--no-link"
         }
         pane {
           name "aaarch64-darwin"
           command "om"
-          args "ci" "run" "--on" "ssh://nix-infra@sambar" "--no-link"
+          args "ci" "run" "--on" "ssh://infinitude" "--no-link"
         }
-        // pane {
-        //   name "x86_64-darwin"
-        //   command "om"
-        //   args "ci" "run" "--on" "ssh://nix-infra@sambar" "--systems" "x86_64-darwin"
-        // }
+        pane {
+          name "aarch64-linux"
+          command "om"
+          args "ci" "run" "--on" "ssh://infinitude-nixos" "--no-link"
+        }
     }
     pane size=2 borderless=true {
         plugin location="status-bar"
