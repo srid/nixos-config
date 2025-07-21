@@ -10,7 +10,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    # (self + /modules/nixos/shared/github-runner.nix)
+    (self + /modules/nixos/shared/github-runner.nix)
   ];
 
   services.openssh.enable = true;
