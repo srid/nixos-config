@@ -16,6 +16,10 @@ in
     (self + /modules/nixos/shared/github-runner.nix)
   ];
 
+  home-manager.sharedModules = [
+    (self + /modules/home/all/dropbox.nix)
+  ];
+
   # Using tart VM instead for arm builds. So disable this.
   # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
