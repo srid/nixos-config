@@ -1,5 +1,5 @@
 # Configuration for my M1 Macbook Max as headless server
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -18,6 +18,8 @@ in
 
   # Using GUI app; so disable this.
   # services.tailscale.enable = true;
+
+  environment.systemPackages = [ pkgs.tart ];
 
   system.keyboard = {
     enableKeyMapping = true;
