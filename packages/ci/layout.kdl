@@ -12,7 +12,7 @@ layout {
           args "ci" "run" "--on" "ssh://pureintent" "--no-link"
         }
         pane {
-          name "aaarch64-darwin"
+          name "aarch64-darwin"
           command "om"
           args "ci" "run" "--on" "ssh://infinitude" "--no-link"
         }
