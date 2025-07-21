@@ -14,6 +14,7 @@
     ./all/ghostty.nix # Install it anyway for TERM to work on VMs
     # ./all/kitty.nix
 
-    ./all/dropbox.nix
+    # FIXME: disable this only for tartvm
+    # ./all/dropbox.nix
   ];
 }
