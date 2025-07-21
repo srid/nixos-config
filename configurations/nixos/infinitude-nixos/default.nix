@@ -14,6 +14,7 @@ in
   ];
 
   services.openssh.enable = true;
+  services.tailscale.enable = true;
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
