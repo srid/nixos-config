@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
   ];
   home.packages = with pkgs; [
     # Unixy tools
@@ -23,7 +23,7 @@ in
 
     # Useful for Nix development
     ci
-    touchpr
+    # touchpr (requires nu)
     omnix
     nixpkgs-fmt
     just
