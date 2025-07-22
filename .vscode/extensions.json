@@ -4,6 +4,7 @@
         "b4dm4n.nixpkgs-fmt",
         "jnoortheen.nix-ide",
         "mkhl.direnv",
-        "kdl-org.kdl"
+        "kdl-org.kdl",
+        "thenuprojectcontributors.vscode-nushell-lang"
     ]
 }
