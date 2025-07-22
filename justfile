@@ -1,11 +1,17 @@
 default:
     @just --list
 
-# Activate local configuration (Use `just nom local`)
+# Activate local system configuration 
 [group('main')]
-local:
-    nix run
+system:
+    nix run . $HOSTNAME
 
+# Activate local home configuration
+[group('main')]
+home:
+    nix run . $USER@
+
+# Update primary flame inputs
 update:
     nix run .#update
 
@@ -18,6 +24,11 @@ pureintent:
 [group('deploy')]
 infinitude:
     nix run . infinitude
+
+# Activate home config on stillness
+[group('deploy')]
+stillness:
+    nix run . $USER@
 
 # Deploy to orb nixos machine
 # [group('deploy')]
