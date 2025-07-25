@@ -27,6 +27,7 @@ in
     omnix
     nixpkgs-fmt
     just
+    claude-code
 
     # Publishing
     asciinema
