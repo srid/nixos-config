@@ -1,15 +1,15 @@
 default:
     @just --list
 
-# Activate local system configuration 
-[group('main')]
-system:
-    nix run . $HOSTNAME
 
-# Activate local home configuration
+# Activate local configuration (home if exists, else system)
 [group('main')]
-home:
-    nix run . $USER@$HOSTNAME
+activate:
+    if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
+        set -x; nix run . $USER@$HOSTNAME; \
+    else \
+        set -x; nix run . $HOSTNAME; \
+    fi
 
 # Update primary flame inputs
 update:
