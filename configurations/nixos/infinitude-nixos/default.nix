@@ -5,7 +5,7 @@ let
   inherit (inputs) self;
 in
 {
-  nixos-unified.sshTarget = "srid@192.168.64.6";
+  nixos-unified.sshTarget = "srid@infinitude-nixos";
 
   imports = [
     self.nixosModules.default
