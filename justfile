@@ -9,7 +9,7 @@ system:
 # Activate local home configuration
 [group('main')]
 home:
-    nix run . $USER@
+    nix run . $USER@$HOSTNAME
 
 # Update primary flame inputs
 update:

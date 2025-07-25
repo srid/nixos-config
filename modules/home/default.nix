@@ -3,7 +3,6 @@
   imports = [
     ./all/tmux.nix
     ./all/neovim
-    # ./helix.nix
     ./all/ssh.nix
     ./all/starship.nix
     ./all/terminal.nix
@@ -11,9 +10,7 @@
     ./all/git.nix
     ./all/direnv.nix
     ./all/zellij.nix
-    # ./nushell.nix
     ./all/just.nix
-    # ./powershell.nix
     ./all/juspay.nix
 
     ./all/_1password.nix
