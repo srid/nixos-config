@@ -76,7 +76,10 @@ in
     */
     bat.enable = true;
     autojump.enable = false;
-    zoxide.enable = true;
+
+    # zoxide breaks Nu startup: https://github.com/nix-community/home-manager/issues/6319
+    # zoxide.enable = true;
+
     fzf.enable = true;
     jq.enable = true;
     btop.enable = true;
