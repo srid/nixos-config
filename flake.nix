@@ -25,6 +25,11 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     omnix.url = "github:juspay/omnix";
     hyprland.url = "github:hyprwm/Hyprland/v0.46.2";
+    vertex.url = "github:juspay/vertex";
+    vertex.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      flake-parts.follows = "flake-parts";
+    };
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

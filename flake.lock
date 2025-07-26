@@ -1149,7 +1149,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "nuenv": "nuenv",
-        "omnix": "omnix"
+        "omnix": "omnix",
+        "vertex": "vertex"
       }
     },
     "rust-flake": {
@@ -1351,6 +1352,29 @@
       "original": {
         "owner": "boolean-option",
         "repo": "true",
+        "type": "github"
+      }
+    },
+    "vertex": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753546846,
+        "narHash": "sha256-Itf8Ti6AOjhv/FoAl8bquZJz0q7XjPduTtSbLEs5/fA=",
+        "owner": "juspay",
+        "repo": "vertex",
+        "rev": "b4610948e3473d0d10d06a779f8d0b009779fa82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "vertex",
         "type": "github"
       }
     },

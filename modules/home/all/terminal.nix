@@ -32,6 +32,7 @@ in
     gemini-cli
     google-cloud-sdk
     claude-code
+    inputs.vertex.packages.${pkgs.system}.default
 
     # Publishing
     asciinema

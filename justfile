@@ -21,7 +21,7 @@ update:
 # Deploy to a given host
 [group('main')]
 deploy host:
-    @echo "Deploying to {{host}} ..."
+    @echo "Activating on/Deploying to {{host}} ..."
     @nix run . {{host}}
 
 # Run all pre-commit hooks on all files
