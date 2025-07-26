@@ -27,6 +27,9 @@ in
     omnix
     nixpkgs-fmt
     just
+
+    # AI
+    gemini-cli
     claude-code
 
     # Publishing
