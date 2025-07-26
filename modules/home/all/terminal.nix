@@ -30,6 +30,7 @@ in
 
     # AI
     gemini-cli
+    google-cloud-sdk
     claude-code
 
     # Publishing
