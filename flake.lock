@@ -1365,11 +1365,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753546846,
-        "narHash": "sha256-Itf8Ti6AOjhv/FoAl8bquZJz0q7XjPduTtSbLEs5/fA=",
+        "lastModified": 1753563501,
+        "narHash": "sha256-w8dykt5g06EB3yD/knx55MqsXvVHsoXfUbuBEWvT5H4=",
         "owner": "juspay",
         "repo": "vertex",
-        "rev": "b4610948e3473d0d10d06a779f8d0b009779fa82",
+        "rev": "7917e3f0e755bc32fd29a7593b630ee74f26c692",
         "type": "github"
       },
       "original": {
