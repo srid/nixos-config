@@ -4,25 +4,26 @@ default:
 # Main commands
 # --------------------------------------------------------------------------------------------------
 
-# Activate local configuration (home if exists, else system)
+# Activate the given host or home environment
 [group('main')]
-activate:
-    @if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
-        just deploy $USER@$HOSTNAME; \
+activate host="":
+    @if [ -z "{{host}}" ]; then \
+        if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
+            echo "Activating home env $USER@$HOSTNAME ..."; \
+            nix run . $USER@$HOSTNAME; \
+        else \
+            echo "Activating system env $HOSTNAME ..."; \
+            nix run . $HOSTNAME; \
+        fi \
     else \
-        just deploy $HOSTNAME; \
+        echo "Deploying to {{host}} ..."; \
+        nix run . {{host}}; \
     fi
 
 # Update primary flame inputs
 [group('main')]
 update:
     nix run .#update
-
-# Deploy to a given host
-[group('main')]
-deploy host:
-    @echo "Activating on/Deploying to {{host}} ..."
-    @nix run . {{host}}
 
 # Run all pre-commit hooks on all files
 [group('main')]
