@@ -31,7 +31,6 @@ in
     # AI
     gemini-cli
     google-cloud-sdk
-    claude-code
     inputs.vertex.packages.${pkgs.system}.default
 
     # Publishing
@@ -66,6 +65,9 @@ in
     lg = "lazygit";
     l = "ls";
     beep = "say 'beep'";
+
+    # Until https://github.com/anthropics/claude-code/issues/2564
+    claude = "vertex-claude --dangerously-skip-permissions";
   };
 
   programs = {
