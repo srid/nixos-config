@@ -6,17 +6,19 @@ let
   inherit (inputs) self;
 in
 {
-  nixos-unified.sshTarget = "srid@macci";
+  nixos-unified.sshTarget = "admin@infinitude-macos";
 
   imports = [
-    self.darwinModules.default
+    inputs.agenix.darwinModules.default
     (self + /modules/nixos/shared/github-runner.nix)
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  networking.hostName = "macci";
+  networking.hostName = "infinitude-macos";
 
-  # ids.gids.nixbld = 350;
+  ids.gids.nixbld = 350;
+
+  services.tailscale.enable = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
