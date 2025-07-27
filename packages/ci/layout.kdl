@@ -14,12 +14,8 @@ layout {
         pane {
           name "aarch64-darwin"
           command "om"
-          args "ci" "run" "--on" "ssh://infinitude" "--no-link"
-        }
-        pane {
-          name "aarch64-linux"
-          command "om"
-          args "ci" "run" "--on" "ssh://infinitude-nixos" "--no-link"
+          // args "ci" "run" "--on" "ssh://infinitude" "--no-link"
+          args "ci" "run" "--no-link"
         }
     }
     pane size=2 borderless=true {
