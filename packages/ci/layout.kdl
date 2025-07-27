@@ -7,14 +7,13 @@ layout {
     }
     pane split_direction="horizontal" {
         pane {
-          name "x86_64-linux"
+          name "x86_64-linux (ssh)"
           command "om"
           args "ci" "run" "--on" "ssh://pureintent" "--no-link"
         }
         pane {
-          name "aarch64-darwin"
+          name "aarch64-darwin (local)"
           command "om"
-          // args "ci" "run" "--on" "ssh://infinitude" "--no-link"
           args "ci" "run" "--no-link"
         }
     }
