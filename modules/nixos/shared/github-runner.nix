@@ -33,7 +33,6 @@ in
       "srid/t".num = 1;
       "srid/haskell-flake".num = 4;
       "srid/nixos-unified".num = 4;
-      "srid/srid".num = 1;
     };
   };
 }
