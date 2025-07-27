@@ -5,8 +5,4 @@
     ./all/nushell.nix
     # ./all/emacs.nix
   ];
-
-  home.packages = with pkgs; [
-    tart
-  ];
 }
