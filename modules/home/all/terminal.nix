@@ -27,7 +27,6 @@ in
     omnix
     nixpkgs-fmt
     just
-    tart
 
     # AI
     gemini-cli
