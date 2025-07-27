@@ -12,6 +12,5 @@ in
   home.username = "srid";
 
   home.packages = with pkgs; [
-    tart
   ];
 }
