@@ -16,8 +16,17 @@ in
     ];
 
     # Theme
-    colorschemes.rose-pine.enable = true;
-    # colorschemes.onedark.enable = true;
+    # colorschemes.rose-pine.enable = true;
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha"; # dark variant
+        term_colors = true;
+        integrations = {
+          treesitter = true;
+        };
+      };
+    };
 
     # Settings
     opts = {
@@ -27,6 +36,7 @@ in
       tabstop = 2;
       number = true;
       clipboard = "unnamedplus";
+      termguicolors = true;
     };
 
     # Keymaps
