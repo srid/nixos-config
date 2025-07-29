@@ -3,8 +3,8 @@
 
   programs.nushell = {
     enable = true;
-    envFile.source = ./nushell/env.nu;
-    configFile.source = ./nushell/config.nu;
+    envFile.source = ./env.nu;
+    configFile.source = ./config.nu;
     inherit (config.home) shellAliases; # Our shell aliases are pretty simple
   };
 }

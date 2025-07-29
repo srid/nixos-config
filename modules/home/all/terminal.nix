@@ -76,12 +76,6 @@ in
       enableZshIntegration = true;
     };
     nix-index-database.comma.enable = true;
-    /*
-      lsd = {
-      enable = true;
-      enableAliases = true;
-      };
-    */
     bat.enable = true;
     autojump.enable = false;
     zoxide.enable = true;

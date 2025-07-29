@@ -2,7 +2,7 @@
 {
   imports = [
     ./all/zsh.nix
-    ./all/nushell.nix
+    ./all/nushell
     # ./all/emacs.nix
   ];
 }
