@@ -35,5 +35,9 @@ in
       "srid/haskell-flake".num = 2;
       "srid/nixos-unified".num = 2;
     };
+
+    orgRunners = {
+      "emaletter".num = 2;
+    };
   };
 }

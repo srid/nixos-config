@@ -10,5 +10,6 @@ in
 {
   "hedgedoc.env.age".publicKeys = users ++ systems;
   "github-nix-ci/srid.token.age".publicKeys = users ++ systems;
+  "github-nix-ci/emaletter.token.age".publicKeys = users ++ systems;
   "pureintent-basic-auth.age".publicKeys = users ++ systems;
 }
