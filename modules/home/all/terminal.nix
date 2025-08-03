@@ -23,7 +23,7 @@ in
 
     # Useful for Nix development
     ci
-    # touchpr (requires nu)
+    touchpr
     omnix
     nixpkgs-fmt
     just
