@@ -32,6 +32,7 @@ in
       "srid/ema".num = 2;
       "srid/t".num = 1;
       "srid/srid".num = 1;
+      "srid/imako".num = 1;
       "srid/haskell-flake".num = 2;
       "srid/nixos-unified".num = 2;
     };
