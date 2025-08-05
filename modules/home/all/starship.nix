@@ -2,6 +2,7 @@
   programs.starship = {
     enable = true;
     settings = {
+      gcloud.disabled = true;
       username = {
         style_user = "blue bold";
         style_root = "red bold";
