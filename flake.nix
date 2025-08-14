@@ -30,6 +30,7 @@
       nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
+    vira.url = "github:juspay/vira";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
