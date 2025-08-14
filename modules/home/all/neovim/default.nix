@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
   ];
   programs.nixvim = {
     enable = true;
@@ -125,7 +125,7 @@ in
           marksman.enable = true;
           nil_ls.enable = true;
           rust_analyzer = {
-            enable = true;
+            # enable = true;
             installCargo = false;
             installRustc = false;
           };
