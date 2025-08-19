@@ -35,6 +35,10 @@ in
       "srid/imako".num = 1;
       "srid/haskell-flake".num = 2;
       "srid/nixos-unified".num = 2;
+      "srid/heist-extra".num = 1;
+      "srid/unionmount".num = 1;
+      "srid/commonmark-simple".num = 1;
+      "srid/commonmark-wikilink".num = 1;
     };
 
     orgRunners = {
