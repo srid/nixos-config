@@ -72,9 +72,9 @@
     "co-log-effectful": {
       "inputs": {
         "devshell": "devshell",
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_5",
         "haskell-flake": "haskell-flake",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_8",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "treefmt-nix": "treefmt-nix"
       },
@@ -335,6 +335,24 @@
     },
     "flake-parts_4": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_2"
+      },
+      "locked": {
+        "lastModified": 1754487366,
+        "narHash": "sha256-pHYj8gUBapuUzKV/kN/tR3Zvqc7o6gdFB9XKXIp1SQ8=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "af66ad14b28a127c5c0f3bbb298218fc63528a18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_5": {
+      "inputs": {
         "nixpkgs-lib": [
           "vira",
           "co-log-effectful",
@@ -355,7 +373,7 @@
         "type": "github"
       }
     },
-    "flake-parts_5": {
+    "flake-parts_6": {
       "inputs": {
         "nixpkgs-lib": [
           "vira",
@@ -1139,6 +1157,21 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
       }
     },
+    "nixpkgs-lib_2": {
+      "locked": {
+        "lastModified": 1753579242,
+        "narHash": "sha256-zvaMGVn14/Zz8hnp4VWT9xVnhc8vuL3TStRqwk22biA=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "0f36c44e01a6129be94e3ade315a5883f0228a6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1730741070,
@@ -1248,6 +1281,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1755577059,
+        "narHash": "sha256-5hYhxIpco8xR+IpP3uU56+4+Bw7mf7EMyxS/HqUYHQY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "97eb7ee0da337d385ab015a23e15022c865be75c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1738264807,
         "narHash": "sha256-6x6WLFwoLdR3w3FYtCnLye2Xe32SqsL7Zf0jpa5wJMM=",
         "owner": "NixOS",
@@ -1262,7 +1311,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_9": {
       "locked": {
         "lastModified": 1748217807,
         "narHash": "sha256-P3u2PXxMlo49PutQLnk2PhI/imC69hFl1yY4aT5Nax8=",
@@ -1458,6 +1507,7 @@
         "nixvim": "nixvim",
         "nuenv": "nuenv",
         "omnix": "omnix",
+        "try": "try",
         "vertex": "vertex",
         "vira": "vira"
       }
@@ -1686,6 +1736,26 @@
         "type": "github"
       }
     },
+    "try": {
+      "inputs": {
+        "flake-parts": "flake-parts_4",
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1755702217,
+        "narHash": "sha256-oS87cs6Q7F8CDvnwt7SfkYXXOdGErHBWafQ3YsCj/tk=",
+        "owner": "srid",
+        "repo": "try",
+        "rev": "e742b5d5df92ada0ed20467ca03a4b02dd168cb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "ref": "nixify",
+        "repo": "try",
+        "type": "github"
+      }
+    },
     "vertex": {
       "inputs": {
         "flake-parts": [
@@ -1712,14 +1782,14 @@
     "vira": {
       "inputs": {
         "co-log-effectful": "co-log-effectful",
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_6",
         "fourmolu-nix": "fourmolu-nix",
         "git-hooks": "git-hooks_3",
         "haskell-flake": "haskell-flake_2",
         "htmx": "htmx",
         "htmx-extensions": "htmx-extensions",
         "nixos-unified": "nixos-unified_2",
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_9",
         "process-compose-flake": "process-compose-flake"
       },
       "locked": {

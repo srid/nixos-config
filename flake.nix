@@ -31,6 +31,7 @@
       flake-parts.follows = "flake-parts";
     };
     vira.url = "github:juspay/vira";
+    try.url = "github:srid/try/nixify";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
