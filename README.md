@@ -59,20 +59,19 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 ## Tips
 
 - To update NixOS (and other inputs) run `nix flake update`
-  - You may also update a subset of inputs, e.g.
+  - You may also update only primary inputs:
     ```sh
-    nix flake lock --update-input nixpkgs --update-input darwin --update-input home-manager
-    # Or, `nix run .#update`
+    # nix run .#update
     ```
 - To free up disk space,
   ```sh-session
   sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +2
   sudo nixos-rebuild boot
   ```
-- To autoformat the project tree using nixpkgs-fmt, run `nix fmt`.
-- To build all flake outputs (locally or in CI), run `nix --accept-flake-config run github:juspay/omnix ci build`
+- To autoformat the project tree using nixpkgs-fmt, run `just lint` in Nix devShell.
+- To build all flake outputs (locally or in CI), run `nix run nixpkgs#omnix ci`
 - For secrets management, I use [agenix](https://github.com/ryantm/agenix), because it works with SSH keys, and functions well on macOS and NixOS.
 
 ## Discussion
 
-If you wish to discuss about this config, [join the Zulip](https://nixos.zulipchat.com/login/?next=/).
+If you wish to discuss this config, [join the NixOS Asia community](https://nixos.asia/en/#community).
