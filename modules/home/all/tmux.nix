@@ -10,6 +10,9 @@
     escapeTime = 0;
     # Force tmux to use /tmp for sockets (WSL2 compat)
     secureSocket = false;
+    mouse = true;
+    clock24 = true;
+    historyLimit = 50000;
 
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
@@ -22,8 +25,6 @@
       set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
       set-environment -g COLORTERM "truecolor"
 
-      # Mouse works as expected
-      set-option -g mouse on
       # easy-to-remember split pane commands
       bind | split-window -h -c "#{pane_current_path}"
       bind - split-window -v -c "#{pane_current_path}"
@@ -36,19 +37,4 @@
     # FIXME: This causes tmate to hang.
     # extraConfig = config.xdg.configFile."tmux/tmux.conf".text;
   };
-
-  home.packages = [
-    # Open tmux for current project.
-    (pkgs.writeShellApplication {
-      name = "pux";
-      runtimeInputs = [ pkgs.tmux ];
-      text = ''
-        PRJ="''$(zoxide query -i)"
-        echo "Launching tmux for ''$PRJ"
-        set -x
-        cd "''$PRJ" && \
-          exec tmux -S "''$PRJ".tmux attach
-      '';
-    })
-  ];
 }
