@@ -18,4 +18,6 @@ in
     stateDirectory = "/var/lib/vira";
     package = inputs.vira.packages.${pkgs.system}.default;
   };
+
+  networking.firewall.allowedTCPPorts = [ 5001 ];
 }

@@ -62,10 +62,6 @@ in
   };
   networking.firewall.allowedTCPPorts = [
     80
-
-    # Dev ports
-    5005
-    5001 # Vira
   ];
 
   programs.nix-ld.enable = true; # for vscode server
