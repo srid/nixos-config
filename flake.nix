@@ -24,7 +24,6 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     omnix.url = "github:juspay/omnix";
-    hyprland.url = "github:hyprwm/Hyprland/v0.46.2";
     vertex.url = "github:juspay/vertex";
     vertex.inputs = {
       nixpkgs.follows = "nixpkgs";
