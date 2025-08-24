@@ -29,6 +29,10 @@ in
     nixpkgs-fmt
     just
 
+    eternal-terminal
+
+    uv # For running Python stuff quickly.
+
     # AI
     gemini-cli
     google-cloud-sdk
