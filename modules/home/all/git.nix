@@ -1,19 +1,10 @@
 { pkgs, flake, ... }:
-let
-  package =
-    #if pkgs.stdenv.isDarwin then
-    # Upstream has broken mac package
-    # pkgs.gitFull.override { svnSupport = false; }
-    #else
-    pkgs.git;
-in
 {
   home.packages = with pkgs; [
     git-filter-repo
   ];
 
   programs.git = {
-    inherit package;
     enable = true;
     delta = {
       enable = true;
