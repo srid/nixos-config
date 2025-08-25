@@ -10,6 +10,12 @@ in
   hackernews-best = {
     url = "https://hnrss.org/best?points=50"; # Posts with 50+ points
   };
+
   haskell-reddit-top = redditTop "haskell" 5 "day";
   nixos-reddit-top = redditTop "nixos" 5 "day";
+  scientificnutrition-reddit-top = redditTop "scientificnutrition" 5 "day";
+
+  notebookcheck = {
+    url = "https://www.notebookcheck.net/RSS-Feed-Notebook-Reviews.8156.0.html";
+  };
 }
