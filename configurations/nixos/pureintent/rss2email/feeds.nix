@@ -10,5 +10,6 @@ in
   hackernews-best = {
     url = "https://hnrss.org/best?points=50"; # Posts with 50+ points
   };
-  haskell-reddit-top = redditTop "haskell" 5 "day"; # Top 5 posts from last 24 hours
+  haskell-reddit-top = redditTop "haskell" 5 "day";
+  nixos-reddit-top = redditTop "nixos" 5 "day";
 }
