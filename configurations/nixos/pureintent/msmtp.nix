@@ -3,6 +3,8 @@
 {
   age.secrets."gmail-app-password" = {
     file = flake.inputs.self + /secrets/gmail-app-password.age;
+
+    # HACK: why couple to caller of sendmail? smh.
     owner = "rss2email";
     group = "rss2email";
   };
