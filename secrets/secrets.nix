@@ -12,4 +12,5 @@ in
   "github-nix-ci/srid.token.age".publicKeys = users ++ systems;
   "github-nix-ci/emaletter.token.age".publicKeys = users ++ systems;
   "pureintent-basic-auth.age".publicKeys = users ++ systems;
+  "gmail-app-password.age".publicKeys = users ++ systems;
 }
