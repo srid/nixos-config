@@ -71,8 +71,7 @@ in
     l = "ls";
     beep = "say 'beep'";
 
-    # Until https://github.com/anthropics/claude-code/issues/2564
-    claude = "vertex-claude --dangerously-skip-permissions";
+    claude = "vertex-claude";
   };
 
   programs = {
