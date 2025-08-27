@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ lib, pkgs, flake, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -10,4 +10,9 @@ in
   ];
 
   home.username = "srid";
+
+  home.packages = [
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    pkgs.tart
+  ];
 }
