@@ -2,8 +2,9 @@
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
 
-    # Note: More defined in juspay.nix
+    # Explicitly set default SSH configuration
     matchBlocks = {
       "*" = {
         addKeysToAgent = "yes";
