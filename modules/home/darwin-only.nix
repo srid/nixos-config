@@ -5,4 +5,8 @@
     ./all/nushell
     # ./all/emacs.nix
   ];
+
+  home.packages = [
+    pkgs.tart
+  ];
 }
