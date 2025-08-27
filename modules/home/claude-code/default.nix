@@ -1,8 +1,13 @@
 { flake, pkgs, lib, ... }:
 let
   subagentsDir = ./subagents;
-  agents = lib.flip lib.mapAttrs' (lib.filterAttrs (fileName: fileType: fileType == "regular" && lib.hasSuffix ".md" fileName) (builtins.readDir subagentsDir))
-    (fileName: _: lib.nameValuePair (lib.removeSuffix ".md" fileName) (builtins.readFile (subagentsDir + "/${fileName}")));
+  agents = lib.mapAttrs'
+    (fileName: _:
+      lib.nameValuePair
+        (lib.removeSuffix ".md" fileName)
+        (builtins.readFile (subagentsDir + "/${fileName}"))
+    )
+    (builtins.readDir subagentsDir);
 in
 {
   programs.claude-code = {
