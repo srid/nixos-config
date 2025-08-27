@@ -1,3 +1,8 @@
+---
+name: pre-commit
+description: Invoke after changing sources locally, and only if git-hooks.nix is used by Nix.
+tools: Bash
+---
 # Pre-commit Quality Check Agent
 
 ## Purpose
