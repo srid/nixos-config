@@ -3,9 +3,13 @@
   "permissions": {
     "defaultMode": "plan",
     "allow": [
+      // Nix
       "Bash(nix develop:*)",
       "Bash(nix build:*)",
-      "Bash(om ci)"
+      "Bash(om ci)",
+
+      // Read files
+      "Bash(rg:*)"
     ]
   }
 }
