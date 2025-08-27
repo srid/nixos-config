@@ -12,6 +12,8 @@ in
     self.nixosModules.default
     ./configuration.nix
     ./home-media.nix
+    ./msmtp.nix
+    ./rss2email
     (self + /modules/nixos/linux/lxd.nix)
     (self + /modules/nixos/linux/eternal-terminal.nix)
     # (self + /modules/nixos/linux/vira.nix)
