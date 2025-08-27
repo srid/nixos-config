@@ -1,5 +1,0 @@
-{
-  programs.rio = {
-    enable = true;
-  };
-}
