@@ -3,8 +3,6 @@
   programs.ssh = {
     enable = true;
 
-    addKeysToAgent = "yes";
-
     includes = [
       "~/.orbstack/ssh/config" # https://docs.orbstack.dev/machines/ssh
     ];
@@ -12,6 +10,7 @@
     # Note: More defined in juspay.nix
     matchBlocks = {
       "*" = {
+        addKeysToAgent = "yes";
         setEnv = {
           # https://ghostty.org/docs/help/terminfo#configure-ssh-to-fall-back-to-a-known-terminfo-entry
           TERM = "xterm-256color";
