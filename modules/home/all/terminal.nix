@@ -47,7 +47,6 @@ in
     fuckport
     sshuttle-via
     entr
-    git-merge-and-delete
 
     # Fonts
     cascadia-code
