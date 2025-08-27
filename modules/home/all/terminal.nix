@@ -36,7 +36,6 @@ in
     # AI
     gemini-cli
     google-cloud-sdk
-    inputs.vertex.packages.${pkgs.system}.default
 
     # Publishing
     asciinema
@@ -69,8 +68,6 @@ in
     lg = "lazygit";
     l = "ls";
     beep = "say 'beep'";
-
-    claude = "vertex-claude";
   };
 
   programs = {
