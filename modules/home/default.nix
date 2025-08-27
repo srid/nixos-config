@@ -13,6 +13,6 @@
     ./all/just.nix
     ./all/juspay.nix
 
-    ./all/_1password.nix
+    ./claude-code.nix
   ];
 }
