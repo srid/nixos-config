@@ -19,15 +19,11 @@ in
 
     # Basic settings for Claude Code
     settings = {
-      enableAllProjectMcpServers = true;
+      theme = "dark";
+      # enableAllProjectMcpServers = true;
       permissions = {
         defaultMode = "plan";
-        allow = [
-          "Bash(nix develop:*)"
-          "Bash(nix build:*)"
-          "Bash(om ci)"
-          "Bash(rg:*)"
-        ];
+        additionalDirectories = [ ];
       };
     };
 
