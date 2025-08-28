@@ -8,8 +8,21 @@ let
         (builtins.readFile (subagentsDir + "/${fileName}"))
     )
     (builtins.readDir subagentsDir);
+
+  commandsDir = ./commands;
+  commands = lib.mapAttrs'
+    (fileName: _:
+      lib.nameValuePair
+        (lib.removeSuffix ".md" fileName)
+        (builtins.readFile (commandsDir + "/${fileName}"))
+    )
+    (builtins.readDir commandsDir);
 in
 {
+  home.packages = [
+    pkgs.cat-agenix-secret # Used by hackage-publish script
+    pkgs.hackage-publish # Haskell package publishing script
+  ];
   programs.claude-code = {
     enable = true;
 
@@ -20,21 +33,13 @@ in
     # Basic settings for Claude Code
     settings = {
       theme = "dark";
-      # enableAllProjectMcpServers = true;
       permissions = {
         defaultMode = "plan";
-        additionalDirectories = [ ];
       };
     };
 
-    # Custom commands can be added here
-    commands = {
-      "om-ci" = ''
-        #!/bin/bash
-        # Run local CI (Nix)
-        om ci
-      '';
-    };
+    # Automatically discovered commands from commands/ directory
+    commands = commands;
 
     # Automatically discovered agents from subagents/ directory
     agents = agents;
