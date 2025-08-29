@@ -17,7 +17,6 @@ in
     }
     self.nixosModules.common
     inputs.agenix.nixosModules.default # Used in github-runner.nix & hedgedoc.nix
-    ./linux/self-ide.nix
     ./linux/current-location.nix
   ];
 
