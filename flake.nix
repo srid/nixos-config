@@ -29,7 +29,6 @@
       nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
-    vira.url = "github:juspay/vira";
     try.url = "github:tobi/try/04c681adc919cfc861661d01c5c42f8326aa321a";
 
     # Neovim

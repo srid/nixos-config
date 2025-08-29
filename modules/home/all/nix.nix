@@ -3,7 +3,7 @@
 {
   # Nix configuration is managed globally by nix-darwin.
   # Prevent $HOME nix.conf from disrespecting it.
-  home.file."~/.config/nix/nix.conf".text = "";
+  home.file.".config/nix/nix.conf".text = "";
 
   # Global session path for all shells
   home.sessionPath = lib.mkIf pkgs.stdenv.isDarwin [
