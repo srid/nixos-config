@@ -13,6 +13,22 @@
     vlc
   ];
 
+  users.extraUsers.jellyfin = {
+    # isSystemUser = true;
+    group = "jellyfin";
+    extraGroups = [ "video" "render" ];
+  };
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa # Ensure mesa drivers are available
+      # AMDVLK is for Vulkan, but is good practice for AMD graphics
+      amdvlk
+      # Optional: for monitoring GPU usage
+      # amd-gpu-top
+    ];
+  };
+
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
