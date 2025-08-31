@@ -18,6 +18,13 @@
     group = "jellyfin";
     extraGroups = [ "video" "render" ];
   };
+
+  # A separate user to manage the library filesystem.
+  users.users.jellyfin-manager = {
+    isNormalUser = true;
+    group = "jellyfin";
+  };
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
