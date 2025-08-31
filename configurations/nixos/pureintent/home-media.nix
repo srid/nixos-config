@@ -13,27 +13,10 @@
     vlc
   ];
 
-  users.extraUsers.jellyfin = {
-    # isSystemUser = true;
-    group = "jellyfin";
-    extraGroups = [ "video" "render" ];
-  };
-
   # A separate user to manage the library filesystem.
   users.users.jellyfin-manager = {
     isNormalUser = true;
     group = "jellyfin";
-  };
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      mesa # Ensure mesa drivers are available
-      # AMDVLK is for Vulkan, but is good practice for AMD graphics
-      amdvlk
-      # Optional: for monitoring GPU usage
-      # amd-gpu-top
-    ];
   };
 
   services.nginx = {
