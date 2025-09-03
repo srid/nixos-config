@@ -1047,17 +1047,16 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1755714246,
-        "narHash": "sha256-fpK2fEGEBdB8cdH4nsOBFhlhSz6KOv4E+68Bmdm4Hnk=",
+        "lastModified": 1756813707,
+        "narHash": "sha256-GsJgVnWwlRrB1H7M+jvbZTX2SWXQ4gHvNKw2Tzulf3c=",
         "owner": "tobi",
         "repo": "try",
-        "rev": "04c681adc919cfc861661d01c5c42f8326aa321a",
+        "rev": "5f8eb9b9ab061df874212c786ed933f064542d25",
         "type": "github"
       },
       "original": {
         "owner": "tobi",
         "repo": "try",
-        "rev": "04c681adc919cfc861661d01c5c42f8326aa321a",
         "type": "github"
       }
     },

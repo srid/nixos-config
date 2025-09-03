@@ -29,7 +29,7 @@
       nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
-    try.url = "github:tobi/try/04c681adc919cfc861661d01c5c42f8326aa321a";
+    try.url = "github:tobi/try";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
