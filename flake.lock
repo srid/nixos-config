@@ -853,22 +853,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-25-05": {
-      "locked": {
-        "lastModified": 1756999638,
-        "narHash": "sha256-R9wNXA8KT71zo/GeMdVgB3KoHj11h4eHa7woTLXMQVw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "e7b7aee12245de9127b3af86ae049cccd490d7cb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "release-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1725233747,
@@ -1473,17 +1457,16 @@
         "htmx-extensions": "htmx-extensions",
         "nixos-unified": "nixos-unified_2",
         "nixpkgs": "nixpkgs_8",
-        "nixpkgs-25-05": "nixpkgs-25-05",
         "process-compose-flake": "process-compose-flake",
         "servant-event-stream": "servant-event-stream",
         "tabler-icons-hs": "tabler-icons-hs"
       },
       "locked": {
-        "lastModified": 1757036681,
-        "narHash": "sha256-Yr6x0+/s6vu+vzZPSL1Pi7kCMQQcyPkN6Mg/KCq0tkw=",
+        "lastModified": 1757102608,
+        "narHash": "sha256-EiXoLAMobgRG4IV9ieaMLHlfGjlxDnX1/GerRZI+qdE=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "45c4d9e5369e4c7f18bb5a71f68dd22685452c91",
+        "rev": "fab59050ca92acf7175fe5ec58d38d13d22bad0a",
         "type": "github"
       },
       "original": {
