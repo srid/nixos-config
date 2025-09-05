@@ -15,6 +15,10 @@ in
     (self + /modules/nixos/shared/github-runner.nix)
   ];
 
+  home-manager.sharedModules = [
+    (self + /modules/home/all/dropbox.nix)
+  ];
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   networking.firewall.allowedTCPPorts = [
