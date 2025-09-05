@@ -24,6 +24,7 @@ in
   services.tailscale.enable = true;
   networking.firewall.allowedTCPPorts = [
     80
+    443
   ];
 
   programs.nix-ld.enable = true; # for vscode server
