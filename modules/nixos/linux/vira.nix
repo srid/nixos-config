@@ -10,14 +10,12 @@ in
 
   services.vira = {
     enable = true;
-
-    # Basic configuration
     hostname = "0.0.0.0";
     port = 5001;
-    https = false;
-    stateDirectory = "/var/lib/vira";
+    https = true;
+    stateDir = "/var/lib/vira";
+    openFirewall = true;
     package = inputs.vira.packages.${pkgs.system}.default;
   };
 
-  networking.firewall.allowedTCPPorts = [ 5001 ];
 }
