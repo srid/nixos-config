@@ -16,6 +16,13 @@ in
     https = false; # Cuz, nginx reverse proxy
     basePath = "/vira/"; # Cuz, nginx reverse proxy
     package = inputs.vira.packages.${pkgs.system}.default;
+
+    initialState = {
+      repositories = {
+        devour-flake = "https://github.com/srid/devour-flake.git";
+        mealmacro = "https://github.com/srid/mealmacro.git";
+      };
+    };
   };
 
   # Configure nginx reverse proxy for vira with SSL

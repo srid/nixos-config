@@ -23,14 +23,13 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    omnix.url = "github:juspay/omnix/ci-no-args";
     vertex.url = "github:juspay/vertex";
     vertex.inputs = {
       nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
     try.url = "github:tobi/try";
-    vira.url = "github:juspay/vira/om";
+    vira.url = "github:juspay/vira";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

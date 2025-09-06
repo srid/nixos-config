@@ -34,5 +34,5 @@ in
 packageOverlays // {
   # External overlays
   nuenv = (inputs.nuenv.overlays.nuenv self super).nuenv;
-  omnix = inputs.omnix.packages.${self.system}.default;
+  # omnix = inputs.omnix.packages.${self.system}.default;
 }
