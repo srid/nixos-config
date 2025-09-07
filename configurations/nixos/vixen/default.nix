@@ -14,6 +14,11 @@ in
     ./configuration.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    google-chrome
+    vscode
+  ];
+
   # https://nixos.wiki/wiki/Steam
   boot.kernelPackages = pkgs.linuxPackages_latest;
   programs.steam = {
