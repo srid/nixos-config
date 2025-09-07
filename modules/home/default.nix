@@ -8,9 +8,9 @@
     ./all/nix.nix
     ./all/git.nix
     ./all/direnv.nix
-    ./all/zellij.nix
+    # ./all/zellij.nix
     ./all/just.nix
-    ./all/juspay.nix
+    # ./all/juspay.nix
 
     ./claude-code
   ];
