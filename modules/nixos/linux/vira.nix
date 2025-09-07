@@ -19,27 +19,33 @@ in
 
     initialState = {
       repositories = {
-        devour-flake = "https://github.com/srid/devour-flake.git";
-        mealmacro = "https://github.com/srid/mealmacro.git";
+        nixos-config = "https://github.com/srid/nixos-config.git";
+        haskell-flake = "https://github.com/srid/haskell-flake.git";
+        vira = "https://github.com/juspay/vira.git";
       };
     };
   };
 
   # Configure nginx reverse proxy for vira with SSL
-  services.nginx.virtualHosts."pureintent" = {
-    forceSSL = true;
-    enableACME = false;
-    sslCertificate = "/var/lib/acme/pureintent/cert.pem";
-    sslCertificateKey = "/var/lib/acme/pureintent/key.pem";
-    locations."/vira/" = {
-      proxyPass = "http://127.0.0.1:5001/";
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-      '';
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    virtualHosts."pureintent" = {
+      forceSSL = true;
+      enableACME = false;
+      sslCertificate = "/var/lib/acme/pureintent/cert.pem";
+      sslCertificateKey = "/var/lib/acme/pureintent/key.pem";
+      locations."/vira/" = {
+        proxyPass = "http://127.0.0.1:5001/";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        '';
+      };
     };
   };
 
