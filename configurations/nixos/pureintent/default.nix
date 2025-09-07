@@ -10,7 +10,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    ./home-media.nix
+    # ./home-media.nix
     (self + /modules/nixos/linux/vira.nix)
     (self + /modules/nixos/linux/eternal-terminal.nix)
     (self + /modules/nixos/shared/github-runner.nix)
