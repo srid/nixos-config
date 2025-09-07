@@ -14,11 +14,8 @@
         "nixpkgs"
         "home-manager"
         "nix-darwin"
-        "nixos-unified"
         "nix-index-database"
         "nixvim"
-        "omnix"
-        "nix-doom-emacs-unstraightened"
       ];
     };
   };
