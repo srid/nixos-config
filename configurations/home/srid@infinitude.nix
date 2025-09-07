@@ -1,12 +1,8 @@
 { lib, pkgs, flake, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   imports = [
-    self.homeModules.default
-    self.homeModules.darwin-only
+    flake.inputs.self.homeModules.default
+    flake.inputs.self.homeModules.darwin-only
   ];
 
   home.username = "srid";
@@ -16,9 +12,22 @@ in
     pkgs.tart
   ];
 
-  # 1password ssh agent
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        extraOptions = {
+          # Configure SSH to use 1Password agent
+          IdentityAgent = "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+        };
+      };
+      "sensuous" = {
+        forwardAgent = true;
+      };
+      "pureintent" = {
+        forwardAgent = true;
+      };
+    };
   };
-
 }
