@@ -1147,16 +1147,16 @@
         "tabler-icons-hs": "tabler-icons-hs"
       },
       "locked": {
-        "lastModified": 1757210792,
-        "narHash": "sha256-0zYOvVuoJCJ2WxZ0j7tMfRmsfkVw/FGjdEInqTK5sek=",
+        "lastModified": 1757285089,
+        "narHash": "sha256-GpzlomG05UNij+2i1LFKNACMPUQGfFToL1QyUGi7C+o=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "a04d70b44bed44fa7d5533bdb436e685cd3f8dd3",
+        "rev": "be4acdbecd2582975d3b0f4dfc8d8e21e280ee61",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "rich-commit",
+        "ref": "pull/144/head",
         "repo": "vira",
         "type": "github"
       }
