@@ -17,6 +17,7 @@
         shell = pkgs.zsh;
       } // lib.optionalAttrs pkgs.stdenv.isLinux {
         isNormalUser = lib.mkDefault true;
+        shell = pkgs.bash;
         extraGroups = [ "networkmanager" "wheel" ];
       };
     };
