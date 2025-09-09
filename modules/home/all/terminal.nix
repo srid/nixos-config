@@ -79,7 +79,11 @@ in
     bat.enable = true;
     autojump.enable = false;
     zoxide.enable = true;
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      defaultCommand = "fd --type f";
+      enableBashIntegration = true;
+    };
     jq.enable = true;
     btop.enable = true;
     try = {
