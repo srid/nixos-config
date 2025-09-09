@@ -5,8 +5,5 @@
     envFile.source = ./env.nu;
     configFile.source = ./config.nu;
     shellAliases = config.home.shellAliases;
-    environmentVariables = {
-      EDITOR = "nvim";
-    };
   };
 }

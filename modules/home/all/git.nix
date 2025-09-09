@@ -31,7 +31,6 @@
     lfs.enable = true;
     extraConfig = {
       init.defaultBranch = "master"; # Undo breakage due to https://srid.ca/luxury-belief
-      core.editor = "nvim";
       #protocol.keybase.allow = "always";
       credential.helper = "store --file ~/.git-credentials";
       pull.rebase = "false";
