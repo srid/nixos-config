@@ -3,6 +3,7 @@
   imports = [
     ./all/tmux.nix
     # ./all/neovim
+    ./all/helix.nix
     ./all/starship.nix
     ./all/terminal.nix
     ./all/nix.nix
