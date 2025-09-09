@@ -11,4 +11,11 @@ in
   ];
 
   home.username = "srid";
+
+  services.gotty = {
+    enable = true;
+    port = 9000;
+    command = "tmux new-session -A -s gotty";
+    write = true;
+  };
 }
