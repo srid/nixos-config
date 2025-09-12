@@ -2,6 +2,7 @@
 {
   programs.tmux = {
     enable = true;
+    shell = "${pkgs.bash}/bin/bash";
     shortcut = "a";
     # aggressiveResize = true; -- Disabled to be iTerm-friendly
     baseIndex = 1;
