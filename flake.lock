@@ -979,11 +979,11 @@
         "tabler-icons-hs": "tabler-icons-hs"
       },
       "locked": {
-        "lastModified": 1758151211,
-        "narHash": "sha256-shW6UN45NXdMemXi7ZgWtiHH4gtv0fHvUlSCs6Snhtg=",
+        "lastModified": 1758153248,
+        "narHash": "sha256-3F11wpSdcWCNEcBGMAojvZuHLUC3I/NJKx370OYzyk8=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "e21250337af8da4f1cd3cf4e77ff781124248057",
+        "rev": "bc31b05c080fa143e81c190fcaf85ae69f319140",
         "type": "github"
       },
       "original": {
