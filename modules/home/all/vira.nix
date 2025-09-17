@@ -19,7 +19,10 @@ in
       repositories = {
         nixos-config = "https://github.com/srid/nixos-config.git";
         haskell-flake = "https://github.com/srid/haskell-flake.git";
+        services-flake = "https://github.com/juspay/services-flake.git";
         vira = "https://github.com/juspay/vira.git";
+        imako = "https://github.com/srid/imako.git";
+        ny = "https://github.com/nammayatri/nammayatri.git";
       };
     };
   };
