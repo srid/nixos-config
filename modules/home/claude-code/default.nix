@@ -34,7 +34,7 @@ in
     settings = {
       theme = "dark";
       permissions = {
-        defaultMode = "plan";
+        # defaultMode = "plan";
       };
     };
 
