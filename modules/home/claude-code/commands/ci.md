@@ -3,16 +3,18 @@ name: ci
 description: Run local CI using omnix
 ---
 
-This command runs local continuous integration checks using omnix. 
-
-**IMPORTANT**: `om ci` will run full CI, thus takes a lot of time. Use only when necessary.
+This command runs the Nix project using omnix.
 
 Steps:
-1. Run `om ci` to execute all CI checks locally
+1. Run `git add` to add any untracked files added by you **DO NOT COMMIT** changes.
+2. Run `pre-commit run -a` to autoformat.
+3. Run `om ci` to do a full build.
+
+If `om ci` fails, fix all issues.
 
 This will:
 - Build all flake outputs, which includes:
-    - Run tests  
+    - Run tests
     - Check formatting
     - Validate flake structure
     - Perform other CI validations
