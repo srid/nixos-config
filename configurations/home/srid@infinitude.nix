@@ -29,6 +29,9 @@
       "pureintent" = {
         forwardAgent = true;
       };
+      "sincereintent" = {
+        forwardAgent = true;
+      };
     };
   };
 }
