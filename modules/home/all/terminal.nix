@@ -63,7 +63,6 @@ in
   fonts.fontconfig.enable = true;
 
   home.shellAliases = {
-    e = "hx";
     g = "git";
     lg = "lazygit";
     l = "ls";
