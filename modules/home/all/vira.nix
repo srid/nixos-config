@@ -18,6 +18,7 @@ in
     initialState = {
       repositories = {
         nixos-config = "https://github.com/srid/nixos-config.git";
+        nixos-unified-template = "https://github.com/juspay/nixos-unified-template.git";
         haskell-flake = "https://github.com/srid/haskell-flake.git";
         services-flake = "https://github.com/juspay/services-flake.git";
         vira = "https://github.com/juspay/vira.git";
