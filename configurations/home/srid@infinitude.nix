@@ -3,7 +3,6 @@
   imports = [
     flake.inputs.self.homeModules.default
     flake.inputs.self.homeModules.darwin-only
-    (flake.inputs.self + /modules/home/all/vira.nix)
   ];
 
   home.username = "srid";
