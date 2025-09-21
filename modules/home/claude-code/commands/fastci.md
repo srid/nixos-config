@@ -6,12 +6,12 @@ description: Run fast CI for Haskell projects
 This command runs a fast CI pipeline for Haskell projects using Cabal.
 
 Steps:
-1. Run `git add` to add any untracked files added by you **DO NOT COMMIT** changes.
-2. Fix all GHC warnings
-3. Fix all hlint warnings
-4. Run `pre-commit run -a` to autoformat.
-5. Ensure it builds: `cabal build all`
-6. Ensure tests pass: `cabal test all`
+1. Run `git add <FILE>` (*NOT* `git add .`) to add any untracked files added by you **DO NOT COMMIT** changes.
+2. Fix all hlint warnings
+3. Fix all GHC warnings
+4. Ensure it builds: `cabal build all`
+5. Ensure tests pass: `cabal test all`
+6. Run `pre-commit run -a` to autoformat.
 
 This will:
 - Clean up code by fixing compiler and linter warnings
