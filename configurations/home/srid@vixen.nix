@@ -16,6 +16,7 @@ in
     "${homeMod}/all/starship.nix"
     "${homeMod}/all/bash.nix"
     "${homeMod}/all/terminal.nix"
+    "${homeMod}/all/1password.nix"
   ];
 
   # Bash custom configuration
@@ -31,25 +32,6 @@ in
   home.sessionVariables = {
     CLAUDE_CODE_USE_VERTEX = "1";
     ANTHROPIC_VERTEX_PROJECT_ID = "dev-ai-delta";
-  };
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    matchBlocks = {
-      "*" = {
-        extraOptions = {
-          # Configure SSH to use 1Password agent
-          IdentityAgent = "~/.1password/agent.sock";
-        };
-      };
-      "pureintent" = {
-        forwardAgent = true;
-      };
-      "sincereintent" = {
-        forwardAgent = true;
-      };
-    };
   };
 
   home.username = "srid";
