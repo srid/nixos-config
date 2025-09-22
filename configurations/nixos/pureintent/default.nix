@@ -19,6 +19,8 @@ in
     (self + /modules/home/all/vira.nix)
   ];
 
+  nix.settings.sandbox = "relaxed";
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   networking.firewall.allowedTCPPorts = [
