@@ -16,6 +16,7 @@ in
 
   home-manager.sharedModules = [
     (self + /modules/home/all/dropbox.nix)
+    (self + /modules/home/all/vira.nix)
   ];
 
   services.openssh.enable = true;
