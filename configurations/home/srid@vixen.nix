@@ -27,6 +27,25 @@ in
     # '';
   };
 
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        extraOptions = {
+          # Configure SSH to use 1Password agent
+          IdentityAgent = "~/.1password/agent.sock";
+        };
+      };
+      "pureintent" = {
+        forwardAgent = true;
+      };
+      "sincereintent" = {
+        forwardAgent = true;
+      };
+    };
+  };
+
   home.username = "srid";
   home.stateVersion = "25.05";
 }
