@@ -28,12 +28,6 @@ in
     # '';
   };
 
-  # For Zed's Claude Code to work with Anthropic Vertex
-  home.sessionVariables = {
-    CLAUDE_CODE_USE_VERTEX = "1";
-    ANTHROPIC_VERTEX_PROJECT_ID = "dev-ai-delta";
-  };
-
   home.username = "srid";
   home.stateVersion = "25.05";
 }
