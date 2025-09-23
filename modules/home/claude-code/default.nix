@@ -22,6 +22,8 @@ in
   home.packages = [
     pkgs.cat-agenix-secret # Used by hackage-publish script
     pkgs.hackage-publish # Haskell package publishing script
+
+    pkgs.nodejs
   ];
   programs.claude-code = {
     enable = true;
@@ -49,6 +51,10 @@ in
       "nixos-mcp" = {
         command = "uvx";
         args = [ "mcp-nixos" ];
+      };
+      "chrome-devtools" = {
+        command = "npx";
+        args = [ "chrome-devtools-mcp@latest" ];
       };
     };
   };
