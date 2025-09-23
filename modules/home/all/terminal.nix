@@ -11,6 +11,7 @@ in
   ];
   home.packages = with pkgs; [
     # Unixy tools
+    neovim
     ripgrep
     fd
     sd
