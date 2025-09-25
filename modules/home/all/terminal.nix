@@ -48,6 +48,7 @@ in
     fuckport
     sshuttle-via
     entr
+    hackage-publish
 
     # Fonts
     cascadia-code
