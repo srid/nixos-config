@@ -1,5 +1,6 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
+  home.packages = [ pkgs._1password-cli ];
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
