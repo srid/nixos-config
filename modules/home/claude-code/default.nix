@@ -20,9 +20,6 @@ let
 in
 {
   home.packages = [
-    pkgs.cat-agenix-secret # Used by hackage-publish script
-    pkgs.hackage-publish # Haskell package publishing script
-
     pkgs.nodejs
   ];
   programs.claude-code = {
