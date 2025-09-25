@@ -1,3 +1,5 @@
+# Limitations:
+# - tmux session must be launched first outside of systemd.
 { config, lib, pkgs, ... }:
 
 with lib;

@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ config, flake, pkgs, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -17,6 +17,14 @@ in
   home-manager.sharedModules = [
     (self + /modules/home/all/dropbox.nix)
     (self + /modules/home/all/vira.nix)
+    {
+      services.gotty = {
+        enable = true;
+        port = 9999;
+        command = "${lib.getExe config.programs.tmux.package} new-session -A -s gotty";
+        write = true;
+      };
+    }
   ];
 
   nix.settings.sandbox = "relaxed";
