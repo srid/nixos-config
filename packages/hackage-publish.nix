@@ -1,4 +1,7 @@
 # Publish current package to Hackage.
+# TODO:
+# - [ ] haddock
+# - [ ] sanity checks: changelog, license, home-page
 { writers, haskellPackages, coreutils, cabal-install, _1password-cli, ... }:
 
 writers.writeHaskellBin "hackage-publish"
