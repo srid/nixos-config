@@ -265,6 +265,23 @@
         "type": "github"
       }
     },
+    "gh-cli-pr-11544": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1758638545,
+        "narHash": "sha256-asr9adYS9WkIeVDd6JUJJ1TAI3kjyaBU72/lFfbgIn4=",
+        "owner": "cli",
+        "repo": "cli",
+        "rev": "e31136a6770b86857582e214edf25403e83c28a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cli",
+        "ref": "pull/11544/head",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "flake": false,
       "locked": {
@@ -1000,6 +1017,7 @@
         "co-log-effectful": "co-log-effectful",
         "flake-parts": "flake-parts_4",
         "fourmolu-nix": "fourmolu-nix",
+        "gh-cli-pr-11544": "gh-cli-pr-11544",
         "git-hooks": "git-hooks_2",
         "haskell-flake": "haskell-flake",
         "hint-nix": "hint-nix",
@@ -1014,11 +1032,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1758575682,
-        "narHash": "sha256-N/PoWmXYaE6I1+65puAhU1kI2xyK17qmXvmZEAHDrjs=",
+        "lastModified": 1758809900,
+        "narHash": "sha256-xbJkF/fa49xrdzmHLE4puAF3F7j7jF8Xgs8NWsdlPIE=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "a27941acccbed126c070564cb06e4f0b2069fecc",
+        "rev": "06d4f15c4697e49344b38d5a3b2878b4cbfd5b88",
         "type": "github"
       },
       "original": {
