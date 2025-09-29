@@ -5,7 +5,10 @@ description: Commit current changes
 
 This command commits the current changes to git.
 
-**Usage**: `/c`
+**Usage**: `/c [summary]`
+
+**Parameters**:
+- `summary` (optional): A brief description of the changes being committed. This will be used alongside the git diff analysis to generate a more accurate commit message.
 
 **What it does**:
 1. Runs a single `git add` command with all modified/new files as arguments (never on directories or '.')
@@ -30,6 +33,7 @@ This command commits the current changes to git.
 
 **Commit Message Generation**:
 - Analyze the git diff to understand what changed
+- If a user summary is provided, use it as context to better understand the intent behind the changes
 - Create a concise, descriptive commit message that explains the purpose of the changes
 - Focus on the "what" and "why" rather than generic descriptions
 - Prefix the commit message with component (and subcomponent if it exists, separated by /), e.g., `claude-code/command/c: Include component path in commit message`
@@ -44,9 +48,13 @@ This command commits the current changes to git.
 - Must be in a git repository
 - Must have changes to commit
 
-**Example**:
+**Examples**:
 ```
 /c
 ```
+This will stage individual files and commit all current changes with an auto-generated commit message.
 
-This will stage individual files and commit all current changes.
+```
+/c "Fix authentication bug"
+```
+This will commit changes with a message based on both the git diff analysis and the provided summary about fixing an authentication bug.
