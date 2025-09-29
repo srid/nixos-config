@@ -32,11 +32,13 @@ This command commits the current changes to git.
 - Analyze the git diff to understand what changed
 - Create a concise, descriptive commit message that explains the purpose of the changes
 - Focus on the "what" and "why" rather than generic descriptions
+- Prefix the commit message with component (and subcomponent if it exists, separated by /), e.g., `claude-code/command/c: Include component path in commit message`
 - Examples of good vs bad messages:
-  - Good: "Add tmux configuration with custom key bindings"
+  - Good: "tmux: Add configuration with custom key bindings"
   - Bad: "Update home configuration"
-  - Good: "Fix broken SSH agent forwarding in development environment"
+  - Good: "ssh: Fix broken agent forwarding in development environment"
   - Bad: "Update configuration files"
+  - Good: "claude-code/command/c: Add commit message generation guidelines"
 
 **Prerequisites**:
 - Must be in a git repository
