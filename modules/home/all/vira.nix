@@ -21,6 +21,7 @@ in
         nixos-unified-template = "https://github.com/juspay/nixos-unified-template.git";
         nixos-unified = "https://github.com/srid/nixos-unified.git";
         haskell-flake = "https://github.com/srid/haskell-flake.git";
+        rust-flake = "https://github.com/juspay/rust-flake.git";
         services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
         vira = "https://github.com/juspay/vira.git";
