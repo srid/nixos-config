@@ -35,6 +35,8 @@ in
       permissions = {
         # defaultMode = "plan";
       };
+      # Disable Claude from adding itself as co-author to commits
+      includeCoAuthoredBy = false;
     };
 
     # Automatically discovered commands from commands/ directory
