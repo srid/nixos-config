@@ -23,9 +23,20 @@ This command commits the current changes to git.
 **Workflow**:
 1. Check git status to identify modified and new files
 2. Add all files in a single command using `git add <file1> <file2> <file3>...`
-3. Prompt for commit message or use a descriptive default
-4. Run `git commit` with the message
-5. Confirm successful commit
+3. Analyze git diff to understand the changes made
+4. Generate a meaningful commit message based on the actual changes
+5. Run `git commit` with the generated message
+6. Confirm successful commit
+
+**Commit Message Generation**:
+- Analyze the git diff to understand what changed
+- Create a concise, descriptive commit message that explains the purpose of the changes
+- Focus on the "what" and "why" rather than generic descriptions
+- Examples of good vs bad messages:
+  - Good: "Add tmux configuration with custom key bindings"
+  - Bad: "Update home configuration"
+  - Good: "Fix broken SSH agent forwarding in development environment"
+  - Bad: "Update configuration files"
 
 **Prerequisites**:
 - Must be in a git repository
