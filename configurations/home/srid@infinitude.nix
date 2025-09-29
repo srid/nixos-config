@@ -12,6 +12,7 @@
   home.sessionVariables = {
     CLAUDE_CODE_USE_VERTEX = "1";
     ANTHROPIC_VERTEX_PROJECT_ID = "dev-ai-delta";
+    ANTHROPIC_MODEL = "claude-sonnet-4"; # 4.5 not yet available
   };
 
   home.packages = [
