@@ -693,6 +693,22 @@
     },
     "nixpkgs_6": {
       "locked": {
+        "lastModified": 1759226052,
+        "narHash": "sha256-ddDtY8iOLBMQ0AwH9wxuboORYV4Z1B3dC5FWIHfqjBA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "17aa85c27e8a700de4f3645e0afce383ceabcdf2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "17aa85c",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
         "lastModified": 1756696532,
         "narHash": "sha256-6FWagzm0b7I/IGigOv9pr6LL7NQ86mextfE8g8Q6HBg=",
         "owner": "nixos",
@@ -994,9 +1010,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1759257691,
@@ -1025,7 +1039,7 @@
         "htmx": "htmx",
         "htmx-extensions": "htmx-extensions",
         "nixos-unified": "nixos-unified_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "process-compose-flake": "process-compose-flake",
         "record-hasfield": "record-hasfield",
         "servant-event-stream": "servant-event-stream",

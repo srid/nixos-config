@@ -28,7 +28,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     vertex.url = "github:juspay/vertex/claude2";
     vertex.inputs = {
-      nixpkgs.follows = "nixpkgs";
+      # nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
     };
     try.url = "github:tobi/try";
