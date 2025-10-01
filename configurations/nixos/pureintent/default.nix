@@ -12,6 +12,7 @@ in
     ./configuration.nix
     (self + /modules/nixos/linux/eternal-terminal.nix)
     (self + /modules/nixos/shared/github-runner.nix)
+    inputs.nix-serve-cloudflared.nixosModules.default
   ];
 
   home-manager.sharedModules = [
@@ -26,6 +27,28 @@ in
       };
     }
   ];
+
+  # Cache key: cache.srid.ca:EGydqsWFaTZeW6vsXnOHclTXrmJ58gq/bkVYhRpuzQ8=
+  age.secrets."nix-serve-cloudflared/cache-key.pem" = {
+    file = self + /secrets/nix-serve-cloudflared/cache-key.pem.age;
+    mode = "0400";
+  };
+
+  age.secrets."nix-serve-cloudflared/cloudflared-credentials.json" = {
+    file = self + /secrets/nix-serve-cloudflared/cloudflared-credentials.json.age;
+    mode = "0400";
+  };
+
+  services.nix-serve-cloudflared = {
+    enable = true;
+    secretKeyFile = config.age.secrets."nix-serve-cloudflared/cache-key.pem".path;
+    cloudflare = {
+      tunnelId = "55569b77-5482-47c7-bf25-53d93b64d0c8";
+      credentialsFile = config.age.secrets."nix-serve-cloudflared/cloudflared-credentials.json".path;
+      domain = "cache.srid.ca";
+    };
+  };
+
 
   nix.settings.sandbox = "relaxed";
 

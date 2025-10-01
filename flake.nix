@@ -1,6 +1,13 @@
 {
   description = "Srid's NixOS / nix-darwin configuration";
 
+  nixConfig = {
+    substituters = [ "https://cache.srid.ca" ];
+    trusted-public-keys = [
+      "cache.srid.ca:EGydqsWFaTZeW6vsXnOHclTXrmJ58gq/bkVYhRpuzQ8="
+    ];
+  };
+
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -33,6 +40,7 @@
     };
     try.url = "github:tobi/try";
     vira.url = "github:juspay/vira/shared-clone";
+    nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared/init";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
