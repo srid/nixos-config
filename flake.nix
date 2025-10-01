@@ -40,7 +40,7 @@
     };
     try.url = "github:tobi/try";
     vira.url = "github:juspay/vira/shared-clone";
-    nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared/init";
+    nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

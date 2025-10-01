@@ -527,16 +527,15 @@
     },
     "nix-serve-cloudflared": {
       "locked": {
-        "lastModified": 1759335502,
-        "narHash": "sha256-Dp15B4ou67oV+UiadNdJ5FIC4DBussh18uj0CWoMnd4=",
+        "lastModified": 1759348821,
+        "narHash": "sha256-rpxRWlwx80advIOCo6I2cksQETmkIGhoCyC4hbpE7oc=",
         "owner": "srid",
         "repo": "nix-serve-cloudflared",
-        "rev": "835228fbfeea670691bb738c911bdf24a7d304ea",
+        "rev": "b7c127d315c513e3d05160b834dc2f113e5cf5cd",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "init",
         "repo": "nix-serve-cloudflared",
         "type": "github"
       }
