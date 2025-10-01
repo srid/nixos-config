@@ -525,6 +525,22 @@
         "type": "github"
       }
     },
+    "nix-serve-cloudflared": {
+      "locked": {
+        "lastModified": 1759335502,
+        "narHash": "sha256-Dp15B4ou67oV+UiadNdJ5FIC4DBussh18uj0CWoMnd4=",
+        "owner": "srid",
+        "repo": "nix-serve-cloudflared",
+        "rev": "835228fbfeea670691bb738c911bdf24a7d304ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "ref": "init",
+        "repo": "nix-serve-cloudflared",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1743167577,
@@ -831,6 +847,7 @@
         "nix-darwin": "nix-darwin",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
         "nix-index-database": "nix-index-database",
+        "nix-serve-cloudflared": "nix-serve-cloudflared",
         "nixos-hardware": "nixos-hardware",
         "nixos-unified": "nixos-unified",
         "nixos-vscode-server": "nixos-vscode-server",
