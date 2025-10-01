@@ -1,6 +1,13 @@
 {
   description = "Srid's NixOS / nix-darwin configuration";
 
+  nixConfig = {
+    substituters = [ "https://cache.srid.ca" ];
+    trusted-public-keys = [
+      "cache.srid.ca:EGydqsWFaTZeW6vsXnOHclTXrmJ58gq/bkVYhRpuzQ8="
+    ];
+  };
+
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 

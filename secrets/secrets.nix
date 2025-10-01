@@ -14,4 +14,6 @@ in
   "pureintent-basic-auth.age".publicKeys = users ++ systems;
   "gmail-app-password.age".publicKeys = users ++ systems;
   "hackage-password.age".publicKeys = users ++ systems;
+  "nix-serve-ng-cf/cache-key.pem.age".publicKeys = users ++ systems;
+  "nix-serve-ng-cf/cloudflared-nix-cache.json.age".publicKeys = users ++ systems;
 }

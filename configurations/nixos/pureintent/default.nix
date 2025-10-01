@@ -12,6 +12,7 @@ in
     ./configuration.nix
     (self + /modules/nixos/linux/eternal-terminal.nix)
     (self + /modules/nixos/shared/github-runner.nix)
+    (self + /modules/nixos/linux/nix-serve-ng)
   ];
 
   home-manager.sharedModules = [
@@ -26,6 +27,18 @@ in
       };
     }
   ];
+
+  # Cache key: cache.srid.ca:EGydqsWFaTZeW6vsXnOHclTXrmJ58gq/bkVYhRpuzQ8=
+  services.nix-serve-ng-cf = {
+    enable = true;
+    secretKeyPath = "nix-serve-ng-cf/cache-key.pem";
+    cloudflare = {
+      tunnelId = "55569b77-5482-47c7-bf25-53d93b64d0c8";
+      credentialsPath = "nix-serve-ng-cf/cloudflared-nix-cache.json";
+      domain = "cache.srid.ca";
+    };
+  };
+
 
   nix.settings.sandbox = "relaxed";
 
