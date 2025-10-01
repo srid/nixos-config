@@ -2,11 +2,11 @@
 
 let
   inherit (flake.inputs) self;
-  cfg = config.services.nix-serve-ng-cf;
+  cfg = config.services.nix-cache-server-cf;
 in
 {
-  options.services.nix-serve-ng-cf = {
-    enable = lib.mkEnableOption "nix-serve-ng with Cloudflare tunnel";
+  options.services.nix-cache-server-cf = {
+    enable = lib.mkEnableOption "Nix binary cache server with Cloudflare tunnel";
 
     port = lib.mkOption {
       type = lib.types.port;
@@ -16,9 +16,9 @@ in
 
     secretKeyPath = lib.mkOption {
       type = lib.types.str;
-      default = "nix-serve-cache-key.pem";
+      default = "nix-cache-server-cf/cache-key.pem";
       description = "Path relative to secrets directory for the cache signing key";
-      example = "nix-serve-cache-key.pem";
+      example = "nix-cache-server-cf/cache-key.pem";
     };
 
     cloudflare = {
@@ -29,9 +29,9 @@ in
 
       credentialsPath = lib.mkOption {
         type = lib.types.str;
-        default = "cloudflared-nix-cache.json";
+        default = "nix-cache-server-cf/cloudflared-credentials.json";
         description = "Path relative to secrets directory for Cloudflare tunnel credentials";
-        example = "cloudflared-nix-cache.json";
+        example = "nix-cache-server-cf/cloudflared-credentials.json";
       };
 
       domain = lib.mkOption {
