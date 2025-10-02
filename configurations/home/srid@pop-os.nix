@@ -16,17 +16,8 @@ in
     "${homeMod}/all/starship.nix"
     "${homeMod}/all/bash.nix"
     "${homeMod}/all/terminal.nix"
-    "${homeMod}/all/1password.nix"
+    # "${homeMod}/all/1password.nix"
   ];
-
-  # Bash custom configuration
-  programs.bash = {
-    # Not using this ^ because our starship provides direnv integration.
-    # bashrcExtra = ''
-    #   # Omarchy integration
-    #   source ~/.local/share/omarchy/default/bash/rc
-    # '';
-  };
 
   home.username = "srid";
   home.stateVersion = "25.05";
