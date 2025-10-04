@@ -1,6 +1,3 @@
-# This machine uses Omarchy
-#
-# So we consciously pick what we need
 { flake, ... }:
 let
   inherit (flake) inputs;
@@ -17,6 +14,7 @@ in
     "${homeMod}/all/bash.nix"
     "${homeMod}/all/terminal.nix"
     # "${homeMod}/all/1password.nix"
+    (self + /modules/home/all/vira.nix)
   ];
 
   home.username = "srid";
