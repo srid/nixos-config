@@ -44,7 +44,6 @@ in
     pandoc
 
     # Dev
-    gh
     fuckport
     sshuttle-via
     entr
