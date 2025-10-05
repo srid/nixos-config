@@ -1063,11 +1063,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1759624195,
-        "narHash": "sha256-FtfApvaGvLi/34iTStPk/eicVCKakSBwZ6NYNNZQRcA=",
+        "lastModified": 1759631918,
+        "narHash": "sha256-iPb5JcEKTDUcwTNLCBxKsJ2C4uV+mtQtOzNTuKwLjHE=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "24dadd0d9a16a8df1dd4060a51bc3a39338761c7",
+        "rev": "b22179afa2bb25fa8176a482589aa3687bd14a0e",
         "type": "github"
       },
       "original": {
