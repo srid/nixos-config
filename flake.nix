@@ -32,7 +32,7 @@
       flake-parts.follows = "flake-parts";
     };
     try.url = "github:tobi/try";
-    vira.url = "github:juspay/vira/pipeline-cache-url";
+    vira.url = "github:juspay/vira";
     nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared";
 
     # Neovim
