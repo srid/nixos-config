@@ -17,7 +17,6 @@ in
     "${homeMod}/all/bash.nix"
     "${homeMod}/all/terminal.nix"
     "${homeMod}/all/juspay-vertex.nix"
-    "${homeMod}/all/vira.nix"
     # "${homeMod}/all/1password.nix"
   ];
 
