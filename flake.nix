@@ -26,7 +26,7 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    vertex.url = "github:juspay/vertex/claude2";
+    vertex.url = "github:juspay/vertex";
     vertex.inputs = {
       # nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
