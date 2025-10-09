@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   subagentsDir = ./subagents;
   agents = lib.mapAttrs'
@@ -27,7 +27,7 @@ in
 
     # Wrapped Claude Code with Google Vertex AI auth
     # See https://github.com/juspay/vertex
-    package = flake.inputs.vertex.packages.${pkgs.system}.default;
+    package = pkgs.vertex-claude;
 
     # Basic settings for Claude Code
     settings = {

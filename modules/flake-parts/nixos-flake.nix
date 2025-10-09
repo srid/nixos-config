@@ -16,6 +16,7 @@
         "nix-darwin"
         "nix-index-database"
         "nixvim"
+        "nix-ai-tools"
       ];
     };
   };

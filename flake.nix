@@ -26,7 +26,7 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    vertex.url = "github:juspay/vertex";
+    vertex.url = "github:srid/vertex/allow-claude-code-override";
     vertex.inputs = {
       # nixpkgs.follows = "nixpkgs";
       flake-parts.follows = "flake-parts";
@@ -34,6 +34,8 @@
     try.url = "github:tobi/try";
     vira.url = "github:juspay/vira/auto-refresh";
     nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared";
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
+    nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
