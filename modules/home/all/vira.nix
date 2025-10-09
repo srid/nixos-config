@@ -30,6 +30,7 @@ in
         emanote = "https://github.com/srid/emanote.git";
         ny = "https://github.com/nammayatri/nammayatri.git";
         nix-serve-cloudflared = "https://github.com/srid/nix-serve-cloudflared.git";
+        vertex = "https://github.com/juspay/vertex.git";
       };
     };
   };
