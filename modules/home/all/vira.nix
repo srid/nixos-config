@@ -13,6 +13,7 @@ in
     hostname = "0.0.0.0";
     port = 5001;
     https = true;
+    autoResetState = true;
     package = inputs.vira.packages.${pkgs.system}.default;
 
     initialState = {
