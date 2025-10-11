@@ -1,10 +1,17 @@
 { inputs, ... }:
+let
+  inherit (inputs) landrun-nix;
+  inherit (landrun-nix) landrunModules;
+in
 {
-  imports = [ inputs.landrun-nix.flakeModule ];
+  imports = [ landrun-nix.flakeModule ];
 
   perSystem = { pkgs, ... }: {
     landrunApps.claude = {
       program = "${pkgs.claude-code}/bin/claude";
+      imports = [
+        landrunModules.gh
+      ];
       features = {
         tty = true;
         nix = true;
@@ -12,6 +19,7 @@
       };
       cli = {
         rw = [
+          # claude
           "$HOME/.claude"
           "$HOME/.claude.json"
           "$HOME/.config/gcloud"
