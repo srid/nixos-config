@@ -484,6 +484,21 @@
         "type": "github"
       }
     },
+    "landrun-nix": {
+      "locked": {
+        "lastModified": 1760138485,
+        "narHash": "sha256-ZzXk7ujO4bkpOzB12lgVE5BjmVkP5FWguFmLXRoXGuM=",
+        "owner": "srid",
+        "repo": "landrun-nix",
+        "rev": "827925fe6735c6048e1c6e687c0b213657e20760",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "landrun-nix",
+        "type": "github"
+      }
+    },
     "nix-ai-tools": {
       "inputs": {
         "blueprint": "blueprint",
@@ -752,22 +767,6 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1759733170,
-        "narHash": "sha256-TXnlsVb5Z8HXZ6mZoeOAIwxmvGHp1g4Dw89eLvIwKVI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "8913c168d1c56dc49a7718685968f38752171c3b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_7": {
-      "locked": {
         "lastModified": 1756696532,
         "narHash": "sha256-6FWagzm0b7I/IGigOv9pr6LL7NQ86mextfE8g8Q6HBg=",
         "owner": "nixos",
@@ -887,6 +886,7 @@
         "git-hooks": "git-hooks",
         "github-nix-ci": "github-nix-ci",
         "home-manager": "home-manager_2",
+        "landrun-nix": "landrun-nix",
         "nix-ai-tools": "nix-ai-tools",
         "nix-darwin": "nix-darwin",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
@@ -899,7 +899,6 @@
         "nixvim": "nixvim",
         "nuenv": "nuenv",
         "try": "try",
-        "vertex": "vertex",
         "vira": "vira"
       }
     },
@@ -1102,28 +1101,6 @@
         "type": "github"
       }
     },
-    "vertex": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": "nixpkgs_6"
-      },
-      "locked": {
-        "lastModified": 1760020520,
-        "narHash": "sha256-QYovp6BzpxoZsbGMevHiqFfeJdje6kkByJkaLAF/qBU=",
-        "owner": "srid",
-        "repo": "vertex",
-        "rev": "5ce4fd6fe741e00bccb79aece556228b4368c42d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "ref": "allow-claude-code-override",
-        "repo": "vertex",
-        "type": "github"
-      }
-    },
     "vira": {
       "inputs": {
         "co-log-effectful": "co-log-effectful",
@@ -1136,7 +1113,7 @@
         "htmx": "htmx",
         "htmx-extensions": "htmx-extensions",
         "nixos-unified": "nixos-unified_2",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "process-compose-flake": "process-compose-flake",
         "record-hasfield": "record-hasfield",
         "servant-event-stream": "servant-event-stream",

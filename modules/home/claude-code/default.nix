@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ flake, pkgs, lib, ... }:
 let
   subagentsDir = ./subagents;
   agents = lib.mapAttrs'
@@ -21,19 +21,17 @@ in
 {
   home.packages = [
     pkgs.nodejs
+    flake.inputs.self.packages.${pkgs.system}.claude # Sandboxed version from claude-sandboxed.nix
   ];
   programs.claude-code = {
     enable = true;
-
-    # Wrapped Claude Code with Google Vertex AI auth
-    # See https://github.com/juspay/vertex
-    package = pkgs.vertex-claude;
+    package = null; # See above
 
     # Basic settings for Claude Code
     settings = {
       theme = "dark";
       permissions = {
-        # defaultMode = "plan";
+        defaultMode = "bypassPermissions";
       };
       # Disable Claude from adding itself as co-author to commits
       includeCoAuthoredBy = false;
@@ -46,7 +44,9 @@ in
     agents = agents;
 
     # MCP servers configuration
-    mcpServers = {
+    # Disabled, because package is null
+    /*
+      mcpServers = {
       "nixos-mcp" = {
         command = "uvx";
         args = [ "mcp-nixos" ];
@@ -55,6 +55,7 @@ in
         command = "npx";
         args = [ "chrome-devtools-mcp@latest" ];
       };
-    };
+      };
+    */
   };
 }

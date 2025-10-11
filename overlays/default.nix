@@ -38,7 +38,4 @@ packageOverlays // {
 
   # Use claude-code from nix-ai-tools instead of nixpkgs
   claude-code = inputs.nix-ai-tools.packages.${self.system}.claude-code;
-
-  # Vertex wrapper for Claude Code (will use our overlayed claude-code above)
-  vertex-claude = (inputs.vertex.overlays.default self super).vertex-claude;
 }
