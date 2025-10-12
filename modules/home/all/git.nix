@@ -13,6 +13,7 @@
         light = false;
         side-by-side = true;
         line-numbers = true;
+        pager = "${pkgs.less}/bin/less --mouse";
       };
     };
     userName = flake.config.me.fullname;
