@@ -13,7 +13,5 @@
     ./all/just.nix
     # ./all/juspay.nix
     ./all/gotty.nix
-
-    ./claude-code
   ];
 }
