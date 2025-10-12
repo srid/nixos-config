@@ -1121,16 +1121,16 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1760058054,
-        "narHash": "sha256-s03m44d0KcRL2zsGV1YLxI7DjUoB6EweLr2lEc45gw4=",
+        "lastModified": 1760238332,
+        "narHash": "sha256-uFc6lvWA6MU9lXh9qXlVnBaiHTteFmOINqSdHGx6Sgs=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "320bfa58e09c8d37337862501cde0cdf91afc6d6",
+        "rev": "35f278ede3bfebe34ed978f4f7fd8c3a42672d9c",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "auto-refresh",
+        "ref": "ar",
         "repo": "vira",
         "type": "github"
       }
