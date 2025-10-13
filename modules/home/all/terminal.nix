@@ -45,6 +45,7 @@ in
 
     # Dev
     fuckport
+    git-changes
     sshuttle-via
     entr
     hackage-publish
