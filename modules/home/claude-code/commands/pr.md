@@ -1,0 +1,65 @@
+# PR Command
+
+Create and open a draft pull request on GitHub for the current branch.
+
+## Workflow
+
+1. **Gather Information**
+   - Get the current branch name using `git branch --show-current`
+   - Get the default branch (usually `main` or `master`) using `git remote show origin | grep 'HEAD branch'`
+   - Analyze recent commits on this branch (not in default branch) to understand changes
+   - Review changed files to understand the scope of changes
+
+2. **Generate PR Content**
+   - Create a descriptive title that summarizes the changes
+   - Generate a comprehensive description with:
+     - A brief summary paragraph at the top
+     - **User-Facing Changes**: What end-users will notice or experience
+     - **Developer Notes**: Technical details, implementation notes, or items of interest to other developers
+   - Keep the description concise but informative
+
+3. **Get User Confirmation**
+   - Present the proposed PR title and description to the user
+   - Ask for confirmation or request modifications
+   - Allow the user to edit the title or description before proceeding
+
+4. **Create Draft PR**
+   - Once confirmed, use the `gh` CLI to create a draft PR:
+     ```bash
+     gh pr create --draft --title "TITLE" --body "DESCRIPTION"
+     ```
+   - Report the PR URL to the user
+
+## Requirements
+
+- The `gh` CLI must be installed and authenticated (if not installed, use `nix run nixpkgs#gh` to run it)
+- The repository must have a remote configured on GitHub
+- The current branch must have commits that aren't in the default branch
+
+## Example Output Format
+
+```
+PR Title: Add new authentication system
+
+PR Description:
+This PR introduces a modern OAuth-based authentication system alongside improved password management, enhancing both security and user experience.
+
+## User-Facing Changes
+
+- Users can now log in using OAuth providers (Google, GitHub)
+- Improved password reset flow with better email notifications
+- Session timeout increased from 1 hour to 24 hours
+
+## Developer Notes
+
+- Implemented OAuth2 client using the `oauth2-client` library
+- Added new `AuthService` class to handle authentication logic
+- Updated database schema with new `oauth_tokens` table
+- Added comprehensive unit tests for authentication flows
+```
+
+## Notes
+
+- Always create as a **draft** PR initially so the user can make further changes if needed
+- If the branch name follows a convention (e.g., `feature/`, `fix/`), incorporate that context into the title
+- If there are uncommitted changes, warn the user before proceeding
