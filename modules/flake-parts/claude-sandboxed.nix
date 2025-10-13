@@ -11,6 +11,7 @@ in
       program = "${pkgs.claude-code}/bin/claude";
       imports = [
         landrunModules.gh
+        landrunModules.git
       ];
       features = {
         tty = true;
