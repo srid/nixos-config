@@ -20,6 +20,7 @@ let
 in
 {
   home.packages = [
+    pkgs.tree
     pkgs.python313Packages.markitdown
     flake.inputs.self.packages.${pkgs.system}.claude # Sandboxed version from claude-sandboxed.nix
   ];
