@@ -486,11 +486,11 @@
     },
     "landrun-nix": {
       "locked": {
-        "lastModified": 1760390904,
-        "narHash": "sha256-quLBS6P1/cerN6VqCfDE8xuuBpGmaHLKB+Ul0ZCX5oY=",
+        "lastModified": 1760401824,
+        "narHash": "sha256-9z10KGbDWO7fP9enu7i2BrvCkOW0gZKO4eZeXk9HoEs=",
         "owner": "srid",
         "repo": "landrun-nix",
-        "rev": "f6685736eba963ca6f0711a52cc39b076e286f21",
+        "rev": "879d3d219588404634e3444d95d442ef6da1d9a8",
         "type": "github"
       },
       "original": {

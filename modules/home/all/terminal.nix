@@ -37,7 +37,6 @@ in
     # AI
     gemini-cli
     google-cloud-sdk
-    html2text
 
     # Publishing
     asciinema

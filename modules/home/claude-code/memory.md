@@ -8,5 +8,5 @@
 # Tools
 
 - **gh**: If `gh` is unavailable, get it from nixpkgs, viz.: `nix run nixpkgs#gh`.
-- **html2text**: To convert web URLs to plain text, run `curl -k URL | html2text`
+- **markitdown**: To convert web URLs to plain text, run `curl -k URL | markitdown`
 
