@@ -12,6 +12,7 @@ in
       imports = [
         landrunModules.gh
         landrunModules.git
+        landrunModules.haskell
         landrunModules.markitdown
       ];
       features = {
