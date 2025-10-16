@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, config, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -6,6 +6,10 @@ in
 {
   imports = [
     inputs.vira.homeManagerModules.vira
+  ];
+
+  home.packages = [
+    config.services.vira.package # For CLI
   ];
 
   services.vira = {
