@@ -18,6 +18,10 @@ in
     "${homeMod}/all/terminal.nix"
     "${homeMod}/all/juspay-vertex.nix"
     # "${homeMod}/all/1password.nix"
+
+    # Remote builders
+    "${homeMod}/all/buildMachines"
+    "${homeMod}/all/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";

@@ -17,6 +17,10 @@ in
     "${homeMod}/all/juspay-vertex.nix"
     # "${homeMod}/all/1password.nix"
     (self + /modules/home/all/vira.nix)
+
+    # Remote builders
+    "${homeMod}/all/buildMachines"
+    "${homeMod}/all/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";
@@ -28,6 +32,4 @@ in
     command = "${lib.getExe config.programs.tmux.package} new-session -A -s gotty";
     write = true;
   };
-
-
 }
