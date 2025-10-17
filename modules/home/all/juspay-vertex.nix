@@ -15,6 +15,7 @@
     VERTEX_REGION_CLAUDE_3_7_SONNET = "us-east5";
     VERTEX_REGION_CLAUDE_4_0_OPUS = "europe-west4";
     VERTEX_REGION_CLAUDE_4_0_SONNET = "us-east5";
+    VERTEX_REGION_CLAUDE_4_5_SONNET = "us-east5";
 
     # Model configuration
     ANTHROPIC_MODEL = "claude-sonnet-4-5";
