@@ -81,6 +81,22 @@
         "type": "github"
       }
     },
+    "devour-flake": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760702221,
+        "narHash": "sha256-QDM44muXQxIJnlbHKZ7kffRzy5PBF4SkUE85MkramZ8=",
+        "owner": "srid",
+        "repo": "devour-flake",
+        "rev": "a002ba9ca4b34e9ebc6e9bec4aa94b5292fece42",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "devour-flake",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -218,6 +234,24 @@
         "type": "github"
       }
     },
+    "flake-parts_5": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_3"
+      },
+      "locked": {
+        "lastModified": 1759362264,
+        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_4"
@@ -284,23 +318,6 @@
       "original": {
         "owner": "jedimahdi",
         "repo": "fourmolu-nix",
-        "type": "github"
-      }
-    },
-    "gh-cli-v2-81-0": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759227537,
-        "narHash": "sha256-uhmVIDTkMRFS1MZitjDjylrYWd/q9aGAZNiTjzmqwPw=",
-        "owner": "cli",
-        "repo": "cli",
-        "rev": "52ba8366057b94a77d2e4b2fc99de56e100e45bf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cli",
-        "ref": "v2.81.0",
-        "repo": "cli",
         "type": "github"
       }
     },
@@ -599,6 +616,25 @@
         "type": "github"
       }
     },
+    "nix-systems": {
+      "inputs": {
+        "flake-parts": "flake-parts_5",
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1760726800,
+        "narHash": "sha256-Phg7tjC737e+yepmQHGCApYoCc7yMjG3TsLVxwSYmH8=",
+        "owner": "srid",
+        "repo": "nix-systems",
+        "rev": "f17e51f1eece7001116cfd1193213aad0abfe471",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "nix-systems",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1743167577,
@@ -706,6 +742,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib_3": {
+      "locked": {
+        "lastModified": 1754788789,
+        "narHash": "sha256-x2rJ+Ovzq0sCMpgfgGaaqgBSwY+LST+WbZ6TytnT9Rk=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "a73b9c743612e4244d865a2fdee11865283c04e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1682526928,
@@ -766,6 +817,22 @@
       }
     },
     "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1760524057,
+        "narHash": "sha256-EVAqOteLBFmd7pKkb0+FIUyzTF61VKi7YmvP1tw4nEw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "544961dfcce86422ba200ed9a0b00dd4b1486ec5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1760349414,
         "narHash": "sha256-W4Ri1ZwYuNcBzqQQa7NnWfrv0wHMo7rduTWjIeU9dZk=",
@@ -1104,16 +1171,17 @@
     "vira": {
       "inputs": {
         "co-log-effectful": "co-log-effectful",
+        "devour-flake": "devour-flake",
         "flake-parts": "flake-parts_4",
         "fourmolu-nix": "fourmolu-nix",
-        "gh-cli-v2-81-0": "gh-cli-v2-81-0",
         "git-hooks": "git-hooks_2",
         "haskell-flake": "haskell-flake",
         "hint-nix": "hint-nix",
         "htmx": "htmx",
         "htmx-extensions": "htmx-extensions",
+        "nix-systems": "nix-systems",
         "nixos-unified": "nixos-unified_2",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "process-compose-flake": "process-compose-flake",
         "record-hasfield": "record-hasfield",
         "servant-event-stream": "servant-event-stream",
@@ -1121,11 +1189,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1760637746,
-        "narHash": "sha256-ygtXMYQV+4PiTUvKv+cFmdI0iFPoSiVv95yrJ5b8IuA=",
+        "lastModified": 1760732931,
+        "narHash": "sha256-4ztCZ+muJSCRJv6ErmfZh3ZbjvPOl//C76TN1hUilOE=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "87135b3aa596b06cb53a9e24eb5c053e7322c1f4",
+        "rev": "6a5141f2648c4b9c88ff6b3b4f58a60758d9b654",
         "type": "github"
       },
       "original": {
