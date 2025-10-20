@@ -3,10 +3,11 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  homeMod = self + /modules/home;
 in
 {
-  nixos-unified.sshTarget = "srid@pureintent";
-  # nixos-unified.sshTarget = "srid@192.168.2.244";
+  # nixos-unified.sshTarget = "srid@pureintent";
+  nixos-unified.sshTarget = "srid@192.168.2.244";
 
   imports = [
     self.nixosModules.default
@@ -14,8 +15,8 @@ in
   ];
 
   home-manager.sharedModules = [
+    "${homeMod}/all/vira.nix"
     # (self + /modules/home/all/dropbox.nix)
-    # (self + /modules/home/all/vira.nix)
   ];
 
   nix.settings.sandbox = "relaxed";
@@ -25,14 +26,10 @@ in
   networking.firewall.allowedTCPPorts = [
     80
     443
+    5001
   ];
 
   programs.nix-ld.enable = true; # for vscode server
-
-  # GNOME Desktop Environment
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175

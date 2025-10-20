@@ -30,7 +30,6 @@ in
         rust-flake = "https://github.com/juspay/rust-flake.git";
         services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
-        mission-control = "https://github.com/Platonic-Systems/mission-control.git";
         vira = "https://github.com/juspay/vira.git";
         imako = "https://github.com/srid/imako.git";
         emanote = "https://github.com/srid/emanote.git";
