@@ -28,7 +28,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     try.url = "github:tobi/try";
     vira.url = "github:juspay/vira";
-    nix-serve-cloudflared.url = "github:srid/nix-serve-cloudflared";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
     nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
     landrun-nix.url = "github:srid/landrun-nix";

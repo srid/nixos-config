@@ -16,20 +16,20 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/5b8b55a8-6549-4eca-b770-f39d38be0c6c";
+      device = "/dev/disk/by-uuid/7fc31294-d580-42c2-b23e-ddb46e4a2b39";
       fsType = "ext4";
     };
 
+  boot.initrd.luks.devices."luks-dc6e2287-6e40-48c8-ba65-7f33194ae034".device = "/dev/disk/by-uuid/dc6e2287-6e40-48c8-ba65-7f33194ae034";
+
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/00EC-B10E";
+      device = "/dev/disk/by-uuid/3045-7CCA";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [
-    { device = "/var/lib/swapfile"; size = 32 * 1024; }
-  ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -37,7 +37,6 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp6s0u1u3c2.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
