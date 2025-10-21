@@ -6,8 +6,8 @@ let
   homeMod = self + /modules/home;
 in
 {
-  # nixos-unified.sshTarget = "srid@pureintent";
-  nixos-unified.sshTarget = "srid@192.168.2.244";
+  nixos-unified.sshTarget = "srid@pureintent";
+  # nixos-unified.sshTarget = "srid@192.168.2.244";
 
   imports = [
     self.nixosModules.default
