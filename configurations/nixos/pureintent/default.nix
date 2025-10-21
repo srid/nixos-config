@@ -14,6 +14,7 @@ in
     ./configuration.nix
   ];
 
+  users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/all/vira.nix"
     # (self + /modules/home/all/dropbox.nix)
