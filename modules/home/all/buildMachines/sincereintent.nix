@@ -15,11 +15,11 @@
       mandatoryFeatures = [ ];
 
       # We need this!
-      sshKey = "/home/srid/.ssh/id_ed25519";
+      sshKey = "/home/srid/.ssh/nix-remote-builder";
 
       # This too!
       # Run on the remote machine:
-      # nix run nixpkgs#base64 -w0 /etc/ssh/ssh_host_ed25519_key.pub
+      # , base64 -w0 /etc/ssh/ssh_host_ed25519_key.pub
       publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU82S2Q2OG5LdFlqNVhTaWgveVlteE96M2o0WUdMUGQxUTE1cTF0dUdsZWUgCg==";
     }
   ];

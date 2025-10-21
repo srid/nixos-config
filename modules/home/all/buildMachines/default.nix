@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   nix = {
-    package = pkgs.nix;
+    package = lib.mkDefault pkgs.nix;
     enable = true;
     distributedBuilds = true;
   };

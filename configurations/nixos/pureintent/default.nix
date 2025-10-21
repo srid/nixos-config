@@ -17,6 +17,10 @@ in
   home-manager.sharedModules = [
     "${homeMod}/all/vira.nix"
     # (self + /modules/home/all/dropbox.nix)
+
+    # Remote builders
+    "${homeMod}/all/buildMachines"
+    "${homeMod}/all/buildMachines/sincereintent.nix"
   ];
 
   nix.settings.sandbox = "relaxed";
