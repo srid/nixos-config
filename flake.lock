@@ -84,11 +84,11 @@
     "devour-flake": {
       "flake": false,
       "locked": {
-        "lastModified": 1760702221,
-        "narHash": "sha256-QDM44muXQxIJnlbHKZ7kffRzy5PBF4SkUE85MkramZ8=",
+        "lastModified": 1761086007,
+        "narHash": "sha256-q6dI4zprlg1X+VmuvE6H+wytqjeqGHdWMM4iS5W4X5U=",
         "owner": "srid",
         "repo": "devour-flake",
-        "rev": "a002ba9ca4b34e9ebc6e9bec4aa94b5292fece42",
+        "rev": "42ea9a001306bb52e580d8c1bb70011feec1a6e3",
         "type": "github"
       },
       "original": {
@@ -1120,11 +1120,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1761073003,
-        "narHash": "sha256-QfN17sJxdEhU1j/9ZelcA8e+RVzYF9F+jTdB011XRKU=",
+        "lastModified": 1761086171,
+        "narHash": "sha256-6AJZq72q+9izbTC6kTFnVzXN3itKDEcW/Qmj5e1Nm3g=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "3c46a5961c28c5147c29094cda8bf2da04160e47",
+        "rev": "7ad70e77cc0c7463c024ebab11bf84e39fd54c2a",
         "type": "github"
       },
       "original": {

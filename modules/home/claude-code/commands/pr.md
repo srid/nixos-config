@@ -7,7 +7,7 @@ Create and open a draft pull request on GitHub for the current branch.
 1. **Gather Information**
    - Get the current branch name using `git branch --show-current`
    - Get the default branch (usually `main` or `master`) using `git remote show origin | grep 'HEAD branch'`
-   - Analyze recent commits on this branch (not in default branch) to understand changes
+   - Analyze the diff from the default branch to understand all changes (ignore individual commits)
    - Review changed files to understand the scope of changes
 
 2. **Generate PR Content**
