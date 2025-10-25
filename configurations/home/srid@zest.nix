@@ -5,6 +5,7 @@
     flake.inputs.self.homeModules.darwin-only
     (flake.inputs.self + /modules/home/all/1password.nix)
     (flake.inputs.self + /modules/home/all/juspay-vertex.nix)
+    (flake.inputs.self + /modules/home/claude-code)
   ];
 
   home.username = "srid";

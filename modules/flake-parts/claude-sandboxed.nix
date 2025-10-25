@@ -6,8 +6,8 @@ in
 {
   imports = [ landrun-nix.flakeModule ];
 
-  perSystem = { pkgs, ... }: {
-    landrunApps.claude = {
+  perSystem = { pkgs, system, lib, ... }: {
+    landrunApps.claude = lib.mkIf (lib.hasInfix "linux" system) {
       program = "${pkgs.claude-code}/bin/claude";
       imports = [
         landrunModules.gh

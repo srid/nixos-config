@@ -22,7 +22,10 @@ in
   home.packages = [
     pkgs.tree
     pkgs.python313Packages.markitdown
-    flake.inputs.self.packages.${pkgs.system}.claude # Sandboxed version from claude-sandboxed.nix
+    # Use sandboxed version on Linux, plain version on macOS
+    (if lib.hasInfix "linux" pkgs.system
+    then flake.inputs.self.packages.${pkgs.system}.claude
+    else pkgs.claude-code)
     # Other agents for trying out
     pkgs.copilot-cli
   ];
