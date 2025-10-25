@@ -8,8 +8,4 @@
   ];
 
   home.username = "srid";
-  home.packages = [
-  ] ++ lib.optionals pkgs.stdenv.isDarwin [
-    pkgs.tart
-  ];
 }
