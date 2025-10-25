@@ -23,6 +23,8 @@ in
     pkgs.tree
     pkgs.python313Packages.markitdown
     flake.inputs.self.packages.${pkgs.system}.claude # Sandboxed version from claude-sandboxed.nix
+    # Other agents for trying out
+    pkgs.copilot-cli
   ];
   programs.claude-code = {
     enable = true;
