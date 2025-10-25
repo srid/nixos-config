@@ -38,4 +38,5 @@ packageOverlays // {
 
   # Use claude-code from nix-ai-tools instead of nixpkgs
   claude-code = inputs.nix-ai-tools.packages.${self.system}.claude-code;
+  copilot-cli = inputs.nix-ai-tools.packages.${self.system}.copilot-cli;
 }
