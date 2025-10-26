@@ -25,6 +25,9 @@ in
   ];
 
   nix.settings.sandbox = "relaxed";
+  nix.extraOptions = ''
+    	  builders-use-substitutes = true
+    	'';
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
