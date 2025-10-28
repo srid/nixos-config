@@ -13,8 +13,8 @@ in
     (flake.inputs.self + /modules/home/claude-code)
 
     # Remote builders
-    "${homeMod}/all/buildMachines"
-    "${homeMod}/all/buildMachines/sincereintent.nix"
+    # "${homeMod}/all/buildMachines"
+    # "${homeMod}/all/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";
