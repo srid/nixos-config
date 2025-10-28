@@ -20,8 +20,8 @@ in
     # "${homeMod}/all/1password.nix"
 
     # Remote builders
-    "${homeMod}/all/buildMachines"
-    "${homeMod}/all/buildMachines/sincereintent.nix"
+    # "${homeMod}/all/buildMachines"
+    # "${homeMod}/all/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";
