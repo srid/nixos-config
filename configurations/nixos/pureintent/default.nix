@@ -22,6 +22,14 @@ in
     # Remote builders
     "${homeMod}/all/buildMachines"
     "${homeMod}/all/buildMachines/sincereintent.nix"
+    {
+      services.gotty = {
+        enable = true;
+        port = 9999;
+        command = "${lib.getExe config.programs.tmux.package} new-session -A -s gotty";
+        write = true;
+      };
+    }
   ];
 
   nix.settings.sandbox = "relaxed";
