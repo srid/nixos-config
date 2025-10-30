@@ -23,10 +23,10 @@ in
     "${homeMod}/all/buildMachines"
     "${homeMod}/all/buildMachines/sincereintent.nix"
     {
-      services.gotty = {
+      services.ttyd = {
         enable = true;
         port = 9999;
-        command = "${lib.getExe config.programs.tmux.package} new-session -A -s gotty";
+        command = "${lib.getExe config.programs.tmux.package} new-session -A -s ttyd";
         write = true;
       };
     }

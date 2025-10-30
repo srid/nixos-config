@@ -5,16 +5,16 @@
 with lib;
 
 let
-  cfg = config.services.gotty;
+  cfg = config.services.ttyd;
 in
 {
-  options.services.gotty = {
-    enable = mkEnableOption "GoTTY web terminal service";
+  options.services.ttyd = {
+    enable = mkEnableOption "ttyd web terminal service";
 
     port = mkOption {
       type = types.int;
       default = 8080;
-      description = "Port number for GoTTY to listen on";
+      description = "Port number for ttyd to listen on";
     };
 
     command = mkOption {
@@ -31,17 +31,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.gotty ];
+    home.packages = [ pkgs.ttyd ];
 
-    systemd.user.services.gotty = {
+    systemd.user.services.ttyd = {
       Unit = {
-        Description = "GoTTY web terminal service";
+        Description = "ttyd web terminal service";
         After = [ "network.target" ];
       };
 
       Service = {
         Type = "simple";
-        ExecStart = "${pkgs.gotty}/bin/gotty -p ${toString cfg.port}${optionalString cfg.write " -w"} ${cfg.command}";
+        ExecStart = "${pkgs.ttyd}/bin/ttyd -p ${toString cfg.port}${optionalString cfg.write " -W"} ${cfg.command}";
         Restart = "always";
         RestartSec = 5;
       };

@@ -12,6 +12,6 @@
     # ./all/zellij.nix
     ./all/just.nix
     # ./all/juspay.nix
-    ./all/gotty.nix
+    ./all/ttyd.nix
   ];
 }
