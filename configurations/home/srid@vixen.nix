@@ -1,7 +1,7 @@
 # This machine uses Omarchy
 #
 # So we consciously pick what we need
-{ flake, ... }:
+{ flake, pkgs, lib, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -26,4 +26,12 @@ in
 
   home.username = "srid";
   home.stateVersion = "25.05";
+
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      substituters = [ "https://vira.rooster-blues.ts.net/cache" ];
+      trusted-public-keys = [ "cache:Xqbd+2PnfYCybU+e6thw+qXq0UraEs6JHLK7npEcUhs=" ];
+    };
+  };
 }
