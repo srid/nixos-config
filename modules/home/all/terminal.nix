@@ -29,6 +29,8 @@ in
     omnix
     nixpkgs-fmt
     just
+    watchexec
+    fswatch
 
     eternal-terminal
 
