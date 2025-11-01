@@ -7,6 +7,7 @@ default:
 # Activate the given host or home environment
 [group('main')]
 activate host="":
+    nix flake lock
     @if [ -z "{{host}}" ]; then \
         if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
             echo "Activating home env $USER@$HOSTNAME ..."; \
