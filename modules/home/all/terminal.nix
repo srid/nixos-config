@@ -20,6 +20,8 @@ in
     gnumake
     killall
     television
+    yt-dlp
+    gh
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
 
