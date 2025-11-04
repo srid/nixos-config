@@ -17,8 +17,22 @@ let
         (builtins.readFile (commandsDir + "/${fileName}"))
     )
     (builtins.readDir commandsDir);
+
+  skillsDir = ./skills;
+  skillDirs = lib.filterAttrs (_: type: type == "directory") (builtins.readDir skillsDir);
 in
 {
+  # Link skill directories to ~/.claude/skills/
+  # (home-manager module doesn't support skills yet, so we link manually)
+  home.file = lib.mapAttrs'
+    (skillName: _:
+      lib.nameValuePair ".claude/skills/${skillName}" {
+        source = skillsDir + "/${skillName}";
+        recursive = true;
+      }
+    )
+    skillDirs;
+
   home.packages = [
     pkgs.tree
     pkgs.python313Packages.markitdown
