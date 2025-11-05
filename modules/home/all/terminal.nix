@@ -21,7 +21,7 @@ in
     killall
     television
     yt-dlp
-    gh
+    # gh
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
 
