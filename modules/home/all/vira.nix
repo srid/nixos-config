@@ -36,6 +36,9 @@ in
         srid = "https://github.com/srid/srid.git";
         vertex = "https://github.com/juspay/vertex.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
+        # Just to test heavy weight stuff
+        superposition = "https://github.com/juspay/superposition.git";
+        hyperswitch = "https://github.com/juspay/hyperswitch.git";
       };
     };
   };
