@@ -864,11 +864,11 @@
     },
     "process-compose-flake": {
       "locked": {
-        "lastModified": 1749418557,
-        "narHash": "sha256-wJHHckWz4Gvj8HXtM5WVJzSKXAEPvskQANVoRiu2w1w=",
+        "lastModified": 1762286656,
+        "narHash": "sha256-17Ycf5v3zX+ZHgF/KqCW9Hd5PFFwkkfs5OhbXtff6YE=",
         "owner": "Platonic-Systems",
         "repo": "process-compose-flake",
-        "rev": "91dcc48a6298e47e2441ec76df711f4e38eab94e",
+        "rev": "1664140f2f54380544c344d5a664b1e33c01d45a",
         "type": "github"
       },
       "original": {
@@ -1137,15 +1137,16 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1762358038,
-        "narHash": "sha256-+MsQ6vB9SGympPG4WKC9SOQ7l49Q9iLYLJkSlh1uHBY=",
+        "lastModified": 1762371979,
+        "narHash": "sha256-Nq6K6VnNH1jUwB6oAHTKFqrswdwvVs6ICyABXTBdD18=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "37989b03d138b1b165f62ccb5b146a965da782be",
+        "rev": "616a0fdb0f3f1e831797085d45f51fa31713010c",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "autobuild-improv",
         "repo": "vira",
         "type": "github"
       }
