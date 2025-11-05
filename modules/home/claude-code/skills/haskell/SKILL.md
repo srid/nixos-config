@@ -34,6 +34,7 @@ Every error case in generated code must be handled properly.
 - Use RecordDotSyntax (`value.field`) instead of manually unpacking data types
 - Use lenses for record manipulation when appropriate
 - Use `Applicative` and `Monad` appropriately
+- Avoid trivial `let` bindings when inlining keeps code simple and readable
 
 ## Testing
 
