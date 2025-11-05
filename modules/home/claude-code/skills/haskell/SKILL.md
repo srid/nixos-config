@@ -31,6 +31,7 @@ Every error case in generated code must be handled properly.
 - Prefer `Text` over `String`
 - Use `newtype` wrappers for domain types
 - Apply smart constructors for validation
+- Use RecordDotSyntax (`value.field`) instead of manually unpacking data types
 - Use lenses for record manipulation when appropriate
 - Use `Applicative` and `Monad` appropriately
 
