@@ -20,7 +20,7 @@ Every error case in generated code must be handled properly.
 
 **Code Quality**:
 - Write type signatures for all top-level definitions
-- Write total functions (avoid `head`, `tail`, `!!`)
+- Write total functions (avoid `head`, `tail`)
 - Prefer pure functions over IO when possible
 - Use explicit exports in modules
 - Leverage type system for safety
