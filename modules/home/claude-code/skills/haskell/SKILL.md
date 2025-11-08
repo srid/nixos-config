@@ -122,7 +122,7 @@ When using relude prelude, follow these HLint recommendations (from https://gith
 
 As you make code changes, start a subagent in parallel to resolve any compile errors in `ghcid.txt`.
 
-**IMPORTANT**: Do not run build commands yourself. The human runs ghcid in the terminal, which then updates `ghcid.txt` with any compile error or warning (if this file does not exist, or if ghcid has stopped, remind the human to address it). You should read `ghcid.txt` (in _entirety_) after making code changes; this file updates near-instantly. You must **first** address VSCode diagnostics (includes build issues & hlint warnings) if any, before addressing those in `ghcid.txt`.
+**IMPORTANT**: Do not run build commands yourself. The human runs ghcid in the terminal, which then updates `ghcid.txt` with any compile error or warning (if this file does not exist, or if ghcid has stopped, remind the human to address it). You should read `ghcid.txt` (in _entirety_) after making code changes; this file updates near-instantly.
 
 **Adding/Deleting modules**: When a new `.hs` file is added or deleted, the `.cabal` file must be updated accordingly. However, if `package.yaml` exists in the project, run `hpack` instead to regenerate the `.cabal` file with the updated module list. This will trigger `ghcid` to restart automatically.
 
