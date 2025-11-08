@@ -18,6 +18,7 @@ in
     hostname = "127.0.0.1";
     https = false; # Using tailscale services
     autoResetState = true;
+    autoBuildNewBranches = true;
     package = inputs.vira.packages.${pkgs.system}.default;
 
     initialState = {
