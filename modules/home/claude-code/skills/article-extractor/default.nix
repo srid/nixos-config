@@ -1,6 +1,5 @@
 { writeShellApplication, curl, reader }:
 
-# Inspired by https://github.com/michalparkola/tapestry-skills-for-claude-code/blob/main/article-extractor/SKILL.md
 writeShellApplication {
   name = "article-extractor";
 
@@ -9,26 +8,16 @@ writeShellApplication {
   text = ''
     URL="$1"
 
+    # Create unique temp file
+    TEMP_HTML=$(mktemp)
+
     # Download HTML
-    curl -L "$URL" > /tmp/temp.html
+    curl -s -L "$URL" > "$TEMP_HTML"
 
-    # Extract article
-    reader /tmp/temp.html > /tmp/temp.txt
-
-    # Get title from first line
-    TITLE=$(head -n 1 /tmp/temp.txt | sed 's/^# //')
-
-    # Clean filename
-    FILENAME=$(echo "$TITLE" | tr '/:?"<>| ' '-' | cut -c 1-80 | sed 's/-*$//')".txt"
-
-    # Save
-    mv /tmp/temp.txt "/tmp/$FILENAME"
+    # Extract and output article to stdout
+    reader "$TEMP_HTML"
 
     # Clean up
-    rm /tmp/temp.html
-
-    # Show preview
-    echo "✓ Saved: /tmp/$FILENAME"
-    head -n 10 "/tmp/$FILENAME"
+    rm "$TEMP_HTML"
   '';
 }

@@ -19,7 +19,13 @@ User wants to:
 
 ## Workflow
 
+Extract article content and save it:
+
 ```bash
-@article-extractor@ "$URL"
+CONTENT=$(@article-extractor@ "$URL")
 ```
+
+Then use the Write tool to save `$CONTENT` to the desired location with an appropriate filename.
+
+The script outputs clean markdown content to stdout. You decide where and how to save it based on the user's request.
 
