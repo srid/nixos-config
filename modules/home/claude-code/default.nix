@@ -38,6 +38,15 @@ let
       ''
     else
       skillPath;
+
+  mcpDir = ./mcp;
+  mcpServers = lib.mapAttrs'
+    (fileName: _:
+      lib.nameValuePair
+        (lib.removeSuffix ".nix" fileName)
+        (import (mcpDir + "/${fileName}"))
+    )
+    (builtins.readDir mcpDir);
 in
 {
   # Packages often used by Claude Code CLI.
@@ -65,14 +74,7 @@ in
       else pkgs.claude-code;
 
     # Basic settings for Claude Code
-    settings = {
-      # theme = "dark";
-      permissions = {
-        defaultMode = "bypassPermissions";
-      };
-      # Disable Claude from adding itself as co-author to commits
-      includeCoAuthoredBy = false;
-    };
+    settings = import ./settings.nix;
 
     # System prompt / memory
     memory.text = builtins.readFile ./memory.md;
@@ -83,17 +85,7 @@ in
     # Automatically discovered agents from subagents/ directory
     agents = agents;
 
-    # MCP servers configuration
-    # Works well without Nix; so be it.
-    mcpServers = {
-      "nixos-mcp" = {
-        command = "uvx";
-        args = [ "mcp-nixos" ];
-      };
-      "chrome-devtools" = {
-        command = "npx";
-        args = [ "chrome-devtools-mcp@latest" ];
-      };
-    };
+    # Automatically discovered MCP servers from mcp/ directory
+    mcpServers = mcpServers;
   };
 }
