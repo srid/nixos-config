@@ -39,7 +39,6 @@ in
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         # Just to test heavy weight stuff
         superposition = "https://github.com/juspay/superposition.git";
-        hyperswitch = "https://github.com/juspay/hyperswitch.git";
       };
     };
   };
