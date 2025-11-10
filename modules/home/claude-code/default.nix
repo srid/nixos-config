@@ -34,22 +34,22 @@ in
     skillDirs;
 
   home.packages = [
-    pkgs.tree
+    # Used in ./memory.md
+    # TODO: Encapsulate
     pkgs.python313Packages.markitdown
-    # Other agents for trying out
-    pkgs.copilot-cli
   ];
   programs.claude-code = {
     enable = true;
 
     # Use sandboxed version on Linux, plain version on macOS
-    package = (if lib.hasInfix "linux" pkgs.system
-    then flake.inputs.self.packages.${pkgs.system}.claude
-    else pkgs.claude-code);
+    package =
+      if pkgs.stdenv.isLinux
+      then flake.inputs.self.packages.${pkgs.system}.claude # see claude-sandboxed.nix
+      else pkgs.claude-code;
 
     # Basic settings for Claude Code
     settings = {
-      theme = "dark";
+      # theme = "dark";
       permissions = {
         defaultMode = "bypassPermissions";
       };
@@ -67,9 +67,8 @@ in
     agents = agents;
 
     # MCP servers configuration
-    # Disabled, because package is null
-    /*
-      mcpServers = {
+    # Works well without Nix; so be it.
+    mcpServers = {
       "nixos-mcp" = {
         command = "uvx";
         args = [ "mcp-nixos" ];
@@ -78,7 +77,6 @@ in
         command = "npx";
         args = [ "chrome-devtools-mcp@latest" ];
       };
-      };
-    */
+    };
   };
 }
