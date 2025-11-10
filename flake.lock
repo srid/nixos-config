@@ -485,11 +485,11 @@
     },
     "landrun-nix": {
       "locked": {
-        "lastModified": 1760649838,
-        "narHash": "sha256-R1smQ167F9E8tjocHEVYkv01hYmsEYO6/fUtLw69hzM=",
+        "lastModified": 1762803344,
+        "narHash": "sha256-HRQe5Umj8+U+euoqlL/Z4DqrKGF/EuglbD0zPNf9dPs=",
         "owner": "srid",
         "repo": "landrun-nix",
-        "rev": "8f5163d86e9b969ef9765cc0c168f0e66266901e",
+        "rev": "e3811659e279d92104a1de82e94877f870065696",
         "type": "github"
       },
       "original": {
@@ -1137,16 +1137,15 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1762799997,
-        "narHash": "sha256-mpsXHKByt5ocawV2/7Y1TiXddeimfGfCTcpk+niFQhc=",
+        "lastModified": 1762801737,
+        "narHash": "sha256-LCEQ39qza9OOyyZYucfGtyVw9NFLej87DV/PI5oZgg8=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "a1811c22ad90415cc4a2c408d12e82be52383707",
+        "rev": "cf721e1b27f9b1aa8e05f96e1377dd5319132e91",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "fix-repo-delete-jobid",
         "repo": "vira",
         "type": "github"
       }
