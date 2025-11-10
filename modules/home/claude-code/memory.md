@@ -8,5 +8,5 @@
 # Tools
 
 - **gh**: If `gh` is unavailable, get it from nixpkgs, viz.: `nix run nixpkgs#gh`.
-- **markitdown**: To convert web URLs to plain text, run `curl -k URL | markitdown` (markitdown is already installed)
+- **article-extractor**: To extract clean article content from URLs (blog posts, articles, tutorials), use the article-extractor skill. It removes ads, navigation, and clutter and saves readable text.
 

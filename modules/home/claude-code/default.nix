@@ -34,9 +34,9 @@ in
     skillDirs;
 
   home.packages = [
-    # Used in ./memory.md
+    # Used in skills
     # TODO: Encapsulate
-    pkgs.python313Packages.markitdown
+    pkgs.reader
   ];
   programs.claude-code = {
     enable = true;
