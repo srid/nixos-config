@@ -12,6 +12,8 @@ in
     config.services.vira.package # For CLI
   ];
 
+  nix.settings.trusted-users = [ "srid" ]; # For cache?
+
   services.vira = {
     enable = true;
     port = 5001;
