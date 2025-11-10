@@ -4,6 +4,7 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   packages = self + /packages;
+  nix-ai-tools = system: inputs.nix-ai-tools.packages.${system};
 
 in
 self: super:
@@ -34,9 +35,8 @@ in
 packageOverlays // {
   # External overlays
   nuenv = (inputs.nuenv.overlays.nuenv self super).nuenv;
-  # omnix = inputs.omnix.packages.${self.system}.default;
 
   # Use claude-code from nix-ai-tools instead of nixpkgs
-  claude-code = inputs.nix-ai-tools.packages.${self.system}.claude-code;
-  copilot-cli = inputs.nix-ai-tools.packages.${self.system}.copilot-cli;
+  claude-code = (nix-ai-tools self.system).claude-code;
+  copilot-cli = (nix-ai-tools self.system).copilot-cli;
 }

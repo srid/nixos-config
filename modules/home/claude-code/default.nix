@@ -36,16 +36,16 @@ in
   home.packages = [
     pkgs.tree
     pkgs.python313Packages.markitdown
-    # Use sandboxed version on Linux, plain version on macOS
-    (if lib.hasInfix "linux" pkgs.system
-    then flake.inputs.self.packages.${pkgs.system}.claude
-    else pkgs.claude-code)
     # Other agents for trying out
     pkgs.copilot-cli
   ];
   programs.claude-code = {
     enable = true;
-    package = null; # See above
+
+    # Use sandboxed version on Linux, plain version on macOS
+    package = (if lib.hasInfix "linux" pkgs.system
+    then flake.inputs.self.packages.${pkgs.system}.claude
+    else pkgs.claude-code);
 
     # Basic settings for Claude Code
     settings = {
