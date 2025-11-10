@@ -20,6 +20,24 @@ let
 
   skillsDir = ./skills;
   skillDirs = lib.filterAttrs (_: type: type == "directory") (builtins.readDir skillsDir);
+
+  # Process skill: if it has default.nix, build and substitute; otherwise use as-is
+  processSkill = skillName:
+    let
+      skillPath = skillsDir + "/${skillName}";
+      hasDefaultNix = builtins.pathExists (skillPath + "/default.nix");
+    in
+    if hasDefaultNix then
+      let
+        skillPkg = pkgs.callPackage skillPath { };
+      in
+      pkgs.runCommand "${skillName}-skill" { } ''
+        mkdir -p $out
+        substitute ${skillPath}/SKILL.md $out/SKILL.md \
+          --replace-fail '@${skillName}@' '${skillPkg}/bin/${skillName}'
+      ''
+    else
+      skillPath;
 in
 {
   # Packages often used by Claude Code CLI.
@@ -32,17 +50,11 @@ in
   home.file = lib.mapAttrs'
     (skillName: _:
       lib.nameValuePair ".claude/skills/${skillName}" {
-        source = skillsDir + "/${skillName}";
+        source = processSkill skillName;
         recursive = true;
       }
     )
     skillDirs;
-
-  home.packages = [
-    # Used in skills
-    # TODO: Encapsulate
-    pkgs.reader
-  ];
   programs.claude-code = {
     enable = true;
 
