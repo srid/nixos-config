@@ -22,6 +22,11 @@ let
   skillDirs = lib.filterAttrs (_: type: type == "directory") (builtins.readDir skillsDir);
 in
 {
+  # Packages often used by Claude Code CLI.
+  home.packages = with pkgs; [
+    tree
+  ];
+
   # Link skill directories to ~/.claude/skills/
   # (home-manager module doesn't support skills yet, so we link manually)
   home.file = lib.mapAttrs'
