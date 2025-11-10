@@ -21,25 +21,25 @@ User wants to:
 
 ```bash
 # Download HTML
-curl -L "$URL" > temp.html
+curl -L "$URL" > /tmp/temp.html
 
 # Extract article
-reader temp.html > temp.txt
+reader /tmp/temp.html > /tmp/temp.txt
 
 # Get title from first line
-TITLE=$(head -n 1 temp.txt | sed 's/^# //')
+TITLE=$(head -n 1 /tmp/temp.txt | sed 's/^# //')
 
 # Clean filename
-FILENAME=$(echo "$TITLE" | tr '/:?"<>|' '-' | cut -c 1-80 | sed 's/ *$//')".txt"
+FILENAME=$(echo "$TITLE" | tr '/:?"<>| ' '-' | cut -c 1-80 | sed 's/-*$//')".txt"
 
 # Save
-mv temp.txt "$FILENAME"
+mv /tmp/temp.txt "/tmp/$FILENAME"
 
 # Clean up
-rm temp.html
+rm /tmp/temp.html
 
 # Show preview
-echo "✓ Saved: $FILENAME"
-head -n 10 "$FILENAME"
+echo "✓ Saved: /tmp/$FILENAME"
+head -n 10 "/tmp/$FILENAME"
 ```
 
