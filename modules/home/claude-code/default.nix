@@ -1,6 +1,8 @@
 { flake, pkgs, lib, ... }:
 let
-  subagentsDir = ./subagents;
+  claudeCodeDir = flake.inputs.self + /claude-code;
+
+  subagentsDir = claudeCodeDir + "/subagents";
   agents = lib.mapAttrs'
     (fileName: _:
       lib.nameValuePair
@@ -9,7 +11,7 @@ let
     )
     (builtins.readDir subagentsDir);
 
-  commandsDir = ./commands;
+  commandsDir = claudeCodeDir + "/commands";
   commands = lib.mapAttrs'
     (fileName: _:
       lib.nameValuePair
@@ -18,7 +20,7 @@ let
     )
     (builtins.readDir commandsDir);
 
-  skillsDir = ./skills;
+  skillsDir = claudeCodeDir + "/skills";
   skillDirs = lib.filterAttrs (_: type: type == "directory") (builtins.readDir skillsDir);
 
   # Process skill: if it has default.nix, build and substitute; otherwise use as-is
@@ -39,7 +41,7 @@ let
     else
       skillPath;
 
-  mcpDir = ./mcp;
+  mcpDir = claudeCodeDir + "/mcp";
   mcpServers = lib.mapAttrs'
     (fileName: _:
       lib.nameValuePair
@@ -74,10 +76,10 @@ in
       else pkgs.claude-code;
 
     # Basic settings for Claude Code
-    settings = import ./settings.nix;
+    settings = import (claudeCodeDir + "/settings.nix");
 
     # System prompt / memory
-    memory.text = builtins.readFile ./memory.md;
+    memory.text = builtins.readFile (claudeCodeDir + "/memory.md");
 
     # Automatically discovered commands from commands/ directory
     commands = commands;
