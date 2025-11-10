@@ -1,6 +1,4 @@
 [![AGPL](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://en.wikipedia.org/wiki/Affero_General_Public_License)
-[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://nixos.zulipchat.com/#narrow/stream/413948-nixos)
-[![Naiveté Compass of Mood](https://img.shields.io/badge/naïve-FF10F0)](https://compass.naivete.me/ "This project follows the 'Naiveté Compass of Mood'")
 
 This repository contains the Nix / NixOS configuration for all of my systems. See [nixos-unified](https://nixos-unified.org)—specifically [nixos-unified-template](https://github.com/juspay/nixos-unified-template)—if you wish to create your own configuration from scratch.
 
@@ -74,4 +72,4 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 
 ## Discussion
 
-If you wish to discuss this config, [join the NixOS Asia community](https://nixos.asia/en/#community).
+https://github.com/srid/nixos-config/discussions
