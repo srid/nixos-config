@@ -20,8 +20,11 @@ User wants to:
 ## Workflow
 
 ```bash
+# Download HTML
+curl -L "$URL" > temp.html
+
 # Extract article
-reader "$URL" > temp.txt
+reader temp.html > temp.txt
 
 # Get title from first line
 TITLE=$(head -n 1 temp.txt | sed 's/^# //')
@@ -31,6 +34,9 @@ FILENAME=$(echo "$TITLE" | tr '/:?"<>|' '-' | cut -c 1-80 | sed 's/ *$//')".txt"
 
 # Save
 mv temp.txt "$FILENAME"
+
+# Clean up
+rm temp.html
 
 # Show preview
 echo "✓ Saved: $FILENAME"
