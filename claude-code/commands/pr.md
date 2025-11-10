@@ -38,8 +38,7 @@ Create and open a draft pull request on GitHub for the current branch.
 
 ## Example Output Format
 
-```
-```
+```markdown
 PR Title: Add new authentication system
 
 PR Description:
@@ -49,7 +48,6 @@ This PR introduces a modern OAuth-based authentication system alongside improved
 
 - Users can now log in using OAuth providers (Google, GitHub)
 - Improved password reset flow with better email notifications
-```
 - Session timeout increased from 1 hour to 24 hours
 
 ## Developer Notes
