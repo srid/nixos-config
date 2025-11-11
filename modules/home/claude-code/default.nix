@@ -1,8 +1,11 @@
 { flake, pkgs, ... }:
+let
+  inherit (flake.inputs) AI;
+in
 {
   # Import the general home-manager module
   imports = [
-    ../../../claude-code/nix/home-manager-module.nix
+    "${AI}/nix/home-manager-module.nix"
   ];
 
   # Packages often used by Claude Code CLI
@@ -20,6 +23,6 @@
       else pkgs.claude-code;
 
     # Set the claude-code directory for auto-wiring
-    autoWire.dir = ../../../claude-code;
+    autoWire.dir = AI;
   };
 }

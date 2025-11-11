@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "AI": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762823677,
+        "narHash": "sha256-tAFietBkeOYSUh+5KqZcfDA55L+A9IsPQZSuupNY+vM=",
+        "owner": "srid",
+        "repo": "AI",
+        "rev": "ba61df36131e5a9a7165c141e7e9ba18a56da324",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "AI",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -895,6 +911,7 @@
     },
     "root": {
       "inputs": {
+        "AI": "AI",
         "agenix": "agenix",
         "disko": "disko",
         "flake-parts": "flake-parts",
