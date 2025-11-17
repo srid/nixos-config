@@ -12,6 +12,7 @@ in
     "${homeMod}/claude-code"
     "${homeMod}/all/git.nix"
     "${homeMod}/all/just.nix"
+    "${homeMod}/all/juspay.nix"
     "${homeMod}/all/direnv.nix"
     "${homeMod}/all/starship.nix"
     "${homeMod}/all/bash.nix"
