@@ -18,9 +18,13 @@
       # For git cloning via another jump host
       "ssh.bitbucket.juspay.net" = {
         user = "git";
+
         # This is the magic line that routes traffic 
         # through the other machine
         proxyJump = "vanjaram";
+      };
+      "vanjaram" = {
+        forwardAgent = true;
       };
     };
   };

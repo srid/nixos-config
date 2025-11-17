@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs._1password-cli ];
+  # home.packages = [ pkgs._1password-cli ];
+  # Using native CLI ^
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
