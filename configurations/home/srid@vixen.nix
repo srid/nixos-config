@@ -19,6 +19,7 @@ in
     "${homeMod}/all/terminal.nix"
     "${homeMod}/all/juspay-vertex.nix"
     "${homeMod}/all/1password.nix"
+    "${homeMod}/all/obsidian.nix"
 
     # Remote builders
     # "${homeMod}/all/buildMachines"

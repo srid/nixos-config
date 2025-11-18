@@ -41,6 +41,10 @@
     nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Emanote & Imako
+    emanote.url = "github:srid/emanote";
+    imako.url = "github:srid/imako";
+
     # Devshell
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.flake = false;
