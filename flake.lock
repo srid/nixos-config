@@ -3,11 +3,11 @@
     "AI": {
       "flake": false,
       "locked": {
-        "lastModified": 1762973280,
-        "narHash": "sha256-nbqCQMc7Eh6R7LcSQhuR4LTY14apLHz3ozMiZ7kpuCY=",
+        "lastModified": 1763589835,
+        "narHash": "sha256-CWT4y8qivK0o1Hjex+dJtOHvnHP5Z8PKiZKhT/pz3jo=",
         "owner": "srid",
         "repo": "AI",
-        "rev": "8b824912894eca1e9940b007b1ffa2d6163a181b",
+        "rev": "62b3f9fd4fbf1926a52e2fda25fe462d4e8745f0",
         "type": "github"
       },
       "original": {
