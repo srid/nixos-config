@@ -1,4 +1,7 @@
 # For Juspay work
+let
+  vanjaram = "vanjaram.tail12b27.ts.net"; # Shared with my tailnet
+in
 {
   programs.ssh = {
     enable = true;
@@ -9,12 +12,12 @@
 
         # This is the magic line that routes traffic 
         # through the other machine
-        proxyJump = "vanjaram";
+        proxyJump = vanjaram;
 
         # Download this from 1Password
         identityFile = "~/.ssh/juspay.pub";
       };
-      "vanjaram" = {
+      "${vanjaram}" = {
         forwardAgent = true;
       };
     };
