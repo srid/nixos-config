@@ -41,7 +41,7 @@ in
         vertex = "https://github.com/juspay/vertex.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         # Just to test heavy weight stuff
-        superposition = "https://github.com/juspay/superposition.git";
+        # superposition = "https://github.com/juspay/superposition.git";
       };
     };
   };
