@@ -19,4 +19,8 @@ in
   ];
 
   home.username = "srid";
+
+  home.sessionPath = [
+    "/nix/var/nix/profiles/default/bin"
+  ];
 }
