@@ -54,6 +54,11 @@ Start from `flake.nix` (see [Flakes](https://nixos.wiki/wiki/Flakes)). [`flake-p
 | `./packages` | N/A (Nix packages) |
 | `./secrets` | N/A (agenix data) |
 
+
+### Git Submodules
+
+The `vendor/` directory contains git submodules. See [this blog post](https://nixos.asia/en/blog/git-submodule-input) for details.
+
 ## Tips
 
 - To update NixOS (and other inputs) run `nix flake update`
