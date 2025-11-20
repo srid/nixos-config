@@ -3,18 +3,14 @@
     "AI": {
       "flake": false,
       "locked": {
-        "lastModified": 1763589835,
-        "narHash": "sha256-CWT4y8qivK0o1Hjex+dJtOHvnHP5Z8PKiZKhT/pz3jo=",
-        "owner": "srid",
-        "repo": "AI",
-        "rev": "62b3f9fd4fbf1926a52e2fda25fe462d4e8745f0",
-        "type": "github"
+        "path": "vendor/AI",
+        "type": "path"
       },
       "original": {
-        "owner": "srid",
-        "repo": "AI",
-        "type": "github"
-      }
+        "path": "vendor/AI",
+        "type": "path"
+      },
+      "parent": []
     },
     "agenix": {
       "inputs": {

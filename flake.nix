@@ -34,7 +34,7 @@
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
     nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
     landrun-nix.url = "github:srid/landrun-nix";
-    AI.url = "github:srid/AI";
+    AI.url = "path:vendor/AI";
     AI.flake = false;
 
     # Neovim
