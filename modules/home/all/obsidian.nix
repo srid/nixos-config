@@ -3,7 +3,7 @@
 let
   inherit (flake) inputs;
   imakoPackage = inputs.imako.packages.${pkgs.system}.default;
-  myVault = "/home/srid/Dropbox/Vault";
+  myVault = "${config.home.homeDirectory}/Dropbox/Vault";
 in
 {
   imports = [
@@ -12,10 +12,8 @@ in
 
   services.emanote = {
     enable = true;
-    notes = [
-      myVault
-    ];
-    # port = 7000;
+    notes = [ myVault ];
+    port = 7000;
     package = inputs.emanote.packages.${pkgs.system}.default;
   };
 
@@ -30,12 +28,21 @@ in
     Service = {
       Type = "simple";
       ExecStart = "${imakoPackage}/bin/imako ${myVault}";
-      # Restart = "always";
-      # RestartSec = 5;
     };
 
     Install = {
       WantedBy = [ "default.target" ];
+    };
+  };
+
+  launchd.agents.imako = lib.mkIf pkgs.stdenv.isDarwin {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${imakoPackage}/bin/imako" myVault ];
+      RunAtLoad = true;
+      KeepAlive = false;
+      StandardOutPath = "${config.home.homeDirectory}/Library/Logs/imako.log";
+      StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/imako.err";
     };
   };
 }
