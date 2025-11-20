@@ -1,7 +1,10 @@
 {
   description = "Srid's NixOS / nix-darwin configuration";
 
+
   inputs = {
+    self.submodules = true; # See ./vendor
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # Principle inputs
