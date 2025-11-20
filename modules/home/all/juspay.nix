@@ -1,4 +1,5 @@
 # For Juspay work
+{ pkgs, config, ... }:
 let
   vanjaram = "vanjaram.tail12b27.ts.net"; # Shared with my tailnet
 in
@@ -31,5 +32,25 @@ in
         user.email = "sridhar.ratnakumar@juspay.in";
       };
     }];
+  };
+
+  # SOCKS5 proxy via SSH tunnel to vanjaram
+  launchd.agents.juspay-socks5-proxy = {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "${pkgs.openssh}/bin/ssh"
+        "-D" # Dynamic port forwarding (SOCKS proxy)
+        "1080"
+        "-N" # Don't execute remote command
+        # "-q" # Quiet mode (suppress warnings)
+        "-C" # Enable compression
+        vanjaram
+      ];
+      KeepAlive = true;
+      RunAtLoad = true;
+      StandardOutPath = "${config.home.homeDirectory}/Library/Logs/socks5-proxy.log";
+      StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/socks5-proxy.err";
+    };
   };
 }
