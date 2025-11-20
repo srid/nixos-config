@@ -1,6 +1,10 @@
 # Juspay-specific configuration using the work jump host module
+{ flake, ... }:
+let
+  inherit (flake.inputs) jumphost-nix;
+in
 {
-  imports = [ ../../../vendor/jumphost-nix/module.nix ];
+  imports = [ "${jumphost-nix}/module.nix" ];
 
   # https://github.com/srid/jumphost-nix
   programs.jumphost = {

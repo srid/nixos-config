@@ -961,6 +961,18 @@
         "type": "github"
       }
     },
+    "jumphost-nix": {
+      "flake": false,
+      "locked": {
+        "path": "vendor/jumphost-nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "vendor/jumphost-nix",
+        "type": "path"
+      },
+      "parent": []
+    },
     "landrun-nix": {
       "locked": {
         "lastModified": 1762803344,
@@ -1517,6 +1529,7 @@
         "github-nix-ci": "github-nix-ci",
         "home-manager": "home-manager_2",
         "imako": "imako",
+        "jumphost-nix": "jumphost-nix",
         "landrun-nix": "landrun-nix",
         "nix-ai-tools": "nix-ai-tools",
         "nix-darwin": "nix-darwin",

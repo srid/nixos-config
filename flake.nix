@@ -36,6 +36,8 @@
     landrun-nix.url = "github:srid/landrun-nix";
     AI.url = "path:vendor/AI";
     AI.flake = false;
+    jumphost-nix.url = "path:vendor/jumphost-nix";
+    jumphost-nix.flake = false;
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
