@@ -17,8 +17,8 @@ in
   services.vira = {
     enable = true;
     port = 5001;
-    hostname = "127.0.0.1";
-    https = false; # Using tailscale services
+    hostname = "0.0.0.0";
+    # https = false; # Using tailscale services
     autoResetState = true;
     autoBuildNewBranches = true;
     package = inputs.vira.packages.${pkgs.system}.default;
