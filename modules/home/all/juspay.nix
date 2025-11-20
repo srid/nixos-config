@@ -91,8 +91,7 @@ in
     };
 
     # SOCKS5 proxy via SSH tunnel to jump host
-    # TODO: Linux systemd service
-    launchd.agents.juspay-socks5-proxy = lib.mkIf cfg.socks5Proxy.enable {
+    launchd.agents.juspay-socks5-proxy = lib.mkIf (cfg.socks5Proxy.enable && pkgs.stdenv.isDarwin) {
       enable = true;
       config = {
         ProgramArguments = [
@@ -108,6 +107,23 @@ in
         RunAtLoad = true;
         StandardOutPath = "${config.home.homeDirectory}/Library/Logs/socks5-proxy.log";
         StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/socks5-proxy.err";
+      };
+    };
+
+    systemd.user.services.juspay-socks5-proxy = lib.mkIf (cfg.socks5Proxy.enable && pkgs.stdenv.isLinux) {
+      Unit = {
+        Description = "SOCKS5 proxy via SSH tunnel to Juspay jump host";
+        After = [ "network.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.openssh}/bin/ssh -D ${toString cfg.socks5Proxy.port} -N -C ${cfg.jumpHost}";
+        Restart = "always";
+        RestartSec = "10s";
+      };
+
+      Install = {
+        WantedBy = [ "default.target" ];
       };
     };
   };
