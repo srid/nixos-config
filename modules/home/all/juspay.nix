@@ -13,15 +13,17 @@ in
       type = lib.types.str;
       default = "vanjaram.tail12b27.ts.net";
       description = ''
-        Jump host for Juspay work (used as SSH proxy jump and SOCKS5 tunnel endpoint)
+        Jump host (a machine in Juspay office) used to access Juspay services without VPN.
+        Used as SSH proxy jump for Bitbucket and as SOCKS5 tunnel endpoint.
       '';
     };
 
     identityFile = lib.mkOption {
-      type = lib.types.str;
-      default = "~/.ssh/juspay.pub";
+      type = lib.types.nullOr lib.types.str;
+      default = null;
       description = ''
-        Path to SSH identity file used for authenticating to Juspay's Bitbucket (ssh.bitbucket.juspay.net)
+        Optional path to SSH identity file used for authenticating to Juspay's Bitbucket (ssh.bitbucket.juspay.net).
+        If not specified, SSH will use default authentication methods.
       '';
     };
 
@@ -68,8 +70,7 @@ in
           # through the other machine
           proxyJump = cfg.jumpHost;
 
-          # Download this from 1Password
-          identityFile = cfg.identityFile;
+          identityFile = lib.mkIf (cfg.identityFile != null) cfg.identityFile;
         };
         "${cfg.jumpHost}" = {
           forwardAgent = true;
@@ -90,6 +91,7 @@ in
     };
 
     # SOCKS5 proxy via SSH tunnel to jump host
+    # TODO: Linux systemd service
     launchd.agents.juspay-socks5-proxy = lib.mkIf cfg.socks5Proxy.enable {
       enable = true;
       config = {
