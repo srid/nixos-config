@@ -8,14 +8,15 @@ in
   imports = [
     flake.inputs.self.homeModules.default
     flake.inputs.self.homeModules.darwin-only
-    "${homeMod}/all/1password.nix"
+    "${homeMod}/gui/1password.nix"
     "${homeMod}/claude-code"
-    "${homeMod}/all/juspay.nix"
-    "${homeMod}/all/obsidian.nix"
+
+    "${homeMod}/work/juspay.nix"
+    "${homeMod}/gui/obsidian.nix"
 
     # Remote builders
-    # "${homeMod}/all/buildMachines"
-    # "${homeMod}/all/buildMachines/sincereintent.nix"
+    # "${homeMod}/nix/buildMachines"
+    # "${homeMod}/nix/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";

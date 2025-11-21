@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
-    ./all/zsh.nix
-    ./all/bash.nix
-    ./all/nushell
-    # ./all/emacs.nix
+    ./cli/zsh.nix
+    ./cli/bash.nix
+    ./cli/nushell
+    # ./editors/emacs.nix
   ];
 }
