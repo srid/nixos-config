@@ -1,7 +1,7 @@
 # This machine uses Omarchy
 #
 # So we consciously pick what we need
-{ flake, pkgs, lib, ... }:
+{ flake, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -10,19 +10,19 @@ in
 {
   imports = [
     "${homeMod}/claude-code"
-    "${homeMod}/all/git.nix"
-    "${homeMod}/all/just.nix"
-    "${homeMod}/all/juspay.nix"
-    "${homeMod}/all/direnv.nix"
-    "${homeMod}/all/starship.nix"
-    "${homeMod}/all/bash.nix"
-    "${homeMod}/all/terminal.nix"
-    "${homeMod}/all/1password.nix"
-    "${homeMod}/all/obsidian.nix"
+    "${homeMod}/cli/git.nix"
+    "${homeMod}/cli/just.nix"
+    "${homeMod}/work/juspay.nix"
+    "${homeMod}/cli/direnv.nix"
+    "${homeMod}/cli/starship.nix"
+    "${homeMod}/cli/bash.nix"
+    "${homeMod}/cli/terminal.nix"
+    "${homeMod}/gui/1password.nix"
+    "${homeMod}/gui/obsidian.nix"
 
     # Remote builders
-    # "${homeMod}/all/buildMachines"
-    # "${homeMod}/all/buildMachines/sincereintent.nix"
+    # "${homeMod}/nix/buildMachines"
+    # "${homeMod}/nix/buildMachines/sincereintent.nix"
   ];
 
   home.username = "srid";
