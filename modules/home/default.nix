@@ -1,16 +1,16 @@
 {
   home.stateVersion = "24.05";
   imports = [
-    ./all/tmux.nix
-    # ./all/neovim
-    ./all/helix.nix
-    ./all/starship.nix
-    ./all/terminal.nix
-    ./all/nix.nix
-    ./all/git.nix
-    ./all/direnv.nix
-    # ./all/zellij.nix
-    ./all/just.nix
-    ./all/ttyd.nix
+    ./cli/tmux.nix
+    # ./editors/neovim
+    ./editors/helix.nix
+    ./cli/starship.nix
+    ./cli/terminal.nix
+    ./nix/path.nix
+    ./cli/git.nix
+    ./cli/direnv.nix
+    # ./cli/zellij.nix
+    ./cli/just.nix
+    ./services/ttyd.nix
   ];
 }

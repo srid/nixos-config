@@ -1,4 +1,4 @@
-{ config, flake, pkgs, lib, ... }:
+{ config, flake, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -16,13 +16,13 @@ in
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
-    "${homeMod}/all/vira.nix"
-    "${homeMod}/all/juspay.nix"
-    # (self + /modules/home/all/dropbox.nix)
+    "${homeMod}/services/vira.nix"
+    "${homeMod}/work/juspay.nix"
+    # (self + /modules/home/services/dropbox.nix)
 
     # Remote builders
-    "${homeMod}/all/buildMachines"
-    "${homeMod}/all/buildMachines/sincereintent.nix"
+    "${homeMod}/nix/buildMachines"
+    "${homeMod}/nix/buildMachines/sincereintent.nix"
     {
       services.ttyd = {
         enable = true;
