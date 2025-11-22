@@ -13,7 +13,7 @@ in
   services.emanote = {
     enable = true;
     notes = [ myVault ];
-    port = 7000;
+    port = 7001;
     package = inputs.emanote.packages.${pkgs.system}.default;
   };
 
@@ -21,6 +21,6 @@ in
     enable = true;
     package = inputs.imako.packages.${pkgs.system}.default;
     vaultDir = myVault;
-    port = 4009;
+    port = 7002;
   };
 }
