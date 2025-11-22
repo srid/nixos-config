@@ -18,7 +18,7 @@ in
     "${homeMod}/cli/bash.nix"
     "${homeMod}/cli/terminal.nix"
     "${homeMod}/gui/1password.nix"
-    "${homeMod}/gui/obsidian.nix"
+    "${homeMod}/services/obsidian.nix"
 
     # Remote builders
     # "${homeMod}/nix/buildMachines"

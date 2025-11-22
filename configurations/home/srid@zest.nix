@@ -12,7 +12,7 @@ in
     "${homeMod}/claude-code"
 
     "${homeMod}/work/juspay.nix"
-    "${homeMod}/gui/obsidian.nix"
+    "${homeMod}/services/obsidian.nix"
 
     # Remote builders
     # "${homeMod}/nix/buildMachines"
