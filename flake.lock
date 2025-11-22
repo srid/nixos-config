@@ -920,11 +920,11 @@
         "unionmount": "unionmount_2"
       },
       "locked": {
-        "lastModified": 1763847299,
-        "narHash": "sha256-Z55hS/vOh+8KzjuG2B1Z5d1GeRUHiLVG79lhPKfP5ig=",
+        "lastModified": 1763853993,
+        "narHash": "sha256-L2h/5ZqkF2VpSI2bgKmWogyITvkHAISALC18un2PiXQ=",
         "owner": "srid",
         "repo": "imako",
-        "rev": "6ebe0640a46ea810da7bce199eadc746328dd239",
+        "rev": "2efd5dc04289ccd5d020bc626769e87835b1a2c2",
         "type": "github"
       },
       "original": {
