@@ -16,9 +16,11 @@ in
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
-    "${homeMod}/services/vira.nix"
     "${homeMod}/work/juspay.nix"
-    # (self + /modules/home/services/dropbox.nix)
+    "${homeMod}/services/vira.nix"
+
+    "${homeMod}/services/dropbox.nix"
+    "${homeMod}/services/obsidian.nix"
 
     # Remote builders
     "${homeMod}/nix/buildMachines"
