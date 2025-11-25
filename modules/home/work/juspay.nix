@@ -9,6 +9,7 @@ in
 {
   imports = [
     "${jumphost-nix}/module.nix"
+    ../agenix.nix
   ];
 
   # https://github.com/srid/jumphost-nix

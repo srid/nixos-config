@@ -12,6 +12,5 @@
     # ./cli/zellij.nix
     ./cli/just.nix
     ./services/ttyd.nix
-    ./agenix.nix
   ];
 }
