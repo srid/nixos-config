@@ -30,8 +30,10 @@ in
         rwx = [ "." ];
         env = [
           "HOME" # Needed for gcloud and claude to resolve ~/ paths for config/state files
-          "CLAUDE_CODE_USE_VERTEX"
+          # See juspay.nix
           "ANTHROPIC_MODEL"
+          "ANTHROPIC_API_KEY"
+          "ANTHROPIC_BASE_URL"
         ];
       };
     };

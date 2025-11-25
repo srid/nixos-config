@@ -14,4 +14,5 @@ in
   "pureintent-basic-auth.age".publicKeys = users ++ systems;
   "gmail-app-password.age".publicKeys = users ++ systems;
   "hackage-password.age".publicKeys = users ++ systems;
+  "juspay-anthropic-api-key.age".publicKeys = users ++ systems;
 }

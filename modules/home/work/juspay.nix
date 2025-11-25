@@ -1,10 +1,27 @@
 # Juspay-specific configuration using the work jump host module
-{ flake, ... }:
+#
+# Debug agenix logs:
+#   cat ~/Library/Logs/agenix/stdout
+#   cat ~/Library/Logs/agenix/stderr
+
+{ flake, config, ... }:
 let
-  inherit (flake.inputs) jumphost-nix;
+  inherit (flake.inputs) jumphost-nix agenix;
 in
 {
-  imports = [ "${jumphost-nix}/module.nix" ];
+  imports = [
+    "${jumphost-nix}/module.nix"
+    agenix.homeManagerModules.default
+  ];
+
+  age.secrets.juspay-anthropic-api-key.file = ../../../secrets/juspay-anthropic-api-key.age;
+
+  programs.zsh.initContent = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
+  programs.bash.initExtra = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
 
   # https://github.com/srid/jumphost-nix
   programs.jumphost = {
@@ -27,6 +44,12 @@ in
 
   # Mirroring configuration from https://github.com/juspay/vertex
   home.sessionVariables = {
+    ANTHROPIC_BASE_URL = "https://grid.ai.juspay.net";
+    ANTHROPIC_MODEL = "claude-sonnet-4-5";
+    # ANTHROPIC_API_KEY set in initExtra via agenix
+  };
+
+  /*
     # Enable Vertex AI integration
     CLAUDE_CODE_USE_VERTEX = "1";
     CLOUD_ML_REGION = "us-east5";
@@ -46,5 +69,6 @@ in
     # Model configuration
     ANTHROPIC_MODEL = "claude-sonnet-4-5";
     ANTHROPIC_SMALL_FAST_MODEL = "claude-3-5-haiku";
-  };
+    };
+  */
 }
