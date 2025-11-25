@@ -7,12 +7,11 @@
 { flake, config, ... }:
 let
   inherit (flake) self;
-  inherit (flake.inputs) jumphost-nix agenix;
+  inherit (flake.inputs) jumphost-nix;
 in
 {
   imports = [
     "${jumphost-nix}/module.nix"
-    agenix.homeManagerModules.default
   ];
 
   # https://github.com/srid/jumphost-nix
@@ -41,7 +40,6 @@ in
     # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
   };
   age = {
-    identityPaths = [ "${config.home.homeDirectory}/.ssh/agenix" ];
     secrets = {
       juspay-anthropic-api-key.file = self + /secrets/juspay-anthropic-api-key.age;
     };
