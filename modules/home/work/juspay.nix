@@ -1,8 +1,5 @@
 # Juspay-specific configuration using the work jump host module
-#
-# Debug agenix logs:
-#   cat ~/Library/Logs/agenix/stdout
-#   cat ~/Library/Logs/agenix/stderr
+
 
 { flake, config, ... }:
 let

@@ -1,3 +1,6 @@
+# Debug agenix logs:
+#   cat ~/Library/Logs/agenix/stdout
+#   cat ~/Library/Logs/agenix/stderr
 { flake, config, ... }:
 let
   inherit (flake.inputs) agenix;
