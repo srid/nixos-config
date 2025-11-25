@@ -21,6 +21,11 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
+    agenix.inputs = {
+      darwin.follows = "nix-darwin";
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs";
+    };
     nuenv.url = "github:hallettj/nuenv/writeShellApplication";
 
     # Software inputs

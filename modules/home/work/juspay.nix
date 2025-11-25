@@ -1,10 +1,16 @@
 # Juspay-specific configuration using the work jump host module
-{ flake, ... }:
+
+
+{ flake, config, ... }:
 let
+  inherit (flake) self;
   inherit (flake.inputs) jumphost-nix;
 in
 {
-  imports = [ "${jumphost-nix}/module.nix" ];
+  imports = [
+    "${jumphost-nix}/module.nix"
+    ../agenix.nix
+  ];
 
   # https://github.com/srid/jumphost-nix
   programs.jumphost = {
@@ -25,26 +31,21 @@ in
     };
   };
 
-  # Mirroring configuration from https://github.com/juspay/vertex
+  # For Juspay LiteLLM AI configuration
   home.sessionVariables = {
-    # Enable Vertex AI integration
-    CLAUDE_CODE_USE_VERTEX = "1";
-    CLOUD_ML_REGION = "us-east5";
-    ANTHROPIC_VERTEX_PROJECT_ID = "dev-ai-gamma";
-
-    # Optional: Disable prompt caching if needed
-    DISABLE_PROMPT_CACHING = "1";
-
-    # Optional: Override regions for specific models
-    VERTEX_REGION_CLAUDE_3_5_HAIKU = "us-central1";
-    VERTEX_REGION_CLAUDE_3_5_SONNET = "us-east5";
-    VERTEX_REGION_CLAUDE_3_7_SONNET = "us-east5";
-    VERTEX_REGION_CLAUDE_4_0_OPUS = "europe-west4";
-    VERTEX_REGION_CLAUDE_4_0_SONNET = "us-east5";
-    VERTEX_REGION_CLAUDE_4_5_SONNET = "us-east5";
-
-    # Model configuration
+    ANTHROPIC_BASE_URL = "https://grid.ai.juspay.net";
     ANTHROPIC_MODEL = "claude-sonnet-4-5";
-    ANTHROPIC_SMALL_FAST_MODEL = "claude-3-5-haiku";
+    # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
   };
+  age = {
+    secrets = {
+      juspay-anthropic-api-key.file = self + /secrets/juspay-anthropic-api-key.age;
+    };
+  };
+  programs.zsh.initContent = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
+  programs.bash.initExtra = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
 }
