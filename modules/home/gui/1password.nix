@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  # home.packages = [ pkgs._1password-cli ];
-  # Using native CLI ^
+  home.packages = lib.mkIf pkgs.stdenv.isDarwin [ pkgs._1password-cli ];
+  # Using native CLI on Pop OS ^
 
   programs.ssh = {
     enable = true;
