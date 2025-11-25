@@ -6,6 +6,7 @@
 
 { flake, config, ... }:
 let
+  inherit (flake) self;
   inherit (flake.inputs) jumphost-nix agenix;
 in
 {
@@ -13,16 +14,6 @@ in
     "${jumphost-nix}/module.nix"
     agenix.homeManagerModules.default
   ];
-
-  age.secrets.juspay-anthropic-api-key.file = ../../../secrets/juspay-anthropic-api-key.age;
-  age.identityPaths = [ "${config.home.homeDirectory}/.ssh/agenix" ];
-
-  programs.zsh.initContent = ''
-    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
-  programs.bash.initExtra = ''
-    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
 
   # https://github.com/srid/jumphost-nix
   programs.jumphost = {
@@ -43,10 +34,22 @@ in
     };
   };
 
-  # Mirroring configuration from https://github.com/juspay/vertex
+  # For Juspay LiteLLM AI configuration
   home.sessionVariables = {
     ANTHROPIC_BASE_URL = "https://grid.ai.juspay.net";
     ANTHROPIC_MODEL = "claude-sonnet-4-5";
-    # ANTHROPIC_API_KEY set in initExtra via agenix
+    # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
   };
+  age = {
+    identityPaths = [ "${config.home.homeDirectory}/.ssh/agenix" ];
+    secrets = {
+      juspay-anthropic-api-key.file = self + /secrets/juspay-anthropic-api-key.age;
+    };
+  };
+  programs.zsh.initContent = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
+  programs.bash.initExtra = ''
+    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
 }
