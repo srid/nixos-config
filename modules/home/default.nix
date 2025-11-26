@@ -3,7 +3,7 @@
   imports = [
     ./cli/tmux.nix
     # ./editors/neovim
-    ./editors/helix.nix
+    # ./editors/helix.nix
     ./cli/starship.nix
     ./cli/terminal.nix
     ./nix/path.nix
