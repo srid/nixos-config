@@ -10,7 +10,7 @@
     # Principle inputs
 
     # RETARDED POLITICAL UPSTREAM BREAKS CACHE OFTEN
-    nixpkgs.url = "github:nixos/nixpkgs/6b5a23a12dfcf90e4ebc041925d63668314a39fc";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
