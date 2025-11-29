@@ -14,12 +14,12 @@ in
     enable = false;
     notes = [ myVault ];
     port = 7001;
-    package = inputs.emanote.packages.${pkgs.system}.default;
+    package = inputs.emanote.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 
   services.imako = {
     enable = true;
-    package = inputs.imako.packages.${pkgs.system}.default;
+    package = inputs.imako.packages.${pkgs.stdenv.hostPlatform.system}.default;
     vaultDir = myVault;
     port = 7002;
     host = "0.0.0.0";

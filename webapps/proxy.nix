@@ -3,7 +3,7 @@
 
 let
   host = "pureintent"; # See host.nix
-  webapps = import ./. { inherit flake; system = pkgs.system; };
+  webapps = import ./. { inherit flake; system = pkgs.stdenv.hostPlatform.system; };
 in
 {
   services.tailscale.enable = true;

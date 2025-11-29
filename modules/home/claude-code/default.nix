@@ -19,7 +19,7 @@ in
     # Use sandboxed version on Linux, plain version on macOS
     package =
       if pkgs.stdenv.isLinux
-      then flake.inputs.self.packages.${pkgs.system}.claude # see claude-sandboxed.nix
+      then flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude # see claude-sandboxed.nix
       else pkgs.claude-code;
 
     # Set the claude-code directory for auto-wiring

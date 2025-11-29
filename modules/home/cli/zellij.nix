@@ -12,7 +12,7 @@
     enableBashIntegration = false;
 
     settings = {
-      theme = if pkgs.system == "aarch64-darwin" then "dracula" else "gruvbox-light";
+      theme = if pkgs.stdenv.hostPlatform.system == "aarch64-darwin" then "dracula" else "gruvbox-light";
       # NOTE: There's no way to set theme by name.
       # See https://github.com/nix-community/home-manager/issues/3854
       # But we can manually convert this syntax using LLM,

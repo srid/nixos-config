@@ -21,7 +21,7 @@ in
     # https = false; # Using tailscale services
     autoResetState = true;
     autoBuildNewBranches = true;
-    package = inputs.vira.packages.${pkgs.system}.default;
+    package = inputs.vira.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     initialState = {
       repositories = {

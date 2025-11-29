@@ -2,7 +2,7 @@
 { flake, pkgs, lib, ... }:
 
 let
-  webapps = import ./. { inherit flake; system = pkgs.system; };
+  webapps = import ./. { inherit flake; system = pkgs.stdenv.hostPlatform.system; };
 in
 {
   # Run each web app as a systemd service decided inside a container.
