@@ -11,6 +11,7 @@
     ./cli/direnv.nix
     # ./cli/zellij.nix
     ./cli/just.nix
+    ./cli/npm.nix
     ./services/ttyd.nix
   ];
 }

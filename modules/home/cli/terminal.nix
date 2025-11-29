@@ -39,7 +39,6 @@ in
     uv # For running Python stuff quickly.
 
     # AI
-    gemini-cli
     google-cloud-sdk
 
     # Publishing
