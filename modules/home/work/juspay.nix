@@ -33,9 +33,10 @@ in
 
   # For Juspay LiteLLM AI configuration
   home.sessionVariables = {
+    # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
     ANTHROPIC_BASE_URL = "https://grid.ai.juspay.net";
     ANTHROPIC_MODEL = "claude-sonnet-4-5";
-    # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
+    CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1"; # For GLM related bug
   };
   age = {
     secrets = {
