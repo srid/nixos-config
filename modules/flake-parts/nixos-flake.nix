@@ -17,7 +17,7 @@
         "nix-index-database"
         "nixvim"
         "nix-ai-tools"
-        "nixos-unified"
+        "AI"
       ];
     };
   };
