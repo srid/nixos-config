@@ -885,11 +885,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1764443737,
-        "narHash": "sha256-ToksBrNv2Si+S9oUMqca1xFu8vSt9HHbUeZ5fFbu1S8=",
+        "lastModified": 1764815326,
+        "narHash": "sha256-k+Vwwsi28BFmlu6sfR9pgICgvd4zsS97Kh+SQzRQeQI=",
         "owner": "srid",
         "repo": "imako",
-        "rev": "bd915be60b1550aa2dee9fc951a2000fd495e289",
+        "rev": "1e6f3db6e2e55e50629f78cb0aa93afdf71f221b",
         "type": "github"
       },
       "original": {
