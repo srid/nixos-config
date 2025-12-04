@@ -49,4 +49,8 @@ in
   programs.bash.initExtra = ''
     export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
   '';
+
+  home.shellAliases = {
+    jcurl = "curl --socks5 localhost:1080";
+  };
 }
