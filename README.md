@@ -4,6 +4,9 @@ This repository contains the Nix / NixOS configuration for all of my systems. Se
 
 ## Setup
 
+[![Run in Smithery](https://smithery.ai/badge/skills/srid)](https://smithery.ai/skills?ns=srid&utm_source=github&utm_medium=badge)
+
+
 To use this repository as base configuration for your new machine running:
 
 ### NixOS Linux
