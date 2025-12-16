@@ -38,7 +38,6 @@ in
         emanote = "https://github.com/srid/emanote.git";
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
-        typst-docs = "https://github.com/srid/typst-docs.git";
         vertex = "https://github.com/juspay/vertex.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         # Just to test heavy weight stuff
