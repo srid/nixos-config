@@ -37,6 +37,12 @@ in
 
   nix.settings.sandbox = "relaxed";
 
+  zramSwap.enable = true;
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 32 * 1024; # 32GB in megabytes
+  }];
+
   services.openssh.enable = true;
   services.tailscale.enable = true;
   networking.firewall.allowedTCPPorts = [
