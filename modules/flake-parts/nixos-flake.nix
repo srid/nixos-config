@@ -14,6 +14,7 @@
         "nixpkgs"
         "home-manager"
         "nix-darwin"
+        # "nixos-hardware"
         "nix-index-database"
         "nixvim"
         "nix-ai-tools"

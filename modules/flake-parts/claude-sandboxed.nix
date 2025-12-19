@@ -26,6 +26,7 @@ in
           "$HOME/.claude"
           "$HOME/.claude.json"
           "$HOME/.config/gcloud"
+          "$HOME/.cache/claude-cli-nodejs"
         ];
         rwx = [ "." ];
         env = [

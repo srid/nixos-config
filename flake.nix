@@ -31,7 +31,6 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    try.url = "github:tobi/try";
     vira.url = "github:juspay/vira";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
     nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
@@ -44,9 +43,6 @@
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    # Emacs
-    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
-    nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "nixpkgs";
 
     # Emanote & Imako
     emanote.url = "github:srid/emanote";

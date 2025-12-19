@@ -7,7 +7,6 @@ in
 {
   imports = [
     inputs.nix-index-database.homeModules.nix-index
-    inputs.try.homeManagerModules.default
   ];
   home.packages = with pkgs; [
     # Unixy tools
@@ -58,7 +57,7 @@ in
 
     # Txns
     hledger
-    # hledger-web
+    hledger-web
 
     gnupg
     ffmpeg
@@ -89,9 +88,5 @@ in
     };
     jq.enable = true;
     btop.enable = true;
-    try = {
-      enable = true;
-      path = "~/tries";
-    };
   };
 }
