@@ -15,6 +15,9 @@ in
   nix.settings.trusted-users = [ "srid" ]; # For cache?
 
   services.vira = {
+    systemd.environment = {
+      NIX_SSHOPTS = "-o ConnectTimeout=10 -o ServerAliveInterval=60";
+    };
     enable = true;
     port = 5001;
     hostname = "0.0.0.0";
@@ -39,7 +42,6 @@ in
         emanote = "https://github.com/srid/emanote.git";
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
-        vertex = "https://github.com/juspay/vertex.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         # Just to test heavy weight stuff
         # superposition = "https://github.com/juspay/superposition.git";
