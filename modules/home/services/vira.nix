@@ -40,6 +40,7 @@ in
         vira = "https://github.com/juspay/vira.git";
         imako = "https://github.com/srid/imako.git";
         emanote = "https://github.com/srid/emanote.git";
+        unionmount = "https://github.com/srid/unionmount.git";
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";

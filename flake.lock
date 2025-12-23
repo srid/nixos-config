@@ -810,11 +810,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1764815326,
-        "narHash": "sha256-k+Vwwsi28BFmlu6sfR9pgICgvd4zsS97Kh+SQzRQeQI=",
+        "lastModified": 1766422941,
+        "narHash": "sha256-ZSUQ8ZrYxNe4PJDd/fStXxoVS1Vtzt44u1flIdKDOKc=",
         "owner": "srid",
         "repo": "imako",
-        "rev": "1e6f3db6e2e55e50629f78cb0aa93afdf71f221b",
+        "rev": "bf4ec26aeee917c6246c689c41a52c8f4a971b19",
         "type": "github"
       },
       "original": {
@@ -1571,11 +1571,11 @@
         "warp-tls-simple": "warp-tls-simple_2"
       },
       "locked": {
-        "lastModified": 1766174895,
-        "narHash": "sha256-311QWj7JO9usEZHAGB5KwWau1KeKSexT6XTsDeMgjkU=",
+        "lastModified": 1766262872,
+        "narHash": "sha256-U9RVDqInNmqdlHbchyFVNTFMQk604ujQE7ltymniZP0=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "82ff8e1af6d79fbdc172e189d47d420d84f645d0",
+        "rev": "b4bf87272f624690e7b3adf5614bd92fb97a9daf",
         "type": "github"
       },
       "original": {
