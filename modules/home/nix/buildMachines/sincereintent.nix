@@ -4,7 +4,7 @@
   nix.buildMachines = [
     {
       # hostName = "sincereintent"; TAILSCALE problem
-      hostName = "192.168.2.247";
+      hostName = "192.168.2.44"; # ethernet
       sshUser = "srid";
       systems = [ "aarch64-darwin" ];
       protocol = "ssh-ng";
