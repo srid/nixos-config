@@ -49,11 +49,6 @@ in
     size = 32 * 1024; # 32GB in megabytes
   }];
 
-  services.glances = {
-    enable = true;
-    openFirewall = true;
-  };
-
   services.openssh.enable = true;
   services.tailscale.enable = true;
   networking.firewall.allowedTCPPorts = [
