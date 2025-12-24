@@ -6,7 +6,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJYQQXPMHYBtRcPzSkjQ3oqyje8T4UlCpbr6XjrlzzlK srid@zest"
   ];
 
-  pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICkY5feaNt4elPqRQimB9h3OFxtFAzp98p1H+JezBv92 root@nixos";
+  pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUzYd7ys2gzx0Zu7yZDjZaRdUHDZIVahyVgaU2w2Ms8 root@nixos";
   systems = [
     pureintent
   ];
@@ -19,4 +19,5 @@ in
   "gmail-app-password.age".publicKeys = users ++ systems;
   "hackage-password.age".publicKeys = users ++ systems;
   "juspay-anthropic-api-key.age".publicKeys = users ++ systems;
+  "beszel-agent-key.age".publicKeys = users ++ systems;
 }

@@ -12,6 +12,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    (self + /modules/nixos/linux/beszel.nix)
   ];
 
   users.users.${flake.config.me.username}.linger = true;
@@ -36,12 +37,22 @@ in
   ];
 
   nix.settings.sandbox = "relaxed";
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   zramSwap.enable = true;
   swapDevices = [{
     device = "/var/lib/swapfile";
     size = 32 * 1024; # 32GB in megabytes
   }];
+
+  services.glances = {
+    enable = true;
+    openFirewall = true;
+  };
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
