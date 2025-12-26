@@ -44,6 +44,7 @@ in
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
+        haskell-template = "https://github.com/srid/haskell-template.git";
         # Just to test heavy weight stuff
         # superposition = "https://github.com/juspay/superposition.git";
       };
