@@ -31,6 +31,7 @@ in
       # Nullify the registry for purity.
       flake-registry = pkgs.writeText "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
       trusted-users = [ "root" (if pkgs.stdenv.isDarwin then flake.config.me.username else "@wheel") ];
+      max-call-depth = "1000000";
     };
   };
 }

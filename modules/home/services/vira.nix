@@ -34,6 +34,7 @@ in
         hackage-publish = "https://github.com/srid/hackage-publish.git";
         haskell-flake = "https://github.com/srid/haskell-flake.git";
         heist-extra = "https://github.com/srid/heist-extra.git";
+        tail-hs = "https://github.com/srid/tail-hs.git";
         rust-flake = "https://github.com/juspay/rust-flake.git";
         services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
