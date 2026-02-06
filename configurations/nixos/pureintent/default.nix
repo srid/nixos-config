@@ -36,7 +36,10 @@ in
     }
   ];
 
-  nix.settings.sandbox = "relaxed";
+  nix.settings = {
+    sandbox = "relaxed";
+    extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
+  };
   nix.gc = {
     automatic = true;
     dates = "weekly";
