@@ -58,9 +58,6 @@
     isNormalUser = true;
     description = "Sridhar Ratnakumar";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   # Install firefox.

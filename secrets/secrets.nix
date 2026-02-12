@@ -6,7 +6,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJYQQXPMHYBtRcPzSkjQ3oqyje8T4UlCpbr6XjrlzzlK srid@zest"
   ];
 
-  pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUzYd7ys2gzx0Zu7yZDjZaRdUHDZIVahyVgaU2w2Ms8 root@nixos";
+  pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKfR7GnwrIVemP/1kna8jboNRegIsaVL6mTi3oXwMdU";
   systems = [
     pureintent
   ];

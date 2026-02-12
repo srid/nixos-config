@@ -6,8 +6,8 @@ let
   homeMod = self + /modules/home;
 in
 {
-  nixos-unified.sshTarget = "srid@pureintent";
-  # nixos-unified.sshTarget = "srid@192.168.2.244";
+  # nixos-unified.sshTarget = "srid@pureintent";
+  nixos-unified.sshTarget = "srid@192.168.2.134";
 
   imports = [
     self.nixosModules.default
@@ -20,8 +20,8 @@ in
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
 
-    "${homeMod}/services/dropbox.nix"
-    "${homeMod}/services/obsidian.nix"
+    # "${homeMod}/services/dropbox.nix"
+    # "${homeMod}/services/obsidian.nix"
 
     # Remote builders
     "${homeMod}/nix/buildMachines"

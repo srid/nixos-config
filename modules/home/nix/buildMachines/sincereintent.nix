@@ -3,8 +3,8 @@
   # Configure remote building to sincereintent (macOS builder)
   nix.buildMachines = [
     {
-      # hostName = "sincereintent"; TAILSCALE problem
-      hostName = "192.168.2.245"; # ethernet
+      hostName = "sincereintent";
+      # hostName = "192.168.2.137"; # wifi
       sshUser = "srid";
       systems = [ "aarch64-darwin" ];
       protocol = "ssh-ng";
