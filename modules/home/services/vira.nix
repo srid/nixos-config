@@ -36,10 +36,9 @@ in
         heist-extra = "https://github.com/srid/heist-extra.git";
         tail-hs = "https://github.com/srid/tail-hs.git";
         rust-flake = "https://github.com/juspay/rust-flake.git";
-        services-flake = "https://github.com/juspay/services-flake.git";
+        # services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
         vira = "https://github.com/juspay/vira.git";
-        imako = "https://github.com/srid/imako.git";
         emanote = "https://github.com/srid/emanote.git";
         unionmount = "https://github.com/srid/unionmount.git";
         ema = "https://github.com/srid/ema.git";
