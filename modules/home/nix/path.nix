@@ -7,6 +7,7 @@
     "/etc/profiles/per-user/$USER/bin"
     "/nix/var/nix/profiles/system/sw/bin"
     "$HOME/.nix-profile/bin"
+    "$HOME/.local/bin"
     "/usr/local/bin"
   ];
 }

@@ -1,7 +1,7 @@
 {
   imports = [
     ./cli/bash.nix
-    ./claude-code
+    # ./claude-code
     # ./cli/zsh.nix
     # ./editors/vscode-server.nix
   ];
