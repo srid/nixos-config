@@ -26,7 +26,6 @@ in
 
     # Useful for Nix development
     ci
-    touchpr
     omnix
     nixpkgs-fmt
     just

@@ -23,8 +23,6 @@
       home-manager.follows = "home-manager";
       nixpkgs.follows = "nixpkgs";
     };
-    nuenv.url = "github:hallettj/nuenv/writeShellApplication";
-
     # Software inputs
     github-nix-ci.url = "github:juspay/github-nix-ci";
     nixos-vscode-server.flake = false;

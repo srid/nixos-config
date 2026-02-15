@@ -33,9 +33,6 @@ let
 
 in
 packageOverlays // {
-  # External overlays
-  nuenv = (inputs.nuenv.overlays.nuenv self super).nuenv;
-
   # Use claude-code from nix-ai-tools instead of nixpkgs
   claude-code = (nix-ai-tools self.system).claude-code;
   copilot-cli = (nix-ai-tools self.system).copilot-cli;
