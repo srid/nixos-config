@@ -1,10 +1,16 @@
 [![AGPL](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://en.wikipedia.org/wiki/Affero_General_Public_License)
 
-This repository contains the Nix / NixOS configuration for all of my systems. See [nixos-unified](https://nixos-unified.org)—specifically [nixos-unified-template](https://github.com/juspay/nixos-unified-template)—if you wish to create your own configuration from scratch.
+This is my Nix / NixOS configuration for all of my systems. See [nixos-unified](https://nixos-unified.org)—specifically [nixos-unified-template](https://github.com/juspay/nixos-unified-template)—if you wish to create your own configuration from scratch.
 
 ## Setup
 
-To use this repository as base configuration for your new machine running:
+If you are using this repository as a starting template for your own configuration, perform these initial steps:
+
+1. Edit `config.nix` in the repository root to set your primary user information (`username`, `fullname`, `email`, `sshKey`).
+2. Replace the SSH keys in `secrets/secrets.nix` with your own, or delete the file if you do not use `agenix`.
+3. Delete any files in `configurations/` that you do not need, and create/rename files to match your hostnames.
+
+After preparing your template, to install on a new machine running:
 
 ### NixOS Linux
 
@@ -23,16 +29,12 @@ To use this repository as base configuration for your new machine running:
   - X1 Carbon: https://srid.ca/x1c7-install
   - Windows (via WSL): https://github.com/nix-community/NixOS-WSL
 - Clone this repo anywhere
-- Rename `./configurations/nixos/??.nix` to match your current system hostname
-- Edit `config.nix` to set your primary user information
 - Run `nix run`. That's it. Re-open your terminal.
 
 ### macOS
 
 - [Install Nix](https://nixos.asia/en/install)
 - Clone this repo anywhere
-- Rename `./configurations/darwin/??.nix` to match your current system hostname
-- Edit `config.nix` to set your primary user information
 - Run `nix run`.[^cleanup] That's it. Re-open your terminal.
 
 [^cleanup]: You might have to `rm -rf /etc/nix/nix.conf`, so our flake.nix can do its thing.
