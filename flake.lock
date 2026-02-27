@@ -645,15 +645,15 @@
         "haskell-flake": "haskell-flake_2",
         "lvar": "lvar_2",
         "nixpkgs": "nixpkgs_2",
-        "unionmount": "unionmount_2",
-        "warp-tls-simple": "warp-tls-simple"
+        "process-compose-flake": "process-compose-flake",
+        "unionmount": "unionmount_2"
       },
       "locked": {
-        "lastModified": 1769998358,
-        "narHash": "sha256-5tz9rr40bLR/nTL4BZBn3PxMsjktbsrcbx1W85vXuPk=",
+        "lastModified": 1772207248,
+        "narHash": "sha256-rZgwvE39JAOD9iod9i/7v66Il7egKoSl1zDW3EGMHoo=",
         "owner": "srid",
         "repo": "imako",
-        "rev": "9f798fe5ba9a22e9c144db5e4184e0780f8a9cd5",
+        "rev": "5ac0382b0795f0897eea866fe335586a3083bc9c",
         "type": "github"
       },
       "original": {
@@ -925,11 +925,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1758029226,
-        "narHash": "sha256-TjqVmbpoCqWywY9xIZLTf6ANFvDCXdctCjoYuYPYdMI=",
+        "lastModified": 1770169770,
+        "narHash": "sha256-awR8qIwJxJJiOmcEGgP2KUqYmHG4v/z8XpL9z8FnT1A=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "08b8f92ac6354983f5382124fef6006cade4a1c1",
+        "rev": "aa290c9891fa4ebe88f8889e59633d20cc06a5f2",
         "type": "github"
       },
       "original": {
@@ -1007,6 +1007,21 @@
       }
     },
     "process-compose-flake": {
+      "locked": {
+        "lastModified": 1767863885,
+        "narHash": "sha256-XXekPAxzbv1DmHFo3Elmj/vDnvWc1V0jdDUvM0/Wf7k=",
+        "owner": "Platonic-Systems",
+        "repo": "process-compose-flake",
+        "rev": "99bea96cf269cfd235833ebdf645b567069fd398",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Platonic-Systems",
+        "repo": "process-compose-flake",
+        "type": "github"
+      }
+    },
+    "process-compose-flake_2": {
       "locked": {
         "lastModified": 1764915241,
         "narHash": "sha256-vTqn6IAkZhuuctvkxjhzI1EEybyzwaNd7HJvhF662O8=",
@@ -1222,18 +1237,18 @@
         "nix-systems": "nix-systems",
         "nixos-unified": "nixos-unified_3",
         "nixpkgs": "nixpkgs_5",
-        "process-compose-flake": "process-compose-flake",
+        "process-compose-flake": "process-compose-flake_2",
         "record-hasfield": "record-hasfield",
         "servant-event-stream": "servant-event-stream",
         "tabler-icons-hs": "tabler-icons-hs",
-        "warp-tls-simple": "warp-tls-simple_2"
+        "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1770055781,
-        "narHash": "sha256-olDeLAZbs1Alpncwpm8M8uqGZ/DdzHRwIuSQzdoj5u8=",
+        "lastModified": 1772203970,
+        "narHash": "sha256-HbGiTFdmLAMOBVEpEfQDGJiuH+VUjZK72EV2BB5RO28=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "0b060a144c7afa646e29affa4f57abfae868b204",
+        "rev": "e93bc5344a11c573e6f1f6f33119855971edd46c",
         "type": "github"
       },
       "original": {
@@ -1243,22 +1258,6 @@
       }
     },
     "warp-tls-simple": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1758321703,
-        "narHash": "sha256-7/U6UwXuJqWKi2CpNkTjDPO/13Mtof4LwmHbWnf/unU=",
-        "owner": "srid",
-        "repo": "warp-tls-simple",
-        "rev": "bbe9069048f38a04bb45b7adeda9ce84d87f2015",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "warp-tls-simple",
-        "type": "github"
-      }
-    },
-    "warp-tls-simple_2": {
       "flake": false,
       "locked": {
         "lastModified": 1758321703,

@@ -13,6 +13,8 @@ in
 
     "${homeMod}/work/juspay.nix"
 
+    "${homeMod}/services/obsidian.nix"
+
     # Remote builders
     # "${homeMod}/nix/buildMachines"
     # "${homeMod}/nix/buildMachines/sincereintent.nix"
