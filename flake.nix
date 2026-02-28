@@ -45,6 +45,7 @@
     # Emanote & Imako
     emanote.url = "github:srid/emanote";
     imako.url = "github:srid/imako";
+    disc-scrape.url = "github:srid/disc-scrape";
 
     # Devshell
     git-hooks.url = "github:cachix/git-hooks.nix";

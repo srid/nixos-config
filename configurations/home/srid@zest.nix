@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -24,5 +24,9 @@ in
 
   home.sessionPath = [
     "/nix/var/nix/profiles/default/bin"
+  ];
+
+  home.packages = [
+    inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
