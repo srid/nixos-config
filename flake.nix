@@ -29,7 +29,7 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    vira.url = "github:juspay/vira";
+    vira.url = "github:juspay/vira/github";
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
     nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
     landrun-nix.url = "github:srid/landrun-nix";

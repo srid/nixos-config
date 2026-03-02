@@ -2,6 +2,7 @@
 
 let
   inherit (flake) inputs;
+  inherit (flake.inputs) self;
 in
 {
   imports = [
@@ -11,6 +12,20 @@ in
   home.packages = [
     config.services.vira.package # For CLI
   ];
+
+  # HACK: Hardcoded UID 1000 - should use config.users.users.srid.uid or similar.
+  # The vira module requires an absolute path, but agenix home-manager uses
+  # ${XDG_RUNTIME_DIR} which isn't resolved at evaluation time.
+  # TODO: Find a proper solution - perhaps contribute a fix to vira to accept
+  # runtime paths, or configure agenix to use a static path.
+  age.secrets."vira-github-private-key.age" = {
+    file = self + /secrets/vira-github-private-key.age;
+    path = "/run/user/1000/agenix/vira-github-private-key.age";
+  };
+  age.secrets."vira-github-webhook-secret.age" = {
+    file = self + /secrets/vira-github-webhook-secret.age;
+    path = "/run/user/1000/agenix/vira-github-webhook-secret.age";
+  };
 
   nix.settings.trusted-users = [ "srid" ]; # For cache?
 
@@ -25,6 +40,12 @@ in
     autoResetState = true;
     autoBuildNewBranches = true;
     package = inputs.vira.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+    github = {
+      appId = 2989507;
+      privateKeyFile = config.age.secrets."vira-github-private-key.age".path;
+      webhookSecretFile = config.age.secrets."vira-github-webhook-secret.age".path;
+    };
 
     initialState = {
       repositories = {
@@ -43,6 +64,7 @@ in
         unionmount = "https://github.com/srid/unionmount.git";
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
+        imako = "https://github.com/srid/imako.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         haskell-template = "https://github.com/srid/haskell-template.git";
         commonmark-wikilink = "https://github.com/srid/commonmark-wikilink.git";

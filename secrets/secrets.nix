@@ -20,4 +20,6 @@ in
   "hackage-password.age".publicKeys = users ++ systems;
   "juspay-anthropic-api-key.age".publicKeys = users ++ systems;
   "beszel-agent-key.age".publicKeys = users ++ systems;
+  "vira-github-webhook-secret.age".publicKeys = users ++ systems;
+  "vira-github-private-key.age".publicKeys = users ++ systems;
 }
