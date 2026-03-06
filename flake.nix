@@ -29,10 +29,12 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    vira.url = "github:juspay/vira/github";
-    nix-ai-tools.url = "github:numtide/nix-ai-tools";
-    nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
-    landrun-nix.url = "github:srid/landrun-nix";
+    # vira.url = "github:juspay/vira/github";
+    vira.url = "github:juspay/vira";
+    nix-ai-tools.url = "github:numtide/llm-agents.nix";
+    # nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
+    # landrun-nix.url = "github:srid/landrun-nix";
+    landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
     AI.url = "path:vendor/AI";
     AI.flake = false;
     jumphost-nix.url = "path:vendor/jumphost-nix";

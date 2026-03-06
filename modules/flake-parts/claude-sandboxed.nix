@@ -6,8 +6,8 @@ in
 {
   imports = [ landrun-nix.flakeModule ];
 
-  perSystem = { pkgs, system, lib, ... }: {
-    landrunApps.claude = lib.mkIf (lib.hasInfix "linux" system) {
+  perSystem = { pkgs, ... }: {
+    landrunApps.claude = {
       program = "${pkgs.claude-code}/bin/claude";
       imports = [
         landrunModules.gh
@@ -34,6 +34,7 @@ in
           "ANTHROPIC_MODEL"
           "ANTHROPIC_API_KEY"
           "ANTHROPIC_BASE_URL"
+          "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS"
         ];
       };
     };

@@ -16,11 +16,8 @@ in
   programs.claude-code = {
     enable = true;
 
-    # Use sandboxed version on Linux, plain version on macOS
-    package =
-      if pkgs.stdenv.isLinux
-      then flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude # see claude-sandboxed.nix
-      else pkgs.claude-code;
+    # Use sandboxed version 
+    package = flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude; # see claude-sandboxed.nix
 
     # Set the claude-code directory for auto-wiring
     autoWire.dir = AI;
