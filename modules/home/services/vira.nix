@@ -41,11 +41,13 @@ in
     autoBuildNewBranches = true;
     package = inputs.vira.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-    github = {
+    /*
+      github = {
       appId = 2989507;
       privateKeyFile = config.age.secrets."vira-github-private-key.age".path;
       webhookSecretFile = config.age.secrets."vira-github-webhook-secret.age".path;
-    };
+      };
+    */
 
     initialState = {
       repositories = {
