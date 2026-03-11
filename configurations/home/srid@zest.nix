@@ -10,6 +10,7 @@ in
     flake.inputs.self.homeModules.darwin-only
     "${homeMod}/gui/1password.nix"
     "${homeMod}/claude-code"
+    "${homeMod}/opencode"
 
     "${homeMod}/work/juspay.nix"
 

@@ -1,18 +1,18 @@
 # Juspay-specific configuration using the work jump host module
 
 
-{ flake, config, ... }:
+{ flake, ... }:
 let
-  inherit (flake) self;
   inherit (flake.inputs) jumphost-nix;
+  homeMod = flake.inputs.self + /modules/home;
 in
 {
   imports = [
     "${jumphost-nix}/module.nix"
-    ../agenix.nix
+    "${homeMod}/claude-code/juspay.nix"
+    "${homeMod}/opencode/juspay.nix"
   ];
 
-  # https://github.com/srid/jumphost-nix
   programs.jumphost = {
     enable = true;
     host = "vanjaram.tail12b27.ts.net";
@@ -30,25 +30,6 @@ in
       enable = true;
     };
   };
-
-  # For Juspay LiteLLM AI configuration
-  home.sessionVariables = {
-    # ANTHROPIC_API_KEY set in initExtra via agenix (see below)
-    ANTHROPIC_BASE_URL = "https://grid.ai.juspay.net";
-    ANTHROPIC_MODEL = "claude-sonnet-4-5";
-    CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1"; # For GLM related bug
-  };
-  age = {
-    secrets = {
-      juspay-anthropic-api-key.file = self + /secrets/juspay-anthropic-api-key.age;
-    };
-  };
-  programs.zsh.initContent = ''
-    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
-  programs.bash.initExtra = ''
-    export ANTHROPIC_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
 
   home.shellAliases = {
     jcurl = "curl --socks5 localhost:1080";
