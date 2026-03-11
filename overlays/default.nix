@@ -36,4 +36,5 @@ packageOverlays // {
   # Use claude-code from nix-ai-tools instead of nixpkgs
   claude-code = (nix-ai-tools self.system).claude-code;
   copilot-cli = (nix-ai-tools self.system).copilot-cli;
+  opencode = (nix-ai-tools self.system).opencode;
 }
