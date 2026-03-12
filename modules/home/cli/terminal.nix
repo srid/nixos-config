@@ -49,6 +49,7 @@ in
     sshuttle-via
     entr
     hackage-publish
+    zellij-one
 
     # Fonts
     cascadia-code
