@@ -61,6 +61,7 @@ in
         rust-flake = "https://github.com/juspay/rust-flake.git";
         # services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
+        oc = "https://github.com/juspay/oc.git";
         vira = "https://github.com/juspay/vira.git";
         emanote = "https://github.com/srid/emanote.git";
         unionmount = "https://github.com/srid/unionmount.git";
