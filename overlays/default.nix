@@ -4,7 +4,6 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   packages = self + /packages;
-  nix-ai-tools = system: inputs.nix-ai-tools.packages.${system};
 
 in
 self: super:
@@ -32,9 +31,4 @@ let
     (builtins.attrValues (builtins.mapAttrs makePackage entries));
 
 in
-packageOverlays // {
-  # Use claude-code from nix-ai-tools instead of nixpkgs
-  claude-code = (nix-ai-tools self.system).claude-code;
-  copilot-cli = (nix-ai-tools self.system).copilot-cli;
-  opencode = (nix-ai-tools self.system).opencode;
-}
+packageOverlays

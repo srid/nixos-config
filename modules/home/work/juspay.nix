@@ -10,7 +10,7 @@ in
   imports = [
     "${jumphost-nix}/module.nix"
     "${homeMod}/claude-code/juspay.nix"
-    "${homeMod}/opencode/juspay.nix"
+    "${homeMod}/opencode"
   ];
 
   programs.jumphost = {
