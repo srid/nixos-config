@@ -20,6 +20,7 @@ in
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/opencode"
+    "${homeMod}/opencode/web.nix"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
@@ -27,14 +28,6 @@ in
     # Remote builders
     "${homeMod}/nix/buildMachines"
     "${homeMod}/nix/buildMachines/sincereintent.nix"
-    {
-      services.ttyd = {
-        enable = true;
-        port = 9999;
-        command = "${lib.getExe config.programs.tmux.package} new-session -A -s ttyd";
-        write = true;
-      };
-    }
   ];
 
   nix.settings = {
