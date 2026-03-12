@@ -1,12 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, flake, ... }:
 
 let
+  inherit (flake) inputs;
   pathPackages = [
     pkgs.git
+    pkgs.gh
+    pkgs.nix
+    inputs.vira.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.coreutils
     pkgs.gnugrep
     pkgs.gnused
     pkgs.findutils
+    pkgs.which
   ];
 in
 {
