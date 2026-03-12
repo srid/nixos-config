@@ -20,7 +20,6 @@ in
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/opencode"
-    "${homeMod}/opencode/web.nix"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
