@@ -1,7 +1,7 @@
 # Juspay-specific configuration using the work jump host module
 
 
-{ config, flake, ... }:
+{ flake, ... }:
 let
   inherit (flake.inputs) jumphost-nix;
   homeMod = flake.inputs.self + /modules/home;
@@ -10,6 +10,7 @@ in
   imports = [
     "${jumphost-nix}/module.nix"
     "${homeMod}/claude-code/juspay.nix"
+    "${homeMod}/opencode"
   ];
 
   programs.jumphost = {
@@ -33,11 +34,4 @@ in
   home.shellAliases = {
     jcurl = "curl --socks5 localhost:1080";
   };
-
-  programs.zsh.initContent = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
-  programs.bash.initExtra = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
-  '';
 }

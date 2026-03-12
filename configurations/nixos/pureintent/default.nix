@@ -19,7 +19,6 @@ in
   home-manager.sharedModules = [
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
-    "${homeMod}/opencode"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
