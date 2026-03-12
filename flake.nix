@@ -32,6 +32,7 @@
     # vira.url = "github:juspay/vira/github";
     vira.url = "github:juspay/vira";
     nix-ai-tools.url = "github:numtide/llm-agents.nix";
+    oc.url = "github:juspay/oc/m2";
     # nix-ai-tools.inputs.nixpkgs.follows = "nixpkgs";
     # landrun-nix.url = "github:srid/landrun-nix";
     landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
