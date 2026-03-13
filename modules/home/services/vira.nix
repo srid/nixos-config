@@ -51,6 +51,7 @@ in
 
     initialState = {
       repositories = {
+        AI = "https://github.com/srid/AI.git";
         nixos-config = "https://github.com/srid/nixos-config.git";
         nixos-unified-template = "https://github.com/juspay/nixos-unified-template.git";
         nixos-unified = "https://github.com/srid/nixos-unified.git";
