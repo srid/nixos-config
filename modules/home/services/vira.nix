@@ -69,6 +69,7 @@ in
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
         imako = "https://github.com/srid/imako.git";
+        opencode-haskell = "https://github.com/srid/opencode-haskell.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         haskell-template = "https://github.com/srid/haskell-template.git";
         commonmark-wikilink = "https://github.com/srid/commonmark-wikilink.git";
