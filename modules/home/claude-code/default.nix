@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    "${AI}/nix/home-manager-module.nix"
+    AI.homeManagerModules.claude-code
   ];
 
   home.packages = with pkgs; [
