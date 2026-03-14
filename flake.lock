@@ -821,14 +821,18 @@
     "jumphost-nix": {
       "flake": false,
       "locked": {
-        "path": "vendor/jumphost-nix",
-        "type": "path"
+        "lastModified": 1763752552,
+        "narHash": "sha256-6oHN28aCD0jsBxliKfwdjUoHuhAMZgTRZJmllyDgDKA=",
+        "owner": "srid",
+        "repo": "jumphost-nix",
+        "rev": "77fc2b85b3c7a830f2ae7ab0b6716b10e0b480f1",
+        "type": "github"
       },
       "original": {
-        "path": "vendor/jumphost-nix",
-        "type": "path"
-      },
-      "parent": []
+        "owner": "srid",
+        "repo": "jumphost-nix",
+        "type": "github"
+      }
     },
     "landrun-nix": {
       "locked": {

@@ -3,8 +3,6 @@
 
 
   inputs = {
-    self.submodules = true; # See ./vendor
-
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # Principle inputs
@@ -35,7 +33,7 @@
     # landrun-nix.url = "github:srid/landrun-nix";
     landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
     AI.url = "github:srid/AI";
-    jumphost-nix.url = "path:vendor/jumphost-nix";
+    jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
     # Neovim
