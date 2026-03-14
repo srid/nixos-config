@@ -1,6 +1,3 @@
 [submodule "vendor/jumphost-nix"]
 	path = vendor/jumphost-nix
 	url = https://github.com/srid/jumphost-nix.git
-[submodule "vendor/AI"]
-	path = vendor/AI
-	url = https://github.com/srid/AI.git

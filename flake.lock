@@ -1,16 +1,19 @@
 {
   "nodes": {
     "AI": {
-      "flake": false,
       "locked": {
-        "path": "vendor/AI",
-        "type": "path"
+        "lastModified": 1773449106,
+        "narHash": "sha256-F7VJ5JJ+GL8GVVZvaH9bGnviG/qLww7iDCQAUwFzHqE=",
+        "owner": "srid",
+        "repo": "AI",
+        "rev": "b771ccada0ec4b19b6e38c101bac95026e6d2434",
+        "type": "github"
       },
       "original": {
-        "path": "vendor/AI",
-        "type": "path"
-      },
-      "parent": []
+        "owner": "srid",
+        "repo": "AI",
+        "type": "github"
+      }
     },
     "aeson-typescript": {
       "flake": false,

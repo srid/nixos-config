@@ -34,8 +34,7 @@
     oc.url = "github:juspay/oc";
     # landrun-nix.url = "github:srid/landrun-nix";
     landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
-    AI.url = "path:vendor/AI";
-    AI.flake = false;
+    AI.url = "github:srid/AI";
     jumphost-nix.url = "path:vendor/jumphost-nix";
     jumphost-nix.flake = false;
 
