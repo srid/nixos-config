@@ -2,11 +2,11 @@
   "nodes": {
     "AI": {
       "locked": {
-        "lastModified": 1773449106,
-        "narHash": "sha256-F7VJ5JJ+GL8GVVZvaH9bGnviG/qLww7iDCQAUwFzHqE=",
+        "lastModified": 1773449510,
+        "narHash": "sha256-Z8wL+mG6P3tu1IrRc6t1QqhRJvMdaO3DYBkN7Pb5sKM=",
         "owner": "srid",
         "repo": "AI",
-        "rev": "b771ccada0ec4b19b6e38c101bac95026e6d2434",
+        "rev": "c7f1bfbd93c6a0e901d291edb416b278c3c09090",
         "type": "github"
       },
       "original": {
