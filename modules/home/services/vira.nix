@@ -60,6 +60,7 @@ in
         heist-extra = "https://github.com/srid/heist-extra.git";
         tail-hs = "https://github.com/srid/tail-hs.git";
         rust-flake = "https://github.com/juspay/rust-flake.git";
+        rust-nix-template = "https://github.com/srid/rust-nix-template.git";
         # services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
         oc = "https://github.com/juspay/oc.git";
