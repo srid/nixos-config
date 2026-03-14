@@ -1,12 +1,15 @@
 {
   "nodes": {
     "AI": {
+      "inputs": {
+        "skills": "skills"
+      },
       "locked": {
-        "lastModified": 1773451973,
-        "narHash": "sha256-aXU8frkszYCtVmXAZeExQMPK+augs+kgjbSO08q3bTs=",
+        "lastModified": 1773532509,
+        "narHash": "sha256-T/1AEsRDyTjPYBIt2jjcLODGxUe28vlvQQwxBiF/3Po=",
         "owner": "srid",
         "repo": "AI",
-        "rev": "2ba55ead7071706dd97ce26647095297fb500376",
+        "rev": "6c77c6265401bff58c90e08458809474f10d0b74",
         "type": "github"
       },
       "original": {
@@ -1355,6 +1358,21 @@
       "original": {
         "owner": "bflyblue",
         "repo": "servant-event-stream",
+        "type": "github"
+      }
+    },
+    "skills": {
+      "locked": {
+        "lastModified": 1773527053,
+        "narHash": "sha256-miI9LxY/yMka249ARA4dKOK18hmkqqjbKiW2HRSjI5U=",
+        "owner": "juspay",
+        "repo": "skills",
+        "rev": "ae719f61b984cfb573a751cc73b2dc7599e510cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "skills",
         "type": "github"
       }
     },
