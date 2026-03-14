@@ -57,7 +57,6 @@ in
 
     # Txns
     hledger
-    hledger-web
 
     gnupg
     ffmpeg
