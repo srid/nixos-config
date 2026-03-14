@@ -5,13 +5,17 @@ let
   myVault = "${config.home.homeDirectory}/Dropbox/Vault";
 in
 {
+  home.sessionPath = [
+    "/Applications/Obsidian.app/Contents/MacOS"
+  ];
+
   imports = [
     inputs.emanote.homeManagerModule
     inputs.imako.homeManagerModules.imako
   ];
 
   services.emanote = {
-    enable = false;
+    enable = true;
     notes = [ myVault ];
     port = 7001;
     package = inputs.emanote.packages.${pkgs.stdenv.hostPlatform.system}.default;
