@@ -26,12 +26,6 @@ activate host="":
 update:
     nix run .#update
 
-# Run all pre-commit hooks on all files
-[group('main')]
-lint:
-    pre-commit run --all-files
-
-
 # Misc commands
 # --------------------------------------------------------------------------------------------------
 
