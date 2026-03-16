@@ -5,11 +5,11 @@
         "skills": "skills"
       },
       "locked": {
-        "lastModified": 1773688956,
-        "narHash": "sha256-5D/hY1snWpODZMtU4f57RYxJrTCvcl6ERHG54jLhaSE=",
+        "lastModified": 1773691758,
+        "narHash": "sha256-hogU3oBAJQ52v9IsEVun8s8r7R4rY8ZSXyDZEDJHnR0=",
         "owner": "srid",
         "repo": "AI",
-        "rev": "4c42ce7c8a763180c06de156fbd4c96e48c51815",
+        "rev": "89bd7cfb23e050420fed5caf2cd78f1aa17e2d74",
         "type": "github"
       },
       "original": {
@@ -1364,11 +1364,11 @@
     },
     "skills": {
       "locked": {
-        "lastModified": 1773527053,
-        "narHash": "sha256-miI9LxY/yMka249ARA4dKOK18hmkqqjbKiW2HRSjI5U=",
+        "lastModified": 1773689660,
+        "narHash": "sha256-irGBt9iyjGMa4rgRxnN0UUFYGNGUvWH6DK2hGk+JLpY=",
         "owner": "juspay",
         "repo": "skills",
-        "rev": "ae719f61b984cfb573a751cc73b2dc7599e510cc",
+        "rev": "765c76941e08b497f0b0472aa9d91cae811df4bc",
         "type": "github"
       },
       "original": {
