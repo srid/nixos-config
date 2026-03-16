@@ -893,11 +893,11 @@
     },
     "nix-agent-wire": {
       "locked": {
-        "lastModified": 1773696855,
-        "narHash": "sha256-aeCXYiK/4m0v0AB+qBZqIKVVzBq0nRAcn3VhP9J+8ug=",
+        "lastModified": 1773699064,
+        "narHash": "sha256-YCdGcOihJO00up3rduxEsJQsi72e8QS944GSTzZ4O70=",
         "owner": "srid",
         "repo": "nix-agent-wire",
-        "rev": "194b4cd0fd0f5ec14efc8eda0a3e9ef238810f11",
+        "rev": "f777af99365a3f7a90756a31506f1f83161a11ea",
         "type": "github"
       },
       "original": {
@@ -1214,11 +1214,11 @@
         "skills": "skills"
       },
       "locked": {
-        "lastModified": 1773689717,
-        "narHash": "sha256-LFZbE6RAZKdd9iqWAbmrv+WpYK57FA3zPyzoFBH2zGM=",
+        "lastModified": 1773690144,
+        "narHash": "sha256-YxwMOrIt/8VoxgxsW93NiATmRqj31PgobaIyskknMe0=",
         "owner": "juspay",
         "repo": "oc",
-        "rev": "2d3132969c64fe74f39b47787ddd8c8fce9f6b59",
+        "rev": "0b9959be134486b7f542b9a8d85588271e2891d4",
         "type": "github"
       },
       "original": {
@@ -1376,12 +1376,13 @@
       }
     },
     "skills_2": {
+      "flake": false,
       "locked": {
-        "lastModified": 1773691921,
-        "narHash": "sha256-MTBQ/CPmk459d9ypHlL+PtAPsfDdOLHSfRWMhShNflE=",
+        "lastModified": 1773698966,
+        "narHash": "sha256-xinR7KBkwXAIgFJ0/E1Rr6nsqjpvUhFHz5XPJRlqyDA=",
         "owner": "juspay",
         "repo": "skills",
-        "rev": "54d8fdaa92b6400240aced09577da1ccf083617e",
+        "rev": "cea10416d9029844d8f8c6ea939f211d6fa16835",
         "type": "github"
       },
       "original": {

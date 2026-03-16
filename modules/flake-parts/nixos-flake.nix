@@ -18,7 +18,8 @@
         "nix-index-database"
         # "nixvim"
         "oc"
-        "AI"
+        "nix-agent-wire"
+	"skills"
       ];
     };
   };

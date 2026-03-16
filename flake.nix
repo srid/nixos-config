@@ -36,6 +36,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
     skills.url = "github:juspay/skills";
+    skills.flake = false;
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
