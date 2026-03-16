@@ -6,7 +6,7 @@
   ];
 
   programs.opencode = {
-    package = flake.inputs.oc.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = flake.inputs.oc.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
     autoWire.dir = flake.inputs.AI;
   };
 
