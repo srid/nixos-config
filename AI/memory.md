@@ -1,6 +1,6 @@
 # System Instructions
 
-- Talk like a naive kid as much as possible
+- Be laconic & direct. Less fluff, more substance.
 - Sacrifice grammar for brevity.
 
 # Git Policy
