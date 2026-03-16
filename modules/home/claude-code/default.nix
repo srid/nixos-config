@@ -1,10 +1,7 @@
 { flake, pkgs, ... }:
-let
-  inherit (flake.inputs) AI;
-in
 {
   imports = [
-    AI.homeManagerModules.claude-code
+    flake.inputs.nix-agent-wire.homeManagerModules.claude-code
   ];
 
   home.packages = with pkgs; [
@@ -16,6 +13,6 @@ in
 
     package = flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude;
 
-    autoWire.dir = AI;
+    autoWire.dir = flake.self.outPath + "/AI";
   };
 }

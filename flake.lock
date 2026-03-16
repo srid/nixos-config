@@ -1,23 +1,5 @@
 {
   "nodes": {
-    "AI": {
-      "inputs": {
-        "skills": "skills"
-      },
-      "locked": {
-        "lastModified": 1773691758,
-        "narHash": "sha256-hogU3oBAJQ52v9IsEVun8s8r7R4rY8ZSXyDZEDJHnR0=",
-        "owner": "srid",
-        "repo": "AI",
-        "rev": "89bd7cfb23e050420fed5caf2cd78f1aa17e2d74",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "AI",
-        "type": "github"
-      }
-    },
     "aeson-typescript": {
       "flake": false,
       "locked": {
@@ -909,6 +891,24 @@
         "type": "github"
       }
     },
+    "nix-agent-wire": {
+      "inputs": {
+        "skills": "skills"
+      },
+      "locked": {
+        "lastModified": 1773694375,
+        "narHash": "sha256-wk2i1T3b3OMrOwI/ho8M9TEu7A3VU2jkhc9lb6IcF2E=",
+        "owner": "srid",
+        "repo": "nix-agent-wire",
+        "rev": "ab54edc3de7a44723d91e19f541485856654f85d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "nix-agent-wire",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1278,7 +1278,6 @@
     },
     "root": {
       "inputs": {
-        "AI": "AI",
         "agenix": "agenix",
         "disc-scrape": "disc-scrape",
         "disko": "disko",
@@ -1290,6 +1289,7 @@
         "imako": "imako",
         "jumphost-nix": "jumphost-nix",
         "landrun-nix": "landrun-nix",
+        "nix-agent-wire": "nix-agent-wire",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
