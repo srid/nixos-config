@@ -2,12 +2,15 @@
 {
   imports = [
     flake.inputs.oc.homeModules.default
-    flake.inputs.nix-agent-wire.homeManagerModules.opencode
+    flake.inputs.nix-agent-wire.homeModules.opencode
   ];
 
   programs.opencode = {
     package = flake.inputs.oc.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
-    autoWire.dir = flake.self.outPath + "/AI";
+    autoWire.dirs = [
+      flake.inputs.skills.outPath
+      (flake.self.outPath + "/AI")
+    ];
   };
 
   programs.zsh.initContent = ''

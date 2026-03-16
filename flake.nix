@@ -35,6 +35,7 @@
     nix-agent-wire.url = "github:srid/nix-agent-wire";
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
+    skills.url = "github:juspay/skills";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

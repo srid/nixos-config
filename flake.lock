@@ -892,15 +892,12 @@
       }
     },
     "nix-agent-wire": {
-      "inputs": {
-        "skills": "skills"
-      },
       "locked": {
-        "lastModified": 1773694375,
-        "narHash": "sha256-wk2i1T3b3OMrOwI/ho8M9TEu7A3VU2jkhc9lb6IcF2E=",
+        "lastModified": 1773696855,
+        "narHash": "sha256-aeCXYiK/4m0v0AB+qBZqIKVVzBq0nRAcn3VhP9J+8ug=",
         "owner": "srid",
         "repo": "nix-agent-wire",
-        "rev": "ab54edc3de7a44723d91e19f541485856654f85d",
+        "rev": "194b4cd0fd0f5ec14efc8eda0a3e9ef238810f11",
         "type": "github"
       },
       "original": {
@@ -1214,7 +1211,7 @@
           "llm-agents",
           "nixpkgs"
         ],
-        "skills": "skills_2"
+        "skills": "skills"
       },
       "locked": {
         "lastModified": 1773689717,
@@ -1298,6 +1295,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "oc": "oc",
+        "skills": "skills_2",
         "vira": "vira"
       }
     },
@@ -1379,11 +1377,11 @@
     },
     "skills_2": {
       "locked": {
-        "lastModified": 1773689660,
-        "narHash": "sha256-irGBt9iyjGMa4rgRxnN0UUFYGNGUvWH6DK2hGk+JLpY=",
+        "lastModified": 1773691921,
+        "narHash": "sha256-MTBQ/CPmk459d9ypHlL+PtAPsfDdOLHSfRWMhShNflE=",
         "owner": "juspay",
         "repo": "skills",
-        "rev": "765c76941e08b497f0b0472aa9d91cae811df4bc",
+        "rev": "54d8fdaa92b6400240aced09577da1ccf083617e",
         "type": "github"
       },
       "original": {

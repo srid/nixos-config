@@ -13,6 +13,9 @@
 
     package = flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude;
 
-    autoWire.dir = flake.self.outPath + "/AI";
+    autoWire.dirs = [
+      flake.inputs.skills.outPath
+      (flake.self.outPath + "/AI")
+    ];
   };
 }
