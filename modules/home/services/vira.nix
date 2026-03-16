@@ -35,7 +35,7 @@ in
     };
     enable = true;
     port = 5001;
-    hostname = "0.0.0.0";
+    hostname = "100.122.32.106"; # Tailscale IP of pureintent
     # https = false; # Using tailscale services
     autoResetState = true;
     autoBuildNewBranches = true;

@@ -26,6 +26,6 @@ in
     package = inputs.imako.packages.${pkgs.stdenv.hostPlatform.system}.default;
     vaultDir = myVault;
     port = 7002;
-    host = "0.0.0.0";
+    host = "100.90.229.113"; # Tailscale IP of zest
   };
 }
