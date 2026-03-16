@@ -5,11 +5,11 @@
         "skills": "skills"
       },
       "locked": {
-        "lastModified": 1773532509,
-        "narHash": "sha256-T/1AEsRDyTjPYBIt2jjcLODGxUe28vlvQQwxBiF/3Po=",
+        "lastModified": 1773688956,
+        "narHash": "sha256-5D/hY1snWpODZMtU4f57RYxJrTCvcl6ERHG54jLhaSE=",
         "owner": "srid",
         "repo": "AI",
-        "rev": "6c77c6265401bff58c90e08458809474f10d0b74",
+        "rev": "4c42ce7c8a763180c06de156fbd4c96e48c51815",
         "type": "github"
       },
       "original": {
