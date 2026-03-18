@@ -9,7 +9,8 @@ in
 {
   imports = [
     "${jumphost-nix}/module.nix"
-    "${homeMod}/claude-code/juspay.nix"
+    "${homeMod}/agenix.nix"
+    # "${homeMod}/claude-code/juspay.nix"  # Disabled: not using Claude Code at Juspay
     "${homeMod}/opencode"
   ];
 

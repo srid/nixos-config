@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 {
   imports = [
-    flake.inputs.nix-agent-wire.homeManagerModules.claude-code
+    flake.inputs.nix-agent-wire.homeModules.claude-code
   ];
 
   home.packages = with pkgs; [
