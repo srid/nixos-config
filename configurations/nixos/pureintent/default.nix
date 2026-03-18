@@ -18,6 +18,7 @@ in
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/cli/ssh-agent-forwarding.nix"
+    "${homeMod}/claude-code"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
 

@@ -11,7 +11,7 @@
   programs.claude-code = {
     enable = true;
 
-    package = flake.inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.claude;
+    package = pkgs.claude-code;
 
     autoWire.dirs = [
       flake.inputs.skills.outPath
