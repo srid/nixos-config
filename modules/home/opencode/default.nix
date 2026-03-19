@@ -1,14 +1,8 @@
-{ config, flake, pkgs, ... }:
-let
-  inherit (flake) self;
-in
+{ flake, pkgs, ... }:
 {
   imports = [
-    flake.inputs.oc.homeModules.default
-    flake.inputs.nix-agent-wire.homeModules.opencode
+    flake.inputs.oc.homeModules.opencode
   ];
-
-  age.secrets.juspay-anthropic-api-key.file = self + /secrets/juspay-anthropic-api-key.age;
 
   programs.opencode = {
     package = flake.inputs.oc.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
@@ -16,14 +10,16 @@ in
       flake.inputs.skills.outPath
       (flake.self.outPath + "/AI")
     ];
+    settings = {
+      model = "anthropic/claude-opus-4-6/max";
+    };
   };
 
+  # Prevent opencode from delegating to Claude Code when it's installed
   programs.zsh.initContent = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
     export OPENCODE_DISABLE_CLAUDE_CODE=1
   '';
   programs.bash.initExtra = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
     export OPENCODE_DISABLE_CLAUDE_CODE=1
   '';
 }

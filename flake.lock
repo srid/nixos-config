@@ -845,11 +845,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1773585334,
-        "narHash": "sha256-GJV6Bm/C1+3cq2L0uK0dE7F6EB6dz5N/H1GuOiwadtc=",
+        "lastModified": 1773767390,
+        "narHash": "sha256-8REVos3V8hBDF/j4vB4KPRP5rIQd2ukxkdrXYrlPrIg=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "0aa0a9a068beb125b148bf47ac45daf266dd0af3",
+        "rev": "7509c7ed545ea3b5f11f8ed8a7efa7591157c9c8",
         "type": "github"
       },
       "original": {
@@ -1165,11 +1165,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1773507054,
-        "narHash": "sha256-Q8U5VXgrcxmCxPtCCJCIZkcAX3FCZwGh1GNVIXxMND0=",
+        "lastModified": 1773597492,
+        "narHash": "sha256-hQ284SkIeNaeyud+LS0WVLX+WL2rxcVZLFEaK0e03zg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e80236013dc8b77aa49ca90e7a12d86f5d8d64c9",
+        "rev": "a07d4ce6bee67d7c838a8a5796e75dff9caa21ef",
         "type": "github"
       },
       "original": {
@@ -1226,20 +1226,20 @@
           "oc",
           "llm-agents",
           "nixpkgs"
-        ],
-        "skills": "skills"
+        ]
       },
       "locked": {
-        "lastModified": 1773700387,
-        "narHash": "sha256-R2mtpLngeEpw/k9dfHDlVWvOafKzpv1IYdOSkhc9OXs=",
+        "lastModified": 1773867526,
+        "narHash": "sha256-4vNEVBwV5g3nFO6J1jrsSSO+LG+SkIMKlX029CQB8Jg=",
         "owner": "juspay",
-        "repo": "oc",
-        "rev": "caa44925471b88a65e0656f2e0eaa77566de8fdf",
+        "repo": "AI",
+        "rev": "6dbf82666b78cf33d52bb5d4d0751f04dbf1c52e",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "repo": "oc",
+        "ref": "claude2",
+        "repo": "AI",
         "type": "github"
       }
     },
@@ -1311,7 +1311,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "oc": "oc",
-        "skills": "skills_2",
+        "skills": "skills",
         "vira": "vira"
       }
     },
@@ -1377,22 +1377,6 @@
       }
     },
     "skills": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773698966,
-        "narHash": "sha256-xinR7KBkwXAIgFJ0/E1Rr6nsqjpvUhFHz5XPJRlqyDA=",
-        "owner": "juspay",
-        "repo": "skills",
-        "rev": "cea10416d9029844d8f8c6ea939f211d6fa16835",
-        "type": "github"
-      },
-      "original": {
-        "owner": "juspay",
-        "repo": "skills",
-        "type": "github"
-      }
-    },
-    "skills_2": {
       "flake": false,
       "locked": {
         "lastModified": 1773698966,
