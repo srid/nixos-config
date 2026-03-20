@@ -16,8 +16,8 @@ in
     "${homeMod}/services/obsidian.nix"
 
     # Remote builders
-    # "${homeMod}/nix/buildMachines"
-    # "${homeMod}/nix/buildMachines/sincereintent.nix"
+    "${homeMod}/nix/buildMachines"
+    "${homeMod}/nix/buildMachines/pureintent.nix"
   ];
 
   home.username = "srid";
