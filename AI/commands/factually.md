@@ -39,12 +39,18 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - Focus on **architecture and approach** — the "shape" of the solution.
    - **Prefer simplicity**: if two approaches exist and one is simpler, choose it. Justify complexity only when necessary.
    - Call out trade-offs and alternatives considered, briefly.
+   - **Include an Architecture section** in the plan that covers:
+     - What modules/components are affected and how they relate
+     - Architectural-level changes, impact, and considerations
+     - Any new abstractions, interfaces, or boundaries being introduced or modified
+     - Potential ripple effects on the rest of the system
 
 ### 5. **Split Non-Trivial Plans into Phases**
 
    - If the plan is non-trivial, break it into small, sequential phases.
    - **MVP first**: Phase 1 should deliver the minimum viable version. Later phases layer on.
    - Each phase should be small enough for the human to review every line of code.
+   - **Each phase must be functionally self-sufficient**: after completing any phase, the system should work end-to-end. Don't split by layer (e.g., client/server/tests separately) — instead split by feature slice so each phase delivers a working whole.
    - One phase = one focused concern. Don't mix unrelated changes.
 
 ### 6. **Present Plan for Feedback**
