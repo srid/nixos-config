@@ -21,6 +21,7 @@ in
     "${homeMod}/claude-code"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
+    "${homeMod}/services/kolu.nix"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
