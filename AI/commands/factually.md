@@ -40,7 +40,14 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - **Prefer simplicity**: if two approaches exist and one is simpler, choose it. Justify complexity only when necessary.
    - Call out trade-offs and alternatives considered, briefly.
 
-### 5. **Present Plan for Feedback**
+### 5. **Split Non-Trivial Plans into Phases**
+
+   - If the plan is non-trivial, break it into small, sequential phases.
+   - **MVP first**: Phase 1 should deliver the minimum viable version. Later phases layer on.
+   - Each phase should be small enough for the human to review every line of code.
+   - One phase = one focused concern. Don't mix unrelated changes.
+
+### 6. **Present Plan for Feedback**
 
    - Use the `ExitPlanMode` tool to present the plan and solicit user feedback.
    - Iterate based on feedback before exiting plan mode.
