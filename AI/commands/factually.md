@@ -16,18 +16,19 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
 
 ### 1. **Enter Plan Mode**
 
-   - Use the Plan tool to enter planning mode before doing anything else.
+   - Use the `EnterPlanMode` tool to enter planning mode before doing anything else.
 
 ### 2. **Research Thoroughly**
 
    - Before forming any plan, investigate the codebase, docs, and relevant context deeply.
-   - Use Explore agents, Grep, Glob, Read — whatever it takes to ground your understanding in facts.
+   - Use Explore subagents, Grep, Glob, Read — whatever it takes to ground your understanding in facts.
+   - **Parallelize**: When multiple independent things need researching, launch parallel subagents (via the `Agent` tool) to investigate them concurrently. Don't serialize what can be done simultaneously.
    - **Never assume** how something works. Read the code. Check the config. Verify the dependency.
    - If the prompt involves external tools/libraries, use WebSearch/WebFetch to get current info.
 
 ### 3. **Clarify Ambiguities**
 
-   - If anything in the user's prompt is ambiguous or could be interpreted multiple ways, **ask immediately** using the Ask tool.
+   - If anything in the user's prompt is ambiguous or could be interpreted multiple ways, **ask immediately** using the `AskUserQuestion` tool.
    - Don't guess intent. Don't pick a default interpretation silently.
    - Be liberal with questions — better to ask 3 questions upfront than to plan around a wrong assumption.
 
@@ -41,7 +42,7 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
 
 ### 5. **Present Plan for Feedback**
 
-   - Use the Plan tool to present the plan and solicit user feedback.
+   - Use the `ExitPlanMode` tool to present the plan and solicit user feedback.
    - Iterate based on feedback before exiting plan mode.
 
 ## Principles
