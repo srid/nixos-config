@@ -862,16 +862,15 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1774129422,
-        "narHash": "sha256-1EtRmyZ6wesf7XkGsGcThhPb0X3cLUmcQSOa4lQubhI=",
+        "lastModified": 1774138539,
+        "narHash": "sha256-1iC+MaiTnp3tDw7RCQ8VbSS2QuAjkj+hs6sLTX8mQ14=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "b14e96ac0e868ff291abac65e1ae72b1faafe889",
+        "rev": "907a0d7ed1f1f0ee3bbcffb2e51fc929548c66ce",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "claude/mystifying-fermat",
         "repo": "kolu",
         "type": "github"
       }

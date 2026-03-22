@@ -35,7 +35,7 @@
     nix-agent-wire.url = "github:srid/nix-agent-wire";
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
-    kolu.url = "github:juspay/kolu/claude/mystifying-fermat";
+    kolu.url = "github:juspay/kolu";
     skills.url = "github:juspay/skills";
     skills.flake = false;
 
