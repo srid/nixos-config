@@ -29,6 +29,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 
    - Create a new branch from the current branch (name it descriptively).
    - Implement the changes. Prefer simplicity. Keep it focused on what was asked.
+   - If the project has e2e tests, add or update tests for new features or bugs being fixed.
    - Commit with a clear message describing what was done. Each commit must be a NEW commit (never amend).
 
 ### 3. **Open Draft PR**
