@@ -2,14 +2,14 @@
 description: Plan a task factually — research first, ask when unsure, keep it simple
 ---
 
-# Factually Command
+# srid-plan Command
 
 Respond to the user's prompt using Plan mode, grounded in thorough research rather than assumptions.
 
 ## Usage
 
 ```
-/factually <prompt>
+/srid-plan <prompt>
 ```
 
 ## Workflow
