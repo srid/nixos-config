@@ -7,6 +7,8 @@ argument-hint: "<github-issue-url | prompt>"
 
 Take a GitHub issue, prompt, or task description and execute it top-to-bottom: implement, open a draft PR, pass CI, refine with elegance, and push.
 
+**Do NOT use `AskUserQuestion` at any point.** Make sensible default choices and keep moving. If a sub-command (like `/elegance`) would normally ask a question, provide the sensible default answer automatically.
+
 ## Usage
 
 ```
@@ -21,7 +23,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
    - Research the codebase thoroughly before writing code. Use Explore subagents, Grep, Glob, Read.
    - **Never assume** how something works. Read the code. Check the config.
    - If the prompt involves external tools/libraries, use WebSearch/WebFetch to get current info.
-   - If anything is ambiguous, **ask immediately** using `AskUserQuestion`. Don't guess.
+   - If anything is ambiguous, make a sensible default choice and proceed.
 
 ### 2. **Implement**
 
@@ -66,4 +68,4 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 - **Every commit is NEW**: Never amend. Never rebase. Never force-push.
 - **CI must pass**: Don't move to the next phase until CI is green.
 - **Simple over clever**: Do the boring obvious thing.
-- **Ask over guess**: When in doubt, ask the user.
+- **Autonomous**: Never ask. Pick sensible defaults and keep moving.
