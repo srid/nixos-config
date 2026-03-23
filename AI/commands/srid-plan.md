@@ -58,6 +58,11 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - Use the `ExitPlanMode` tool to present the plan and solicit user feedback.
    - Iterate based on feedback before exiting plan mode.
 
+### 7. **Execute on Approval**
+
+   - Once the user approves the plan, execute it using the `/srid-do` command.
+   - Pass the plan context as the prompt so `/srid-do` has full understanding of what to implement.
+
 ## Principles
 
 - **Facts over assumptions**: Every claim in the plan should be backed by something you read or verified.

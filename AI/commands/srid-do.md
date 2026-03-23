@@ -35,7 +35,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 ### 3. **Open Draft PR**
 
    - Push the branch and open a **draft** pull request using `gh pr create --draft`.
-   - PR title should be concise. Body should summarize what changed and why.
+   - **Use the `github-pr` skill** for the title and body — no bullet-list dumps.
 
 ### 4. **CI Loop**
 
@@ -60,7 +60,12 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
    - Run `just ci` again.
    - If it fails, enter the CI fix loop from step 4 again.
 
-### 7. **Done**
+### 7. **Update PR Description**
+
+   - After all changes (elegance, CI fixes), re-check the PR title/body.
+   - If scope changed, update via `gh pr edit` per the `github-pr` skill.
+
+### 8. **Done**
 
    - Report the PR URL and a brief summary of what was done.
 
