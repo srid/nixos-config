@@ -50,7 +50,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 
 ### 5. **Elegance Pass**
 
-   - Run the `/elegance` command targeting the relevant technology, for **3 iterations**.
+   - Run the `/elegance` (*NOT* `/simplify`) command targeting the relevant technology, for **3 iterations**.
    - When `/elegance` asks about scope (via `AskUserQuestion`), answer: **changes in the current branch/PR only**.
    - After elegance completes, create a NEW commit for the elegance improvements.
 
