@@ -1,7 +1,6 @@
 ---
 description: Iteratively simplify & beautify code — research elegance, apply, verify, repeat
 argument-hint: "<tech> [iterations=3]"
-disable-model-invocation: true
 ---
 
 # Elegance Command
