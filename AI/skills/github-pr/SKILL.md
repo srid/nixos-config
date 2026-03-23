@@ -38,6 +38,17 @@ Write PR descriptions that fellow devs actually want to read.
 - Link to issues/discussions where relevant (`Closes #123`, `See #456`)
 - If the PR is trivial (typo fix, version bump), a one-liner body is fine
 
+## Try it locally
+
+If the repo is a Nix flake and the PR branch contains a buildable output (package, NixOS config, etc.), include a "Try it locally" section at the end of the body. Use the GitHub owner/repo and branch name to construct the command:
+
+```
+### Try it locally
+`nix run github:<owner>/<repo>/<branch>`
+```
+
+Adjust the command as needed — `nix build` for non-runnable outputs, add `#<output>` if the default package isn't the relevant one. Omit this section entirely if the change isn't meaningfully testable via `nix run/build` (e.g., CI-only changes, documentation, non-Nix repos).
+
 ## Updating existing PRs
 
 When the user pushes further changes to an already-PR'd branch:

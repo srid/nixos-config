@@ -35,7 +35,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 ### 3. **Open Draft PR**
 
    - Push the branch and open a **draft** pull request using `gh pr create --draft`.
-   - **Use the `github-pr` skill** for the title and body — no bullet-list dumps.
+   - **MANDATORY**: Load the `github-pr` skill (via `Skill` tool) BEFORE writing the PR title/body. Follow it exactly — paragraph-based descriptions, no bullet-list dumps.
 
 ### 4. **CI Loop**
 
