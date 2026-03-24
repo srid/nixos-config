@@ -862,11 +862,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1774271165,
-        "narHash": "sha256-55d2JYsay/SnAZcA2eOT6H/miLa685+A/A2lYf9MxFI=",
+        "lastModified": 1774313393,
+        "narHash": "sha256-pol4yCE7NegNEOrbkRjda3miv3ImHtnBodRYizTe2Ug=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "f30acd88f63c4edb77b17c665bb8a5a8d4a91bdd",
+        "rev": "dbb75f9191033ca48f49d1045b554148ac6485ae",
         "type": "github"
       },
       "original": {
