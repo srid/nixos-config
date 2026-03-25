@@ -25,19 +25,27 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
    - If the prompt involves external tools/libraries, use WebSearch/WebFetch to get current info.
    - If anything is ambiguous, make a sensible default choice and proceed.
 
-### 2. **Implement**
+### 2. **Simplicity Check (Hickey)** *(skip if invoked from `/srid-plan`)*
+
+   - Before implementing, evaluate your approach using the `hickey` skill.
+   - Ask: does this approach complect independent concerns? Are there simpler structural alternatives?
+   - Flag any accidental complexity — entanglement from the approach, not the problem.
+   - If introducing new abstractions, verify each earns its place. Prefer composing simple parts over braiding concerns.
+   - Revise your approach to eliminate any identified complecting before proceeding.
+
+### 3. **Implement**
 
    - Create a new branch from the current branch (name it descriptively).
    - Implement the changes. Prefer simplicity. Keep it focused on what was asked.
    - If the project has e2e tests, add or update tests for new features or bugs being fixed.
    - Commit with a clear message describing what was done. Each commit must be a NEW commit (never amend).
 
-### 3. **Open Draft PR**
+### 4. **Open Draft PR**
 
    - Push the branch and open a **draft** pull request using `gh pr create --draft`.
    - **MANDATORY**: Load the `github-pr` skill (via `Skill` tool) BEFORE writing the PR title/body. Follow it exactly — paragraph-based descriptions, no bullet-list dumps.
 
-### 4. **CI Loop**
+### 5. **CI Loop**
 
    - Run `just ci`.
    - If CI fails:
@@ -48,24 +56,24 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
      5. Run `just ci` again.
    - Repeat until CI passes. Max 5 attempts — if still failing after 5, stop and ask the user.
 
-### 5. **Elegance Pass**
+### 6. **Elegance Pass**
 
    - Run the `/elegance` (*NOT* `/simplify`) command targeting the relevant technology, for **3 iterations**.
    - When `/elegance` asks about scope (via `AskUserQuestion`), answer: **changes in the current branch/PR only**.
    - After elegance completes, create a NEW commit for the elegance improvements.
 
-### 6. **Final CI**
+### 7. **Final CI**
 
    - Push all elegance changes.
    - Run `just ci` again.
-   - If it fails, enter the CI fix loop from step 4 again.
+   - If it fails, enter the CI fix loop from step 5 again.
 
-### 7. **Update PR Description**
+### 8. **Update PR Description**
 
    - After all changes (elegance, CI fixes), re-check the PR title/body.
    - If scope changed, update via `gh pr edit` per the `github-pr` skill.
 
-### 8. **Done**
+### 9. **Done**
 
    - Report the PR URL and a brief summary of what was done.
 

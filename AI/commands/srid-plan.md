@@ -53,12 +53,21 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - **Each phase must be functionally self-sufficient**: after completing any phase, the system should work end-to-end. Don't split by layer (e.g., client/server/tests separately) — instead split by feature slice so each phase delivers a working whole.
    - One phase = one focused concern. Don't mix unrelated changes.
 
-### 6. **Present Plan for Feedback**
+### 6. **Simplicity Check (Hickey)**
+
+   - Before presenting the plan, evaluate it using the `hickey` skill.
+   - For each phase/component, ask: does this complect independent concerns? Are there simpler structural alternatives?
+   - Flag any accidental complexity — entanglement that comes from the approach, not from the problem.
+   - If the plan introduces new abstractions, verify each one earns its place. Prefer composing simple parts over braiding concerns together.
+   - Revise the plan to eliminate any identified complecting before presenting it.
+
+### 7. **Present Plan for Feedback**
 
    - Use the `ExitPlanMode` tool to present the plan and solicit user feedback.
+   - Include a brief **Simplicity assessment** section noting what was checked and any trade-offs accepted.
    - Iterate based on feedback before exiting plan mode.
 
-### 7. **Execute on Approval**
+### 8. **Execute on Approval**
 
    - Once the user approves the plan, execute it using the `/srid-do` command.
    - Pass the plan context as the prompt so `/srid-do` has full understanding of what to implement.
