@@ -91,7 +91,15 @@ Always frame simplifications as *structural refactors*, not style preferences. "
 
 ## Automated Fitness Functions
 
-When the user asks for fitness functions, structural checks, or CI-enforceable rules, generate concrete implementations. Here are the patterns to draw from, adapted to the codebase's language and tooling:
+When the user asks for fitness functions, structural checks, or CI-enforceable rules, generate concrete implementations. Here are the patterns to draw from, adapted to the codebase's language and tooling.
+
+### Ready-made scripts
+
+The `scripts/` directory (relative to this skill) contains ready-to-use tooling:
+
+- **`scripts/complect-detect.ts`** — a ts-morph script that runs five structural checks against a TypeScript project: mutable state density, closure-over-mutable-state, circular event flow, module concern mixing, and lifecycle nesting. Run with `npx tsx complect-detect.ts --project ./tsconfig.json`. See `scripts/README.md` for full usage and CI integration.
+
+When working with a TypeScript project, prefer pointing the user to this script (or running it directly) rather than generating checks from scratch.
 
 ### For TypeScript/JavaScript codebases
 
