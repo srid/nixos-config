@@ -17,7 +17,13 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 
 ## Workflow
 
-### 1. **Understand the Task**
+### 1. **Sync with Remote**
+
+   - Before anything else, ensure the working tree is on the latest default branch (`origin/master` or `origin/main`).
+   - Run `git fetch origin` and check if the current branch is behind. If so, `git pull --ff-only` to fast-forward.
+   - This prevents implementing against stale code and avoids PRs with outdated history.
+
+### 2. **Understand the Task**
 
    - If given a GitHub issue URL, fetch it with `gh issue view` to get full context.
    - Research the codebase thoroughly before writing code. Use Explore subagents, Grep, Glob, Read.
@@ -25,7 +31,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
    - If the prompt involves external tools/libraries, use WebSearch/WebFetch to get current info.
    - If anything is ambiguous, make a sensible default choice and proceed.
 
-### 2. **Simplicity Check (Hickey)** *(skip if invoked from `/srid-plan`)*
+### 3. **Simplicity Check (Hickey)** *(skip if invoked from `/srid-plan`)*
 
    - Before implementing, evaluate your approach using the `hickey` skill.
    - Ask: does this approach complect independent concerns? Are there simpler structural alternatives?
@@ -33,19 +39,19 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
    - If introducing new abstractions, verify each earns its place. Prefer composing simple parts over braiding concerns.
    - Revise your approach to eliminate any identified complecting before proceeding.
 
-### 3. **Implement**
+### 4. **Implement**
 
    - Create a new branch from the current branch (name it descriptively).
    - Implement the changes. Prefer simplicity. Keep it focused on what was asked.
    - If the project has e2e tests, add or update tests for new features or bugs being fixed.
    - Commit with a clear message describing what was done. Each commit must be a NEW commit (never amend).
 
-### 4. **Open Draft PR**
+### 5. **Open Draft PR**
 
    - Push the branch and open a **draft** pull request using `gh pr create --draft`.
    - **MANDATORY**: Load the `github-pr` skill (via `Skill` tool) BEFORE writing the PR title/body. Follow it exactly — paragraph-based descriptions, no bullet-list dumps.
 
-### 5. **CI Loop**
+### 6. **CI Loop**
 
    - Run `just ci`.
    - If CI fails:
@@ -56,24 +62,24 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
      5. Run `just ci` again.
    - Repeat until CI passes. Max 5 attempts — if still failing after 5, stop and ask the user.
 
-### 6. **Elegance Pass**
+### 7. **Elegance Pass**
 
    - Run the `/elegance` (*NOT* `/simplify`) command targeting the relevant technology, for **3 iterations**.
    - When `/elegance` asks about scope (via `AskUserQuestion`), answer: **changes in the current branch/PR only**.
    - After elegance completes, create a NEW commit for the elegance improvements.
 
-### 7. **Final CI**
+### 8. **Final CI**
 
    - Push all elegance changes.
    - Run `just ci` again.
-   - If it fails, enter the CI fix loop from step 5 again.
+   - If it fails, enter the CI fix loop from step 6 again.
 
-### 8. **Update PR Description**
+### 9. **Update PR Description**
 
    - After all changes (elegance, CI fixes), re-check the PR title/body.
    - If scope changed, update via `gh pr edit` per the `github-pr` skill.
 
-### 9. **Done**
+### 10. **Done**
 
    - Report the PR URL and a brief summary of what was done.
 

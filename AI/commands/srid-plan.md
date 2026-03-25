@@ -14,11 +14,17 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
 
 ## Workflow
 
-### 1. **Enter Plan Mode**
+### 1. **Sync with Remote**
+
+   - Before anything else, ensure the working tree is on the latest default branch (`origin/master` or `origin/main`).
+   - Run `git fetch origin` and check if the current branch is behind. If so, `git pull --ff-only` to fast-forward.
+   - This prevents planning against stale code and avoids PRs with outdated history.
+
+### 2. **Enter Plan Mode**
 
    - Use the `EnterPlanMode` tool to enter planning mode before doing anything else.
 
-### 2. **Research Thoroughly**
+### 3. **Research Thoroughly**
 
    - Before forming any plan, investigate the codebase, docs, and relevant context deeply.
    - Use Explore subagents, Grep, Glob, Read — whatever it takes to ground your understanding in facts.
@@ -26,13 +32,13 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - **Never assume** how something works. Read the code. Check the config. Verify the dependency.
    - If the prompt involves external tools/libraries, use WebSearch/WebFetch to get current info.
 
-### 3. **Clarify Ambiguities**
+### 4. **Clarify Ambiguities**
 
    - If anything in the user's prompt is ambiguous or could be interpreted multiple ways, **ask immediately** using the `AskUserQuestion` tool.
    - Don't guess intent. Don't pick a default interpretation silently.
    - Be liberal with questions — better to ask 3 questions upfront than to plan around a wrong assumption.
 
-### 4. **Draft a High-Level Plan**
+### 5. **Draft a High-Level Plan**
 
    - Keep the plan at a **high level**: what to do and why, not how to implement each step.
    - No code snippets, no line-by-line changes, no implementation minutiae.
@@ -45,7 +51,7 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
      - Any new abstractions, interfaces, or boundaries being introduced or modified
      - Potential ripple effects on the rest of the system
 
-### 5. **Split Non-Trivial Plans into Phases**
+### 6. **Split Non-Trivial Plans into Phases**
 
    - If the plan is non-trivial, break it into small, sequential phases.
    - **MVP first**: Phase 1 should deliver the minimum viable version. Later phases layer on.
@@ -53,7 +59,7 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - **Each phase must be functionally self-sufficient**: after completing any phase, the system should work end-to-end. Don't split by layer (e.g., client/server/tests separately) — instead split by feature slice so each phase delivers a working whole.
    - One phase = one focused concern. Don't mix unrelated changes.
 
-### 6. **Simplicity Check (Hickey)**
+### 7. **Simplicity Check (Hickey)**
 
    - Before presenting the plan, evaluate it using the `hickey` skill.
    - For each phase/component, ask: does this complect independent concerns? Are there simpler structural alternatives?
@@ -61,13 +67,13 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
    - If the plan introduces new abstractions, verify each one earns its place. Prefer composing simple parts over braiding concerns together.
    - Revise the plan to eliminate any identified complecting before presenting it.
 
-### 7. **Present Plan for Feedback**
+### 8. **Present Plan for Feedback**
 
    - Use the `ExitPlanMode` tool to present the plan and solicit user feedback.
    - Include a brief **Simplicity assessment** section noting what was checked and any trade-offs accepted.
    - Iterate based on feedback before exiting plan mode.
 
-### 8. **Execute on Approval**
+### 9. **Execute on Approval**
 
    - Once the user approves the plan, execute it using the `/srid-do` command.
    - Pass the plan context as the prompt so `/srid-do` has full understanding of what to implement.
