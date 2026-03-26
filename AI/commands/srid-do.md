@@ -48,6 +48,7 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
      2. Run the tests to confirm they pass.
      3. If you find yourself thinking "tests aren't needed for this change" — you're probably wrong. Add them anyway.
    - Commit with a clear message describing what was done. Each commit must be a NEW commit (never amend).
+   - **⚠️ DO NOT STOP HERE.** Implementation is NOT the end. You MUST continue to step 5 (Open Draft PR) and all subsequent steps. The task is not done until a PR URL is reported.
 
 ### 5. **Open Draft PR**
 
@@ -92,3 +93,4 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 - **CI must pass**: Don't move to the next phase until CI is green.
 - **Simple over clever**: Do the boring obvious thing.
 - **Autonomous**: Never ask. Pick sensible defaults and keep moving.
+- **Complete the full workflow**: Implementing code is step 4 of 10. You MUST open a draft PR, run CI, do the elegance pass, and report the PR URL. Stopping after commit = failure.
