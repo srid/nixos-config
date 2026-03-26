@@ -75,8 +75,9 @@ Respond to the user's prompt using Plan mode, grounded in thorough research rath
 
 ### 9. **Execute on Approval**
 
-   - Once the user approves the plan, execute it using the `/srid-do` command.
-   - Pass the plan context as the prompt so `/srid-do` has full understanding of what to implement.
+   - Once the user approves the plan, you MUST invoke the `srid-do` skill via the `Skill` tool. **Do not implement manually** — the `/srid-do` workflow handles branching, draft PR, CI loop, elegance pass, and PR updates.
+   - Pass the full plan context as the args so `/srid-do` has complete understanding of what to implement.
+   - **Never skip the skill invocation.** If you start coding without calling the Skill tool for `srid-do`, you are doing it wrong.
 
 ## Principles
 
