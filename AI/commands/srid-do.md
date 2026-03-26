@@ -43,7 +43,10 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 
    - Create a new branch from the current branch (name it descriptively).
    - Implement the changes. Prefer simplicity. Keep it focused on what was asked.
-   - If the project has e2e tests, add or update tests for new features or bugs being fixed.
+   - **MANDATORY — e2e tests**: Before committing, check if the project has e2e/integration tests (search for test directories, test files, test configs). If tests exist:
+     1. You MUST add or update tests covering the new feature or bug fix. **Do not skip this.**
+     2. Run the tests to confirm they pass.
+     3. If you find yourself thinking "tests aren't needed for this change" — you're probably wrong. Add them anyway.
    - Commit with a clear message describing what was done. Each commit must be a NEW commit (never amend).
 
 ### 5. **Open Draft PR**
