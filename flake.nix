@@ -1,63 +1,67 @@
 {
   description = "Srid's NixOS / nix-darwin configuration";
 
-
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # Principle inputs
+    # Principle inputs (kept minimal to speed up nix develop/run/shell)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unified.url = "github:srid/nixos-unified";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs = {
       darwin.follows = "nix-darwin";
       home-manager.follows = "home-manager";
       nixpkgs.follows = "nixpkgs";
     };
-    # Software inputs
-    github-nix-ci.url = "github:juspay/github-nix-ci";
-    nixos-vscode-server.flake = false;
-    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    # vira.url = "github:juspay/vira/github";
-    vira.url = "github:juspay/vira";
-    oc.url = "github:juspay/AI";
-    # landrun-nix.url = "github:srid/landrun-nix";
-    landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
-    nix-agent-wire.url = "github:srid/nix-agent-wire";
-    jumphost-nix.url = "github:srid/jumphost-nix";
-    jumphost-nix.flake = false;
 
-    # KOLU
-    kolu.url = "github:juspay/kolu";
-
-    skills.url = "github:juspay/skills";
-    skills.flake = false;
-
-    # Neovim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Emanote & Imako
-    emanote.url = "github:srid/emanote";
-    imako.url = "github:srid/imako";
-    disc-scrape.url = "github:srid/disc-scrape";
-
-    # Devshell
-    git-hooks.url = "github:cachix/git-hooks.nix";
-    git-hooks.flake = false;
+    # Everything else is managed by npins (see ./npins/)
   };
 
-  outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = flakeInputs@{ self, ... }:
+    let
+      sources = import ./npins;
+
+      # Lazily evaluate a flake from npins source using flake-compat.
+      # The flake is only fetched/evaluated when its outputs are actually used,
+      # so `nix develop` and `nix run` stay fast.
+      callFlake = src: (import sources.flake-compat { inherit src; }).defaultNix;
+
+      # Wrap a source path to behave like a `flake = false` input
+      # (supports both string interpolation and .outPath access)
+      wrapSource = src: { outPath = src; };
+
+      # Build an inputs-like attrset from npins sources.
+      # Modules continue to use `inputs.foo` / `flake.inputs.foo` unchanged.
+      npinsInputs = {
+        # Source-only inputs (formerly flake = false)
+        nixos-vscode-server = wrapSource sources.nixos-vscode-server;
+        skills = wrapSource sources.skills;
+        git-hooks = wrapSource sources.git-hooks;
+        jumphost-nix = wrapSource sources.jumphost-nix;
+
+        # Flake inputs (lazily evaluated via flake-compat)
+        disko = callFlake sources.disko;
+        disc-scrape = callFlake sources.disc-scrape;
+        emanote = callFlake sources.emanote;
+        github-nix-ci = callFlake sources.github-nix-ci;
+        imako = callFlake sources.imako;
+        kolu = callFlake sources.kolu;
+        landrun-nix = callFlake sources.landrun-nix;
+        nix-agent-wire = callFlake sources.nix-agent-wire;
+        nix-index-database = callFlake sources.nix-index-database;
+        nixos-hardware = callFlake sources.nixos-hardware;
+        nixvim = callFlake sources.nixvim;
+        oc = callFlake sources.oc;
+        vira = callFlake sources.vira;
+      };
+
+      inputs = flakeInputs // npinsInputs;
+    in
+    flakeInputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       imports = (with builtins;
         map
