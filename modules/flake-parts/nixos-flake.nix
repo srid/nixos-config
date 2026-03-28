@@ -14,12 +14,8 @@
         "nixpkgs"
         "home-manager"
         "nix-darwin"
-        # "nixos-hardware"
-        "nix-index-database"
-        # "nixvim"
-        "oc"
-        "nix-agent-wire"
-	"skills"
+        # Other inputs are managed by npins (see ./npins/)
+        # Update them with: npins update
       ];
     };
   };

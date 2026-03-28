@@ -1,2 +1,4 @@
 flake.lock linguist-generated=true
 *.age linguist-generated=true
+npins/default.nix linguist-generated=true
+npins/sources.json linguist-generated=true

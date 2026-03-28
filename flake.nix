@@ -1,63 +1,45 @@
 {
   description = "Srid's NixOS / nix-darwin configuration";
 
-
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    # Principle inputs
+    # Principle inputs (kept minimal to speed up nix develop/run/shell)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-unified.url = "github:srid/nixos-unified";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
     agenix.url = "github:ryantm/agenix";
     agenix.inputs = {
       darwin.follows = "nix-darwin";
       home-manager.follows = "home-manager";
       nixpkgs.follows = "nixpkgs";
     };
-    # Software inputs
-    github-nix-ci.url = "github:juspay/github-nix-ci";
-    nixos-vscode-server.flake = false;
-    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    # vira.url = "github:juspay/vira/github";
-    vira.url = "github:juspay/vira";
-    oc.url = "github:juspay/AI";
-    # landrun-nix.url = "github:srid/landrun-nix";
-    landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
-    nix-agent-wire.url = "github:srid/nix-agent-wire";
-    jumphost-nix.url = "github:srid/jumphost-nix";
-    jumphost-nix.flake = false;
 
-    # KOLU
-    kolu.url = "github:juspay/kolu";
-
-    skills.url = "github:juspay/skills";
-    skills.flake = false;
-
-    # Neovim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Emanote & Imako
-    emanote.url = "github:srid/emanote";
-    imako.url = "github:srid/imako";
-    disc-scrape.url = "github:srid/disc-scrape";
-
-    # Devshell
-    git-hooks.url = "github:cachix/git-hooks.nix";
-    git-hooks.flake = false;
+    # Everything else is managed by npins (see ./npins/)
   };
 
-  outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = flakeInputs@{ self, ... }:
+    let
+      sources = import ./npins;
+      callFlake = src: (import sources.flake-compat { inherit src; }).defaultNix;
+
+      # Source-only npins (no flake evaluation needed)
+      sourceOnly = [ "nixos-vscode-server" "skills" "git-hooks" "jumphost-nix" ];
+
+      # Merge npins-derived inputs with real flake inputs.
+      # callFlake lazily evaluates via flake-compat, so `nix develop` stays fast.
+      # Modules keep using `inputs.foo` / `flake.inputs.foo` unchanged.
+      inputs = flakeInputs // builtins.mapAttrs
+        (name: src:
+          if builtins.elem name sourceOnly
+          then { outPath = src; }
+          else callFlake src)
+        (removeAttrs sources [ "flake-compat" ]);
+    in
+    flakeInputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
       imports = (with builtins;
         map

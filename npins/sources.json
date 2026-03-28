@@ -1,0 +1,242 @@
+{
+  "pins": {
+    "disc-scrape": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srid",
+        "repo": "disc-scrape"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "382c7e59cba9408b3098d7f0b8d10da01721b265",
+      "url": "https://github.com/srid/disc-scrape/archive/382c7e59cba9408b3098d7f0b8d10da01721b265.tar.gz",
+      "hash": "sha256-Kwx5duhBTRAAqY6UdYYGRSacT5o8//YlmwSJlzAg5d0="
+    },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "7b9f7f88ab3b339f8142dc246445abb3c370d3d3",
+      "url": "https://github.com/nix-community/disko/archive/7b9f7f88ab3b339f8142dc246445abb3c370d3d3.tar.gz",
+      "hash": "sha256-khlHllTsovXgT2GZ0WxT4+RvuMjNeR5OW0UYeEHPYQo="
+    },
+    "emanote": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srid",
+        "repo": "emanote"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "6deb47e5db07221709d5214820ff4456e2bda92d",
+      "url": "https://github.com/srid/emanote/archive/6deb47e5db07221709d5214820ff4456e2bda92d.tar.gz",
+      "hash": "sha256-2y58CyRlcPIQgVvPxsxKOp6aFO6S16CyYOJxFfBaKE8="
+    },
+    "flake-compat": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "edolstra",
+        "repo": "flake-compat"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.1.0",
+      "revision": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
+      "url": "https://api.github.com/repos/edolstra/flake-compat/tarball/refs/tags/v1.1.0",
+      "hash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU="
+    },
+    "git-hooks": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "cachix",
+        "repo": "git-hooks.nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "6e34e97ed9788b17796ee43ccdbaf871a5c2b476",
+      "url": "https://github.com/cachix/git-hooks.nix/archive/6e34e97ed9788b17796ee43ccdbaf871a5c2b476.tar.gz",
+      "hash": "sha256-+eXlIc4/7dE6EcPs9a2DaSY3fTA9AE526hGqkNID3Wg="
+    },
+    "github-nix-ci": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "juspay",
+        "repo": "github-nix-ci"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "edd0486a9208524eff40712a8ce835260c5b412a",
+      "url": "https://github.com/juspay/github-nix-ci/archive/edd0486a9208524eff40712a8ce835260c5b412a.tar.gz",
+      "hash": "sha256-S4Oe9aZK/UnWuj6zUlVeSDmC/QjEPHJm2gaSk/VMir4="
+    },
+    "imako": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srid",
+        "repo": "imako"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "5ac0382b0795f0897eea866fe335586a3083bc9c",
+      "url": "https://github.com/srid/imako/archive/5ac0382b0795f0897eea866fe335586a3083bc9c.tar.gz",
+      "hash": "sha256-rZgwvE39JAOD9iod9i/7v66Il7egKoSl1zDW3EGMHoo="
+    },
+    "jumphost-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srid",
+        "repo": "jumphost-nix"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "77fc2b85b3c7a830f2ae7ab0b6716b10e0b480f1",
+      "url": "https://github.com/srid/jumphost-nix/archive/77fc2b85b3c7a830f2ae7ab0b6716b10e0b480f1.tar.gz",
+      "hash": "sha256-6oHN28aCD0jsBxliKfwdjUoHuhAMZgTRZJmllyDgDKA="
+    },
+    "kolu": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "juspay",
+        "repo": "kolu"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "575b3c18672e6a31784046d5e1c777242ab5f886",
+      "url": "https://github.com/juspay/kolu/archive/575b3c18672e6a31784046d5e1c777242ab5f886.tar.gz",
+      "hash": "sha256-YmAU9cLTccojhqkGFZdm0L/dbZkPw7sPJxo6uirlsto="
+    },
+    "landrun-nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "adrian-gierakowski",
+        "repo": "landrun-nix"
+      },
+      "branch": "darwin-implementation-via-sandbox-exec",
+      "submodules": false,
+      "revision": "664d588939df5f6d7be80c99175decf7ee5de498",
+      "url": "https://github.com/adrian-gierakowski/landrun-nix/archive/664d588939df5f6d7be80c99175decf7ee5de498.tar.gz",
+      "hash": "sha256-rKYiBL0KOtMfkgJCGxsICCvXLsqj/dzsF5seimW3edA="
+    },
+    "nix-agent-wire": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "srid",
+        "repo": "nix-agent-wire"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "dff0e61fa1bc8457815c8cd61808ea07b514502b",
+      "url": "https://github.com/srid/nix-agent-wire/archive/dff0e61fa1bc8457815c8cd61808ea07b514502b.tar.gz",
+      "hash": "sha256-YiOXMLnjkmUcubkxPWx5vRl+OaQwaJvrjiAVw8pp+u8="
+    },
+    "nix-index-database": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nix-index-database"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "55b588747fa3d7fc351a11831c4b874dab992862",
+      "url": "https://github.com/nix-community/nix-index-database/archive/55b588747fa3d7fc351a11831c4b874dab992862.tar.gz",
+      "hash": "sha256-gdYe9wTPl4ignDyXUl1LlICWj41+S0GB5lG1fKP17+A="
+    },
+    "nixos-hardware": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixos-hardware"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "3966ce987e1a9a164205ac8259a5fe8a64528f72",
+      "url": "https://github.com/NixOS/nixos-hardware/archive/3966ce987e1a9a164205ac8259a5fe8a64528f72.tar.gz",
+      "hash": "sha256-mUJxsNOrBMNOUJzN0pfdVJ1r2pxeqm9gI/yIKXzVVbk="
+    },
+    "nixos-vscode-server": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixos-vscode-server"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "92ce71c3ba5a94f854e02d57b14af4997ab54ef0",
+      "url": "https://github.com/nix-community/nixos-vscode-server/archive/92ce71c3ba5a94f854e02d57b14af4997ab54ef0.tar.gz",
+      "hash": "sha256-yHmd2B13EtBUPLJ+x0EaBwNkQr9LTne1arLVxT6hSnY="
+    },
+    "nixvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "nixvim"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "21ae25e13b01d3b4cdc750b5f9e7bad68b150c10",
+      "url": "https://github.com/nix-community/nixvim/archive/21ae25e13b01d3b4cdc750b5f9e7bad68b150c10.tar.gz",
+      "hash": "sha256-3DmCFOdmbkFML1/G9gj8Wb+rCCZFPOQtNoMCpqOF8SA="
+    },
+    "oc": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "juspay",
+        "repo": "AI"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "510c5a622a060adb18689b4edf5c71023780ed11",
+      "url": "https://github.com/juspay/AI/archive/510c5a622a060adb18689b4edf5c71023780ed11.tar.gz",
+      "hash": "sha256-aI9fiMRUsvKx3P3PibOp+Ony9N/mY2OllT8NOYXJjTU="
+    },
+    "skills": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "juspay",
+        "repo": "skills"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "c727a563bcd073303681aff53947e56159e6d548",
+      "url": "https://github.com/juspay/skills/archive/c727a563bcd073303681aff53947e56159e6d548.tar.gz",
+      "hash": "sha256-nT9po9XMjJ2nazyGrz8jkj75KIS8VUbnNfAYL2YqjWY="
+    },
+    "vira": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "juspay",
+        "repo": "vira"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "858ab06405097224f6841450c323f6bff21e62be",
+      "url": "https://github.com/juspay/vira/archive/858ab06405097224f6841450c323f6bff21e62be.tar.gz",
+      "hash": "sha256-PQMgtlst98me4JSJarU1R+HMQDqxIf/AzJg/mm0eSa8="
+    }
+  },
+  "version": 7
+}
