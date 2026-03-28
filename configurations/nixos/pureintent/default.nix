@@ -30,17 +30,15 @@ in
     # Remote builders
     "${homeMod}/nix/buildMachines"
     "${homeMod}/nix/buildMachines/sincereintent.nix"
+
+    "${homeMod}/nix/gc.nix"
   ];
 
   nix.settings = {
     sandbox = "relaxed";
     extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
   };
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  # GC is handled via home-manager (modules/home/nix/gc.nix)
 
   zramSwap.enable = true;
   swapDevices = [{
