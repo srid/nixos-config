@@ -24,42 +24,20 @@
   outputs = flakeInputs@{ self, ... }:
     let
       sources = import ./npins;
-
-      # Lazily evaluate a flake from npins source using flake-compat.
-      # The flake is only fetched/evaluated when its outputs are actually used,
-      # so `nix develop` and `nix run` stay fast.
       callFlake = src: (import sources.flake-compat { inherit src; }).defaultNix;
 
-      # Wrap a source path to behave like a `flake = false` input
-      # (supports both string interpolation and .outPath access)
-      wrapSource = src: { outPath = src; };
+      # Source-only npins (no flake evaluation needed)
+      sourceOnly = [ "nixos-vscode-server" "skills" "git-hooks" "jumphost-nix" ];
 
-      # Build an inputs-like attrset from npins sources.
-      # Modules continue to use `inputs.foo` / `flake.inputs.foo` unchanged.
-      npinsInputs = {
-        # Source-only inputs (formerly flake = false)
-        nixos-vscode-server = wrapSource sources.nixos-vscode-server;
-        skills = wrapSource sources.skills;
-        git-hooks = wrapSource sources.git-hooks;
-        jumphost-nix = wrapSource sources.jumphost-nix;
-
-        # Flake inputs (lazily evaluated via flake-compat)
-        disko = callFlake sources.disko;
-        disc-scrape = callFlake sources.disc-scrape;
-        emanote = callFlake sources.emanote;
-        github-nix-ci = callFlake sources.github-nix-ci;
-        imako = callFlake sources.imako;
-        kolu = callFlake sources.kolu;
-        landrun-nix = callFlake sources.landrun-nix;
-        nix-agent-wire = callFlake sources.nix-agent-wire;
-        nix-index-database = callFlake sources.nix-index-database;
-        nixos-hardware = callFlake sources.nixos-hardware;
-        nixvim = callFlake sources.nixvim;
-        oc = callFlake sources.oc;
-        vira = callFlake sources.vira;
-      };
-
-      inputs = flakeInputs // npinsInputs;
+      # Merge npins-derived inputs with real flake inputs.
+      # callFlake lazily evaluates via flake-compat, so `nix develop` stays fast.
+      # Modules keep using `inputs.foo` / `flake.inputs.foo` unchanged.
+      inputs = flakeInputs // builtins.mapAttrs
+        (name: src:
+          if builtins.elem name sourceOnly
+          then { outPath = src; }
+          else callFlake src)
+        (removeAttrs sources [ "flake-compat" ]);
     in
     flakeInputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
