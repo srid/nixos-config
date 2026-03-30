@@ -9,6 +9,7 @@ in
   ];
   programs.nixvim = {
     enable = true;
+    defaultEditor = true;
 
     imports = [
       ./nvim-tree.nix

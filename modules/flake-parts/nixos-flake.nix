@@ -16,7 +16,7 @@
         "nix-darwin"
         # "nixos-hardware"
         "nix-index-database"
-        # "nixvim"
+        "nixvim"
         "oc"
         "nix-agent-wire"
 	"skills"
