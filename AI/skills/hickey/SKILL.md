@@ -79,7 +79,7 @@ Not all complecting matters equally. Assess using:
 
 ### Layer 5: Suggest Simplifications
 
-For each significant finding, propose a concrete structural alternative. Follow Hickey's design questions:
+For each significant finding, you MUST propose a concrete structural alternative — not a vague gesture at "could be simpler." Write out what the simplified version would actually look like, even as pseudocode. This is mandatory, not optional. Never skip this step by labeling the finding as "essential complexity." Follow Hickey's design questions:
 
 - **What**: Can we define a cleaner abstraction boundary? An interface that does one thing?
 - **Who**: Can we pass subcomponents as arguments instead of hardwiring them?
@@ -146,6 +146,6 @@ Keep the tone constructive. Hickey's framework is about making better design cho
 
 - **Simple ≠ easy, simple ≠ short.** A longer function that separates concerns cleanly is simpler than a short one that braids them. Never recommend reducing line count as a simplification.
 - **Simple ≠ familiar.** Unfamiliar constructs (async iterables, algebraic data types, persistent data structures) may be simple even if the team doesn't know them yet. Familiarity can be acquired; simplicity must be designed.
-- **Essential complexity exists.** Some problems are inherently complex. The goal is to eliminate *accidental* complexity — entanglement that comes from the approach, not from the problem. If the problem genuinely requires managing concurrent lifecycles, then managing concurrent lifecycles isn't complecting — it's essential. But it should be isolated in a module whose sole concern is lifecycle management.
+- **Never assume complexity is "essential" without proof.** Do not hand-wave findings as "essential complexity" or "acceptable given the problem domain." Before labeling any complecting as essential, you MUST first design what the Hickey-simplified version would look like — write it out concretely. Assume the existing code patterns came from someone who didn't know better. Reason from first principles: what would this look like if we started fresh with simplicity as the goal? Only after you have a concrete simplified alternative in hand can you evaluate whether the current approach is actually justified. If the simplified version is viable, the complexity was accidental. If it's genuinely not viable, explain exactly why — "the problem requires X" is not sufficient; show that the simplified design fails and why.
 - **Tests are necessary but not sufficient.** A passing test suite is evidence that the code works *now*. It is not evidence that the code is simple. Both matter. Don't let the grey-box model's focus on evidence-based review obscure the need for structural evaluation.
 - **This is not a replacement for functional review.** Simplicity analysis complements correctness review; it doesn't replace it. A perfectly simple program that does the wrong thing is useless.
