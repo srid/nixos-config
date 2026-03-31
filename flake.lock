@@ -821,11 +821,11 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1774651180,
-        "narHash": "sha256-YmAU9cLTccojhqkGFZdm0L/dbZkPw7sPJxo6uirlsto=",
+        "lastModified": 1774920593,
+        "narHash": "sha256-FNOlNWFRD5JhdLao5fhoO/aBbmesdaUfRdT0//r8e9U=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "575b3c18672e6a31784046d5e1c777242ab5f886",
+        "rev": "2c1b4f9e99ed7e58918c1895612828f1605a7314",
         "type": "github"
       },
       "original": {
@@ -1219,11 +1219,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1772402258,
-        "narHash": "sha256-3DmCFOdmbkFML1/G9gj8Wb+rCCZFPOQtNoMCpqOF8SA=",
+        "lastModified": 1774802402,
+        "narHash": "sha256-L1UJ/zxKTyyaGGmytH6OYlgQ0HGSMhvPkvU+iz4Mkb8=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "21ae25e13b01d3b4cdc750b5f9e7bad68b150c10",
+        "rev": "cbd8536a05d1aae2593cb5c9ace1010c8c5845cb",
         "type": "github"
       },
       "original": {
