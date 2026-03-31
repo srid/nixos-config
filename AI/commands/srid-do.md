@@ -66,24 +66,29 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
      5. Run `just ci` again.
    - Repeat until CI passes. Max 5 attempts — if still failing after 5, stop and ask the user.
 
-### 7. **Elegance Pass**
+### 7. **Fact-Check**
+
+   - Run `/fact-check` on the current changes.
+   - If it finds real issues (silent error swallowing, bogus fallbacks, wishful thinking), fix them and create a NEW commit.
+
+### 8. **Elegance Pass**
 
    - Run the `/elegance` (*NOT* `/simplify`) command targeting the relevant technology, for **3 iterations**.
    - When `/elegance` asks about scope (via `AskUserQuestion`), answer: **changes in the current branch/PR only**.
    - After elegance completes, create a NEW commit for the elegance improvements.
 
-### 8. **Final CI**
+### 9. **Final CI**
 
    - Push all elegance changes.
    - Run `just ci` again.
    - If it fails, enter the CI fix loop from step 6 again.
 
-### 9. **Update PR Description**
+### 10. **Update PR Description**
 
    - After all changes (elegance, CI fixes), re-check the PR title/body.
    - If scope changed, update via `gh pr edit` per the `github-pr` skill.
 
-### 10. **Done**
+### 11. **Done**
 
    - Report the PR URL and a brief summary of what was done.
 
@@ -93,4 +98,4 @@ Take a GitHub issue, prompt, or task description and execute it top-to-bottom: i
 - **CI must pass**: Don't move to the next phase until CI is green.
 - **Simple over clever**: Do the boring obvious thing.
 - **Autonomous**: Never ask. Pick sensible defaults and keep moving.
-- **Complete the full workflow**: Implementing code is step 4 of 10. You MUST open a draft PR, run CI, do the elegance pass, and report the PR URL. Stopping after commit = failure.
+- **Complete the full workflow**: Implementing code is step 4 of 11. You MUST open a draft PR, run CI, do the elegance pass, and report the PR URL. Stopping after commit = failure.
