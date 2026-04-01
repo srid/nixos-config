@@ -821,11 +821,11 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1774920593,
-        "narHash": "sha256-FNOlNWFRD5JhdLao5fhoO/aBbmesdaUfRdT0//r8e9U=",
+        "lastModified": 1775057008,
+        "narHash": "sha256-AL90P1fLTV0SOTah4TybkXXxdHJmmIGefXqUDg6/4pg=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "2c1b4f9e99ed7e58918c1895612828f1605a7314",
+        "rev": "c06e7aded3c93441447a5ebddbcaa7268d05827f",
         "type": "github"
       },
       "original": {
