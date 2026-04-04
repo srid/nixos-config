@@ -20,7 +20,6 @@ in
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
     "${homeMod}/claude-code"
-    "${homeMod}/opencode/juspay.nix"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/services/kolu.nix"

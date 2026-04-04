@@ -17,9 +17,7 @@
         # "nixos-hardware"
         "nix-index-database"
         "nixvim"
-        "oc"
         "nix-agent-wire"
-	"skills"
       ];
     };
   };

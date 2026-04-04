@@ -29,7 +29,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     # vira.url = "github:juspay/vira/github";
     vira.url = "github:juspay/vira";
-    oc.url = "github:juspay/AI";
     # landrun-nix.url = "github:srid/landrun-nix";
     landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
     nix-agent-wire.url = "github:srid/nix-agent-wire";
@@ -38,9 +37,6 @@
 
     # KOLU
     kolu.url = "github:juspay/kolu";
-
-    skills.url = "github:juspay/skills";
-    skills.flake = false;
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";

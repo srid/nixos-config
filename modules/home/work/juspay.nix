@@ -11,7 +11,6 @@ in
     "${jumphost-nix}/module.nix"
     "${homeMod}/agenix.nix"
     # "${homeMod}/claude-code/juspay.nix"  # Disabled: not using Claude Code at Juspay
-    "${homeMod}/opencode"
   ];
 
   programs.jumphost = {

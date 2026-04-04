@@ -62,9 +62,7 @@ in
         rust-nix-template = "https://github.com/srid/rust-nix-template.git";
         # services-flake = "https://github.com/juspay/services-flake.git";
         process-compose-flake = "https://github.com/Platonic-Systems/process-compose-flake.git";
-        oc = "https://github.com/juspay/oc.git";
         vira = "https://github.com/juspay/vira.git";
-        skills = "https://github.com/juspay/skills.git";
         emanote = "https://github.com/srid/emanote.git";
         unionmount = "https://github.com/srid/unionmount.git";
         ema = "https://github.com/srid/ema.git";

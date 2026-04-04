@@ -14,7 +14,6 @@
     package = pkgs.claude-code;
 
     autoWire.dirs = [
-      flake.inputs.skills.outPath
       (flake.self.outPath + "/AI")
     ];
   };
