@@ -51,8 +51,7 @@ in
 
     initialState = {
       repositories = {
-        AI = "https://github.com/srid/AI.git";
-        nixos-config = "https://github.com/srid/nixos-config.git";
+        # nixos-config = "https://github.com/srid/nixos-config.git";
         nixos-unified-template = "https://github.com/juspay/nixos-unified-template.git";
         nixos-unified = "https://github.com/srid/nixos-unified.git";
         hackage-publish = "https://github.com/srid/hackage-publish.git";
@@ -71,7 +70,6 @@ in
         ema = "https://github.com/srid/ema.git";
         srid = "https://github.com/srid/srid.git";
         imako = "https://github.com/srid/imako.git";
-        kolu = "https://github.com/juspay/kolu.git";
         opencode-haskell = "https://github.com/srid/opencode-haskell.git";
         landrun-nix = "https://github.com/srid/landrun-nix.git";
         haskell-template = "https://github.com/srid/haskell-template.git";
