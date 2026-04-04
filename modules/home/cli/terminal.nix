@@ -59,6 +59,7 @@ in
 
     gnupg
     ffmpeg
+    compress-video
   ];
 
   fonts.fontconfig.enable = true;
