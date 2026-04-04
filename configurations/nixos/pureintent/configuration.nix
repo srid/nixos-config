@@ -85,6 +85,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  # TTS: `spd-say "hello"` or `spd-say -l fr "bonjour"`
+  # Volume: `wpctl set-volume @DEFAULT_AUDIO_SINK@ 50%` (or 5%+/5%-)
+  services.speechd.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
