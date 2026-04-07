@@ -2,7 +2,6 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    enableVteIntegration = true; # Terminal integration for working directory tracking
     historyControl = [ "ignoredups" "ignorespace" ]; # Don't save duplicate commands or commands starting with space
     historySize = 10000; # Keep more commands in memory for better recall
     historyFileSize = 100000; # Persist more commands to disk for long-term history
