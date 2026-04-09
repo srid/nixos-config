@@ -36,7 +36,7 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu";
+    kolu.url = "github:juspay/kolu/test/reconnect-repro-410";
 
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
