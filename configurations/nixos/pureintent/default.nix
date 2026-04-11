@@ -19,6 +19,7 @@ in
   home-manager.sharedModules = [
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
+    "${homeMod}/claude-code"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/services/kolu.nix"

@@ -11,10 +11,10 @@
   programs.claude-code = {
     enable = true;
 
-    package = pkgs.claude-code;
-
-    autoWire.dirs = [
-      (flake.self.outPath + "/AI")
-    ];
+    # Installed outside Nix (e.g., via npm) to get auto-updates.
+    # This requires disabling autoWire too, since wiring MCP servers
+    # needs a package to wrap.
+    package = null;
+    autoWire.enable = false;
   };
 }
