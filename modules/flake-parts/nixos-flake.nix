@@ -17,7 +17,6 @@
         # "nixos-hardware"
         "nix-index-database"
         "nixvim"
-        "nix-agent-wire"
       ];
     };
   };

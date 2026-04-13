@@ -31,7 +31,6 @@
     vira.url = "github:juspay/vira";
     # landrun-nix.url = "github:srid/landrun-nix";
     landrun-nix.url = "github:adrian-gierakowski/landrun-nix/darwin-implementation-via-sandbox-exec";
-    nix-agent-wire.url = "github:srid/nix-agent-wire";
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 

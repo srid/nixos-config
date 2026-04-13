@@ -763,21 +763,6 @@
         "type": "github"
       }
     },
-    "nix-agent-wire": {
-      "locked": {
-        "lastModified": 1773881002,
-        "narHash": "sha256-YiOXMLnjkmUcubkxPWx5vRl+OaQwaJvrjiAVw8pp+u8=",
-        "owner": "srid",
-        "repo": "nix-agent-wire",
-        "rev": "dff0e61fa1bc8457815c8cd61808ea07b514502b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "srid",
-        "repo": "nix-agent-wire",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1103,7 +1088,6 @@
         "jumphost-nix": "jumphost-nix",
         "kolu": "kolu",
         "landrun-nix": "landrun-nix",
-        "nix-agent-wire": "nix-agent-wire",
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
