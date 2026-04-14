@@ -32,6 +32,7 @@ in
     fswatch
 
     eternal-terminal
+    lima
 
     uv # For running Python stuff quickly.
 
