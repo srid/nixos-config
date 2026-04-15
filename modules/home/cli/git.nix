@@ -8,6 +8,7 @@
     enable = true;
     ignores = [ "*~" "*.swp" ];
     lfs.enable = true;
+    signing.format = null;
     settings = {
       user = {
         name = flake.config.me.fullname;

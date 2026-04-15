@@ -7,6 +7,7 @@ let
   };
 in
 {
+  programs.ssh.enableDefaultConfig = false;
   programs.ssh.matchBlocks = {
     "pureintent".extraOptions = controlMasterOpts;
     "sincereintent".extraOptions = controlMasterOpts;
