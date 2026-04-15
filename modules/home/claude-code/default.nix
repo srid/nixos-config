@@ -13,8 +13,7 @@
         commit = "";
       };
       # Un-nerf Claude Opus in Claude Code
-      # See: https://x.com/kunchenguid/status/2043720881990725868
-      effortLevel = "high";
+      # effortLevel = "high";
       env = {
         CLAUDE_CODE_NO_FLICKER = "1";
         CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING = "1";
