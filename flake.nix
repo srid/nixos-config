@@ -37,6 +37,11 @@
     # KOLU
     kolu.url = "github:juspay/kolu";
 
+    # claude-code 2.1.98 (newer versions are nerfed)
+    # See: https://x.com/Sthiven_R/status/2043992488109899849
+    llm-agents.url = "github:numtide/llm-agents.nix/d9583b68fdc553936b35dc6ca206d8d8dd552e5b";
+    llm-agents.inputs.nixpkgs.follows = "nixpkgs";
+
     # Neovim
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
