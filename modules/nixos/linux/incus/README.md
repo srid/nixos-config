@@ -28,17 +28,111 @@ Same command, one flag:
 
 ```sh
 incus launch images:nixos/unstable demo          # container (fast, shared kernel)
-incus launch images:nixos/unstable demo --vm     # VM (slower boot, full isolation)
+
+incus launch images:nixos/unstable demo --vm \   # VM (full isolation)
+  -c security.secureboot=false \
+  -c limits.memory=8GiB \
+  -c limits.cpu=4 \
+  -d root,size=50GiB
 ```
 
 Containers share the host kernel and boot in a second or two. VMs need
 `/dev/kvm` and take ~10s to boot, but run a different kernel. Pick the
 container unless you need the kernel boundary.
 
+Why each VM flag:
+- `security.secureboot=false` — community NixOS images aren't signed
+  for UEFI secure boot, so incus refuses to start them unless the check
+  is off. A signed image would make this unneeded; none ships in the
+  `images:` remote today.
+- `limits.memory=8GiB` — the incus default is too small for
+  `nixos-rebuild switch` inside the VM. Symptoms of a too-small VM:
+  builds die partway with no clear error, or `incus console` drops with
+  `websocket: close 1006 (abnormal closure)` when the guest OOMs.
+- `limits.cpu=4` — optional, but `nixos-rebuild` is CPU-bound on eval.
+- `-d root,size=50GiB` — the community image defaults to ~10 GiB.
+  That's enough to boot and not much else; one `nix run` that fetches
+  nixpkgs can fill it. Symptom: `error: ... No space left on device`
+  partway through an eval. Resizing a running VM's root is fragile, so
+  pick a generous size at launch.
+
 The `images:` remote ships community NixOS builds for `unstable`,
-`25.05`, `24.11` on `amd64` and `arm64`. They're minimal — SSH on, no
-flakes, no home-manager. Customize post-launch with `incus exec` or
+`25.05`, `24.11` on `amd64` and `arm64`. They're minimal — no users,
+no flakes, no home-manager. Customize post-launch with `incus exec` or
 rebuild from a flake inside the instance.
+
+## Getting a shell
+
+Use `incus exec` — it routes through the incus agent inside the
+instance, so it works with zero setup on a fresh image:
+
+```sh
+incus exec demo -- bash
+```
+
+No SSH keys, no networking concerns, no users. If you specifically need
+real SSH (e.g. for `rsync`, editor remotes), push your pubkey into
+`/root/.ssh/authorized_keys` with `incus file push` and SSH to the IP
+shown in `incus list`.
+
+## Configuring the guest
+
+The community image has its own `/etc/nixos/configuration.nix` — it's
+the guest's config, nothing to do with this host flake. Two edits you'll
+almost always want on a fresh VM:
+
+```nix
+{ pkgs, ... }:
+{
+  # Flakes + the new nix command
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Whatever ports your services listen on
+  networking.firewall.allowedTCPPorts = [ 8080 ];
+}
+```
+
+Apply with `sudo nixos-rebuild switch`. If the build dies mid-way or
+`incus exec` starts hanging afterward, the VM is under-provisioned —
+relaunch with higher `limits.memory` (see the VM section above).
+
+## Running and exposing a service
+
+Say you want to host something on port 8080 inside the instance. Three
+layers have to cooperate, and each has its own failure mode.
+
+**1. Bind to the right interface.** Servers that default to `127.0.0.1`
+won't be reachable from the host no matter what else you do. Make sure
+yours is listening on `0.0.0.0:8080` (or the bridge IP). From inside:
+
+```sh
+ss -tlnp | grep 8080
+```
+
+**2. Open the instance's firewall.** NixOS community images ship with
+`networking.firewall.enable = true` and no ports open. Symptom: `curl`
+from *inside* the instance works, `curl` from the host hangs. Fix in
+`/etc/nixos/configuration.nix`:
+
+```nix
+networking.firewall.allowedTCPPorts = [ 8080 ];
+```
+
+Then `sudo nixos-rebuild switch`. The host can now hit the instance on
+its `incusbr0` IP (from `incus list`).
+
+**3. Publish to the LAN (optional).** The `incusbr0` IPs aren't
+reachable outside the host. To forward a host port into an instance:
+
+```sh
+incus config device add myvm web proxy \
+  listen=tcp:0.0.0.0:8080 \
+  connect=tcp:127.0.0.1:8080
+```
+
+Now anything that reaches the host on `:8080` gets proxied in. Remember
+to open `8080` in the *host's* `networking.firewall.allowedTCPPorts`
+too — or bind the proxy to a Tailscale IP and skip the firewall edit.
 
 ## The web UI
 
