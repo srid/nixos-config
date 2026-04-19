@@ -52,6 +52,10 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
+  # tailscaled installs its rules via iptables-nft, which live in a different
+  # table from the nftables firewall that incus requires. Adding tailscale0 here
+  # gets it into the nftables trusted-interfaces set too.
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
   networking.firewall.allowedTCPPorts = [
     80
     443
