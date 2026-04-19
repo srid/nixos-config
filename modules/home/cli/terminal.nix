@@ -12,7 +12,6 @@ in
     # Unixy tools
     ripgrep
     fd
-    sd
     wget
     moreutils # ts, etc.
     gnumake
@@ -33,8 +32,6 @@ in
 
     eternal-terminal
     lima
-
-    uv # For running Python stuff quickly.
 
     # AI
     google-cloud-sdk
@@ -59,7 +56,6 @@ in
     hledger
 
     gnupg
-    ffmpeg
     compress-video
   ];
 
