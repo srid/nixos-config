@@ -13,7 +13,11 @@ in
     self.nixosModules.default
     ./configuration.nix
     (self + /modules/nixos/linux/beszel.nix)
+    (self + /modules/nixos/linux/incus)
   ];
+
+  # Expose the incus UI on the Tailscale interface only.
+  virtualisation.incus.preseed.config."core.https_address" = "100.122.32.106:8443";
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [

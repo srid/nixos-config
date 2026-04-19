@@ -1,16 +1,8 @@
-# https://wiki.nixos.org/wiki/Incus
+# See ./README.md for usage and troubleshooting.
 { flake, ... }:
 let
   networkName = "incusbr0";
 
-  # Problems? 
-  # 1. Disable the service
-  # 2. Reset with: `sudo rm -rf /var/lib/lx* /var/lib/incus/`
-  # 3. Reboot
-  # 4. Then re-enable service
-  #
-  # Getting `user-1000` related nonsense errors?
-  # Just use the default project: `incus project switch default`
   preseedConfig = {
     networks = [
       {
@@ -49,6 +41,7 @@ in
 {
   virtualisation.incus = {
     enable = true;
+    ui.enable = true;
     preseed = preseedConfig;
   };
 
