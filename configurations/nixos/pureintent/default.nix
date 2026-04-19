@@ -13,7 +13,7 @@ in
     self.nixosModules.default
     ./configuration.nix
     (self + /modules/nixos/linux/beszel.nix)
-    (self + /modules/nixos/linux/incus.nix)
+    (self + /modules/nixos/linux/incus)
   ];
 
   # Expose the incus UI on the Tailscale interface only.
