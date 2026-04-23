@@ -8,6 +8,19 @@ in
 {
   nixos-unified.sshTarget = "srid@pureintent";
   # nixos-unified.sshTarget = "srid@192.168.2.134";
+  nixos-unified.localPrivilegeMode = "sudo-nixos-rebuild";
+
+  security.sudo.extraRules = [
+    {
+      users = [ flake.config.me.username ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild switch *";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   imports = [
     self.nixosModules.default
