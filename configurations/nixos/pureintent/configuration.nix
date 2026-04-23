@@ -71,6 +71,7 @@
   environment.systemPackages = with pkgs; [
     git
     btop
+    flake.inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

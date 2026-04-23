@@ -27,6 +27,7 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    zmx.url = "github:neurosnap/zmx";
     # vira.url = "github:juspay/vira/github";
     vira.url = "github:juspay/vira";
     # landrun-nix.url = "github:srid/landrun-nix";
