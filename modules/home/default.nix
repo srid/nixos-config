@@ -1,5 +1,8 @@
 {
   home.stateVersion = "24.05";
+  home.sessionVariables = {
+    DO_NOT_TRACK = "1";
+  };
   imports = [
     ./cli/tmux.nix
     ./editors/neovim
