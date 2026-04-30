@@ -15,6 +15,7 @@ in
     "${homeMod}/work/juspay.nix"
 
     "${homeMod}/services/obsidian.nix"
+    "${homeMod}/services/kolu.nix"
 
     # Remote builders
     "${homeMod}/nix/buildMachines"
@@ -26,6 +27,8 @@ in
   home.sessionPath = [
     "/nix/var/nix/profiles/default/bin"
   ];
+
+  services.kolu.host = "100.90.229.113"; # Tailscale IP of zest
 
   home.packages = [
     inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default

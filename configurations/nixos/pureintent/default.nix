@@ -40,6 +40,9 @@ in
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/services/kolu.nix"
+    {
+      services.kolu.host = "100.122.32.106"; # Tailscale IP of pureintent
+    }
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
