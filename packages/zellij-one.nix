@@ -7,6 +7,6 @@ writeShellApplication {
   '';
   runtimeInputs = [ zellij ];
   text = ''
-    zellij attach --create one
+    exec zellij attach --create one
   '';
 }
