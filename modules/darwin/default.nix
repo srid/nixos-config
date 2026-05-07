@@ -11,6 +11,7 @@ in
       users.users.${flake.config.me.username} = {
         home = "/Users/${flake.config.me.username}";
       };
+      system.primaryUser = "${config.me.username}";
       home-manager.users.${config.me.username} = { };
       home-manager.sharedModules = [
         self.homeModules.default
