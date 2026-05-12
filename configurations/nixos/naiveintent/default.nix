@@ -24,7 +24,6 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    (self + /modules/nixos/linux/beszel.nix)
   ];
 
   users.users.${flake.config.me.username}.linger = true;
@@ -58,6 +57,7 @@ in
   networking.firewall.allowedTCPPorts = [
     80
     443
+    7692
   ];
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
