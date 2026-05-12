@@ -28,6 +28,21 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Wired (enp1s0) and Wi-Fi (drapeau/wlp2s0) are on the same LAN. Letting both
+  # autoconnect causes ARP flux: the gateway's neighbor entry for our IP flips
+  # between the two NIC MACs and the Ethernet path goes silently dead.
+  # See docs/LINUX-INTERNET-ISSUES.md.
+  systemd.services.nm-drapeau-noautoconnect = {
+    description = "Disable autoconnect on drapeau Wi-Fi profile";
+    after = [ "NetworkManager.service" ];
+    wants = [ "NetworkManager.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${pkgs.networkmanager}/bin/nmcli connection modify drapeau connection.autoconnect no || true
+    '';
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
