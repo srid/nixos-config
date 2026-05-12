@@ -814,15 +814,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1777562874,
-        "narHash": "sha256-NBg8UECU9KNdPdEDcvZPZhhAoyAnnGb/u0OK3DaehiM=",
+        "lastModified": 1778589577,
+        "narHash": "sha256-nwQq3jBM0oiuN4mpNpfMkIGIgl0J4pLs6aInGy4wAX0=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "394182d9649d455dd0590d2569737c8e4642b883",
+        "rev": "b28ce732c7e9fb706e39f1dd24ebc6ff3c287f2e",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "taut-greek",
         "repo": "kolu",
         "type": "github"
       }
@@ -1482,11 +1483,11 @@
         "warp-tls-simple": "warp-tls-simple"
       },
       "locked": {
-        "lastModified": 1772585334,
-        "narHash": "sha256-PQMgtlst98me4JSJarU1R+HMQDqxIf/AzJg/mm0eSa8=",
+        "lastModified": 1778003880,
+        "narHash": "sha256-NleNWJD23V8Bo90vX7AZFdPAmAF5Mb1fM2sVPZVB3VQ=",
         "owner": "juspay",
         "repo": "vira",
-        "rev": "858ab06405097224f6841450c323f6bff21e62be",
+        "rev": "f2b0a4e1a32d097e1a4f3686f1774aba3b991743",
         "type": "github"
       },
       "original": {

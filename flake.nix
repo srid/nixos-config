@@ -36,7 +36,7 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu";
+    kolu.url = "github:juspay/kolu/taut-greek";
 
     # claude-code 2.1.98 (newer versions are nerfed)
     # See: https://x.com/Sthiven_R/status/2043992488109899849
