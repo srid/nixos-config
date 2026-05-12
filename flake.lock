@@ -814,16 +814,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1778589577,
-        "narHash": "sha256-nwQq3jBM0oiuN4mpNpfMkIGIgl0J4pLs6aInGy4wAX0=",
+        "lastModified": 1778618379,
+        "narHash": "sha256-V870SzI1lvwZuhqroDDB5p2fja2OmaIl0mzlLGt1o8g=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "b28ce732c7e9fb706e39f1dd24ebc6ff3c287f2e",
+        "rev": "5c86cbd4567f27fb81762a0399b48d344fb37a90",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "taut-greek",
+        "ref": "feat/minimap-hide-parked-toggle",
         "repo": "kolu",
         "type": "github"
       }
