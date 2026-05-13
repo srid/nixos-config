@@ -56,7 +56,8 @@ in
     hledger
 
     gnupg
-    compress-video
+    # Temporarily disabled: pulls in ffmpeg-full which fails to build (kvazaar test failures)
+    # compress-video
   ];
 
   fonts.fontconfig.enable = true;
