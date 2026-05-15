@@ -42,4 +42,10 @@ in
     vanjaram-run
     pu
   ];
+
+  # pu writes per-instance ssh_config files under ~/.pu-state/<name>/.
+  # Including them lets `ssh <name>` work directly without `pu connect`.
+  home-manager.users.${flake.config.me.username}.programs.ssh.includes = [
+    "~/.pu-state/*/ssh_config"
+  ];
 }
