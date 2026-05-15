@@ -46,10 +46,6 @@
     llm-agents.url = "github:numtide/llm-agents.nix/d9583b68fdc553936b35dc6ca206d8d8dd552e5b";
     llm-agents.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Neovim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
     # Emanote & Imako
     emanote.url = "github:srid/emanote";
     imako.url = "github:srid/imako";
