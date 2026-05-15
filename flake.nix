@@ -36,7 +36,7 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu";
+    kolu.url = "github:juspay/kolu/thin-sash";
 
     project-unknown.url = "github:juspay/project-unknown";
     project-unknown.inputs.nixpkgs.follows = "nixpkgs";
