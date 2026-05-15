@@ -16,7 +16,6 @@
         "nix-darwin"
         # "nixos-hardware"
         "nix-index-database"
-        "nixvim"
       ];
     };
   };

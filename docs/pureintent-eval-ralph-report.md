@@ -76,13 +76,46 @@ Inputs declared in `flake.nix`:
 `nixos-hardware`, `nixos-unified`, `nixos-vscode-server`, `nixpkgs`,
 `nixvim`, `project-unknown`, `vira`, `zmx`.
 
-Per-input blame is filled in as cycles run.
+Per-input blame from Phase-1 probes (drop the module that imports the
+input; everything else held constant; 3 runs each, eval-cache off):
+
+| input / module | path | wall when dropped | Δ saved | share |
+|---|---|---:|---:|---:|
+| baseline | — | 10.87 | — | 100 % |
+| `nixvim` | `modules/home/editors/neovim/` | 6.90 | **3.97** | **36.5 %** |
+| `vira` | `modules/home/services/vira.nix` | 9.59 | 1.28 | 11.8 % |
+| `jumphost-nix` | `modules/home/work/juspay.nix` | 8.16 (vira out, jumphost-nix import removed) | 1.43 | 13.1 % |
+| `kolu` | `modules/home/services/kolu.nix` | 10.37 | 0.50 | 4.6 % |
+| `agenix` (HM module) | `modules/home/agenix.nix` | ≈ 8.07 | ≈ 0 | < noise |
+| `agenix` (NixOS module) | `modules/nixos/common.nix:agenix` | 10.82 | ≈ 0 | < noise |
+| `programs.jumphost.*` body | `modules/home/work/juspay.nix` | 9.51 → 9.56 | 0.05 | < noise |
+| `claude-code` | `modules/home/claude-code` | 11.01 | ≈ 0 | < noise |
+| `buildMachines` | `modules/home/nix/buildMachines*` | 10.89 | ≈ 0 | < noise |
+| `incus`, `beszel`, `firefox`, `ttyd` | various | ≈ 10.85–10.92 | ≈ 0 | < noise |
+
+Compound floors:
+
+| drop | wall (s) | reduction |
+|---|---:|---:|
+| baseline | 10.87 | — |
+| nixvim + vira + juspay + agenix (HM+NixOS) | 4.29 | −60.5 % |
+| above + kolu | 3.85 | −64.6 % |
+
+So the absolute lower bound (with these four heavies stubbed out) is
+≈ 3.85 s — that's the cost of nixpkgs + home-manager + nixos-unified +
+everything else combined.
+
+The `home-manager.sharedModules` plumbing block in
+`modules/nixos/common.nix` was probed independently: removing it left
+the wall time unchanged (10.95 s ≈ 10.87 s), so the per-host HM-setup
+boilerplate itself isn't a contributor.
 
 ## Optimization log
 
 | # | hypothesis | mutation | wall (s) | Δ vs baseline | committed? | notes |
 |---|---|---|---|---|---|---|
 | 0 | — | baseline | 10.87 | — | — | reference |
+| 1 | nixvim is 36 % of eval; the cost is the option system, not the resulting nvim binary | delete `inputs.nixvim` + the nixvim module; replace `modules/home/editors/neovim/` with a minimal `programs.neovim { enable; defaultEditor; vimAlias; viAlias; }` | **6.98** | **−3.89 s (−35.8 %)** | ✅ | 7-run median; range 7.73–6.94 (first-run warm-up jitter). Other configs (`naiveintent`, `infinitude-macos`, `srid@zest`) still eval cleanly. **Behaviour note:** nvim is now plain — none of the previous plugins (rose-pine, telescope, treesitter, lualine, noice, LSP keymaps, nvim-tree, lazygit, outline-nvim, mapleader) survive. User explicitly approved dropping nixvim. |
 
 ## Dead ends
 
