@@ -36,7 +36,10 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu/juicy-gum";
+    kolu.url = "github:juspay/kolu";
+
+    project-unknown.url = "github:juspay/project-unknown";
+    project-unknown.inputs.nixpkgs.follows = "nixpkgs";
 
     # claude-code 2.1.98 (newer versions are nerfed)
     # See: https://x.com/Sthiven_R/status/2043992488109899849

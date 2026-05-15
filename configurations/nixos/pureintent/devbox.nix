@@ -7,11 +7,22 @@ let
 
   proxychainsBin = "${config.programs.proxychains.package}/bin/proxychains4";
 
-  vanjaram-run = pkgs.writeShellScriptBin "vanjaram-run" ''
+  proxyExports = ''
     export ALL_PROXY=socks5://127.0.0.1:${toString socksPort}
     export HTTPS_PROXY=socks5://127.0.0.1:${toString socksPort}
     export HTTP_PROXY=socks5://127.0.0.1:${toString socksPort}
+  '';
+
+  vanjaram-run = pkgs.writeShellScriptBin "vanjaram-run" ''
+    ${proxyExports}
     exec ${proxychainsBin} "$@"
+  '';
+
+  puBin = "${flake.inputs.project-unknown.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/pu";
+
+  pu = pkgs.writeShellScriptBin "pu" ''
+    ${proxyExports}
+    exec ${proxychainsBin} ${puBin} "$@"
   '';
 in
 {
@@ -29,5 +40,6 @@ in
 
   environment.systemPackages = [
     vanjaram-run
+    pu
   ];
 }

@@ -814,16 +814,15 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1778702290,
-        "narHash": "sha256-tbnQ3PguGYGmmMa+CD6FB2/v3BYCSpPy3ISkgZl2mX8=",
+        "lastModified": 1778808925,
+        "narHash": "sha256-VvTR0SQU5YNv7VLhgz5iywW5jqOMP9g7aKDLdskJmaA=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "32428ae67088e0291d127426ac85436d964a8da4",
+        "rev": "a8c24c598d8d39bbf1c3db32dc11d41378720d74",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "juicy-gum",
         "repo": "kolu",
         "type": "github"
       }
@@ -1213,6 +1212,26 @@
         "type": "github"
       }
     },
+    "project-unknown": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778662358,
+        "narHash": "sha256-PuNbrew3lA0q0SqLvNcek/kMgDgAifWWoCivuJs2T3g=",
+        "owner": "juspay",
+        "repo": "project-unknown",
+        "rev": "4e3f286cc22413bc62c73544114d3daf66e32d02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "project-unknown",
+        "type": "github"
+      }
+    },
     "record-hasfield": {
       "flake": false,
       "locked": {
@@ -1251,6 +1270,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
+        "project-unknown": "project-unknown",
         "vira": "vira",
         "zmx": "zmx"
       }
