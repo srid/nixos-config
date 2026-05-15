@@ -42,4 +42,16 @@ in
     vanjaram-run
     pu
   ];
+
+  # pu writes per-instance ssh_config files under ~/.pu-state/<name>/. Including
+  # them lets `ssh <name>` work directly. The inner ssh those configs spawn goes
+  # to `pu@<PU_HOST>` which is only reachable via vanjaram — route any ssh to
+  # user `pu` through the SOCKS5 proxy.
+  home-manager.users.${flake.config.me.username}.programs.ssh = {
+    includes = [ "~/.pu-state/*/ssh_config" ];
+    matchBlocks."pu-jumphost" = {
+      match = "user pu";
+      proxyCommand = "${pkgs.netcat-openbsd}/bin/nc -X 5 -x 127.0.0.1:${toString socksPort} %h %p";
+    };
+  };
 }
