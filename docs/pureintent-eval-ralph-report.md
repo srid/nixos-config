@@ -116,11 +116,143 @@ boilerplate itself isn't a contributor.
 |---|---|---|---|---|---|---|
 | 0 | — | baseline | 10.87 | — | — | reference |
 | 1 | nixvim is 36 % of eval; the cost is the option system, not the resulting nvim binary | delete `inputs.nixvim` + the nixvim module; replace `modules/home/editors/neovim/` with a minimal `programs.neovim { enable; defaultEditor; vimAlias; viAlias; }` | **6.98** | **−3.89 s (−35.8 %)** | ✅ | 7-run median; range 7.73–6.94 (first-run warm-up jitter). Other configs (`naiveintent`, `infinitude-macos`, `srid@zest`) still eval cleanly. **Behaviour note:** nvim is now plain — none of the previous plugins (rose-pine, telescope, treesitter, lualine, noice, LSP keymaps, nvim-tree, lazygit, outline-nvim, mapleader) survive. User explicitly approved dropping nixvim. |
+| 2a | jumphost-nix module is ~1.5 s | inline `${jumphost-nix}/module.nix` into `juspay.nix` (drop input, hard-code values, drop devbox.nix's port-option read) | 7.03 | +0.05 (noise) | ❌ | The shallow drilldown was misleading (eval-error truncation). The cost moves; it doesn't disappear. Reverted. |
+| 2b | vira HM module is ~1.3 s | inline `inputs.vira.homeManagerModules.vira` into `vira.nix` as direct `systemd.user.services.vira` + `age.secrets` | 6.94 | -0.04 (noise) | ❌ | Same explanation as 2a. Reverted. |
+| 2c | unused flake inputs accumulate cost | drop `llm-agents` (literally only commented-out reference) | 7.01 | +0.02 (noise) | ❌ | Lazy inputs don't contribute. Reverted. |
+| 2d | flake-parts modules add overhead | drop `claude-sandboxed.nix`, `devshell.nix`, `landrun-nix` | 6.91–6.99 | ≤0.06 (noise) | ❌ | Reverted. |
+| 2e | `programs.ssh.matchBlocks` is the systemd-style cost driver | strip `controlpersist.nix` (3 matchBlocks) | 7.00 | +0.01 (noise) | ❌ | matchBlocks aren't the contributor either; the cost is the **per-entry merge** that pureintent has anyway via devbox.nix's `pu-jumphost` etc. Reverted. |
+| 2f | nixos-unified's `autoWire` is overhead | replace with a hand-rolled `flake.nixosConfigurations.pureintent = mkLinuxSystem …` | ERR | — | ❌ | Pureintent itself reaches into `self.nixosModules.default` (created by autoWire), so a useful comparison needs reproducing the auto-wired attrsets first — out of scope. |
+
+## Final measurement
+
+7 warm runs, eval-cache disabled, `nixos-rebuild dry-build .#pureintent`,
+on `optimize-eval` HEAD (cycle 1 applied):
+
+| run | seconds |
+|----:|--------:|
+| 1   | 7.00 |
+| 2   | 7.01 |
+| 3   | 6.94 |
+| 4   | 6.99 |
+| 5   | 6.97 |
+| 6   | 7.01 |
+| 7   | 6.94 |
+
+**Median: 6.99 s** &middot; range 6.94–7.01 (≈ 1 %).
+
+| | wall (s) | Δ |
+|---|---:|---:|
+| baseline | 10.87 | — |
+| after cycle 1 | **6.99** | **−3.88 s (−35.7 %)** |
+
+Three other configurations continue to evaluate cleanly:
+`nixosConfigurations.naiveintent`,
+`darwinConfigurations.infinitude-macos`,
+`homeConfigurations."srid@zest"`.
 
 ## Dead ends
 
-(none yet)
+All of the following were tried after cycle 1 and produced **no
+measurable improvement** (≤ noise floor). Reported here so they don't
+have to be re-tried.
+
+- **Inline `${jumphost-nix}/module.nix`** into `juspay.nix`. Replaced the
+  152-line work-jump-host module with an equivalent inline
+  `programs.ssh.matchBlocks` / `systemd.user.services` /
+  `programs.git.includes`. Result: 7.03 s — within noise. Earlier
+  drilldown numbers that suggested ~1.5 s of jumphost-nix cost were
+  *eval-error truncation* (devbox.nix references
+  `programs.jumphost.socks5Proxy.port` and aborted eval before the rest
+  of pureintent was processed). The real cost is in the resulting
+  submodule materialisation (programs.ssh.matchBlocks, etc.), which is
+  the same whether the values arrive via a wrapper module or a literal.
+
+- **Inline `inputs.vira.homeManagerModules.vira`**. 167-line option
+  schema + submodule replaced with a hand-rolled
+  `systemd.user.services.vira` and `age.secrets` block.
+  Result: 6.94 s — within noise. Same explanation as above.
+
+- **Inline `inputs.kolu.homeManagerModules.default`**. Similar pattern;
+  eval errored when `services.kolu.host` setter outlived the option
+  declaration. With downstream-fix, expected zero benefit by the same
+  argument.
+
+- **Prune `inputs.llm-agents`** (only reference was already commented
+  out). Result: 7.01 s — within noise.
+
+- **Drop `modules/flake-parts/claude-sandboxed.nix`** (landrun-nix
+  consumer at the flake-parts level). Result: 6.91 s — within noise.
+
+- **Drop `modules/flake-parts/devshell.nix`** at flake-parts level.
+  Result: 6.99 s — within noise.
+
+- **Drop `landrun-nix` input + `claude-sandboxed.nix`**. Result:
+  6.97 s — within noise.
+
+- **Strip `modules/home/cli/controlpersist.nix`** entirely (3
+  `programs.ssh.matchBlocks` entries). Result: 7.00 s — within noise.
+
+- **Replace `nixos-unified.flakeModules.autoWire`** with a manual
+  `flake.nixosConfigurations.pureintent = mkLinuxSystem …` — errors,
+  because pureintent's own `default.nix` reaches into
+  `self.nixosModules.default` which autoWire is responsible for
+  creating. Measuring nixos-unified's residual overhead would require
+  reproducing the auto-wired module attrsets by hand; not worth the
+  effort given everything else has plateaued.
+
+## Why we plateau at ~7 s
+
+After cycle 1, the post-mortem profile (each "drop X" probe is run with
+all *downstream consumers stubbed out* so the measurement isn't
+eval-error-truncated):
+
+| component | wall when dropped | Δ saved |
+|---|---:|---:|
+| (post-cycle-1 baseline) | 6.99 | — |
+| `vira` HM module | ≈ 5.71 | 1.28 |
+| `kolu` HM module | ≈ 6.49 | 0.50 |
+| jumphost-nix module + body | (cannot measure cleanly; ~1.3 cost is real but inlining gives it back) | — |
+| home CLI modules (tmux, starship, terminal, git, direnv, just, npm, nix-index-database, ttyd) | ≈ 0 each, ≈ 0.4 s cumulative | — |
+| `agenix` (NixOS + HM) | ≈ 0 | — |
+| `claude-code`, `buildMachines`, `incus`, `beszel`, `firefox`, `pipewire` | ≈ 0 each | — |
+
+The remaining ≈ 4 s is the cost of evaluating nixpkgs `lib`, the NixOS
+module system, home-manager's option universe, and `nixos-unified`'s
+auto-wiring — together they are the irreducible floor for any host that
+uses this flake.
+
+The HM modules that *are* expensive (vira, kolu, jumphost-nix) cost what
+they cost because their values land in
+`systemd.user.services.<name>` or `programs.ssh.matchBlocks.<name>`,
+each of which forces a per-entry home-manager submodule. Inlining the
+wrapper module doesn't help because the merge is the same on either
+side. The only way to reclaim that time is to (a) drop the service /
+the matchBlock entirely, or (b) write the unit / ssh_config file
+directly via `home.file` / `xdg.configFile` and bypass home-manager's
+own ssh and systemd modules across the whole user — a much larger
+refactor than fit inside this PR's scope.
 
 ## Key findings
 
-(filled in at wrap-up)
+1. **nixvim is 36 % of pureintent's eval time.** Its
+   home-manager-style options module materialises hundreds of plugin
+   submodules every eval. Cycle 1 dropped it (user-approved behaviour
+   change to plain `programs.neovim`) and reclaimed 3.88 s.
+2. **HM submodule materialisation, not option-declaration count, is the
+   driver.** Inlining wrapper modules (jumphost-nix, vira) gives the
+   work-saving illusion in shallow probes but no real saving because
+   `systemd.user.services` and `programs.ssh.matchBlocks` re-do the
+   same submodule work regardless of where their values came from.
+3. **Unused flake inputs cost essentially nothing** at pureintent
+   eval-time; flake inputs are lazy and only inputs reached
+   transitively from `nixosConfigurations.pureintent` contribute.
+4. **Eval-error-truncated probes look like wins.** Any "drop X" probe
+   where a downstream module reads X's option silently shortens the
+   eval and lies about its cost. Always validate probes succeed (we
+   started checking exit codes after the jumphost-nix dead end).
+
+## Methodology cost
+
+- 1 successful commit + push (cycle 1).
+- ≈ 50 probe runs on `srid-nc` over the cycle (3-run medians of dry-build).
+- 1 draft PR open: <https://github.com/srid/nixos-config/pull/117>.
