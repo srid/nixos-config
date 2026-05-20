@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -xe
+
+export $($ARSCRIPT "$1")
+ffmpeg -i "$1" \
+      -filter_complex 'fps=30,format=yuv420p,pad='"ceil($width/2)*2:ceil($height/2)*2"':(ow-iw)/2:(oh-ih)/2' -c:v h264_videotoolbox -c:a aac -ac 2 -ar 44100 -r 30 \
+      output.mp4
