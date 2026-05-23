@@ -28,10 +28,10 @@ in
     ./devbox.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/incus)
+    (self + /modules/nixos/linux/anywhen.nix)
   ];
 
-  # anywhen runs as an incus-pet container now (see modules/nixos/linux/incus/incus-pet);
-  # deploy with: incus-pet deploy github:srid/anywhen --port 7700 --listen 100.122.32.106
+  services.anywhen.host = "100.122.32.106"; # Tailscale IP of pureintent
 
   # Expose the incus UI on the Tailscale interface only.
   virtualisation.incus.preseed.config."core.https_address" = "100.122.32.106:8443";

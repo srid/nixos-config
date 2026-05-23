@@ -38,11 +38,8 @@
     # KOLU
     kolu.url = "github:juspay/kolu/feat/dock-activity-window";
 
-    # anywhen — personal task manager. The `incus-contract` branch
-    # (srid/anywhen#15) stacks on `abject-turn` (#2) and adds
-    # nixosModules.incus, which the incus-pet CLI
-    # (modules/nixos/linux/incus/incus-pet) consumes.
-    anywhen.url = "github:srid/anywhen/incus-contract";
+    # anywhen — personal task manager (PR #2 adds NixOS module)
+    anywhen.url = "github:srid/anywhen/abject-turn";
 
     project-unknown.url = "github:juspay/project-unknown";
     project-unknown.inputs.nixpkgs.follows = "nixpkgs";
