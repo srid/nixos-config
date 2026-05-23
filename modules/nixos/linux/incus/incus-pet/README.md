@@ -117,13 +117,22 @@ incus-pet deploy github:srid/anywhen --port 7700 --listen 100.122.32.106
 
 This:
 
-1. Synthesises a marshaling flake under `~/.local/state/incus-pet/anywhen/`.
-2. Launches `images:nixos/25.11` as container `anywhen` (with
-   `security.nesting=true` so `nixos-rebuild` works inside).
-3. Bootstraps sshd + your pubkey via `incus exec`.
-4. Runs `nixos-rebuild switch --target-host root@<container-ip>`.
-5. Records `--port` and `--listen` in container metadata.
-6. Adds the `web` proxy device.
+1. Synthesises a marshaling flake under `~/.local/state/incus-pet/anywhen/`
+   exposing `nixosModules.default` (essentials + app's
+   `nixosModules.incus` + operator pubkey overlay) — no nixpkgs pin in
+   per-deploy state.
+2. Launches `images:nixos/25.11` as container `anywhen` with
+   `-c security.nesting=true`.
+3. Pushes your `~/.ssh/id_ed25519.pub` into the container's
+   `/root/.ssh/authorized_keys` (the image already runs sshd via systemd
+   socket activation).
+4. Builds the system toplevel against `github:nixos/nixpkgs/nixos-25.11`
+   (stable, matching the image baseline) via `nix build --impure --expr`.
+5. Copies the closure with `nix copy --to ssh://root@<container-ip>
+   --substitute-on-destination`.
+6. SSHes to set the system profile and run `switch-to-configuration switch`.
+7. Records `--port` and `--listen` in container metadata.
+8. Adds the `web` proxy device.
 
 ### Subsequent deploys
 
@@ -165,9 +174,13 @@ container.
 - **`Failed to start Firewall.` inside the container** — the launch
   flag `-c security.nesting=true` is supposed to handle this; if it
   recurs, see `../README.md` and lxc/incus#526.
-- **SSH fails after first deploy** — the bootstrap step writes
-  `/etc/nixos/incus-pet-bootstrap.nix` and runs `nixos-rebuild` inside
-  the container; if that fails, `incus exec <name> -- journalctl -xeu nixos-rebuild` is the place to look.
+- **`switch-to-configuration` exits 4** — "some units failed to
+  reload/restart". Treated as success: the activation itself
+  completed, only a unit reload (typically dbus-broker) failed. The
+  service is up.
+- **`switch-to-configuration` exits 11 / "Could not acquire lock"** —
+  a previous activation is still running (often hung). `incus exec
+  <name> -- pkill -9 -f switch-to-configuration` clears it.
 
 ## State
 

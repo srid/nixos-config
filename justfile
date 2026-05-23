@@ -1,6 +1,10 @@
 default:
     @just --list
 
+# Per-host operational recipes. Namespaced via `mod` so each host's
+# recipes live behind their own prefix (e.g. `just pureintent anywhen-deploy`).
+mod pureintent 'configurations/nixos/pureintent/mod.just'
+
 # Main commands
 # --------------------------------------------------------------------------------------------------
 

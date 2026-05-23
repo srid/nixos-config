@@ -131,6 +131,10 @@ The module must NOT set:
   filters by the `flake-ref` key.
 - If `--port` is missing on the first deploy, the command fails before
   launching anything.
-- Network failures during `nixos-rebuild --target-host` leave the
-  container running its previous generation — `nixos-rebuild switch` is
-  itself atomic.
+- Activation is two ssh steps: `nix-env --set` (atomic pointer swap on
+  `/nix/var/nix/profiles/system`) then `switch-to-configuration switch`.
+  If the second fails partway, the system profile is already at the new
+  toplevel; running deploy again finishes the switch.
+- Exit 4 from `switch-to-configuration` is treated as success (a unit
+  failed to reload — typically dbus-broker — but activation itself
+  completed).

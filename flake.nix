@@ -38,8 +38,11 @@
     # KOLU
     kolu.url = "github:juspay/kolu/feat/dock-activity-window";
 
-    # anywhen — personal task manager (PR #2 adds NixOS module)
-    anywhen.url = "github:srid/anywhen/abject-turn";
+    # anywhen is NOT a flake input — it's deployed as an incus-pet
+    # container, with the flake ref passed at deploy time (see
+    # `just pureintent anywhen-deploy`). The host config doesn't import
+    # anything from anywhen, so locking it here would just bloat
+    # flake.lock without buying us anything.
 
     project-unknown.url = "github:juspay/project-unknown";
     project-unknown.inputs.nixpkgs.follows = "nixpkgs";
