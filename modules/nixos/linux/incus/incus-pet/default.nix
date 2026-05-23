@@ -34,7 +34,7 @@ writeShellApplication {
     ESSENTIALS_MODULE='${essentialsModule}'
     CONTAINER_PORT=8080
     STATE_ROOT="''${XDG_STATE_HOME:-$HOME/.local/state}/incus-pet"
-    INCUS_IMAGE="images:nixos/25.05"
+    INCUS_IMAGE="images:nixos/25.11"
 
     log() { printf '[incus-pet] %s\n' "$*" >&2; }
     die() { log "error: $*"; exit 1; }
@@ -145,48 +145,16 @@ writeShellApplication {
     }
 
     bootstrap_container() {
-      # First-time bootstrap: install our pubkey, then enable sshd +
-      # flakes via an in-container nixos-rebuild so the upcoming
-      # --target-host rebuild has something to ssh into.
+      # The official NixOS incus image already runs sshd via systemd
+      # socket activation on port 22; the only thing we need to add is
+      # the operator's pubkey to root's authorized_keys. Idempotent —
+      # `tee` overwrites, so a rotated key gets picked up on next deploy.
       local name="$1" pubkey="$2"
-
-      # The pubkey push is always idempotent (`tee` overwrites). Run it
-      # every deploy so a rotated operator key gets picked up.
       log "ensuring authorized_keys on $name"
       incus exec "$name" -- mkdir -p /root/.ssh
       incus exec "$name" -- chmod 700 /root/.ssh
       printf '%s\n' "$pubkey" | incus exec "$name" -- tee /root/.ssh/authorized_keys >/dev/null
       incus exec "$name" -- chmod 600 /root/.ssh/authorized_keys
-
-      # The sshd+flakes bootstrap is one-shot; skip if the marker is
-      # already in place (any subsequent deploy goes via --target-host).
-      if incus exec "$name" -- test -f /etc/nixos/incus-pet-bootstrap.nix 2>/dev/null; then
-        log "$name already bootstrapped; skipping sshd/flakes setup"
-        return 0
-      fi
-
-      log "first-time bootstrap on $name (sshd + flakes)"
-
-      incus exec "$name" -- sh -c 'cat > /etc/nixos/incus-pet-bootstrap.nix' <<'NIX'
-    { ... }: {
-      services.openssh.enable = true;
-      services.openssh.settings.PermitRootLogin = "yes";
-      nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    }
-    NIX
-
-      # The official NixOS incus image's configuration.nix shape is
-      # { modulesPath, ... }: { imports = [ "''${modulesPath}/..." ]; ... }
-      # — sed prepends our import to that list. Reliable in practice;
-      # fail loudly if the shape ever changes upstream.
-      if ! incus exec "$name" -- grep -q 'imports = \[' /etc/nixos/configuration.nix; then
-        die "$name: /etc/nixos/configuration.nix has no 'imports = [' line — incus image shape changed?"
-      fi
-      incus exec "$name" -- sed -i \
-        's|imports = \[|imports = [ ./incus-pet-bootstrap.nix|' \
-        /etc/nixos/configuration.nix
-
-      incus exec "$name" -- nixos-rebuild switch
     }
 
     wire_proxy_device() {
@@ -291,15 +259,22 @@ writeShellApplication {
       bootstrap_container "$name" "$pubkey"
 
       log "activating: nixos-rebuild switch --flake $dir#$name --target-host root@$ip"
-      ( cd "$dir" && nixos-rebuild switch \
-          --flake ".#$name" \
-          --target-host "root@$ip" \
-          --use-substitutes )
+      # accept-new = trust-on-first-use; reject if a known host's key
+      # changed. Fresh containers get a fresh host key, and the operator
+      # launched the container themselves, so TOFU is fine.
+      ( cd "$dir" \
+        && NIX_SSHOPTS='-o StrictHostKeyChecking=accept-new' \
+           nixos-rebuild switch \
+             --flake ".#$name" \
+             --target-host "root@$ip" \
+             --use-substitutes )
 
-      # Persist host-port + listen IP for next deploy.
-      incus config set "$name" user.incus-pet.host-port "$port"
-      incus config set "$name" user.incus-pet.listen    "$listen"
-      incus config set "$name" user.incus-pet.flake-ref "$flake_ref"
+      # Persist host-port + listen IP for next deploy. The `key=value`
+      # form is required since incus 6.x; the space-separated form is
+      # deprecated and warns.
+      incus config set "$name" "user.incus-pet.host-port=$port"
+      incus config set "$name" "user.incus-pet.listen=$listen"
+      incus config set "$name" "user.incus-pet.flake-ref=$flake_ref"
 
       wire_proxy_device "$name" "$listen" "$port"
 

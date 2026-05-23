@@ -118,7 +118,7 @@ incus-pet deploy github:srid/anywhen --port 7700 --listen 100.122.32.106
 This:
 
 1. Synthesises a marshaling flake under `~/.local/state/incus-pet/anywhen/`.
-2. Launches `images:nixos/25.05` as container `anywhen` (with
+2. Launches `images:nixos/25.11` as container `anywhen` (with
    `security.nesting=true` so `nixos-rebuild` works inside).
 3. Bootstraps sshd + your pubkey via `incus exec`.
 4. Runs `nixos-rebuild switch --target-host root@<container-ip>`.

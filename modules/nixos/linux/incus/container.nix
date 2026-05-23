@@ -8,11 +8,21 @@
 #
 # The incus-pet CLI's marshaling flake imports this file directly by store
 # path — no flake-input dance — so this file stays as a plain NixOS module.
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, modulesPath, ... }:
 let
   cfg = config.incus.container;
 in
 {
+  # `lxc-container.nix` is the upstream nixpkgs module that turns a
+  # NixOS evaluation into something that boots as an LXC/incus container
+  # — skips the boot loader, sets `fileSystems` defaults, wires up
+  # systemd-networkd with eth0 DHCP, and trims a pile of host-only
+  # services. The official `images:nixos/25.11` image imports the same
+  # module via its /etc/nixos/configuration.nix; we re-import here so
+  # `nixos-rebuild --target-host` doesn't lose any of that when it
+  # replaces /etc/nixos at switch time.
+  imports = [ "${modulesPath}/virtualisation/lxc-container.nix" ];
+
   # The CONVENTION: every containerized service binds 8080 inside its
   # own netns. The host-side incus proxy device translates a unique
   # <listen-ip>:<host-port> to <container>:8080 at deploy time. App
@@ -58,5 +68,13 @@ in
       curl
       htop
     ];
+
+    # Workaround the same dbus-broker reload stall pureintent hits
+    # (NixOS#... — the broker has long-lived clients holding the bus,
+    # the reload step times out, switch-to-configuration exits 4 even
+    # though activation succeeded). Skip reload/restart at activation
+    # time; bus policy changes land on next container restart.
+    systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+    systemd.services.dbus-broker.restartIfChanged = lib.mkForce false;
   };
 }
