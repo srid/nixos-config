@@ -22,7 +22,7 @@ in
   };
 
   services.imako = {
-    enable = true;
+    enable = false;
     package = inputs.imako.packages.${pkgs.stdenv.hostPlatform.system}.default;
     vaultDir = myVault;
     port = 7002;
