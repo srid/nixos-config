@@ -36,7 +36,10 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu";
+    kolu.url = "github:juspay/kolu/feat/dock-activity-window";
+
+    # anywhen — personal task manager (PR #2 adds NixOS module)
+    anywhen.url = "github:srid/anywhen/abject-turn";
 
     project-unknown.url = "github:juspay/project-unknown";
     project-unknown.inputs.nixpkgs.follows = "nixpkgs";

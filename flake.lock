@@ -43,6 +43,22 @@
         "type": "github"
       }
     },
+    "anywhen": {
+      "locked": {
+        "lastModified": 1779551219,
+        "narHash": "sha256-Mz6QfMmBmZeCBocvvWq8juwp7j4r78nRvVwkmxTFQM4=",
+        "owner": "srid",
+        "repo": "anywhen",
+        "rev": "a6d5ed84bf70049c7f3349e6ed218952ac5d8a2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "ref": "abject-turn",
+        "repo": "anywhen",
+        "type": "github"
+      }
+    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
@@ -793,15 +809,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1779237048,
-        "narHash": "sha256-vZrM6s394GOwdtx7ljJogUCO8f6Xg0dxktndpDrlLJ4=",
+        "lastModified": 1779546004,
+        "narHash": "sha256-op/9x5PI6Ku//hnt5nYmkNSX85gl8GDsttAoh4G6KAs=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "b8c955b2efbf7757126aa066d67fd193681bd603",
+        "rev": "06d0ec7a58fcd9ba3b17f26a326f8e2ea4597b1b",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "feat/dock-activity-window",
         "repo": "kolu",
         "type": "github"
       }
@@ -1208,6 +1225,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "anywhen": "anywhen",
         "disc-scrape": "disc-scrape",
         "disko": "disko",
         "emanote": "emanote",

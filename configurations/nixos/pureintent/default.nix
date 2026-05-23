@@ -28,7 +28,10 @@ in
     ./devbox.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/incus)
+    (self + /modules/nixos/linux/anywhen.nix)
   ];
+
+  services.anywhen.host = "100.122.32.106"; # Tailscale IP of pureintent
 
   # Expose the incus UI on the Tailscale interface only.
   virtualisation.incus.preseed.config."core.https_address" = "100.122.32.106:8443";
@@ -83,4 +86,11 @@ in
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = false;
+
+  # Workaround `nixos-rebuild switch` hanging at "reloading the following units:
+  # dbus-broker.service". The reload step stalls (broker has long-lived clients
+  # holding the bus); skip reload/restart during activation. Bus policy changes
+  # land on next boot instead.
+  systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+  systemd.services.dbus-broker.restartIfChanged = lib.mkForce false;
 }
