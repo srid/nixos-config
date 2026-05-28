@@ -30,10 +30,11 @@ writers.writeHaskellBin "fuckport"
 
   main :: IO ()
   main = do
-    port <- Prelude.head <$> getArgs
-    s <- lsof "-i" (":" <> port) |> jc "--lsof" |> capture
-    let v = fromJust $ decode @[LsofRow] s
-    forM_ v $ \r -> do
-      putStrLn $ "Killing " <> show (pid r) <> " (" <> command r <> ")"
-      kill ["-KILL", show (pid r)]
+    ports <- getArgs
+    forM_ ports $ \port -> do
+      s <- lsof "-i" (":" <> port) |> jc "--lsof" |> capture
+      let v = fromJust $ decode @[LsofRow] s
+      forM_ v $ \r -> do
+        putStrLn $ "Killing " <> show (pid r) <> " (" <> command r <> ") on port " <> port
+        kill ["-KILL", show (pid r)]
 ''

@@ -36,7 +36,7 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu/feat/dock-activity-window";
+    kolu.url = "github:juspay/kolu";
 
     # anywhen is NOT a flake input — it's deployed as an incus-pet
     # container, with the flake ref passed at deploy time (see

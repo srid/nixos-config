@@ -28,6 +28,7 @@ in
 {
   programs.proxychains = {
     enable = true;
+    quietMode = true;
     chain.type = "strict";
     proxyDNS = true;
     proxies.devbox = {

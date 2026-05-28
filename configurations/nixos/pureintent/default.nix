@@ -91,7 +91,10 @@ in
   # Workaround `nixos-rebuild switch` hanging at "reloading the following units:
   # dbus-broker.service". The reload step stalls (broker has long-lived clients
   # holding the bus); skip reload/restart during activation. Bus policy changes
-  # land on next boot instead.
+  # land on next boot instead. Same applies to the per-user broker
+  # (`Failed to reload user unit dbus-broker.service` → exit 4).
   systemd.services.dbus-broker.reloadIfChanged = lib.mkForce false;
   systemd.services.dbus-broker.restartIfChanged = lib.mkForce false;
+  systemd.user.services.dbus-broker.reloadIfChanged = lib.mkForce false;
+  systemd.user.services.dbus-broker.restartIfChanged = lib.mkForce false;
 }
