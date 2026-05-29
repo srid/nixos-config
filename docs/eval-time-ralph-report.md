@@ -56,7 +56,11 @@ Env: nix 2.34.7, x86_64-linux.
 |-------|--------|-------------------|----------------------|---------|
 | 0 | baseline | 20,400,114 | 5,323,428 | — |
 | 1 | pureintent: `documentation.nixos.enable = false` (drop NixOS options manual; option doc-strings no longer evaluated) | **19,201,996 (−5.9%)** | 5,323,428 | ✅ commit |
-| 2 | home: `manual.manpages.enable = false` in shared `modules/home/default.nix` (drop home-manager options manpage; evaluated every HM option's doc) | 19,201,996 | **3,551,679 (−33.3%)** | ✅ commit |
+| 2 | home: `manual.manpages.enable = false` in shared `modules/home/default.nix` (drop home-manager options manpage; evaluated every HM option's doc) | **17,431,437 (−9.2%)** | **3,551,679 (−33.3%)** | ✅ commit |
+
+> Note: `modules/home/default.nix` is also fed to every Linux system's *embedded*
+> home-manager via `modules/nixos/default.nix`, so cycle 2 reduced pureintent
+> too (its HM user's manpages were previously on).
 
 ## Dead ends
 
