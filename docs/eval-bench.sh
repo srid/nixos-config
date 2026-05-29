@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Ralph eval-time benchmark — counter-based.
-# Usage: ralph-bench.sh [target]   target = pureintent | zest | (both)
+# Usage: ralph-bench.sh [target]   target = pureintent | sincereintent | (both)
 #
 # Primary metric: deterministic eval-work counters from NIX_SHOW_STATS:
 #   nrThunks, nrFunctionCalls, nrPrimOpCalls.
@@ -17,11 +17,11 @@ ONLY="${1:-}"
 
 declare -A ATTR
 ATTR[pureintent]="$FLAKE#nixosConfigurations.pureintent.config.system.build.toplevel.drvPath"
-ATTR[zest]="$FLAKE#homeConfigurations.\"srid@zest\".activationPackage.drvPath"
+ATTR[sincereintent]="$FLAKE#homeConfigurations.\"srid@sincereintent\".activationPackage.drvPath"
 
 num() { grep -o "\"$1\": [0-9.]*" /tmp/ralph-stats.json | grep -o '[0-9.]*' | head -1; }
 
-for target in pureintent zest; do
+for target in pureintent sincereintent; do
   [ -n "$ONLY" ] && [ "$ONLY" != "$target" ] && continue
   NIX_SHOW_STATS=1 nix eval --raw "${ATTR[$target]}" --option eval-cache false \
     >/dev/null 2>/tmp/ralph-stats.json

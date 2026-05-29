@@ -4,7 +4,7 @@ Iterative measurement-driven reduction of Nix **evaluation** time for the two
 configs that get evaluated most often on this machine:
 
 - `pureintent` — the NixOS system (`nixosConfigurations.pureintent`)
-- `zest` — the home-manager config (`homeConfigurations."srid@zest"`)
+- `sincereintent` — the home-manager config (`homeConfigurations."srid@sincereintent"`)
 
 ## Methodology
 
@@ -25,7 +25,7 @@ work and are **byte-identical across runs** (independent of CPU clock, load, GC)
 # - --option eval-cache false forces a full re-eval every run
 # - reports nrThunks / nrFunctionCalls / nrPrimOpCalls per target (deterministic)
 nix eval --raw .#nixosConfigurations.pureintent.config.system.build.toplevel.drvPath --option eval-cache false
-nix eval --raw '.#homeConfigurations."srid@zest".activationPackage.drvPath'        --option eval-cache false
+nix eval --raw '.#homeConfigurations."srid@sincereintent".activationPackage.drvPath' --option eval-cache false
 ```
 
 No `nix store gc` between runs (per request). The eval cache is disabled rather
@@ -43,8 +43,8 @@ then aggregate self/inclusive frames (collapsed-stack format).
 
 | Target     | nrThunks   | nrFunctionCalls | nrPrimOpCalls |
 |------------|------------|-----------------|---------------|
-| pureintent | 20,400,114 | 12,975,268      | 6,507,025     |
-| zest       | 11,066,680 |  7,091,428      | 3,587,586     |
+| pureintent    | 20,400,114 | 12,975,268      | 6,507,025     |
+| sincereintent |  5,323,428 |  3,227,404      | 1,565,120     |
 
 Env: nix 2.34.7, x86_64-linux.
 
@@ -52,10 +52,10 @@ Env: nix 2.34.7, x86_64-linux.
 
 (Δ% is on nrThunks vs baseline for the affected target.)
 
-| Cycle | Change | pureintent thunks | zest thunks | Verdict |
-|-------|--------|-------------------|-------------|---------|
-| 0 | baseline | 20,400,114 | 11,066,680 | — |
-| 1 | pureintent: `documentation.nixos.enable = false` (drop NixOS options manual; option doc-strings no longer evaluated) | **19,201,996 (−5.9%)** | 11,066,680 | ✅ commit |
+| Cycle | Change | pureintent thunks | sincereintent thunks | Verdict |
+|-------|--------|-------------------|----------------------|---------|
+| 0 | baseline | 20,400,114 | 5,323,428 | — |
+| 1 | pureintent: `documentation.nixos.enable = false` (drop NixOS options manual; option doc-strings no longer evaluated) | **19,201,996 (−5.9%)** | 5,323,428 | ✅ commit |
 
 ## Dead ends
 
