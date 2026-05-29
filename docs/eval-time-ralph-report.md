@@ -63,6 +63,7 @@ Env: nix 2.34.7, x86_64-linux.
 > too (its HM user's manpages were previously on).
 
 | 3 | (profiling cycle — no change) investigated nixpkgs double-instantiation, unused inputs, `escapeShellArg` hotspot | 17,431,437 | 3,551,679 | — no behaviour-preserving win found |
+| 4 | home: drop heavy `home.packages` from shared `cli/terminal.nix` — `yt-dlp`, `lima`, `omnix`, `pandoc`, `google-cloud-sdk` (kept `hledger`). *Behaviour change, user-approved.* | **16,989,720 (−2.5%)** | **2,757,201 (−22.4%)** | ✅ commit |
 
 ## Dead ends
 
