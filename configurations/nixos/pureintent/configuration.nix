@@ -81,6 +81,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # The NixOS options manual is rarely consulted locally (options are searched
+  # online), but generating it evaluates the doc string of every option — a
+  # measurable chunk of eval time. Package man pages (`man git`) are unaffected.
+  documentation.nixos.enable = false;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
