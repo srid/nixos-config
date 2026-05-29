@@ -56,6 +56,7 @@ Env: nix 2.34.7, x86_64-linux.
 |-------|--------|-------------------|----------------------|---------|
 | 0 | baseline | 20,400,114 | 5,323,428 | — |
 | 1 | pureintent: `documentation.nixos.enable = false` (drop NixOS options manual; option doc-strings no longer evaluated) | **19,201,996 (−5.9%)** | 5,323,428 | ✅ commit |
+| 2 | home: `manual.manpages.enable = false` in shared `modules/home/default.nix` (drop home-manager options manpage; evaluated every HM option's doc) | 19,201,996 | **3,551,679 (−33.3%)** | ✅ commit |
 
 ## Dead ends
 
