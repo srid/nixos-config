@@ -96,6 +96,48 @@ pureintent eval profile are all *wanted* features (samples ≈ inclusive share):
 `omnix` — Haskell). Further reductions require trading a feature, not a free
 structural change.
 
+## Final measurement (median irrelevant — counters are exact)
+
+| Target | nrThunks (base → final) | Δ | nrFunctionCalls | nrPrimOpCalls |
+|--------|-------------------------|------|-----------------|---------------|
+| pureintent    | 20,400,114 → **16,989,720** | **−16.7%** | 12,975,268 → 10,794,555 (−16.8%) | 6,507,025 → 5,327,976 (−18.1%) |
+| sincereintent |  5,323,428 → **2,757,201** | **−48.2%** |  3,227,404 →  1,631,213 (−49.5%) | 1,565,120 →   771,171 (−50.7%) |
+
+Both configs still instantiate cleanly (`nix build --dry-run` on the system
+toplevel / home activationPackage succeeds).
+
 ## Key findings
 
-_(filled in at wrap-up)_
+1. **On a thermally-throttling machine, time is a lie — count work instead.**
+   The same eval reported cpuTime from 11s to 21s as the CPU clock sagged, while
+   `nrThunks` was byte-identical every run. Eval-work counters (`nrThunks`,
+   `nrFunctionCalls`, `nrPrimOpCalls`) are deterministic, zero-noise, and
+   machine-independent — a far better optimization metric than wall/cpu time.
+2. **Generated option documentation is the biggest free win.** The NixOS options
+   manual (`documentation.nixos.enable`) and the home-manager options manpage
+   (`manual.manpages.enable`) each evaluate the doc string of *every* option.
+   Disabling both: pureintent −14.6%, sincereintent −33% — with zero behaviour
+   cost (options are searched online).
+3. **A shared module multiplies.** `manual.manpages.enable = false` in
+   `modules/home/default.nix` helped both the standalone home config *and* every
+   Linux system's embedded home-manager (via `modules/nixos/default.nix`).
+4. **Eval is lazy — unused inputs are already free.** Pruning unreferenced flake
+   inputs does not move the counters; it only trims `flake.lock`.
+5. **The remainder is feature-bound.** After the doc wins, eval cost is dominated
+   by embedded home-manager file-linking, `/etc` generation, and the closures of
+   wanted services/packages. Trimming 5 heavy `home.packages` (user-approved) took
+   sincereintent to −48% total; the rest are features worth their eval cost.
+
+## Cost breakdown (per-package eval cost, standalone `pkgs.<p>.drvPath` thunks)
+
+Shared base floor ≈ 1.09M thunks; the excess is each package's own closure-eval:
+
+| Package | thunks | excess | removed? |
+|---------|--------|--------|----------|
+| yt-dlp | 2.15M | +1.05M | ✅ |
+| lima | 1.78M | +0.69M | ✅ |
+| omnix | 1.76M | +0.67M | ✅ |
+| pandoc | 1.46M | +0.37M | ✅ |
+| google-cloud-sdk | 1.39M | +0.30M | ✅ |
+| hledger | 1.35M | +0.26M | kept (wanted) |
+| ripgrep / fd / just / television | ~1.09M | ~0 | kept (at floor) |
