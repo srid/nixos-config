@@ -62,9 +62,38 @@ Env: nix 2.34.7, x86_64-linux.
 > home-manager via `modules/nixos/default.nix`, so cycle 2 reduced pureintent
 > too (its HM user's manpages were previously on).
 
+| 3 | (profiling cycle — no change) investigated nixpkgs double-instantiation, unused inputs, `escapeShellArg` hotspot | 17,431,437 | 3,551,679 | — no behaviour-preserving win found |
+
 ## Dead ends
 
 _(investigated, no improvement — recorded so we don't retry)_
+
+- **nixpkgs is NOT double-instantiated.** `nixos-unified.lib.mkLinuxSystem` calls
+  `nixpkgs.lib.nixosSystem` without pinning `nixpkgs.pkgs`, but the NixOS
+  `nixpkgs` module imports the package set exactly once; the `pkgs/top-level/impure.nix`
+  frame in the profile is that single import. `home-manager.useGlobalPkgs = true`
+  (set by nixos-unified) already shares it with the embedded HM. No win available.
+- **Dropping unused flake inputs does not reduce eval counters.** Nix input
+  evaluation is lazy: an input not referenced during a config's eval (e.g.
+  `nixos-hardware`, `git-hooks` — 0 refs) contributes ~0 thunks to that config.
+  Pruning them shrinks `flake.lock`/`nix flake` overhead only, not `nrThunks`.
+- **`escapeShellArg` (~72% inclusive on pureintent) is not a fixable hotspot.**
+  It is driven by `home-manager` file-linking (`files.nix:442`, ~43% — one
+  escaped command per managed dotfile) and NixOS `/etc` generation
+  (`etc.nix:58`). Both scale with how much is managed; nixpkgs/HM own the
+  implementation. Not patchable from this repo.
+- **`programs.command-not-found` already disabled** by the `nix-index-database`
+  module; nothing to gain.
+
+## Remaining cost is feature-bound
+
+After the two documentation wins, the dominant `derivationStrict` targets in the
+pureintent eval profile are all *wanted* features (samples ≈ inclusive share):
+`home-manager-generation`/`home-manager-files` (~43%, embedded HM), `/etc`
+(~29%), `vira.service`+`vira-wrapped`+`vira-0.1.0.0` (Haskell app), `kolu.service`,
+`pipewire`, plus heavy packages in `home.packages` (`google-cloud-sdk`, `pandoc`,
+`omnix` — Haskell). Further reductions require trading a feature, not a free
+structural change.
 
 ## Key findings
 
