@@ -36,7 +36,10 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu";
+    kolu.url = "github:juspay/kolu/r4-a1-pty-host-surface";
+
+    # drishti remote host monitor (home-manager module)
+    drishti.url = "github:srid/drishti";
 
     # anywhen is NOT a flake input — it's deployed as an incus-pet
     # container, with the flake ref passed at deploy time (see

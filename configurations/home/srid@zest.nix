@@ -16,6 +16,7 @@ in
 
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/kolu.nix"
+    "${homeMod}/services/drishti.nix"
 
     # Remote builders
     "${homeMod}/nix/buildMachines"
