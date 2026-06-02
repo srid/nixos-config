@@ -91,6 +91,7 @@
   environment.systemPackages = with pkgs; [
     git
     btop
+    python3
     flake.inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 

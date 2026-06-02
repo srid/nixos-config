@@ -35,5 +35,6 @@ in
     inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.zellij-one
     pkgs.twitter-convert
+    pkgs.python3
   ];
 }
