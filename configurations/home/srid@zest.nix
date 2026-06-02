@@ -36,5 +36,6 @@ in
     pkgs.zellij-one
     pkgs.twitter-convert
     pkgs.python3
+    pkgs.portfwd
   ];
 }
