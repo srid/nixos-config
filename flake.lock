@@ -284,11 +284,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1780183172,
-        "narHash": "sha256-dJVQYqDPJHOSrvFtCSliGEf9FR2aESCT0CRgmoG3RU8=",
+        "lastModified": 1780322958,
+        "narHash": "sha256-j6byUEKeSQTU0RzicwQYzmA/LXsb8R4HfSQiVEBql80=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "17763a9e5669cec6802822388c44a73a616c8e82",
+        "rev": "348ba132c8ca2c56346b554c9f93a1f9a3f8a070",
         "type": "github"
       },
       "original": {
@@ -855,16 +855,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1780184001,
-        "narHash": "sha256-YjQdz3Rw6Nu/6vTYXMnQtc+/jEFm7oXQOsadtvwBaCE=",
+        "lastModified": 1780418925,
+        "narHash": "sha256-8L95BwxCF2yb2q1dfoKR/EoJUOjfMLz4RGt/ZnTuABU=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "f36ef03d6f282a6a248b2fde57cbda815c0447b0",
+        "rev": "1ca2aca0bab435ef301bd730a5aaeca0d09a49e4",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "r4-a1-pty-host-surface",
+        "ref": "fix/workflow-live-journal-1123",
         "repo": "kolu",
         "type": "github"
       }
