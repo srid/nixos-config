@@ -855,16 +855,15 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1780418925,
+        "lastModified": 1780419147,
         "narHash": "sha256-8L95BwxCF2yb2q1dfoKR/EoJUOjfMLz4RGt/ZnTuABU=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "1ca2aca0bab435ef301bd730a5aaeca0d09a49e4",
+        "rev": "43ac4be0153d6c49a3289e56c527507edcf8b1b7",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "fix/workflow-live-journal-1123",
         "repo": "kolu",
         "type": "github"
       }
