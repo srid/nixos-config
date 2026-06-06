@@ -16,7 +16,7 @@ in
 
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/kolu.nix"
-    "${homeMod}/services/drishti.nix"
+    "${homeMod}/services/drishti"
 
     # Remote builders
     "${homeMod}/nix/buildMachines"
@@ -30,6 +30,16 @@ in
   ];
 
   services.kolu.host = "100.90.229.113"; # Tailscale IP of zest
+
+  # The pu-managed kolu-ci-* hosts are reachable only from pureintent, so they
+  # live in pureintent's drishti (see configurations/nixos/pureintent), not here.
+  services.drishti.hosts = [
+    "localhost"
+    "sincereintent"
+    "pureintent"
+    "vanjaram.tail12b27.ts.net"
+    "nix-infra@rasam.tail12b27.ts.net"
+  ];
 
   home.packages = [
     inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default

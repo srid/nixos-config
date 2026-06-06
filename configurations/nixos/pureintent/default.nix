@@ -4,6 +4,10 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   homeMod = self + /modules/home;
+  # pu-managed CI fleet (kolu-ci-1 .. kolu-ci-8). These are ssh_config aliases
+  # provided by `pu` (Include ~/.pu-state/*/ssh_config) and are reachable only
+  # from pureintent, so drishti monitors them from here.
+  ciHosts = map (n: "kolu-ci-${toString n}") (lib.range 1 8);
 in
 {
   nixos-unified.sshTarget = "srid@pureintent";
@@ -45,8 +49,11 @@ in
     "${homeMod}/work/juspay.nix"
     "${homeMod}/services/vira.nix"
     "${homeMod}/services/kolu.nix"
+    "${homeMod}/services/drishti"
     {
       services.kolu.host = "100.122.32.106"; # Tailscale IP of pureintent
+      # Watch the pu-managed CI fleet from here (only reachable from pureintent).
+      services.drishti.hosts = [ "localhost" ] ++ ciHosts;
     }
 
     # "${homeMod}/services/dropbox.nix"
