@@ -28,18 +28,29 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Wired (enp1s0) and Wi-Fi (drapeau/wlp2s0) are on the same LAN. Letting both
+  # Wired (enp1s0) and Wi-Fi (wlp2s0) are on the same LAN. Letting both
   # autoconnect causes ARP flux: the gateway's neighbor entry for our IP flips
   # between the two NIC MACs and the Ethernet path goes silently dead.
   # See docs/LINUX-INTERNET-ISSUES.md.
-  systemd.services.nm-drapeau-noautoconnect = {
-    description = "Disable autoconnect on drapeau Wi-Fi profile";
+  #
+  # Disable autoconnect on *every* saved Wi-Fi profile (not a single hardcoded
+  # SSID) so a newly-joined network can't slip past and bring Wi-Fi up beside
+  # Ethernet. Wi-Fi stays usable on demand via `nmcli connection up <name>`.
+  systemd.services.nm-wifi-noautoconnect = {
+    description = "Disable autoconnect on all Wi-Fi profiles (avoid dual-NIC ARP flux)";
     after = [ "NetworkManager.service" ];
     wants = [ "NetworkManager.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
     script = ''
-      ${pkgs.networkmanager}/bin/nmcli connection modify drapeau connection.autoconnect no || true
+      nmcli=${pkgs.networkmanager}/bin/nmcli
+      "$nmcli" -t -f TYPE,NAME connection show | while IFS=: read -r type name; do
+        if [ "$type" = "802-11-wireless" ]; then
+          "$nmcli" connection modify "$name" connection.autoconnect no || true
+        fi
+      done
+      # Drop any Wi-Fi link that already came up, so the fix applies without a reboot.
+      "$nmcli" device disconnect wlp2s0 || true
     '';
   };
 
