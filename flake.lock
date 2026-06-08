@@ -284,16 +284,15 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1780748089,
-        "narHash": "sha256-sKO9DI/RSKxuFdhS/wacG+jcmxSgqIMKx4LSYV+NTQE=",
+        "lastModified": 1780779982,
+        "narHash": "sha256-AITJfBUihUNlK80mVcMtO5L6/lM3nc9KeFYvUX7hA2U=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "df90c231c250105d2123fb77468ad2d1e03e164a",
+        "rev": "2d0d81e1ad5c36ebbbd0b5c99c527822954f3519",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "surface-siblings",
         "repo": "drishti",
         "type": "github"
       }
@@ -856,16 +855,15 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1780754638,
-        "narHash": "sha256-c3Kd2VyMbAE8rSce05DmvnakMqa/u8Tx9gk7Q1TONlE=",
+        "lastModified": 1780877665,
+        "narHash": "sha256-fBZ+MgNhS4gtKIOTCQTZ759EWSjqRq9TQ96kMYA6Ptg=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "30e28f72dca5ea9e817d63fc31b2c6244c7c547d",
+        "rev": "a3748f8ae0f93bbb47bfd22ef82b508f1f4e6319",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "surface-nested-mounts",
         "repo": "kolu",
         "type": "github"
       }

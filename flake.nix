@@ -36,11 +36,10 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu/surface-nested-mounts";
+    kolu.url = "github:juspay/kolu";
 
     # drishti remote host monitor (home-manager module)
-    # Temporarily on PR #49 (surface-siblings); revert to master once merged.
-    drishti.url = "github:srid/drishti/surface-siblings";
+    drishti.url = "github:srid/drishti";
 
     # anywhen is NOT a flake input — it's deployed as an incus-pet
     # container, with the flake ref passed at deploy time (see
