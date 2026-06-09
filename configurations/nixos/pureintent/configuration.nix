@@ -103,7 +103,6 @@
     git
     btop
     python3
-    flake.inputs.zmx.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
