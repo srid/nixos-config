@@ -35,7 +35,7 @@
     jumphost-nix.flake = false;
 
     # KOLU
-    kolu.url = "github:juspay/kolu/r4-phase1-kolu-tui-list";
+    kolu.url = "github:juspay/kolu";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti";
