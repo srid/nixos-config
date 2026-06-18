@@ -52,6 +52,9 @@ in
     "${homeMod}/services/drishti"
     {
       services.kolu.host = "100.122.32.106"; # Tailscale IP of pureintent
+      # Browser origin differs from the Host kolu sees (served via Tailscale
+      # MagicDNS reverse proxy), so allow it for the CSWSH origin gate.
+      services.kolu.allowedOrigins = [ "https://pureintent.rooster-blues.ts.net" ];
       # Watch the pu-managed CI fleet from here (only reachable from pureintent).
       services.drishti.hosts = [ "localhost" ] ++ ciHosts;
     }
