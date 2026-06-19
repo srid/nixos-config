@@ -37,6 +37,7 @@ in
     "localhost"
     "sincereintent"
     "pureintent"
+    "naiveintent"
     "vanjaram.tail12b27.ts.net"
     "nix-infra@rasam.tail12b27.ts.net"
   ];

@@ -32,6 +32,7 @@ in
     ./devbox.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/incus)
+    (self + /modules/nixos/linux/llm-debugging.nix)
   ];
 
   # anywhen runs as an incus-pet container (see modules/nixos/linux/incus/incus-pet).
