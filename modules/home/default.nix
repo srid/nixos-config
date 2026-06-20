@@ -1,7 +1,9 @@
 {
   home.stateVersion = "24.05";
   home.sessionVariables = {
-    DO_NOT_TRACK = "1";
+    # Disabled, see
+    # https://github.com/anthropics/claude-code/issues/69358#issuecomment-4755677033
+    # DO_NOT_TRACK = "1";
   };
 
   # Home-manager generates an options manpage (`home-configuration.nix(5)`) by
