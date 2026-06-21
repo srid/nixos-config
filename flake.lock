@@ -284,11 +284,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1782052088,
-        "narHash": "sha256-ol+n3IK3N/OyBfi1mBrNNNexpJAYO9LJpK3V/+1kLi8=",
+        "lastModified": 1782073069,
+        "narHash": "sha256-BHwK4mBMS6QQjPaCHL5TMg4N5a9jGozNUkFCo8QmXw0=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "75dbd3dfb29ba8257976826a37aa750da7902dbb",
+        "rev": "6f7e6525cfe4d0e175efeb08d5b212adc42f8f06",
         "type": "github"
       },
       "original": {
@@ -837,11 +837,11 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1782051565,
-        "narHash": "sha256-GXi6cAC/TZXeiEZRW1kmr33rIp8E2WMcjPwydn9jqyA=",
+        "lastModified": 1782072610,
+        "narHash": "sha256-jUSDzLy+lgF/wn82ryuGYP8cJddTwLGy0ttT1LCgESw=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "e1370a8f2728306a3fcce47ab851f8cec23e4de6",
+        "rev": "054df6305a47454d0302467532b8d2e88caf02b0",
         "type": "github"
       },
       "original": {
