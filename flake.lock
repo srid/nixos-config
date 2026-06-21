@@ -835,6 +835,29 @@
         "type": "github"
       }
     },
+    "juspay-ai": {
+      "inputs": {
+        "llm-agents": [
+          "llm-agents"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782075422,
+        "narHash": "sha256-VVgVpxWFruch4X0PTfesyXVeppsSyBQFja+QIAuCQLo=",
+        "owner": "juspay",
+        "repo": "AI",
+        "rev": "c24b8d17ee80a8d03ef589eec0e68cd157e4ae9b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "AI",
+        "type": "github"
+      }
+    },
     "kolu": {
       "locked": {
         "lastModified": 1782072610,
@@ -1263,6 +1286,7 @@
         "home-manager": "home-manager",
         "imako": "imako",
         "jumphost-nix": "jumphost-nix",
+        "juspay-ai": "juspay-ai",
         "kolu": "kolu",
         "landrun-nix": "landrun-nix",
         "llm-agents": "llm-agents",

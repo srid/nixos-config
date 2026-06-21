@@ -40,6 +40,12 @@
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti";
 
+    # Juspay's AI tooling repo. We consume only its opencode home-manager
+    # module (config only, not the package) via homeModules.opencode.
+    juspay-ai.url = "github:juspay/AI";
+    juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
+    juspay-ai.inputs.llm-agents.follows = "llm-agents";
+
     # anywhen is NOT a flake input — it's deployed as an incus-pet
     # container, with the flake ref passed at deploy time (see
     # `just pureintent anywhen-deploy`). The host config doesn't import
