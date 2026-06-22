@@ -17,9 +17,18 @@ in
 
   programs.opencode-juspay.enable = true;
 
+  # YOLO mode: auto-approve all permission prompts in the TUI (opencode has no
+  # --dangerously-skip-permissions flag for the TUI, only for `run`; see
+  # https://github.com/anomalyco/opencode/issues/8463). Explicit "deny" rules
+  # would still win.
+  programs.opencode-juspay.settings.permission = "allow";
+
   # The upstream module is config-only by design; install the binary from
-  # nixpkgs so the Juspay config above is usable out of the box.
-  home.packages = [ pkgs.opencode ];
+  # llm-agents (numtide/llm-agents.nix) so the Juspay config above is usable
+  # out of the box.
+  home.packages = [
+    flake.inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
+  ];
 
   # The Juspay litellm provider authenticates with JUSPAY_API_KEY at runtime.
   # Decrypt the secret via agenix and export it into interactive shells.

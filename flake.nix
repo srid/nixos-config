@@ -55,10 +55,14 @@
     project-unknown.url = "github:juspay/project-unknown";
     project-unknown.inputs.nixpkgs.follows = "nixpkgs";
 
-    # claude-code 2.1.98 (newer versions are nerfed)
-    # See: https://x.com/Sthiven_R/status/2043992488109899849
-    llm-agents.url = "github:numtide/llm-agents.nix/d9583b68fdc553936b35dc6ca206d8d8dd552e5b";
-    llm-agents.inputs.nixpkgs.follows = "nixpkgs";
+    # Source for opencode (see modules/home/work/opencode.nix).
+    # NOTE: previously pinned to d9583b68 for claude-code 2.1.98 (newer
+    # versions are nerfed; https://x.com/Sthiven_R/status/2043992488109899849),
+    # but claude-code is no longer consumed from here (see
+    # modules/home/claude-code), so we now track latest.
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    # Don't force nixpkgs.follows here: latest llm-agents needs a newer
+    # nixpkgs than ours (e.g. pnpm_11), so let it use its own pinned nixpkgs.
 
     # Emanote & Imako
     emanote.url = "github:srid/emanote";
