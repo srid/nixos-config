@@ -34,8 +34,8 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    # KOLU
-    kolu.url = "github:juspay/kolu";
+    # Pinned to PR #1568 (pulam-conn-bug): https://github.com/juspay/kolu/pull/1568
+    kolu.url = "github:juspay/kolu/pulam-conn-bug";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti";

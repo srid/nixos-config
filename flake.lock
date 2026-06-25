@@ -283,11 +283,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1782138081,
-        "narHash": "sha256-m45GnaaJCWA54+18dFJHrUwMPS1U5bj2mrbQ+fjMgps=",
+        "lastModified": 1782309990,
+        "narHash": "sha256-lsA99Q3Pl3L3uKsQUvoon+VN6nmFIDl4kPCkf8kIxhs=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "359e3e9aab1a91a8f7be5aab364b6e942a011184",
+        "rev": "865d39cce1efcfac0020eb9077a4cbc4acf46808",
         "type": "github"
       },
       "original": {
@@ -844,15 +844,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1782139194,
-        "narHash": "sha256-Ac43Uy74OGVflSYv18+37e7x8eTcrOJlgGhIm1DbZ2M=",
+        "lastModified": 1782346103,
+        "narHash": "sha256-+k8fM2ivZnoFKjzoQlShcn6AOh91SN7ABeiNTUSW384=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "89ebbc983ae90ba69c8484e4b35df8c5694ca974",
+        "rev": "8371d1e6d3566d1469b6f3c8caa907400bfcc75b",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "pulam-conn-bug",
         "repo": "kolu",
         "type": "github"
       }
