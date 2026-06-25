@@ -15,7 +15,15 @@ in
     config = {
       ProgramArguments = [ "${pulam-web}/bin/pulam-web" ];
       EnvironmentVariables = {
-        PULAM_WEB_HOSTS = "pureintent";
+        # "localhost" (not "local") is the in-process host — only
+        # localhost/127.0.0.1/::1 skip ssh; "local" would be dialed as a remote.
+        PULAM_WEB_HOSTS = "pureintent,localhost";
+        # zest itself runs kolu, which means several kaval daemons — pulam can't
+        # guess which to read and would render "no terminals", so we name the
+        # kolu-server socket explicitly. On macOS it lives at
+        # /tmp/kaval-<port>-<uid>/pty-host.sock; port 7692 (services.kolu), uid
+        # 501. See the pulam-web README, "Pointing at a host that runs kolu?".
+        PULAM_WEB_KAVAL_SOCKETS = "localhost=/tmp/kaval-7692-501/pty-host.sock";
       };
       KeepAlive = true;
       RunAtLoad = true;
