@@ -38,7 +38,8 @@
     kolu.url = "github:juspay/kolu/pulam-conn-bug";
 
     # drishti remote host monitor (home-manager module)
-    drishti.url = "github:srid/drishti";
+    # Pinned to PR #76 (adopt-shared-connection-cell): https://github.com/srid/drishti/pull/76
+    drishti.url = "github:srid/drishti/adopt-shared-connection-cell";
 
     # Juspay's AI tooling repo. We consume only its opencode home-manager
     # module (config only, not the package) via homeModules.opencode.
