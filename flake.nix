@@ -34,7 +34,8 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu";
+    # Pinned to PR #1591 (fix/overflow-recovery-loop): https://github.com/juspay/kolu/pull/1591
+    kolu.url = "github:juspay/kolu/fix/overflow-recovery-loop";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti";
