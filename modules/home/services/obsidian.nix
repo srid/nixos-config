@@ -15,7 +15,7 @@ in
   ];
 
   services.emanote = {
-    enable = true;
+    enable = false;
     notes = [ myVault ];
     port = 7001;
     package = inputs.emanote.packages.${pkgs.stdenv.hostPlatform.system}.default;
