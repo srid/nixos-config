@@ -17,7 +17,6 @@ in
 
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/kolu.nix"
-    "${homeMod}/services/pulam-web.nix"
     "${homeMod}/services/drishti"
 
     # Remote builders
