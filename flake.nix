@@ -34,11 +34,10 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    # Pinned to PR #1714 (surface-map): https://github.com/juspay/kolu/pull/1714
-    kolu.url = "github:juspay/kolu/surface-map";
+    kolu.url = "github:juspay/kolu/master";
 
     # drishti remote host monitor (home-manager module)
-    drishti.url = "github:srid/drishti/surface-map-adoption";
+    drishti.url = "github:srid/drishti/master";
 
     # Juspay's AI tooling repo. We consume only its opencode home-manager
     # module (config only, not the package) via homeModules.opencode.
@@ -52,8 +51,9 @@
     # anything from anywhen, so locking it here would just bloat
     # flake.lock without buying us anything.
 
-    project-unknown.url = "github:juspay/project-unknown";
-    project-unknown.inputs.nixpkgs.follows = "nixpkgs";
+    # Pinned to PR #19 (Rename Nix CLI to xyne-boxes): https://github.com/juspay/xyne-boxes/pull/19
+    xyne-boxes.url = "github:juspay/xyne-boxes/worthy-halt";
+    xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
 
     # Source for opencode (see modules/home/work/opencode.nix).
     # NOTE: previously pinned to d9583b68 for claude-code 2.1.98 (newer

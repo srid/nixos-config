@@ -283,16 +283,16 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1783470403,
-        "narHash": "sha256-5sXPHDbHV87IOZhGTvIFEdK1Hdygm3Onpldu5PmESyQ=",
+        "lastModified": 1783304273,
+        "narHash": "sha256-TaiFUcQjPk1MiIsTsYtLXhH9wwoKXYK3uk2qt9ZgbIk=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "44a0a3e90dc38b31f2517bfc7f562c8a7d12621c",
+        "rev": "25a1dcfda307ca07e40d9e049b13e9d9ae63854c",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "surface-map-adoption",
+        "ref": "master",
         "repo": "drishti",
         "type": "github"
       }
@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1783470350,
-        "narHash": "sha256-6JrlwqcdbSKbRmbQsBP5ctek6f+ITQIVn/pn5RIFM+w=",
+        "lastModified": 1783521149,
+        "narHash": "sha256-JeO5oKKXwLnrynIY9butaYh8YbpARNycZOK/wPFDhgo=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "621ea2c4860b98131bee21cd88d93da8d42dff0d",
+        "rev": "7d51cb2b290bdcaaabe6522c90152598d162d9bd",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "surface-map",
+        "ref": "master",
         "repo": "kolu",
         "type": "github"
       }
@@ -1236,26 +1236,6 @@
         "type": "github"
       }
     },
-    "project-unknown": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779830167,
-        "narHash": "sha256-j8WvZUrFIXajfk0O8jk4PnwzibgYIfrSwShy7rcnSwI=",
-        "owner": "juspay",
-        "repo": "project-unknown",
-        "rev": "6c54c2a6e4bdc2199010a5a1bd83c89cc67e0ea3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "juspay",
-        "repo": "project-unknown",
-        "type": "github"
-      }
-    },
     "record-hasfield": {
       "flake": false,
       "locked": {
@@ -1295,8 +1275,8 @@
         "nixos-unified": "nixos-unified_2",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_6",
-        "project-unknown": "project-unknown",
-        "vira": "vira"
+        "vira": "vira",
+        "xyne-boxes": "xyne-boxes"
       }
     },
     "rust-flake": {
@@ -1560,6 +1540,27 @@
       "original": {
         "owner": "srid",
         "repo": "warp-tls-simple",
+        "type": "github"
+      }
+    },
+    "xyne-boxes": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783537921,
+        "narHash": "sha256-sdIRwPNWHkWdymUrFyOiHB60HzzfeqyHZ6cB71U+d0U=",
+        "owner": "juspay",
+        "repo": "xyne-boxes",
+        "rev": "8e43f4d2703aaf8912872d1336abe94ce365bfd3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "ref": "worthy-halt",
+        "repo": "xyne-boxes",
         "type": "github"
       }
     }
