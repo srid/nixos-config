@@ -29,14 +29,6 @@ in
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
-    "${homeMod}/services/kolu.nix"
-    {
-      services.kolu.host = "100.78.88.70"; # Tailscale IP of naiveintent
-      # Browser origin differs from the Host kolu sees (served via Tailscale
-      # MagicDNS reverse proxy), so allow it for the CSWSH origin gate.
-      services.kolu.allowedOrigins = [ "https://naiveintent.rooster-blues.ts.net" ];
-    }
-
     "${homeMod}/nix/gc.nix"
   ];
 

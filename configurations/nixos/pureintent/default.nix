@@ -57,6 +57,9 @@ in
       # Browser origin differs from the Host kolu sees (served via Tailscale
       # MagicDNS reverse proxy), so allow it for the CSWSH origin gate.
       services.kolu.allowedOrigins = [ "https://pureintent.rooster-blues.ts.net" ];
+      # Point padi at zest for host switching (pureintent only). home-manager
+      # concatenates this onto the module's own Environment list.
+      systemd.user.services.kolu.Service.Environment = [ "KOLU_PADI_HOST=srid@zest" ];
       # Watch the pu-managed CI fleet from here (only reachable from pureintent).
       services.drishti.hosts = [ "localhost" ] ++ ciHosts;
     }
