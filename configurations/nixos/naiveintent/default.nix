@@ -28,6 +28,7 @@ in
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
+    "${homeMod}/gui/1password.nix"
     "${homeMod}/services/kolu.nix"
     {
       services.kolu.host = "192.168.2.219"; # Tailscale IP of pureintent
