@@ -29,6 +29,7 @@ in
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
+    "${homeMod}/gui/1password.nix"
     "${homeMod}/nix/gc.nix"
   ];
 
