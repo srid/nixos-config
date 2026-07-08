@@ -27,7 +27,6 @@
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    zmx.url = "github:neurosnap/zmx";
     # vira.url = "github:juspay/vira/github";
     vira.url = "github:juspay/vira";
     # landrun-nix.url = "github:srid/landrun-nix";
@@ -35,17 +34,35 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    # KOLU
-    kolu.url = "github:juspay/kolu/feat/minimap-hide-parked-toggle";
+    # Pinned to PR #1652 (W1): https://github.com/juspay/kolu/pull/1652
+    kolu.url = "github:juspay/kolu/W1";
 
-    # claude-code 2.1.98 (newer versions are nerfed)
-    # See: https://x.com/Sthiven_R/status/2043992488109899849
-    llm-agents.url = "github:numtide/llm-agents.nix/d9583b68fdc553936b35dc6ca206d8d8dd552e5b";
-    llm-agents.inputs.nixpkgs.follows = "nixpkgs";
+    # drishti remote host monitor (home-manager module)
+    drishti.url = "github:srid/drishti";
 
-    # Neovim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    # Juspay's AI tooling repo. We consume only its opencode home-manager
+    # module (config only, not the package) via homeModules.opencode.
+    juspay-ai.url = "github:juspay/AI";
+    juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
+    juspay-ai.inputs.llm-agents.follows = "llm-agents";
+
+    # anywhen is NOT a flake input — it's deployed as an incus-pet
+    # container, with the flake ref passed at deploy time (see
+    # `just pureintent anywhen-deploy`). The host config doesn't import
+    # anything from anywhen, so locking it here would just bloat
+    # flake.lock without buying us anything.
+
+    project-unknown.url = "github:juspay/project-unknown";
+    project-unknown.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Source for opencode (see modules/home/work/opencode.nix).
+    # NOTE: previously pinned to d9583b68 for claude-code 2.1.98 (newer
+    # versions are nerfed; https://x.com/Sthiven_R/status/2043992488109899849),
+    # but claude-code is no longer consumed from here (see
+    # modules/home/claude-code), so we now track latest.
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    # Don't force nixpkgs.follows here: latest llm-agents needs a newer
+    # nixpkgs than ours (e.g. pnpm_11), so let it use its own pinned nixpkgs.
 
     # Emanote & Imako
     emanote.url = "github:srid/emanote";

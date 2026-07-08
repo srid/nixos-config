@@ -239,6 +239,57 @@ ping -c 2 -W 2 1.1.1.1
 curl -4 -sS --connect-timeout 4 --max-time 8 https://github.com >/dev/null
 ```
 
+## Variant: MagicDNS with no upstream resolver
+
+Different outage, similar-looking symptom: `/etc/resolv.conf` again pointed only
+at `100.100.100.100`, but this time IP-layer routing was healthy and the cause
+was purely DNS.
+
+Symptoms:
+
+- `ping 1.1.1.1` works.
+- `ping google.com` fails with `Name or service not known`.
+- `getent hosts github.com` returns nothing.
+- `*.ts.net` lookups still work (split-DNS route is independent).
+
+Smoking gun in `journalctl -u tailscaled`:
+
+```text
+dns: resolver: forward: no upstream resolvers set, returning SERVFAIL
+```
+
+And `tailscale dns status` shows:
+
+```text
+Resolvers (in preference order):
+  (no resolvers configured, system default will be used: see 'System DNS configuration' below)
+...
+  (failed to read system DNS configuration: Access denied: dns-osconfig dump access denied)
+```
+
+What's happening: Tailscale is managing `/etc/resolv.conf` (`accept-dns=true`)
+and MagicDNS handles `*.ts.net` via the split-DNS route, but for every other
+query it needs an upstream resolver. If the tailnet admin console has no
+**Global nameservers** configured, Tailscale tries to fall back to the device's
+system DNS — which on NixOS/tailscale 1.98 fails with the `dns-osconfig`
+access-denied error above. Result: SERVFAIL for everything non-tailnet.
+
+Fix in the admin console at <https://login.tailscale.com/admin/dns>:
+
+1. Under **Global nameservers**, add an upstream (e.g. Cloudflare `1.1.1.1`).
+2. Turn **Override DNS servers ON**. With it off, the global nameserver is only
+   used when the device's own OS DNS is readable — which on this host it isn't.
+
+Netmap propagation is near-instant; no daemon restart needed. Verify:
+
+```bash
+ssh pureintent 'tailscale dns status | sed -n "/Resolvers/,/Split/p"'
+ssh pureintent 'getent hosts github.com && ping -c2 google.com'
+```
+
+The "Resolvers (in preference order)" list should now contain the upstream IPs
+instead of `(no resolvers configured ...)`.
+
 ## Main lesson
 
 When both Ethernet and Wi-Fi are on the same subnet, a stale primary interface can

@@ -17,29 +17,22 @@ in
     gnumake
     killall
     television
-    yt-dlp
     gh
     # Broken, https://github.com/NixOS/nixpkgs/issues/299680
     # ncdu
 
     # Useful for Nix development
     ci
-    omnix
     nixpkgs-fmt
     just
     watchexec
     fswatch
 
     eternal-terminal
-    lima
-
-    # AI
-    google-cloud-sdk
 
     # Publishing
     asciinema
     ispell
-    pandoc
 
     # Dev
     fuckport
@@ -56,7 +49,8 @@ in
     hledger
 
     gnupg
-    compress-video
+    # Temporarily disabled: pulls in ffmpeg-full which fails to build (kvazaar test failures)
+    # compress-video
   ];
 
   fonts.fontconfig.enable = true;

@@ -6,7 +6,7 @@ let
   homeMod = self + /modules/home;
 in
 {
-  nixos-unified.sshTarget = "srid@192.168.2.219";
+  nixos-unified.sshTarget = "srid@naiveintent";
   nixos-unified.localPrivilegeMode = "sudo-nixos-rebuild";
 
   security.sudo.extraRules = [
@@ -24,6 +24,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    (self + /modules/nixos/linux/llm-debugging.nix)
   ];
 
   users.users.${flake.config.me.username}.linger = true;
@@ -31,7 +32,10 @@ in
     "${homeMod}/gui/1password.nix"
     "${homeMod}/services/kolu.nix"
     {
-      services.kolu.host = "192.168.2.219"; # Tailscale IP of pureintent
+      services.kolu.host = "100.78.88.70"; # Tailscale IP of naiveintent
+      # Browser origin differs from the Host kolu sees (served via Tailscale
+      # MagicDNS reverse proxy), so allow it for the CSWSH origin gate.
+      services.kolu.allowedOrigins = [ "https://naiveintent.rooster-blues.ts.net" ];
     }
 
     "${homeMod}/nix/gc.nix"
