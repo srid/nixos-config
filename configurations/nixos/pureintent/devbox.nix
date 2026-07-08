@@ -18,12 +18,18 @@ let
     exec ${proxychainsBin} "$@"
   '';
 
-  puBin = "${flake.inputs.project-unknown.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/pu";
+  xbPkg = flake.inputs.xyne-boxes.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  # Context: https://github.com/juspay/xyne-boxes/pull/14#issuecomment-4918563982
+  puHost = "10.10.68.56";
 
-  pu = pkgs.writeShellScriptBin "pu" ''
+  wrapXyneBoxes = name: pkgs.writeShellScriptBin name ''
     ${proxyExports}
-    exec ${proxychainsBin} ${puBin} "$@"
+    export PU_HOST=${puHost}
+    exec ${proxychainsBin} ${xbPkg}/bin/${name} "$@"
   '';
+
+  xyne-boxes = wrapXyneBoxes "xyne-boxes";
+  pu = wrapXyneBoxes "pu";
 in
 {
   programs.proxychains = {
@@ -42,6 +48,7 @@ in
   environment.systemPackages = [
     vanjaram-run
     pu
+    xyne-boxes
   ];
 
   # pu writes per-instance ssh_config files under ~/.pu-state/<name>/. Including
