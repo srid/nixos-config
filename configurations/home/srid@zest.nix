@@ -47,7 +47,9 @@ in
     pkgs.python3
     pkgs.portfwd
     # The kolu terminal-side CLIs, without running the kolu service itself.
+    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval-tui
+    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi-tui
   ];
 }

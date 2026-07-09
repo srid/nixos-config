@@ -34,7 +34,8 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/master";
+    # Pinned to PR #1730 (padi W6 — the honest connect): https://github.com/juspay/kolu/pull/1730
+    kolu.url = "github:juspay/kolu/w6-honest-connect";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti/master";

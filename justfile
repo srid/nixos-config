@@ -12,7 +12,7 @@ mod pureintent 'configurations/nixos/pureintent/mod.just'
 [group('main')]
 activate host="":
     nix flake lock
-    @if [ -z "{{host}}" ]; then \
+    @if [ -z "{{ host }}" ]; then \
         if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
             echo "Activating home env $USER@$HOSTNAME ..."; \
             nix run . $USER@$HOSTNAME; \
@@ -21,14 +21,33 @@ activate host="":
             nix run . $HOSTNAME; \
         fi \
     else \
-        echo "Deploying to {{host}} ..."; \
-        nix run . {{host}}; \
+        echo "Deploying to {{ host }} ..."; \
+        nix run . {{ host }}; \
     fi
 
 # Update primary flame inputs
 [group('main')]
 update:
     nix run .#update
+
+# Update Kolu/Drishti, then build Kolu and activate target environments.
+[group('main')]
+kolu: _kolu-update && _kolu-after-update
+
+_kolu-update:
+    nix flake update kolu drishti
+
+[parallel]
+_kolu-after-update: _kolu-build _kolu-activate-pureintent _kolu-activate-local
+
+_kolu-build:
+    nix build --inputs-from . kolu
+
+_kolu-activate-pureintent:
+    just activate pureintent
+
+_kolu-activate-local:
+    just activate
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------

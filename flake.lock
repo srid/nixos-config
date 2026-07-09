@@ -283,11 +283,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1783304273,
-        "narHash": "sha256-TaiFUcQjPk1MiIsTsYtLXhH9wwoKXYK3uk2qt9ZgbIk=",
+        "lastModified": 1783601954,
+        "narHash": "sha256-tlebQqzg5CS/liUGV9GI8Rjxduxs29bXZcohhcVj/o4=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "25a1dcfda307ca07e40d9e049b13e9d9ae63854c",
+        "rev": "037ebbdd72e35d2d53f8c8199ad86d7c07b6a669",
         "type": "github"
       },
       "original": {
@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1783521149,
-        "narHash": "sha256-JeO5oKKXwLnrynIY9butaYh8YbpARNycZOK/wPFDhgo=",
+        "lastModified": 1783602023,
+        "narHash": "sha256-bO5h/S9vTSkYj8grU98ZRRxi/O+MltvUSPCMfZFxlY4=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "7d51cb2b290bdcaaabe6522c90152598d162d9bd",
+        "rev": "a56b0bbbcec72643c5980e4855976b0da85e2dca",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "feat/header-host-first-daemons",
         "repo": "kolu",
         "type": "github"
       }

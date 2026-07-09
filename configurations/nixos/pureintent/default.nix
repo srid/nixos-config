@@ -30,7 +30,9 @@ in
     self.nixosModules.default
     ./configuration.nix
     ./devbox.nix
+    ./kolu-dev.nix
     (self + /modules/nixos/linux/beszel.nix)
+    (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/incus)
     (self + /modules/nixos/linux/llm-debugging.nix)
   ];
@@ -78,7 +80,8 @@ in
     sandbox = "relaxed";
     extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
   };
-  # GC is handled via home-manager (modules/home/nix/gc.nix)
+  # GC: system generations via modules/nixos/linux/gc.nix (root-owned);
+  # user profile via home-manager (modules/home/nix/gc.nix).
 
   zramSwap.enable = true;
   swapDevices = [{
