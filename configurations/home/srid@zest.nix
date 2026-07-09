@@ -18,6 +18,9 @@ in
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/drishti"
 
+    # Extra binary caches (shared with the NixOS hosts).
+    (self + /modules/nixos/shared/caches.nix)
+
     # Remote builders
     "${homeMod}/nix/buildMachines"
     "${homeMod}/nix/buildMachines/pureintent.nix"
