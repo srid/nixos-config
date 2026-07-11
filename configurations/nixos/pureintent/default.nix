@@ -61,7 +61,7 @@ in
       services.kolu.allowedOrigins = [ "https://pureintent.rooster-blues.ts.net" ];
       # Point padi at zest for host switching (pureintent only). home-manager
       # concatenates this onto the module's own Environment list.
-      systemd.user.services.kolu.Service.Environment = [ "KOLU_PADI_HOST=srid@zest" ];
+      systemd.user.services.kolu.Service.Environment = [ "KOLU_PADI_HOST=zest" ];
       # Watch the pu-managed CI fleet from here (only reachable from pureintent).
       services.drishti.hosts = [ "localhost" ] ++ ciHosts;
     }

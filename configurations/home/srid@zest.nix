@@ -39,7 +39,7 @@ in
     "sincereintent"
     "pureintent"
     "naiveintent"
-    "vanjaram.tail12b27.ts.net"
+    "nix-infra@idli-01.tail12b27.ts.net"
     "nix-infra@rasam.tail12b27.ts.net"
   ];
 
@@ -48,11 +48,10 @@ in
     pkgs.zellij-one
     pkgs.twitter-convert
     pkgs.python3
+    pkgs.uv
     pkgs.portfwd
     # The kolu terminal-side CLIs, without running the kolu service itself.
-    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval-tui
-    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi-tui
   ];
 }

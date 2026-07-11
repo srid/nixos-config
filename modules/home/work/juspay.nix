@@ -15,7 +15,7 @@ in
 
   programs.jumphost = {
     enable = true;
-    host = "srid@vanjaram.tail12b27.ts.net";
+    host = "nix-infra@idli-01.tail12b27.ts.net";
 
     sshHosts = {
       "ssh.bitbucket.juspay.net".user = "git";

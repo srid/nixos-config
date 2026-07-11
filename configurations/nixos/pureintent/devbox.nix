@@ -13,7 +13,7 @@ let
     export HTTP_PROXY=socks5://127.0.0.1:${toString socksPort}
   '';
 
-  vanjaram-run = pkgs.writeShellScriptBin "vanjaram-run" ''
+  juspay-run = pkgs.writeShellScriptBin "juspay-run" ''
     ${proxyExports}
     exec ${proxychainsBin} "$@"
   '';
@@ -46,7 +46,7 @@ in
   };
 
   environment.systemPackages = [
-    vanjaram-run
+    juspay-run
     pu
     xyne-boxes
   ];

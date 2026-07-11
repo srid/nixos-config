@@ -38,10 +38,7 @@ _kolu-update:
     nix flake update kolu drishti
 
 [parallel]
-_kolu-after-update: _kolu-build _kolu-activate-pureintent _kolu-activate-local
-
-_kolu-build:
-    nix build --inputs-from . kolu
+_kolu-after-update: _kolu-activate-pureintent _kolu-activate-local
 
 _kolu-activate-pureintent:
     just activate pureintent
