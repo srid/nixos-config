@@ -94,9 +94,6 @@ in
   # process (earlyoom below) than thrash.
   swapDevices = lib.mkForce [ ];
 
-  # Kill offenders before memory pressure turns into a full-system stall.
-  services.earlyoom.enable = true;
-
   services.openssh.enable = true;
   services.tailscale.enable = true;
   # tailscaled installs its rules via iptables-nft, which live in a different
