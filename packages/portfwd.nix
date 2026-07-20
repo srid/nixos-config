@@ -4,8 +4,8 @@ writeShellApplication {
   name = "portfwd";
   meta.description = ''
     Forward a local port to the same port on a remote host over SSH.
-    Usage: portfwd <port> [host]   (host defaults to pureintent)
-    e.g. `portfwd 7721` or `portfwd 7721 sincereintent`
+    Usage: portfwd <port> [host]   (host defaults to naiveintent)
+    e.g. `portfwd 7721` or `portfwd 7721 pureintent`
   '';
   runtimeInputs = [ openssh ];
   text = ''
@@ -14,7 +14,7 @@ writeShellApplication {
       exit 1
     fi
     port="$1"
-    host="''${2:-pureintent}"
+    host="''${2:-naiveintent}"
     ssh -L "$port:localhost:$port" "$host"
   '';
 }
