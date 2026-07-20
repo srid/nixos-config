@@ -24,6 +24,8 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    # pu + proxychains (needs jumphost SOCKS5 from juspay.nix below)
+    (self + /configurations/nixos/pureintent/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
   ];
@@ -31,6 +33,8 @@ in
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
+    # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
+    "${homeMod}/work/juspay.nix"
     "${homeMod}/nix/gc.nix"
   ];
 
