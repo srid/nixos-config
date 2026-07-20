@@ -82,11 +82,20 @@ in
   # GC: system generations via modules/nixos/linux/gc.nix (root-owned);
   # user profile via home-manager (modules/home/nix/gc.nix).
 
-  zramSwap.enable = true;
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 32 * 1024; # 32GB in megabytes
-  }];
+  # Prefer compressed in-RAM swap so page faults under build + Claude fleet
+  # load become decompression instead of QLC disk I/O thrashing.
+  # https://github.com/srid/nixos-config/issues/121
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+  # Drop disk swap (install partition + prior 32G swapfile). Overflow onto a
+  # DRAM-less QLC drive is what stalls the box; better to OOM-kill the runaway
+  # process (earlyoom below) than thrash.
+  swapDevices = lib.mkForce [ ];
+
+  # Kill offenders before memory pressure turns into a full-system stall.
+  services.earlyoom.enable = true;
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
