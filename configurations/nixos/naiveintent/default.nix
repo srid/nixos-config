@@ -1,4 +1,4 @@
-{ config, flake, lib, ... }:
+{ config, flake, lib, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -64,6 +64,12 @@ in
   ];
 
   programs.nix-ld.enable = true; # for claude code
+
+  # HACK: system package so kolu MCP works on remote hosts (PATH / nix-ld), not the
+  # full services.kolu user service (see modules/home/services/kolu.nix on pureintent).
+  environment.systemPackages = [
+    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 
   # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
   # https://github.com/NixOS/nixpkgs/issues/180175
