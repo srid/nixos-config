@@ -283,11 +283,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1784572412,
-        "narHash": "sha256-Ye/NAsqM/nK7UXh73//mYxcxwOVyF9y7LFhmbAkp64U=",
+        "lastModified": 1784654151,
+        "narHash": "sha256-ChQl/dcS6o1FFXDu1bsavNoI9vxLdwOVEVQGDz9CqEg=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "c8bcef83cb0f6667b586eabca8e3c833a1b6a914",
+        "rev": "4de92b04b3cb12c52eef24c3cc3f13f19e7bc412",
         "type": "github"
       },
       "original": {
@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1784644996,
-        "narHash": "sha256-9ZmpMT0/cH5OZoBv55yG8zQuAyz+O4jSP5MS7qAqTBA=",
+        "lastModified": 1784665318,
+        "narHash": "sha256-fSsKwQtbyyhi0EZYBUZ2TWNiLdTI/j9Bv14XadQrBro=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "9b3851740166ff8ec7bf9ec86281e8933e9366a4",
+        "rev": "364c3a16eeab80a7f31a4c7c53217de60eb4c2c0",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "provision-deadline",
+        "ref": "sober-beak",
         "repo": "kolu",
         "type": "github"
       }
