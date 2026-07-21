@@ -34,7 +34,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/deeplink-gone";
+    kolu.url = "github:juspay/kolu/provision-deadline";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti/master";
