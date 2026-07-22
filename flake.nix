@@ -34,7 +34,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/attention-model";
+    kolu.url = "github:juspay/kolu/feat/ef2-effective-finish";
 
     # drishti remote host monitor (home-manager module)
     drishti.url = "github:srid/drishti/master";

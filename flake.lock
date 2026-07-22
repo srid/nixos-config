@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1784683467,
-        "narHash": "sha256-t4/qUKyKFHSIQi/24FI7d4U37g5ErF7yabnOg6VZFlU=",
+        "lastModified": 1784756988,
+        "narHash": "sha256-z0LsJzweCbCUbGoPJf17g4etPv4pJTxgFP3UHeN28ao=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "53eb7c7cc8819cf1b1be0d8f09aa900b23ffac9c",
+        "rev": "0021f701e5cdcce7af64954a12a68df33f83063f",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "attention-model",
+        "ref": "feat/ef2-effective-finish",
         "repo": "kolu",
         "type": "github"
       }
