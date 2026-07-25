@@ -48,6 +48,7 @@ in
   home-manager.sharedModules = [
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
+    "${homeMod}/cli/odu.nix"
     "${homeMod}/claude-code"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/work/opencode.nix"

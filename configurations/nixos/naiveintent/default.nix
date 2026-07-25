@@ -33,6 +33,7 @@ in
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/odu.nix"
     # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
     "${homeMod}/work/juspay.nix"
     "${homeMod}/nix/gc.nix"

@@ -1,0 +1,17 @@
+{
+  xdg.configFile."odu/hosts.json".text = builtins.toJSON {
+    aarch64-darwin = [
+      "nix-infra@rasam.tail12b27.ts.net"
+      "sincereintent"
+    ];
+    x86_64-linux = [
+      "kolu-ci-1"
+      "kolu-ci-2"
+      "kolu-ci-3"
+      "kolu-ci-4"
+      "kolu-ci-5"
+      "kolu-ci-6"
+      "localhost"
+    ];
+  };
+}
