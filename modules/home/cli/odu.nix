@@ -11,6 +11,7 @@
       "kolu-ci-4"
       "kolu-ci-5"
       "kolu-ci-6"
+      "nix-infra@idli-01.tail12b27.ts.net"
       "localhost"
     ];
   };
