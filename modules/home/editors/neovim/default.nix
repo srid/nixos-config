@@ -1,5 +1,9 @@
 { ... }:
 {
+  imports = [
+    ./lean.nix
+  ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
