@@ -2,7 +2,6 @@
   xdg.configFile."odu/hosts.json".text = builtins.toJSON {
     aarch64-darwin = [
       "nix-infra@rasam.tail12b27.ts.net"
-      "sincereintent"
       "ci@petit"
     ];
     x86_64-linux = [
