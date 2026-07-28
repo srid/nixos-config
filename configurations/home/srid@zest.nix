@@ -18,6 +18,9 @@ in
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/drishti"
 
+    # Extra binary caches (shared with the NixOS hosts).
+    (self + /modules/nixos/shared/caches.nix)
+
     # Remote builders
     "${homeMod}/nix/buildMachines"
     "${homeMod}/nix/buildMachines/pureintent.nix"
@@ -33,7 +36,7 @@ in
   # live in pureintent's drishti (see configurations/nixos/pureintent), not here.
   services.drishti.hosts = [
     "localhost"
-    "sincereintent"
+    "petit"
     "pureintent"
     "naiveintent"
     "nix-infra@idli-01.tail12b27.ts.net"
