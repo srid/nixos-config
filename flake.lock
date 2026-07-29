@@ -283,16 +283,16 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1784834915,
-        "narHash": "sha256-uubvZArPYtADKCIGcz21I514d653slNRwroaHSgfeHM=",
+        "lastModified": 1785339201,
+        "narHash": "sha256-odEiOqfTvYAtEz70sarFj49LMZB67gsOXRzms03cKPY=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "77f3b690c53e2c2fa43816ffe6ed2affccf7866e",
+        "rev": "61c9d55434f9f16889ae5602c4d510d8c8133d20",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "master",
+        "ref": "uw3",
         "repo": "drishti",
         "type": "github"
       }
@@ -830,11 +830,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782075422,
-        "narHash": "sha256-VVgVpxWFruch4X0PTfesyXVeppsSyBQFja+QIAuCQLo=",
+        "lastModified": 1785329879,
+        "narHash": "sha256-2lCRo6QkU6w4UEt0DojT0bm6mgI+IHp1RyDzlDZw4Nc=",
         "owner": "juspay",
         "repo": "AI",
-        "rev": "c24b8d17ee80a8d03ef589eec0e68cd157e4ae9b",
+        "rev": "21c4a1df23dafbdad3931d8bee9b35be79b6164c",
         "type": "github"
       },
       "original": {
@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1784844093,
-        "narHash": "sha256-NXhMD+blvqElyOsW8w4OXm9OW4PxRvYwZFceCDEz1Bc=",
+        "lastModified": 1785348032,
+        "narHash": "sha256-XWdypebkbi1087Rt5LzzxJ77NZd4YpXJYWRBhci/csQ=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "4be0270a406562217abbbeb7a71c3e6107c67b2c",
+        "rev": "955a79ceebd6a212906ba64e6d93e91f8ec59fb1",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "release2",
+        "ref": "uw5",
         "repo": "kolu",
         "type": "github"
       }
@@ -1550,16 +1550,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1783537921,
-        "narHash": "sha256-sdIRwPNWHkWdymUrFyOiHB60HzzfeqyHZ6cB71U+d0U=",
+        "lastModified": 1784708445,
+        "narHash": "sha256-Ys03XZ3fDirdf0ii3W8WK/k1rUPlOoCJ83WWzmr4tNE=",
         "owner": "juspay",
         "repo": "xyne-boxes",
-        "rev": "8e43f4d2703aaf8912872d1336abe94ce365bfd3",
+        "rev": "f579cb462244f7f80680cf3ecff6ef6109e58713",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "worthy-halt",
         "repo": "xyne-boxes",
         "type": "github"
       }
