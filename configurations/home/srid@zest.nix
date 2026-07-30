@@ -36,8 +36,6 @@ in
     "petit"
     "pureintent"
     "naiveintent"
-    "nix-infra@idli-01.tail12b27.ts.net"
-    "nix-infra@rasam.tail12b27.ts.net"
   ];
 
   home.packages = [
