@@ -35,6 +35,7 @@ in
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/incus)
     (self + /modules/nixos/linux/llm-debugging.nix)
+    (self + /modules/nixos/linux/atuin.nix)
   ];
 
   # anywhen runs as an incus-pet container (see modules/nixos/linux/incus/incus-pet).
@@ -49,6 +50,7 @@ in
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
     "${homeMod}/cli/odu.nix"
+    "${homeMod}/cli/atuin.nix"
     "${homeMod}/claude-code"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/work/opencode.nix"

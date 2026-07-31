@@ -34,6 +34,7 @@ in
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
     "${homeMod}/cli/odu.nix"
+    "${homeMod}/cli/atuin.nix"
     # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
     "${homeMod}/work/juspay.nix"
     # Juspay opencode config (juspay-ai) + llm-agents package
