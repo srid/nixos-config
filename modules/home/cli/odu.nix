@@ -15,7 +15,6 @@
         "kolu-ci-4"
         "kolu-ci-5"
         "kolu-ci-6"
-        "naiveintent"
       ];
     };
   };
