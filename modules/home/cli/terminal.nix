@@ -75,6 +75,8 @@ in
       enable = true;
       defaultCommand = "fd --type f";
       enableBashIntegration = true;
+      # Atuin owns Ctrl-R; empty command disables fzf's history widget.
+      historyWidget.command = "";
     };
     jq.enable = true;
     btop.enable = true;

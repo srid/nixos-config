@@ -1,16 +1,21 @@
 { ... }:
-let
-  controlMasterOpts = {
-    ControlMaster = "auto";
-    ControlPath = "~/.ssh/sockets/%r@%h-%p";
-    ControlPersist = "900";
-  };
-in
 {
   programs.ssh.enableDefaultConfig = false;
-  programs.ssh.matchBlocks = {
-    "pureintent".extraOptions = controlMasterOpts;
-    "sincereintent".extraOptions = controlMasterOpts;
-    "zest".extraOptions = controlMasterOpts;
+  programs.ssh.settings = {
+    pureintent = {
+      ControlMaster = "auto";
+      ControlPath = "~/.ssh/sockets/%r@%h-%p";
+      ControlPersist = "900";
+    };
+    sincereintent = {
+      ControlMaster = "auto";
+      ControlPath = "~/.ssh/sockets/%r@%h-%p";
+      ControlPersist = "900";
+    };
+    zest = {
+      ControlMaster = "auto";
+      ControlPath = "~/.ssh/sockets/%r@%h-%p";
+      ControlPersist = "900";
+    };
   };
 }

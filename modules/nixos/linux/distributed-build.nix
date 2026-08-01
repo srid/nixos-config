@@ -6,10 +6,10 @@ let
 in
 {
   home-manager.users."root" = {
-    programs.ssh.matchBlocks = {
+    programs.ssh.settings = {
       ${buildHost} = {
-        inherit user;
-        identityFile = "/etc/ssh/ssh_host_ed25519_key";
+        User = user;
+        IdentityFile = "/etc/ssh/ssh_host_ed25519_key";
       };
     };
   };
