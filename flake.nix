@@ -34,11 +34,11 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/uw5";
+    kolu.url = "github:juspay/kolu/some-verse";
 
     # drishti remote host monitor (home-manager module)
-    # Pinned to PR #127: https://github.com/srid/drishti/pull/127
-    drishti.url = "github:srid/drishti/uw3";
+    # Pinned to PR #130: https://github.com/srid/drishti/pull/130
+    drishti.url = "github:srid/drishti";
 
     # Juspay's AI tooling repo. We consume only its opencode home-manager
     # module (config only, not the package) via homeModules.opencode.
