@@ -283,16 +283,16 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1785619051,
-        "narHash": "sha256-brtaLHFyZMIKgwTtSGBLoHVKRaxGlU/KH/n6sRHYMjE=",
+        "lastModified": 1785957743,
+        "narHash": "sha256-Cko8dzbZSrJf4GGjNifkOUxC0WcWAdsBsXqJzrck1DM=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "96be575aabd71809d8e93d61dcb70f415fc72f38",
+        "rev": "401edda12cba5ebdba53433e74480207baf45f8f",
         "type": "github"
       },
       "original": {
         "owner": "srid",
-        "ref": "master",
+        "ref": "effect",
         "repo": "drishti",
         "type": "github"
       }
@@ -845,16 +845,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1785618891,
-        "narHash": "sha256-jI9N/AbFGhL4pJVb09rPFoCXemLlG7Ty+bEsB4x66PA=",
+        "lastModified": 1786036417,
+        "narHash": "sha256-8glyRvS33VBsdUCcXt8TOnj2FscLtgNA6LTXBfzFn5o=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "8dcf33d9e0c44aeb7c4b438be9557c3b11cbc99f",
+        "rev": "09700fa0eee5c8769117351c77c104054477acc2",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "effect",
         "repo": "kolu",
         "type": "github"
       }
@@ -1206,6 +1206,21 @@
         "type": "github"
       }
     },
+    "olai": {
+      "locked": {
+        "lastModified": 1786031369,
+        "narHash": "sha256-8kiiHR8OSotDK3AK/gU4VYrTpf22L4+4jMOCmsOuLi8=",
+        "owner": "juspay",
+        "repo": "olai",
+        "rev": "aa7a23ebcf58011e6b347cb5366dfdda83328f4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "olai",
+        "type": "github"
+      }
+    },
     "process-compose-flake": {
       "locked": {
         "lastModified": 1767863885,
@@ -1275,6 +1290,7 @@
         "nixos-unified": "nixos-unified_2",
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs_6",
+        "olai": "olai",
         "vira": "vira",
         "xyne-boxes": "xyne-boxes"
       }
