@@ -21,7 +21,12 @@ in
   # --dangerously-skip-permissions flag for the TUI, only for `run`; see
   # https://github.com/anomalyco/opencode/issues/8463). Explicit "deny" rules
   # would still win.
-  programs.opencode-juspay.settings.permission = "allow";
+  programs.opencode-juspay.settings = {
+    permission = "allow";
+    # Default model (replaces upstream litellm/glm-latest). CLI --model still
+    # overrides for a one-off session.
+    model = "litellm/kimi-k3";
+  };
 
   # The upstream module is config-only by design; install the binary from
   # llm-agents (numtide/llm-agents.nix) so the Juspay config above is usable

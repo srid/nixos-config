@@ -62,7 +62,7 @@ kolu branch="":
     just _kolu-after-update
 
 _kolu-update:
-    nix flake update kolu drishti
+    nix flake update kolu drishti olai
 
 [parallel]
 _kolu-after-update: _kolu-activate-pureintent _kolu-activate-naiveintent _kolu-activate-local
