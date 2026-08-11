@@ -40,12 +40,7 @@ in
     "${homeMod}/work/juspay.nix"
     # Juspay opencode config (juspay-ai) + llm-agents package
     "${homeMod}/work/opencode.nix"
-    "${homeMod}/services/olai.nix"
-    {
-      # Tailscale-only bind so naiveintent.rooster-blues.ts.net:7733 works.
-      # tailscale0 is trusted — no openFirewall needed.
-      services.olai.host = "100.78.88.70";
-    }
+    # olai moved into the myolai incus container (configurations/nixos/myolai).
     "${homeMod}/nix/gc.nix"
   ];
 
