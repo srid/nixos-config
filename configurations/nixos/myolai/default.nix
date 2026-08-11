@@ -8,7 +8,7 @@
 # myolai`, grab it with
 #   journalctl _SYSTEMD_USER_UNIT=dropbox.service | grep dropbox.com
 # and open it in a browser.
-{ config, flake, ... }:
+{ config, flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -26,6 +26,12 @@ in
 
   # Publish olai's (loopback-bound) port on the tailnet.
   incus.servePort = config.home-manager.users.${username}.services.olai.port;
+
+  environment.systemPackages = [ pkgs.git ];
+
+  # Claude Code's native installer (claude.ai/install.sh) downloads a
+  # dynamically-linked binary; give it the standard ELF loader path.
+  programs.nix-ld.enable = true;
 
   users.users.${username} = {
     isNormalUser = true;
