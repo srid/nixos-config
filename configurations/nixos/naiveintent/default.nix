@@ -27,6 +27,7 @@ in
     # pu + proxychains (needs jumphost SOCKS5 from juspay.nix below)
     (self + /configurations/nixos/pureintent/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
+    (self + /modules/nixos/linux/incus/host.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
   ];
 

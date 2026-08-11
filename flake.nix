@@ -46,12 +46,6 @@
     juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
     juspay-ai.inputs.llm-agents.follows = "llm-agents";
 
-    # anywhen is NOT a flake input — it's deployed as an incus-pet
-    # container, with the flake ref passed at deploy time (see
-    # `just pureintent anywhen-deploy`). The host config doesn't import
-    # anything from anywhen, so locking it here would just bloat
-    # flake.lock without buying us anything.
-
     xyne-boxes.url = "github:juspay/xyne-boxes";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
 
