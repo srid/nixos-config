@@ -65,16 +65,13 @@ _kolu-update:
     nix flake update kolu drishti olai
 
 [parallel]
-_kolu-after-update: _kolu-activate-pureintent _kolu-activate-naiveintent _kolu-activate-local
+_kolu-after-update: _kolu-activate-pureintent _kolu-activate-naiveintent
 
 _kolu-activate-pureintent:
     just activate pureintent
 
 _kolu-activate-naiveintent:
     just activate naiveintent
-
-_kolu-activate-local:
-    just activate
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------
