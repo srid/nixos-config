@@ -33,17 +33,9 @@ in
     ./kolu-dev.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/gc.nix)
-    (self + /modules/nixos/linux/incus)
     (self + /modules/nixos/linux/llm-debugging.nix)
     (self + /modules/nixos/linux/atuin.nix)
   ];
-
-  # anywhen runs as an incus-pet container (see modules/nixos/linux/incus/incus-pet).
-  # Deployed with:
-  #   incus-pet deploy github:srid/anywhen --port 6111 --listen 100.122.32.106
-
-  # Expose the incus UI on the Tailscale interface only.
-  virtualisation.incus.preseed.config."core.https_address" = "100.122.32.106:8443";
 
   users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
@@ -99,9 +91,6 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
-  # tailscaled installs its rules via iptables-nft, which live in a different
-  # table from the nftables firewall that incus requires. Adding tailscale0 here
-  # gets it into the nftables trusted-interfaces set too.
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
   networking.firewall.allowedTCPPorts = [
     80

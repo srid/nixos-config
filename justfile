@@ -1,9 +1,9 @@
 default:
     @just --list
 
-# Per-host operational recipes. Namespaced via `mod` so each host's
-# recipes live behind their own prefix (e.g. `just pureintent anywhen-deploy`).
-mod pureintent 'configurations/nixos/pureintent/mod.just'
+# Incus container lifecycle, parametrized by container name
+# (e.g. `just incus deploy myolai`).
+mod incus 'modules/nixos/linux/incus/mod.just'
 
 # Main commands
 # --------------------------------------------------------------------------------------------------
