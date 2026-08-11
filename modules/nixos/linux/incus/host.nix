@@ -20,6 +20,17 @@ in
         {
           name = networkName;
           type = "bridge";
+          config = {
+            "ipv4.address" = "auto";
+            "ipv4.nat" = "true";
+            # No IPv6. Incus would otherwise give guests a NATed ULA,
+            # making them prefer v6 — on a host without v6 upstream,
+            # tailscaled's control-plane/ACME calls then hang and cert
+            # issuance never completes. (Preseed only applies on bridge
+            # creation; for an existing bridge:
+            #   sudo incus network set incusbr0 ipv6.address=none ipv6.nat=false)
+            "ipv6.address" = "none";
+          };
         }
       ];
       storage_pools = [
