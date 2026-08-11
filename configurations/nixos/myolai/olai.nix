@@ -11,9 +11,9 @@ in
 
   services.olai = {
     enable = true;
-    # Dropbox's real sync dir: the home-manager dropbox module runs the
-    # daemon under the ~/.dropbox-hm fake home.
-    dataDir = "${config.home.homeDirectory}/.dropbox-hm/Dropbox/MyOlai";
+    # Local outlines dir (dropbox is disabled for now; when it returns,
+    # its real sync dir is ~/.dropbox-hm/Dropbox/<folder>).
+    dataDir = "${config.home.homeDirectory}/Vault";
     # Loopback-only; published on the tailnet by `tailscale serve`
     # (incus.servePort in ./default.nix).
     host = "127.0.0.1";
