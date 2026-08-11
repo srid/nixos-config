@@ -9,6 +9,10 @@
 
 IMAGE := "images:nixos/unstable"
 
+# Module recipes default to running in this directory; the flake ref in
+# `deploy` wants the repo root.
+set working-directory := '../../../..'
+
 default:
     @just --list incus
 
@@ -33,12 +37,16 @@ deploy name:
     sudo incus exec {{ name }} -- "$toplevel/bin/switch-to-configuration" switch
 
 # Runs once; login and serve config persist in the container's
-# /var/lib/tailscale. What gets served comes from the container's
+# /var/lib/tailscale. The served port is the container's declared
 # `incus.servePort` (see guest.nix).
 # Join <name> to the tailnet (browser auth) and start tailscale serve.
 tailscale name:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    port=$(nix eval --raw --apply toString .#nixosConfigurations.{{ name }}.config.incus.servePort)
+    [ -n "$port" ] || { echo "{{ name }} does not set incus.servePort"; exit 1; }
     sudo incus exec {{ name }} -- tailscale up
-    sudo incus exec {{ name }} -- systemctl restart tailscale-serve.service
+    sudo incus exec {{ name }} -- tailscale serve --bg localhost:"$port"
 
 # Root shell inside <name>.
 shell name:

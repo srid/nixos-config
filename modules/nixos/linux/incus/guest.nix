@@ -5,10 +5,7 @@
 # and a shell is `just incus shell <name>`. Services bind 127.0.0.1 and
 # are published with `tailscale serve`, so the container's own tailnet
 # node is the only way in.
-{ config, lib, pkgs, modulesPath, ... }:
-let
-  cfg = config.incus;
-in
+{ lib, modulesPath, ... }:
 {
   imports = [
     # Upstream module that makes a NixOS eval bootable as an LXC/incus
@@ -23,7 +20,9 @@ in
       default = null;
       description = ''
         Loopback port published on the tailnet as
-        https://<hostname>.<tailnet>.ts.net via `tailscale serve`.
+        https://<hostname>.<tailnet>.ts.net. Read by mod.just's
+        `tailscale` recipe, which runs `tailscale serve --bg` once —
+        the serve config then persists in /var/lib/tailscale.
       '';
     };
   };
@@ -31,23 +30,6 @@ in
   config = {
     services.tailscale.enable = true;
     networking.firewall.trustedInterfaces = [ "tailscale0" ];
-
-    # Re-assert the serve config on every boot/switch so nix stays
-    # authoritative (it would persist in /var/lib/tailscale anyway).
-    # Fails until the one-time `just incus tailscale <name>` login;
-    # that recipe restarts it after `tailscale up`.
-    systemd.services.tailscale-serve = lib.mkIf (cfg.servePort != null) {
-      after = [ "tailscaled.service" ];
-      wants = [ "tailscaled.service" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-      };
-      script = ''
-        ${config.services.tailscale.package}/bin/tailscale serve --bg localhost:${toString cfg.servePort}
-      '';
-    };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     # Each deploy copies a fresh closure into the container's store; let
