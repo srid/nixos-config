@@ -45,7 +45,9 @@ tailscale name:
     set -euo pipefail
     port=$(nix eval --raw --apply toString .#nixosConfigurations.{{ name }}.config.incus.servePort)
     [ -n "$port" ] || { echo "{{ name }} does not set incus.servePort"; exit 1; }
-    sudo incus exec {{ name }} -- tailscale up
+    # --hostname pins the tailnet node name: the kernel hostname can
+    # still be the image's ("nixos") on first login after deploy.
+    sudo incus exec {{ name }} -- tailscale up --hostname={{ name }}
     sudo incus exec {{ name }} -- tailscale serve --bg localhost:"$port"
 
 # Root shell inside <name>.
