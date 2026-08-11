@@ -37,9 +37,8 @@ in
   home-manager.users.${username} = {
     imports = [
       (self + /modules/home/services/dropbox.nix)
-      (self + /modules/home/services/olai.nix)
+      ./olai.nix
     ];
-    services.olai.host = "127.0.0.1";
     home.stateVersion = "25.11";
   };
 

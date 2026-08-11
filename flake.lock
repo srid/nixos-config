@@ -1270,11 +1270,11 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1786477202,
-        "narHash": "sha256-kj6+qpJ6VJUbqxvNXM+SZwyHxvkv2z6rF9mkRJYCrP4=",
+        "lastModified": 1786481422,
+        "narHash": "sha256-susM1mbGLHjyAwBhVXTuvC6D8+2G4SxSPG3eBpZAOok=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "875dec7333f093c3df954a19a111f0cdf778aa71",
+        "rev": "c2dea4571161f82456e476e3f2d31ebf67a6fec4",
         "type": "github"
       },
       "original": {
