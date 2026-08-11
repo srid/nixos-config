@@ -34,7 +34,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/master";
+    kolu.url = "github:juspay/kolu/surface-mcp-structured";
     drishti.url = "github:srid/drishti";
 
     # olai outliner web view (home-manager module: services.olai)
