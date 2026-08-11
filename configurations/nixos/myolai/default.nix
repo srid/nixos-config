@@ -36,7 +36,9 @@ in
 
   home-manager.users.${username} = {
     imports = [
-      (self + /modules/home/services/dropbox.nix)
+      # Dropbox disabled for now; olai runs against a local (unsynced)
+      # dataDir until this comes back.
+      # (self + /modules/home/services/dropbox.nix)
       ./olai.nix
     ];
     home.stateVersion = "25.11";
