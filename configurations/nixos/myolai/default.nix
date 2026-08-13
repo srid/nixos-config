@@ -27,8 +27,6 @@ in
   # Publish olai's (loopback-bound) port on the tailnet.
   incus.servePort = config.home-manager.users.${username}.services.olai.port;
 
-  environment.systemPackages = [ pkgs.git ];
-
   # Claude Code's native installer (claude.ai/install.sh) downloads a
   # dynamically-linked binary; give it the standard ELF loader path.
   programs.nix-ld.enable = true;
@@ -40,13 +38,22 @@ in
     linger = true;
   };
 
+  # Activation refuses to clobber files it didn't create (lazygit writes a
+  # default ~/.config/lazygit/config.yml on first run); move them aside.
+  home-manager.backupFileExtension = "hm-backup";
+
   home-manager.users.${username} = {
     imports = [
       # Dropbox disabled for now; olai runs against a local (unsynced)
       # dataDir until this comes back.
       # (self + /modules/home/services/dropbox.nix)
+      # git + delta + lazygit, configured as on the other hosts.
+      (self + /modules/home/cli/git.nix)
+      (self + /modules/home/cli/just.nix)
+      (self + /modules/home/editors/neovim)
       ./olai.nix
     ];
+    home.packages = [ pkgs.uv ];
     home.stateVersion = "25.11";
   };
 
