@@ -30,15 +30,15 @@ activate host="":
 update:
     nix run .#update
 
-# Update Kolu/Drishti, then build Kolu and activate target environments.
-# Optional branch: `just kolu feat/foo` rewrites flake.nix kolu.url before updating.
+# Update Kolu/Drishti/olai, then activate this host and deploy to pureintent.
+# Run on naiveintent. Optional branch: `just kolu feat/foo` rewrites flake.nix.
 [group('main')]
 kolu branch="":
     #!/usr/bin/env bash
     set -euo pipefail
     if [ -n "{{ branch }}" ]; then
       echo ">>> kolu branch: {{ branch }}"
-      python3 -c '
+      nix run --inputs-from . nixpkgs#python3 -- -c '
     import pathlib, re, sys
     branch = sys.argv[1]
     path = pathlib.Path("flake.nix")
@@ -64,14 +64,15 @@ kolu branch="":
 _kolu-update:
     nix flake update kolu drishti olai
 
-[parallel]
-_kolu-after-update: _kolu-activate-pureintent _kolu-activate-naiveintent
+# Sequential: two `nix run .` evals in parallel race ~/.cache/nix/eval-cache
+# and can throw a NAR hash mismatch on the kolu input.
+_kolu-after-update: _kolu-activate-pureintent _kolu-activate-local
 
 _kolu-activate-pureintent:
     just activate pureintent
 
-_kolu-activate-naiveintent:
-    just activate naiveintent
+_kolu-activate-local:
+    just activate
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------
