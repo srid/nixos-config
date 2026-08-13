@@ -305,11 +305,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1786389998,
-        "narHash": "sha256-MMQ5tTvqMmY+eKVKngRHRXTlEpedagf9XAQi42iu9KY=",
+        "lastModified": 1786579682,
+        "narHash": "sha256-EgFGYRiRiONuwc3qPKfFf6iF3nQUCdGDyza+ukPttEU=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "d010d95bb7d21deab43cc3f39df3c711cf677601",
+        "rev": "7bcc07837dd2a5a37da097e12e20944215d824a2",
         "type": "github"
       },
       "original": {
@@ -888,16 +888,15 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1786467187,
-        "narHash": "sha256-AO05pAUTk3xLhfH1vivRa/S04msDPZ8OHgF2S/X5aJk=",
+        "lastModified": 1786578622,
+        "narHash": "sha256-PyrAQGI8FfWSKg97O+lRxQcNKSHBNyNYTuV1g4Pre2M=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "5c6859533bef5ce5e5e6fc216b6b66fd32e448df",
+        "rev": "73af05e5f8847e1827eebe64d181af3fc4d95b8b",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "surface-mcp-structured",
         "repo": "kolu",
         "type": "github"
       }
@@ -1270,11 +1269,11 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1786483789,
-        "narHash": "sha256-NN8c8ZxAhcgxrjCeC6iU7UAY1EFRKkQWM8E0oCX66ys=",
+        "lastModified": 1786579933,
+        "narHash": "sha256-GWz7SnRRW+TzgTu/YkXXuIm9a4oUOh4mUW/HbMJm8UI=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "2502db56c6b91ccbc21bc82583c1db81b2b30ebe",
+        "rev": "c4a2986f00a42d45610b3481c38bdbabb5450c69",
         "type": "github"
       },
       "original": {
