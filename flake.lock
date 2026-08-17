@@ -330,11 +330,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1786657824,
-        "narHash": "sha256-EBfJgsyhKRIPvQ+6IwLUmVJxpsM0kVW5FuWWV5w3M2o=",
+        "lastModified": 1786799636,
+        "narHash": "sha256-Nd6TV01ityhWjajYLkHg7J+y/I7QoVERY7RJ48Sm1RM=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "e987edcba736387bc9ffe8f68bbe46ca1be1cbdd",
+        "rev": "fb8526b2d1892ffd5923ae233e44e9bcf81ef73c",
         "type": "github"
       },
       "original": {
@@ -935,16 +935,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1786798982,
-        "narHash": "sha256-1c+kxWuzSlkI0nM7knQ2obTwxs5rwyt5uAXgxfxgsTU=",
+        "lastModified": 1786995962,
+        "narHash": "sha256-c8Nil9fxTP4AwDr6er0cnl+jcgX5ULlp4ihUmYGAUu8=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "bfb4eb563cd08ab84b8b45387150203234b3f0a1",
+        "rev": "caa2042501a3f1cf32d0871f85cbf8776c9963a2",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "one-shot-submit",
         "repo": "kolu",
         "type": "github"
       }
@@ -1317,11 +1317,11 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1786970709,
-        "narHash": "sha256-Oe5PNqr7OD6HwxopX4n8HJNp5PnlMpOP0s80pT6mJ+0=",
+        "lastModified": 1787003772,
+        "narHash": "sha256-P7/UQk5FzwuCGjlyEXJgFMjcaw5FFu/KSpVCYXNFiCo=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "fdd4f8e78a7fb7ff227410b67f3a1f4536e1d09a",
+        "rev": "6bebe915a81d236aed837e73ec166e5149b35c16",
         "type": "github"
       },
       "original": {
@@ -1750,11 +1750,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786999058,
-        "narHash": "sha256-ImJeRagpS38j5mJIBMELMq9vVj9dR8yGMB541s1MDAY=",
+        "lastModified": 1787006051,
+        "narHash": "sha256-hGzRObLzp2iOtOF1pkEjl0o0dU9uQwT3SuU4xTdkWIM=",
         "owner": "juspay",
         "repo": "xyne-boxes",
-        "rev": "00d45668a25376504971beed718e8bcb68a8a2dc",
+        "rev": "eca7b9d758b038c6530152a1d375b8ee9102584b",
         "type": "github"
       },
       "original": {
