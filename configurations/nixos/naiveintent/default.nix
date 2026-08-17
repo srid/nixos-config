@@ -40,7 +40,14 @@ in
     "${homeMod}/work/juspay.nix"
     # Juspay opencode config (juspay-ai) + llm-agents package
     "${homeMod}/work/opencode.nix"
-    # olai moved into the myolai incus container (configurations/nixos/myolai).
+    # myolai still serves the Vault outlines; this is the olai repo's own docs.
+    inputs.olai.homeManagerModules.default
+    ({ config, ... }: {
+      services.olai = {
+        enable = true;
+        dataDir = "${config.home.homeDirectory}/code/olai/docs";
+      };
+    })
     "${homeMod}/nix/gc.nix"
   ];
 
