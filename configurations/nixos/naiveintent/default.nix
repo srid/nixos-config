@@ -24,8 +24,8 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    # pu + proxychains (needs jumphost SOCKS5 from juspay.nix below)
-    (self + /configurations/nixos/pureintent/devbox.nix)
+    # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
+    (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/incus/host.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)

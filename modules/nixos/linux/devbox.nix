@@ -1,54 +1,28 @@
-# Depends on programs.jumphost.socks5Proxy (https://github.com/srid/jumphost-nix)
-# for the local SOCKS5 listener. See modules/home/work/juspay.nix:29-31.
+# proxychains-wrapped pu / xyne-boxes. Pulls in juspay-run.nix for the
+# jumphost SOCKS5 + proxychains.
 { config, flake, pkgs, ... }:
 
 let
   socksPort = config.home-manager.users.${flake.config.me.username}.programs.jumphost.socks5Proxy.port;
-
   proxychainsBin = "${config.programs.proxychains.package}/bin/proxychains4";
-
-  proxyExports = ''
-    export ALL_PROXY=socks5://127.0.0.1:${toString socksPort}
-    export HTTPS_PROXY=socks5://127.0.0.1:${toString socksPort}
-    export HTTP_PROXY=socks5://127.0.0.1:${toString socksPort}
-  '';
-
-  juspay-run = pkgs.writeShellScriptBin "juspay-run" ''
-    ${proxyExports}
-    exec ${proxychainsBin} "$@"
-  '';
-
   xbPkg = flake.inputs.xyne-boxes.packages.${pkgs.stdenv.hostPlatform.system}.default;
   # Context: https://github.com/juspay/xyne-boxes/pull/14#issuecomment-4918563982
   puHost = "10.10.68.56";
 
-  wrapXyneBoxes = name: pkgs.writeShellScriptBin name ''
-    ${proxyExports}
+  wrap = name: pkgs.writeShellScriptBin name ''
+    export ALL_PROXY=socks5://127.0.0.1:${toString socksPort}
+    export HTTPS_PROXY=socks5://127.0.0.1:${toString socksPort}
+    export HTTP_PROXY=socks5://127.0.0.1:${toString socksPort}
     export PU_HOST=${puHost}
     exec ${proxychainsBin} ${xbPkg}/bin/${name} "$@"
   '';
-
-  xyne-boxes = wrapXyneBoxes "xyne-boxes";
-  pu = wrapXyneBoxes "pu";
 in
 {
-  programs.proxychains = {
-    enable = true;
-    quietMode = true;
-    chain.type = "strict";
-    proxyDNS = true;
-    proxies.devbox = {
-      enable = true;
-      type = "socks5";
-      host = "127.0.0.1";
-      port = socksPort;
-    };
-  };
+  imports = [ ./juspay-run.nix ];
 
   environment.systemPackages = [
-    juspay-run
-    pu
-    xyne-boxes
+    (wrap "xyne-boxes")
+    (wrap "pu")
   ];
 
   # pu writes per-instance ssh_config files under ~/.pu-state/<name>/. Including

@@ -29,7 +29,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    ./devbox.nix
+    (self + /modules/nixos/linux/juspay-run.nix)
     ./kolu-dev.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/gc.nix)
