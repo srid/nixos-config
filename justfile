@@ -21,8 +21,13 @@ activate host="":
             nix run . $HOSTNAME; \
         fi \
     else \
-        echo "Deploying to {{ host }} ..."; \
-        nix run . {{ host }}; \
+        if [ -f ./configurations/home/$USER@{{ host }}.nix ]; then \
+            echo "Deploying home env $USER@{{ host }} ..."; \
+            nix run . $USER@{{ host }}; \
+        else \
+            echo "Deploying to {{ host }} ..."; \
+            nix run . {{ host }}; \
+        fi \
     fi
 
 # Update primary flame inputs

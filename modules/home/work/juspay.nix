@@ -1,7 +1,7 @@
 # Juspay-specific configuration using the work jump host module
 
 
-{ flake, ... }:
+{ config, flake, ... }:
 let
   inherit (flake.inputs) jumphost-nix;
   homeMod = flake.inputs.self + /modules/home;
@@ -10,6 +10,7 @@ in
   imports = [
     "${jumphost-nix}/module.nix"
     "${homeMod}/agenix.nix"
+    ./juspay-run.nix
     # "${homeMod}/claude-code/juspay.nix"  # Disabled: not using Claude Code at Juspay
   ];
 
@@ -29,6 +30,13 @@ in
     socks5Proxy = {
       enable = true;
     };
+  };
+
+  # Keep the launchd/systemd ssh -D tunnel from going silent-dead.
+  programs.ssh.settings.${config.programs.jumphost.host} = {
+    ServerAliveInterval = 30;
+    ServerAliveCountMax = 3;
+    ExitOnForwardFailure = "yes";
   };
 
   home.shellAliases = {
