@@ -34,10 +34,8 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/one-shot-submit";
+    kolu.url = "github:juspay/kolu/bugpadi";
     drishti.url = "github:srid/drishti";
-
-    # olai outliner web view (home-manager module: services.olai)
     olai.url = "github:juspay/olai";
 
     # Juspay's AI tooling repo. We consume only its opencode home-manager
