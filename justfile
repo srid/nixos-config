@@ -35,9 +35,12 @@ activate host="":
 update:
     nix run .#update
 
+# Service flakes
+# --------------------------------------------------------------------------------------------------
+
 # Update Kolu/Drishti/olai, then activate this host and deploy to pureintent.
 # Run on naiveintent. Optional branch: `just kolu feat/foo` rewrites flake.nix.
-[group('main')]
+[group('services')]
 kolu branch="":
     #!/usr/bin/env bash
     set -euo pipefail
@@ -78,6 +81,15 @@ _kolu-activate-pureintent:
 
 _kolu-activate-local:
     just activate
+
+# Update olai, deploy the myolai container, then activate this host.
+# `sudo git status` refreshes the sudo timestamp for incus/activate.
+[group('services')]
+olai:
+    sudo git status
+    nix flake update olai
+    just incus deploy myolai
+    just activate naiveintent
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------
