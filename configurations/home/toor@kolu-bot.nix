@@ -53,6 +53,13 @@ in
     host = "127.0.0.1";
   };
 
+  # systemd user units do not inherit the login PATH; olai's default PATH is
+  # only systemd's bindir, so `git` from programs.git never reaches the
+  # process. Prepend git (and ssh, for git@github.com) explicitly.
+  systemd.user.services.olai.Service.Environment = [
+    "PATH=${lib.makeBinPath [ pkgs.git pkgs.openssh ]}:${config.home.profileDirectory}/bin:/run/wrappers/bin:/run/current-system/sw/bin"
+  ];
+
   age.secrets."oauth2-proxy.env" = {
     file = flake.inputs.self + /secrets/oauth2-proxy.env.age;
     path = "${config.home.homeDirectory}/.config/agenix/oauth2-proxy.env";
