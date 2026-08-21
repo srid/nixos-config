@@ -67,7 +67,6 @@ in
     Unit = {
       Description = "Caddy reverse proxy to olai";
       After = [ "network.target" "olai.service" ];
-      Requires = [ "olai.service" ];
     };
     Service = {
       ExecStart = "${pkgs.caddy}/bin/caddy run --config ${caddyfile} --adapter caddyfile";
@@ -81,7 +80,6 @@ in
     Unit = {
       Description = "oauth2-proxy (GitHub login)";
       After = [ "network.target" "caddy.service" "agenix.service" ];
-      Requires = [ "caddy.service" "agenix.service" ];
     };
     Service = {
       EnvironmentFile = config.age.secrets."oauth2-proxy.env".path;

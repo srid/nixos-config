@@ -1317,11 +1317,11 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1787347149,
-        "narHash": "sha256-JwLAtInGSltYmSgNiYi08umy53PJWYDhvjpY+ArmjjU=",
+        "lastModified": 1787352710,
+        "narHash": "sha256-AO04uB3wj/63cnGI2IGzCrJHFQ1B2/P91asODgd8jcA=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "00e0c0af9d999a4ce5c32bddfbc826c497d58a4c",
+        "rev": "9a5de50722d351a550d49a5cf25acb462b81df27",
         "type": "github"
       },
       "original": {
