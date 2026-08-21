@@ -34,7 +34,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/bugpadi";
+    kolu.url = "github:juspay/kolu/feat/watch-ignore-self";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai";
 
