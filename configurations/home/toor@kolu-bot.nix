@@ -30,6 +30,14 @@ in
   # only ships if HM manages bash (this host is standalone, not NixOS-HM).
   programs.bash.enable = true;
 
+  programs.git = {
+    enable = true;
+    settings.user = {
+      name = "olai";
+      email = "olai";
+    };
+  };
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
