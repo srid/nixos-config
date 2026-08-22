@@ -51,14 +51,48 @@ in
     enable = true;
     dataDir = "${config.home.homeDirectory}/nix-team-olai";
     host = "127.0.0.1";
+    commit = "auto";
+    push = "auto";
   };
 
-  # systemd user units do not inherit the login PATH; olai's default PATH is
-  # only systemd's bindir, so `git` from programs.git never reaches the
-  # process. Prepend git (and ssh, for git@github.com) explicitly.
-  systemd.user.services.olai.Service.Environment = [
-    "PATH=${lib.makeBinPath [ pkgs.git pkgs.openssh ]}:${config.home.profileDirectory}/bin:/run/wrappers/bin:/run/current-system/sw/bin"
+  # Literal path: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR.
+  age.secrets.juspay-anthropic-api-key.path =
+    "${config.home.homeDirectory}/.config/agenix/juspay-anthropic-api-key";
+
+  # The age file is the raw key (bashrc `cat`s it). systemd EnvironmentFile
+  # wants KEY=value, so write that next to the decrypt. Olai's ExecStart stays
+  # the module's.
+  systemd.user.services.agenix.Service.ExecStartPost =
+    let
+      envFile = "${config.home.homeDirectory}/.config/agenix/olai-juspay.env";
+      script = pkgs.writeShellScript "olai-juspay-env" ''
+        set -euo pipefail
+        umask 077
+        ${pkgs.coreutils}/bin/printf 'JUSPAY_API_KEY=%s\n' "$(${pkgs.coreutils}/bin/tr -d '\n' < "$1")" > "$2"
+      '';
+    in
+    "${script} ${config.age.secrets.juspay-anthropic-api-key.path} ${envFile}";
+
+  # Standalone HM: systemd --user was not started from a NixOS login, so the
+  # manager PATH is only systemd's bindir (naiveintent/myolai inherit the
+  # session PATH). environment.d is read at manager start; set-environment
+  # updates the already-running instance without restarting the user session.
+  systemd.user.sessionVariables.PATH = lib.concatStringsSep ":" [
+    "${config.home.profileDirectory}/bin"
+    "/run/wrappers/bin"
+    "/nix/var/nix/profiles/default/bin"
+    "/run/current-system/sw/bin"
   ];
+
+  home.activation.systemdUserPath = lib.hm.dag.entryBefore [ "reloadSystemd" ] ''
+    ${lib.getExe' pkgs.systemd "systemctl"} --user set-environment \
+      PATH=${lib.escapeShellArg config.systemd.user.sessionVariables.PATH}
+  '';
+
+  systemd.user.services.olai = {
+    Unit.After = [ "agenix.service" ];
+    Service.EnvironmentFile = "${config.home.homeDirectory}/.config/agenix/olai-juspay.env";
+  };
 
   age.secrets."oauth2-proxy.env" = {
     file = flake.inputs.self + /secrets/oauth2-proxy.env.age;
@@ -68,6 +102,7 @@ in
   home.packages = [
     pkgs.caddy
     pkgs.oauth2-proxy
+    flake.inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   systemd.user.services.caddy = {
