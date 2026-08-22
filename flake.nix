@@ -44,7 +44,7 @@
     juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
     juspay-ai.inputs.llm-agents.follows = "llm-agents";
 
-    xyne-boxes.url = "github:juspay/xyne-boxes/ts";
+    xyne-boxes.url = "github:juspay/xyne-boxes";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
 
     # Source for opencode (see modules/home/work/opencode.nix).
