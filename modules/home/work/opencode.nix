@@ -28,6 +28,46 @@ in
     model = "litellm/kimi-k3";
   };
 
+  # TUI settings (theme, keybinds, ...) live in tui.json since opencode v1.2.15.
+  # programs.opencode-juspay has no TUI option, so use upstream home-manager's
+  # programs.opencode for *only* this: it won't write opencode.json while
+  # `settings` stays empty (juspay owns that file), and `package = null` keeps
+  # the llm-agents binary installed below.
+  programs.opencode = {
+    enable = true;
+    package = null;
+    tui = {
+      theme = "rosepine";
+      # Desktop notification + sound when a turn finishes or input is needed.
+      # OpenTUI's loaded-sound decoder is WAV/FLAC/MP3 only, so convert the
+      # freedesktop .oga (Vorbis) files at build time.
+      attention = let
+        stereo = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo";
+        toWav =
+          src: name:
+          pkgs.runCommand name { nativeBuildInputs = [ pkgs.ffmpeg-headless ]; } ''
+            ffmpeg -loglevel error -i ${src} -f wav "$out"
+          '';
+        bell = toWav "${stereo}/bell.oga" "opencode-bell.wav";
+        alarm = toWav "${stereo}/alarm-clock-elapsed.oga" "opencode-alarm.wav";
+      in {
+        enabled = true;
+        notifications = true;
+        sound = true;
+        volume = 1.0;
+        sounds = {
+          default = "${bell}";
+          error = "${bell}";
+          done = "${bell}";
+          subagent_done = "${bell}";
+          # needs-you-now events get the alarm
+          question = "${alarm}";
+          permission = "${alarm}";
+        };
+      };
+    };
+  };
+
   # The upstream module is config-only by design; install the binary from
   # llm-agents (numtide/llm-agents.nix) so the Juspay config above is usable
   # out of the box.
