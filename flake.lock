@@ -911,7 +911,7 @@
     "kolu": {
       "locked": {
         "lastModified": 1787434267,
-        "narHash": "sha256-V7YxlS5gvfZ+dgfV8DweNk4N/ras2U5piCU7SjDA7mI=",
+        "narHash": "sha256-12czW8ArP+QcENt56/Lx8tF7rFL5COjTsw9GLdOuGZ4=",
         "owner": "juspay",
         "repo": "kolu",
         "rev": "4192df92c26000e4caabd892bb611faf1fee26ba",
@@ -949,11 +949,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1787372739,
-        "narHash": "sha256-0o/VXqH7ENNuDZ9YOL2JMUo0wkhZc6FUKLUwGOwGq1A=",
+        "lastModified": 1787462289,
+        "narHash": "sha256-JzRwvboh8r37Coj6UhtnDiL0LIdPyz3+0zknDqS1zi0=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "304ada966596829e870cacc580e6b8bf27186744",
+        "rev": "5fae6955fa522382e640b65876fb2f456059f4c2",
         "type": "github"
       },
       "original": {
