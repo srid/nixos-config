@@ -305,11 +305,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1787260010,
-        "narHash": "sha256-Po9I8rS3Di+FXrB4nc11Ho6B3Gyrx5cDSh8j/QQ4Ifs=",
+        "lastModified": 1787422074,
+        "narHash": "sha256-fE1wXdD5ymiT/2+wAoQ9wIlxkj/TFA0LG35gb+wutiY=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "740a9f06ef5b08e2fd2a5aacedf3f2659b2ccf18",
+        "rev": "907f13e9e07892fb4449dd169c248073ed061570",
         "type": "github"
       },
       "original": {
@@ -910,16 +910,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1787361214,
-        "narHash": "sha256-e1R1OVR86NUwmuX3456xcWq4hL7clJMAm9hRvC6P5/0=",
+        "lastModified": 1787434267,
+        "narHash": "sha256-V7YxlS5gvfZ+dgfV8DweNk4N/ras2U5piCU7SjDA7mI=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "64cec2a6f90544d7ecdf9caae013aab91572bafe",
+        "rev": "4192df92c26000e4caabd892bb611faf1fee26ba",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "feat/watch-ignore-self",
+        "ref": "great-profit",
         "repo": "kolu",
         "type": "github"
       }
@@ -1291,11 +1291,11 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1787413804,
-        "narHash": "sha256-+Y5sP+WB7V1+Le+NDjrKK34pmfVkoNkFWlOH8Wh7uYI=",
+        "lastModified": 1787439812,
+        "narHash": "sha256-UXNaGAYImPVDTcQ+1nFJ44O9gCJNtLQBctuow+GEHlk=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "a314683c3712d70de6ef8382c4218e2fa41c2b74",
+        "rev": "5ff24a9c7eab05f58793816eefff5702f095f383",
         "type": "github"
       },
       "original": {
