@@ -11,23 +11,30 @@ mod incus 'modules/nixos/linux/incus/mod.just'
 # Activate the given host or home environment
 [group('main')]
 activate host="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    # macOS login shells default to 256 FDs. Nix's github: tarball-cache
+    # opens one fd per member (olai, kolu) and dies with "Too many open files".
+    if [ "$(ulimit -n)" -lt 65536 ] 2>/dev/null; then
+      ulimit -n 65536 2>/dev/null || ulimit -n 10240 || true
+    fi
     nix flake lock
-    @if [ -z "{{ host }}" ]; then \
-        if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then \
-            echo "Activating home env $USER@$HOSTNAME ..."; \
-            nix run . $USER@$HOSTNAME; \
-        else \
-            echo "Activating system env $HOSTNAME ..."; \
-            nix run . $HOSTNAME; \
-        fi \
-    else \
-        if [ -f ./configurations/home/$USER@{{ host }}.nix ]; then \
-            echo "Deploying home env $USER@{{ host }} ..."; \
-            nix run . $USER@{{ host }}; \
-        else \
-            echo "Deploying to {{ host }} ..."; \
-            nix run . {{ host }}; \
-        fi \
+    if [ -z "{{ host }}" ]; then
+        if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then
+            echo "Activating home env $USER@$HOSTNAME ..."
+            nix run . $USER@$HOSTNAME
+        else
+            echo "Activating system env $HOSTNAME ..."
+            nix run . $HOSTNAME
+        fi
+    else
+        if [ -f ./configurations/home/$USER@{{ host }}.nix ]; then
+            echo "Deploying home env $USER@{{ host }} ..."
+            nix run . $USER@{{ host }}
+        else
+            echo "Deploying to {{ host }} ..."
+            nix run . {{ host }}
+        fi
     fi
 
 # Update primary flame inputs
