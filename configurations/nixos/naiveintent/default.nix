@@ -40,6 +40,8 @@ in
     "${homeMod}/work/juspay.nix"
     # Juspay opencode config (juspay-ai) + llm-agents package
     "${homeMod}/work/opencode.nix"
+    # Juspay pi (same as nix run github:juspay/AI#pi-juspay-oneclick)
+    "${homeMod}/work/pi.nix"
     # myolai still serves the Vault outlines; this is the olai repo's own docs.
     inputs.olai.homeManagerModules.default
     ({ config, ... }: {
