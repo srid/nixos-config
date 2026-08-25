@@ -15,6 +15,10 @@
         "kolu-ci-4"
         "kolu-ci-5"
         "kolu-ci-6"
+        "kolu-ci-7"
+        "kolu-ci-8"
+        "kolu-ci-9"
+        "kolu-ci-10"
       ];
     };
   };
