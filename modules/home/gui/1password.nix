@@ -9,7 +9,7 @@
       "*" = {
         # 1Password SSH agent
         IdentityAgent =
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             # Path has a space; OpenSSH needs a backslash escape.
             "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
           else

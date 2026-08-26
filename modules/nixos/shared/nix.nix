@@ -27,10 +27,10 @@ in
       max-jobs = "auto";
       experimental-features = "nix-command flakes";
       # I don't have an Intel mac.
-      extra-platforms = lib.mkIf pkgs.stdenv.isDarwin "aarch64-darwin x86_64-darwin";
+      extra-platforms = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "aarch64-darwin x86_64-darwin";
       # Nullify the registry for purity.
       flake-registry = pkgs.writeText "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
-      trusted-users = [ "root" (if pkgs.stdenv.isDarwin then flake.config.me.username else "@wheel") ];
+      trusted-users = [ "root" (if pkgs.stdenv.hostPlatform.isDarwin then flake.config.me.username else "@wheel") ];
       max-call-depth = "1000000";
     };
   };
