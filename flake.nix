@@ -36,7 +36,7 @@
 
     kolu.url = "github:juspay/kolu";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/terminal-door";
+    olai.url = "github:juspay/olai";
 
     # Juspay's AI tooling repo. OpenCode uses homeModules.opencode (config
     # only); pi has no HM module, so we take packages.pi-juspay-oneclick.
