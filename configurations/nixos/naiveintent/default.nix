@@ -47,7 +47,8 @@ in
     ({ config, ... }: {
       services.olai = {
         enable = true;
-        dataDir = "${config.home.homeDirectory}/code/olai/docs";
+        dataDir = "${config.home.homeDirectory}/code/oss.olai";
+        push = "auto";
       };
     })
     "${homeMod}/nix/gc.nix"
