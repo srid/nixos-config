@@ -29,6 +29,7 @@ in
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/incus/host.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
+    (self + /modules/nixos/linux/kill-audit.nix)
   ];
 
   users.users.${flake.config.me.username}.linger = true;
