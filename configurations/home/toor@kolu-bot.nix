@@ -20,6 +20,7 @@ in
 {
   imports = [
     (flake.inputs.self + /modules/home/work/opencode.nix)
+    (flake.inputs.self + /modules/home/work/pi.nix)
     flake.inputs.olai.homeManagerModules.default
   ];
 
