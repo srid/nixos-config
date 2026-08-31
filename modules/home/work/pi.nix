@@ -12,10 +12,14 @@ in
     (pkgs.writeShellApplication {
       name = "pi";
       text = ''
-        case " $* " in
-          *" --model "*) exec ${lib.getExe pi} "$@" ;;
-          *) exec ${lib.getExe pi} --model litellm/kimi-k3 "$@" ;;
-        esac
+        # Token-exact: an argument that merely *contains* "--model" must not
+        # count as the user having passed the flag.
+        for arg in "$@"; do
+          if [ "$arg" = "--model" ]; then
+            exec ${lib.getExe pi} "$@"
+          fi
+        done
+        exec ${lib.getExe pi} --model litellm/kimi-k3 "$@"
       '';
     })
   ];

@@ -8,12 +8,21 @@ writeShellApplication {
   runtimeInputs = [ lsof ];
   text = ''
     for port in "$@"; do
-      # -t prints bare PIDs; no JSON round-trip needed. lsof exits non-zero
+      pid=""
+      # -F pc emits one "p<pid>" line and one "c<command>" line per process,
+      # so we get the name without shelling out to ps. lsof exits non-zero
       # when nothing is listening, which is not an error for us.
-      for pid in $(lsof -t -i ":$port" || true); do
-        echo "Killing $pid ($(ps -p "$pid" -o comm= || echo '?')) on port $port"
-        kill -KILL "$pid"
-      done
+      while read -r line; do
+        case "$line" in
+          p*) pid="''${line#p}" ;;
+          c*)
+            [ -n "$pid" ] || continue
+            echo "Killing $pid (''${line#c}) on port $port"
+            kill -KILL "$pid"
+            pid=""
+            ;;
+        esac
+      done < <(lsof -F pc -i ":$port" || true)
     done
   '';
 }
