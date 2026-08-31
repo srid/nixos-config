@@ -10,6 +10,10 @@
   security.audit.rules = [
     "-a always,exit -F arch=b64 -S kill -F a1=15 -k sigterm-audit"
     "-a always,exit -F arch=b64 -S kill -F a1=9 -k sigkill-audit"
-    "-a always,exit -F arch=b64 -S tkill,tgkill,pidfd_send_signal -k sig-audit"
+    # Filter on the signal (a2 here, a1 for kill) — unfiltered, this records
+    # every Go-runtime SIGURG preemption from tailscaled/incusd and floods
+    # /var/log/audit.
+    "-a always,exit -F arch=b64 -S tkill,tgkill,pidfd_send_signal -F a2=15 -k sig-audit"
+    "-a always,exit -F arch=b64 -S tkill,tgkill,pidfd_send_signal -F a2=9 -k sig-audit"
   ];
 }

@@ -1,5 +1,5 @@
 # olai home-manager config for the myolai container (its only user).
-{ flake, config, pkgs, ... }:
+{ flake, config, ... }:
 
 let
   inherit (flake) inputs;

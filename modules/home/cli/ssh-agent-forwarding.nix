@@ -14,7 +14,7 @@
 #
 # Reference: https://stackoverflow.com/a/23187030
 
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 let
   sshAuthSockLink = "${config.home.homeDirectory}/.ssh/ssh_auth_sock";

@@ -1,5 +1,5 @@
 # Configuration common to all Linux systems
-{ flake, lib, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) config inputs;
@@ -8,7 +8,7 @@ in
 {
   imports = [
     {
-      users.users.${config.me.username}.isNormalUser = lib.mkDefault true;
+      # isNormalUser comes from shared/primary-as-admin.nix.
       home-manager.useGlobalPkgs = true;
       home-manager.backupFileExtension = "hm-backup";
       home-manager.users.${config.me.username} = { };

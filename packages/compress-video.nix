@@ -1,4 +1,4 @@
-{ writeShellApplication, ffmpeg-full, ... }:
+{ writeShellApplication, ffmpeg, ... }:
 
 writeShellApplication {
   name = "compress-video";
@@ -7,7 +7,7 @@ writeShellApplication {
     Usage: compress-video input.mov [target_size_mb]
     Default target size is 900MB.
   '';
-  runtimeInputs = [ ffmpeg-full ];
+  runtimeInputs = [ ffmpeg ];
   text = ''
     input="$1"
     target_mb="''${2:-900}"

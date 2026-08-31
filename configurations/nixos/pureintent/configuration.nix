@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, flake, pkgs, ... }:
+{ flake, pkgs, ... }:
 
 {
   imports =
@@ -79,18 +79,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${flake.config.me.username} = {
-    isNormalUser = true;
-    description = flake.config.me.fullname;
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
+  # isNormalUser / extraGroups / ssh keys come from
+  # modules/nixos/shared/primary-as-admin.nix.
+  users.users.${flake.config.me.username}.description = flake.config.me.fullname;
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # The NixOS options manual is rarely consulted locally (options are searched
   # online), but generating it evaluates the doc string of every option — a
@@ -115,8 +109,6 @@
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
   # TTS: `spd-say "hello"` or `spd-say -l fr "bonjour"`
   # Volume: `wpctl set-volume @DEFAULT_AUDIO_SINK@ 50%` (or 5%+/5%-)
   services.speechd.enable = true;

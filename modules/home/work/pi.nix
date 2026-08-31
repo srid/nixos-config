@@ -12,17 +12,10 @@ in
     (pkgs.writeShellApplication {
       name = "pi";
       text = ''
-        has_model=0
-        for arg in "$@"; do
-          if [ "$arg" = "--model" ]; then
-            has_model=1
-            break
-          fi
-        done
-        if [ "$has_model" -eq 0 ]; then
-          exec ${lib.getExe pi} --model litellm/kimi-k3 "$@"
-        fi
-        exec ${lib.getExe pi} "$@"
+        case " $* " in
+          *" --model "*) exec ${lib.getExe pi} "$@" ;;
+          *) exec ${lib.getExe pi} --model litellm/kimi-k3 "$@" ;;
+        esac
       '';
     })
   ];

@@ -24,7 +24,6 @@ in
     # Useful for Nix development
     ci
     nixpkgs-fmt
-    just
     watchexec
     fswatch
 
