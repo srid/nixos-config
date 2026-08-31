@@ -89,14 +89,22 @@ _kolu-activate-pureintent:
 _kolu-activate-local:
     just activate
 
-# Update olai, deploy the myolai container, then activate this host.
+# Update olai, then activate this host and deploy the myolai container in parallel.
 # `sudo git status` refreshes the sudo timestamp for incus/activate.
 [group('services')]
 olai:
     sudo git status
     nix flake update olai
-    just incus deploy myolai
+    just _olai-after-update
+
+[parallel]
+_olai-after-update: _olai-activate-naiveintent _olai-deploy-myolai
+
+_olai-activate-naiveintent:
     just activate naiveintent
+
+_olai-deploy-myolai:
+    just incus deploy myolai
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------
