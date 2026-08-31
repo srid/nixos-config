@@ -37,6 +37,7 @@ in
     "${homeMod}/gui/1password.nix"
     "${homeMod}/cli/odu.nix"
     "${homeMod}/cli/atuin.nix"
+    "${homeMod}/claude-code"
     # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
     "${homeMod}/work/juspay.nix"
     # Juspay opencode config (juspay-ai) + llm-agents package

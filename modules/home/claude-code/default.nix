@@ -11,6 +11,8 @@
       skipDangerousModePermissionPrompt = true;
       attribution = {
         commit = "";
+        pr = "";
+        sessionUrl = false;
       };
       # Un-nerf Claude Opus in Claude Code
       # effortLevel = "high";
