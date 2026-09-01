@@ -69,10 +69,9 @@
   outputs = inputs@{ self, ... }:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
-      imports = (with builtins;
-        map
-          (fn: ./modules/flake-parts/${fn})
-          (attrNames (readDir ./modules/flake-parts)));
+      imports = map
+        (fn: ./modules/flake-parts/${fn})
+        (builtins.attrNames (builtins.readDir ./modules/flake-parts));
 
       perSystem = { lib, system, ... }: {
         # Make our overlay available to the devShell

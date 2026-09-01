@@ -1,5 +1,5 @@
 # Configuration for my Mac CI VM
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;

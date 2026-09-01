@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   home.packages = [ pkgs._1password-cli ];
 
@@ -15,12 +15,8 @@
           else
             "~/.1password/agent.sock";
       };
-      pureintent = {
-        ForwardAgent = true;
-      };
-      sincereintent = {
-        ForwardAgent = true;
-      };
-    };
+    } // lib.genAttrs [ "pureintent" "sincereintent" ] (_: {
+      ForwardAgent = true;
+    });
   };
 }

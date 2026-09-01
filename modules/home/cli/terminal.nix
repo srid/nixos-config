@@ -24,7 +24,6 @@ in
     # Useful for Nix development
     ci
     nixpkgs-fmt
-    just
     watchexec
     fswatch
 
@@ -49,7 +48,9 @@ in
     hledger
 
     gnupg
-    # Temporarily disabled: pulls in ffmpeg-full which fails to build (kvazaar test failures)
+    # Disabled: the old ffmpeg-full build failure is fixed (it now uses plain
+    # ffmpeg), but that is still a ~1GiB closure on every host for a tool
+    # that's only occasionally needed. Run it with `nix run .#compress-video`.
     # compress-video
   ];
 

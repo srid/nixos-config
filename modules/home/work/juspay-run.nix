@@ -1,13 +1,10 @@
 # `juspay-run` over the jumphost SOCKS5. Home-manager so it works on zest
 # (darwin) as well as the Linux hosts that import juspay.nix.
-{ config, pkgs, lib, ... }:
+{ config, flake, pkgs, lib, ... }:
 
 let
   socksPort = config.programs.jumphost.socks5Proxy.port;
-  # Hostname `pu` is not reachable through the jumphost SOCKS. Same pin as
-  # modules/nixos/linux/devbox.nix; xyne-boxes defaults PU_HOST to `pu`.
-  # https://github.com/juspay/xyne-boxes/pull/14#issuecomment-4918563982
-  puHost = "10.10.68.56";
+  inherit (import (flake.inputs.self + /modules/work/pu.nix)) proxyEnv;
   # netcat-openbsd is broken on Darwin; Apple nc speaks the same -X 5 -x.
   socksNc =
     if pkgs.stdenv.hostPlatform.isDarwin then "/usr/bin/nc"
@@ -51,10 +48,7 @@ in
         fi
         exit 1
       fi
-      export ALL_PROXY=socks5://127.0.0.1:${toString socksPort}
-      export HTTPS_PROXY=socks5://127.0.0.1:${toString socksPort}
-      export HTTP_PROXY=socks5://127.0.0.1:${toString socksPort}
-      export PU_HOST=${puHost}
+      ${proxyEnv socksPort}
       # Apple /usr/bin/ssh is SIP-protected and ignores DYLD_INSERT_LIBRARIES.
       # Nix OpenSSH is the one proxychains can actually hook.
       export PATH="${lib.getBin pkgs.openssh}/bin:$PATH"

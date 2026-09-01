@@ -1,4 +1,4 @@
-{ config, flake, lib, pkgs, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -7,23 +7,11 @@ let
 in
 {
   nixos-unified.sshTarget = "srid@naiveintent";
-  nixos-unified.localPrivilegeMode = "sudo-nixos-rebuild";
-
-  security.sudo.extraRules = [
-    {
-      users = [ flake.config.me.username ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild switch *";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
 
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    (self + /modules/nixos/linux/my-workstation.nix)
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
     (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
@@ -32,16 +20,8 @@ in
     (self + /modules/nixos/linux/kill-audit.nix)
   ];
 
-  users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
-    "${homeMod}/cli/odu.nix"
-    "${homeMod}/cli/atuin.nix"
-    "${homeMod}/claude-code"
-    # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
-    "${homeMod}/work/juspay.nix"
-    # Juspay opencode config (juspay-ai) + llm-agents package
-    "${homeMod}/work/opencode.nix"
     # Juspay pi (same as nix run github:juspay/AI#pi-juspay-oneclick)
     "${homeMod}/work/pi.nix"
     # myolai still serves the Vault outlines; this is the olai repo's own docs.
@@ -53,43 +33,19 @@ in
         push = "auto";
       };
     })
-    "${homeMod}/nix/gc.nix"
   ];
-
-  nix.settings = {
-    sandbox = "relaxed";
-    extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
-  };
-  # GC: system generations via modules/nixos/linux/gc.nix (root-owned);
-  # user profile via home-manager (modules/home/nix/gc.nix).
 
   zramSwap.enable = true;
   swapDevices = [{
     device = "/var/lib/swapfile";
-    size = 64 * 1024; # 32GB in megabytes
+    size = 64 * 1024; # 64GB in megabytes
   }];
 
-  services.openssh.enable = true;
-  services.tailscale.enable = true;
-  # tailscaled installs its rules via iptables-nft, which live in a different
-  # table from the nftables firewall that incus requires. Adding tailscale0 here
-  # gets it into the nftables trusted-interfaces set too.
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-    7692
-  ];
-
-  programs.nix-ld.enable = true; # for claude code
+  networking.firewall.allowedTCPPorts = [ 7692 ];
 
   # HACK: system package so kolu MCP works on remote hosts (PATH / nix-ld), not the
   # full services.kolu user service (see modules/home/services/kolu.nix on pureintent).
   environment.systemPackages = [
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
-
-  # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
-  # https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.services.NetworkManager-wait-online.enable = false;
 }

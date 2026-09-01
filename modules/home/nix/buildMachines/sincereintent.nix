@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   # Configure remote building to sincereintent (macOS builder)
   nix.buildMachines = [
@@ -14,8 +14,7 @@
       supportedFeatures = [ "benchmark" "big-parallel" ];
       mandatoryFeatures = [ ];
 
-      # We need this!
-      sshKey = "/home/srid/.ssh/nix-remote-builder";
+      sshKey = "${config.home.homeDirectory}/.ssh/nix-remote-builder";
 
       # This too!
       # Run on the remote machine:

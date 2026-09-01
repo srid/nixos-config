@@ -1,4 +1,4 @@
-{ config, flake, lib, ... }:
+{ flake, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -12,23 +12,11 @@ in
 {
   nixos-unified.sshTarget = "srid@pureintent";
   # nixos-unified.sshTarget = "srid@192.168.2.134";
-  nixos-unified.localPrivilegeMode = "sudo-nixos-rebuild";
-
-  security.sudo.extraRules = [
-    {
-      users = [ flake.config.me.username ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild switch *";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
 
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    (self + /modules/nixos/linux/my-workstation.nix)
     (self + /modules/nixos/linux/juspay-run.nix)
     ./kolu-dev.nix
     (self + /modules/nixos/linux/beszel.nix)
@@ -37,15 +25,9 @@ in
     (self + /modules/nixos/linux/atuin.nix)
   ];
 
-  users.users.${flake.config.me.username}.linger = true;
   home-manager.sharedModules = [
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
-    "${homeMod}/cli/odu.nix"
-    "${homeMod}/cli/atuin.nix"
-    "${homeMod}/claude-code"
-    "${homeMod}/work/juspay.nix"
-    "${homeMod}/work/opencode.nix"
     "${homeMod}/services/kolu.nix"
     "${homeMod}/services/drishti"
     {
@@ -66,16 +48,7 @@ in
     # Remote builders
     "${homeMod}/nix/buildMachines"
     "${homeMod}/nix/buildMachines/sincereintent.nix"
-
-    "${homeMod}/nix/gc.nix"
   ];
-
-  nix.settings = {
-    sandbox = "relaxed";
-    extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
-  };
-  # GC: system generations via modules/nixos/linux/gc.nix (root-owned);
-  # user profile via home-manager (modules/home/nix/gc.nix).
 
   # Prefer compressed in-RAM swap so page faults under build + Claude fleet
   # load become decompression instead of QLC disk I/O thrashing.
@@ -88,20 +61,6 @@ in
   # DRAM-less QLC drive is what stalls the box; better to OOM-kill the runaway
   # process (earlyoom below) than thrash.
   swapDevices = lib.mkForce [ ];
-
-  services.openssh.enable = true;
-  services.tailscale.enable = true;
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
-
-  programs.nix-ld.enable = true; # for vscode server
-
-  # Workaround the annoying `Failed to start Network Manager Wait Online` error on switch.
-  # https://github.com/NixOS/nixpkgs/issues/180175
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Workaround `nixos-rebuild switch` hanging at "reloading the following units:
   # dbus-broker.service". The reload step stalls (broker has long-lived clients

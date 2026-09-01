@@ -1,40 +1,28 @@
+# Kill whatever is listening on the given port(s).
 # https://x.com/sridca/status/1861875950897578113
-{ writers, haskellPackages, coreutils, jc, lsof, ... }:
+{ writeShellApplication, lsof, ... }:
 
-writers.writeHaskellBin "fuckport"
-{
-  libraries = with haskellPackages; [
-    shh
-    aeson
-  ];
-} ''
-  {-# LANGUAGE TemplateHaskell #-}
-  {-# LANGUAGE DerivingStrategies #-}
-  {-# LANGUAGE DeriveAnyClass #-}
-  import Shh
-  import System.Environment
-  import Data.Aeson
-  import Data.Maybe
-  import GHC.Generics
-  import Control.Monad
-
-  loadFromBins ["${lsof}", "${coreutils}", "${jc}"]
-
-  data LsofRow = LsofRow
-    { command :: String
-    , pid :: Int
-    , user :: String
-    }
-    deriving stock (Generic, Show)
-    deriving anyclass (FromJSON)
-
-  main :: IO ()
-  main = do
-    ports <- getArgs
-    forM_ ports $ \port -> do
-      s <- lsof "-i" (":" <> port) |> jc "--lsof" |> capture
-      let v = fromJust $ decode @[LsofRow] s
-      forM_ v $ \r -> do
-        putStrLn $ "Killing " <> show (pid r) <> " (" <> command r <> ") on port " <> port
-        kill ["-KILL", show (pid r)]
-''
+writeShellApplication {
+  name = "fuckport";
+  meta.description = "Kill the process(es) listening on the given port(s)";
+  runtimeInputs = [ lsof ];
+  text = ''
+    for port in "$@"; do
+      pid=""
+      # -F pc emits one "p<pid>" line and one "c<command>" line per process,
+      # so we get the name without shelling out to ps. lsof exits non-zero
+      # when nothing is listening, which is not an error for us.
+      while read -r line; do
+        case "$line" in
+          p*) pid="''${line#p}" ;;
+          c*)
+            [ -n "$pid" ] || continue
+            echo "Killing $pid (''${line#c}) on port $port"
+            kill -KILL "$pid"
+            pid=""
+            ;;
+        esac
+      done < <(lsof -F pc -i ":$port" || true)
+    done
+  '';
+}

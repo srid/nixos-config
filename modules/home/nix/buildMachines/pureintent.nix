@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   # Configure remote building to pureintent (NixOS x86_64-linux builder)
   nix.buildMachines = [
@@ -13,7 +13,7 @@
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
       mandatoryFeatures = [ ];
 
-      sshKey = "/Users/srid/.ssh/nix-remote-builder";
+      sshKey = "${config.home.homeDirectory}/.ssh/nix-remote-builder";
 
       # Run on the remote machine:
       # , base64 -w0 /etc/ssh/ssh_host_ed25519_key.pub
