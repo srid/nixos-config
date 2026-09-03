@@ -21,6 +21,6 @@ in
     port = 7733;
     commit = "auto";
     push = "auto";
-    plugins = [ ];
+    plugins = [ "claude" ];
   };
 }
