@@ -76,8 +76,14 @@ kolu branch="":
     just _kolu-update
     just _kolu-after-update
 
+# Isolate fetcher cache: a warm git clone of kolu records the full-tree
+# NAR hash, but github: consumers unpack the export-ignore tarball.
 _kolu-update:
-    nix flake update kolu drishti olai
+    #!/usr/bin/env bash
+    set -euo pipefail
+    cache=$(mktemp -d)
+    trap 'rm -rf "$cache"' EXIT
+    XDG_CACHE_HOME="$cache" nix flake update kolu drishti olai
 
 # Sequential: two `nix run .` evals in parallel race ~/.cache/nix/eval-cache
 # and can throw a NAR hash mismatch on the kolu input.

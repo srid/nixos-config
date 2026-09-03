@@ -54,6 +54,7 @@ in
     host = "127.0.0.1";
     commit = "auto";
     push = "auto";
+    plugins = [ "kolu" "odu" "xyne-spaces" ];
   };
 
   # Literal path: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR.
@@ -90,9 +91,20 @@ in
       PATH=${lib.escapeShellArg config.systemd.user.sessionVariables.PATH}
   '';
 
+  age.secrets."olai-spaces.env" = {
+    file = flake.inputs.self + /secrets/olai-spaces.env.age;
+    path = "${config.home.homeDirectory}/.config/agenix/olai-spaces.env";
+  };
+
   systemd.user.services.olai = {
     Unit.After = [ "agenix.service" ];
-    Service.EnvironmentFile = "${config.home.homeDirectory}/.config/agenix/olai-juspay.env";
+    # Two files: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR,
+    # and a single string would drop the JUSPAY_API_KEY file the module
+    # does not know about.
+    Service.EnvironmentFile = [
+      "${config.home.homeDirectory}/.config/agenix/olai-juspay.env"
+      config.age.secrets."olai-spaces.env".path
+    ];
   };
 
   age.secrets."oauth2-proxy.env" = {

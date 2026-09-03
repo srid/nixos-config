@@ -25,4 +25,5 @@ in
   "beszel-agent-key.age".publicKeys = users ++ systems;
   "vira-github-webhook-secret.age".publicKeys = users ++ systems;
   "vira-github-private-key.age".publicKeys = users ++ systems;
+  "olai-spaces.env.age".publicKeys = users ++ systems ++ [ kolu-bot ];
 }

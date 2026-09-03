@@ -910,15 +910,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1787865633,
-        "narHash": "sha256-NpbsKA/tvMk4eMYJr4T8sndVohjeNNtlZAjzCahsS1A=",
+        "lastModified": 1788379714,
+        "narHash": "sha256-+r7kojJdOtWdG7FqBgviI9Gt/NeS7n1r+OKkze35ito=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "39206d1809c4ffcdb006d82a9efd105909bcccbd",
+        "rev": "117dbf0b7a9975b5d03c0d2ce8b2f899c7b66768",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "live-bundle",
         "repo": "kolu",
         "type": "github"
       }
@@ -1290,16 +1291,16 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1788211585,
-        "narHash": "sha256-QoIjCuYrbzYc6I9WYOER6KPxa947CUfzjxV7hRVlVNU=",
+        "lastModified": 1788440527,
+        "narHash": "sha256-MkDK0cqRyHqmFSF1nJLszHN6iYBn5ApaDDlWT7vvjjM=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "ecff39c40035e9417649e803eac06af352338c28",
+        "rev": "74a9e8fa9c2890aeffccb977a960206b290cabc5",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "second-doorbell",
+        "ref": "agents-as-plugins",
         "repo": "olai",
         "type": "github"
       }
