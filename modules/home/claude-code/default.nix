@@ -20,6 +20,10 @@
         # CLAUDE_CODE_NO_FLICKER = "1";
         # CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING = "1";
         CLAUDE_CODE_DISABLE_AUTO_MEMORY = "1";
+        # Stop auto-mode from steering file work through Bash (sed/grep/heredoc)
+        # instead of Read/Grep/Write/Edit.
+        # https://github.com/anthropics/claude-code/issues/19649#issuecomment-5424255467
+        CLAUDE_CODE_THRIFTY_SONIC = "false";
       };
       # Stop Claude from crawling /nix (the store is huge and ripgrep/find
       # over it wedges sessions).
