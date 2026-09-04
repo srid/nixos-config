@@ -45,34 +45,38 @@ update:
 # Service flakes
 # --------------------------------------------------------------------------------------------------
 
-# Update Kolu/Drishti/olai, then activate this host and deploy to pureintent.
-# Run on naiveintent. Optional branch: `just kolu feat/foo` rewrites flake.nix.
-[group('services')]
-kolu branch="":
+# Rewrite `INPUT.url = "github:juspay/INPUT[/ref]";` when BRANCH is set.
+_maybe-set-flake-input input branch="":
     #!/usr/bin/env bash
     set -euo pipefail
-    if [ -n "{{ branch }}" ]; then
-      echo ">>> kolu branch: {{ branch }}"
-      nix run --inputs-from . nixpkgs#python3 -- -c '
+    if [ -z "{{ branch }}" ]; then
+      echo ">>> {{ input }} branch: (unchanged; flake lock update only)"
+      exit 0
+    fi
+    echo ">>> {{ input }} branch: {{ branch }}"
+    nix run --inputs-from . nixpkgs#python3 -- -c '
     import pathlib, re, sys
-    branch = sys.argv[1]
+    name, branch = sys.argv[1], sys.argv[2]
     path = pathlib.Path("flake.nix")
     text = path.read_text()
-    new = f"kolu.url = \"github:juspay/kolu/{branch}\";"
+    new = f"{name}.url = \"github:juspay/{name}/{branch}\";"
     updated, n = re.subn(
-        r"kolu\.url = \"github:juspay/kolu[^\"]*\";",
+        rf"{re.escape(name)}\.url = \"github:juspay/{re.escape(name)}[^\"]*\";",
         new,
         text,
         count=1,
     )
     if n != 1:
-        sys.exit("error: could not find unique kolu.url in flake.nix")
+        sys.exit(f"error: could not find unique {name}.url in flake.nix")
     path.write_text(updated)
     print(f"    flake.nix → {new}")
-    ' "{{ branch }}"
-    else
-      echo ">>> kolu branch: (unchanged; flake lock update only)"
-    fi
+    ' "{{ input }}" "{{ branch }}"
+
+# Update Kolu/Drishti/olai, then activate this host and deploy to pureintent.
+# Run on naiveintent. Optional branch: `just kolu feat/foo` rewrites flake.nix.
+[group('services')]
+kolu branch="":
+    just _maybe-set-flake-input kolu "{{ branch }}"
     just _kolu-update
     just _kolu-after-update
 
@@ -97,9 +101,11 @@ _kolu-activate-local:
 
 # Update olai, then activate this host and deploy the myolai container in parallel.
 # `sudo git status` refreshes the sudo timestamp for incus/activate.
+# Optional branch: `just olai feat/foo` rewrites flake.nix.
 [group('services')]
-olai:
+olai branch="":
     sudo git status
+    just _maybe-set-flake-input olai "{{ branch }}"
     nix flake update olai
     just _olai-after-update
 
