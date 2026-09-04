@@ -10,7 +10,6 @@
 
       x86_64-linux = [
         "kolu-ci-3"
-        "kolu-ci-4"
         "kolu-ci-5"
         "kolu-ci-6"
         "kolu-ci-7"

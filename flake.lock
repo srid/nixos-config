@@ -305,11 +305,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1787852977,
-        "narHash": "sha256-D0GJcAJSN/crW6fSrKhlQHcTFHSGRvfFHlk+aHc2yQE=",
+        "lastModified": 1788185787,
+        "narHash": "sha256-CAH0X122Q3T/BZqRwsJ1dPgjqsKZc0tPv30Y39GJiu8=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "fdbd62afe1cdfdcea8b1e0d2d15d0eb70ba56ad6",
+        "rev": "82242d8adb2026c147d88ad144c7d442a9da6820",
         "type": "github"
       },
       "original": {
@@ -910,16 +910,15 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1788379714,
-        "narHash": "sha256-+r7kojJdOtWdG7FqBgviI9Gt/NeS7n1r+OKkze35ito=",
+        "lastModified": 1788449378,
+        "narHash": "sha256-Yk8qNW0JwTpXnJupNV3nw+JJG0IRwcn6hsJAUqBeXU8=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "117dbf0b7a9975b5d03c0d2ce8b2f899c7b66768",
+        "rev": "e2d484659526c53249267b05a8864473ca72fbf3",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "live-bundle",
         "repo": "kolu",
         "type": "github"
       }
@@ -1291,16 +1290,15 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1788440527,
-        "narHash": "sha256-MkDK0cqRyHqmFSF1nJLszHN6iYBn5ApaDDlWT7vvjjM=",
+        "lastModified": 1788548185,
+        "narHash": "sha256-FkSnZt8jq8toaeVAerGVRtPq7EyggR87D9zm8J4eX00=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "74a9e8fa9c2890aeffccb977a960206b290cabc5",
+        "rev": "7cb3b12e2c293d73211118f866b230cced346894",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "agents-as-plugins",
         "repo": "olai",
         "type": "github"
       }
@@ -1753,15 +1751,16 @@
         "step-linux-x64": "step-linux-x64"
       },
       "locked": {
-        "lastModified": 1787300291,
-        "narHash": "sha256-wB+AP0ZKp3+IhLrMib3uNq54zuGV7E7WSzjpzFTYL/w=",
+        "lastModified": 1788467149,
+        "narHash": "sha256-SBFI2dIDE6r+cSlOk3HBUqrnTsZE26Y9ZA5TIX6KjV8=",
         "owner": "juspay",
         "repo": "xyne-boxes",
-        "rev": "fa42bac926e28aac64d5241caac18b3560445122",
+        "rev": "24e4ddc7070f9e223e439d26d502c03a30963f9a",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "list-refresh-ssh-config",
         "repo": "xyne-boxes",
         "type": "github"
       }

@@ -54,7 +54,7 @@ in
     host = "127.0.0.1";
     commit = "auto";
     push = "auto";
-    plugins = [ "kolu" "odu" "xyne-spaces" ];
+    plugins = [ "kolu" "odu" "xyne-spaces" "chat" "pi" "opencode" ];
   };
 
   # Literal path: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR.

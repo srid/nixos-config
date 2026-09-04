@@ -34,9 +34,9 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/live-bundle";
+    kolu.url = "github:juspay/kolu";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/agents-as-plugins";
+    olai.url = "github:juspay/olai";
 
     # Juspay's AI tooling repo. OpenCode uses homeModules.opencode (config
     # only); pi has no HM module, so we take packages.pi-juspay-oneclick.
@@ -44,7 +44,7 @@
     juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
     juspay-ai.inputs.llm-agents.follows = "llm-agents";
 
-    xyne-boxes.url = "github:juspay/xyne-boxes";
+    xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
 
     # Source for opencode (see modules/home/work/opencode.nix).
