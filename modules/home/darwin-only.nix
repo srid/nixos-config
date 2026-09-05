@@ -7,7 +7,9 @@
 
   # macOS defaults to 256 FDs; Nix tarball-cache walks every file in a
   # github: flake input and aborts on large trees (olai, kolu).
-  programs.zsh.initContent = lib.mkAfter ''
+  # envExtra (.zshenv) so `ssh zest nix …` gets it; initContent is zshrc
+  # and is skipped for non-interactive SSH commands.
+  programs.zsh.envExtra = lib.mkAfter ''
     if (( $(ulimit -n) < 10240 )); then
       ulimit -n 65536 2>/dev/null || ulimit -n 10240
     fi
