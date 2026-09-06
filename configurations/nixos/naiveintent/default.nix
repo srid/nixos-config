@@ -31,7 +31,7 @@ in
         enable = true;
         dataDir = "${config.home.homeDirectory}/code/oss.olai";
         push = "auto";
-        plugins = [ "claude" "codex" "chat" "kolu" "odu" ];
+        extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
       };
     })
   ];
