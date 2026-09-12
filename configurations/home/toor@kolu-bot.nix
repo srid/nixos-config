@@ -52,9 +52,9 @@ in
     enable = true;
     dataDir = "${config.home.homeDirectory}/nix-team-olai";
     host = "127.0.0.1";
-    commit = "auto";
-    push = "auto";
-    extraPlugins = [ "kolu" "odu" "xyne-spaces" "chat" "pi" "opencode" ];
+    # commit = "auto";
+    # push = "auto";
+    # extraPlugins = [ "kolu" "odu" "xyne-spaces" "chat" "pi" "opencode" ];
   };
 
   # Literal path: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR.
@@ -115,6 +115,7 @@ in
   home.packages = [
     pkgs.caddy
     pkgs.oauth2-proxy
+    pkgs.python3
     flake.inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 

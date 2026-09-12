@@ -53,7 +53,7 @@ in
       (self + /modules/home/editors/neovim)
       ./olai.nix
     ];
-    home.packages = [ pkgs.uv ];
+    home.packages = [ pkgs.uv pkgs.python3 ];
     home.stateVersion = "25.11";
   };
 

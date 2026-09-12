@@ -1,7 +1,7 @@
 # This machine uses Omarchy
 #
 # So we consciously pick what we need
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -27,4 +27,6 @@ in
 
   home.username = "srid";
   home.stateVersion = "25.05";
+
+  home.packages = [ pkgs.python3 ];
 }

@@ -36,7 +36,7 @@
 
     kolu.url = "github:juspay/kolu/fix/palette-key-collisions";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/master";
+    olai.url = "github:juspay/olai/reminders";
 
     # Juspay's AI tooling repo. OpenCode uses homeModules.opencode (config
     # only); pi has no HM module, so we take packages.pi-juspay-oneclick.

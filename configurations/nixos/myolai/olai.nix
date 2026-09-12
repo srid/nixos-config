@@ -19,8 +19,8 @@ in
     host = "127.0.0.1";
     # Free of common tool ports.
     port = 7733;
-    commit = "auto";
-    push = "auto";
-    extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
+    # commit = "auto";
+    # push = "auto";
+    # extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
   };
 }

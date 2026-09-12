@@ -30,8 +30,8 @@ in
       services.olai = {
         enable = true;
         dataDir = "${config.home.homeDirectory}/code/oss.olai";
-        push = "auto";
-        extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
+        # push = "auto";
+        # extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
       };
     })
   ];
