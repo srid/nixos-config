@@ -305,11 +305,11 @@
         "bun2nix": "bun2nix"
       },
       "locked": {
-        "lastModified": 1788620933,
-        "narHash": "sha256-KlnbGAEOwSP21N8P3SAoKSPVqShwg22H8w1OkvKdv1U=",
+        "lastModified": 1788728546,
+        "narHash": "sha256-lZY503ajmOdI9U+7v4jMQ8Y1FTwqofmMm2aCW14rDXI=",
         "owner": "srid",
         "repo": "drishti",
-        "rev": "98d56ff858ee10a7914a044d0fdb0cca87907c0f",
+        "rev": "5719a89ac6aaf52863035b469fe98c6f8cff2c6c",
         "type": "github"
       },
       "original": {
@@ -910,16 +910,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1788640471,
-        "narHash": "sha256-5TT1tdk5EsInFPzlSA7yxeoCyY7qPyo1i2GahFQXg+0=",
+        "lastModified": 1789331507,
+        "narHash": "sha256-b9cssLLv642W1RNpCGjOtKy9pDYYj7iEgIQXoYYg9Ek=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "7815b8c548dfc5140d2f222e58be743e2771e3b2",
+        "rev": "6c891932a8f2a50492a5833c58c06d4d8a7d347b",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "fix/palette-key-collisions",
+        "ref": "master",
         "repo": "kolu",
         "type": "github"
       }
@@ -1291,16 +1291,16 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1789156202,
-        "narHash": "sha256-Ng5onCJLD1+iJr+KQ/IQY36FWEKGwECMmhoHb1VpNw0=",
+        "lastModified": 1789391326,
+        "narHash": "sha256-veHgFQ8VveNLvtLkG8DdJjmpx3zLSW4fOvdn40wH5z4=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "3e980234620a2f115274236eb768d84a5350af9e",
+        "rev": "169063a8d3a9b28af8f25f604f5c86cc125f0179",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "reminders",
+        "ref": "black-branch",
         "repo": "olai",
         "type": "github"
       }

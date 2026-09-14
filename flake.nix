@@ -34,9 +34,9 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/fix/palette-key-collisions";
+    kolu.url = "github:juspay/kolu/master";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/reminders";
+    olai.url = "github:juspay/olai/black-branch";
 
     # Juspay's AI tooling repo. OpenCode uses homeModules.opencode (config
     # only); pi has no HM module, so we take packages.pi-juspay-oneclick.
