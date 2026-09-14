@@ -2,8 +2,7 @@
 # upstream Home Manager module. Binary is `omp`.
 #
 # Wired to Juspay's LiteLLM gateway using the same model catalog juspay/AI
-# renders for pi/opencode. Default model matches opencode.nix; CLI --model
-# still overrides. JUSPAY_API_KEY comes from ./opencode.nix.
+# renders for pi/opencode. JUSPAY_API_KEY comes from ./opencode.nix.
 
 { flake, pkgs, lib, ... }:
 let
@@ -29,13 +28,8 @@ in
             --replace-fail 'from "chalk"' 'from "@oh-my-pi/pi-utils/chalk"'
         '';
       });
-    # Copied to ~/.omp/agent/config.yml on every switch, so runtime
-    # /settings changes are reset then.
-    settings = {
-      modelRoles.default = "litellm/kimi-k3";
-      # Same vendored skills pi-juspay-oneclick passed via --skill.
-      skills.customDirectories = [ "${juspayAI}/.opencode/skills" ];
-    };
+    # Leave settings unset: OMP owns config.yml so runtime preferences
+    # survive Home Manager activation.
   };
 
   # Read-only for omp (it only writes config.yml), so a store symlink is fine.
