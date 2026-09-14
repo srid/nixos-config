@@ -24,6 +24,8 @@
         # instead of Read/Grep/Write/Edit.
         # https://github.com/anthropics/claude-code/issues/19649#issuecomment-5424255467
         CLAUDE_CODE_THRIFTY_SONIC = "false";
+        # Run subagents on Opus.
+        CLAUDE_CODE_SUBAGENT_MODEL = "opus";
       };
       # Stop Claude from crawling /nix (the store is huge and ripgrep/find
       # over it wedges sessions).
