@@ -28,27 +28,34 @@ init name:
 deploy name:
     #!/usr/bin/env bash
     set -euo pipefail
+    host=$(nix eval --raw .#nixosConfigurations.{{ name }}.config.networking.hostName)
+    echo ">>> deploying {{ name }} (networking.hostName=$host)"
     toplevel=$(nix build --no-link --print-out-paths \
       .#nixosConfigurations.{{ name }}.config.system.build.toplevel)
+    echo ">>> toplevel $toplevel"
     sudo nix copy --to 'file:///var/cache/incus-nix?compression=zstd' "$toplevel"
     sudo incus exec {{ name }} -- nix --extra-experimental-features nix-command \
       copy --no-check-sigs --from file:///host-nix-cache "$toplevel"
     sudo incus exec {{ name }} -- nix-env -p /nix/var/nix/profiles/system --set "$toplevel"
     sudo incus exec {{ name }} -- "$toplevel/bin/switch-to-configuration" switch
+    # switch writes /etc/hostname but does not sethostname(2) in a container.
+    sudo incus exec {{ name }} -- hostnamectl set-hostname "$host" || true
 
 # Runs once; login and serve config persist in the container's
-# /var/lib/tailscale. The served port is the container's declared
-# `incus.servePort` (see guest.nix).
-# Join <name> to the tailnet (browser auth) and start tailscale serve.
+# /var/lib/tailscale. If the container sets `incus.servePort`, also
+# start `tailscale serve` (see guest.nix).
+# Join <name> to the tailnet (browser auth); serve if a port is set.
 tailscale name:
     #!/usr/bin/env bash
     set -euo pipefail
-    port=$(nix eval --raw --apply toString .#nixosConfigurations.{{ name }}.config.incus.servePort)
-    [ -n "$port" ] || { echo "{{ name }} does not set incus.servePort"; exit 1; }
+    port=$(nix eval --raw --apply 'p: if p == null then "" else toString p' \
+      .#nixosConfigurations.{{ name }}.config.incus.servePort)
     # --hostname pins the tailnet node name: the kernel hostname can
     # still be the image's ("nixos") on first login after deploy.
     sudo incus exec {{ name }} -- tailscale up --hostname={{ name }}
-    sudo incus exec {{ name }} -- tailscale serve --bg localhost:"$port"
+    if [ -n "$port" ]; then
+      sudo incus exec {{ name }} -- tailscale serve --bg localhost:"$port"
+    fi
 
 # Root shell inside <name>.
 shell name:
