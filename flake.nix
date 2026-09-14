@@ -34,19 +34,12 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/refactor/agent-registry";
+    kolu.url = "github:juspay/kolu/omp";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/master";
 
-    # Juspay's AI tooling repo. OpenCode uses homeModules.opencode (config
-    # only); pi (oh-my-pi) reuses its gateway model catalog.
+    # Juspay's AI tooling: OpenCode configuration and OMP model catalog.
     juspay-ai.url = "github:juspay/AI";
-    juspay-ai.inputs.nixpkgs.follows = "nixpkgs";
-    juspay-ai.inputs.llm-agents.follows = "llm-agents";
-
-    # oh-my-pi (omp), a fork of pi. See modules/home/work/pi.nix.
-    # No nixpkgs.follows: its bun/rust toolchain pins are tied to its own nixpkgs.
-    oh-my-pi.url = "github:can1357/oh-my-pi";
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
