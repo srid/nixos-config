@@ -19,6 +19,7 @@ activate host="":
       ulimit -n 65536 2>/dev/null || ulimit -n 10240 || true
     fi
     nix flake lock
+    local_host=$(hostname -s)
     if [ -z "{{ host }}" ]; then
         if [ -f ./configurations/home/$USER@$HOSTNAME.nix ]; then
             echo "Activating home env $USER@$HOSTNAME ..."
@@ -29,8 +30,20 @@ activate host="":
         fi
     else
         if [ -f ./configurations/home/$USER@{{ host }}.nix ]; then
-            echo "Deploying home env $USER@{{ host }} ..."
-            nix run . $USER@{{ host }}
+            if [ "{{ host }}" = "$local_host" ]; then
+                echo "Activating home env $USER@{{ host }} ..."
+                nix run . $USER@{{ host }}
+            else
+                echo "Deploying home env $USER@{{ host }} ..."
+                # nixos-unified's remote home path SSHes a bare `nix run` and
+                # never raises the fd limit. zest ssh sessions start at 256.
+                flake=$(nix flake metadata --json --no-write-lock-file . | jq -r .path)
+                ssh_target="$USER@{{ host }}"
+                echo ">>> nix copy $flake --to ssh-ng://$ssh_target"
+                nix --extra-experimental-features "nix-command flakes" copy "$flake" --to "ssh-ng://$ssh_target"
+                echo ">>> ssh $ssh_target (ulimit + activate $USER@{{ host }})"
+                ssh "$ssh_target" "ulimit -n 65536 2>/dev/null || ulimit -n 10240 || true; nix --extra-experimental-features 'nix-command flakes' run $flake#activate -- $USER@{{ host }}"
+            fi
         else
             echo "Deploying to {{ host }} ..."
             nix run . {{ host }}
@@ -99,7 +112,7 @@ _kolu-activate-pureintent:
 _kolu-activate-local:
     just activate
 
-# Update olai, then activate this host and deploy the myolai container in parallel.
+# Update olai, then deploy the myolai container, then activate this host.
 # `sudo git status` refreshes the sudo timestamp for incus/activate.
 # Optional branch: `just olai feat/foo` rewrites flake.nix.
 [group('services')]
@@ -109,8 +122,7 @@ olai branch="":
     nix flake update olai
     just _olai-after-update
 
-[parallel]
-_olai-after-update: _olai-activate-naiveintent _olai-deploy-myolai
+_olai-after-update: _olai-deploy-myolai _olai-activate-naiveintent
 
 _olai-activate-naiveintent:
     just activate naiveintent
