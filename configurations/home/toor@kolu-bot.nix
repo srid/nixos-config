@@ -27,7 +27,7 @@ in
   home.username = "toor";
   home.stateVersion = "24.05";
 
-  # opencode.nix exports JUSPAY_API_KEY via programs.bash.initExtra; that
+  # opencode.nix exports LITELLM_API_KEY via programs.bash.initExtra; that
   # only ships if HM manages bash (this host is standalone, not NixOS-HM).
   programs.bash.enable = true;
 
@@ -63,14 +63,17 @@ in
 
   # The age file is the raw key (bashrc `cat`s it). systemd EnvironmentFile
   # wants KEY=value, so write that next to the decrypt. Olai's ExecStart stays
-  # the module's.
+  # the module's. LITELLM_API_KEY is the name the gateway's own tooling reads
+  # (omp); the JUSPAY_API_KEY alias beside it is what the opencode config
+  # juspay-ai renders still asks for.
   systemd.user.services.agenix.Service.ExecStartPost =
     let
       envFile = "${config.home.homeDirectory}/.config/agenix/olai-juspay.env";
       script = pkgs.writeShellScript "olai-juspay-env" ''
         set -euo pipefail
         umask 077
-        ${pkgs.coreutils}/bin/printf 'JUSPAY_API_KEY=%s\n' "$(${pkgs.coreutils}/bin/tr -d '\n' < "$1")" > "$2"
+        key=$(${pkgs.coreutils}/bin/tr -d '\n' < "$1")
+        ${pkgs.coreutils}/bin/printf 'LITELLM_API_KEY=%s\nJUSPAY_API_KEY=%s\n' "$key" "$key" > "$2"
       '';
     in
     "${script} ${config.age.secrets.juspay-anthropic-api-key.path} ${envFile}";
@@ -99,7 +102,7 @@ in
   systemd.user.services.olai = {
     Unit.After = [ "agenix.service" ];
     # Two files: systemd EnvironmentFile does not expand $XDG_RUNTIME_DIR,
-    # and a single string would drop the JUSPAY_API_KEY file the module
+    # and a single string would drop the gateway-key file the module
     # does not know about.
     Service.EnvironmentFile = [
       "${config.home.homeDirectory}/.config/agenix/olai-juspay.env"

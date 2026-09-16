@@ -2,7 +2,7 @@
 # module exposed upstream by juspay/AI (homeModules.opencode).
 #
 # The config points opencode at Juspay's LLM gateway and authenticates with
-# JUSPAY_API_KEY, which we source from the agenix-managed secret and export
+# LITELLM_API_KEY, which we source from the agenix-managed secret and export
 # into interactive shells below.
 
 { flake, pkgs, config, ... }:
@@ -75,15 +75,23 @@ in
     flake.inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode
   ];
 
-  # The Juspay litellm provider authenticates with JUSPAY_API_KEY at runtime.
-  # Decrypt the secret via agenix and export it into interactive shells.
+  # The Juspay litellm provider authenticates with the gateway key at runtime.
+  # Decrypt the secret via agenix and export it into interactive shells under
+  # LITELLM_API_KEY — the name the gateway's own tooling reads (omp, and
+  # juspay/AI's wrapper).
   age.secrets.juspay-anthropic-api-key.file =
     flake.inputs.self + /secrets/juspay-anthropic-api-key.age;
 
+  # The opencode.json we render asks for the key as `{env:JUSPAY_API_KEY}`, in
+  # the juspay-ai revision pinned here; upstream dropped opencode entirely in
+  # bd9935c, so this alias goes with the next input bump — and `homeModules.opencode`
+  # with it.
   programs.zsh.initContent = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+    export LITELLM_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+    export JUSPAY_API_KEY="$LITELLM_API_KEY"
   '';
   programs.bash.initExtra = ''
-    export JUSPAY_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+    export LITELLM_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+    export JUSPAY_API_KEY="$LITELLM_API_KEY"
   '';
 }
