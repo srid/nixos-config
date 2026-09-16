@@ -59,8 +59,6 @@ in
     "${homeMod}/claude-code"
     # Jump host SOCKS5 (jumphost-nix) — required by pu / juspay-run
     "${homeMod}/work/juspay.nix"
-    # Juspay opencode config (juspay-ai) + llm-agents package
-    "${homeMod}/work/opencode.nix"
     "${homeMod}/nix/gc.nix"
   ];
 }

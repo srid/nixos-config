@@ -14,7 +14,6 @@ in
     "${homeMod}/claude-code"
 
     "${homeMod}/work/juspay.nix"
-    "${homeMod}/work/opencode.nix"
 
     "${homeMod}/services/obsidian.nix"
     "${homeMod}/services/drishti"
