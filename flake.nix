@@ -36,7 +36,7 @@
 
     kolu.url = "github:juspay/kolu/modest-hill";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/master";
+    olai.url = "github:juspay/olai/chat-plugin-mess";
 
     # Juspay's AI tooling: the omp wrapper (gateway + skills plugin). It keeps
     # omp's own ~/.omp/agent — sessions, auth and your config — and layers the
