@@ -34,24 +34,17 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/omp";
+    kolu.url = "github:juspay/kolu/modest-hill";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/master";
 
-    # Juspay's AI tooling: OpenCode configuration and OMP model catalog.
+    # Juspay's AI tooling: the omp wrapper (gateway + skills plugin). It keeps
+    # omp's own ~/.omp/agent — sessions, auth and your config — and layers the
+    # gateway URL, the key and the skills plugin (`omp -e`) on top.
     juspay-ai.url = "github:juspay/AI";
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Source for opencode (see modules/home/work/opencode.nix).
-    # NOTE: previously pinned to d9583b68 for claude-code 2.1.98 (newer
-    # versions are nerfed; https://x.com/Sthiven_R/status/2043992488109899849),
-    # but claude-code is no longer consumed from here (see
-    # modules/home/claude-code), so we now track latest.
-    llm-agents.url = "github:numtide/llm-agents.nix";
-    # Don't force nixpkgs.follows here: latest llm-agents needs a newer
-    # nixpkgs than ours (e.g. pnpm_11), so let it use its own pinned nixpkgs.
 
     # Emanote & Imako
     emanote.url = "github:srid/emanote";
