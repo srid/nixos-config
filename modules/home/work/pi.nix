@@ -1,28 +1,30 @@
-# Juspay's LiteLLM gateway for a manually installed Oh My Pi.
+# Oh My Pi on Juspay's gateway, from juspay/AI's own package.
 #
-# juspay/AI dropped the generated `omp models.yml` (coding-agents/omp/models-yaml.nix
-# is gone as of c7ce46c): OMP ships LiteLLM discovery and asks the gateway what it
-# serves, so the base URL plus the gateway key under the name OMP expects
-# (LITELLM_API_KEY) is the whole wiring. See "Oh My Pi and the LiteLLM gateway"
-# in juspay/AI's README.
+# The wrapper (coding-agents/omp/default.nix, PR #166) exports the gateway base
+# URL, prompts for LITELLM_API_KEY when it is unset, seeds ~/.omp/agent/config.yml
+# once, and loads the skills plugin with `omp -e`. It leaves omp's own agent
+# directory alone, so sessions, auth and the config we do not own persist.
 
-{ flake, config, ... }:
+{ flake, config, pkgs, ... }:
 let
   homeMod = flake.inputs.self + /modules/home;
-  catalog = import (flake.inputs.juspay-ai + /coding-agents/catalog.nix);
-  apiKeyFile = config.age.secrets.juspay-anthropic-api-key.path;
-  gatewayEnv = ''
-    export LITELLM_BASE_URL="${catalog.gatewayUrl}"
-    export LITELLM_API_KEY="$(cat "${apiKeyFile}")"
-  '';
 in
 {
   imports = [ "${homeMod}/agenix.nix" ];
 
-  # Same secret ./opencode.nix exports as LITELLM_API_KEY; both modules declare it.
+  home.packages = [
+    flake.inputs.juspay-ai.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
+
+  # The wrapper asks for the key when it is unset. Ours comes from agenix, under
+  # the name omp's own LiteLLM support reads.
   age.secrets.juspay-anthropic-api-key.file =
     flake.inputs.self + /secrets/juspay-anthropic-api-key.age;
 
-  programs.zsh.initContent = gatewayEnv;
-  programs.bash.initExtra = gatewayEnv;
+  programs.zsh.initContent = ''
+    export LITELLM_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
+  programs.bash.initExtra = ''
+    export LITELLM_API_KEY="$(cat "${config.age.secrets.juspay-anthropic-api-key.path}")"
+  '';
 }
