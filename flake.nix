@@ -34,13 +34,13 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/modest-hill";
+    kolu.url = "github:juspay/kolu";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/chat-plugin-mess";
+    olai.url = "github:juspay/olai/unique-town";
 
-    # Juspay's AI tooling: the omp wrapper (gateway + skills plugin). It keeps
-    # omp's own ~/.omp/agent — sessions, auth and your config — and layers the
-    # gateway URL, the key and the skills plugin (`omp -e`) on top.
+    # Juspay's AI tooling: OMP, Codex and Claude Code, carrying juspay/skills +
+    # kolu over Juspay's LiteLLM gateway. A single-profile distribution built on
+    # juspay/agent-distro; installed by modules/home/work/pi.nix.
     juspay-ai.url = "github:juspay/AI";
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";

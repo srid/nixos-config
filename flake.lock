@@ -43,6 +43,32 @@
         "type": "github"
       }
     },
+    "agent-distro": {
+      "inputs": {
+        "claude-code": "claude-code",
+        "codex-cli": "codex-cli",
+        "nixpkgs": [
+          "juspay-ai",
+          "agent-distro",
+          "oh-my-pi",
+          "nixpkgs"
+        ],
+        "oh-my-pi": "oh-my-pi"
+      },
+      "locked": {
+        "lastModified": 1789695342,
+        "narHash": "sha256-0XgujnzEAnRn+FNiW+5OV2jodKiyC5nZhtXBJKTIkKc=",
+        "owner": "juspay",
+        "repo": "agent-distro",
+        "rev": "c3eace26d7731e6a9b6c41876806932e296b2630",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "agent-distro",
+        "type": "github"
+      }
+    },
     "bun2nix": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -70,6 +96,7 @@
         "flake-parts": "flake-parts_7",
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "nixpkgs-darwin-x64"
         ],
@@ -95,6 +122,7 @@
         "flake-parts": "flake-parts_6",
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "nixpkgs"
         ],
@@ -168,11 +196,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1789607714,
-        "narHash": "sha256-Jay2MK0zBQP5DuTR+izZBobg7m93h0tKMXOYDZYW0xA=",
+        "lastModified": 1789686093,
+        "narHash": "sha256-sH5iKPrCFF6jDEaQjZwDnC7tD4jYtYHJn4gBoou2sZ0=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "96942598f50150e88f94bf01295aee593c440824",
+        "rev": "6407e4e63a2bddca88119f26322c7f2706aa896c",
         "type": "github"
       },
       "original": {
@@ -203,11 +231,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1788995571,
-        "narHash": "sha256-I58IVp7HfT3TTKZJ5kh7/Lttu9DnRZFC0qmvxnIvIj4=",
+        "lastModified": 1789692010,
+        "narHash": "sha256-701w5Fl6LqNTz4ISU5XUz6PeoTrgLqVyr9bXdl4tKwI=",
         "owner": "sadjow",
         "repo": "codex-cli-nix",
-        "rev": "33542c7e7139127a4bac1cbe0fac8c81a570410a",
+        "rev": "43f38448fbabf5c7edb2febf42011f74225694ee",
         "type": "github"
       },
       "original": {
@@ -565,6 +593,7 @@
       "inputs": {
         "nixpkgs-lib": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "bun2nix",
           "nixpkgs"
@@ -588,6 +617,7 @@
       "inputs": {
         "nixpkgs-lib": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "bun2nix-darwin-x64",
           "nixpkgs"
@@ -985,23 +1015,16 @@
     },
     "juspay-ai": {
       "inputs": {
-        "claude-code": "claude-code",
-        "codex-cli": "codex-cli",
+        "agent-distro": "agent-distro",
         "juspay-skills": "juspay-skills",
-        "kolu": "kolu",
-        "nixpkgs": [
-          "juspay-ai",
-          "oh-my-pi",
-          "nixpkgs"
-        ],
-        "oh-my-pi": "oh-my-pi"
+        "kolu": "kolu"
       },
       "locked": {
-        "lastModified": 1789681861,
-        "narHash": "sha256-mny7XX8CbzE4kWlU4LHpdjU9/8cle369+1wszL+n4EM=",
+        "lastModified": 1789734410,
+        "narHash": "sha256-3bu1cSP/QtfhfmsnwimsaR2PkEABCrGdc9JtWtEmzjo=",
         "owner": "juspay",
         "repo": "AI",
-        "rev": "57317ecbe29ee7f1d8adca1ff454b9748ab5348d",
+        "rev": "a40fcc7215ea97fcff968ee96df90569858320d6",
         "type": "github"
       },
       "original": {
@@ -1044,16 +1067,15 @@
     },
     "kolu_2": {
       "locked": {
-        "lastModified": 1789597303,
-        "narHash": "sha256-PYOSHKJxvVtXyuiE/9MGRB8YROZEPnp1gpeXTbfORDc=",
+        "lastModified": 1789671174,
+        "narHash": "sha256-r1mjSGdbQPS5qmrasS5CNkiw81qoTQOp/Eg+tFXcmJg=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "5c2188859a20a59afaadc0fd5af11246e4e458e6",
+        "rev": "c55e73851b7044ad928415b06c7b72767ce5cde7",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "modest-hill",
         "repo": "kolu",
         "type": "github"
       }
@@ -1111,6 +1133,7 @@
       "inputs": {
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "nixpkgs"
         ]
@@ -1406,11 +1429,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1788953386,
-        "narHash": "sha256-dIqD4NX3Uldk29CBqKt9dRdSxh/+Ba8lVPu2xEsLTJo=",
+        "lastModified": 1789370336,
+        "narHash": "sha256-6RSEDHIWQtesQKWSu5qRai8L2h4KgCgMEfJHstW99G4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "19a27817106f9449970edb3a398ab5349666466f",
+        "rev": "c7def046b9a883d46974757852106483d741586f",
         "type": "github"
       },
       "original": {
@@ -1478,16 +1501,16 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1789633504,
-        "narHash": "sha256-z07Nx7SUtdqcIc+Py5xwr6xZz4sDwply69dbhyTJ1L4=",
+        "lastModified": 1789684455,
+        "narHash": "sha256-p32S9awDdTK+HZt/bzB/DDSEQM1GV/ey5gevkZq1+PM=",
         "owner": "can1357",
         "repo": "oh-my-pi",
-        "rev": "1c0303b1f2ec515cbf4b44a9a49d68a029531aac",
+        "rev": "37273117021129e96bd05d8277b140ec3fd61990",
         "type": "github"
       },
       "original": {
         "owner": "can1357",
-        "ref": "v18.2.4",
+        "ref": "v18.2.5",
         "repo": "oh-my-pi",
         "type": "github"
       }
@@ -1497,16 +1520,16 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1789683790,
-        "narHash": "sha256-7P5bggUo2NoAgWDW4rvXOyDZ0L85Vct5YKOVfAhljR8=",
+        "lastModified": 1789924876,
+        "narHash": "sha256-Z+jQLh+4Lny/BVXiKS+M12nQbB6i0K3oN+ke8cJ+s4g=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "0c3b51d9ed2fe90b4e16130ac8f864da666de258",
+        "rev": "438b652d8ff1cdaa79511e7c7be691a17e1b2cc7",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "chat-plugin-mess",
+        "ref": "unique-town",
         "repo": "olai",
         "type": "github"
       }
@@ -1633,6 +1656,7 @@
       "inputs": {
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "nixpkgs"
         ]
@@ -1870,6 +1894,7 @@
       "inputs": {
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "bun2nix",
           "nixpkgs"
@@ -1893,6 +1918,7 @@
       "inputs": {
         "nixpkgs": [
           "juspay-ai",
+          "agent-distro",
           "oh-my-pi",
           "bun2nix-darwin-x64",
           "nixpkgs"
