@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    ./dell-xps-16.nix
     ./tailscale.nix
     (self + /modules/nixos/linux/gc.nix)
   ];

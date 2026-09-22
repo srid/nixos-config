@@ -6,6 +6,10 @@ fresh NixOS 26.05 installation with KDE Plasma 6.
 - Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
 - Preserves the installer's encrypted ext4 root, encrypted swap, and EFI partition.
 - Keeps the generated Intel microcode and NPU settings.
+- `dell-xps-16.nix` backports the upstream Intel CVS camera-driver GPIO fix
+  for Linux 7.2.7. Without it, the camera driver blocks all four speaker
+  amplifiers and no sound card appears ([upstream issue](https://github.com/thesofproject/sof/issues/11152)).
+  Remove the backport when the selected kernel includes the fix.
 - Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
   garbage collection, and zram.
 - Runs Kolu as a Home Manager service and enables Tailscale, with the official

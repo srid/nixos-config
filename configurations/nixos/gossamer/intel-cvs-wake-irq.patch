@@ -1,0 +1,104 @@
+
+Message-ID: <20260913133017.624919-1-junjie.cao@intel.com>
+Date: Sun, 13 Sep 2026 21:30:17 +0800
+From: Junjie Cao <junjie.cao@...el.com>
+To: Miguel Vadillo <miguel.vadillo@...el.com>,
+	Sakari Ailus <sakari.ailus@...ux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@...nel.org>
+Cc: Kate Hsuan <hpa@...hat.com>,
+	Thorsten Leemhuis <regressions@...mhuis.info>,
+	Spencer Bull <spencer@...rchy.org>,
+	"jan p . springer" <regnirpsj@...il.com>,
+	Antti Laakso <antti.laakso@...ux.intel.com>,
+	Mehdi Djait <mehdi.djait@...ux.intel.com>,
+	linux-media@...r.kernel.org,
+	linux-kernel@...r.kernel.org,
+	regressions@...ts.linux.dev,
+	stable@...r.kernel.org
+Subject: [PATCH v2] media: i2c: cvs: Get the wake IRQ without claiming the GPIO
+
+The wake line is only used as an IRQ source, yet the driver requests
+it with devm_gpiod_get(). On the Dell XPS 14 DA14260 (Panther Lake)
+that request lands on the pin the four CS35L57 amplifiers read their
+speaker ID from. Each amplifier's _CRS carries
+
+  GpioIo (Shared, PullNone, 0, 0, IoRestrictionInputOnly,
+          "\_SB.GPI1", 0, ResourceConsumer,,) {20}
+
+and INTC10E1 builds its _CRS at runtime from pad numbers kept in NVS:
+a GpioInt (Edge, ActiveLow, Shared) first, then an Exclusive
+output-only GpioIo for reset and two lines on the USB GPIO expander.
+The driver maps index 0 to "wake". While it holds the line, cs35l56
+fails and does not retry:
+
+  cs35l56 sdw:0:2:01fa:3557:01:2: error -EBUSY: Failed to get spk-id-gpios
+
+All four fail and no card is registered. Fedora 7.1.13 is the first
+Fedora kernel with the driver enabled; 7.1.12 on the same board
+creates the card, and 7.2.4 creates it again with intel_cvs
+blacklisted. Where ipu-bridge does not expose the CSI endpoints, CSI
+init returns -EPROBE_DEFER and every retry claims the line again for
+the length of the handshake, which is how 7.1 fails as well.
+
+Take the IRQ from the GpioInt entry with acpi_dev_gpio_irq_get_by(),
+as the I2C core does for client->irq; this also applies the trigger
+type from _CRS. The vendor driver in intel/vision-drivers does the
+same. The driver binds as a platform device too, hence the explicit
+lookup. A DKMS build of the patched driver on a DA14260 running
+7.2.4 binds with all four amplifiers probing and the camera working
+(third link).
+
+Fixes: 8e2b43d2c10b ("media: i2c: cvs: Add driver of Intel Computer Vision Sensing Controller(CVS)")
+Cc: stable@...r.kernel.org
+Reported-by: jan p. springer <regnirpsj@...il.com>
+Closes: https://bugzilla.redhat.com/show_bug.cgi?id=2529031
+Link: https://github.com/thesofproject/sof/issues/11152
+Link: https://github.com/omacom/omarchy-pkgs/pull/419
+Signed-off-by: Junjie Cao <junjie.cao@...el.com>
+---
+v2: decode the INTC10E1 _CRS from the reporter's acpidump; add the
+    blacklist confirmation and the tested DKMS build; Reported-by and
+    Closes. Code unchanged.
+v1: https://lore.kernel.org/r/20260908105717.496232-1-junjie.cao@intel.com
+
+ drivers/media/i2c/cvs/core.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/media/i2c/cvs/core.c b/drivers/media/i2c/cvs/core.c
+index d4a3b9c3bab1e..8d857bbd8ab51 100644
+--- a/drivers/media/i2c/cvs/core.c
++++ b/drivers/media/i2c/cvs/core.c
+@@ -725,8 +725,6 @@ static int cvs_core_probe(struct device *dev, struct i2c_client *i2c)
+ 	}
+ 
+ 	if (ctx->res == ICVS_FULLCAP) {
+-		struct gpio_desc *wake;
+-
+ 		ctx->rst = devm_gpiod_get(dev, "rst", GPIOD_OUT_HIGH);
+ 		if (IS_ERR(ctx->rst)) {
+ 			ret = dev_err_probe(dev, PTR_ERR(ctx->rst),
+@@ -734,14 +732,12 @@ static int cvs_core_probe(struct device *dev, struct i2c_client *i2c)
+ 			goto err_put_ipu;
+ 		}
+ 
+-		wake = devm_gpiod_get(dev, "wake", GPIOD_IN);
+-		if (IS_ERR(wake)) {
+-			ret = dev_err_probe(dev, PTR_ERR(wake),
+-					    "failed to get wake GPIO\n");
+-			goto err_put_ipu;
+-		}
+-
+-		ctx->irq = gpiod_to_irq(wake);
++		/*
++		 * Do not request the line: another device's _CRS may list
++		 * the same pin, and its driver would then fail with -EBUSY.
++		 */
++		ctx->irq = acpi_dev_gpio_irq_get_by(ACPI_COMPANION(dev),
++						    "wake", 0);
+ 		if (ctx->irq < 0) {
+ 			ret = dev_err_probe(dev, ctx->irq,
+ 					    "failed to get wake IRQ\n");
+-- 
+2.43.0
+
+
