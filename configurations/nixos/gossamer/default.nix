@@ -12,6 +12,7 @@ in
     self.nixosModules.default
     ./configuration.nix
     ./dell-xps-16.nix
+    ./input.nix
     ./tailscale.nix
     (self + /modules/nixos/linux/gc.nix)
   ];

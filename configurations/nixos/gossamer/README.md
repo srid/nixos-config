@@ -6,6 +6,8 @@ fresh NixOS 26.05 installation with KDE Plasma 6.
 - Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
 - Preserves the installer's encrypted ext4 root, encrypted swap, and EFI partition.
 - Keeps the generated Intel microcode and NPU settings.
+- `input.nix` makes Caps Lock an additional Ctrl and enables natural scrolling
+  for mice and touchpads, including KDE Wayland defaults.
 - `dell-xps-16.nix` backports the upstream Intel CVS camera-driver GPIO fix
   for Linux 7.2.7. Without it, the camera driver blocks all four speaker
   amplifiers and no sound card appears ([upstream issue](https://github.com/thesofproject/sof/issues/11152)).
