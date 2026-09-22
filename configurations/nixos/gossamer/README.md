@@ -17,6 +17,8 @@ fresh NixOS 26.05 installation with KDE Plasma 6.
   Kolu is available at `http://gossamer:7692` locally and over Tailscale MagicDNS,
   or at `http://100.94.142.87:7692` using this laptop's Tailscale IP. It listens
   on all IPv4 addresses; the firewall allows remote access only on `tailscale0`.
+  Tailscale Serve also provides `https://gossamer.rooster-blues.ts.net` privately
+  within the tailnet; Funnel is not enabled.
   Tailscale settings and the tray autostart live in `tailscale.nix`.
 
 For another laptop, generate your own `hardware-configuration.nix` and replace
