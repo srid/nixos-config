@@ -1,0 +1,27 @@
+# Gossamer — Dell XPS 16 (2026)
+
+Model reported by DMI: **XPS 16 DA16260**, Intel, x86_64. Imported from a
+fresh NixOS 26.05 installation with KDE Plasma 6.
+
+- Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
+- Preserves the installer's encrypted ext4 root, encrypted swap, and EFI partition.
+- Keeps the generated Intel microcode and NPU settings.
+- Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
+  garbage collection, and zram.
+
+For another laptop, generate your own `hardware-configuration.nix` and replace
+the encrypted swap UUID in `configuration.nix` too. These disk identifiers are
+specific to this installation. Keep `system.stateVersion` at your original
+installation's value, and review the repo's personal configuration before
+reusing it.
+
+Build from the repository root (the `path:` form includes untracked files):
+
+```sh
+nix --extra-experimental-features 'nix-command flakes' build \
+  path:.#nixosConfigurations.gossamer.config.system.build.toplevel --no-link
+```
+
+To activate, use `just activate gossamer` from the repository's Nix devShell.
+Building alone does not activate the configuration. Hardware behavior such as
+suspend, audio, Wi-Fi, and the NPU still needs testing after activation.
