@@ -15,9 +15,14 @@
     after = [ "tailscaled.service" "tailscaled-set.service" ];
     wants = [ "tailscaled.service" ];
     wantedBy = [ "multi-user.target" ];
+    # tailscaled can be active before its backend reaches Running. Keep
+    # retrying through startup/offline periods instead of failing until reboot.
+    startLimitIntervalSec = 0;
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      Restart = "on-failure";
+      RestartSec = "5s";
       ExecStart = "${pkgs.tailscale}/bin/tailscale serve --bg --https=443 http://127.0.0.1:7692";
       ExecStop = "${pkgs.tailscale}/bin/tailscale serve --https=443 off";
     };

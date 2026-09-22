@@ -28,6 +28,9 @@ in
     }
   ];
 
+  # Start Kolu's user service at boot, even before a desktop login.
+  users.users.${flake.config.me.username}.linger = true;
+
   environment.systemPackages = [
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
