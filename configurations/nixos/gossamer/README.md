@@ -8,6 +8,10 @@ fresh NixOS 26.05 installation with KDE Plasma 6.
 - Keeps the generated Intel microcode and NPU settings.
 - `input.nix` makes Caps Lock an additional Ctrl and enables natural scrolling
   for mice and touchpads, including KDE Wayland defaults.
+- `apple-studio-display.nix` enables Bolt and installs `asdbctl` with its udev
+  rules. Authorize/enroll the display with `boltctl` once, then use
+  `asdbctl get`, `asdbctl up`, or `asdbctl down` for brightness.
+  KDE shortcuts: **Meta+F1** dims it; **Meta+F2** brightens it.
 - `dell-xps-16.nix` backports the upstream Intel CVS camera-driver GPIO fix
   for Linux 7.2.7. Without it, the camera driver blocks all four speaker
   amplifiers and no sound card appears ([upstream issue](https://github.com/thesofproject/sof/issues/11152)).

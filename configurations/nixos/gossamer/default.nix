@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    ./apple-studio-display.nix
     ./dell-xps-16.nix
     ./input.nix
     ./tailscale.nix
