@@ -8,6 +8,12 @@ fresh NixOS 26.05 installation with KDE Plasma 6.
 - Keeps the generated Intel microcode and NPU settings.
 - Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
   garbage collection, and zram.
+- Runs Kolu as a Home Manager service and enables Tailscale, with the official
+  `tailscale systray` app starting automatically at KDE login.
+  Kolu is available at `http://gossamer:7692` locally and over Tailscale MagicDNS,
+  or at `http://100.94.142.87:7692` using this laptop's Tailscale IP. It listens
+  on all IPv4 addresses; the firewall allows remote access only on `tailscale0`.
+  Tailscale settings and the tray autostart live in `tailscale.nix`.
 
 For another laptop, generate your own `hardware-configuration.nix` and replace
 the encrypted swap UUID in `configuration.nix` too. These disk identifiers are
