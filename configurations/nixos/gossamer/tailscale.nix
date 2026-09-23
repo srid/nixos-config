@@ -37,7 +37,7 @@
         Name=Tailscale
         Exec=${pkgs.tailscale}/bin/tailscale systray
         Terminal=false
-        OnlyShowIn=KDE;
+        OnlyShowIn=KDE;niri;
       '';
     }
   ];
