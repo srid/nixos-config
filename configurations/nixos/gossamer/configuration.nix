@@ -57,7 +57,7 @@
     enable = true;
     polkitPolicyOwners = [ flake.config.me.username ];
   };
-  environment.systemPackages = with pkgs; [ neovim git google-chrome ];
+  environment.systemPackages = with pkgs; [ neovim git ];
 
   # Preserve the version from the initial installation.
   system.stateVersion = "26.05";

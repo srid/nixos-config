@@ -5,6 +5,10 @@
 - Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
 - Uses encrypted ext4 root, encrypted swap, and an EFI partition.
 - Enables Intel microcode and NPU support.
+- `camera.nix` uses Intel's IPU7 hardware image processor and OV08X40 sensor
+  tuning, with pinned HAL patches from Omarchy for the Linux 7.2 CVS bridge.
+  It exposes an upright 4K (3840×2160) V4L2 camera to browsers through
+  `v4l2-relayd`; the competing libcamera software ISP is disabled.
 - Uses `nixos-hardware`'s Intel graphics support with Xe and hardware video
   acceleration. Dell Adaptive charging adjusts battery charging to usage.
 - `input.nix` makes Caps Lock an additional Ctrl and enables natural scrolling

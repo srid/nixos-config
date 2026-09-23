@@ -16,6 +16,7 @@ in
     self.nixosModules.default
     ./configuration.nix
     ./apple-studio-display.nix
+    ./camera.nix
     ./dell-xps-16.nix
     ./input.nix
     ./tailscale.nix
