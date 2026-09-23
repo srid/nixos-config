@@ -19,6 +19,7 @@
   Remove the backport when the selected kernel includes the fix.
 - Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
   garbage collection, and zram.
+- Enables Bluetooth with KDE's Bluetooth controls and powers the adapter on at boot.
 - Runs Kolu as a Home Manager service and enables Tailscale, with the official
   `tailscale systray` app starting automatically at KDE login.
   Kolu is available at `http://gossamer:7692` locally and over Tailscale MagicDNS,

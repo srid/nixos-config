@@ -3,6 +3,11 @@
 
 {
   imports = [ flake.inputs.nixos-hardware.nixosModules.common-gpu-intel ];
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   hardware.intelgpu = {
     # Panther Lake uses Xe rather than the module's default i915 driver.
     driver = "xe";
