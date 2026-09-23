@@ -1,3 +1,29 @@
+{ pkgs, ... }:
+let
+  kdeWallpapers = pkgs.runCommand "kde-wallpaper-gallery" { nativeBuildInputs = [ pkgs.python3 ]; } ''
+    mkdir -p "$out"
+    python3 - "$out" <<'PY'
+    import re
+    import sys
+    from pathlib import Path
+
+    root = Path("${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers")
+    for theme in sorted(root.iterdir()):
+        for variant in ("images", "images_dark"):
+            candidates = []
+            for image in (theme / "contents" / variant).glob("*"):
+                size = re.fullmatch(r"(\d+)x(\d+)", image.stem)
+                if size and image.is_file():
+                    width, height = map(int, size.groups())
+                    # Prefer desktop aspect ratios, then the largest image.
+                    candidates.append((1 <= width / height <= 2, width * height, image))
+            if candidates:
+                image = max(candidates)[2]
+                suffix = "-dark" if variant == "images_dark" else ""
+                (Path(sys.argv[1]) / (theme.name + suffix + image.suffix)).symlink_to(image)
+    PY
+  '';
+in
 {
   programs.noctalia = {
     enable = true;
@@ -9,10 +35,22 @@
   };
 
   home-manager.sharedModules = [
-    {
+    ({ config, ... }: {
+      home.file."Pictures/Wallpapers/KDE".source = kdeWallpapers;
       xdg.configFile."noctalia/shell.toml".text = ''
         [shell]
         polkit_agent = true
+
+        [widget.clock]
+        format = "{:%a, %b %d · %H:%M}"
+
+        [wallpaper]
+        directory = "${config.home.homeDirectory}/Pictures/Wallpapers/KDE"
+
+        [wallpaper.automation]
+        enabled = true
+        interval_seconds = 21600
+        order = "random"
 
         [location]
         auto_locate = false
@@ -48,6 +86,6 @@
           XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
         }
       '';
-    }
+    })
   ];
 }

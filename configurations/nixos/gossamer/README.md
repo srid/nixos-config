@@ -47,6 +47,10 @@ and left-drag moves windows. Click a window to return to it.
 - **Screenshots:** press Print, select an area, then Space to capture or Esc to
   cancel. Files go to `~/Pictures/Screenshots/`. Without a Print key, run
   `niri msg action screenshot`.
+- **Wallpapers:** Noctalia's wallpaper picker browses the KDE collection in
+  `~/Pictures/Wallpapers/KDE`, with high-resolution light/dark variants, rotating
+  randomly every six hours. Open it
+  with `noctalia msg panel-toggle wallpaper`.
 - **Recording:** F9 opens Kooha, defaulting to MP4/H.264 at 60 fps
   (constant quality, CRF 17), with 192 kbps AAC audio when enabled. Captures retain
   their native resolution; higher resolution and frame rate mean larger files.
