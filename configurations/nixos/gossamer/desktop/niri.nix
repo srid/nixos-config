@@ -1,6 +1,9 @@
 { pkgs, lib, ... }:
 let
   input = import ./input-preferences.nix;
+  focusOrLaunch = pkgs.callPackage ./focus-or-launch.nix { };
+  myolaiAppId = "lpcledbkhajbdmohekpffaoodainfdfd";
+  koluAppId = "mjffbmcccchpeiihgnfodjiaiicfpljk";
 in
 {
   # Backport only shared-memory screencasting for Kooha onto released Niri.
@@ -71,11 +74,13 @@ in
           open-floating true
         }
         binds {
+          Ctrl+Alt+U { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "google-chrome" "${pkgs.google-chrome}/bin/google-chrome"; }
+          Ctrl+Alt+L { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "chrome-${myolaiAppId}-Default" "${pkgs.google-chrome}/bin/google-chrome" "--profile-directory=Default" "--app-id=${myolaiAppId}"; }
+          Ctrl+Alt+K { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "chrome-${koluAppId}-Default" "${pkgs.google-chrome}/bin/google-chrome" "--profile-directory=Default" "--app-id=${koluAppId}"; }
           Mod+Return { spawn "${pkgs.foot}/bin/foot"; }
           Mod+E { spawn "${pkgs.kdePackages.dolphin}/bin/dolphin"; }
           Mod+Q { close-window; }
           Mod+O { toggle-overview; }
-          MouseMiddle { toggle-overview; }
           Mod+Shift+Slash { show-hotkey-overlay; }
           Mod+Left { focus-column-left; }
           Mod+Right { focus-column-right; }

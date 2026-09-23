@@ -19,7 +19,11 @@ while hidden. A 4500 K night-light tint stays on all day.
 | --- | --- |
 | Meta+Space / Meta+S / Meta+Comma | Apps / controls / settings |
 | Meta+Enter / Meta+E | Terminal / files |
-| Meta+O or middle-click | Overview; replaces normal app middle-click actions |
+| Meta+O or top-left hot corner | Overview; hold the pointer in the corner for 250 ms |
+| Top-right hot corner | Focus Xyne Spaces, or launch it if closed; 250 ms delay |
+| Ctrl+Alt+U | Focus Google Chrome, or launch it if closed |
+| Ctrl+Alt+L | Focus the myolai PWA, or launch it if closed |
+| Ctrl+Alt+K | Focus the Kolu PWA, or launch it if closed |
 | Meta+arrows / Meta+Shift+arrows | Focus / move windows and columns |
 | Meta+PageUp/PageDown | Switch workspace; add Shift to move a column there |
 | Meta+Ctrl+Left/Right | Focus another monitor |

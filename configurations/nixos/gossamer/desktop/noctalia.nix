@@ -1,5 +1,7 @@
 { pkgs, ... }:
 let
+  focusOrLaunch = pkgs.callPackage ./focus-or-launch.nix { };
+  xyneSpacesAppId = "nehccadabpmiepmbehdpbccnlmgeodmk";
   kdeWallpapers = pkgs.runCommand "kde-wallpaper-gallery" { nativeBuildInputs = [ pkgs.python3 ]; } ''
     mkdir -p "$out"
     python3 - "$out" <<'PY'
@@ -52,6 +54,18 @@ in
         interval_seconds = 21600
         order = "random"
 
+        [hot_corners]
+        enabled = true
+        delay_ms = 250
+
+        [hot_corners.top_left]
+        action = "command"
+        command = "${pkgs.niri}/bin/niri msg action toggle-overview"
+
+        [hot_corners.top_right]
+        action = "command"
+        command = "${focusOrLaunch}/bin/niri-focus-or-launch chrome-${xyneSpacesAppId}-Default ${pkgs.google-chrome}/bin/google-chrome --profile-directory=Default --app-id=${xyneSpacesAppId}"
+
         [location]
         auto_locate = false
         address = "Quebec City, Quebec, Canada"
@@ -73,6 +87,8 @@ in
       '';
       # Shell-specific bindings live alongside the shell, not in the compositor.
       xdg.configFile."niri/noctalia.kdl".text = ''
+        // Noctalia owns the hot corner and its activation delay.
+        gestures { hot-corners { off; }; }
         binds {
           Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
           Mod+S { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
