@@ -75,6 +75,10 @@ and left-drag moves windows. Click a window to return to it.
 
 ## Hardware and services
 
+**GeForce NOW** is the official NVIDIA Linux Flatpak. Open it from the launcher
+and sign in to NVIDIA. `nix-flatpak` manages the user installation declaratively;
+update it with `flatpak update --user com.nvidia.geforcenow`.
+
 | Feature | Configuration |
 | --- | --- |
 | Boot and storage | UEFI/systemd-boot, encrypted ext4 root and swap, latest nixpkgs kernel |
@@ -101,6 +105,7 @@ Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funne
 | `default.nix` | Host composition and workstation apps |
 | `configuration.nix`, `hardware-configuration.nix` | Base system, boot, disks, state version |
 | `audio.nix` | Shared PipeWire audio setup; output preferences live with each device |
+| `geforce-now.nix` | Flatpak support and official GeForce NOW installation |
 | `dell-xps-16.nix`, `camera.nix`, `apple-studio-display.nix` | Hardware drivers and device workarounds |
 | `desktop/default.nix` | Session composition and login screen |
 | `desktop/plasma.nix`, `desktop/niri.nix`, `desktop/noctalia.nix` | Desktop-specific settings and controls |

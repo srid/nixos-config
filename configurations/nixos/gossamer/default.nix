@@ -20,6 +20,7 @@ in
     ./camera.nix
     ./chrome
     ./dell-xps-16.nix
+    ./geforce-now.nix
     ./desktop
     ./tailscale.nix
     (self + /modules/nixos/linux/devbox.nix)
