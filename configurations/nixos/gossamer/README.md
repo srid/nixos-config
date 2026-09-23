@@ -73,7 +73,7 @@ and left-drag moves windows. Click a window to return to it.
 | Intel hardware | Microcode, NPU, Xe graphics, hardware video acceleration, Dell Adaptive charging |
 | Speakers | Kernel GPIO backport prevents the camera driver claiming amplifier pins ([issue](https://github.com/thesofproject/sof/issues/11152)) |
 | Built-in camera | Intel IPU7 hardware ISP with OV08X40 tuning; upright 3840×2160 V4L2 feed for browsers; Omarchy HAL patches |
-| Studio Display | Bolt authorization and `asdbctl` brightness controls; enroll with `boltctl` once |
+| Studio Display | Bolt authorization and `asdbctl` brightness controls; enroll with `boltctl` once. Audio automatically prefers the display over laptop speakers while connected; a manual output selection overrides this. |
 | Connectivity | NetworkManager, Bluetooth powered on at boot, Tailscale with tray autostart |
 
 Home Manager supplies the workstation tools, including `gh`, 1Password, and
@@ -92,6 +92,7 @@ Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funne
 | --- | --- |
 | `default.nix` | Host composition and workstation apps |
 | `configuration.nix`, `hardware-configuration.nix` | Base system, boot, disks, state version |
+| `audio.nix` | Shared PipeWire audio setup; output preferences live with each device |
 | `dell-xps-16.nix`, `camera.nix`, `apple-studio-display.nix` | Hardware drivers and device workarounds |
 | `desktop/default.nix` | Session composition and login screen |
 | `desktop/plasma.nix`, `desktop/niri.nix`, `desktop/noctalia.nix` | Desktop-specific settings and controls |

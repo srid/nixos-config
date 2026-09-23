@@ -16,6 +16,7 @@ in
     self.nixosModules.default
     ./configuration.nix
     ./apple-studio-display.nix
+    ./audio.nix
     ./camera.nix
     ./chrome
     ./dell-xps-16.nix
