@@ -1,0 +1,29 @@
+From 7e940a9b6e3a5557e271d2fd5ecc6cf079e4f5dc Mon Sep 17 00:00:00 2001
+From: Dave Patrick Caberto <davecruz48@gmail.com>
+Date: Sun, 19 Apr 2026 19:26:27 +0800
+Subject: [PATCH] fix(pipeline): fix incorrect duration when recording
+
+---
+ src/pipeline.rs | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/pipeline.rs b/src/pipeline.rs
+index 44ba415f..fd42490c 100644
+--- a/src/pipeline.rs
++++ b/src/pipeline.rs
+@@ -169,6 +169,7 @@ fn make_pipewiresrc(fd: RawFd, path: &str) -> Result<gst::Element> {
+         .property("fd", fd)
+         .property("path", path)
+         .property("do-timestamp", true)
++        .property("provide-clock", false)
+         .property("keepalive-time", 1000)
+         .property("resend-last", true)
+         .build()?;
+@@ -330,6 +331,7 @@ fn make_pulsesrc(class: DeviceClass, element_name: &str) -> Result<gst::Element>
+     let pulsesrc = gst::ElementFactory::make("pulsesrc")
+         .name(element_name)
+         .property("provide-clock", false)
++        .property("do-timestamp", true)
+         .build()?;
+ 
+     match class {

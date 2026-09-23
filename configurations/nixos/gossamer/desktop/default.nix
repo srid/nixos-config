@@ -6,6 +6,7 @@
     ./power.nix
     ./displays.nix
     ./keyring.nix
+    ./recording.nix
   ];
 
   services.displayManager.sddm.enable = true;

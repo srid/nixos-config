@@ -1,0 +1,21 @@
+--- a/src/gst/gstpipewiresrc.c
++++ b/src/gst/gstpipewiresrc.c
+@@ -1677,6 +1677,18 @@
+       current_clock_time);
+   }
+ 
++  /* do-timestamp requests running-time timestamps from GstBaseSrc. Do not
++   * retain producer timestamps (which can remain zero on screencasts), nor
++   * the absolute clock time synthesized above for a repeated/EOS buffer.
++   * Clearing both also keeps get_times() from waiting on that absolute time
++   * before GstBaseSrc has assigned a running-time timestamp.
++   */
++  if (gst_base_src_get_do_timestamp (GST_BASE_SRC (pwsrc))) {
++    *buffer = gst_buffer_make_writable (*buffer);
++    GST_BUFFER_PTS (*buffer) = GST_CLOCK_TIME_NONE;
++    GST_BUFFER_DTS (*buffer) = GST_CLOCK_TIME_NONE;
++  }
++
+   return GST_FLOW_OK;
+ 
+ not_negotiated:

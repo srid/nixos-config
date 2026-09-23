@@ -100,6 +100,7 @@ in
           Mod+F1 { spawn "${pkgs.asdbctl}/bin/asdbctl" "down"; }
           Mod+F2 { spawn "${pkgs.asdbctl}/bin/asdbctl" "up"; }
           Print { screenshot; }
+          F9 repeat=false { spawn "${pkgs.kooha}/bin/kooha"; }
           Ctrl+Alt+Delete { quit; }
         }
       '';
