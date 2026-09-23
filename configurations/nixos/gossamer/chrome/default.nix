@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./restart ];
+  imports = [
+    ./restart
+    ./session
+  ];
   environment.systemPackages = [ pkgs.google-chrome ];
 
   # Chrome otherwise selects a different encryption-key store by desktop.
