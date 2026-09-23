@@ -47,7 +47,10 @@ and left-drag moves windows. Click a window to return to it.
 - **Screenshots:** press Print, select an area, then Space to capture or Esc to
   cancel. Files go to `~/Pictures/Screenshots/`. Without a Print key, run
   `niri msg action screenshot`.
-- **Recording:** F9 opens Kooha. Niri 26.04 carries only the
+- **Recording:** F9 opens Kooha, defaulting to MP4/H.264 at 60 fps
+  (constant quality, CRF 17), with 192 kbps AAC audio when enabled. Captures retain
+  their native resolution; higher resolution and frame rate mean larger files.
+  Niri 26.04 carries the
   [shared-memory capture backport](https://github.com/niri-wm/niri/pull/1791).
   Kooha carries its upstream clock fix and an isolated PipeWire timestamp fix.
   Open recordings in **Haruna**, the default video player (MP4, WebM, MKV, and more).
