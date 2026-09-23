@@ -18,7 +18,28 @@
   };
 
   # Let Dell's firmware adapt charging to plugged-in/battery usage patterns.
-  boot.kernelModules = [ "dell_wmi_sysman" ];
+  boot.kernelModules = [ "dell_wmi_sysman" "dell_laptop" ];
+  systemd.services.dell-keyboard-auto-backlight = {
+    description = "Enable Dell ambient-light keyboard illumination";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "systemd-modules-load.service"
+      "systemd-backlight@leds:dell::kbd_backlight.service"
+    ];
+    unitConfig.ConditionPathExists = "/sys/class/leds/dell::kbd_backlight/als_enabled";
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    # Let firmware handle light sensing and the existing input/idle timeout.
+    # This model ignores als_setting writes; leave its threshold to firmware.
+    script = ''
+      backlight=/sys/class/leds/dell::kbd_backlight
+      printf 1 > "$backlight/als_enabled"
+      test "$(cat "$backlight/als_enabled")" = 1
+    '';
+  };
+
   systemd.services.dell-adaptive-charging = {
     description = "Select Dell Adaptive battery charging";
     wantedBy = [ "multi-user.target" ];

@@ -83,6 +83,7 @@ update it with `flatpak update --user com.nvidia.geforcenow`.
 | --- | --- |
 | Boot and storage | UEFI/systemd-boot, encrypted ext4 root and swap, latest nixpkgs kernel |
 | Intel hardware | Microcode, NPU, Xe graphics, hardware video acceleration, Dell Adaptive charging |
+| Keyboard backlight | Dell firmware ambient-light mode; retains the input triggers and idle timeout |
 | Speakers | Kernel GPIO backport prevents the camera driver claiming amplifier pins ([issue](https://github.com/thesofproject/sof/issues/11152)) |
 | Built-in camera | Intel IPU7 hardware ISP with OV08X40 tuning; upright 3840×2160 V4L2 feed for browsers; Omarchy HAL patches |
 | Studio Display | Bolt authorization and `asdbctl` brightness controls; enroll with `boltctl` once. Audio automatically prefers the display over laptop speakers while connected; a manual output selection overrides this. |
