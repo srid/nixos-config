@@ -1,105 +1,118 @@
 # Gossamer — Dell XPS 16 (2026)
 
-**XPS 16 DA16260**, Intel, x86_64, running NixOS with KDE Plasma 6 and an
-alternate Niri + Noctalia session.
+Personal NixOS configuration for the **XPS 16 DA16260**, Intel Panther Lake,
+x86_64. Plasma and Niri share the same apps, files, audio, networking, and Bluetooth.
 
-- Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
-- Uses encrypted ext4 root, encrypted swap, and an EFI partition.
-- Enables Intel microcode and NPU support.
-- `camera.nix` uses Intel's IPU7 hardware image processor and OV08X40 sensor
-  tuning, with pinned HAL patches from Omarchy for the Linux 7.2 CVS bridge.
-  It exposes an upright 4K (3840×2160) V4L2 camera to browsers through
-  `v4l2-relayd`; the competing libcamera software ISP is disabled.
-- Uses `nixos-hardware`'s Intel graphics support with Xe and hardware video
-  acceleration. Dell Adaptive charging adjusts battery charging to usage.
-- `desktop/input-preferences.nix` shares Caps-as-Ctrl and natural-scrolling preferences
-  between Plasma and Niri, with touchpad scrolling at half speed.
-- `apple-studio-display.nix` enables Bolt and installs `asdbctl` with its udev
-  rules. Authorize/enroll the display with `boltctl` once, then use
-  `asdbctl get`, `asdbctl up`, or `asdbctl down` for brightness.
-  KDE shortcuts: **Meta+F1** dims it; **Meta+F2** brightens it.
-- `dell-xps-16.nix` backports the upstream Intel CVS camera-driver GPIO fix
-  for Linux 7.2.7. Without it, the camera driver blocks all four speaker
-  amplifiers and no sound card appears ([upstream issue](https://github.com/thesofproject/sof/issues/11152)).
-  Remove the backport when the selected kernel includes the fix.
-- Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
-  garbage collection, and zram.
-- Enables Bluetooth with KDE's Bluetooth controls and powers the adapter on at boot.
-- Enables the work jumphost, its local SOCKS5 proxy on port 1080, and `juspay-run`.
-- Includes `xyne-boxes` and `pu`, routed through the jumphost proxy.
-- Includes vanilla Codex and Claude launchers from `agent-distro`, using personal
-  authentication without Juspay gateway credentials.
-- Runs Kolu as a Home Manager service and enables Tailscale, with the official
-  `tailscale systray` app starting automatically at Plasma or Niri login.
-  Kolu is available at `http://gossamer:7692` locally and over Tailscale MagicDNS,
-  or at `http://100.94.142.87:7692` using this laptop's Tailscale IP. It listens
-  on all IPv4 addresses; the firewall allows remote access only on `tailscale0`.
-  Tailscale Serve also provides `https://gossamer.rooster-blues.ts.net` privately
-  within the tailnet; Funnel is not enabled.
-  Tailscale settings and the tray autostart live in `tailscale.nix`.
+## Getting around
 
-## Desktop sessions
+Choose **Niri** or **Plasma (Wayland)** at the login screen. Plasma is the default;
+switching sessions requires logging out, not rebooting.
 
-Log out and choose **Niri** in SDDM's session selector. Choose **Plasma (Wayland)**
-to return; Plasma remains the configured default. No reboot is needed to switch.
+Niri lays windows out in a horizontal strip, with workspaces stacked vertically.
+Noctalia provides the launcher, controls, notifications, and a bottom dock.
+Move the pointer to the bottom edge to reveal the dock; windows can use its space
+while hidden. A 4500 K night-light tint stays on all day.
 
-`desktop/default.nix` composes the sessions. `plasma.nix` and `niri.nix` adapt
-shared input preferences to their respective desktops. `noctalia.nix` owns the
-Niri shell, launcher, tray, notifications, and controls. `power.nix` owns lid and
-idle policy; hardware support stays in the host's hardware modules.
+**Meta = Windows key.** These shortcuts apply in Niri:
 
-Noctalia runs only in Niri. It locks after 10 idle minutes, turns screens off
-after 11, and locks and suspends after 30; idle inhibitors are respected.
-Logind suspends on lid close unless docked, and Noctalia locks before sleep.
-Plasma uses its own power settings. Both sessions share NetworkManager,
-Bluetooth, PipeWire, UPower, and power-profiles-daemon. Niri uses the GNOME
-screen-sharing portal and GTK file chooser; Plasma retains its KDE portals.
-
-`desktop/displays.nix` runs Kanshi only in Niri. Connecting the Studio Display
-turns the laptop panel off; unplugging it enables the laptop panel again.
-Profiles retain scales of 1.55 (laptop) and 2.25 (Studio Display at 5K), and
-suppress the Studio Display's spare MST tile on DP-2 when present.
-Noctalia applies a 4500 K night-light tint all day, independent of sunset.
-`chrome/default.nix` makes Chrome use KWallet 6 in both desktops.
-`desktop/keyring.nix` starts the PAM wallet-unlock helper in Niri.
-`chrome/restart/` contains the restart launcher, its implementation, and tests.
-Use the **Restart Chrome** launcher (Meta+Space) or `restart-chrome` to restart
-the current system Chrome, restore its tabs, and reopen its running PWAs. This
-targets the normal Chrome user-data directory; it does not restart separate work
-profiles. `restart-chrome --dry-run` previews the detected apps;
-`restart-chrome --restore` retries the saved PWA snapshot after a failed restart.
-Tab contents are restored by Chrome; unsaved form contents and incognito windows
-are not guaranteed to survive. Noctalia's dock auto-hides at the screen edge.
-
-Niri shortcuts (Meta is the Windows key):
-
-| Shortcut | Action |
+| Keys | Action |
 | --- | --- |
-| Meta+Space / Meta+S | Launcher / control center |
-| Meta+O / middle-click | Overview (replaces app middle-click actions) |
+| Meta+Space / Meta+S / Meta+Comma | Apps / controls / settings |
 | Meta+Enter / Meta+E | Terminal / files |
-| Meta+arrows | Focus windows or columns |
-| Meta+Shift+arrows | Move windows or columns |
-| Meta+PageUp / PageDown | Switch workspaces |
+| Meta+O or middle-click | Overview; replaces normal app middle-click actions |
+| Meta+arrows / Meta+Shift+arrows | Focus / move windows and columns |
+| Meta+PageUp/PageDown | Switch workspace; add Shift to move a column there |
+| Meta+Ctrl+Left/Right | Focus another monitor |
+| Meta+R / Meta+− / Meta+= | Cycle column widths / narrower / wider |
 | Meta+F / Meta+Shift+F | Maximize column / fullscreen |
-| Meta+V / Meta+Q | Toggle floating / close window |
-| Meta+L | Lock |
-| Meta+F1 / F2 | Studio Display brightness down / up |
-| Print / Meta+? | Screenshot / shortcut list |
-| Ctrl+Alt+Delete | Exit Niri (with confirmation) |
+| Meta+V / Meta+Q / Meta+L | Floating / close window / lock |
+| Meta+F1/F2 | Studio Display brightness down/up; also works in Plasma |
+| Print / F9 | Screenshot / Kooha recorder |
+| Meta+Shift+/ / Ctrl+Alt+Delete | Shortcut help / logout confirmation |
 
-For another laptop, generate your own `hardware-configuration.nix` and replace
-the encrypted swap UUID in `configuration.nix` too. These disk identifiers are
-specific to this installation. Keep `system.stateVersion` at your original
-installation's value, and review the repo's personal configuration before
-reusing it.
+In **overview**, right-drag pans horizontally, the wheel switches workspaces,
+and left-drag moves windows. Click a window to return to it.
 
-Build from the repository root (the `path:` form includes untracked files):
+## Everyday behavior
+
+- **Input:** Caps Lock is another Ctrl. Mouse and touchpad use natural scrolling;
+  touchpad scrolling runs at half speed.
+- **Docking:** connecting this Studio Display disables the laptop panel;
+  unplugging it restores the panel. Scales are 2.25 (5K external) and 1.55 (laptop).
+  Kanshi manages this in Niri. The spare MST tile is disabled on DP-2; review
+  that connector assumption when changing cables, docks, or monitors.
+- **Sleep:** in Niri, idle locks after 10 minutes, blanks screens after 11, and
+  suspends after 30, subject to idle inhibitors. Lid close suspends unless docked;
+  the session locks before sleep. Plasma has its own power settings.
+- **Screenshots:** press Print, select an area, then Space to capture or Esc to
+  cancel. Files go to `~/Pictures/Screenshots/`. Without a Print key, run
+  `niri msg action screenshot`.
+- **Recording:** F9 opens Kooha. Niri 26.04 carries only the
+  [shared-memory capture backport](https://github.com/niri-wm/niri/pull/1791).
+  Kooha carries its upstream clock fix and an isolated PipeWire timestamp fix.
+  Open recordings in **Haruna**, the default video player (MP4, WebM, MKV, and more).
+- **Chrome:** both desktops use KWallet 6 for cookie encryption. After updating
+  Chrome, use **Restart Chrome** in the launcher or run `restart-chrome` to reopen
+  the browser and its running PWAs. `--dry-run` previews; `--restore` retries the
+  saved app list. Separate work-browser data directories are excluded. Unsaved
+  forms and incognito windows are not guaranteed to survive.
+- **Session restore:** Niri remembers whether Chrome was open and its open PWAs
+  every five seconds, then reopens them on your next login. Chrome restores its
+  own tabs. Other apps and window positions are not restored. State is in
+  `~/.local/state/chrome-session/session.json`; stop `chrome-session.service`
+  before deleting it to reset. This is not a backup of unsaved work.
+
+## Hardware and services
+
+| Feature | Configuration |
+| --- | --- |
+| Boot and storage | UEFI/systemd-boot, encrypted ext4 root and swap, latest nixpkgs kernel |
+| Intel hardware | Microcode, NPU, Xe graphics, hardware video acceleration, Dell Adaptive charging |
+| Speakers | Kernel GPIO backport prevents the camera driver claiming amplifier pins ([issue](https://github.com/thesofproject/sof/issues/11152)) |
+| Built-in camera | Intel IPU7 hardware ISP with OV08X40 tuning; upright 3840×2160 V4L2 feed for browsers; Omarchy HAL patches |
+| Studio Display | Bolt authorization and `asdbctl` brightness controls; enroll with `boltctl` once |
+| Connectivity | NetworkManager, Bluetooth powered on at boot, Tailscale with tray autostart |
+
+Home Manager supplies the workstation tools, including `gh`, 1Password, and
+vanilla Codex/Claude launchers using personal authentication. The work jumphost
+provides SOCKS5 at `127.0.0.1:1080`; `juspay-run`, `xyne-boxes`, and `pu` use it.
+Zram and automatic garbage collection are enabled.
+
+**Kolu starts at boot**, before login. Access it at
+[http://gossamer:7692](http://gossamer:7692) or privately over Tailscale at
+[https://gossamer.rooster-blues.ts.net](https://gossamer.rooster-blues.ts.net).
+Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funnel.
+
+## Where to change things
+
+| Location | Owns |
+| --- | --- |
+| `default.nix` | Host composition and workstation apps |
+| `configuration.nix`, `hardware-configuration.nix` | Base system, boot, disks, state version |
+| `dell-xps-16.nix`, `camera.nix`, `apple-studio-display.nix` | Hardware drivers and device workarounds |
+| `desktop/default.nix` | Session composition and login screen |
+| `desktop/plasma.nix`, `desktop/niri.nix`, `desktop/noctalia.nix` | Desktop-specific settings and controls |
+| `desktop/input-preferences.nix`, `desktop/displays.nix`, `desktop/power.nix` | Input preferences, monitor profiles, sleep policy |
+| `desktop/keyring.nix`, `chrome/` | Wallet integration, Chrome settings, restart and login restoration |
+| `desktop/video.nix`, `desktop/recording.nix` | Video player, file associations, recording fixes |
+| `tailscale.nix` | Tailscale, Kolu access, HTTPS, tray |
+
+## Apply or reuse
+
+From the repository root:
 
 ```sh
-nix --extra-experimental-features 'nix-command flakes' build \
-  path:.#nixosConfigurations.gossamer.config.system.build.toplevel --no-link
+nix develop -c just activate gossamer
 ```
 
-To activate, use `just activate gossamer` from the repository's Nix devShell.
-Reboot after kernel changes.
+Most settings apply immediately. Log out/in after replacing Niri; reboot after
+kernel changes. To build without activating:
+
+```sh
+nix build .#nixosConfigurations.gossamer.config.system.build.toplevel --no-link
+```
+
+For another laptop, generate your own `hardware-configuration.nix`, replace the
+encrypted-swap UUID in `configuration.nix`, and keep your original
+`system.stateVersion`. Review personal accounts, work services, Tailscale names,
+and monitor identities before reusing this configuration.
