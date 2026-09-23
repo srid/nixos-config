@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  input = import ./input.nix;
+  input = import ./input-preferences.nix;
 in
 {
   services.xserver.enable = true;

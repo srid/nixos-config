@@ -13,6 +13,18 @@
       xdg.configFile."noctalia/shell.toml".text = ''
         [shell]
         polkit_agent = true
+
+        # Hold the warm temperature all day, independent of location or sunset.
+        [nightlight]
+        enabled = true
+        force = true
+        temperature_night = 4500
+
+        [dock]
+        enabled = true
+        auto_hide = true
+        # Let windows use the dock's area; the revealed dock overlays them.
+        reserve_space = false
       '';
       # Shell-specific bindings live alongside the shell, not in the compositor.
       xdg.configFile."niri/noctalia.kdl".text = ''

@@ -12,7 +12,7 @@ alternate Niri + Noctalia session.
   `v4l2-relayd`; the competing libcamera software ISP is disabled.
 - Uses `nixos-hardware`'s Intel graphics support with Xe and hardware video
   acceleration. Dell Adaptive charging adjusts battery charging to usage.
-- `desktop/input.nix` shares Caps-as-Ctrl and natural-scrolling preferences
+- `desktop/input-preferences.nix` shares Caps-as-Ctrl and natural-scrolling preferences
   between Plasma and Niri, with touchpad scrolling at half speed.
 - `apple-studio-display.nix` enables Bolt and installs `asdbctl` with its udev
   rules. Authorize/enroll the display with `boltctl` once, then use
@@ -55,16 +55,28 @@ Plasma uses its own power settings. Both sessions share NetworkManager,
 Bluetooth, PipeWire, UPower, and power-profiles-daemon. Niri uses the GNOME
 screen-sharing portal and GTK file chooser; Plasma retains its KDE portals.
 
-Niri detects monitor hotplug and toggles the built-in panel with the lid.
-`desktop/displays.nix` sets scales of 1.55 (laptop) and 2.25 (Studio Display).
-The current Studio Display connection uses DP-1 at 5K; DP-2, its spare MST tile,
-is disabled. Review these connector-specific rules when changing docks/cabling.
+`desktop/displays.nix` runs Kanshi only in Niri. Connecting the Studio Display
+turns the laptop panel off; unplugging it enables the laptop panel again.
+Profiles retain scales of 1.55 (laptop) and 2.25 (Studio Display at 5K), and
+suppress the Studio Display's spare MST tile on DP-2 when present.
+Noctalia applies a 4500 K night-light tint all day, independent of sunset.
+`chrome/default.nix` makes Chrome use KWallet 6 in both desktops.
+`desktop/keyring.nix` starts the PAM wallet-unlock helper in Niri.
+`chrome/restart/` contains the restart launcher, its implementation, and tests.
+Use the **Restart Chrome** launcher (Meta+Space) or `restart-chrome` to restart
+the current system Chrome, restore its tabs, and reopen its running PWAs. This
+targets the normal Chrome user-data directory; it does not restart separate work
+profiles. `restart-chrome --dry-run` previews the detected apps;
+`restart-chrome --restore` retries the saved PWA snapshot after a failed restart.
+Tab contents are restored by Chrome; unsaved form contents and incognito windows
+are not guaranteed to survive. Noctalia's dock auto-hides at the screen edge.
 
 Niri shortcuts (Meta is the Windows key):
 
 | Shortcut | Action |
 | --- | --- |
 | Meta+Space / Meta+S | Launcher / control center |
+| Meta+O / middle-click | Overview (replaces app middle-click actions) |
 | Meta+Enter / Meta+E | Terminal / files |
 | Meta+arrows | Focus windows or columns |
 | Meta+Shift+arrows | Move windows or columns |

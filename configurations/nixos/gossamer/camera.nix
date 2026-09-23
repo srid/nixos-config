@@ -128,5 +128,4 @@
       SUBSYSTEM=="video4linux", ATTR{name}=="Intel IPU7 ISYS Capture *", TAG-="uaccess", TAG-="seat", MODE="0600", GROUP="root"
     '')
   ];
-  environment.systemPackages = [ pkgs.google-chrome ];
 }

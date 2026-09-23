@@ -4,6 +4,8 @@
     ./niri.nix
     ./noctalia.nix
     ./power.nix
+    ./displays.nix
+    ./keyring.nix
   ];
 
   services.displayManager.sddm.enable = true;

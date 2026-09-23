@@ -17,6 +17,7 @@ in
     ./configuration.nix
     ./apple-studio-display.nix
     ./camera.nix
+    ./chrome
     ./dell-xps-16.nix
     ./desktop
     ./tailscale.nix

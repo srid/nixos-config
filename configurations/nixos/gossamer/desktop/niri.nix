@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  input = import ./input.nix;
+  input = import ./input-preferences.nix;
 in
 {
   programs.niri = {
@@ -17,7 +17,6 @@ in
     {
       xdg.configFile."niri/config.kdl".text = ''
         include "noctalia.kdl"
-        ${import ./displays.nix}
 
         input {
           keyboard {
@@ -61,6 +60,7 @@ in
           Mod+E { spawn "${pkgs.kdePackages.dolphin}/bin/dolphin"; }
           Mod+Q { close-window; }
           Mod+O { toggle-overview; }
+          MouseMiddle { toggle-overview; }
           Mod+Shift+Slash { show-hotkey-overlay; }
           Mod+Left { focus-column-left; }
           Mod+Right { focus-column-right; }

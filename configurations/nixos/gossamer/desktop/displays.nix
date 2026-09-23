@@ -1,17 +1,62 @@
-# Niri output configuration, using the scales selected in Plasma.
-# Preferred modes and positioning are automatic for other displays.
-''
-  output "eDP-1" {
-    scale 1.55
-  }
-  output "DP-1" {
-    mode "5120x2880@60"
-    scale 2.25
-    position x=0 y=0
-    focus-at-startup
-  }
-  // The Studio Display exposes a second MST tile on this connector. DP-1
-  // already drives its full 5K image; enabling DP-2 creates a phantom screen.
-  // Revisit this connector rule when using a different dock/display layout.
-  output "DP-2" { off; }
-''
+let
+  laptop = {
+    criteria = "eDP-1";
+    status = "enable";
+    mode = "3200x2000@120Hz";
+    scale = 1.55;
+    position = "0,0";
+  };
+  studio = {
+    criteria = "Apple Computer Inc StudioDisplay 0x361CF30E";
+    status = "enable";
+    mode = "5120x2880@60Hz";
+    scale = 2.25;
+    position = "0,0";
+  };
+  dockedLaptop = {
+    inherit (laptop) criteria;
+    status = "disable";
+  };
+in
+{
+  home-manager.sharedModules = [
+    {
+      services.kanshi = {
+        enable = true;
+        systemdTarget = "niri.service";
+        # First matching profile wins. Disable the spare MST tile only when the
+        # real Studio Display is present, leaving other DP-2 monitors usable.
+        settings = [
+          {
+            profile = {
+              name = "studio-with-mst";
+              outputs = [
+                studio
+                dockedLaptop
+                {
+                  criteria = "DP-2";
+                  status = "disable";
+                }
+              ];
+            };
+          }
+          {
+            profile = {
+              name = "studio";
+              outputs = [
+                studio
+                dockedLaptop
+              ];
+            };
+          }
+          {
+            profile = {
+              name = "laptop";
+              outputs = [ laptop ];
+            };
+          }
+        ];
+      };
+    }
+  ];
+}
