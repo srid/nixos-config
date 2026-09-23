@@ -3,6 +3,21 @@ let
   input = import ./input-preferences.nix;
 in
 {
+  # Backport only shared-memory screencasting for Kooha onto released Niri.
+  # https://github.com/niri-wm/niri/pull/1791
+  # Patch: base 9e72e4917ca31baf4010496bf7f4aaf78d34d236,
+  # head 3871a3cd76a4168b2dc7c3da880fbe2702bd8900 (two capture files only).
+  nixpkgs.overlays = [
+    (_final: prev: {
+      niri = prev.niri.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./niri-shm.patch ];
+        env = old.env // {
+          NIRI_BUILD_COMMIT = "Nixpkgs-shm-backport";
+        };
+      });
+    })
+  ];
+
   programs.niri = {
     enable = true;
     useNautilus = false;
