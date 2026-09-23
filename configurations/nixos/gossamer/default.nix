@@ -18,7 +18,7 @@ in
     ./apple-studio-display.nix
     ./camera.nix
     ./dell-xps-16.nix
-    ./input.nix
+    ./desktop
     ./tailscale.nix
     (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
