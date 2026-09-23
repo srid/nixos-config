@@ -43,6 +43,7 @@
     # kolu over Juspay's LiteLLM gateway. A single-profile distribution built on
     # juspay/agent-distro; installed by modules/home/work/pi.nix.
     juspay-ai.url = "github:juspay/AI";
+    agent-distro.url = "github:juspay/agent-distro";
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";

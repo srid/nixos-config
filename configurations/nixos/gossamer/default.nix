@@ -4,6 +4,10 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   homeMod = self + /modules/home;
+  agents = inputs.agent-distro.lib.mkLaunchers {
+    inherit pkgs;
+    profile = inputs.agent-distro.profiles.vanilla;
+  };
 in
 {
   nixos-unified.sshTarget = "srid@gossamer";
@@ -33,6 +37,9 @@ in
 
   environment.systemPackages = [
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Vanilla launchers use personal logins, without Juspay gateway credentials.
+    agents.codex
+    agents.claude
   ];
 
   zramSwap.enable = true;

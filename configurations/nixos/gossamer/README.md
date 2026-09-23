@@ -20,6 +20,8 @@
 - Adds Home Manager, the repo's base terminal tools (including `gh`), 1Password,
   garbage collection, and zram.
 - Enables Bluetooth with KDE's Bluetooth controls and powers the adapter on at boot.
+- Includes vanilla Codex and Claude launchers from `agent-distro`, using personal
+  authentication without Juspay gateway credentials.
 - Runs Kolu as a Home Manager service and enables Tailscale, with the official
   `tailscale systray` app starting automatically at KDE login.
   Kolu is available at `http://gossamer:7692` locally and over Tailscale MagicDNS,
