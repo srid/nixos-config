@@ -1,11 +1,12 @@
 # Gossamer — Dell XPS 16 (2026)
 
-Model reported by DMI: **XPS 16 DA16260**, Intel, x86_64. Imported from a
-fresh NixOS 26.05 installation with KDE Plasma 6.
+**XPS 16 DA16260**, Intel, x86_64, running NixOS with KDE Plasma 6.
 
 - Uses systemd-boot (UEFI) and `pkgs.linuxPackages_latest`.
-- Preserves the installer's encrypted ext4 root, encrypted swap, and EFI partition.
-- Keeps the generated Intel microcode and NPU settings.
+- Uses encrypted ext4 root, encrypted swap, and an EFI partition.
+- Enables Intel microcode and NPU support.
+- Uses `nixos-hardware`'s Intel graphics support with Xe and hardware video
+  acceleration. Dell Adaptive charging adjusts battery charging to usage.
 - `input.nix` makes Caps Lock an additional Ctrl and enables natural scrolling
   for mice and touchpads, including KDE Wayland defaults.
 - `apple-studio-display.nix` enables Bolt and installs `asdbctl` with its udev
@@ -41,5 +42,4 @@ nix --extra-experimental-features 'nix-command flakes' build \
 ```
 
 To activate, use `just activate gossamer` from the repository's Nix devShell.
-Building alone does not activate the configuration. Hardware behavior such as
-suspend, audio, Wi-Fi, and the NPU still needs testing after activation.
+Reboot after kernel changes.
