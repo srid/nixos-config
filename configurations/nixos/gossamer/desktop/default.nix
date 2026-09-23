@@ -6,6 +6,7 @@
     ./power.nix
     ./displays.nix
     ./keyring.nix
+    ./video.nix
     ./recording.nix
   ];
 
