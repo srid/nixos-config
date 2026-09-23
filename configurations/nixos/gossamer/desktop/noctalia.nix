@@ -14,6 +14,13 @@
         [shell]
         polkit_agent = true
 
+        [location]
+        auto_locate = false
+        address = "Quebec City, Quebec, Canada"
+
+        [weather]
+        enabled = true
+
         # Hold the warm temperature all day, independent of location or sunset.
         [nightlight]
         enabled = true
