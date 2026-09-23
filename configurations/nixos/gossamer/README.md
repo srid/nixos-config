@@ -5,7 +5,7 @@ x86_64. Plasma and Niri share the same apps, files, audio, networking, and Bluet
 
 ## Getting around
 
-Choose **Niri** or **Plasma (Wayland)** at the login screen. Plasma is the default;
+Choose **Niri** or **Plasma (Wayland)** at the login screen. Niri is the default;
 switching sessions requires logging out, not rebooting.
 
 Niri lays windows out in a horizontal strip, with workspaces stacked vertically.
