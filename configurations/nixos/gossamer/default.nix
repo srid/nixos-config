@@ -19,12 +19,14 @@ in
     ./dell-xps-16.nix
     ./input.nix
     ./tailscale.nix
+    (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
   ];
 
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
     "${homeMod}/services/kolu.nix"
+    "${homeMod}/work/juspay.nix"
     {
       # Include loopback: the local hostname resolves to 127.0.0.2.
       # Remote access is allowed only via tailscale0 in tailscale.nix.
