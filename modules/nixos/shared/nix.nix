@@ -1,9 +1,5 @@
 { flake, pkgs, lib, ... }:
 
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   nixpkgs = {
     config = {
@@ -11,7 +7,6 @@ in
       allowUnsupportedSystem = true;
       allowUnfree = true;
     };
-    overlays = lib.attrValues self.overlays;
   };
 
   nix = {

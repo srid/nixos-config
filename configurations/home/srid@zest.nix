@@ -40,10 +40,8 @@ in
 
   home.packages = [
     inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default
-    pkgs.twitter-convert
     pkgs.python3
     pkgs.uv
-    pkgs.portfwd
     # The kolu terminal-side CLIs, without running the kolu service itself.
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval-tui
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi-tui

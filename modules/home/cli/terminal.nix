@@ -22,7 +22,6 @@ in
     # ncdu
 
     # Useful for Nix development
-    ci
     nixpkgs-fmt
     watchexec
     fswatch
@@ -34,11 +33,7 @@ in
     ispell
 
     # Dev
-    fuckport
-    sshuttle-via
     entr
-    hackage-publish
-    zellij-one
 
     # Fonts
     cascadia-code
@@ -48,10 +43,6 @@ in
     hledger
 
     gnupg
-    # Disabled: the old ffmpeg-full build failure is fixed (it now uses plain
-    # ffmpeg), but that is still a ~1GiB closure on every host for a tool
-    # that's only occasionally needed. Run it with `nix run .#compress-video`.
-    # compress-video
   ];
 
   fonts.fontconfig.enable = true;

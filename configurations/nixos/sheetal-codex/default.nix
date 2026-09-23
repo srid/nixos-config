@@ -19,8 +19,6 @@ in
   nixpkgs = {
     hostPlatform = "x86_64-linux"; # runs on naiveintent
     config.allowUnfree = true;
-    # homeModules.default (terminal.nix) needs overlay packages (`ci`, …).
-    overlays = lib.attrValues self.overlays;
   };
 
   nix.settings.trusted-users = lib.mkForce [ "root" username ];
