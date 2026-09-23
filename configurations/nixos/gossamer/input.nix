@@ -17,5 +17,7 @@
 
     [Libinput][Defaults][Touchpad]
     NaturalScroll=true
+    # Halve two-finger scroll distance for finer control on the XPS touchpad.
+    ScrollFactor=0.5
   '';
 }
