@@ -1829,16 +1829,16 @@
         "bun2nix": "bun2nix_4"
       },
       "locked": {
-        "lastModified": 1789932020,
-        "narHash": "sha256-Z+jQLh+4Lny/BVXiKS+M12nQbB6i0K3oN+ke8cJ+s4g=",
+        "lastModified": 1790270862,
+        "narHash": "sha256-SIhO1jvAeGvSPeg0zwwnVLnkkqfAghGmBxdPRgm8LRI=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "c709ab6284ad54a6e7a33a0a2f3c1a5cf242d971",
+        "rev": "62e6f8fe99da810b4c36765e849059c6a782d76a",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "red-flower",
         "repo": "olai",
         "type": "github"
       }
