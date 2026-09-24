@@ -36,9 +36,9 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/master";
+    kolu.url = "github:juspay/kolu/inept-suite";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/red-flower";
+    olai.url = "github:juspay/olai/master";
 
     # Juspay's AI tooling: OMP, Codex and Claude Code, carrying juspay/skills +
     # kolu over Juspay's LiteLLM gateway. A single-profile distribution built on
