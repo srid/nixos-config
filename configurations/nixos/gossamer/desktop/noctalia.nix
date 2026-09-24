@@ -27,6 +27,8 @@ let
   '';
 in
 {
+  imports = [ ./noctalia-calendar.nix ];
+
   programs.noctalia = {
     enable = true;
     systemd = {

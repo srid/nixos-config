@@ -55,6 +55,9 @@ and left-drag moves windows. Click a window to return to it.
   `~/Pictures/Wallpapers/KDE`, with high-resolution light/dark variants, rotating
   randomly every six hours. Open it
   with `noctalia msg panel-toggle wallpaper`.
+- **Calendar:** Google Calendar events appear in the date popup, refreshed every
+  15 minutes. Authorize once through Settings → Services → Calendar → Google
+  Calendar → Save and Connect. Events are read-only; tokens stay in the keyring.
 - **Recording:** F9 opens Kooha, defaulting to MP4/H.264 at 60 fps
   (constant quality, CRF 17), with 192 kbps AAC audio when enabled. Captures retain
   their native resolution; higher resolution and frame rate mean larger files.
@@ -110,6 +113,7 @@ Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funne
 | `dell-xps-16.nix`, `camera.nix`, `apple-studio-display.nix` | Hardware drivers and device workarounds |
 | `desktop/default.nix` | Session composition and login screen |
 | `desktop/plasma.nix`, `desktop/niri.nix`, `desktop/noctalia.nix` | Desktop-specific settings and controls |
+| `desktop/noctalia-calendar.nix` | Google Calendar account and event display |
 | `desktop/input-preferences.nix`, `desktop/displays.nix`, `desktop/power.nix` | Input preferences, monitor profiles, sleep policy |
 | `desktop/keyring.nix`, `chrome/` | Wallet integration, Chrome settings, restart and login restoration |
 | `desktop/video.nix`, `desktop/recording.nix` | Video player, file associations, recording fixes |
