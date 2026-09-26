@@ -1829,11 +1829,11 @@
         "bun2nix": "bun2nix_4"
       },
       "locked": {
-        "lastModified": 1790273112,
-        "narHash": "sha256-SIhO1jvAeGvSPeg0zwwnVLnkkqfAghGmBxdPRgm8LRI=",
+        "lastModified": 1790340907,
+        "narHash": "sha256-dBg4RJGOzYKJOqJe8H1G85wZ4BrL6g98C88acy326NE=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "cb7637f76379e1b6d9407225d01089532c15f189",
+        "rev": "3626af76c419a1cdc3746b5ac5a7ee2daf0a265a",
         "type": "github"
       },
       "original": {
