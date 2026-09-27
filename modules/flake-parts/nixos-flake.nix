@@ -16,6 +16,7 @@
         "nix-darwin"
         # "nixos-hardware"
         "nix-index-database"
+        "chatgpt"
       ];
     };
   };

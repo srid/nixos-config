@@ -24,6 +24,10 @@
       nixpkgs.follows = "nixpkgs";
     };
     # Software inputs
+    chatgpt = {
+      url = "file+https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb";
+      flake = false;
+    };
     github-nix-ci.url = "github:juspay/github-nix-ci";
     nixos-vscode-server.flake = false;
     nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
