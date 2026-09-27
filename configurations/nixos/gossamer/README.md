@@ -32,6 +32,7 @@ while hidden. A 4500 K night-light tint stays on all day.
 | Meta+V / Meta+Q / Meta+L | Floating / close window / lock |
 | Meta+F1/F2 | Studio Display brightness down/up; also works in Plasma |
 | Print / F9 | Screenshot / Kooha recorder |
+| Meta+D / Meta+Shift+D | Start or stop dictation / cancel dictation |
 | Meta+Shift+/ / Ctrl+Alt+Delete | Shortcut help / logout confirmation |
 
 In **overview**, right-drag pans horizontally, the wheel switches workspaces,
@@ -39,6 +40,9 @@ and left-drag moves windows. Click a window to return to it.
 
 ## Everyday behavior
 
+- **Dictation:** focus a text box, press Meta+D, speak, then press Meta+D again.
+  Voxtype transcribes locally with GPU-accelerated Whisper medium.en and types the result without
+  sending it. It uses the default microphone; the model downloads on first setup.
 - **Input:** Caps Lock is another Ctrl. Mouse and touchpad use natural scrolling;
   touchpad scrolling runs at half speed.
 - **Docking:** connecting this Studio Display disables the laptop panel;

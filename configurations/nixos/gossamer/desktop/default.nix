@@ -8,6 +8,7 @@
     ./keyring.nix
     ./video.nix
     ./recording.nix
+    ./dictation.nix
   ];
 
   services.displayManager.sddm.enable = true;

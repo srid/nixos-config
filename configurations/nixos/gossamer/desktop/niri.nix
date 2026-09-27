@@ -35,6 +35,7 @@ in
     {
       xdg.configFile."niri/config.kdl".text = ''
         include "noctalia.kdl"
+        include "dictation.kdl"
 
         input {
           keyboard {
