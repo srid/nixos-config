@@ -17,6 +17,7 @@
         # "nixos-hardware"
         "nix-index-database"
         "chatgpt"
+        "buzz"
       ];
     };
   };

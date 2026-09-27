@@ -10,6 +10,7 @@
     ./recording.nix
     ./dictation.nix
     ./chatgpt.nix
+    ./buzz.nix
   ];
 
   services.displayManager.sddm.enable = true;

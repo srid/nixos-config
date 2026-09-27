@@ -40,6 +40,9 @@ and left-drag moves windows. Click a window to return to it.
 
 ## Everyday behavior
 
+- **Buzz:** launch from the app menu or `buzz`. Its official Linux AppImage is
+  managed by Nix. `just update` includes Buzz; `nix flake update buzz` updates
+  only its release metadata. Activate afterward to install the new release.
 - **ChatGPT:** launch from the app menu or `chatgpt`. The official Linux app
   runs on native Wayland; Ctrl+−/+ adjusts zoom. Its profile lives in
   `~/.config/chatgpt`. `just update` includes it among the primary inputs;

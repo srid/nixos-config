@@ -265,6 +265,18 @@
         "type": "github"
       }
     },
+    "buzz": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-H6psQ0YlDnvpPZ+GxQNEXLNlKMBlSJKf9IkoibwBAvk=",
+        "type": "file",
+        "url": "https://api.github.com/repos/block/buzz/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/block/buzz/releases/latest"
+      }
+    },
     "chatgpt": {
       "flake": false,
       "locked": {
@@ -1905,6 +1917,7 @@
       "inputs": {
         "agenix": "agenix",
         "agent-distro": "agent-distro",
+        "buzz": "buzz",
         "chatgpt": "chatgpt",
         "disc-scrape": "disc-scrape",
         "disko": "disko",
