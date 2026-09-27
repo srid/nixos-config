@@ -1853,16 +1853,16 @@
         "bun2nix": "bun2nix_4"
       },
       "locked": {
-        "lastModified": 1790340907,
-        "narHash": "sha256-dBg4RJGOzYKJOqJe8H1G85wZ4BrL6g98C88acy326NE=",
+        "lastModified": 1790523470,
+        "narHash": "sha256-XvX97Qilpk7xzLRBpRFTTM3cIeR+OmULFWIxzKOR9t0=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "3626af76c419a1cdc3746b5ac5a7ee2daf0a265a",
+        "rev": "8c4291b56e58b9c39dc49ce0cd0f65d9dcb0f48b",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "tied-spur",
         "repo": "olai",
         "type": "github"
       }
