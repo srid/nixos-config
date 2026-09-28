@@ -24,10 +24,6 @@
       nixpkgs.follows = "nixpkgs";
     };
     # Software inputs
-    buzz = {
-      url = "file+https://api.github.com/repos/block/buzz/releases/latest";
-      flake = false;
-    };
     chatgpt = {
       url = "file+https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb";
       flake = false;
