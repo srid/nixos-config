@@ -44,10 +44,7 @@
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/tied-spur";
 
-    # Juspay's AI tooling: OMP, Codex and Claude Code, carrying juspay/skills +
-    # kolu over Juspay's LiteLLM gateway. A single-profile distribution built on
-    # juspay/agent-distro; installed by modules/home/work/pi.nix.
-    juspay-ai.url = "github:juspay/AI";
+    # Coding-agent launchers; the Juspay profile is installed by modules/home/work/pi.nix.
     agent-distro.url = "github:juspay/agent-distro";
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";

@@ -1,11 +1,14 @@
-# Juspay's coding agents from juspay/AI: omp, codex and claude, carrying
+# Juspay's coding agents from agent-distro: omp, codex and claude, carrying
 # juspay/skills + kolu; omp also goes through Juspay's LiteLLM gateway.
 
 { flake, config, pkgs, ... }:
 let
   inherit (flake) inputs;
   homeMod = inputs.self + /modules/home;
-  agents = inputs.juspay-ai.packages.${pkgs.stdenv.hostPlatform.system};
+  agents = inputs.agent-distro.lib.mkLaunchers {
+    inherit pkgs;
+    profile = inputs.agent-distro.profiles.juspay;
+  };
 in
 {
   imports = [ "${homeMod}/agenix.nix" ];

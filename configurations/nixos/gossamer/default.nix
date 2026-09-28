@@ -4,10 +4,6 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   homeMod = self + /modules/home;
-  agents = inputs.agent-distro.lib.mkLaunchers {
-    inherit pkgs;
-    profile = inputs.agent-distro.profiles.vanilla;
-  };
 in
 {
   nixos-unified.sshTarget = "srid@gossamer";
@@ -31,6 +27,7 @@ in
     "${homeMod}/gui/1password.nix"
     "${homeMod}/services/kolu.nix"
     "${homeMod}/work/juspay.nix"
+    "${homeMod}/work/pi.nix"
     {
       # Include loopback: the local hostname resolves to 127.0.0.2.
       # Remote access is allowed only via tailscale0 in tailscale.nix.
@@ -43,9 +40,6 @@ in
 
   environment.systemPackages = [
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # Vanilla launchers use personal logins, without Juspay gateway credentials.
-    agents.codex
-    agents.claude
   ];
 
   zramSwap.enable = true;
