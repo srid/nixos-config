@@ -19,14 +19,14 @@ let
 in
 {
   imports = [
-    (flake.inputs.self + /modules/home/work/pi.nix)
+    (flake.inputs.self + /modules/home/work/coding-agents.nix)
     flake.inputs.olai.homeManagerModules.default
   ];
 
   home.username = "toor";
   home.stateVersion = "24.05";
 
-  # pi.nix exports LITELLM_API_KEY via programs.bash.initExtra; that only ships
+  # coding-agents.nix exports LITELLM_API_KEY via programs.bash.initExtra; that only ships
   # if HM manages bash (this host is standalone, not NixOS-HM).
   programs.bash.enable = true;
 

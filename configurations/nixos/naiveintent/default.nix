@@ -23,7 +23,7 @@ in
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
     # oh-my-pi (omp), wired to Juspay's gateway
-    "${homeMod}/work/pi.nix"
+    "${homeMod}/work/coding-agents.nix"
     # myolai still serves the Vault outlines; this is the olai repo's own docs.
     inputs.olai.homeManagerModules.default
     ({ config, ... }: {
