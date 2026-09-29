@@ -55,11 +55,11 @@
         "oh-my-pi": "oh-my-pi"
       },
       "locked": {
-        "lastModified": 1790616973,
-        "narHash": "sha256-8+d2m89Ty0v8KxF1ed+XtKXNI37CchSJB5L3I0H0mj4=",
+        "lastModified": 1790700727,
+        "narHash": "sha256-PIub88aMSnldkG9wRnKWsU6xxMsCas4cmqQxVlC8Edk=",
         "owner": "juspay",
         "repo": "agent-distro",
-        "rev": "f7abc845a7dc1338d8cbcdcf38fb13e99e9f3164",
+        "rev": "667b5be57956ef40c7dae06a1a1a958eb87736f2",
         "type": "github"
       },
       "original": {
