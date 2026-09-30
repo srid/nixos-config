@@ -16,6 +16,7 @@ let
   labels = { app = "olai"; };
   image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
   app = config.k8s.apps.olai;
+  homeMount = { name = "data"; mountPath = app.home; };
 in
 {
   imports = [ ../../modules ./mail.nix ];
@@ -25,6 +26,7 @@ in
     home = "/data";
     packages = [ agents.claude agents.codex ];
     hardening.enable = true;
+    nix.enable = true;
     network = {
       allowDNS = true;
       # Public web/AI APIs, GitHub SSH, and Gmail SMTP/IMAP.
@@ -44,6 +46,7 @@ in
       enable = true;
       url = "git@github.com:srid/Vault.git";
       directory = "${app.home}/Vault";
+      volumeMounts = [ homeMount app.ssh.volumeMount ];
       userName = flake.config.me.fullname;
       userEmail = flake.config.me.email;
     };
@@ -54,12 +57,10 @@ in
     ];
     # Mount the home before the modules' nested SSH and Git config mounts.
     volumeMounts = lib.mkBefore [
-      { name = "data"; mountPath = app.home; }
-      { name = "nix-store"; mountPath = "/nix/store"; readOnly = true; }
+      homeMount
     ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "olai-data"; }
-      { name = "nix-store"; hostPath = { path = "/nix/store"; type = "Directory"; }; }
     ];
   };
 

@@ -6,26 +6,25 @@ let
   list = type: mkOption { type = types.listOf type; default = [ ]; };
 in
 {
+  imports = [ ./nix.nix ];
+
   options.k8s.apps = mkOption {
     default = { };
     type = types.attrsOf (types.submodule ({ config, name, ... }: {
-      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ./hardening.nix ./network.nix ];
+      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ./hardening.nix ./network.nix ./user.nix ];
       options = {
         namespace = mkOption { type = types.str; default = name; };
         image = mkOption { type = types.str; };
         home = mkOption { type = types.str; default = "/data"; };
-        user = {
-          name = mkOption { type = types.str; default = name; };
-          uid = mkOption { type = types.ints.positive; default = 1000; };
-          gid = mkOption { type = types.ints.unsigned; default = 1000; };
-        };
         packages = list types.package;
         env = list types.attrs;
         volumeMounts = list types.attrs;
         volumes = list types.attrs;
         initContainers = list types.attrs;
         manifests = list types.attrs;
-        # Features merge pod-level controls with the shared non-root identity.
+        # Features contribute policy; the app wires these fields into its pods.
+        automountServiceAccountToken = mkOption { type = types.bool; default = true; };
+        containerSecurityContext = mkOption { type = types.attrsOf types.anything; default = { }; };
         securityContext = mkOption { type = types.attrsOf types.anything; default = { }; };
       };
       config = {
@@ -34,12 +33,6 @@ in
           { name = "HOME"; value = config.home; }
           { name = "PATH"; value = "${lib.makeBinPath config.packages}:/bin:/usr/bin"; }
         ];
-        securityContext = {
-          runAsNonRoot = true;
-          runAsUser = config.user.uid;
-          runAsGroup = config.user.gid;
-          fsGroup = config.user.gid;
-        };
       };
     }));
   };

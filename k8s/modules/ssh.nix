@@ -13,6 +13,12 @@ in
     secretName = mkOption { type = types.str; default = prefix; };
     # Strict host checking rejects destinations absent from this list.
     knownHosts = mkOption { type = types.lines; default = ""; };
+    # Consumers opt into the prepared credentials without seeing the raw Secret.
+    volumeMount = mkOption {
+      type = types.attrs;
+      readOnly = true;
+      default = { name = "${prefix}-home"; mountPath = "${config.home}/.ssh"; subPath = "home"; readOnly = true; };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -22,7 +28,6 @@ in
       kind = "ConfigMap";
       metadata = { inherit (config) namespace; name = "${prefix}-config"; };
       data = {
-        passwd = "root:x:0:0:root:/root:/bin/sh\n${config.user.name}:x:${toString config.user.uid}:${toString config.user.gid}::${config.home}:/bin/sh\n";
         config = ''
           Host *
             IdentitiesOnly yes
@@ -56,10 +61,7 @@ in
         { name = "${prefix}-home"; mountPath = "/ssh"; }
       ];
     }];
-    volumeMounts = [
-      { name = "${prefix}-home"; mountPath = "${config.home}/.ssh"; subPath = "home"; readOnly = true; }
-      { name = "${prefix}-config"; mountPath = "/etc/passwd"; subPath = "passwd"; readOnly = true; }
-    ];
+    volumeMounts = [ cfg.volumeMount ];
     volumes = [
       { name = "${prefix}-home"; emptyDir.medium = "Memory"; }
       { name = "${prefix}-config"; configMap.name = "${prefix}-config"; }

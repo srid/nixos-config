@@ -3,6 +3,7 @@
 Import this directory in an app's NixOS module and configure `k8s.apps.<name>`:
 
 ```nix
+{ config, ... }:
 {
   imports = [ ../../modules ];
   k8s.apps.example = {
@@ -27,6 +28,10 @@ Import this directory in an app's NixOS module and configure `k8s.apps.<name>`:
       enable = true;
       url = "git@github.com:OWNER/REPO.git";
       directory = "/data/repo";
+      volumeMounts = [
+        { name = "data"; mountPath = "/data"; }
+        config.k8s.apps.example.ssh.volumeMount
+      ];
       userName = "Example";
       userEmail = "example@example.com";
     };
@@ -46,6 +51,12 @@ inherit these controls. `/tmp` is ephemeral writable scratch (default `1Gi`);
 application state still needs its own writable mount. See
 [`hardening.nix`](hardening.nix) for the policy and integration comments.
 
+Enable `nix.enable` to add the Nix CLI, a read-only host store mount, and a
+dedicated untrusted daemon socket. Remove any duplicate `/nix/store` mount.
+The daemon shares the host cache but has no build users or remote builders:
+only cached packages can be fetched. No store copy, init container, or extra
+PVC is needed. Package evaluation needs DNS and public TCP 443 allowed.
+
 [`network.nix`](network.nix) denies all namespace ingress/egress by default.
 Keep `app = <name>` on pod labels so explicit allow rules select the app.
 Opt into DNS and public TCP ports as needed; `network.ingress` and
@@ -63,8 +74,9 @@ the assigned name. This app module uses the operator installed by
 [`../tailscale.nix`](../tailscale.nix), which owns cluster credentials and Helm setup.
 
 The SSH module expects an existing Secret with `id_ed25519` and
-`id_ed25519.pub`. It creates a passwd entry, copies keys into tmpfs as the pod's
-non-root user, and mounts them read-only. `user.name` defaults to the app name;
+`id_ed25519.pub`. It copies keys into tmpfs as the pod's non-root user and mounts
+them read-only. [`user.nix`](user.nix) supplies `/etc/passwd` and the pod UID/GID.
+`user.name` defaults to the app name;
 `user.uid` and `user.gid` default to 1000. Known hosts are explicit app policy;
 shared public keys live in [`known-hosts.nix`](../known-hosts.nix).
 
@@ -72,5 +84,8 @@ Git config lives outside the checkout. The Git module clones only when absent,
 never pulls or resets on restart, and does not change commit/push policy. It
 needs a writable mount containing `git.directory`'s parent and an appropriate
 transport (enable SSH for SSH remotes). These minimal containers need BusyBox
-utilities and `/nix/store`; mount the home with `lib.mkBefore` so it precedes
-nested config mounts. Mounts and environment are shared with the Git init step.
+utilities and their packages in `/nix/store`; mount the home with `lib.mkBefore`
+so it precedes nested config mounts. Pass checkout storage and transport
+credentials through `git.volumeMounts`.
+Git init supplies its own environment, read-only store mount, and scratch space;
+it does not inherit unrelated app credentials or the Nix daemon socket.

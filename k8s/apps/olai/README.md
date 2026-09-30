@@ -35,12 +35,18 @@ commits cannot include them. Auto-commit/push policy comes from the vault's
 The container command uses olai's `lib.webArgs`, shared with its Home Manager module.
 
 The container's PATH includes Git, OpenSSH, and agent-distro's vanilla `claude`
-and `codex` launchers. Their configuration and login state live under `/data` (`HOME`),
+and `codex` launchers, plus `nix`. Their configuration and login state live under `/data` (`HOME`),
 separate from the host's. Open an interactive shell with:
 
 ```bash
 sudo k3s kubectl -n olai-k3s exec -it deployment/olai -- /bin/sh
 ```
+
+Inside the app, fetch and run cached packages with `nix run nixpkgs#hello` or
+`nix shell nixpkgs#jq`. A dedicated, untrusted Nix socket downloads into the host
+store; the pod cannot write store files directly. Host builds are disabled, so
+packages missing from the configured binary cache cannot be built here.
+Downloads share the host's disk and garbage collection.
 
 The Tailscale Ingress manages HTTPS and certificates, forwarding HTTP to the
 internal Service. Enable HTTPS certificates in the

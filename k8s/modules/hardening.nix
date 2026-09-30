@@ -6,19 +6,10 @@ let
   inherit (lib) mkOption types;
 in
 {
-  options = {
-    hardening = {
-      enable = lib.mkEnableOption "non-escalating containers with read-only roots";
-      # Disk-backed scratch, discarded with the pod; not persistent app storage.
-      tmpSizeLimit = mkOption { type = types.str; default = "1Gi"; };
-    };
-    # Wire these pod fields into the app Deployment.
-    automountServiceAccountToken = mkOption { type = types.bool; default = true; };
-    # Apply to every container, including custom init containers.
-    containerSecurityContext = mkOption {
-      type = types.attrsOf types.anything;
-      default = { };
-    };
+  options.hardening = {
+    enable = lib.mkEnableOption "non-escalating containers with read-only roots";
+    # Disk-backed scratch, discarded with the pod; not persistent app storage.
+    tmpSizeLimit = mkOption { type = types.str; default = "1Gi"; };
   };
 
   config = lib.mkIf cfg.enable {

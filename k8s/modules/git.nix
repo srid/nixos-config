@@ -4,6 +4,12 @@
 let
   cfg = config.git;
   inherit (lib) mkOption types;
+  gitConfigMount = {
+    name = "${name}-git";
+    mountPath = "${config.home}/.gitconfig";
+    subPath = "gitconfig";
+    readOnly = true;
+  };
 in
 {
   options.git = {
@@ -11,6 +17,8 @@ in
     url = mkOption { type = types.str; };
     # Its parent must be a writable mount. Enable ssh separately for SSH remotes.
     directory = mkOption { type = types.str; };
+    # Only the checkout storage and transport credentials needed by the clone.
+    volumeMounts = mkOption { type = types.listOf types.attrs; default = [ ]; };
     userName = mkOption { type = types.str; };
     userEmail = mkOption { type = types.str; };
   };
@@ -27,17 +35,28 @@ in
         user.email = cfg.userEmail;
       };
     }];
-    volumeMounts = [{
-      name = "${name}-git";
-      mountPath = "${config.home}/.gitconfig";
-      subPath = "gitconfig";
-      readOnly = true;
-    }];
-    volumes = [{ name = "${name}-git"; configMap.name = "${name}-git"; }];
-    # Inherit app mounts/environment; SSH credentials are prepared first.
+    volumeMounts = [ gitConfigMount ];
+    volumes = [
+      { name = "${name}-git"; configMap.name = "${name}-git"; }
+      { name = "${name}-git-store"; hostPath = { path = "/nix/store"; type = "Directory"; }; }
+      { name = "${name}-git-tmp"; emptyDir.sizeLimit = "64Mi"; }
+    ];
+    # Clone gets explicit inputs, never the app's mail/agent environment or Nix socket.
     initContainers = [{
       name = "${name}-clone";
-      inherit (config) image env volumeMounts;
+      inherit (config) image;
+      env = [
+        { name = "HOME"; value = config.home; }
+        { name = "PATH"; value = "${lib.makeBinPath [ pkgs.git pkgs.openssh ]}:/bin:/usr/bin"; }
+        { name = "GIT_TERMINAL_PROMPT"; value = "0"; }
+        { name = "GIT_SSL_CAINFO"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
+      ];
+      volumeMounts = cfg.volumeMounts ++ [
+        config.user.volumeMount
+        gitConfigMount
+        { name = "${name}-git-store"; mountPath = "/nix/store"; readOnly = true; }
+        { name = "${name}-git-tmp"; mountPath = "/tmp"; }
+      ];
       securityContext = config.containerSecurityContext;
       command = [
         "/bin/sh"
