@@ -35,4 +35,6 @@ in
   # OLAI_MAIL_OAUTH_CLIENT / OLAI_MAIL_OAUTH_SECRET from it at decrypt time.
   "olai-mail-oauth-client.json.age".publicKeys = users ++ systems ++ [ myolai ];
   "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent ];
+  # GitHub repo deploy key for srid/Vault, the olai vault repository.
+  "olai-ssh.yaml.age".publicKeys = users ++ [ naiveintent ];
 }

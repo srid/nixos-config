@@ -5,6 +5,7 @@ A single-node K3s learning cluster on naiveintent. The host imports
 
 - [`tailscale.nix`](tailscale.nix): shared Tailscale operator and agenix credentials.
 - [`apps/olai`](apps/olai): olai deployment, persistent storage, and tailnet Service.
+- [`modules`](modules): composable SSH and Git options for apps.
 
 Add applications under `apps/<name>/default.nix` and import them in `default.nix`.
 Apply changes with `just activate` from the repository root in the Nix devShell
