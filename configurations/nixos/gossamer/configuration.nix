@@ -29,6 +29,9 @@
 
   services.printing.enable = true;
 
+  fonts.packages = [ pkgs.nerd-fonts.caskaydia-cove ];
+  fonts.fontconfig.defaultFonts.monospace = [ "CaskaydiaCove Nerd Font" ];
+
   # Account groups and shell come from the repo's primary-as-admin module.
   users.users.${flake.config.me.username} = {
     description = flake.config.me.fullname;
