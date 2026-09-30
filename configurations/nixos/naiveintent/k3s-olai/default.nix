@@ -1,4 +1,4 @@
-# Learning example: browser → Ingress → Service → Deployment, with a PVC
+# Learning example: browser → Tailscale proxy → Service → Deployment, with a PVC
 # preserving data across pod restarts. This single-node setup runs olai from
 # the host Nix store; BusyBox supplies the container root filesystem.
 { flake, pkgs, ... }:
@@ -7,7 +7,6 @@ let
   olai = inputs.olai.packages.${pkgs.stdenv.hostPlatform.system}.olai;
 
   namespace = "olai-k3s";
-  hostname = "olai-k3s.test";
   port = 7714; # olai's own production port, per the home-manager module
   labels = { app = "olai"; };
 in
@@ -43,6 +42,7 @@ in
         template = {
           metadata.labels = labels;
           spec = {
+            # A non-root UID with group access to the data volume.
             securityContext = {
               runAsNonRoot = true;
               runAsUser = 1000;
@@ -87,36 +87,20 @@ in
     {
       apiVersion = "v1";
       kind = "Service";
-      metadata = { inherit namespace; name = "olai"; labels = labels; };
+      metadata = {
+        inherit namespace;
+        name = "olai";
+        labels = labels;
+        # The operator creates a tailnet device: browse http://olai-k3s.
+        annotations = {
+          "tailscale.com/expose" = "true";
+          "tailscale.com/hostname" = "olai-k3s";
+        };
+      };
       spec = {
         selector = labels;
         ports = [ { name = "http"; port = 80; targetPort = "http"; } ];
       };
     }
-
-    # No authentication: reachable by anyone who can reach Traefik.
-    {
-      apiVersion = "networking.k8s.io/v1";
-      kind = "Ingress";
-      metadata = { inherit namespace; name = "olai"; };
-      spec = {
-        ingressClassName = "traefik";
-        rules = [
-          {
-            host = hostname;
-            http.paths = [
-              {
-                path = "/";
-                pathType = "Prefix";
-                backend.service = { name = "olai"; port.number = 80; };
-              }
-            ];
-          }
-        ];
-      };
-    }
   ];
-
-  # So a browser on this machine reaches the Ingress by name; Traefik is on 80.
-  networking.hosts."127.0.0.1" = [ hostname ];
 }
