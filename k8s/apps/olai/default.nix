@@ -1,13 +1,18 @@
 # Learning example: browser → Tailscale proxy → Service → Deployment, with a PVC
 # preserving data across pod restarts. This single-node setup runs olai from
 # the host Nix store; BusyBox supplies the container root filesystem.
-{ flake, pkgs, ... }:
+{ flake, lib, pkgs, ... }:
 let
   inherit (flake) inputs;
   olai = inputs.olai.packages.${pkgs.stdenv.hostPlatform.system}.olai;
+  agents = inputs.agent-distro.lib.mkLaunchers {
+    inherit pkgs;
+    profile = inputs.agent-distro.profiles.vanilla;
+  };
+  caBundle = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 
   namespace = "olai-k3s";
-  port = 7714; # olai's own production port, per the home-manager module
+  port = inputs.olai.lib.defaultPort;
   labels = { app = "olai"; };
 in
 {
@@ -54,16 +59,22 @@ in
                 name = "olai";
                 # A rootfs, nothing more; the program is the mount below.
                 image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
-                command = [
-                  "${olai}/bin/olai"
-                  "web"
-                  "/data"
-                  "--port"
-                  (toString port)
-                  "--host"
-                  "0.0.0.0"
+                command = inputs.olai.lib.webArgs {
+                  package = olai;
+                  dataDir = "/data";
+                  host = "0.0.0.0";
+                  inherit port;
+                };
+                env = [
+                  { name = "HOME"; value = "/data"; }
+                  {
+                    name = "PATH";
+                    value = "${lib.makeBinPath [ pkgs.git agents.claude agents.codex ]}:/bin:/usr/bin";
+                  }
+                  # BusyBox has no CA bundle; Git and the agents need HTTPS.
+                  { name = "GIT_SSL_CAINFO"; value = caBundle; }
+                  { name = "SSL_CERT_FILE"; value = caBundle; }
                 ];
-                env = [ { name = "HOME"; value = "/data"; } ];
                 ports = [ { name = "http"; containerPort = port; } ];
                 volumeMounts = [
                   { name = "data"; mountPath = "/data"; }
