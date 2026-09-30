@@ -27,25 +27,43 @@ Create an OAuth client with write permissions for **General/Services**,
 Ensure the tailnet policy permits your user/devices to reach `tag:k8s` on TCP 80.
 Olai has no application authentication, so this policy controls tailnet access.
 
-With K3s running on naiveintent, create the credentials Secret outside Nix.
-Save the client ID and secret as two private files (without trailing newlines),
-then run, substituting their paths:
+In the Nix devShell, use the existing secrets workflow:
 
 ```bash
-sudo k3s kubectl create namespace tailscale --dry-run=client -o yaml \
-  | sudo k3s kubectl apply -f -
-sudo k3s kubectl -n tailscale create secret generic operator-oauth \
-  --from-file=client_id=/path/to/client-id \
-  --from-file=client_secret=/path/to/client-secret \
-  --dry-run=client -o yaml | sudo k3s kubectl apply -f -
+cd secrets
+just edit tailscale-operator-oauth.yaml.age
 ```
 
-Remove the temporary credential files after importing them. The Secret persists
-in the cluster; never put these credentials in a Nix expression or Git.
+Enter this manifest with the real OAuth values in the editor:
 
-Run `just activate` in the Nix devShell on naiveintent. K3s installs the pinned
-operator chart and applies the olai manifest. On a fresh host, activate first
-to start K3s, then create the Secret; the operator waits for it automatically.
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tailscale
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: operator-oauth
+  namespace: tailscale
+stringData:
+  client_id: "<OAuth client ID>"
+  client_secret: "<OAuth client secret>"
+```
+
+The recipient list includes naiveintent's SSH host key. Add the encrypted `.age`
+file to Git so the flake includes it, then run `just activate` in the Nix devShell
+on naiveintent. Agenix decrypts it as root under `/run/agenix`; K3s reads it through
+an auto-deploy symlink. Plaintext never enters the Nix store. Without the encrypted
+file, evaluation warns and the operator waits for its Secret.
+
+To rotate credentials, edit the same encrypted file and activate again. Once K3s
+has updated the Secret, restart the operator to reload the credentials:
+
+```bash
+sudo k3s kubectl -n tailscale rollout restart deployment/operator
+```
 
 ## Migrating the earlier experiment
 

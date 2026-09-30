@@ -7,6 +7,7 @@ let
   ];
 
   pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKfR7GnwrIVemP/1kna8jboNRegIsaVL6mTi3oXwMdU";
+  naiveintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBdMc145nH1JYFDF6q6gsSN/pqr3HCf1/BTgmOz6lod root@naiveintent";
   # myolai (incus container on naiveintent) — its own ssh host key, so agenix
   # decrypts as root inside the container and hands the plaintext to the user.
   myolai = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKWElR+0agAZryLk4DfrEpfFRJgKRpFJGU+ledW7izx5 root@nixos";
@@ -33,4 +34,5 @@ in
   # client_secret JSON Google hands out; myolai's olai derives
   # OLAI_MAIL_OAUTH_CLIENT / OLAI_MAIL_OAUTH_SECRET from it at decrypt time.
   "olai-mail-oauth-client.json.age".publicKeys = users ++ systems ++ [ myolai ];
+  "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent ];
 }
