@@ -11,7 +11,7 @@ in
   options.k8s.apps = mkOption {
     default = { };
     type = types.attrsOf (types.submodule ({ config, name, ... }: {
-      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ./hardening.nix ];
+      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ./hardening.nix ./network.nix ];
       options = {
         namespace = mkOption { type = types.str; default = name; };
         image = mkOption { type = types.str; };

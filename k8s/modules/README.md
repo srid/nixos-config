@@ -10,6 +10,10 @@ Import this directory in an app's NixOS module and configure `k8s.apps.<name>`:
     image = "busybox:1.36.1";
     home = "/data";
     hardening.enable = true;
+    network = {
+      allowDNS = true;
+      publicTCPPorts = [ 22 80 443 ];
+    };
     tailscale = {
       enable = true;
       hostname = "example-k3s";
@@ -41,6 +45,13 @@ With hardening enabled, also wire `automountServiceAccountToken` into the pod an
 inherit these controls. `/tmp` is ephemeral writable scratch (default `1Gi`);
 application state still needs its own writable mount. See
 [`hardening.nix`](hardening.nix) for the policy and integration comments.
+
+[`network.nix`](network.nix) denies all namespace ingress/egress by default.
+Keep `app = <name>` on pod labels so explicit allow rules select the app.
+Opt into DNS and public TCP ports as needed; `network.ingress` and
+`network.egress` accept additional Kubernetes NetworkPolicy rules. Tailscale
+adds ingress from only its own proxy; set `tailscale.podPort` when the pod listens
+on a different port than `servicePort`. The host imports `k8s/network.nix` too.
 
 The Tailscale module contributes an HTTPS Ingress to `manifests`, using the
 cluster's Tailscale operator. `hostname` and `serviceName` default to the app name;

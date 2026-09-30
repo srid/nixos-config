@@ -6,6 +6,7 @@ A single-node K3s learning cluster on naiveintent. The host imports
 - [`tailscale.nix`](tailscale.nix): shared Tailscale operator and agenix credentials.
 - [`apps/olai`](apps/olai): olai deployment, persistent storage, and Tailscale HTTPS Ingress.
 - [`modules`](modules): composable SSH and Git options for apps.
+- [`network.nix`](network.nix): host firewall guard for pod traffic.
 
 Add applications under `apps/<name>/default.nix` and import them in `default.nix`.
 Apply changes with `just activate` from the repository root in the Nix devShell
@@ -101,9 +102,18 @@ be running, and the laptop can be off.
 Olai enables the reusable [hardening module](modules/hardening.nix): no mounted
 service-account token, no privilege escalation, no Linux capabilities,
 `RuntimeDefault` seccomp, and read-only roots with explicit writable mounts.
+App modules also emit namespace-wide default-deny NetworkPolicies. Olai opts
+into cluster DNS, public TCP 80/443 (web), 22 (Git), and 465/587/993 (mail).
+Private/LAN, tailnet, cluster, and link-local destinations are excluded. Among
+other pods, only olai's Tailscale ingress proxy may initiate connections to its
+web port. Kubernetes still permits traffic originating on the local node.
+The host firewall blocks pod access to ordinary host services; only cluster
+API/kubelet ports remain available for infrastructure, and olai's egress policy
+blocks those too. This setup is IPv4-only; no IPv6 egress is allowed.
+
 Remaining work:
 
-- Add NetworkPolicies for required ingress/egress and CPU/memory limits. Choose
+- Add CPU/memory limits. Choose
   storage with an enforced quota if disk isolation is needed.
 - Replace the whole-host `/nix/store` mount with an image containing the app's
   required packages.

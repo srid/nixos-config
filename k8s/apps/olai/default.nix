@@ -25,9 +25,15 @@ in
     home = "/data";
     packages = [ agents.claude agents.codex ];
     hardening.enable = true;
+    network = {
+      allowDNS = true;
+      # Public web/AI APIs, GitHub SSH, and Gmail SMTP/IMAP.
+      publicTCPPorts = [ 80 443 22 465 587 993 ];
+    };
     tailscale = {
       enable = true;
       hostname = "olai-k3s";
+      podPort = port;
     };
     ssh = {
       enable = true;

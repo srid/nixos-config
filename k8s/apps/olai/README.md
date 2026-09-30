@@ -14,8 +14,13 @@ all Linux capabilities dropped, privilege escalation disabled, and the runtime's
 default seccomp filter. No Kubernetes API token is mounted. `/data` remains
 writable; `/tmp` is disposable scratch. These controls come from
 [`hardening.nix`](../../modules/hardening.nix). Agents still share the app's
-credentials and data; network restrictions and stronger isolation remain on the
+credentials and data; separate agent execution remains on the
 [roadmap](../../README.md#roadmap-app-isolation).
+
+Networking denies everything except cluster DNS, public web/AI APIs (TCP 80/443),
+Git SSH (22), Gmail (465/587/993), and inbound HTTP from this app's Tailscale proxy.
+Host, LAN, tailnet, other pod, and link-local destinations are blocked for outbound
+connections. Public IPv4 destinations are allowed on those ports; IPv6 is denied.
 
 Before olai starts, an init container clones `git@github.com:srid/Vault.git` into
 `~/Vault` (`/data/Vault`) if absent. Olai serves that checkout. Existing checkouts
