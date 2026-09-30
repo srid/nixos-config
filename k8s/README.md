@@ -1,12 +1,14 @@
-# olai on K3s
+# Kubernetes
 
-Open **http://olai-k3s** from gossamer or another device on the same tailnet
-with MagicDNS enabled. No client configuration or rebuild is needed.
+A single-node K3s learning cluster on naiveintent. The host imports
+[`default.nix`](default.nix), which enables K3s and lists its components:
 
-Olai and its Tailscale proxy run on naiveintent. The container uses the host's
-Nix-built olai; a PVC preserves `/data` across restarts. Updates stop the old
-instance before starting another. Access is HTTP over Tailscale, without HTTPS
-or application authentication; tailnet policy controls who can connect.
+- [`tailscale.nix`](tailscale.nix): shared Tailscale operator and agenix credentials.
+- [`apps/olai`](apps/olai): olai deployment, persistent storage, and tailnet Service.
+
+Add applications under `apps/<name>/default.nix` and import them in `default.nix`.
+Apply changes with `just activate` from the repository root in the Nix devShell
+on naiveintent. Client devices such as gossamer need no rebuild.
 
 ## First-time setup
 
@@ -22,8 +24,8 @@ or application authentication; tailnet policy controls who can connect.
 
 3. Create an [OAuth client](https://console.tailscale.com/admin/settings/trust-credentials)
    with write access to **General/Services**, **Devices/Core**, and
-   **Keys/Auth Keys**, scoped to `tag:k8s-operator`. Allow your user/devices to
-   reach `tag:k8s` on TCP 80 in the tailnet policy.
+   **Keys/Auth Keys**, scoped to `tag:k8s-operator`. Each app's README describes
+   the access its users need in the tailnet policy.
 4. From the repository's Nix devShell, run
    `cd secrets && just edit tailscale-operator-oauth.yaml.age` and save:
 
@@ -52,32 +54,25 @@ or application authentication; tailnet policy controls who can connect.
 
 Agenix decrypts the file using naiveintent's SSH host key. K3s reads the Secret
 through a runtime symlink; plaintext stays out of Git and the Nix store.
-The Machines page should show `naiveintent-k3s-operator` and `olai-k3s`.
+The Machines page should show `naiveintent-k3s-operator`.
 
 ## Update credentials
 
 Edit the same encrypted file, then run `just activate` from the repository root.
-Explicitly refresh the Kubernetes Secret before restarting: replacing the agenix
-symlink did not refresh the live Secret during our credential change.
+Explicitly refresh the Kubernetes Secret before restarting; activation alone
+does not reliably refresh credentials through the agenix symlink.
 
 ```bash
 sudo k3s kubectl apply -f /run/agenix/tailscale-operator-oauth.yaml
 sudo k3s kubectl -n tailscale rollout restart deployment/operator
 ```
 
-## Check access
-
-On naiveintent: `sudo k3s kubectl -n tailscale get pods`.
-For operator errors: `sudo k3s kubectl -n tailscale logs deployment/operator --tail=30`.
-On gossamer: `curl --fail http://olai-k3s/`.
-If the device is missing, check the selected tailnet and its access policy.
-
-## Remove the earlier Traefik experiment
-
-K3s does not delete resources removed from manifests. After switching to Tailscale,
-remove the old route and quota; these commands preserve olai's data:
+## Check the operator
 
 ```bash
-sudo k3s kubectl -n olai-k3s delete ingress olai --ignore-not-found
-sudo k3s kubectl -n olai-k3s delete resourcequota olai-k3s --ignore-not-found
+sudo k3s kubectl -n tailscale get pods
+sudo k3s kubectl -n tailscale logs deployment/operator --tail=30
 ```
+
+If a device is missing from the tailnet, check the selected tailnet and its access
+policy. See each app's README for its browser address and app-specific checks.
