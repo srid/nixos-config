@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    (self + /k8s)
     (self + /modules/nixos/linux/my-workstation.nix)
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
     (self + /modules/nixos/linux/devbox.nix)
@@ -24,7 +25,7 @@ in
     "${homeMod}/gui/1password.nix"
     # oh-my-pi (omp), wired to Juspay's gateway
     "${homeMod}/work/coding-agents.nix"
-    # myolai still serves the Vault outlines; this is the olai repo's own docs.
+    # The K3s app serves Vault; this instance serves the olai repo's own docs.
     inputs.olai.homeManagerModules.default
     ({ config, ... }: {
       services.olai = {

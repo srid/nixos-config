@@ -75,7 +75,7 @@ in
     "${script} ${config.age.secrets.juspay-anthropic-api-key.path} ${envFile}";
 
   # Standalone HM: systemd --user was not started from a NixOS login, so the
-  # manager PATH is only systemd's bindir (naiveintent/myolai inherit the
+  # manager PATH is only systemd's bindir (NixOS hosts inherit the
   # session PATH). environment.d is read at manager start; set-environment
   # updates the already-running instance without restarting the user session.
   systemd.user.sessionVariables.PATH = lib.concatStringsSep ":" [
