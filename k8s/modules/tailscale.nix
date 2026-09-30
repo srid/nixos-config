@@ -1,8 +1,5 @@
-# Tailnet HTTPS ingress for an app's existing Service.
-# Enable with k8s.apps.<name>.tailscale.enable; merge the app's `manifests`
-# into its K3s manifest. This module needs the shared operator in ../tailscale.nix.
-# The app owns the backend Service; do not also expose that Service via Tailscale.
-# HTTPS certificates must be enabled in the tailnet, with TCP 443 allowed by policy.
+# Enable tailscale.enable to expose an app's Service over tailnet HTTPS.
+# Requires the shared operator from ../tailscale.nix and tailnet HTTPS enabled.
 { config, lib, name, ... }:
 let
   cfg = config.tailscale;
@@ -36,6 +33,8 @@ in
       }];
       ports = [{ protocol = "TCP"; port = cfg.podPort; }];
     }];
+    # Keep the backend Service internal; this Ingress owns Tailscale exposure.
+    # Tailnet policy must allow TCP 443 to the proxy.
     manifests = [{
       apiVersion = "networking.k8s.io/v1";
       kind = "Ingress";

@@ -1,7 +1,5 @@
-# Composable pod configuration; apps still own their Deployment, PVC and Service.
-# Each k8s.apps.<name> is a submodule. Enabled features merge contributions into
-# lists; the app must wire manifests and pod fields into its own resources.
-# No Deployment is generated here, so storage and lifecycle policy stay with the app.
+# Shared pod configuration for k8s.apps.<name>.
+# Feature modules contribute fields; each app owns its Kubernetes resources.
 { lib, pkgs, ... }:
 let
   inherit (lib) mkOption types;

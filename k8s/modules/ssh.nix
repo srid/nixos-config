@@ -1,8 +1,5 @@
-# SSH credentials and Unix identity for a minimal container image.
-# Requires an existing Secret with id_ed25519{,.pub}; provisioning stays with the app.
-# The init container copies keys to tmpfs under the configured pod UID/GID because
-# Kubernetes Secret projections are root-owned. Credentials never enter the data PVC.
-# Supply knownHosts explicitly; strict host checking refuses unknown destinations.
+# Enable ssh.enable to mount SSH credentials in the app's home.
+# The app supplies the Secret and trusted host keys.
 { config, lib, pkgs, name, ... }:
 let
   cfg = config.ssh;
@@ -12,7 +9,9 @@ in
 {
   options.ssh = {
     enable = lib.mkEnableOption "SSH credentials in the app's home";
+    # Existing Secret containing id_ed25519 and id_ed25519.pub.
     secretName = mkOption { type = types.str; default = prefix; };
+    # Strict host checking rejects destinations absent from this list.
     knownHosts = mkOption { type = types.lines; default = ""; };
   };
 
@@ -33,7 +32,7 @@ in
         known_hosts = cfg.knownHosts;
       };
     }];
-    # Run before Git or any other init container that needs credentials.
+    # Copy root-owned Secret files to tmpfs as the app user, before Git starts.
     initContainers = lib.mkBefore [{
       name = "${prefix}-keys";
       inherit (config) image;

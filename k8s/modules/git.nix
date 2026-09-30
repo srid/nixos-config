@@ -1,8 +1,5 @@
-# Git identity and a persistent checkout, independent of its transport.
-# Requires url, directory, userName and userEmail, plus a writable mounted parent
-# for directory. Enable the SSH module separately for SSH remotes. The clone init
-# inherits the app's mounts/environment; SSH's init is ordered before it.
-# Existing checkouts belong to the app: this module does not pull or set auto-push.
+# Enable git.enable to clone a repository before the app starts.
+# Existing checkouts are preserved, including edits and unpushed commits.
 { config, lib, pkgs, name, ... }:
 let
   cfg = config.git;
@@ -12,6 +9,7 @@ in
   options.git = {
     enable = lib.mkEnableOption "a Git checkout before the app starts";
     url = mkOption { type = types.str; };
+    # Its parent must be a writable mount. Enable ssh separately for SSH remotes.
     directory = mkOption { type = types.str; };
     userName = mkOption { type = types.str; };
     userEmail = mkOption { type = types.str; };
@@ -36,6 +34,7 @@ in
       readOnly = true;
     }];
     volumes = [{ name = "${name}-git"; configMap.name = "${name}-git"; }];
+    # Inherit app mounts/environment; SSH credentials are prepared first.
     initContainers = [{
       name = "${name}-clone";
       inherit (config) image env volumeMounts;

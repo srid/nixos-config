@@ -1,9 +1,5 @@
-# App namespaces deny ingress and egress by default, including unlabelled pods.
-# Explicit allow rules select app=<name>; keep that label on the app's pod template.
-# NetworkPolicies are additive: another allow policy can widen access. This is for
-# workload namespaces, not kube-system/tailscale, whose controllers need API access.
-# K3s's kube-router enforces these rules. ../network.nix also guards host INPUT;
-# the local-node exception makes NetworkPolicy alone an insufficient host boundary.
+# Deny namespace traffic by default; apps opt into DNS, ports and peers.
+# Allow rules select pods labelled app=<name>.
 { config, lib, name, ... }:
 let
   cfg = config.network;
@@ -20,6 +16,9 @@ in
     egress = rules;
   };
 
+  # For workload namespaces only; infrastructure controllers need API access.
+  # K3s enforces these policies. ../network.nix also blocks access to the host.
+  # Kubernetes allow policies are additive, so other policies can widen access.
   config.manifests = [
     {
       apiVersion = "networking.k8s.io/v1";

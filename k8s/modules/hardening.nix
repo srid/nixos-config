@@ -1,9 +1,5 @@
-# Opt-in container hardening for k8s.apps.<name>.
-# Wire automountServiceAccountToken and securityContext into the pod, and
-# containerSecurityContext into EVERY container, including init containers.
-# SSH/Git init modules already do this; custom containers must do the same.
-# Writable state belongs on explicit mounts: the app's home/PVC and this /tmp.
-# This limits process privileges, not network access or access to app credentials.
+# Enable hardening.enable for non-root containers with read-only filesystems.
+# Writable data needs explicit mounts; /tmp is provided here.
 { config, lib, name, ... }:
 let
   cfg = config.hardening;
@@ -16,7 +12,9 @@ in
       # Disk-backed scratch, discarded with the pod; not persistent app storage.
       tmpSizeLimit = mkOption { type = types.str; default = "1Gi"; };
     };
+    # Wire these pod fields into the app Deployment.
     automountServiceAccountToken = mkOption { type = types.bool; default = true; };
+    # Apply to every container, including custom init containers.
     containerSecurityContext = mkOption {
       type = types.attrsOf types.anything;
       default = { };
@@ -24,7 +22,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Olai and its tools do not need Kubernetes API credentials.
+    # Network policy and access to app credentials are managed separately.
     automountServiceAccountToken = false;
     securityContext.seccompProfile.type = "RuntimeDefault";
     containerSecurityContext = {
