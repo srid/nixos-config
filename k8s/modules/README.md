@@ -9,6 +9,7 @@ Import this directory in an app's NixOS module and configure `k8s.apps.<name>`:
     namespace = "example";
     image = "busybox:1.36.1";
     home = "/data";
+    hardening.enable = true;
     tailscale = {
       enable = true;
       hostname = "example-k3s";
@@ -34,6 +35,12 @@ ConfigMaps, volumes, mounts, and init containers. SSH runs before Git. Use the
 resulting `manifests`, `env`, `securityContext`, `volumes`, `volumeMounts`, and
 `initContainers` in the app's resources; [olai](../apps/olai/default.nix) shows
 this wiring. Each app still owns its Deployment, PVC, Service, and secret source.
+
+With hardening enabled, also wire `automountServiceAccountToken` into the pod and
+`containerSecurityContext` into each container. SSH/Git init containers already
+inherit these controls. `/tmp` is ephemeral writable scratch (default `1Gi`);
+application state still needs its own writable mount. See
+[`hardening.nix`](hardening.nix) for the policy and integration comments.
 
 The Tailscale module contributes an HTTPS Ingress to `manifests`, using the
 cluster's Tailscale operator. `hostname` and `serviceName` default to the app name;

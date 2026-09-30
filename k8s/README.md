@@ -98,9 +98,11 @@ be running, and the laptop can be off.
 
 ## Roadmap: app isolation
 
-- Add a reusable hardening module: disable service-account token mounting,
-  prevent privilege escalation, drop Linux capabilities, and use `RuntimeDefault`
-  seccomp. Make the root filesystem read-only with explicit writable mounts.
+Olai enables the reusable [hardening module](modules/hardening.nix): no mounted
+service-account token, no privilege escalation, no Linux capabilities,
+`RuntimeDefault` seccomp, and read-only roots with explicit writable mounts.
+Remaining work:
+
 - Add NetworkPolicies for required ingress/egress and CPU/memory limits. Choose
   storage with an enforced quota if disk isolation is needed.
 - Replace the whole-host `/nix/store` mount with an image containing the app's

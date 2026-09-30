@@ -9,6 +9,14 @@ Nix-built olai through a read-only `/nix/store` mount. A local-path PVC preserve
 `/data` across restarts; its size request is not a disk quota. `Recreate` updates
 stop the old instance before starting another.
 
+The app and its init containers run non-root with a read-only root filesystem,
+all Linux capabilities dropped, privilege escalation disabled, and the runtime's
+default seccomp filter. No Kubernetes API token is mounted. `/data` remains
+writable; `/tmp` is disposable scratch. These controls come from
+[`hardening.nix`](../../modules/hardening.nix). Agents still share the app's
+credentials and data; network restrictions and stronger isolation remain on the
+[roadmap](../../README.md#roadmap-app-isolation).
+
 Before olai starts, an init container clones `git@github.com:srid/Vault.git` into
 `~/Vault` (`/data/Vault`) if absent. Olai serves that checkout. Existing checkouts
 are never pulled, reset, or replaced at startup, preserving local edits and

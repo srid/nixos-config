@@ -11,7 +11,7 @@ in
   options.k8s.apps = mkOption {
     default = { };
     type = types.attrsOf (types.submodule ({ config, name, ... }: {
-      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ];
+      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ./hardening.nix ];
       options = {
         namespace = mkOption { type = types.str; default = name; };
         image = mkOption { type = types.str; };
@@ -27,7 +27,8 @@ in
         volumes = list types.attrs;
         initContainers = list types.attrs;
         manifests = list types.attrs;
-        securityContext = mkOption { type = types.attrs; readOnly = true; };
+        # Features merge pod-level controls with the shared non-root identity.
+        securityContext = mkOption { type = types.attrsOf types.anything; default = { }; };
       };
       config = {
         _module.args.pkgs = pkgs;

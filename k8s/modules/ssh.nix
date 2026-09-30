@@ -37,6 +37,7 @@ in
     initContainers = lib.mkBefore [{
       name = "${prefix}-keys";
       inherit (config) image;
+      securityContext = config.containerSecurityContext;
       command = [
         "/bin/sh"
         "-ec"

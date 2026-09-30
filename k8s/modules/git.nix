@@ -39,6 +39,7 @@ in
     initContainers = [{
       name = "${name}-clone";
       inherit (config) image env volumeMounts;
+      securityContext = config.containerSecurityContext;
       command = [
         "/bin/sh"
         "-ec"

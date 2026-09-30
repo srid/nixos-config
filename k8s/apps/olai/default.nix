@@ -24,6 +24,7 @@ in
     inherit namespace image;
     home = "/data";
     packages = [ agents.claude agents.codex ];
+    hardening.enable = true;
     tailscale = {
       enable = true;
       hostname = "olai-k3s";
@@ -93,12 +94,13 @@ in
           spec = {
             # Stable name reported by olai, independent of Deployment pod suffixes.
             hostname = "olai-k3s";
-            inherit (app) securityContext initContainers volumes;
+            inherit (app) automountServiceAccountToken securityContext initContainers volumes;
             containers = [
               {
                 name = "olai";
                 # A rootfs, nothing more; the program is the mount below.
                 inherit image;
+                securityContext = app.containerSecurityContext;
                 command = inputs.olai.lib.webArgs {
                   package = olai;
                   dataDir = app.git.directory;
