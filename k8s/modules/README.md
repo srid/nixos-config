@@ -89,3 +89,15 @@ so it precedes nested config mounts. Pass checkout storage and transport
 credentials through `git.volumeMounts`.
 Git init supplies its own environment, read-only store mount, and scratch space;
 it does not inherit unrelated app credentials or the Nix daemon socket.
+
+For 1Password-backed secrets, declare `k8s.apps.<name>.onepassword` as a mapping
+from Kubernetes Secret name to key/reference pairs:
+
+```nix
+onepassword."example-login".password = "example/password";
+```
+
+[`onepassword.nix`](onepassword.nix) owns the shared operator, bootstrap token,
+vault restrictions, and generated ExternalSecrets. Apps consume ordinary Secret
+references; SSH and Git do not depend on the provider. Refresh is hourly;
+restart consumers after rotation. Bootstrap setup is in the cluster README.

@@ -27,9 +27,7 @@ in
   "vira-github-webhook-secret.age".publicKeys = users ++ systems;
   "vira-github-private-key.age".publicKeys = users ++ systems;
   "olai-spaces.env.age".publicKeys = users ++ systems ++ [ kolu-bot ];
-  # Gmail OAuth client for the K3s olai app; decrypted on its host.
-  "olai-mail-oauth-client.json.age".publicKeys = users ++ systems ++ [ naiveintent ];
   "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent ];
-  # GitHub repo deploy key for srid/Vault, the olai vault repository.
-  "olai-ssh.yaml.age".publicKeys = users ++ [ naiveintent ];
+  # Bootstrap read-only access to the Kubernetes vault in 1Password.
+  "onepassword-token.json.age".publicKeys = users ++ [ naiveintent ];
 }

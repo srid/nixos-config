@@ -19,7 +19,7 @@ let
   homeMount = { name = "data"; mountPath = app.home; };
 in
 {
-  imports = [ ../../modules ./mail.nix ];
+  imports = [ ../../modules ./mail.nix ./secrets.nix ];
 
   k8s.apps.olai = {
     inherit namespace image;
@@ -63,10 +63,6 @@ in
       { name = "data"; persistentVolumeClaim.claimName = "olai-data"; }
     ];
   };
-
-  # GitHub repo deploy key for srid/Vault, the olai vault repository.
-  age.secrets."olai-ssh.yaml".file = inputs.self + /secrets/olai-ssh.yaml.age;
-  services.k3s.manifests.olai-ssh.source = config.age.secrets."olai-ssh.yaml".path;
 
   services.k3s.manifests.olai.content = [
     {

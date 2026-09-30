@@ -55,50 +55,39 @@ intended users/devices to reach `tag:k8s` on TCP 443. Tailnet policy controls
 access; olai has no separate application authentication. Use the full DNS name
 for HTTPS, not the short name or IP address. No manual `tailscale serve` is needed.
 
-## GitHub repo deploy key
+## Credentials and rotation
 
-`secrets/olai-ssh.yaml.age` holds the GitHub repo deploy key for
-[`srid/Vault`](https://github.com/srid/Vault). Agenix decrypts a Kubernetes Secret
-named `olai-ssh` in `olai-k3s`.
-An init container copies `id_ed25519` and `id_ed25519.pub` into memory-backed
-storage owned by olai; `/data/.ssh` is mounted read-only, with private-key mode
-`0600`. The key is not copied onto the data PVC. GitHub's published host key is
-pinned in `known_hosts`.
+The `Kubernetes` vault in 1Password supplies both Secrets via
+[`secrets.nix`](secrets.nix):
 
-Use the SSH remote `git@github.com:srid/Vault.git`. Register the public key as
-a deploy key on that repository; enable write access there if olai should push.
+| Item | Kubernetes Secret | Fields |
+|---|---|---|
+| `olai-git` (SSH Key) | `olai-ssh` | Private key in OpenSSH format, public key |
+| `olai-mail` (Secure Note) | `olai-mail` | `client_id`, `client_secret` |
 
-To rotate it, edit the encrypted manifest with
-`cd secrets && just edit olai-ssh.yaml.age`. Keep the Namespace document and the
-Secret's `stringData.id_ed25519` and `stringData.id_ed25519.pub` entries. Then run
-`just activate` from the repository root and refresh the Secret explicitly:
+The GitHub repo deploy key needs write access for automatic pushes. SSH init
+copies it into memory-backed storage with private-key mode `0600`, mounted
+read-only at `/data/.ssh`. Mail credentials enter the app through environment
+references. Neither is copied onto the data PVC.
+
+For Gmail, register the app's HTTPS address plus `/_olai/mail/oauth` as the
+Google OAuth redirect URI, then connect Gmail through olai's mail settings.
+
+After changing an item, allow up to an hour for synchronization or request it:
 
 ```bash
-sudo k3s kubectl apply -f /run/agenix/olai-ssh.yaml
+sudo k3s kubectl -n olai-k3s annotate externalsecret olai-ssh olai-mail force-sync="$(date +%s)" --overwrite
+sudo k3s kubectl -n olai-k3s get externalsecret -o 'custom-columns=NAME:.metadata.name,READY:.status.conditions[0].status,SYNCED:.status.refreshTime'
+```
+
+Once `SYNCED` reflects the update and both are ready, reload credentials:
+
+```bash
 sudo k3s kubectl -n olai-k3s rollout restart deployment/olai
 ```
 
-The restart reloads the keys into memory. The container's SSH files are managed
-by this configuration; change trusted hosts here rather than inside the pod.
-
-## Gmail OAuth
-
-[`mail.nix`](mail.nix) uses `secrets/olai-mail-oauth-client.json.age`, the Google
-Web OAuth client JSON. Agenix decrypts it on naiveintent; activation converts it
-into a root-only manifest at `/run/olai-mail/secret.json`. K3s supplies its
-`client_id` and `client_secret` through Secret references in olai's environment.
-Plaintext stays outside Git, the Nix store, and the data PVC.
-
-Register this authorized redirect URI on the Google OAuth client:
-`https://olai-k3s.rooster-blues.ts.net/_olai/mail/oauth`.
-Then connect Gmail through olai's mail settings.
-
-After editing the encrypted JSON, run `just activate` in the Nix devShell, then:
-
-```bash
-sudo k3s kubectl apply -f /run/olai-mail/secret.json
-sudo k3s kubectl -n olai-k3s rollout restart deployment/olai
-```
+See the [cluster README](../../README.md#1password-app-secrets) for bootstrap-token
+management.
 
 ## Check access
 

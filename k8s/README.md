@@ -79,23 +79,33 @@ sudo k3s kubectl -n tailscale logs deployment/operator --tail=30
 If a device is missing from the tailnet, check the selected tailnet and its access
 policy. See each app's README for its browser address and app-specific checks.
 
-## Roadmap: 1Password app secrets
+## 1Password app secrets
 
-Keep agenix for now. As we add apps, use 1Password as the source of app secrets:
+**1Password → External Secrets Operator → Kubernetes Secrets → app.**
 
-- Create a dedicated 1Password vault for Kubernetes secrets, including olai's
-  GitHub repo deploy key.
-- Give a [service account](https://developer.1password.com/docs/service-accounts/)
-  read access to that vault and bootstrap its token through agenix.
-- Use External Secrets Operator's
-  [1Password SDK provider](https://external-secrets.io/latest/provider/1password-sdk/)
-  to synchronize items into Kubernetes Secrets, without a Connect server.
-- Keep app modules consuming the same Secrets (such as `olai-ssh`). When migrating,
-  replace their agenix provisioning and arrange pod restarts for credentials
-  copied by init containers.
+[`modules/onepassword.nix`](modules/onepassword.nix) installs the pinned operator
+with the SDK provider, without a Connect server. Apps declare item/field
+mappings; only their namespaces may use the shared `Kubernetes` vault. The
+read-only service-account token is bootstrapped through agenix using
+`secrets/onepassword-token.json.age`. Apps never receive that token. Gossamer
+can be off; the cluster talks directly to 1Password.
 
-The cluster accesses 1Password directly; gossamer's desktop app does not need to
-be running, and the laptop can be off.
+Secrets refresh hourly. Source errors retain the last synchronized values;
+check `kubectl get externalsecret -A` for failures. Pod restarts are manual after
+rotation because environment variables and init-copied files do not reload.
+See [olai's instructions](apps/olai/README.md#credentials-and-rotation).
+
+To rotate the bootstrap token, update its encrypted manifest with agenix,
+activate, then apply the decrypted file (do not rely on the changed symlink):
+
+```bash
+sudo k3s kubectl apply -f /run/agenix/onepassword-token.json
+sudo k3s kubectl -n external-secrets rollout restart deployment/external-secrets
+```
+
+The operator may reach cluster DNS, the Kubernetes API, and public HTTPS; other
+traffic is denied. Its API endpoint allowlist follows this single-node cluster.
+Tailscale operator credentials remain on agenix.
 
 ## Roadmap: app isolation
 

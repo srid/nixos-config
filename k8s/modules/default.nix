@@ -6,7 +6,7 @@ let
   list = type: mkOption { type = types.listOf type; default = [ ]; };
 in
 {
-  imports = [ ./nix.nix ];
+  imports = [ ./nix.nix ./onepassword.nix ];
 
   options.k8s.apps = mkOption {
     default = { };
