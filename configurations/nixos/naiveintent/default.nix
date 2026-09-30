@@ -11,6 +11,7 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
+    ./k3s.nix
     (self + /modules/nixos/linux/my-workstation.nix)
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
     (self + /modules/nixos/linux/devbox.nix)
