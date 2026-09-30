@@ -4,7 +4,7 @@ A single-node K3s learning cluster on naiveintent. The host imports
 [`default.nix`](default.nix), which enables K3s and lists its components:
 
 - [`tailscale.nix`](tailscale.nix): shared Tailscale operator and agenix credentials.
-- [`apps/olai`](apps/olai): olai deployment, persistent storage, and tailnet Service.
+- [`apps/olai`](apps/olai): olai deployment, persistent storage, and Tailscale HTTPS Ingress.
 - [`modules`](modules): composable SSH and Git options for apps.
 
 Add applications under `apps/<name>/default.nix` and import them in `default.nix`.
@@ -77,3 +77,33 @@ sudo k3s kubectl -n tailscale logs deployment/operator --tail=30
 
 If a device is missing from the tailnet, check the selected tailnet and its access
 policy. See each app's README for its browser address and app-specific checks.
+
+## Roadmap: 1Password app secrets
+
+Keep agenix for now. As we add apps, use 1Password as the source of app secrets:
+
+- Create a dedicated 1Password vault for Kubernetes secrets, including olai's
+  GitHub repo deploy key.
+- Give a [service account](https://developer.1password.com/docs/service-accounts/)
+  read access to that vault and bootstrap its token through agenix.
+- Use External Secrets Operator's
+  [1Password SDK provider](https://external-secrets.io/latest/provider/1password-sdk/)
+  to synchronize items into Kubernetes Secrets, without a Connect server.
+- Keep app modules consuming the same Secrets (such as `olai-ssh`). When migrating,
+  replace their agenix provisioning and arrange pod restarts for credentials
+  copied by init containers.
+
+The cluster accesses 1Password directly; gossamer's desktop app does not need to
+be running, and the laptop can be off.
+
+## Roadmap: app isolation
+
+- Add a reusable hardening module: disable service-account token mounting,
+  prevent privilege escalation, drop Linux capabilities, and use `RuntimeDefault`
+  seccomp. Make the root filesystem read-only with explicit writable mounts.
+- Add NetworkPolicies for required ingress/egress and CPU/memory limits. Choose
+  storage with an enforced quota if disk isolation is needed.
+- Replace the whole-host `/nix/store` mount with an image containing the app's
+  required packages.
+- Run agents in separate execution containers with limited mounts and credentials
+  when they should not have olai's full access to Vault, Git, and mail.

@@ -2,7 +2,7 @@ default:
     @just --list
 
 # Incus container lifecycle, parametrized by container name
-# (e.g. `just incus deploy myolai`).
+# (e.g. `just incus deploy sheetal-codex`).
 mod incus 'modules/nixos/linux/incus/mod.just'
 
 # Main commands
@@ -112,8 +112,8 @@ _kolu-activate-pureintent:
 _kolu-activate-local:
     just activate
 
-# Update olai, then deploy the myolai container, then activate this host.
-# `sudo git status` refreshes the sudo timestamp for incus/activate.
+# Update olai, then activate naiveintent (including its K3s app).
+# `sudo git status` refreshes the sudo timestamp for activation.
 # Optional branch: `just olai feat/foo` rewrites flake.nix.
 [group('services')]
 olai branch="":
@@ -122,13 +122,10 @@ olai branch="":
     nix flake update olai
     just _olai-after-update
 
-_olai-after-update: _olai-deploy-myolai _olai-activate-naiveintent
+_olai-after-update: _olai-activate-naiveintent
 
 _olai-activate-naiveintent:
     just activate naiveintent
-
-_olai-deploy-myolai:
-    just incus deploy myolai
 
 # Misc commands
 # --------------------------------------------------------------------------------------------------

@@ -25,7 +25,7 @@ in
     "${homeMod}/gui/1password.nix"
     # oh-my-pi (omp), wired to Juspay's gateway
     "${homeMod}/work/coding-agents.nix"
-    # myolai still serves the Vault outlines; this is the olai repo's own docs.
+    # The K3s app serves Vault; this instance serves the olai repo's own docs.
     inputs.olai.homeManagerModules.default
     ({ config, ... }: {
       services.olai = {

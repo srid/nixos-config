@@ -1,4 +1,7 @@
 # Composable pod configuration; apps still own their Deployment, PVC and Service.
+# Each k8s.apps.<name> is a submodule. Enabled features merge contributions into
+# lists; the app must wire manifests and pod fields into its own resources.
+# No Deployment is generated here, so storage and lifecycle policy stay with the app.
 { lib, pkgs, ... }:
 let
   inherit (lib) mkOption types;
@@ -8,7 +11,7 @@ in
   options.k8s.apps = mkOption {
     default = { };
     type = types.attrsOf (types.submodule ({ config, name, ... }: {
-      imports = [ ./ssh.nix ./git.nix ];
+      imports = [ ./ssh.nix ./git.nix ./tailscale.nix ];
       options = {
         namespace = mkOption { type = types.str; default = name; };
         image = mkOption { type = types.str; };

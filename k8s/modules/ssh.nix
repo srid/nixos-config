@@ -1,4 +1,8 @@
 # SSH credentials and Unix identity for a minimal container image.
+# Requires an existing Secret with id_ed25519{,.pub}; provisioning stays with the app.
+# The init container copies keys to tmpfs under the configured pod UID/GID because
+# Kubernetes Secret projections are root-owned. Credentials never enter the data PVC.
+# Supply knownHosts explicitly; strict host checking refuses unknown destinations.
 { config, lib, pkgs, name, ... }:
 let
   cfg = config.ssh;

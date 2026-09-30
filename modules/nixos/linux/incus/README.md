@@ -58,9 +58,9 @@ Tailscale login and `serve` config persist in the container's
 ## Adding a new container
 
 1. `mkdir configurations/nixos/<name>` with a `default.nix` that imports
-   `guest.nix`, sets `networking.hostName` and `incus.servePort`, and
-   configures the service bound to `127.0.0.1`. nixos-unified
-   auto-wires it (see `configurations/nixos/myolai/` for the model).
+   `guest.nix` and sets `networking.hostName`. nixos-unified auto-wires it
+   (see `configurations/nixos/sheetal-codex/` for the model). To publish a
+   web service, bind it to `127.0.0.1` and set `incus.servePort`.
 2. `just incus init <name> && just incus deploy <name> && just incus
    tailscale <name>`.
 

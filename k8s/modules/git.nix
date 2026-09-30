@@ -1,4 +1,8 @@
 # Git identity and a persistent checkout, independent of its transport.
+# Requires url, directory, userName and userEmail, plus a writable mounted parent
+# for directory. Enable the SSH module separately for SSH remotes. The clone init
+# inherits the app's mounts/environment; SSH's init is ordered before it.
+# Existing checkouts belong to the app: this module does not pull or set auto-push.
 { config, lib, pkgs, name, ... }:
 let
   cfg = config.git;

@@ -2,7 +2,7 @@
 let
   input = import ./input-preferences.nix;
   focusOrLaunch = pkgs.callPackage ./focus-or-launch.nix { };
-  myolaiAppId = "lpcledbkhajbdmohekpffaoodainfdfd";
+  olaiAppId = "ibjcidhmendlapdjlbedpmplbfiglmpo";
   koluAppId = "mjffbmcccchpeiihgnfodjiaiicfpljk";
 in
 {
@@ -76,8 +76,8 @@ in
         }
         binds {
           Ctrl+Alt+U { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "google-chrome" "${pkgs.google-chrome}/bin/google-chrome"; }
-          Ctrl+Alt+L { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "chrome-${myolaiAppId}-Default" "${pkgs.google-chrome}/bin/google-chrome" "--profile-directory=Default" "--app-id=${myolaiAppId}"; }
           Ctrl+Alt+K { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "chrome-${koluAppId}-Default" "${pkgs.google-chrome}/bin/google-chrome" "--profile-directory=Default" "--app-id=${koluAppId}"; }
+          Ctrl+Alt+L { spawn "${focusOrLaunch}/bin/niri-focus-or-launch" "chrome-${olaiAppId}-Default" "${pkgs.google-chrome}/bin/google-chrome" "--profile-directory=Default" "--app-id=${olaiAppId}"; }
           Mod+Return { spawn "${pkgs.foot}/bin/foot"; }
           Mod+E { spawn "${pkgs.kdePackages.dolphin}/bin/dolphin"; }
           Mod+Q { close-window; }

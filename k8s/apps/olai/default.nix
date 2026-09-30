@@ -1,4 +1,4 @@
-# Learning example: browser → Tailscale proxy → Service → Deployment, with a PVC
+# Learning example: browser → Tailscale HTTPS Ingress → Service → Deployment, with a PVC
 # preserving data across pod restarts. This single-node setup runs olai from
 # the host Nix store; BusyBox supplies the container root filesystem.
 { config, flake, lib, pkgs, ... }:
@@ -18,12 +18,16 @@ let
   app = config.k8s.apps.olai;
 in
 {
-  imports = [ ../../modules ];
+  imports = [ ../../modules ./mail.nix ];
 
   k8s.apps.olai = {
     inherit namespace image;
     home = "/data";
     packages = [ agents.claude agents.codex ];
+    tailscale = {
+      enable = true;
+      hostname = "olai-k3s";
+    };
     ssh = {
       enable = true;
       secretName = "olai-ssh";
@@ -87,6 +91,8 @@ in
         template = {
           metadata.labels = labels;
           spec = {
+            # Stable name reported by olai, independent of Deployment pod suffixes.
+            hostname = "olai-k3s";
             inherit (app) securityContext initContainers volumes;
             containers = [
               {
@@ -115,11 +121,6 @@ in
         inherit namespace;
         name = "olai";
         labels = labels;
-        # The operator creates a tailnet device: browse http://olai-k3s.
-        annotations = {
-          "tailscale.com/expose" = "true";
-          "tailscale.com/hostname" = "olai-k3s";
-        };
       };
       spec = {
         selector = labels;

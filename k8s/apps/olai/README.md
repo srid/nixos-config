@@ -1,6 +1,6 @@
 # olai on K3s
 
-Open **http://olai-k3s** from gossamer or another device on the same tailnet
+Open **https://olai-k3s.rooster-blues.ts.net** from gossamer or another device on the same tailnet
 with MagicDNS enabled. For cluster and credential setup, see the
 [cluster README](../../README.md).
 
@@ -29,9 +29,12 @@ separate from the host's. Open an interactive shell with:
 sudo k3s kubectl -n olai-k3s exec -it deployment/olai -- /bin/sh
 ```
 
-Access is HTTP over Tailscale, without HTTPS or application authentication;
-tailnet policy controls who can connect. Allow the intended users/devices to
-reach `tag:k8s` on TCP 80. The Machines page should show `olai-k3s`.
+The Tailscale Ingress manages HTTPS and certificates, forwarding HTTP to the
+internal Service. Enable HTTPS certificates in the
+[Tailscale DNS settings](https://login.tailscale.com/admin/dns) and allow the
+intended users/devices to reach `tag:k8s` on TCP 443. Tailnet policy controls
+access; olai has no separate application authentication. Use the full DNS name
+for HTTPS, not the short name or IP address. No manual `tailscale serve` is needed.
 
 ## GitHub repo deploy key
 
@@ -59,7 +62,33 @@ sudo k3s kubectl -n olai-k3s rollout restart deployment/olai
 The restart reloads the keys into memory. The container's SSH files are managed
 by this configuration; change trusted hosts here rather than inside the pod.
 
+## Gmail OAuth
+
+[`mail.nix`](mail.nix) uses `secrets/olai-mail-oauth-client.json.age`, the Google
+Web OAuth client JSON. Agenix decrypts it on naiveintent; activation converts it
+into a root-only manifest at `/run/olai-mail/secret.json`. K3s supplies its
+`client_id` and `client_secret` through Secret references in olai's environment.
+Plaintext stays outside Git, the Nix store, and the data PVC.
+
+Register this authorized redirect URI on the Google OAuth client:
+`https://olai-k3s.rooster-blues.ts.net/_olai/mail/oauth`.
+Then connect Gmail through olai's mail settings.
+
+After editing the encrypted JSON, run `just activate` in the Nix devShell, then:
+
+```bash
+sudo k3s kubectl apply -f /run/olai-mail/secret.json
+sudo k3s kubectl -n olai-k3s rollout restart deployment/olai
+```
+
 ## Check access
 
-On naiveintent: `sudo k3s kubectl -n olai-k3s get pods,service,pvc`.
-On gossamer: `curl --fail http://olai-k3s/`.
+On naiveintent: `sudo k3s kubectl -n olai-k3s get pods,service,ingress,pvc`.
+On gossamer: `curl --fail https://olai-k3s.rooster-blues.ts.net/`.
+
+The Ingress ADDRESS field reports the actual HTTPS hostname. When migrating
+from the old exposed Service, its proxy must release `olai-k3s` before the
+Ingress proxy claims it; check for a suffixed hostname if they overlap.
+On first startup, HTTPS can time out while Tailscale obtains its certificate.
+The proxy logs in the `tailscale` namespace show `tls-cert-pending`, then
+`got cert` when ready. Use HTTPS explicitly; HTTP does not redirect automatically.

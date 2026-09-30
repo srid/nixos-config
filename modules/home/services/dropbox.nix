@@ -5,8 +5,7 @@
 # works even in an unprivileged incus container). On first start it
 # downloads the real client into ~/.dropbox-hm/.dropbox-dist, so expect
 # a few crash-loop restarts until that finishes. The synced folder ends
-# up at ~/.dropbox-hm/Dropbox — point consumers there directly (see
-# configurations/nixos/myolai/olai.nix).
+# up at ~/.dropbox-hm/Dropbox — point consumers there directly.
 #
 # The `dropbox` CLI must be told about the fake home or it reports
 # "Dropbox isn't running!" while the daemon is in fact fine:
