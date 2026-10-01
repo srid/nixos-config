@@ -45,6 +45,12 @@ just apps olai status   # Pods, routing, storage, and secret sync
 just apps olai restart  # Reload credentials and wait for readiness
 ```
 
+For host-side tools and unrestricted Nix builds, use `just apps olai host-shell`.
+It discovers the Vault's current volume and temporarily bind-mounts it into a
+private mount namespace. The shell runs as your host user; Ctrl+D releases the
+mount. This is the live Vault: olai can auto-commit your edits, so avoid concurrent
+Git operations.
+
 Inside the app, fetch and run cached packages with `nix run nixpkgs#hello` or
 `nix shell nixpkgs#jq`. A dedicated, untrusted Nix socket downloads into the host
 store; the pod cannot write store files directly. Host builds are disabled, so
