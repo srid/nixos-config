@@ -24,7 +24,7 @@ in
   k8s.apps.olai = {
     inherit namespace image;
     home = "/data";
-    packages = [ agents.claude agents.codex ];
+    packages = [ agents.claude agents.codex pkgs.just ];
     hardening.enable = true;
     nix.enable = true;
     network = {

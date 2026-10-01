@@ -5,6 +5,9 @@ default:
 # (e.g. `just incus deploy sheetal-codex`).
 mod incus 'modules/nixos/linux/incus/mod.just'
 
+# K3s app operations (e.g. `just apps olai shell`).
+mod apps 'k8s/apps/mod.just'
+
 # Main commands
 # --------------------------------------------------------------------------------------------------
 

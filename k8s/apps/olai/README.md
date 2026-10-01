@@ -36,10 +36,13 @@ The container command uses olai's `lib.webArgs`, shared with its Home Manager mo
 
 The container's PATH includes Git, OpenSSH, and agent-distro's vanilla `claude`
 and `codex` launchers, plus `nix`. Their configuration and login state live under `/data` (`HOME`),
-separate from the host's. Open an interactive shell with:
+separate from the host's. From the repository root on naiveintent:
 
 ```bash
-sudo k3s kubectl -n olai-k3s exec -it deployment/olai -- /bin/sh
+just apps olai shell    # Interactive shell in the app's home directory
+just apps olai logs     # Follow application logs
+just apps olai status   # Pods, routing, storage, and secret sync
+just apps olai restart  # Reload credentials and wait for readiness
 ```
 
 Inside the app, fetch and run cached packages with `nix run nixpkgs#hello` or
