@@ -40,7 +40,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/master";
+    kolu.url = "github:juspay/kolu/solidjs-review";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai";
 
