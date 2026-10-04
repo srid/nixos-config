@@ -9,7 +9,6 @@
     ./video.nix
     ./recording.nix
     ./dictation.nix
-    ./chatgpt.nix
   ];
 
   services.displayManager.sddm.enable = true;

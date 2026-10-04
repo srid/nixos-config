@@ -130,18 +130,6 @@
         "type": "github"
       }
     },
-    "chatgpt": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Ym18zVfTQ9+awAjkNJBEbLVlsDjUBeXYYC15v1Ezicw=",
-        "type": "file",
-        "url": "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb"
-      }
-    },
     "co-log-effectful": {
       "flake": false,
       "locked": {
@@ -1306,7 +1294,6 @@
       "inputs": {
         "agenix": "agenix",
         "agent-distro": "agent-distro",
-        "chatgpt": "chatgpt",
         "disc-scrape": "disc-scrape",
         "disko": "disko",
         "drishti": "drishti",

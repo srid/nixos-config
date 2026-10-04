@@ -40,10 +40,6 @@ and left-drag moves windows. Click a window to return to it.
 
 ## Everyday behavior
 
-- **ChatGPT:** launch from the app menu or `chatgpt`. The official Linux app
-  runs on native Wayland; Ctrl+−/+ adjusts zoom. Its profile lives in
-  `~/.config/chatgpt`. `just update` includes it among the primary inputs;
-  `nix flake update chatgpt` updates only the app. Activate afterward to install.
 - **Dictation:** focus a text box, press Meta+D, speak, then press Meta+D again.
   Voxtype transcribes locally with GPU-accelerated Whisper medium.en and types the result without
   sending it. It uses the default microphone; the model downloads on first setup.
