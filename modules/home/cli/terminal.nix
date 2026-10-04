@@ -26,8 +26,6 @@ in
     watchexec
     fswatch
 
-    eternal-terminal
-
     # Publishing
     asciinema
     ispell
