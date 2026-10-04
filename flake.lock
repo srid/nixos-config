@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1790942097,
-        "narHash": "sha256-LrbBJyfNeQM/amPSqEHsaA9/qUMUGnhKxNLKS3LKeEY=",
+        "lastModified": 1791123672,
+        "narHash": "sha256-iW8YLbIplnMM5Y1TsDALx6k8tYtYtVCZ+hpyu+yjx+w=",
         "owner": "juspay",
         "repo": "agent-distro",
-        "rev": "8ac08089e952bb94270d3e6980551bdafbbd69d2",
+        "rev": "51f699b9986425a28a14ea375d5177a7f7b82103",
         "type": "github"
       },
       "original": {
@@ -1231,15 +1231,16 @@
         "bun2nix": "bun2nix_2"
       },
       "locked": {
-        "lastModified": 1791044060,
-        "narHash": "sha256-Uwdck55Znazle0dfS9cN4v46maTkGuf7j4/eUDVkdto=",
+        "lastModified": 1791123208,
+        "narHash": "sha256-B1HqvQOADl563mdB0aFf9AvodBP4rE9nfwndACT/QUY=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "ad6464907758ac1d85c8fdb7a085bd8a0fe19cec",
+        "rev": "6b804dcdf1fe84394b85b35fb6b21106380fe45d",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
+        "ref": "link-hover",
         "repo": "olai",
         "type": "github"
       }
