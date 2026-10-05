@@ -73,9 +73,9 @@
     cardLabel = "Built-in Front Camera (Intel ISP)";
     input = {
       # Intel's sensor tuning handles exposure, colour and noise reduction;
-      # these image controls match Omarchy's tested configuration. The HAL
-      # already delivers an upright image on this laptop.
-      pipeline = lib.mkForce "icamerasrc device-name=ov08x40-uf sharpness=80 ev=-1 saturation=10";
+      # these image controls match Omarchy's tested configuration. Rotate the
+      # upside-down sensor feed before exposing it to browsers.
+      pipeline = lib.mkForce "icamerasrc device-name=ov08x40-uf sharpness=80 ev=-1 saturation=10 ! videoflip method=rotate-180";
       width = 3840;
       height = 2160;
       framerate = 30;
