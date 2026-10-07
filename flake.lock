@@ -852,7 +852,7 @@
     "kolu": {
       "locked": {
         "lastModified": 1791404417,
-        "narHash": "sha256-vVZo+Cbd6msq/irIRb86r8/nI43KU2e1aQqLyiqlQgQ=",
+        "narHash": "sha256-tOMlc4QaQINeSToDzzL0wD+1LMdYwJ8ZG6qxPIDwFsE=",
         "owner": "juspay",
         "repo": "kolu",
         "rev": "52d7f7ab13a529ee0eed0235ce62e0eb17b37b55",
