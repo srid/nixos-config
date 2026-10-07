@@ -24,7 +24,12 @@ in
   k8s.apps.olai = {
     inherit namespace image;
     home = "/data";
-    packages = [ agents.claude agents.codex pkgs.just ];
+    packages = [
+      agents.claude
+      agents.codex
+      pkgs.just
+      inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
     hardening.enable = true;
     nix.enable = true;
     network = {

@@ -35,7 +35,7 @@ commits cannot include them. Auto-commit/push policy comes from the vault's
 The container command uses olai's `lib.webArgs`, shared with its Home Manager module.
 
 The container's PATH includes Git, OpenSSH, and agent-distro's vanilla `claude`
-and `codex` launchers, plus `nix`. Their configuration and login state live under `/data` (`HOME`),
+and `codex` launchers, plus `nix` and `disc-scrape`. Their configuration and login state live under `/data` (`HOME`),
 separate from the host's. From the repository root on naiveintent:
 
 ```bash
