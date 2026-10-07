@@ -36,9 +36,9 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "github:juspay/kolu/solidjs-review";
+    kolu.url = "github:juspay/kolu/agent-distro-k1";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/torn-corner";
+    olai.url = "github:juspay/olai/browser-live-view";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
