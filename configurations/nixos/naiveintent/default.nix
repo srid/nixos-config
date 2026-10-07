@@ -23,8 +23,8 @@ in
 
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
-    # oh-my-pi (omp), wired to Juspay's gateway
-    "${homeMod}/work/coding-agents.nix"
+    # LITELLM_API_KEY for Juspay's gateway
+    "${homeMod}/work/litellm.nix"
     # The K3s app serves Vault; this instance serves the olai repo's own docs.
     inputs.olai.homeManagerModules.default
     ({ config, ... }: {

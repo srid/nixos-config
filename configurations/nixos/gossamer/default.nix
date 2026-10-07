@@ -28,7 +28,7 @@ in
     "${homeMod}/gui/1password.nix"
     "${homeMod}/services/kolu.nix"
     "${homeMod}/work/juspay.nix"
-    "${homeMod}/work/coding-agents.nix"
+    "${homeMod}/work/litellm.nix"
     {
       # Include loopback: the local hostname resolves to 127.0.0.2.
       # Remote access is allowed only via tailscale0 in tailscale.nix.
