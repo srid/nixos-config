@@ -59,6 +59,10 @@ in
       # BusyBox has no CA bundle; Git and the agents need HTTPS.
       { name = "GIT_SSL_CAINFO"; value = caBundle; }
       { name = "SSL_CERT_FILE"; value = caBundle; }
+      # Chromium's own sandbox cannot start under RuntimeDefault seccomp with
+      # every capability dropped; this pod is the boundary (see olai's
+      # docs/plugins/browsing.md, 'When the container is the sandbox').
+      { name = "OLAI_BROWSER_CHROMIUM_SANDBOX"; value = "off"; }
     ];
     # Mount the home before the modules' nested SSH and Git config mounts.
     volumeMounts = lib.mkBefore [
