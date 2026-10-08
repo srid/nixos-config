@@ -38,7 +38,7 @@
 
     kolu.url = "git+https://github.com/juspay/kolu?ref=master&shallow=1";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/browser-live-view";
+    olai.url = "github:juspay/olai";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
