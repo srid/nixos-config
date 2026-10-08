@@ -62,7 +62,9 @@ in
       # Chromium's own sandbox cannot start under RuntimeDefault seccomp with
       # every capability dropped; this pod is the boundary (see olai's
       # docs/plugins/browsing.md, 'When the container is the sandbox').
-      { name = "OLAI_BROWSER_CHROMIUM_SANDBOX"; value = "off"; }
+      # The value is a word, not on/off: k3s reads manifests as YAML 1.1, where
+      # a bare `off` is a boolean and the whole manifest is rejected unapplied.
+      { name = "OLAI_BROWSER_CHROMIUM_SANDBOX"; value = "container"; }
     ];
     # Mount the home before the modules' nested SSH and Git config mounts.
     volumeMounts = lib.mkBefore [

@@ -851,18 +851,19 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1791404417,
-        "narHash": "sha256-tOMlc4QaQINeSToDzzL0wD+1LMdYwJ8ZG6qxPIDwFsE=",
-        "owner": "juspay",
-        "repo": "kolu",
-        "rev": "52d7f7ab13a529ee0eed0235ce62e0eb17b37b55",
-        "type": "github"
+        "lastModified": 1791456994,
+        "narHash": "sha256-oi9S+d2TEL1HE69O6sviv63JvnuRsG2mHDLlOvzfHCU=",
+        "ref": "master",
+        "rev": "a36ef61d220a63cb855989e9360529bdd725e9d1",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/juspay/kolu"
       },
       "original": {
-        "owner": "juspay",
-        "ref": "agent-distro-k1",
-        "repo": "kolu",
-        "type": "github"
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/juspay/kolu"
       }
     },
     "landrun-nix": {
@@ -1231,11 +1232,11 @@
         "bun2nix": "bun2nix_2"
       },
       "locked": {
-        "lastModified": 1791410045,
-        "narHash": "sha256-z0x98BoMKB2wlgLMkJpRslehoa38Nar3Npo950x/U58=",
+        "lastModified": 1791414223,
+        "narHash": "sha256-AMvggpkhYOfbrdRSoev/dB4KdCarmko+gC4Qlc3TRF4=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "32fb2601e150641fdbe4a69ccfd21495f2856f60",
+        "rev": "eb53528549d6ba3b9c613bcfbbcdda531e2eccab",
         "type": "github"
       },
       "original": {
