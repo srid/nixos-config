@@ -26,6 +26,7 @@ in
 
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/atuin.nix"
     "${homeMod}/services/kolu.nix"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/work/litellm.nix"
