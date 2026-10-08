@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791292590,
-        "narHash": "sha256-XsC/13q1NK/TtLfhwl+uC9yD25xb8HXZhE9QnfojmCw=",
+        "lastModified": 1791479979,
+        "narHash": "sha256-dLdXGJYpQkd2A3bssF4nETecjwyfn4FEl0t3OWXY2KE=",
         "owner": "juspay",
         "repo": "agent-distro",
-        "rev": "1209ea7769a3304f4575637db41a488afc044ab2",
+        "rev": "c076efacf6e03a9f813c2124090a2202b03fb3c2",
         "type": "github"
       },
       "original": {
@@ -851,10 +851,10 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1791456994,
-        "narHash": "sha256-oi9S+d2TEL1HE69O6sviv63JvnuRsG2mHDLlOvzfHCU=",
+        "lastModified": 1791481253,
+        "narHash": "sha256-tQ/ves6BmR63i1Wk/1NQ/olUUWIs3c9cuN8fYG/zywQ=",
         "ref": "master",
-        "rev": "a36ef61d220a63cb855989e9360529bdd725e9d1",
+        "rev": "e7b5fbc4849692f1f0fa819b88e80c5b12b4cb7a",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
