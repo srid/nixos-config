@@ -16,6 +16,7 @@ in
     ./cache.nix
     ./camera.nix
     ./chrome
+    ./crash-capture.nix
     ./dell-xps-16.nix
     ./geforce-now.nix
     ./desktop

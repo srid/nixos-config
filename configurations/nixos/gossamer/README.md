@@ -115,6 +115,7 @@ Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funne
 | `audio.nix` | Shared PipeWire audio setup; output preferences live with each device |
 | `geforce-now.nix` | Flatpak support and official GeForce NOW installation |
 | `dell-xps-16.nix`, `camera.nix`, `apple-studio-display.nix` | Hardware drivers and device workarounds |
+| `crash-capture.nix` | Panic-on-oops/lockup sysctls and journald sync interval, so a freeze leaves a dump |
 | `desktop/default.nix` | Session composition and login screen |
 | `desktop/plasma.nix`, `desktop/niri.nix`, `desktop/noctalia.nix` | Desktop-specific settings and controls |
 | `desktop/noctalia-calendar.nix` | Google Calendar account and event display |
