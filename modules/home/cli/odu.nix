@@ -9,14 +9,16 @@
       ];
 
       x86_64-linux = [
-        "kolu-ci-2"
-        "kolu-ci-3"
-        "kolu-ci-5"
-        "kolu-ci-6"
-        "kolu-ci-7"
-        "kolu-ci-8"
-        "kolu-ci-9"
-        "kolu-ci-10"
+        "pureintent"
+        "nix-infra@idli-01.tail12b27.ts.net"
+        # "kolu-ci-2"
+        # "kolu-ci-3"
+        # "kolu-ci-5"
+        # "kolu-ci-6"
+        # "kolu-ci-7"
+        # "kolu-ci-8"
+        # "kolu-ci-9"
+        # "kolu-ci-10"
       ];
     };
   };
