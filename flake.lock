@@ -851,10 +851,10 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1791572515,
-        "narHash": "sha256-OIDfIRz4WkhKiELNao3NpuN++qJn3X4UP/qvDbEvXiM=",
+        "lastModified": 1791579585,
+        "narHash": "sha256-mO+uVDU/lJT4axrbSjFRvUAbsNI6XwgwmGn/ZU6UF5M=",
         "ref": "profile-reference",
-        "rev": "580ca5cf711572b51f48f96d9a820c93a9d6beb1",
+        "rev": "c77db5b3473c49863711c9ce42d5ae095a30ceae",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
