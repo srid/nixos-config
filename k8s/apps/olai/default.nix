@@ -65,6 +65,11 @@ in
       # The value is a word, not on/off: k3s reads manifests as YAML 1.1, where
       # a bare `off` is a boolean and the whole manifest is rejected unapplied.
       { name = "OLAI_BROWSER_CHROMIUM_SANDBOX"; value = "container"; }
+      # BusyBox has no zoneinfo either, so a TZ name silently resolves to UTC
+      # (glibc prints the zone as "America"). Point glibc at the store's copy
+      # and follow the host's zone.
+      { name = "TZDIR"; value = "${pkgs.tzdata}/share/zoneinfo"; }
+      { name = "TZ"; value = config.time.timeZone; }
     ];
     # Mount the home before the modules' nested SSH and Git config mounts.
     volumeMounts = lib.mkBefore [
