@@ -25,6 +25,10 @@
       extra-platforms = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "aarch64-darwin x86_64-darwin";
       # Nullify the registry for purity.
       flake-registry = pkgs.writeText "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
+      # OSS binary cache (nixos.asia). These lists merge with NixOS' own
+      # defaults, so cache.nixos.org remains a substituter.
+      substituters = [ "https://cache.nixos.asia/oss" ];
+      trusted-public-keys = [ "oss:KO872wNJkCDgmGN3xy9dT89WAhvv13EiKncTtHDItVU=" ];
       trusted-users = [ "root" (if pkgs.stdenv.hostPlatform.isDarwin then flake.config.me.username else "@wheel") ];
       max-call-depth = "1000000";
     };

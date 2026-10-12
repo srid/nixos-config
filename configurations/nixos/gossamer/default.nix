@@ -13,7 +13,6 @@ in
     ./configuration.nix
     ./apple-studio-display.nix
     ./audio.nix
-    ./cache.nix
     ./camera.nix
     ./chrome
     ./crash-capture.nix
