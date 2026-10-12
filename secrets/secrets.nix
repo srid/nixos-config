@@ -8,6 +8,8 @@ let
 
   pureintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOKfR7GnwrIVemP/1kna8jboNRegIsaVL6mTi3oXwMdU";
   naiveintent = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBdMc145nH1JYFDF6q6gsSN/pqr3HCf1/BTgmOz6lod root@naiveintent";
+  # OVH dedicated; host key pre-seeded at install (see configurations/nixos/croissant/README.md)
+  croissant = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINyvR3teMNb8tdNLXkLLfcPT6ntZjW9QRFQ1U+spbbkN root@croissant";
   # home-manager identity (~/.ssh/agenix), not the host key
   kolu-bot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINgJNPiUb9JjusNGqChTsenpvVbgjcv5GTDLEu4OJnIV toor@kolu-bot";
   systems = [
@@ -30,4 +32,7 @@ in
   "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent ];
   # Bootstrap read-only access to the Kubernetes vault in 1Password.
   "onepassword-token.json.age".publicKeys = users ++ [ naiveintent ];
+  # Reusable, pre-authorized Tailscale auth key (1Password: "tailscale join");
+  # lets a freshly installed host join the tailnet on first boot.
+  "tailscale-authkey.age".publicKeys = users ++ [ croissant ];
 }

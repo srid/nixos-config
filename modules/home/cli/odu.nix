@@ -9,6 +9,8 @@
       ];
 
       x86_64-linux = [
+        # OVH dedicated (configurations/nixos/croissant), over the tailnet.
+        "ci@croissant"
         # `pu`-managed CI boxes; the ssh aliases come from ~/.pu-state/*/ssh_config.
         # Underlying pu machine names:
         #   kolu-ci-2  dev-x86-64-linux-17
