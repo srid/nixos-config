@@ -851,16 +851,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1791836554,
-        "narHash": "sha256-/uhrRTfP8u6KNE3QPbHMFa7P/d0YBf1BINHfFd72pcU=",
-        "ref": "happy-eve",
-        "rev": "2371d1728d689c41c17b8d44819856346d40b592",
+        "lastModified": 1791889313,
+        "narHash": "sha256-1QaGcrHlvNNfjWEYhunLZ05QIqcENrjU+se1H4FHCpA=",
+        "ref": "master",
+        "rev": "9ecbc7f6a3d599eb57f1ca4bf647057a55980ded",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
       },
       "original": {
-        "ref": "happy-eve",
+        "ref": "master",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
