@@ -11,11 +11,26 @@ mod apps 'k8s/apps/mod.just'
 # Main commands
 # --------------------------------------------------------------------------------------------------
 
+# Pull from Juspay's shared OSS Attic cache (https://cache.nixos.asia/oss) during
+# `activate`. Off by default; enable with `just oss_cache=1 activate [host]` or
+# `OSS_CACHE=1 just activate [host]`. Needs a trusted-user (wheel) for the extra
+# public key to be honoured. Applies to local builds only; the ssh deploy path
+# does not forward NIX_CONFIG.
+oss_cache := env("OSS_CACHE", "0")
+oss_cache_nix_config := """
+extra-substituters = https://cache.nixos.asia/oss
+extra-trusted-public-keys = oss:KO872wNJkCDgmGN3xy9dT89WAhvv13EiKncTtHDItVU=
+"""
+
 # Activate the given host or home environment
 [group('main')]
 activate host="":
     #!/usr/bin/env bash
     set -euo pipefail
+    if [ "{{ oss_cache }}" = "1" ]; then
+        echo "Using OSS cache: https://cache.nixos.asia/oss"
+        export NIX_CONFIG="{{ oss_cache_nix_config }}"
+    fi
     # macOS login shells default to 256 FDs. Nix's github: tarball-cache
     # opens one fd per member (olai, kolu) and dies with "Too many open files".
     if [ "$(ulimit -n)" -lt 65536 ] 2>/dev/null; then
