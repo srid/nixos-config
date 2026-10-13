@@ -2,7 +2,6 @@
 let
   githubUsers = [
     "srid"
-    "shivaraj-bh"
     "subanesh-swe"
   ];
   caddyfile = pkgs.writeText "Caddyfile" ''
