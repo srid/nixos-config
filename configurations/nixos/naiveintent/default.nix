@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -44,10 +44,4 @@ in
   }];
 
   networking.firewall.allowedTCPPorts = [ 7692 ];
-
-  # HACK: system package so kolu MCP works on remote hosts (PATH / nix-ld), not the
-  # full services.kolu user service (see modules/home/services/kolu.nix on pureintent).
-  environment.systemPackages = [
-    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
 }
