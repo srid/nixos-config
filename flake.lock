@@ -851,16 +851,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1791929293,
-        "narHash": "sha256-g6tqPkTHE17J5XCQtNb2CqYhmDDWVIt759mCd7SDdzA=",
-        "ref": "ca-index-pull",
-        "rev": "bec152e25944e08405ddec525baee5c2d3fa1da2",
+        "lastModified": 1791982867,
+        "narHash": "sha256-0bFjPigVEINH/DzJQBXebKpQI6OvXr0oeX1iq7cJnNs=",
+        "ref": "odu-integration",
+        "rev": "a1c96b4bb2cee0caa19c32570787867c1f294c12",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
       },
       "original": {
-        "ref": "ca-index-pull",
+        "ref": "odu-integration",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
