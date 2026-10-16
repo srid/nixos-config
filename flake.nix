@@ -36,9 +36,9 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "git+https://github.com/juspay/kolu?ref=lane-timeline&shallow=1";
+    kolu.url = "git+https://github.com/juspay/kolu?ref=vivid-climax&shallow=1";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/chat-unread";
+    olai.url = "github:juspay/olai/master";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
