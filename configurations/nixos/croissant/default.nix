@@ -15,6 +15,7 @@ in
     ./hardware-configuration.nix
     ./disko.nix
     (self + /modules/nixos/linux/gc.nix)
+    (self + /modules/nixos/linux/docker.nix)
   ];
 
   networking.hostName = "croissant";
@@ -86,6 +87,7 @@ in
   users.users.ci = {
     isNormalUser = true;
     description = "odu CI lane";
+    extraGroups = [ "docker" ];
     openssh.authorizedKeys.keys = [
       flake.config.me.sshKey
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
