@@ -16,6 +16,7 @@ in
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
     (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
+    (self + /modules/nixos/linux/docker.nix)
     (self + /modules/nixos/linux/incus/host.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
     (self + /modules/nixos/linux/kill-audit.nix)
