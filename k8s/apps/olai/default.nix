@@ -28,6 +28,24 @@ in
       agents.claude
       agents.codex
       pkgs.just
+      pkgs.jq
+      pkgs.curl
+      # BusyBox supplies the rootfs, so anything a script or agent reaches for
+      # that BusyBox lacks or implements thinly is spelled out here.
+      pkgs.ripgrep
+      pkgs.fd
+      pkgs.coreutils
+      pkgs.findutils
+      pkgs.diffutils
+      pkgs.gnugrep
+      pkgs.gnused
+      pkgs.gawk
+      pkgs.gnutar
+      pkgs.gzip
+      pkgs.xz
+      pkgs.unzip
+      pkgs.zip
+      pkgs.python3
       inputs.disc-scrape.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
     hardening.enable = true;
