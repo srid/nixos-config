@@ -57,6 +57,19 @@
             (omarchyPatch "v4l2-relayd/0002-escape-optional-splashsrc-expansion.patch" "sha256-PLiQVq8nbu16Rd/JZDXo5IVY5OEcllYDYNRtYxscC2w=")
           ];
         });
+        # v4l2loopback 0.15.4 installs via the kernel's `modules_install`
+        # target, which runs depmod inside $out. Those modules.* files then
+        # collide with the kernel's own tree when
+        # `services.v4l2-relayd` merges the module package into
+        # boot.extraModulePackages. Keep depmod out of the per-module output;
+        # nixpkgs regenerates it for the merged tree it actually boots.
+        linuxPackages_latest = prev.linuxPackages_latest.extend (
+          _: kernelPkgs: {
+            v4l2loopback = kernelPkgs.v4l2loopback.overrideAttrs (old: {
+              makeFlags = (old.makeFlags or [ ]) ++ [ "DEPMOD=true" ];
+            });
+          }
+        );
       }
     )
   ];
@@ -85,7 +98,7 @@
   systemd.services.v4l2-relayd-ipu7 = {
     after = [ "systemd-modules-load.service" ];
     serviceConfig.RuntimeDirectory = "camera";
-    serviceConfig.RestartSec = "3s";
+    serviceConfig.RestartSec = lib.mkForce "3s";
     # exclusive_caps exposes capture only once the relay opens its writer.
     # Refresh udev's capabilities then, so an existing desktop finds the camera.
     postStart = ''
