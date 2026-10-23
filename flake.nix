@@ -36,7 +36,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "git+https://github.com/juspay/kolu?ref=sleep-full&shallow=1";
+    kolu.url = "git+https://github.com/juspay/kolu?ref=ssh-fwd&shallow=1";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/git-live-policy";
 

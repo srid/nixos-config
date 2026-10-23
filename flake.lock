@@ -758,11 +758,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792668857,
-        "narHash": "sha256-chUrnAqBhBLvXBUsLFxFYBIl8c0GWp06wdjmAMS8l+U=",
+        "lastModified": 1792773325,
+        "narHash": "sha256-bvba9Lts8r8d15MdIDMwJGDxLtJiTlasKtAZyhTDzXk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cb7de2c7e589afe7531d4832c71ad4df144624ea",
+        "rev": "6d9655f76459099b0db2f57b13563729c7022aa7",
         "type": "github"
       },
       "original": {
@@ -851,16 +851,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1792635588,
-        "narHash": "sha256-IY5AZLD3T/eGAl2uexG+uTLaUxKQ0jGcV9xp1hvDQKY=",
-        "ref": "sleep-full",
-        "rev": "ad193854fea1e17052c3055086e51e5457d76731",
+        "lastModified": 1792780359,
+        "narHash": "sha256-z7Ff6LV4fbnAhaQq3gB8RhaAaub1IdzynnIhU0ipg84=",
+        "ref": "ssh-fwd",
+        "rev": "479e1375086f96febb6adc86e9113ffb476adc9d",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
       },
       "original": {
-        "ref": "sleep-full",
+        "ref": "ssh-fwd",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
@@ -922,11 +922,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792667976,
-        "narHash": "sha256-qlW9xfM0TFDIU6wGTXfTZ2xSgvgOlV89YHdvfjQ+e0Q=",
+        "lastModified": 1792737899,
+        "narHash": "sha256-P0/GhewcEQmAbzq3QunNWY2jLJaYH9F6c/5dEM/jQ4M=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "38cf0abb072c30fff68da0e3f516fc8a7cfb8fc0",
+        "rev": "bb0b90dbd54e207100de72b5dcbe3188c98a4b69",
         "type": "github"
       },
       "original": {
