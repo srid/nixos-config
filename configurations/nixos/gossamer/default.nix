@@ -26,6 +26,7 @@ in
 
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/ssh-agent-forward.nix"
     "${homeMod}/cli/atuin.nix"
     # odu CI lane list (~/.config/odu/hosts.json); the kolu-ci-* lanes need
     # pu's ssh aliases (~/.pu-state), ci@croissant works over the tailnet.

@@ -18,6 +18,7 @@ in
     "${homeMod}/cli/bash.nix"
     "${homeMod}/cli/terminal.nix"
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/ssh-agent-forward.nix"
     # "${homeMod}/services/obsidian.nix"
 
     # Remote builders

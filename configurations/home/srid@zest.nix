@@ -9,6 +9,7 @@ in
     flake.inputs.self.homeModules.default
     flake.inputs.self.homeModules.darwin-only
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/ssh-agent-forward.nix"
     "${homeMod}/cli/controlpersist.nix"
     "${homeMod}/cli/atuin.nix"
     "${homeMod}/claude-code"

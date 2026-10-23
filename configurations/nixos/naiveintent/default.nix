@@ -24,6 +24,13 @@ in
 
   home-manager.sharedModules = [
     "${homeMod}/gui/1password.nix"
+    "${homeMod}/cli/ssh-agent-forward.nix"
+    # No 1Password app runs here, so its agent socket never exists; an
+    # IdentityAgent pointing at it makes ssh ignore the agent forwarded to
+    # this host over $SSH_AUTH_SOCK.
+    ({ lib, ... }: {
+      programs.ssh.settings."*".IdentityAgent = lib.mkForce null;
+    })
     # LITELLM_API_KEY for Juspay's gateway
     "${homeMod}/work/litellm.nix"
     # The K3s app serves Vault; this instance serves the olai repo's own docs.
