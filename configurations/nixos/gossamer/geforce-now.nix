@@ -20,6 +20,16 @@
         packages = [
           { appId = "com.nvidia.geforcenow"; origin = "GeForceNOW"; }
         ];
+        # NVIDIA ships new builds to this remote on its own schedule; nix-flatpak
+        # defaults to never updating, so `just activate` would keep whatever
+        # build was installed first.
+        update = {
+          onActivation = true;
+          auto = {
+            enable = true;
+            onCalendar = "weekly";
+          };
+        };
       };
 
       # Use NVIDIA's exported launcher rather than maintaining our own copy.
