@@ -38,8 +38,6 @@
     description = flake.config.me.fullname;
     packages = [ pkgs.kdePackages.kate ];
   };
-  programs.firefox.enable = true;
-
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
