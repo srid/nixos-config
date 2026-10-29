@@ -22,6 +22,7 @@ in
     ./tailscale.nix
     (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
+    (self + /modules/nixos/linux/gtk3-xdg-output-uaf.nix)
   ];
 
   home-manager.sharedModules = [
