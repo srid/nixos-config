@@ -9,6 +9,8 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Declarative Wi-Fi (agenix PSK + NetworkManager ensureProfiles).
+      ./wifi.nix
     ];
 
   # Bootloader.
@@ -17,6 +19,13 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # The firmware leaves the iTCO watchdog armed and its driver refuses to
+  # disarm it at shutdown ("watchdog did not stop!"); nothing on this headless
+  # box pets it, so disable the watchdog modules instead of risking a spurious
+  # reset. Swap for systemd.settings.Manager.RuntimeWatchdogSec = "1min" if we
+  # ever want auto-recovery from a hard hang.
+  boot.kernelParams = [ "nowatchdog" ];
 
   networking.hostName = "pureintent"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -27,32 +36,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Wired (enp1s0) and Wi-Fi (wlp2s0) are on the same LAN. Letting both
-  # autoconnect causes ARP flux: the gateway's neighbor entry for our IP flips
-  # between the two NIC MACs and the Ethernet path goes silently dead.
-  # See docs/LINUX-INTERNET-ISSUES.md.
-  #
-  # Disable autoconnect on *every* saved Wi-Fi profile (not a single hardcoded
-  # SSID) so a newly-joined network can't slip past and bring Wi-Fi up beside
-  # Ethernet. Wi-Fi stays usable on demand via `nmcli connection up <name>`.
-  systemd.services.nm-wifi-noautoconnect = {
-    description = "Disable autoconnect on all Wi-Fi profiles (avoid dual-NIC ARP flux)";
-    after = [ "NetworkManager.service" ];
-    wants = [ "NetworkManager.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "oneshot";
-    script = ''
-      nmcli=${pkgs.networkmanager}/bin/nmcli
-      "$nmcli" -t -f TYPE,NAME connection show | while IFS=: read -r type name; do
-        if [ "$type" = "802-11-wireless" ]; then
-          "$nmcli" connection modify "$name" connection.autoconnect no || true
-        fi
-      done
-      # Drop any Wi-Fi link that already came up, so the fix applies without a reboot.
-      "$nmcli" device disconnect wlp2s0 || true
-    '';
-  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
@@ -82,9 +65,6 @@
   # isNormalUser / extraGroups / ssh keys come from
   # modules/nixos/shared/primary-as-admin.nix.
   users.users.${flake.config.me.username}.description = flake.config.me.fullname;
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # The NixOS options manual is rarely consulted locally (options are searched
   # online), but generating it evaluates the doc string of every option — a

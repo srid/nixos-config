@@ -4,10 +4,6 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   homeMod = self + /modules/home;
-  # pu-managed CI fleet (kolu-ci-1 .. kolu-ci-8). These are ssh_config aliases
-  # provided by `pu` (Include ~/.pu-state/*/ssh_config) and are reachable only
-  # from pureintent, so drishti monitors them from here.
-  ciHosts = map (n: "kolu-ci-${toString n}") (lib.range 1 8);
 in
 {
   nixos-unified.sshTarget = "srid@pureintent";
@@ -16,38 +12,53 @@ in
   imports = [
     self.nixosModules.default
     ./configuration.nix
-    (self + /modules/nixos/linux/my-workstation.nix)
-    (self + /modules/nixos/linux/juspay-run.nix)
-    ./kolu-dev.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
     (self + /modules/nixos/linux/atuin.nix)
   ];
 
+  # Inlined from the retired shared `my-workstation` profile. Remote access is
+  # what must survive: openssh + tailscale, and the sudo rule that
+  # `just activate` (over SSH, unprivileged user) depends on.
+  nixos-unified.localPrivilegeMode = "sudo-nixos-rebuild";
+  security.sudo.extraRules = [
+    {
+      users = [ flake.config.me.username ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild switch *";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+  services.openssh.enable = true;
+  services.tailscale.enable = true;
+  # tailscaled installs its rules via iptables-nft, which live in a different
+  # table from the nftables firewall incus requires.
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
+  # User services must start at boot without a login session.
+  users.users.${flake.config.me.username}.linger = true;
+
+  nix.settings = {
+    sandbox = "relaxed";
+    extra-experimental-features = [ "impure-derivations" "ca-derivations" ];
+  };
+  programs.nix-ld.enable = true; # for claude code / vscode server
+
+  # https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   home-manager.sharedModules = [
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
-    "${homeMod}/services/kolu.nix"
-    "${homeMod}/services/drishti"
-    {
-      services.kolu.host = "100.122.32.106"; # Tailscale IP of pureintent
-      # Browser origin differs from the Host kolu sees (served via Tailscale
-      # MagicDNS reverse proxy), so allow it for the CSWSH origin gate.
-      services.kolu.allowedOrigins = [ "https://pureintent.rooster-blues.ts.net" ];
-      # Point padi at zest for host switching (pureintent only). home-manager
-      # concatenates this onto the module's own Environment list.
-      systemd.user.services.kolu.Service.Environment = [ "KOLU_PADI_HOST=zest" ];
-      # Watch the pu-managed CI fleet from here (only reachable from pureintent).
-      services.drishti.hosts = [ "localhost" ] ++ ciHosts;
-    }
+    "${homeMod}/cli/atuin.nix"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
-
-    # Remote builders
-    "${homeMod}/nix/buildMachines"
-    "${homeMod}/nix/buildMachines/sincereintent.nix"
   ];
 
   # Prefer compressed in-RAM swap so page faults under build + Claude fleet
