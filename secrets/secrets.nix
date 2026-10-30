@@ -26,6 +26,8 @@ in
   "juspay-anthropic-api-key.age".publicKeys = users ++ systems ++ [ kolu-bot ];
   "oauth2-proxy.env.age".publicKeys = users ++ systems ++ [ kolu-bot ];
   "beszel-agent-key.age".publicKeys = users ++ systems;
+  # Wi-Fi PSK consumed by NetworkManager's declarative profile on pureintent.
+  "wifi-psk.env.age".publicKeys = users ++ systems;
   "vira-github-webhook-secret.age".publicKeys = users ++ systems;
   "vira-github-private-key.age".publicKeys = users ++ systems;
   "olai-spaces.env.age".publicKeys = users ++ systems ++ [ kolu-bot ];
