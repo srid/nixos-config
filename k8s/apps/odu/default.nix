@@ -5,9 +5,7 @@
 # The operator's path (creating the App, first sign-in, tokens) is
 # https://odu.kolu.dev/docs/#server-mode.
 #
-# The board's name is https://odu.kolu.dev, carried by the cloudflare row's
-# tunnel. The Tailscale Ingress is still a Funnel at odu-k3s.rooster-blues.ts.net
-# until sign-in through the new name is confirmed; it then retires.
+# The Ingress is a Tailscale Funnel, so the board is on the public internet.
 # Nothing may be public before the door is configured: the Funnel went on only
 # after sign-in was proven on the pod, and odu refuses to start with a partial
 # ODU_GITHUB_* set rather than admit the wrong people.
@@ -21,14 +19,10 @@ let
   odu = inputs.odu.packages.${pkgs.stdenv.hostPlatform.system}.odu;
   namespace = "odu-k3s";
   port = 18440;
-  # The operator appends the tailnet suffix to this short name. Still served
-  # through the Funnel until it retires, so its Origin stays admitted below.
+  # The operator appends the tailnet suffix to this short name. The GitHub
+  # App's callback URL is this origin plus /auth/github/callback.
   tailHost = "odu-k3s.rooster-blues.ts.net";
-  # The board's own name. kolu.dev is a zone the Cloudflare token can edit, so
-  # the cloudflare row routes this host through the server's tunnel and keeps
-  # its proxied DNS record. The GitHub App's callback URL is this origin plus
-  # /auth/github/callback.
-  publicOrigin = "https://odu.kolu.dev";
+  publicOrigin = "https://${tailHost}";
   # Who may sign in: `org:<name>`, `team:<org>/<slug>`, or GitHub logins,
   # comma-separated. Everyone admitted starts as a member; roles come from
   # `odu auth grant` with the root token. One login to start: a login list
@@ -89,9 +83,8 @@ in
       # Service. `/` is the board, behind the door below.
       { name = "ODU_WEB_ORIGIN"; value = "http://0.0.0.0:${toString port}"; }
       { name = "ODU_PUBLIC_ORIGIN"; value = publicOrigin; }
-      # Admit the browser Origin in case a proxy rewrites Host: the board's
-      # name, and the tailnet name while the Funnel still serves it.
-      { name = "ODU_WEB_ALLOWED_ORIGINS"; value = "${publicOrigin},https://${tailHost}"; }
+      # Admit the browser Origin in case the ingress rewrites Host.
+      { name = "ODU_WEB_ALLOWED_ORIGINS"; value = publicOrigin; }
       # Server mode: all three together, or odu refuses to start. The App is
       # created by hand (docs above); its credentials are the `odu-github-app`
       # item in the `Kubernetes` 1Password vault (see secrets.nix).

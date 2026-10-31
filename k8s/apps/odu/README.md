@@ -1,12 +1,9 @@
 # odu on K3s
 
-Runs in pureintent's cluster. Open **https://odu.kolu.dev** from anywhere: that
-is the pod's public origin (`ODU_PUBLIC_ORIGIN`), carried by odu's own
-Cloudflare tunnel (see [Bucket domains through Cloudflare](#bucket-domains-through-cloudflare)).
-The old name, https://odu-k3s.rooster-blues.ts.net, still answers through the
-Tailscale [Funnel](https://tailscale.com/kb/1223/funnel) (`tailscale.funnel =
-true` in [`default.nix`](default.nix)) until sign-in through the new name is
-confirmed; the Funnel then retires. What stands in front of the board is odu's own sign-in, not
+Runs in pureintent's cluster. Open **https://odu-k3s.rooster-blues.ts.net**
+from anywhere: the Tailscale Ingress is a [Funnel](https://tailscale.com/kb/1223/funnel)
+(`tailscale.funnel = true` in [`default.nix`](default.nix)), so the board is
+public, not tailnet-only. What stands in front of it is odu's own sign-in, not
 the tailnet: the daemon runs in
 [server mode](https://odu.kolu.dev/docs/#server-mode), so an anonymous browser
 meets a GitHub sign-in page, `/mcp` answers 401 without a token, and every verb
@@ -29,10 +26,8 @@ unsigned pushes never need a trusted-user grant on the untrusted Nix daemon the
 The GitHub App is created by hand; the docs describe the form field by field,
 the installation, first sign-in and the root-token bootstrap of roles, and
 tokens for machines and agents:
-**https://odu.kolu.dev/docs/#server-mode**. Its callback URL follows the public
-origin and must be **`https://odu.kolu.dev/auth/github/callback`**. That is an
-edit on the App's settings page in GitHub, made by hand; until it is made,
-sign-in through either name fails at GitHub's redirect.
+**https://odu.kolu.dev/docs/#server-mode**. Its callback URL is
+`https://odu-k3s.rooster-blues.ts.net/auth/github/callback`.
 
 The App's credentials are the `odu-github-app` item in the `Kubernetes`
 1Password vault, fields `client_id` and `client_secret`; [`secrets.nix`](secrets.nix)
@@ -80,11 +75,12 @@ Secret like the others, and the pod reads it as a mounted file through
 Read** and **Account → Cloudflare Tunnel → Edit**. A missing or inactive token
 refuses the row at boot with Cloudflare's own reason.
 
-**The board rides the same tunnel.** `ODU_PUBLIC_ORIGIN` is `https://odu.kolu.dev`,
-a host in a zone the token can edit, so the row routes it and keeps its DNS
-record: the board, `/mcp` and the websocket. The Funnel is now redundant and
-retires in a later change, once sign-in through the new name is confirmed:
-`tailscale.funnel` goes off and the tailnet name leaves the allowed origins.
+**The Funnel can retire.** The same tunnel carries the server's own origin, the
+board, `/mcp` and the websocket, once `ODU_PUBLIC_ORIGIN` names a host in a zone
+the token can edit. Today the origin is on `ts.net`, which Cloudflare cannot
+route, so the board stays on the Funnel. Moving it means a new
+`ODU_PUBLIC_ORIGIN`, the GitHub App's callback following it, and
+`tailscale.funnel` going back off.
 
 ## Cache
 
@@ -113,7 +109,7 @@ Trust the printed URL and key in a client:
 ```nix
 {
   nix.settings = {
-    extra-substituters = [ "https://odu.kolu.dev/cache/main" ];
+    extra-substituters = [ "https://odu-k3s.rooster-blues.ts.net/cache/main" ];
     extra-trusted-public-keys = [ "main-1:<public key>" ];
   };
 }
