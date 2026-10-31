@@ -1,16 +1,16 @@
 # odu on K3s
 
-Runs in pureintent's cluster at **https://odu-k3s.rooster-blues.ts.net**. What
-stands in front of the board is odu's own sign-in, not the tailnet: the daemon
-runs in [server mode](https://odu.kolu.dev/docs/#server-mode), so an anonymous
-browser meets a GitHub sign-in page, `/mcp` answers 401 without a token, and
-every verb runs as a signed-in person with a role. Public buckets are still read
-without an account, and pushes still carry a bucket token.
-
-The Tailscale Ingress is tailnet-only for now. Making it public, a
-[Funnel](https://tailscale.com/kb/1223/funnel) (`tailscale.funnel = true` in
-[`default.nix`](default.nix)), is the last step, once sign-in has been proven on
-the pod. Nothing goes public before the door is configured.
+Runs in pureintent's cluster. Open **https://odu-k3s.rooster-blues.ts.net**
+from anywhere: the Tailscale Ingress is a [Funnel](https://tailscale.com/kb/1223/funnel)
+(`tailscale.funnel = true` in [`default.nix`](default.nix)), so the board is
+public, not tailnet-only. What stands in front of it is odu's own sign-in, not
+the tailnet: the daemon runs in
+[server mode](https://odu.kolu.dev/docs/#server-mode), so an anonymous browser
+meets a GitHub sign-in page, `/mcp` answers 401 without a token, and every verb
+runs as a signed-in person with a role. Public buckets are still read without an
+account, and pushes still carry a bucket token. The Funnel went on only after
+sign-in had been proven on the pod; nothing goes public before the door is
+configured.
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
@@ -39,9 +39,8 @@ client ID is environment, the secret a mounted file. `ODU_GITHUB_ALLOW` in
 `org:juspay` follows once a Juspay org owner installs the App. odu refuses to
 start with a partial configuration, so an ingress never fronts an open board.
 
-When the Ingress becomes a Funnel, the tailnet needs two things: Funnel enabled,
-and the `funnel` node attribute granted to the operator's proxies in the policy
-file:
+The Funnel needs two things in the tailnet: Funnel enabled, and the `funnel`
+node attribute granted to the operator's proxies in the policy file:
 
 ```json
 "nodeAttrs": [{ "target": ["tag:k8s"], "attr": ["funnel"] }]

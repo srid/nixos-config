@@ -6,7 +6,8 @@ Single-node K3s learning clusters, one per host. A host imports
 - naiveintent: [`apps/olai`](apps/olai), the olai deployment with persistent
   storage and a Tailscale HTTPS Ingress.
 - pureintent: [`apps/odu`](apps/odu), odu's board, CI service, and Nix binary
-  cache with a Tailscale HTTPS Ingress, behind odu's own GitHub sign-in.
+  cache, public through a Tailscale Funnel Ingress behind odu's own GitHub
+  sign-in.
 
 Shared by every cluster:
 

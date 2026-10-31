@@ -5,9 +5,9 @@
 # The operator's path (creating the App, first sign-in, tokens) is
 # https://odu.kolu.dev/docs/#server-mode.
 #
-# The Ingress is still tailnet-only. Making it public (`tailscale.funnel`) is
-# the last step, once sign-in has been proven on the pod: nothing may be public
-# before the door is configured, and odu refuses to start with a partial
+# The Ingress is a Tailscale Funnel, so the board is on the public internet.
+# Nothing may be public before the door is configured: the Funnel went on only
+# after sign-in was proven on the pod, and odu refuses to start with a partial
 # ODU_GITHUB_* set rather than admit the wrong people.
 #
 # The cache store is a chroot store on the PVC, not the host's /nix/store:
@@ -64,8 +64,9 @@ in
       enable = true;
       hostname = "odu-k3s";
       podPort = port;
-      # Last step, after sign-in is proven on the pod: `funnel = true;` puts
-      # the sign-in page on the public internet.
+      # Public: anyone on the internet reaches the sign-in page. The tailnet
+      # policy grants the `funnel` node attribute to tag:k8s for this.
+      funnel = true;
     };
     env = [
       { name = "ODU_STATE_DIR"; value = "/data/state"; }
