@@ -36,7 +36,7 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "git+https://github.com/juspay/kolu?ref=fukkkkkk&shallow=1";
+    kolu.url = "git+https://github.com/juspay/kolu?ref=odu-2-1&shallow=1";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/pull/677/head";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
