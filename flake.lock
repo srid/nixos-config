@@ -1292,16 +1292,15 @@
         "bun2nix": "bun2nix_2"
       },
       "locked": {
-        "lastModified": 1793474773,
-        "narHash": "sha256-YCJF1TmbXf0rl1zOcFZdlmAODr6/zFqyy0SjuWWcY2U=",
+        "lastModified": 1793480674,
+        "narHash": "sha256-CgXRuNb3a5XoIDxaE7NE8PSMWOeFqd9VlendxMpIm5c=",
         "owner": "juspay",
         "repo": "odu",
-        "rev": "a7a6f7589688dbd64ccf521e8a5bb5a45700e222",
+        "rev": "558115e94e33d50140eb6d034208511bd9b7f31f",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "pull/134/head",
         "repo": "odu",
         "type": "github"
       }

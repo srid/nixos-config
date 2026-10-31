@@ -1,5 +1,5 @@
-# odu's service (PR 134): the browser board, its CI runs, and its Nix binary
-# cache, in one process, in server mode: odu's own door (GitHub App sign-in,
+# odu's service (odu master): the browser board, its CI runs, and its Nix
+# binary cache, in one process, in server mode: odu's own door (GitHub App sign-in,
 # sessions, roles) stands in front of the board, not the tailnet. The daemon
 # binds the pod's address because the ingress reaches it through the Service.
 # The operator's path (creating the App, first sign-in, tokens) is

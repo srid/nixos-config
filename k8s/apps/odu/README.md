@@ -14,7 +14,7 @@ configured.
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
-[odu](https://github.com/juspay/odu) (PR 134) through the read-only `/nix/store`
+[odu](https://github.com/juspay/odu) (odu master) through the read-only `/nix/store`
 mount. A `local-path` PVC holds the run catalog, the auth database, and the
 cache's chroot store. The cache is pointed at that chroot store
 (`ODU_CACHE_STORE=local?root=/data/cache-store`) rather than the host store, so
