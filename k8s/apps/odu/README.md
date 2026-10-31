@@ -14,7 +14,7 @@ configured.
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
-[odu](https://github.com/juspay/odu) (odu master) through the read-only `/nix/store`
+[odu](https://github.com/juspay/odu) (PR 3, juspay/odu#138, until it merges) through the read-only `/nix/store`
 mount. A `local-path` PVC holds the run catalog, the auth database, and the
 cache's chroot store. The cache is pointed at that chroot store
 (`ODU_CACHE_STORE=local?root=/data/cache-store`) rather than the host store, so
@@ -52,6 +52,35 @@ Grant the first owner from the pod, once, with the root token:
 just apps odu shell
 odu auth grant <github login> owner --origin http://127.0.0.1:18440
 ```
+
+## Bucket domains through Cloudflare
+
+odu's cloudflare row gives a bucket a name of its own, such as
+`cache.kolu.dev`. Set a domain on the bucket and odu creates one Cloudflare
+Tunnel for this server, routes the name through it, keeps the proxied DNS
+record, and runs `cloudflared` as a child of the daemon. The whole walk, from
+creating the token to removing a domain, is in odu's docs:
+**[A domain for a bucket](https://odu.kolu.dev/cache/#a-domain-for-a-bucket)**.
+
+The tunnel is outbound only. `cloudflared` dials Cloudflare's edge on port 7844
+(QUIC over UDP, HTTP/2 over TCP), so the pod's network policy allows those along
+with HTTPS. Nothing listens, no port opens on the LAN, and pureintent's address
+never appears in DNS. The bucket's name serves only the bucket; the board,
+`/mcp` and `/auth` answer 404 there.
+
+The token is the `odu-cloudflare` item in the `Kubernetes` 1Password vault,
+field `api_token`. [`secrets.nix`](secrets.nix) syncs it to the `odu-cloudflare`
+Secret like the others, and the pod reads it as a mounted file through
+`ODU_CLOUDFLARE_API_TOKEN_FILE`. It needs **Zone → DNS → Edit**, **Zone → Zone →
+Read** and **Account → Cloudflare Tunnel → Edit**. A missing or inactive token
+refuses the row at boot with Cloudflare's own reason.
+
+**The Funnel can retire.** The same tunnel carries the server's own origin, the
+board, `/mcp` and the websocket, once `ODU_PUBLIC_ORIGIN` names a host in a zone
+the token can edit. Today the origin is on `ts.net`, which Cloudflare cannot
+route, so the board stays on the Funnel. Moving it means a new
+`ODU_PUBLIC_ORIGIN`, the GitHub App's callback following it, and
+`tailscale.funnel` going back off.
 
 ## Cache
 

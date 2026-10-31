@@ -32,6 +32,8 @@ let
   # The GitHub App's client secret, synced from 1Password to a Secret and
   # mounted as a file; odu reads the path, never the environment, for it.
   githubSecretDir = "/run/odu/github";
+  # The Cloudflare API token, synced and mounted the same way.
+  cloudflareSecretDir = "/run/odu/cloudflare";
   labels = { app = "odu"; };
   image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
   app = config.k8s.apps.odu;
@@ -49,16 +51,20 @@ in
     # The wrapper brings git/gh/just/openssh and the compressors; nix comes
     # from this module (the cache shells out to `nix`), as does /nix/store.
     # The package itself is here so `odu` is on the pod's PATH for `just apps
-    # odu use`/`shell`; the Deployment uses the absolute path.
-    packages = [ odu ];
+    # odu use`/`shell`; the Deployment uses the absolute path. The cloudflare
+    # row spawns `cloudflared` from PATH, and odu's wrapper does not ship it.
+    packages = [ odu pkgs.cloudflared ];
     hardening.enable = true;
     nix.enable = true;
     network = {
       allowDNS = true;
       # The board serves; pushes come in through the Tailscale proxy. Outbound
-      # HTTPS is for the GitHub App flow and membership checks, and for `gh`
-      # when a run posts statuses.
-      publicTCPPorts = [ 443 ];
+      # HTTPS is for the GitHub App flow and membership checks, the Cloudflare
+      # API, and `gh` when a run posts statuses. 7844 is Cloudflare's tunnel
+      # edge: `cloudflared` dials it over QUIC (UDP), falling back to HTTP/2
+      # (TCP). All outbound; nothing listens for the tunnel.
+      publicTCPPorts = [ 443 7844 ];
+      publicUDPPorts = [ 7844 ];
     };
     tailscale = {
       enable = true;
@@ -92,6 +98,10 @@ in
       }
       { name = "ODU_GITHUB_CLIENT_SECRET_FILE"; value = "${githubSecretDir}/client_secret"; }
       { name = "ODU_GITHUB_ALLOW"; value = githubAllow; }
+      # The cloudflare row: one tunnel for this server, a route and proxied DNS
+      # record per bucket domain, `cloudflared` as a child. Setting the file
+      # mounts the row; an inactive token refuses it at boot.
+      { name = "ODU_CLOUDFLARE_API_TOKEN_FILE"; value = "${cloudflareSecretDir}/api_token"; }
       { name = "SSL_CERT_FILE"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "GIT_SSL_CAINFO"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "TZDIR"; value = "${pkgs.tzdata}/share/zoneinfo"; }
@@ -138,6 +148,7 @@ in
     volumeMounts = lib.mkBefore [
       dataMount
       { name = "github-app"; mountPath = githubSecretDir; readOnly = true; }
+      { name = "cloudflare"; mountPath = cloudflareSecretDir; readOnly = true; }
     ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "odu-data"; }
@@ -145,6 +156,13 @@ in
         name = "github-app";
         secret = {
           secretName = "odu-github-app";
+          defaultMode = 288; # 0440: readable through the pod's fsGroup.
+        };
+      }
+      {
+        name = "cloudflare";
+        secret = {
+          secretName = "odu-cloudflare";
           defaultMode = 288; # 0440: readable through the pod's fsGroup.
         };
       }
