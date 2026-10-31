@@ -9,8 +9,8 @@ without an account, and pushes still carry a bucket token.
 
 The Tailscale Ingress is tailnet-only for now. Making it public, a
 [Funnel](https://tailscale.com/kb/1223/funnel) (`tailscale.funnel = true` in
-[`default.nix`](default.nix)), is the last step, once the allow-list below has
-its value. Nothing goes public before the door is configured.
+[`default.nix`](default.nix)), is the last step, once sign-in has been proven on
+the pod. Nothing goes public before the door is configured.
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
@@ -34,10 +34,10 @@ The App's credentials are the `odu-github-app` item in the `Kubernetes`
 syncs them to the `odu-github-app` Secret exactly like the root token. The
 client ID is environment, the secret a mounted file. `ODU_GITHUB_ALLOW` in
 [`default.nix`](default.nix) is the allow-list (`org:<name>`,
-`team:<org>/<slug>`, or logins, comma-separated); its value is the human's
-decision, asked for in [juspay/odu#134](https://github.com/juspay/odu/pull/134),
-and until then it holds a placeholder that admits nobody. odu refuses to start
-with a partial configuration, so an ingress never fronts an open board.
+`team:<org>/<slug>`, or logins, comma-separated). It starts as the single login
+`srid`: a login list needs no App installation, so it proves sign-in on the pod.
+`org:juspay` follows once a Juspay org owner installs the App. odu refuses to
+start with a partial configuration, so an ingress never fronts an open board.
 
 When the Ingress becomes a Funnel, the tailnet needs two things: Funnel enabled,
 and the `funnel` node attribute granted to the operator's proxies in the policy

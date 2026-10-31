@@ -6,9 +6,9 @@
 # https://odu.kolu.dev/docs/#server-mode.
 #
 # The Ingress is still tailnet-only. Making it public (`tailscale.funnel`) is
-# the last step, once the allow-list below has a real value: nothing may be
-# public before the door is configured, and odu refuses to start with a
-# partial or placeholder ODU_GITHUB_* set rather than admit the wrong people.
+# the last step, once sign-in has been proven on the pod: nothing may be public
+# before the door is configured, and odu refuses to start with a partial
+# ODU_GITHUB_* set rather than admit the wrong people.
 #
 # The cache store is a chroot store on the PVC, not the host's /nix/store:
 # `ODU_CACHE_STORE=local?root=…` keeps unsigned imports out of the host store
@@ -25,11 +25,10 @@ let
   publicOrigin = "https://${tailHost}";
   # Who may sign in: `org:<name>`, `team:<org>/<slug>`, or GitHub logins,
   # comma-separated. Everyone admitted starts as a member; roles come from
-  # `odu auth grant` with the root token. The value is the human's decision,
-  # asked for in juspay/odu#134; this placeholder is deliberately not a login
-  # or an org, so a deploy before the answer refuses sign-in rather than
-  # guessing who belongs.
-  githubAllow = "<ask-in-odu#134>";
+  # `odu auth grant` with the root token. One login to start: a login list
+  # needs no App installation, so it proves sign-in on the pod. `org:juspay`
+  # follows once a Juspay org owner installs the App.
+  githubAllow = "srid";
   # The GitHub App's client secret, synced from 1Password to a Secret and
   # mounted as a file; odu reads the path, never the environment, for it.
   githubSecretDir = "/run/odu/github";
@@ -65,8 +64,8 @@ in
       enable = true;
       hostname = "odu-k3s";
       podPort = port;
-      # Last step, after `githubAllow` is real: `funnel = true;` puts the
-      # sign-in page on the public internet.
+      # Last step, after sign-in is proven on the pod: `funnel = true;` puts
+      # the sign-in page on the public internet.
     };
     env = [
       { name = "ODU_STATE_DIR"; value = "/data/state"; }
