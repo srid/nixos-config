@@ -1,7 +1,16 @@
-# odu's cache root token; External Secrets syncs the 1Password item to the
-# Secret the Deployment reads. Administration only; the substituter serves
-# without a valid token.
+# odu's secrets; External Secrets syncs each 1Password item (`Kubernetes`
+# vault) to the Secret the Deployment reads.
 { ... }:
 {
-  k8s.apps.odu.onepassword."odu-root-token".token = "odu-root-token/token";
+  k8s.apps.odu.onepassword = {
+    # Cache root token. On a daemon with a door its only job is granting roles
+    # (`odu auth grant`); it is not a principal.
+    "odu-root-token".token = "odu-root-token/token";
+    # The GitHub App behind sign-in (server mode). The ID goes into the
+    # environment; the secret is read from a mounted file.
+    "odu-github-oauth" = {
+      client_id = "odu-github-oauth/client_id";
+      client_secret = "odu-github-oauth/client_secret";
+    };
+  };
 }

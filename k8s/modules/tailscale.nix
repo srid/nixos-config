@@ -18,6 +18,10 @@ in
     servicePort = mkOption { type = types.port; default = 80; };
     # NetworkPolicy matches the destination pod port after Service translation.
     podPort = mkOption { type = types.port; default = cfg.servicePort; };
+    # Funnel publishes the Ingress on the public internet, not only the tailnet,
+    # so the app must authenticate on its own. The tailnet policy has to grant
+    # the `funnel` node attribute to tag:k8s (the operator's proxies).
+    funnel = lib.mkEnableOption "Tailscale Funnel (public HTTPS) for the Ingress";
   };
 
   config = lib.mkIf cfg.enable {
@@ -38,7 +42,8 @@ in
     manifests = [{
       apiVersion = "networking.k8s.io/v1";
       kind = "Ingress";
-      metadata = { inherit (config) namespace; inherit name; };
+      metadata = { inherit (config) namespace; inherit name; }
+        // lib.optionalAttrs cfg.funnel { annotations."tailscale.com/funnel" = "true"; };
       spec = {
         ingressClassName = "tailscale";
         # A short name selects the tailnet device; browse its full *.ts.net name.

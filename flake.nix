@@ -39,8 +39,8 @@
     kolu.url = "git+https://github.com/juspay/kolu?ref=fukkkkkk&shallow=1";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/pull/677/head";
-    # odu's binary-cache service (PR 133) and its NixOS module.
-    odu.url = "github:juspay/odu/pull/133/head";
+    # odu's service with server mode (PR 134): board, CI, cache, GitHub sign-in.
+    odu.url = "github:juspay/odu/pull/134/head";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
