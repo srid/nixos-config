@@ -29,6 +29,11 @@ in
       runAsUser = config.user.uid;
       runAsGroup = config.user.gid;
       fsGroup = config.user.gid;
+      # By default the kubelet recursively adds g+rwx and setgid to every
+      # directory in a volume on each pod start, turning an app's private 0700
+      # directories into 2770. Only fix up a volume whose root does not already
+      # belong to fsGroup (a fresh PVC); leave the app's own modes alone after.
+      fsGroupChangePolicy = "OnRootMismatch";
     };
   };
 }

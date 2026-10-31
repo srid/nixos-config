@@ -6,10 +6,11 @@ let
   apps = lib.filterAttrs (_: app: app.onepassword != { }) config.k8s.apps;
   namespace = "external-secrets";
   store = "onepassword";
-  # Single-node K3s API: permit only its service and current node endpoint.
+  # Single-node K3s API: permit only its service and the node endpoint it
+  # resolves to (k8s.nodeIP, set per host).
   apiEndpoints = [
     { cidr = "10.43.0.1/32"; port = 443; }
-    { cidr = "192.168.2.45/32"; port = 6443; }
+    { cidr = "${config.k8s.nodeIP}/32"; port = 6443; }
   ];
   values = {
     # Only pull secrets. No write-back controllers or admission webhook needed.

@@ -31,9 +31,10 @@ in
   "vira-github-webhook-secret.age".publicKeys = users ++ systems;
   "vira-github-private-key.age".publicKeys = users ++ systems;
   "olai-spaces.env.age".publicKeys = users ++ systems ++ [ kolu-bot ];
-  "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent ];
+  # K3s cluster credentials, shared by the single-node clusters on each host.
+  "tailscale-operator-oauth.yaml.age".publicKeys = users ++ [ naiveintent pureintent ];
   # Bootstrap read-only access to the Kubernetes vault in 1Password.
-  "onepassword-token.json.age".publicKeys = users ++ [ naiveintent ];
+  "onepassword-token.json.age".publicKeys = users ++ [ naiveintent pureintent ];
   # Reusable, pre-authorized Tailscale auth key (1Password: "tailscale join");
   # lets a freshly installed host join the tailnet on first boot.
   "tailscale-authkey.age".publicKeys = users ++ [ croissant ];

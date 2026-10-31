@@ -1,16 +1,27 @@
 # Kubernetes
 
-A single-node K3s learning cluster on naiveintent. The host imports
-[`default.nix`](default.nix), which enables K3s and lists its components:
+Single-node K3s learning clusters, one per host. A host imports
+[`default.nix`](default.nix), which enables K3s, and then the apps it runs:
 
-- [`tailscale.nix`](tailscale.nix): shared Tailscale operator and agenix credentials.
-- [`apps/olai`](apps/olai): olai deployment, persistent storage, and Tailscale HTTPS Ingress.
-- [`modules`](modules): composable SSH and Git options for apps.
+- naiveintent: [`apps/olai`](apps/olai), the olai deployment with persistent
+  storage and a Tailscale HTTPS Ingress.
+- pureintent: [`apps/odu`](apps/odu), odu's board, CI service, and Nix binary
+  cache with a Tailscale HTTPS Ingress.
+
+Shared by every cluster:
+
+- [`tailscale.nix`](tailscale.nix): Tailscale operator and agenix credentials.
+- [`modules`](modules): composable SSH, Git, Nix, and 1Password options for apps.
 - [`network.nix`](network.nix): host firewall guard for pod traffic.
 
-Add applications under `apps/<name>/default.nix` and import them in `default.nix`.
-Apply changes with `just activate` from the repository root in the Nix devShell
-on naiveintent. Client devices such as gossamer need no rebuild.
+Add applications under `apps/<name>/default.nix` and import them from the host's
+configuration next to `k8s`. Each host sets `k8s.nodeIP` to its Ethernet
+address (give it a DHCP reservation); K3s pins the node IP to it and the
+1Password operator's egress policy allows the API there. Apply changes with
+`just activate <host>` from the repository root in the Nix devShell. Client
+devices such as gossamer need no rebuild. Tailnet hostnames (`<host>-k3s-operator`
+and each app's Ingress) must stay unique across clusters, so run an app on one
+host only.
 
 ## First-time setup
 
@@ -47,22 +58,25 @@ on naiveintent. Client devices such as gossamer need no rebuild.
      client_secret: "<OAuth client secret>"
    ```
 
-5. From the repository root on naiveintent, in the Nix devShell:
+5. From the repository root, in the Nix devShell:
 
    ```bash
    git add secrets/tailscale-operator-oauth.yaml.age
-   just activate
+   just activate <host>
    ```
 
-Agenix decrypts the file using naiveintent's SSH host key. K3s reads the Secret
-through a runtime symlink; plaintext stays out of Git and the Nix store.
-The Machines page should show `naiveintent-k3s-operator`.
+Agenix decrypts the file using the host's SSH host key; both cluster hosts are
+recipients in [`secrets.nix`](../secrets/secrets.nix) and share one OAuth client
+and one 1Password token. K3s reads the Secret through a runtime symlink;
+plaintext stays out of Git and the Nix store. The Machines page should show
+`<host>-k3s-operator`.
 
 ## Update credentials
 
-Edit the same encrypted file, then run `just activate` from the repository root.
+Edit the same encrypted file, then run `just activate <host>` for each cluster.
 Explicitly refresh the Kubernetes Secret before restarting; activation alone
-does not reliably refresh credentials through the agenix symlink.
+does not reliably refresh credentials through the agenix symlink. The `kubectl`
+commands below run on the cluster's host.
 
 ```bash
 sudo k3s kubectl apply -f /run/agenix/tailscale-operator-oauth.yaml
@@ -88,7 +102,8 @@ with the SDK provider, without a Connect server. Apps declare item/field
 mappings; only their namespaces may use the shared `Kubernetes` vault. The
 read-only service-account token is bootstrapped through agenix using
 `secrets/onepassword-token.json.age`. Apps never receive that token. Gossamer
-can be off; the cluster talks directly to 1Password.
+can be off; the cluster talks directly to 1Password. Every cluster uses the
+same token, so each can read any item in the `Kubernetes` vault.
 
 Secrets refresh hourly. Source errors retain the last synchronized values;
 check `kubectl get externalsecret -A` for failures. Pod restarts are manual after

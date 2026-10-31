@@ -16,7 +16,13 @@ in
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
     (self + /modules/nixos/linux/atuin.nix)
+    # Single-node K3s cluster running odu; olai's cluster is on naiveintent.
+    (self + /k8s)
+    (self + /k8s/apps/odu)
   ];
+
+  # Ethernet address (enp1s0); the Wi-Fi interface has a different one.
+  k8s.nodeIP = "192.168.2.43";
 
   # Inlined from the retired shared `my-workstation` profile. Remote access is
   # what must survive: openssh + tailscale, and the sudo rule that
@@ -36,6 +42,19 @@ in
 
   services.openssh.enable = true;
   services.tailscale.enable = true;
+
+  # odu CI lane (modules/home/cli/odu.nix lists ci@pureintent), as on
+  # croissant. Builders need only SSH access and Nix; the odu cache in the K3s
+  # pod on this host is a separate thing and does not use this user.
+  users.users.ci = {
+    isNormalUser = true;
+    description = "odu CI lane";
+    openssh.authorizedKeys.keys = [
+      flake.config.me.sshKey
+      # srid on this very host, for lanes started here.
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
+    ];
+  };
   # tailscaled installs its rules via iptables-nft, which live in a different
   # table from the nftables firewall incus requires.
   networking.firewall.trustedInterfaces = [ "tailscale0" ];

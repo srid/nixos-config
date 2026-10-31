@@ -36,7 +36,8 @@ The container command uses olai's `lib.webArgs`, shared with its Home Manager mo
 
 The container's PATH includes Git, OpenSSH, and agent-distro's vanilla `claude`
 and `codex` launchers, plus `nix` and `disc-scrape`. Their configuration and login state live under `/data` (`HOME`),
-separate from the host's. From the repository root on naiveintent:
+separate from the host's. From the repository root (the commands reach
+naiveintent over SSH when run elsewhere; `host-shell` must run on naiveintent):
 
 ```bash
 just apps olai shell    # Interactive shell in the app's home directory
