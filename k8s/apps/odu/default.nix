@@ -1,7 +1,14 @@
-# odu's service (PR 133): the browser board, its CI runs, and its Nix binary
-# cache, in one process. The upstream NixOS module puts this behind nginx on a
-# loopback listener; here the Tailscale Ingress is the boundary, so the daemon
-# binds the pod's address and the tailnet policy decides who may reach it.
+# odu's service (odu master): the browser board, its CI runs, and its Nix
+# binary cache, in one process, in server mode: odu's own door (GitHub App sign-in,
+# sessions, roles) stands in front of the board, not the tailnet. The daemon
+# binds the pod's address because the ingress reaches it through the Service.
+# The operator's path (creating the App, first sign-in, tokens) is
+# https://odu.kolu.dev/docs/#server-mode.
+#
+# The Ingress is a Tailscale Funnel, so the board is on the public internet.
+# Nothing may be public before the door is configured: the Funnel went on only
+# after sign-in was proven on the pod, and odu refuses to start with a partial
+# ODU_GITHUB_* set rather than admit the wrong people.
 #
 # The cache store is a chroot store on the PVC, not the host's /nix/store:
 # `ODU_CACHE_STORE=local?root=…` keeps unsigned imports out of the host store
@@ -12,9 +19,19 @@ let
   odu = inputs.odu.packages.${pkgs.stdenv.hostPlatform.system}.odu;
   namespace = "odu-k3s";
   port = 18440;
-  # The operator appends the tailnet suffix to this short name.
+  # The operator appends the tailnet suffix to this short name. The GitHub
+  # App's callback URL is this origin plus /auth/github/callback.
   tailHost = "odu-k3s.rooster-blues.ts.net";
   publicOrigin = "https://${tailHost}";
+  # Who may sign in: `org:<name>`, `team:<org>/<slug>`, or GitHub logins,
+  # comma-separated. Everyone admitted starts as a member; roles come from
+  # `odu auth grant` with the root token. One login to start: a login list
+  # needs no App installation, so it proves sign-in on the pod. `org:juspay`
+  # follows once a Juspay org owner installs the App.
+  githubAllow = "srid";
+  # The GitHub App's client secret, synced from 1Password to a Secret and
+  # mounted as a file; odu reads the path, never the environment, for it.
+  githubSecretDir = "/run/odu/github";
   labels = { app = "odu"; };
   image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
   app = config.k8s.apps.odu;
@@ -39,13 +56,17 @@ in
     network = {
       allowDNS = true;
       # The board serves; pushes come in through the Tailscale proxy. Outbound
-      # HTTPS is for `gh` when a run posts statuses.
+      # HTTPS is for the GitHub App flow and membership checks, and for `gh`
+      # when a run posts statuses.
       publicTCPPorts = [ 443 ];
     };
     tailscale = {
       enable = true;
       hostname = "odu-k3s";
       podPort = port;
+      # Public: anyone on the internet reaches the sign-in page. The tailnet
+      # policy grants the `funnel` node attribute to tag:k8s for this.
+      funnel = true;
     };
     env = [
       { name = "ODU_STATE_DIR"; value = "/data/state"; }
@@ -53,16 +74,30 @@ in
       # host daemon, which refuses unsigned imports from an untrusted user.
       { name = "ODU_CACHE_STORE"; value = "local?root=/data/cache-store"; }
       # The pod's address, not loopback: the Tailscale ingress reaches the
-      # Service, and tailnet policy is the access control. `/` is the board.
+      # Service. `/` is the board, behind the door below.
       { name = "ODU_WEB_ORIGIN"; value = "http://0.0.0.0:${toString port}"; }
       { name = "ODU_PUBLIC_ORIGIN"; value = publicOrigin; }
       # Admit the browser Origin in case the ingress rewrites Host.
       { name = "ODU_WEB_ALLOWED_ORIGINS"; value = publicOrigin; }
+      # Server mode: all three together, or odu refuses to start. The App is
+      # created by hand (docs above); its credentials are the `odu-github-app`
+      # item in the `Kubernetes` 1Password vault (see secrets.nix).
+      {
+        name = "ODU_GITHUB_CLIENT_ID";
+        valueFrom.secretKeyRef = {
+          name = "odu-github-app";
+          key = "client_id";
+          optional = false;
+        };
+      }
+      { name = "ODU_GITHUB_CLIENT_SECRET_FILE"; value = "${githubSecretDir}/client_secret"; }
+      { name = "ODU_GITHUB_ALLOW"; value = githubAllow; }
       { name = "SSL_CERT_FILE"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "GIT_SSL_CAINFO"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "TZDIR"; value = "${pkgs.tzdata}/share/zoneinfo"; }
       { name = "TZ"; value = config.time.timeZone; }
-      # Admin verbs only (bucket create, token mint, gc). External Secrets
+      # Bootstraps roles (`odu auth grant`); on a daemon with a door it is not
+      # a principal and cannot start a run or read a bucket. External Secrets
       # syncs the 1Password item to this Secret; the pod waits for it.
       {
         name = "ODU_ROOT_TOKEN";
@@ -100,9 +135,19 @@ in
     # HOME is /tmp, the hardening module's per-pod emptyDir. The daemon's gate
     # and control socket follow ODU_STATE_DIR, so both live on the PVC beside
     # the catalog and cache; /data/state is durable state, not pod scratch.
-    volumeMounts = lib.mkBefore [ dataMount ];
+    volumeMounts = lib.mkBefore [
+      dataMount
+      { name = "github-app"; mountPath = githubSecretDir; readOnly = true; }
+    ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "odu-data"; }
+      {
+        name = "github-app";
+        secret = {
+          secretName = "odu-github-app";
+          defaultMode = 288; # 0440: readable through the pod's fsGroup.
+        };
+      }
     ];
   };
 
@@ -153,8 +198,9 @@ in
                   requests = { memory = "512Mi"; cpu = "100m"; };
                   limits = { memory = "1Gi"; };
                 };
-                # The board's shell is the cheapest route that proves the
-                # service runtime, the cache and the static bundle all loaded.
+                # The board's shell (the sign-in page, to an anonymous probe)
+                # is the cheapest route that proves the service runtime, the
+                # cache and the static bundle all loaded.
                 readinessProbe = {
                   httpGet = { path = "/"; port = "http"; };
                   initialDelaySeconds = 2;
