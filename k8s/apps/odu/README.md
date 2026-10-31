@@ -29,9 +29,9 @@ tokens for machines and agents:
 **https://odu.kolu.dev/docs/#server-mode**. Its callback URL is
 `https://odu-k3s.rooster-blues.ts.net/auth/github/callback`.
 
-The App's credentials are the `odu-github-oauth` item in the `Kubernetes`
+The App's credentials are the `odu-github-app` item in the `Kubernetes`
 1Password vault, fields `client_id` and `client_secret`; [`secrets.nix`](secrets.nix)
-syncs them to the `odu-github-oauth` Secret exactly like the root token. The
+syncs them to the `odu-github-app` Secret exactly like the root token. The
 client ID is environment, the secret a mounted file. `ODU_GITHUB_ALLOW` in
 [`default.nix`](default.nix) is the allow-list (`org:<name>`,
 `team:<org>/<slug>`, or logins, comma-separated); its value is the human's

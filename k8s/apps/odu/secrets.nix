@@ -8,9 +8,9 @@
     "odu-root-token".token = "odu-root-token/token";
     # The GitHub App behind sign-in (server mode). The ID goes into the
     # environment; the secret is read from a mounted file.
-    "odu-github-oauth" = {
-      client_id = "odu-github-oauth/client_id";
-      client_secret = "odu-github-oauth/client_secret";
+    "odu-github-app" = {
+      client_id = "odu-github-app/client_id";
+      client_secret = "odu-github-app/client_secret";
     };
   };
 }

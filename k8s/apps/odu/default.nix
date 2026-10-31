@@ -80,12 +80,12 @@ in
       # Admit the browser Origin in case the ingress rewrites Host.
       { name = "ODU_WEB_ALLOWED_ORIGINS"; value = publicOrigin; }
       # Server mode: all three together, or odu refuses to start. The App is
-      # created by hand (docs above); its credentials are the `odu-github-oauth`
+      # created by hand (docs above); its credentials are the `odu-github-app`
       # item in the `Kubernetes` 1Password vault (see secrets.nix).
       {
         name = "ODU_GITHUB_CLIENT_ID";
         valueFrom.secretKeyRef = {
-          name = "odu-github-oauth";
+          name = "odu-github-app";
           key = "client_id";
           optional = false;
         };
@@ -137,14 +137,14 @@ in
     # the catalog and cache; /data/state is durable state, not pod scratch.
     volumeMounts = lib.mkBefore [
       dataMount
-      { name = "github-oauth"; mountPath = githubSecretDir; readOnly = true; }
+      { name = "github-app"; mountPath = githubSecretDir; readOnly = true; }
     ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "odu-data"; }
       {
-        name = "github-oauth";
+        name = "github-app";
         secret = {
-          secretName = "odu-github-oauth";
+          secretName = "odu-github-app";
           defaultMode = 288; # 0440: readable through the pod's fsGroup.
         };
       }
