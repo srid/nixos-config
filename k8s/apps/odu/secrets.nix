@@ -12,5 +12,8 @@
       client_id = "odu-github-app/client_id";
       client_secret = "odu-github-app/client_secret";
     };
+    # The cloudflare row's API token (Zone:DNS:Edit, Zone:Read,
+    # Account:Cloudflare Tunnel:Edit). Read from a mounted file.
+    "odu-cloudflare".api_token = "odu-cloudflare/api_token";
   };
 }

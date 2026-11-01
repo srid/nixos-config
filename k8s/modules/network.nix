@@ -12,6 +12,8 @@ in
     # Public IPv4 only; IPv6 remains denied on this single-stack cluster.
     # Empty by default. Apps opt into ports they actually use (e.g. [ 80 443 ]).
     publicTCPPorts = mkOption { type = types.listOf types.port; default = [ ]; };
+    # Same destinations, UDP (e.g. QUIC to a tunnel edge).
+    publicUDPPorts = mkOption { type = types.listOf types.port; default = [ ]; };
     ingress = rules;
     egress = rules;
   };
@@ -45,7 +47,7 @@ in
           }];
           ports = [{ protocol = "UDP"; port = 53; } { protocol = "TCP"; port = 53; }];
         }
-          ++ lib.optional (cfg.publicTCPPorts != [ ]) {
+          ++ lib.optional (cfg.publicTCPPorts != [ ] || cfg.publicUDPPorts != [ ]) {
           to = [{
             ipBlock = {
               cidr = "0.0.0.0/0";
@@ -70,7 +72,8 @@ in
               ];
             };
           }];
-          ports = map (port: { protocol = "TCP"; inherit port; }) cfg.publicTCPPorts;
+          ports = map (port: { protocol = "TCP"; inherit port; }) cfg.publicTCPPorts
+            ++ map (port: { protocol = "UDP"; inherit port; }) cfg.publicUDPPorts;
         };
       };
     }
