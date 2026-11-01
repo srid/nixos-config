@@ -5,14 +5,13 @@
 # The operator's path (creating the App, first sign-in, tokens) is
 # https://odu.kolu.dev/docs/#server-mode.
 #
-# The Ingress is a Tailscale Funnel, so the board is on the public internet.
-# Nothing may be public before the door is configured: the Funnel went on only
-# after sign-in was proven on the pod, and odu refuses to start with a partial
-# ODU_GITHUB_* set rather than admit the wrong people.
+# The Ingress is Tailscale Serve, so the board is on the tailnet only; bucket
+# domains reach the public internet through the Cloudflare tunnel instead. odu
+# refuses to start with a partial ODU_GITHUB_* set rather than admit the wrong
+# people.
 #
-# The cache store is a chroot store on the PVC, not the host's /nix/store:
-# `ODU_CACHE_STORE=local?root=…` keeps unsigned imports out of the host store
-# and needs no trusted-user grant on the untrusted daemon the nix module exposes.
+# The cache keeps each bucket's compressed NARs as files under the state dir on
+# the PVC; it needs no Nix store.
 { config, flake, lib, pkgs, ... }:
 let
   inherit (flake) inputs;
@@ -70,15 +69,9 @@ in
       enable = true;
       hostname = "odu-k3s";
       podPort = port;
-      # Public: anyone on the internet reaches the sign-in page. The tailnet
-      # policy grants the `funnel` node attribute to tag:k8s for this.
-      funnel = true;
     };
     env = [
       { name = "ODU_STATE_DIR"; value = "/data/state"; }
-      # A user-owned chroot store on the PVC. `null` (unset) would mean the
-      # host daemon, which refuses unsigned imports from an untrusted user.
-      { name = "ODU_CACHE_STORE"; value = "local?root=/data/cache-store"; }
       # The pod's address, not loopback: the Tailscale ingress reaches the
       # Service. `/` is the board, behind the door below.
       { name = "ODU_WEB_ORIGIN"; value = "http://0.0.0.0:${toString port}"; }
@@ -118,8 +111,8 @@ in
         };
       }
     ];
-    # The state directory and the chroot store must exist before the daemon
-    # opens the cache database; the PVC's root is not 0700, and the cache's
+    # The state directory must exist before the daemon opens the cache
+    # database; the PVC's root is not 0700, and the cache's
     # SQLite holds every bucket's signing key. odu refuses to start unless its
     # daemon directory under the state dir is owner-only, so strip group/other
     # bits recursively there as well: a no-op when odu's umask made them, and
@@ -134,8 +127,8 @@ in
           "-ec"
           ''
             umask 077
-            mkdir -p /data/state /data/cache-store
-            chmod 700 /data/state /data/cache-store
+            mkdir -p /data/state
+            chmod 700 /data/state
             chmod -R g-rwxs,o-rwx /data/state
           ''
         ];
@@ -194,7 +187,7 @@ in
       metadata = { inherit namespace; name = "odu"; labels = labels; };
       spec = {
         replicas = 1;
-        # The cache's SQLite and chroot store are single-writer.
+        # The cache's SQLite and object files are single-writer.
         strategy.type = "Recreate";
         selector.matchLabels = labels;
         template = {
@@ -210,11 +203,12 @@ in
                 command = [ "${odu}/bin/odu" "web" ];
                 inherit (app) env volumeMounts;
                 ports = [{ name = "http"; containerPort = port; }];
-                # Measured cache peaks are ~330 MiB; leave headroom without
-                # turning a cache miss into a node-wide OOM.
+                # A public cache: concurrent pulls of large NARs have pushed it
+                # past 2Gi. pureintent has 32 GB; the limit still keeps a
+                # runaway from becoming a node-wide OOM.
                 resources = {
-                  requests = { memory = "512Mi"; cpu = "100m"; };
-                  limits = { memory = "1Gi"; };
+                  requests = { memory = "1Gi"; cpu = "100m"; };
+                  limits = { memory = "8Gi"; };
                 };
                 # The board's shell (the sign-in page, to an anonymous probe)
                 # is the cheapest route that proves the service runtime, the

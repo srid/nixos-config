@@ -43,10 +43,9 @@
 
     kolu.url = "git+https://github.com/juspay/kolu?ref=host-switch-lag&shallow=1";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/pull/677/head";
+    olai.url = "github:juspay/olai/pull/682/head";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
-    # PR 3 (juspay/odu#138) until it merges: the cloudflare row.
-    odu.url = "github:juspay/odu/own-cache";
+    odu.url = "github:juspay/odu";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";

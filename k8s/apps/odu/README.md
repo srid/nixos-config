@@ -1,25 +1,21 @@
 # odu on K3s
 
 Runs in pureintent's cluster. Open **https://odu-k3s.rooster-blues.ts.net**
-from anywhere: the Tailscale Ingress is a [Funnel](https://tailscale.com/kb/1223/funnel)
-(`tailscale.funnel = true` in [`default.nix`](default.nix)), so the board is
-public, not tailnet-only. What stands in front of it is odu's own sign-in, not
-the tailnet: the daemon runs in
+from the tailnet: the Tailscale Ingress is Serve, not Funnel, so the board is
+tailnet-only. Bucket domains (below) are public through the Cloudflare tunnel.
+The daemon also runs in
 [server mode](https://odu.kolu.dev/docs/#server-mode), so an anonymous browser
 meets a GitHub sign-in page, `/mcp` answers 401 without a token, and every verb
 runs as a signed-in person with a role. Public buckets are still read without an
-account, and pushes still carry a bucket token. The Funnel went on only after
-sign-in had been proven on the pod; nothing goes public before the door is
-configured.
+account, and pushes still carry a bucket token.
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
-[odu](https://github.com/juspay/odu) (PR 3, juspay/odu#138, until it merges) through the read-only `/nix/store`
+[odu](https://github.com/juspay/odu) (master) through the read-only `/nix/store`
 mount. A `local-path` PVC holds the run catalog, the auth database, and the
-cache's chroot store. The cache is pointed at that chroot store
-(`ODU_CACHE_STORE=local?root=/data/cache-store`) rather than the host store, so
-unsigned pushes never need a trusted-user grant on the untrusted Nix daemon the
-[`nix` module](../../modules/nix.nix) exposes.
+cache's objects: each bucket's compressed NARs as files under
+`/data/state/cache/objects`. The cache needs no Nix store, so pushes never touch
+the untrusted Nix daemon the [`nix` module](../../modules/nix.nix) exposes.
 
 ## Sign-in
 
@@ -38,13 +34,6 @@ client ID is environment, the secret a mounted file. `ODU_GITHUB_ALLOW` in
 `srid`: a login list needs no App installation, so it proves sign-in on the pod.
 `org:juspay` follows once a Juspay org owner installs the App. odu refuses to
 start with a partial configuration, so an ingress never fronts an open board.
-
-The Funnel needs two things in the tailnet: Funnel enabled, and the `funnel`
-node attribute granted to the operator's proxies in the policy file:
-
-```json
-"nodeAttrs": [{ "target": ["tag:k8s"], "attr": ["funnel"] }]
-```
 
 Grant the first owner from the pod, once, with the root token:
 
@@ -75,12 +64,11 @@ Secret like the others, and the pod reads it as a mounted file through
 Read** and **Account → Cloudflare Tunnel → Edit**. A missing or inactive token
 refuses the row at boot with Cloudflare's own reason.
 
-**The Funnel can retire.** The same tunnel carries the server's own origin, the
-board, `/mcp` and the websocket, once `ODU_PUBLIC_ORIGIN` names a host in a zone
-the token can edit. Today the origin is on `ts.net`, which Cloudflare cannot
-route, so the board stays on the Funnel. Moving it means a new
-`ODU_PUBLIC_ORIGIN`, the GitHub App's callback following it, and
-`tailscale.funnel` going back off.
+**The board can go public the same way.** The tunnel carries the server's own
+origin, the board, `/mcp` and the websocket, once `ODU_PUBLIC_ORIGIN` names a
+host in a zone the token can edit. Today the origin is on `ts.net`, which
+Cloudflare cannot route, so the board stays tailnet-only. Moving it means a new
+`ODU_PUBLIC_ORIGIN` and the GitHub App's callback following it.
 
 ## Cache
 
@@ -94,9 +82,9 @@ After rotating either item, restart the Deployment: environment variables and
 mounted Secret files do not reload, and synchronization is hourly (or force it
 on the ExternalSecret).
 
-Create the bucket with `--no-upstream`. The cache normally skips paths signed by
-a client-supplied upstream key, and a chroot store starts empty, so a referrer
-of glibc would defer forever if the client skipped it:
+A bucket with upstream keys does not store paths that `cache.nixos.org` already
+signs; its consumers fetch those from `cache.nixos.org`. `--no-upstream` makes a
+bucket store everything it is pushed, as here:
 
 ```sh
 just apps odu shell
@@ -133,7 +121,8 @@ just apps odu use      # Print the `main` bucket's substituter URL and key
 ```
 
 The service is a single writer (SQLite plus a pid gate): one replica with
-`Recreate`. The Deployment requests 512 MiB; measured cache peaks are ~330 MiB.
+`Recreate`. The Deployment requests 1 GiB with an 8 GiB limit: pulls of large
+NARs have pushed it past 2 GiB.
 `GET /` is the readiness and liveness probe; to an anonymous probe that is the
 sign-in page. Commands run inside the pod (`just apps odu shell`, `just apps
 odu use`) are the local owner and need no token.
@@ -142,7 +131,9 @@ odu use`) are the local owner and need no token.
 
 - The board is a catalog viewer until checkouts and SSH keys exist in the pod;
   `run_start` takes an absolute checkout path on the service host.
-- Server-side substitution of upstream references into a non-host store is
-  deferred to PR 2; buckets for this chroot store use `--no-upstream`.
+- Upstream skipping is per bucket: with upstream keys a bucket leaves
+  `cache.nixos.org`-signed paths to `cache.nixos.org`, and `--no-upstream`
+  stores everything pushed. The switch can be changed later from the board's
+  Cache view (**Skip upstream paths**).
 - A failed first clone, missing keys, or a stale gate is visible in
   `just apps odu logs`.

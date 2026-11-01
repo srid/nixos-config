@@ -23,14 +23,14 @@
         #   kolu-ci-8  dev-x86-64-linux-08
         #   kolu-ci-9  dev-x86-64-linux-05
         #   kolu-ci-10 dev-x86-64-linux-07
-        "kolu-ci-2"
-        "kolu-ci-3"
-        "kolu-ci-5"
-        "kolu-ci-6"
-        "kolu-ci-7"
-        "kolu-ci-8"
-        "kolu-ci-9"
-        "kolu-ci-10"
+        # "kolu-ci-2"
+        # "kolu-ci-3"
+        # "kolu-ci-5"
+        # "kolu-ci-6"
+        # "kolu-ci-7"
+        # "kolu-ci-8"
+        # "kolu-ci-9"
+        # "kolu-ci-10"
       ];
     };
   };
