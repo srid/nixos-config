@@ -895,16 +895,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1793480785,
-        "narHash": "sha256-BtTscg7fWKrl/p1geaFAkDRzq91owQySE8RT3ibDAMg=",
-        "ref": "odu-2-1",
-        "rev": "a7ded7a6f297ab9b0ff495a59d746c9d8bd28285",
+        "lastModified": 1793553811,
+        "narHash": "sha256-z4DnIg73YbqCrtlrkNHbSX+ITgm2ZSGiAqL0KvXCcxg=",
+        "ref": "host-switch-lag",
+        "rev": "57797c0b6c030e4eb796d1b0770ae6d3420e4714",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
       },
       "original": {
-        "ref": "odu-2-1",
+        "ref": "host-switch-lag",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/juspay/kolu"
@@ -923,6 +923,27 @@
         "owner": "adrian-gierakowski",
         "ref": "darwin-implementation-via-sandbox-exec",
         "repo": "landrun-nix",
+        "type": "github"
+      }
+    },
+    "linux-omarchy-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "omarchy-pkgs": "omarchy-pkgs"
+      },
+      "locked": {
+        "lastModified": 1793558072,
+        "narHash": "sha256-r8NO+kwU+Gx/x02yRz4ak71DS9VGhPLzO6shQ6667JM=",
+        "owner": "srid",
+        "repo": "linux-omarchy-nix",
+        "rev": "f757caa1fd5ccf2e859b22142963f4d0c13aa6c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "linux-omarchy-nix",
         "type": "github"
       }
     },
@@ -1325,6 +1346,22 @@
         "type": "github"
       }
     },
+    "omarchy-pkgs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793549721,
+        "narHash": "sha256-SHzOVlgGs3MhjGLejfgvwMvcu1/G80fJnQgQmS0ofq4=",
+        "owner": "omacom",
+        "repo": "omarchy-pkgs",
+        "rev": "626dbc88dcff1e53e78c8c6dacf8cc8fc899db40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "omacom",
+        "repo": "omarchy-pkgs",
+        "type": "github"
+      }
+    },
     "process-compose-flake": {
       "locked": {
         "lastModified": 1767863885,
@@ -1387,6 +1424,7 @@
         "jumphost-nix": "jumphost-nix",
         "kolu": "kolu",
         "landrun-nix": "landrun-nix",
+        "linux-omarchy-nix": "linux-omarchy-nix",
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-index-database": "nix-index-database",

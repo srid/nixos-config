@@ -36,7 +36,12 @@
     jumphost-nix.url = "github:srid/jumphost-nix";
     jumphost-nix.flake = false;
 
-    kolu.url = "git+https://github.com/juspay/kolu?ref=odu-2-1&shallow=1";
+    # Omarchy's kernel (linux-omarchy) as a package: kernel.org source plus
+    # omarchy-pkgs' patches and config. Used by gossamer only.
+    linux-omarchy-nix.url = "github:srid/linux-omarchy-nix";
+    linux-omarchy-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    kolu.url = "git+https://github.com/juspay/kolu?ref=host-switch-lag&shallow=1";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/pull/677/head";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
