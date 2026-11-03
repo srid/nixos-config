@@ -1,9 +1,9 @@
 # odu on K3s
 
-Runs in pureintent's cluster. Open **https://odu-k3s.rooster-blues.ts.net**
-from the tailnet: the Tailscale Ingress is Serve, not Funnel, so the board is
-tailnet-only. Bucket domains (below) are public through the Cloudflare tunnel.
-The daemon also runs in
+Runs in pureintent's cluster. **https://odu-k3s.rooster-blues.ts.net** is a
+Tailscale Funnel, so it is public on the internet behind odu's GitHub sign-in;
+CI pushes to that origin directly, and bucket reads are served from R2 at
+`https://cache.kolu.dev/<bucket>`. The daemon also runs in
 [server mode](https://odu.kolu.dev/docs/#server-mode), so an anonymous browser
 meets a GitHub sign-in page, `/mcp` answers 401 without a token, and every verb
 runs as a signed-in person with a role. Public buckets are still read without an
@@ -106,15 +106,20 @@ odu surface cache token_mint --json --input \
 ### The `r2` store
 
 A bucket keeps its objects in a store chosen at creation: `local`, the PVC,
-or `r2`, the private R2 bucket `odu-test` on account
+or `r2`, the private R2 bucket `kolu` on account
 `dcb5b29c06cda32324ce9924df2b5e86`. odu's walk is
 [Keep a bucket on S3](https://odu.kolu.dev/cache/#keep-a-bucket-on-s3).
 [`default.nix`](default.nix) writes the declaration to the Nix store and names
 it in `ODU_OBJECT_STORES`; it holds no secret.
 
-The keys are the `odu-r2` item in the `Kubernetes` 1Password vault, fields
-`access_key_id` and `secret_access_key` (an R2 token scoped to the bucket,
-object read and write). [`secrets.nix`](secrets.nix) syncs them to the
+Reads of a public bucket on `r2` are served at `https://cache.kolu.dev/<bucket>`
+once the operator binds that domain with
+`cf r2 buckets domains custom create kolu --domain cache.kolu.dev --zone-id <zone>`.
+
+The keys are the Account API token `odu-r2-kolu`, held in the `odu-r2` item in
+the `Kubernetes` 1Password vault, fields `access_key_id` and
+`secret_access_key` (scoped to the bucket, object read and write).
+[`secrets.nix`](secrets.nix) syncs them to the
 `odu-r2` Secret like the others. odu reads one `KEY=value` file per store, so
 the `odu-r2-credentials` init container joins the two keys into
 `/run/odu/r2/credentials` (tmpfs, owner-only), the store's `credentialsFile`.

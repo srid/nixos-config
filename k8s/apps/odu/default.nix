@@ -44,9 +44,10 @@ let
     r2 = {
       kind = "s3";
       endpoint = "https://dcb5b29c06cda32324ce9924df2b5e86.r2.cloudflarestorage.com";
-      bucket = "odu-test";
+      bucket = "kolu";
       region = "auto";
       credentialsFile = "${r2Dir}/credentials";
+      publicUrl = "https://cache.kolu.dev";
     };
   });
   labels = { app = "odu"; };
@@ -85,6 +86,7 @@ in
       enable = true;
       hostname = "odu-k3s";
       podPort = port;
+      funnel = true;
     };
     env = [
       { name = "ODU_STATE_DIR"; value = "/data/state"; }
