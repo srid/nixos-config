@@ -39,8 +39,11 @@ Grant the first owner from the pod, once, with the root token:
 
 ```sh
 just apps odu shell
-odu auth grant <github login> owner --origin http://127.0.0.1:18440
+odu surface auth user_grant --origin http://127.0.0.1:18440 \
+  --input '{"rootToken":"'"$ODU_ROOT_TOKEN"'","login":"<github login>","role":"owner"}'
 ```
+
+`role` is `owner`, `admin` or `member`.
 
 ## Bucket domains through Cloudflare
 
@@ -75,24 +78,62 @@ Cloudflare cannot route, so the board stays tailnet-only. Moving it means a new
 The root token is the `odu-root-token` item in the `Kubernetes` 1Password vault,
 field `token`; [`secrets.nix`](secrets.nix) syncs it to the `odu-root-token`
 Secret through External Secrets. On a daemon with a door, granting roles is its
-only job. `ODU_PUBLIC_ORIGIN` makes `odu cache create` print the public
+only job. `ODU_PUBLIC_ORIGIN` makes `bucket_create` answer the public
 substituter URL.
 
-After rotating either item, restart the Deployment: environment variables and
+After rotating any item, restart the Deployment: environment variables and
 mounted Secret files do not reload, and synchronization is hourly (or force it
 on the ExternalSecret).
 
-A bucket with upstream keys does not store paths that `cache.nixos.org` already
-signs; its consumers fetch those from `cache.nixos.org`. `--no-upstream` makes a
-bucket store everything it is pushed, as here:
+The CLI keeps `odu cache use|login|push`; buckets and tokens are the board's
+Cache view or the API verbs, `odu surface cache <verb> --input '{…}' --json`.
+Each takes a `rootToken` field. On this daemon the root token alone is refused
+("this connection carries no principal"), so run them signed in as an admin
+(`odu auth login`) with `"rootToken":""`, as odu's docs show.
+
+A bucket with upstream keys (the default, `cache.nixos.org-1`) does not store
+paths that `cache.nixos.org` already signs; its consumers fetch those from
+`cache.nixos.org`. `"upstreamKeys": []` makes a bucket store everything it is
+pushed. A write token is answered once, as `{token, facts}`:
 
 ```sh
-just apps odu shell
-odu cache create main --no-upstream -o json
-odu cache token mint main --write
+odu surface cache bucket_create --json --input \
+  '{"rootToken":"","name":"main","public":true,"retentionDays":30,"upstreamKeys":[]}'
+odu surface cache token_mint --json --input \
+  '{"rootToken":"","bucket":"main","scope":"write"}' | jq -r .token
 ```
 
-Trust the printed URL and key in a client:
+### The `r2` store
+
+A bucket keeps its objects in a store chosen at creation: `local`, the PVC,
+or `r2`, the private R2 bucket `odu-test` on account
+`dcb5b29c06cda32324ce9924df2b5e86`. odu's walk is
+[Keep a bucket on S3](https://odu.kolu.dev/cache/#keep-a-bucket-on-s3).
+[`default.nix`](default.nix) writes the declaration to the Nix store and names
+it in `ODU_OBJECT_STORES`; it holds no secret.
+
+The keys are the `odu-r2` item in the `Kubernetes` 1Password vault, fields
+`access_key_id` and `secret_access_key` (an R2 token scoped to the bucket,
+object read and write). [`secrets.nix`](secrets.nix) syncs them to the
+`odu-r2` Secret like the others. odu reads one `KEY=value` file per store, so
+the `odu-r2-credentials` init container joins the two keys into
+`/run/odu/r2/credentials` (tmpfs, owner-only), the store's `credentialsFile`.
+A missing key or unreadable file refuses boot with an `odu:` sentence in
+`just apps odu logs`.
+
+```sh
+odu surface cache bucket_create --json --input \
+  '{"rootToken":"","name":"<name>","public":true,"retentionDays":30,"store":"r2"}'
+```
+
+(Signed in as an admin, as [above](#cache).)
+
+A store a bucket still names cannot be removed: the cache row refuses to
+mount rather than serve 404s.
+
+### Clients
+
+Trust the answered URL and key in a client:
 
 ```nix
 {
@@ -103,9 +144,9 @@ Trust the printed URL and key in a client:
 }
 ```
 
-Push from any machine with `odu cache push <url> <path>` or plain
-`nix copy --to <url-with-token> <path>`. `ODU_CACHE_TOKEN` supplies the token to
-`odu cache push`.
+Push from any machine with `odu cache push <bucket> <path>… --origin <origin>`
+or plain `nix copy --to <url-with-token> <path>`. `ODU_CACHE_TOKEN` supplies the
+token to `odu cache push`.
 
 ## Operations
 
@@ -124,15 +165,15 @@ The service is a single writer (SQLite plus a pid gate): one replica with
 `Recreate`. The Deployment requests 1 GiB with an 8 GiB limit: pulls of large
 NARs have pushed it past 2 GiB.
 `GET /` is the readiness and liveness probe; to an anonymous probe that is the
-sign-in page. Commands run inside the pod (`just apps odu shell`, `just apps
-odu use`) are the local owner and need no token.
+sign-in page. `just apps odu use` needs no token (a bucket's URL and key are
+public); the admin verbs need a signed-in admin even inside the pod.
 
 ## Known limits
 
 - The board is a catalog viewer until checkouts and SSH keys exist in the pod;
   `run_start` takes an absolute checkout path on the service host.
 - Upstream skipping is per bucket: with upstream keys a bucket leaves
-  `cache.nixos.org`-signed paths to `cache.nixos.org`, and `--no-upstream`
+  `cache.nixos.org`-signed paths to `cache.nixos.org`, and `"upstreamKeys": []`
   stores everything pushed. The switch can be changed later from the board's
   Cache view (**Skip upstream paths**).
 - A failed first clone, missing keys, or a stale gate is visible in

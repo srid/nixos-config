@@ -10,8 +10,9 @@
 # refuses to start with a partial ODU_GITHUB_* set rather than admit the wrong
 # people.
 #
-# The cache keeps each bucket's compressed NARs as files under the state dir on
-# the PVC; it needs no Nix store.
+# The cache keeps each bucket's compressed NARs in the bucket's store: `local`,
+# files under the state dir on the PVC, or `r2`, a Cloudflare R2 bucket. It
+# needs no Nix store.
 { config, flake, lib, pkgs, ... }:
 let
   inherit (flake) inputs;
@@ -24,7 +25,7 @@ let
   publicOrigin = "https://${tailHost}";
   # Who may sign in: `org:<name>`, `team:<org>/<slug>`, or GitHub logins,
   # comma-separated. Everyone admitted starts as a member; roles come from
-  # `odu auth grant` with the root token. One login to start: a login list
+  # `odu surface auth user_grant` with the root token. One login to start: a login list
   # needs no App installation, so it proves sign-in on the pod. `org:juspay`
   # follows once a Juspay org owner installs the App.
   githubAllow = "srid";
@@ -33,6 +34,21 @@ let
   githubSecretDir = "/run/odu/github";
   # The Cloudflare API token, synced and mounted the same way.
   cloudflareSecretDir = "/run/odu/cloudflare";
+  # The `r2` store's keys, as synced (init container only), and the one
+  # credentials file odu reads, joined from them onto tmpfs.
+  r2KeysDir = "/run/odu/r2-keys";
+  r2Dir = "/run/odu/r2";
+  # The cache's declared S3 stores (`local`, the PVC, is always there). No
+  # secret here: the credentials stay in the mounted file.
+  objectStores = pkgs.writeText "odu-object-stores.json" (builtins.toJSON {
+    r2 = {
+      kind = "s3";
+      endpoint = "https://dcb5b29c06cda32324ce9924df2b5e86.r2.cloudflarestorage.com";
+      bucket = "odu-test";
+      region = "auto";
+      credentialsFile = "${r2Dir}/credentials";
+    };
+  });
   labels = { app = "odu"; };
   image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
   app = config.k8s.apps.odu;
@@ -95,12 +111,15 @@ in
       # record per bucket domain, `cloudflared` as a child. Setting the file
       # mounts the row; an inactive token refuses it at boot.
       { name = "ODU_CLOUDFLARE_API_TOKEN_FILE"; value = "${cloudflareSecretDir}/api_token"; }
+      # The cache's S3 stores; an unreadable file or missing keys refuse boot.
+      { name = "ODU_OBJECT_STORES"; value = "${objectStores}"; }
       { name = "SSL_CERT_FILE"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "GIT_SSL_CAINFO"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "TZDIR"; value = "${pkgs.tzdata}/share/zoneinfo"; }
       { name = "TZ"; value = config.time.timeZone; }
-      # Bootstraps roles (`odu auth grant`); on a daemon with a door it is not
-      # a principal and cannot start a run or read a bucket. External Secrets
+      # Bootstraps roles (`odu surface auth user_grant`); on a daemon with a
+      # door it is not a principal and cannot start a run or read a bucket.
+      # External Secrets
       # syncs the 1Password item to this Secret; the pod waits for it.
       {
         name = "ODU_ROOT_TOKEN";
@@ -134,6 +153,28 @@ in
         ];
         volumeMounts = [ dataMount ];
       }
+      # odu reads one `KEY=value` file per store; 1Password holds the two keys
+      # as fields, so join them here, owner-only, on tmpfs.
+      {
+        name = "odu-r2-credentials";
+        inherit image;
+        securityContext = app.containerSecurityContext;
+        command = [
+          "/bin/sh"
+          "-ec"
+          ''
+            umask 077
+            {
+              printf 'AWS_ACCESS_KEY_ID=%s\n' "$(cat ${r2KeysDir}/access_key_id)"
+              printf 'AWS_SECRET_ACCESS_KEY=%s\n' "$(cat ${r2KeysDir}/secret_access_key)"
+            } > ${r2Dir}/credentials
+          ''
+        ];
+        volumeMounts = [
+          { name = "r2-keys"; mountPath = r2KeysDir; readOnly = true; }
+          { name = "r2"; mountPath = r2Dir; }
+        ];
+      }
     ];
     # HOME is /tmp, the hardening module's per-pod emptyDir. The daemon's gate
     # and control socket follow ODU_STATE_DIR, so both live on the PVC beside
@@ -142,6 +183,7 @@ in
       dataMount
       { name = "github-app"; mountPath = githubSecretDir; readOnly = true; }
       { name = "cloudflare"; mountPath = cloudflareSecretDir; readOnly = true; }
+      { name = "r2"; mountPath = r2Dir; readOnly = true; }
     ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "odu-data"; }
@@ -159,6 +201,14 @@ in
           defaultMode = 288; # 0440: readable through the pod's fsGroup.
         };
       }
+      {
+        name = "r2-keys";
+        secret = {
+          secretName = "odu-r2";
+          defaultMode = 288; # 0440: readable through the pod's fsGroup.
+        };
+      }
+      { name = "r2"; emptyDir.medium = "Memory"; }
     ];
   };
 
