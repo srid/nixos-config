@@ -1,4 +1,4 @@
-{ flake, lib, ... }:
+{ flake, lib, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -19,6 +19,8 @@ in
     # Single-node K3s cluster running odu; olai's cluster is on naiveintent.
     (self + /k8s)
     (self + /k8s/apps/odu)
+    (self + /k8s/apps/prometheus)
+    (self + /k8s/apps/grafana)
   ];
 
   # Ethernet address (enp1s0); the Wi-Fi interface has a different one.
@@ -49,12 +51,29 @@ in
   users.users.ci = {
     isNormalUser = true;
     description = "odu CI lane";
+    packages = [ pkgs.just ];
     openssh.authorizedKeys.keys = [
       flake.config.me.sshKey
       # srid on this very host, for lanes started here.
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
+      # The odu pod on this node (odu-lane keypair, `odu-lane-ssh`).
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFD3DbMP0DjYFBhlp4ckqyaG4ZW/Pk6Z3y34TDw8abFQ odu-k3s@pureintent"
     ];
   };
+  # A dedicated sshd for the odu CI lane. The K3s host guard (k8s/network.nix)
+  # rejects pod traffic to every host port except 6443/10250/2222, so the lane
+  # dials this one on the pod network's gateway (10.42.0.1) instead of the
+  # host's port 22. Only `ci` may log in, and only by key.
+  systemd.services.sshd-odu-lane = {
+    description = "sshd for the odu CI lane";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.openssh}/bin/sshd -D -e -p 2222 -o ListenAddress=10.42.0.1 -o PasswordAuthentication=no -o KbdInteractiveAuthentication=no -o AllowUsers=ci -o PidFile=/run/sshd-odu-lane.pid";
+      Restart = "on-failure";
+    };
+  };
+
   # tailscaled installs its rules via iptables-nft, which live in a different
   # table from the nftables firewall incus requires.
   networking.firewall.trustedInterfaces = [ "tailscale0" ];

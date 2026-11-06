@@ -51,6 +51,16 @@ let
     };
   });
   labels = { app = "odu"; };
+  # The lane inventory the daemon reads: one builder, the node it runs on,
+  # reached through the pod network's gateway. The node's LAN address is
+  # rejected by the K3s host guard; the lane's own sshd listens on 10.42.0.1:2222.
+  hostsFile = pkgs.writeText "odu-hosts.json" (builtins.toJSON {
+    x86_64-linux = [ "ci@10.42.0.1" ];
+  });
+  # The ssh material the coordinator's ssh child reads: HOME=/tmp, so the
+  # emptyDir is mounted at /tmp/.ssh as well as the brief's /run/odu/ssh.
+  laneSshDir = "/run/odu/ssh";
+  laneSshKeysDir = "/run/odu/ssh-keys";
   image = "busybox:1.36.1@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662";
   app = config.k8s.apps.odu;
   dataMount = { name = "data"; mountPath = "/data"; };
@@ -81,6 +91,15 @@ in
       # (TCP). All outbound; nothing listens for the tunnel.
       publicTCPPorts = [ 443 7844 ];
       publicUDPPorts = [ 7844 ];
+      # The only lane is the node itself: ssh to the lane's own sshd on the
+      # pod network's gateway. RFC1918/ClusterIPs are excluded from
+      # `publicTCPPorts`, so it is named.
+      egress = [
+        {
+          to = [{ ipBlock.cidr = "10.42.0.1/32"; }];
+          ports = [{ protocol = "TCP"; port = 2222; }];
+        }
+      ];
     };
     tailscale = {
       enable = true;
@@ -115,6 +134,8 @@ in
       { name = "ODU_CLOUDFLARE_API_TOKEN_FILE"; value = "${cloudflareSecretDir}/api_token"; }
       # The cache's S3 stores; an unreadable file or missing keys refuse boot.
       { name = "ODU_OBJECT_STORES"; value = "${objectStores}"; }
+      # The lane inventory (`odu ci run` resolves hosts in the daemon).
+      { name = "ODU_HOSTS"; value = "${hostsFile}"; }
       { name = "SSL_CERT_FILE"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "GIT_SSL_CAINFO"; value = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"; }
       { name = "TZDIR"; value = "${pkgs.tzdata}/share/zoneinfo"; }
@@ -177,6 +198,26 @@ in
           { name = "r2"; mountPath = r2Dir; }
         ];
       }
+      # The lane's ssh identity lands owner-only where OpenSSH reads it: the
+      # Secret is group-readable through fsGroup, this copy is the 0400 file.
+      {
+        name = "odu-lane-ssh";
+        inherit image;
+        securityContext = app.containerSecurityContext;
+        command = [
+          "/bin/sh"
+          "-ec"
+          ''
+            umask 077
+            cp ${laneSshKeysDir}/id_ed25519 ${laneSshKeysDir}/config ${laneSshKeysDir}/known_hosts ${laneSshDir}/
+            chmod 400 ${laneSshDir}/id_ed25519 ${laneSshDir}/config ${laneSshDir}/known_hosts
+          ''
+        ];
+        volumeMounts = [
+          { name = "lane-ssh-keys"; mountPath = laneSshKeysDir; readOnly = true; }
+          { name = "lane-ssh"; mountPath = laneSshDir; }
+        ];
+      }
     ];
     # HOME is /tmp, the hardening module's per-pod emptyDir. The daemon's gate
     # and control socket follow ODU_STATE_DIR, so both live on the PVC beside
@@ -186,6 +227,9 @@ in
       { name = "github-app"; mountPath = githubSecretDir; readOnly = true; }
       { name = "cloudflare"; mountPath = cloudflareSecretDir; readOnly = true; }
       { name = "r2"; mountPath = r2Dir; readOnly = true; }
+      { name = "lane-ssh"; mountPath = laneSshDir; readOnly = true; }
+      # HOME is /tmp, so this is where the ssh child finds its config.
+      { name = "lane-ssh"; mountPath = "/tmp/.ssh"; readOnly = true; }
     ];
     volumes = [
       { name = "data"; persistentVolumeClaim.claimName = "odu-data"; }
@@ -211,6 +255,35 @@ in
         };
       }
       { name = "r2"; emptyDir.medium = "Memory"; }
+      {
+        name = "lane-ssh-keys";
+        secret = {
+          secretName = "odu-lane-ssh";
+          defaultMode = 288; # 0440: readable through the pod's fsGroup.
+        };
+      }
+      { name = "lane-ssh"; emptyDir = { }; }
+    ];
+    # The tailscale module's ingress rule admits only the proxy; Prometheus in
+    # its own namespace scrapes this pod directly over the Service.
+    manifests = [
+      {
+        apiVersion = "networking.k8s.io/v1";
+        kind = "NetworkPolicy";
+        metadata = { inherit namespace; name = "odu-allow-prometheus"; };
+        spec = {
+          podSelector.matchLabels = labels;
+          policyTypes = [ "Ingress" ];
+          ingress = [
+            {
+              from = [{
+                namespaceSelector.matchLabels."kubernetes.io/metadata.name" = "prometheus-k3s";
+              }];
+              ports = [{ protocol = "TCP"; port = port; }];
+            }
+          ];
+        };
+      }
     ];
   };
 

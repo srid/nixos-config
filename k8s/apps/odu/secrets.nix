@@ -21,5 +21,12 @@
       access_key_id = "odu-r2/access_key_id";
       secret_access_key = "odu-r2/secret_access_key";
     };
+    # The CI lane's ssh identity to ci@pureintent: a keypair, the pinned host
+    # key, and the config the coordinator's ssh child reads via HOME.
+    "odu-lane-ssh" = {
+      id_ed25519 = "odu-lane-ssh/id_ed25519";
+      known_hosts = "odu-lane-ssh/known_hosts";
+      config = "odu-lane-ssh/config";
+    };
   };
 }
