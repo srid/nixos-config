@@ -55,8 +55,28 @@ let
   # reached through the pod network's gateway. The node's LAN address is
   # rejected by the K3s host guard; the lane's own sshd listens on 10.42.0.1:2222.
   hostsFile = pkgs.writeText "odu-hosts.json" (builtins.toJSON {
-    x86_64-linux = [ "ci@10.42.0.1" ];
+    x86_64-linux = [ "ci@croissant" "ci@naiveintent" ];
+    aarch64-darwin = [ "ci@petit" ];
   });
+  # One tailnet egress Service per lane: the pod is not a tailnet member, so
+  # these ExternalName Services make each device reachable by a cluster DNS
+  # name; the operator's egress proxy does the tailnet leg.
+  laneServices = map
+    (lane: {
+      apiVersion = "v1";
+      kind = "Service";
+      metadata = {
+        inherit namespace;
+        name = lane;
+        annotations."tailscale.com/tailnet-fqdn" = "${lane}.rooster-blues.ts.net";
+      };
+      spec = {
+        type = "ExternalName";
+        externalName = "${lane}.rooster-blues.ts.net";
+        ports = [{ name = "ssh"; port = 22; protocol = "TCP"; }];
+      };
+    })
+    [ "croissant" "naiveintent" "petit" ];
   # The ssh material the coordinator's ssh child reads: HOME=/tmp, so the
   # emptyDir is mounted at /tmp/.ssh as well as the brief's /run/odu/ssh.
   laneSshDir = "/run/odu/ssh";
@@ -91,13 +111,15 @@ in
       # (TCP). All outbound; nothing listens for the tunnel.
       publicTCPPorts = [ 443 7844 ];
       publicUDPPorts = [ 7844 ];
-      # The only lane is the node itself: ssh to the lane's own sshd on the
-      # pod network's gateway. RFC1918/ClusterIPs are excluded from
-      # `publicTCPPorts`, so it is named.
+      # The lanes are tailnet devices behind the operator's egress proxies,
+      # which run in the tailscale namespace; nothing else is dialed.
       egress = [
         {
-          to = [{ ipBlock.cidr = "10.42.0.1/32"; }];
-          ports = [{ protocol = "TCP"; port = 2222; }];
+          to = [{
+            namespaceSelector.matchLabels."kubernetes.io/metadata.name" = "tailscale";
+            podSelector.matchLabels."tailscale.com/managed" = "true";
+          }];
+          ports = [{ protocol = "TCP"; port = 22; }];
         }
       ];
     };
@@ -209,7 +231,11 @@ in
           "-ec"
           ''
             umask 077
-            cp ${laneSshKeysDir}/id_ed25519 ${laneSshKeysDir}/config ${laneSshKeysDir}/known_hosts ${laneSshDir}/
+            cp ${laneSshKeysDir}/config ${laneSshKeysDir}/known_hosts ${laneSshDir}/
+            # OpenSSH rejects the key file without a final newline, and
+            # 1Password stores id_ed25519 without one.
+            key=$(cat ${laneSshKeysDir}/id_ed25519)
+            printf '%s\n' "$key" > ${laneSshDir}/id_ed25519
             chmod 400 ${laneSshDir}/id_ed25519 ${laneSshDir}/config ${laneSshDir}/known_hosts
           ''
         ];
@@ -293,7 +319,7 @@ in
       kind = "Namespace";
       metadata = { name = namespace; };
     }
-  ] ++ app.manifests ++ [
+  ] ++ app.manifests ++ laneServices ++ [
     # local-path preserves data, but does not enforce the requested size.
     {
       apiVersion = "v1";

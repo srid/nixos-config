@@ -10,6 +10,7 @@ in
 
   imports = [
     self.nixosModules.default
+    (self + /k8s/odu-lane.nix)
     ./configuration.nix
     # Single-node K3s cluster running olai; odu's cluster is on pureintent.
     (self + /k8s)
@@ -57,4 +58,8 @@ in
   }];
 
   networking.firewall.allowedTCPPorts = [ 7692 ];
+
+  # odu CI lane on the workstation (modules/home/cli/odu.nix used to list
+  # ci@pureintent here; pureintent left the inventory).
+  users.users.ci.openssh.authorizedKeys.keys = [ flake.config.me.sshKey ];
 }

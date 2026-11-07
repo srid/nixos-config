@@ -12,6 +12,7 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     self.nixosModules.default
+    (self + /k8s/odu-lane.nix)
     ./hardware-configuration.nix
     ./disko.nix
     (self + /modules/nixos/linux/gc.nix)
@@ -85,8 +86,6 @@ in
   # odu CI lane (modules/home/cli/odu.nix lists ci@croissant). Builders need
   # only SSH access and Nix; reachable over the tailnet like srid.
   users.users.ci = {
-    isNormalUser = true;
-    description = "odu CI lane";
     extraGroups = [ "docker" ];
     openssh.authorizedKeys.keys = [
       flake.config.me.sshKey

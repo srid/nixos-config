@@ -9,6 +9,16 @@ meets a GitHub sign-in page, `/mcp` answers 401 without a token, and every verb
 runs as a signed-in person with a role. Public buckets are still read without an
 account, and pushes still carry a bucket token.
 
+The board's Machines view reaches the CI lanes through the Tailscale operator's
+egress proxies, which carry `tag:k8s`. Tailnet policy must let that tag dial the
+lane devices on SSH; without it a proxy's audit log shows `rejected due to acl`
+and the Machines view shows every lane unreachable. In the tailnet policy file,
+grant it by device name or by a tag the three carry:
+
+```json
+{"src": ["tag:k8s"], "dst": ["croissant", "naiveintent", "petit"], "ip": ["tcp:22"]}
+```
+
 One process serves the board, its CI runs, and a Nix binary cache; there is no
 separate nginx. The pod uses the host's Nix-built
 [odu](https://github.com/juspay/odu) (master) through the read-only `/nix/store`

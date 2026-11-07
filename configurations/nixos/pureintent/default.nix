@@ -11,6 +11,7 @@ in
 
   imports = [
     self.nixosModules.default
+    (self + /k8s/odu-lane.nix)
     ./configuration.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/gc.nix)
@@ -48,18 +49,11 @@ in
   # odu CI lane (modules/home/cli/odu.nix lists ci@pureintent), as on
   # croissant. Builders need only SSH access and Nix; the odu cache in the K3s
   # pod on this host is a separate thing and does not use this user.
-  users.users.ci = {
-    isNormalUser = true;
-    description = "odu CI lane";
-    packages = [ pkgs.just ];
-    openssh.authorizedKeys.keys = [
-      flake.config.me.sshKey
-      # srid on this very host, for lanes started here.
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
-      # The odu pod on this node (odu-lane keypair, `odu-lane-ssh`).
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFD3DbMP0DjYFBhlp4ckqyaG4ZW/Pk6Z3y34TDw8abFQ odu-k3s@pureintent"
-    ];
-  };
+  users.users.ci.openssh.authorizedKeys.keys = [
+    flake.config.me.sshKey
+    # srid on this very host, for lanes started here.
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
+  ];
   # A dedicated sshd for the odu CI lane. The K3s host guard (k8s/network.nix)
   # rejects pod traffic to every host port except 6443/10250/2222, so the lane
   # dials this one on the pod network's gateway (10.42.0.1) instead of the
