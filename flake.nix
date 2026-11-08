@@ -45,8 +45,7 @@
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/master";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
-    # PR #167 head (readback crash), unmerged
-    odu.url = "github:juspay/odu/bb65a9e5d73b52f398b4966f397fb7010f03e9f6";
+    odu.url = "github:juspay/odu";
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
