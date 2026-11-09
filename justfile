@@ -11,15 +11,16 @@ mod apps 'k8s/apps/mod.just'
 # Main commands
 # --------------------------------------------------------------------------------------------------
 
-# Pull from odu's cache (https://cache.kolu.dev) during
+# Pull from kolu's OSS cache (https://cache.kolu.dev/kolu-r2) during
 # `activate`. Off by default; enable with `just oss_cache=1 activate [host]` or
 # `OSS_CACHE=1 just activate [host]`. Needs a trusted-user (wheel) for the extra
 # public key to be honoured. Applies to local builds only; the ssh deploy path
 # does not forward NIX_CONFIG.
+# Matches juspay/kolu's flake nixConfig (kolu-r2 bucket and key).
 oss_cache := env("OSS_CACHE", "0")
 oss_cache_nix_config := """
-extra-substituters = https://cache.kolu.dev
-extra-trusted-public-keys = kolu-1:eAXwD1RPt1BpFjrHfVUO8Ia0bK32WcuIeJcwFWmgj9Y=
+extra-substituters = https://cache.kolu.dev/kolu-r2
+extra-trusted-public-keys = kolu-r2-1:7KmFrK05rVrnxkyZi9hJGnJJmRCpg87u6MUQIk7nokQ=
 """
 
 # Activate the given host or home environment
@@ -28,7 +29,7 @@ activate host="":
     #!/usr/bin/env bash
     set -euo pipefail
     if [ "{{ oss_cache }}" = "1" ]; then
-        echo "Using cache: https://cache.kolu.dev"
+        echo "Using cache: https://cache.kolu.dev/kolu-r2"
         export NIX_CONFIG="{{ oss_cache_nix_config }}"
     fi
     # macOS login shells default to 256 FDs. Nix's github: tarball-cache
