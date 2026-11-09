@@ -62,6 +62,10 @@ in
     enable = true;
     polkitPolicyOwners = [ flake.config.me.username ];
   };
+  # Dynamically-linked CLIs (opencode browse, VS Code server, …) need the
+  # standard ELF loader path that NixOS' stub ld otherwise refuses.
+  programs.nix-ld.enable = true;
+
   environment.systemPackages = with pkgs; [ neovim git ];
 
   # Preserve the version from the initial installation.
