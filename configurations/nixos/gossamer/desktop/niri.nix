@@ -3,7 +3,9 @@ let
   input = import ./input-preferences.nix;
   focusOrLaunch = pkgs.callPackage ./focus-or-launch.nix { };
   olaiAppId = "ibjcidhmendlapdjlbedpmplbfiglmpo";
-  koluAppId = "mjffbmcccchpeiihgnfodjiaiicfpljk";
+  # Kolu runs on pureintent now; this is its installed PWA in the Default
+  # profile (window app-id `chrome-<id>-Default`).
+  koluAppId = "fmoabekojbnjmahgadhebdplndmfageo";
 in
 {
   # Backport only shared-memory screencasting for Kooha onto released Niri.
