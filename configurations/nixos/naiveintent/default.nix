@@ -1,8 +1,7 @@
 { flake, ... }:
 
 let
-  inherit (flake) inputs;
-  inherit (inputs) self;
+  self = flake.inputs.self;
   homeMod = self + /modules/home;
 in
 {
@@ -36,16 +35,6 @@ in
     })
     # LITELLM_API_KEY for Juspay's gateway
     "${homeMod}/work/litellm.nix"
-    # The K3s app serves Vault; this instance serves the olai repo's own docs.
-    inputs.olai.homeManagerModules.default
-    ({ config, ... }: {
-      services.olai = {
-        enable = true;
-        dataDir = "${config.home.homeDirectory}/code/oss.olai";
-        # push = "auto";
-        # extraPlugins = [ "claude" "codex" "chat" "kolu" "odu" ];
-      };
-    })
   ];
 
   # Ethernet address (enp1s0f0); the Wi-Fi interface has a different one.
