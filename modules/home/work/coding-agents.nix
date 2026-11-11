@@ -3,7 +3,9 @@
 #
 # Installed through agent-distro's Home Manager module, which puts shims on
 # PATH and refreshes them daily from `flake`; a shim runs the flake-pinned
-# bundle until the first successful update.
+# bundle until the first successful update. The profile is the pinned
+# `juspay/skills` repository — a `plugin.json` — which the shims export as
+# AI_PROFILE, so a launch reads it from the store rather than the network.
 
 { flake, ... }:
 let
@@ -18,6 +20,6 @@ in
 
   services.agent-distro = {
     enable = true;
-    profile = "juspay";
+    profiles = [ inputs.skills ];
   };
 }

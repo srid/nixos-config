@@ -48,11 +48,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791479979,
-        "narHash": "sha256-dLdXGJYpQkd2A3bssF4nETecjwyfn4FEl0t3OWXY2KE=",
+        "lastModified": 1794405795,
+        "narHash": "sha256-ESWUrZb2xk6N0YNMWrZ4ldWNkcW0KbTwzwrQNNp7RXs=",
         "owner": "juspay",
         "repo": "agent-distro",
-        "rev": "c076efacf6e03a9f813c2124090a2202b03fb3c2",
+        "rev": "225053c21c25e1e0cb2b43b5ebbbb74b66dac98b",
         "type": "github"
       },
       "original": {
@@ -1150,11 +1150,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1791260994,
-        "narHash": "sha256-Miqqk/ammqnTUxaoCyvtwoPeLbI1ksFyLxi/CazZpWY=",
+        "lastModified": 1794042290,
+        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "151fa4e8ddfdd8dd25d945ad94ed54a13de9f6e4",
+        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
         "type": "github"
       },
       "original": {
@@ -1432,6 +1432,7 @@
         "nixpkgs": "nixpkgs_6",
         "odu": "odu",
         "olai": "olai",
+        "skills": "skills",
         "vira": "vira",
         "xyne-boxes": "xyne-boxes"
       }
@@ -1494,6 +1495,22 @@
       "original": {
         "owner": "bflyblue",
         "repo": "servant-event-stream",
+        "type": "github"
+      }
+    },
+    "skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794417369,
+        "narHash": "sha256-eXm6n2AN1H6Pu5QkwGfJZcMvn+kXv4eTdxZ+mTjc1Zw=",
+        "owner": "juspay",
+        "repo": "skills",
+        "rev": "5875f7508919a9216f2de7656c2b7d731c24279c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "juspay",
+        "repo": "skills",
         "type": "github"
       }
     },

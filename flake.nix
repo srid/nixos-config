@@ -49,6 +49,9 @@
 
     # Coding-agent launchers; the Juspay profile is installed by modules/home/work/coding-agents.nix.
     agent-distro.url = "github:juspay/agent-distro";
+    # That profile (skills, kolu plugin, LiteLLM gateway settings) as a
+    # `plugin.json` repository, pinned so a launch reads it offline.
+    skills = { url = "github:juspay/skills"; flake = false; };
 
     xyne-boxes.url = "github:juspay/xyne-boxes/list-refresh-ssh-config";
     xyne-boxes.inputs.nixpkgs.follows = "nixpkgs";
