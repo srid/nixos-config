@@ -9,10 +9,10 @@
 { config, flake, lib, pkgs, ... }:
 
 let
-  # olai probes `OLAI_AGENT_PATH` (else the service's PATH) for the engines it
-  # does not pin, and reads only OpenCode 2's wire. agent-distro pins that
-  # build; it is referenced by the unit's environment only — not installed in
-  # the user profile, so a shell's `opencode` is untouched.
+  # The engines olai may seat, as packages. agent-distro pins OpenCode 2's
+  # build — the wire olai reads — and `services.olai.agents` turns it into the
+  # unit's `OLAI_AGENT_PATH`; nothing lands in the user profile, so a shell's
+  # `opencode` is untouched.
   inherit (flake.inputs.agent-distro.harnesses.${pkgs.stdenv.hostPlatform.system})
     opencode;
 in
@@ -25,6 +25,7 @@ in
     host = "127.0.0.1";
     port = flake.inputs.olai.lib.defaultPort; # 7714
     environmentFile = config.onepassword.envFiles.olai.path;
+    agents = [ opencode ];
   };
 
   onepassword = {
@@ -43,11 +44,7 @@ in
     Service = {
       # Behind `tailscale serve` the browser's origin is not the Host olai
       # sees, and the websocket refuses unknown origins.
-      Environment = [
-        "OLAI_ALLOWED_ORIGINS=https://gossamer.rooster-blues.ts.net"
-        # Replaces the probe's search path: exactly this, nothing ambient.
-        "OLAI_AGENT_PATH=${lib.makeBinPath [ opencode ]}"
-      ];
+      Environment = [ "OLAI_ALLOWED_ORIGINS=https://gossamer.rooster-blues.ts.net" ];
       # 1Password unreachable at login must not become the module's 1s restart
       # storm.
       RestartSec = lib.mkForce "30s";
