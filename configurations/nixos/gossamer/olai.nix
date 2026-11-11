@@ -10,30 +10,11 @@
 
 let
   # olai probes `OLAI_AGENT_PATH` (else the service's PATH) for the engines it
-  # does not pin, and reads only OpenCode 2's wire. agent-distro names its v2
-  # launcher `opencode2` because the distribution ships the v1 line beside it,
-  # so the pin is exposed under the name the probe asks for. It is referenced
-  # by the unit's environment only — not installed in the user profile, so a
-  # shell's `opencode` is untouched.
-  opencode =
-    let
-      inherit (flake.inputs.agent-distro.harnesses.${pkgs.stdenv.hostPlatform.system})
-        opencode2;
-    in
-    pkgs.runCommand "opencode" { } ''
-      mkdir -p $out/bin
-      ln -s ${opencode2}/bin/opencode2 $out/bin/opencode
-    '';
-
-  # `OLAI_AGENT_PATH` REPLACES the search path, so the profile and system
-  # directories stay listed to keep the other search-path engines (omp, pi)
-  # discoverable where this repo installs them.
-  agentPath = lib.concatStringsSep ":" [
-    "${opencode}/bin"
-    "${config.home.profileDirectory}/bin"
-    "/run/current-system/sw/bin"
-    "/nix/var/nix/profiles/default/bin"
-  ];
+  # does not pin, and reads only OpenCode 2's wire. agent-distro pins that
+  # build; it is referenced by the unit's environment only — not installed in
+  # the user profile, so a shell's `opencode` is untouched.
+  inherit (flake.inputs.agent-distro.harnesses.${pkgs.stdenv.hostPlatform.system})
+    opencode;
 in
 {
   imports = [ flake.inputs.olai.homeManagerModules.default ];
@@ -64,7 +45,8 @@ in
       # sees, and the websocket refuses unknown origins.
       Environment = [
         "OLAI_ALLOWED_ORIGINS=https://gossamer.rooster-blues.ts.net"
-        "OLAI_AGENT_PATH=${agentPath}"
+        # Replaces the probe's search path: exactly this, nothing ambient.
+        "OLAI_AGENT_PATH=${lib.makeBinPath [ opencode ]}"
       ];
       # 1Password unreachable at login must not become the module's 1s restart
       # storm.
