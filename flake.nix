@@ -43,7 +43,7 @@
 
     kolu.url = "github:juspay/kolu/pull/2346/head";
     drishti.url = "github:srid/drishti";
-    olai.url = "github:juspay/olai/pull/688/head";
+    olai.url = "github:juspay/olai/pull/691/head";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
     odu.url = "github:juspay/odu";
 
