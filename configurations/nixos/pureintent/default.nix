@@ -89,6 +89,9 @@ in
     "${homeMod}/cli/ssh-agent-forwarding.nix"
     "${homeMod}/cli/controlpersist.nix"
     "${homeMod}/cli/atuin.nix"
+    # LITELLM_API_KEY for Juspay's gateway (agenix → ~/.bashrc). Kolu's
+    # terminals run on this host now, so agents started there need it.
+    "${homeMod}/work/litellm.nix"
 
     # "${homeMod}/services/dropbox.nix"
     # "${homeMod}/services/obsidian.nix"
