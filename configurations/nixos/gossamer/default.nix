@@ -38,5 +38,14 @@ in
 
   # Kolu now runs on pureintent (see configurations/nixos/pureintent/kolu.nix).
 
+  # Reachable over SSH so pureintent (and CI lanes) can get in, and so this
+  # box can be deployed from elsewhere. Srid's main key arrives via
+  # modules/nixos/shared/primary-as-admin.nix; pureintent's own key is added
+  # here because that headless box has no 1Password agent to offer the main one.
+  services.openssh.enable = true;
+  users.users.${flake.config.me.username}.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEnWriRB3c/G+O4/N5ALnOQBdBTp9LeGC6HNYTZCCGS2 srid@pureintent"
+  ];
+
   zramSwap.enable = true;
 }
