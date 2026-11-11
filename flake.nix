@@ -41,7 +41,7 @@
     linux-omarchy-nix.url = "github:srid/linux-omarchy-nix";
     linux-omarchy-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    kolu.url = "github:juspay/kolu/pull/2350/head";
+    kolu.url = "github:juspay/kolu";
     drishti.url = "github:srid/drishti";
     olai.url = "github:juspay/olai/pull/691/head";
     # odu's service: board, CI, cache, GitHub sign-in (server mode).
