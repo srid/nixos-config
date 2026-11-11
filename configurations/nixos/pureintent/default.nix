@@ -13,6 +13,7 @@ in
     self.nixosModules.default
     (self + /k8s/odu-lane.nix)
     ./configuration.nix
+    ./kolu.nix
     (self + /modules/nixos/linux/beszel.nix)
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)

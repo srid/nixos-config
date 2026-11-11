@@ -101,10 +101,10 @@ vanilla Codex/Claude launchers using personal authentication. The work jumphost
 provides SOCKS5 at `127.0.0.1:1080`; `juspay-run`, `xyne-boxes`, and `pu` use it.
 Zram and automatic garbage collection are enabled.
 
-**Kolu starts at boot**, before login. Access it at
-[http://gossamer:7692](http://gossamer:7692) or privately over Tailscale at
-[https://gossamer.rooster-blues.ts.net](https://gossamer.rooster-blues.ts.net).
-Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funnel.
+**Kolu runs on pureintent** (see `configurations/nixos/pureintent/kolu.nix`), not
+here. Access it privately over Tailscale at
+[https://pureintent.rooster-blues.ts.net](https://pureintent.rooster-blues.ts.net).
+Serve provides HTTPS within the tailnet, not Funnel.
 
 ## Where to change things
 
@@ -122,7 +122,7 @@ Remote HTTP is permitted only through Tailscale; Serve provides HTTPS, not Funne
 | `desktop/input-preferences.nix`, `desktop/displays.nix`, `desktop/power.nix` | Input preferences, monitor profiles, sleep policy |
 | `desktop/keyring.nix`, `chrome/` | Wallet integration, Chrome settings, restart and login restoration |
 | `desktop/video.nix`, `desktop/recording.nix` | Video player, file associations, recording fixes |
-| `tailscale.nix` | Tailscale, Kolu access, HTTPS, tray |
+| `tailscale.nix` | Tailscale and the tray applet |
 
 ## Apply or reuse
 

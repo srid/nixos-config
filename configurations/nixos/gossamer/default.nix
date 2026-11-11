@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
@@ -32,22 +32,11 @@ in
     # odu CI lane list (~/.config/odu/hosts.json); the kolu-ci-* lanes need
     # pu's ssh aliases (~/.pu-state), ci@croissant works over the tailnet.
     "${homeMod}/cli/odu.nix"
-    "${homeMod}/services/kolu.nix"
     "${homeMod}/work/juspay.nix"
     "${homeMod}/work/litellm.nix"
-    {
-      # Include loopback: the local hostname resolves to 127.0.0.2.
-      # Remote access is allowed only via tailscale0 in tailscale.nix.
-      services.kolu.host = "0.0.0.0";
-    }
   ];
 
-  # Start Kolu's user service at boot, even before a desktop login.
-  users.users.${flake.config.me.username}.linger = true;
-
-  environment.systemPackages = [
-    inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+  # Kolu now runs on pureintent (see configurations/nixos/pureintent/kolu.nix).
 
   zramSwap.enable = true;
 }
