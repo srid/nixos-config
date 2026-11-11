@@ -2,12 +2,39 @@
 # web view is http://127.0.0.1:7714 instead of the k3s deployment this repo
 # used to run on naiveintent.
 #
-# Everything about serving comes from olai's own module options; the only
-# additions are the mail client's environment file (resolved from 1Password by
-# `modules/home/services/onepassword.nix`) and the ordering that guarantees it
-# exists first.
-{ config, flake, lib, ... }:
+# Everything about serving comes from olai's own module options; the additions
+# are the mail client's environment file (resolved from 1Password by
+# `modules/home/services/onepassword.nix`), the ordering that guarantees it
+# exists first, and OpenCode on the agent search path.
+{ config, flake, lib, pkgs, ... }:
 
+let
+  # olai probes `OLAI_AGENT_PATH` (else the service's PATH) for the engines it
+  # does not pin, and reads only OpenCode 2's wire. agent-distro names its v2
+  # launcher `opencode2` because the distribution ships the v1 line beside it,
+  # so the pin is exposed under the name the probe asks for. It is referenced
+  # by the unit's environment only — not installed in the user profile, so a
+  # shell's `opencode` is untouched.
+  opencode =
+    let
+      inherit (flake.inputs.agent-distro.harnesses.${pkgs.stdenv.hostPlatform.system})
+        opencode2;
+    in
+    pkgs.runCommand "opencode" { } ''
+      mkdir -p $out/bin
+      ln -s ${opencode2}/bin/opencode2 $out/bin/opencode
+    '';
+
+  # `OLAI_AGENT_PATH` REPLACES the search path, so the profile and system
+  # directories stay listed to keep the other search-path engines (omp, pi)
+  # discoverable where this repo installs them.
+  agentPath = lib.concatStringsSep ":" [
+    "${opencode}/bin"
+    "${config.home.profileDirectory}/bin"
+    "/run/current-system/sw/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
+in
 {
   imports = [ flake.inputs.olai.homeManagerModules.default ];
 
@@ -35,7 +62,10 @@
     Service = {
       # Behind `tailscale serve` the browser's origin is not the Host olai
       # sees, and the websocket refuses unknown origins.
-      Environment = [ "OLAI_ALLOWED_ORIGINS=https://gossamer.rooster-blues.ts.net" ];
+      Environment = [
+        "OLAI_ALLOWED_ORIGINS=https://gossamer.rooster-blues.ts.net"
+        "OLAI_AGENT_PATH=${agentPath}"
+      ];
       # 1Password unreachable at login must not become the module's 1s restart
       # storm.
       RestartSec = lib.mkForce "30s";
