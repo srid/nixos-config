@@ -23,5 +23,6 @@
     ./cli/just.nix
     ./cli/npm.nix
     ./services/ttyd.nix
+    ./services/onepassword.nix
   ];
 }

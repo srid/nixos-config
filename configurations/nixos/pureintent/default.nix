@@ -18,7 +18,7 @@ in
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/llm-debugging.nix)
     (self + /modules/nixos/linux/atuin.nix)
-    # Single-node K3s cluster running odu; olai's cluster is on naiveintent.
+    # Single-node K3s cluster running odu.
     (self + /k8s)
     (self + /k8s/apps/odu)
     (self + /k8s/apps/prometheus)
@@ -47,9 +47,10 @@ in
   services.openssh.enable = true;
   services.tailscale.enable = true;
 
-  # odu CI lane (modules/home/cli/odu.nix lists ci@pureintent), as on
-  # croissant. Builders need only SSH access and Nix; the odu cache in the K3s
-  # pod on this host is a separate thing and does not use this user.
+  # odu CI lane, as on croissant. Builders need only SSH access and Nix; the
+  # odu cache in the K3s pod on this host is a separate thing and does not use
+  # this user. This host is no longer in the lane inventory
+  # (modules/home/cli/odu.nix).
   users.users.ci.openssh.authorizedKeys.keys = [
     flake.config.me.sshKey
     # srid on this very host, for lanes started here.

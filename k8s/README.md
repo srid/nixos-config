@@ -3,8 +3,6 @@
 Single-node K3s learning clusters, one per host. A host imports
 [`default.nix`](default.nix), which enables K3s, and then the apps it runs:
 
-- naiveintent: [`apps/olai`](apps/olai), the olai deployment with persistent
-  storage and a Tailscale HTTPS Ingress.
 - pureintent: [`apps/odu`](apps/odu), odu's board, CI service, and Nix binary
   cache, public through a Tailscale Funnel Ingress behind odu's own GitHub
   sign-in.
@@ -66,15 +64,14 @@ host only.
    just activate <host>
    ```
 
-Agenix decrypts the file using the host's SSH host key; both cluster hosts are
-recipients in [`secrets.nix`](../secrets/secrets.nix) and share one OAuth client
-and one 1Password token. K3s reads the Secret through a runtime symlink;
-plaintext stays out of Git and the Nix store. The Machines page should show
-`<host>-k3s-operator`.
+Agenix decrypts the file using the host's SSH host key; the cluster host is a
+recipient in [`secrets.nix`](../secrets/secrets.nix) alongside the user keys.
+K3s reads the Secret through a runtime symlink; plaintext stays out of Git and
+the Nix store. The Machines page should show `<host>-k3s-operator`.
 
 ## Update credentials
 
-Edit the same encrypted file, then run `just activate <host>` for each cluster.
+Edit the same encrypted file, then run `just activate <host>` for the cluster.
 Explicitly refresh the Kubernetes Secret before restarting; activation alone
 does not reliably refresh credentials through the agenix symlink. The `kubectl`
 commands below run on the cluster's host.
@@ -103,13 +100,14 @@ with the SDK provider, without a Connect server. Apps declare item/field
 mappings; only their namespaces may use the shared `Kubernetes` vault. The
 read-only service-account token is bootstrapped through agenix using
 `secrets/onepassword-token.json.age`. Apps never receive that token. Gossamer
-can be off; the cluster talks directly to 1Password. Every cluster uses the
-same token, so each can read any item in the `Kubernetes` vault.
+can be off; the cluster talks directly to 1Password. The token is read-only and
+scoped to the `Kubernetes` vault, so one token serves every reader of that
+vault — including workstation services through
+[`modules/home/services/onepassword.nix`](../modules/home/services/onepassword.nix).
 
 Secrets refresh hourly. Source errors retain the last synchronized values;
 check `kubectl get externalsecret -A` for failures. Pod restarts are manual after
 rotation because environment variables and init-copied files do not reload.
-See [olai's instructions](apps/olai/README.md#credentials-and-rotation).
 
 To rotate the bootstrap token, update its encrypted manifest with agenix,
 activate, then apply the decrypted file (do not rely on the changed symlink):
@@ -125,17 +123,17 @@ Tailscale operator credentials remain on agenix.
 
 ## Roadmap: app isolation
 
-Olai enables the reusable [hardening module](modules/hardening.nix): no mounted
+Apps enable the reusable [hardening module](modules/hardening.nix): no mounted
 service-account token, no privilege escalation, no Linux capabilities,
 `RuntimeDefault` seccomp, and read-only roots with explicit writable mounts.
-App modules also emit namespace-wide default-deny NetworkPolicies. Olai opts
-into cluster DNS, public TCP 80/443 (web), 22 (Git), and 465/587/993 (mail).
-Private/LAN, tailnet, cluster, and link-local destinations are excluded. Among
-other pods, only olai's Tailscale ingress proxy may initiate connections to its
-web port. Kubernetes still permits traffic originating on the local node.
-The host firewall blocks pod access to ordinary host services; only cluster
-API/kubelet ports remain available for infrastructure, and olai's egress policy
-blocks those too. This setup is IPv4-only; no IPv6 egress is allowed.
+App modules also emit namespace-wide default-deny NetworkPolicies, and each app
+opts into exactly the egress it needs — cluster DNS plus named public ports.
+Private/LAN, tailnet, cluster, and link-local destinations are excluded, and
+only an app's own Tailscale ingress proxy may reach its web port. Kubernetes
+still permits traffic originating on the local node. The host firewall blocks
+pod access to ordinary host services; only cluster API/kubelet ports remain
+available for infrastructure, and app egress policies block those too. This
+setup is IPv4-only; no IPv6 egress is allowed.
 
 Remaining work:
 
@@ -144,4 +142,4 @@ Remaining work:
 - Replace the whole-host `/nix/store` mount with an image containing the app's
   required packages.
 - Run agents in separate execution containers with limited mounts and credentials
-  when they should not have olai's full access to Vault, Git, and mail.
+  when they should not inherit an app's full access to its data and secrets.

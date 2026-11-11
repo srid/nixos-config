@@ -2,7 +2,10 @@
 let
   input = import ./input-preferences.nix;
   focusOrLaunch = pkgs.callPackage ./focus-or-launch.nix { };
-  olaiAppId = "ibjcidhmendlapdjlbedpmplbfiglmpo";
+  # olai runs as a user service on this laptop (configurations/nixos/gossamer/olai.nix),
+  # exposed as https://gossamer.rooster-blues.ts.net/; this is its installed PWA
+  # ("olai [gossamer]") in the Default profile.
+  olaiAppId = "mjffbmcccchpeiihgnfodjiaiicfpljk";
   # Kolu runs on pureintent now; this is its installed PWA in the Default
   # profile (window app-id `chrome-<id>-Default`).
   koluAppId = "fmoabekojbnjmahgadhebdplndmfageo";

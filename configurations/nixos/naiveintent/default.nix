@@ -11,9 +11,6 @@ in
     self.nixosModules.default
     (self + /k8s/odu-lane.nix)
     ./configuration.nix
-    # Single-node K3s cluster running olai; odu's cluster is on pureintent.
-    (self + /k8s)
-    (self + /k8s/apps/olai)
     (self + /modules/nixos/linux/my-workstation.nix)
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)
     (self + /modules/nixos/linux/devbox.nix)
@@ -36,9 +33,6 @@ in
     # LITELLM_API_KEY for Juspay's gateway
     "${homeMod}/work/litellm.nix"
   ];
-
-  # Ethernet address (enp1s0f0); the Wi-Fi interface has a different one.
-  k8s.nodeIP = "192.168.2.48";
 
   zramSwap.enable = true;
   swapDevices = [{

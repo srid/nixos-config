@@ -23,7 +23,7 @@ while hidden. A 4500 K night-light tint stays on all day.
 | Top-right hot corner | Focus Xyne Spaces, or launch it if closed; 250 ms delay |
 | Ctrl+Alt+U | Focus Google Chrome, or launch it if closed |
 | Ctrl+Alt+K | Focus the Kolu PWA, or launch it if closed |
-| Ctrl+Alt+L | Focus the olai K3s PWA, or launch it if closed |
+| Ctrl+Alt+L | Focus the olai PWA (this laptop's own service), or launch it if closed |
 | Meta+arrows / Meta+Shift+arrows | Focus / move windows and columns |
 | Meta+PageUp/PageDown | Switch workspace; add Shift to move a column there |
 | Meta+Ctrl+Left/Right | Focus another monitor |

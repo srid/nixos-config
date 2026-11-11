@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 {
   # Kolu moved here from the gossamer workstation: a single always-on host
@@ -20,21 +20,5 @@
 
   # Serve the node's HTTPS name privately within the tailnet (not Funnel).
   # services.tailscale.serve manages named Tailscale Services instead.
-  systemd.services.tailscale-serve-kolu = {
-    description = "Serve Kolu over tailnet HTTPS";
-    after = [ "tailscaled.service" "tailscaled-set.service" ];
-    wants = [ "tailscaled.service" ];
-    wantedBy = [ "multi-user.target" ];
-    # tailscaled can be active before its backend reaches Running. Keep
-    # retrying through startup/offline periods instead of failing until reboot.
-    startLimitIntervalSec = 0;
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      Restart = "on-failure";
-      RestartSec = "5s";
-      ExecStart = "${pkgs.tailscale}/bin/tailscale serve --bg --https=443 http://127.0.0.1:7692";
-      ExecStop = "${pkgs.tailscale}/bin/tailscale serve --https=443 off";
-    };
-  };
+  tailscaleServe.kolu.port = 7692;
 }

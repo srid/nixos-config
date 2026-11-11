@@ -19,6 +19,7 @@ in
     }
     self.nixosModules.common
     inputs.agenix.nixosModules.default # Used in github-runner.nix & hedgedoc.nix
+    ./tailscale-serve.nix
     ./linux/current-location.nix
   ];
 

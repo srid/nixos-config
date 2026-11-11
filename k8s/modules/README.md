@@ -42,7 +42,7 @@ Import this directory in an app's NixOS module and configure `k8s.apps.<name>`:
 The SSH and Git modules independently contribute packages, environment,
 ConfigMaps, volumes, mounts, and init containers. SSH runs before Git. Use the
 resulting `manifests`, `env`, `securityContext`, `volumes`, `volumeMounts`, and
-`initContainers` in the app's resources; [olai](../apps/olai/default.nix) shows
+`initContainers` in the app's resources; [odu](../apps/odu/default.nix) shows
 this wiring. Each app still owns its Deployment, PVC, Service, and secret source.
 
 With hardening enabled, also wire `automountServiceAccountToken` into the pod and

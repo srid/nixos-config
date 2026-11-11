@@ -46,7 +46,7 @@ in
     # The kolu terminal-side CLIs, without running the kolu service itself.
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.kaval-tui
     inputs.kolu.packages.${pkgs.stdenv.hostPlatform.system}.padi-tui
-    # olai CLI only — the web service lives on naiveintent.
+    # olai CLI only — the web service runs on gossamer (configurations/nixos/gossamer/olai.nix).
     inputs.olai.packages.${pkgs.stdenv.hostPlatform.system}.olai
   ];
 }

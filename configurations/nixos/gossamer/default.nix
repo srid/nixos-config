@@ -26,6 +26,7 @@ in
   ];
 
   home-manager.sharedModules = [
+    ./olai.nix
     "${homeMod}/gui/1password.nix"
     "${homeMod}/cli/ssh-agent-forward.nix"
     "${homeMod}/cli/atuin.nix"
