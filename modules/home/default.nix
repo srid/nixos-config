@@ -12,6 +12,7 @@
   manual.manpages.enable = false;
   imports = [
     ./cli/tmux.nix
+    ./cli/ssh.nix
     ./editors/neovim
     # ./editors/helix.nix
     ./cli/starship.nix

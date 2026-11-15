@@ -17,6 +17,7 @@ in
     "${homeMod}/cli/starship.nix"
     "${homeMod}/cli/bash.nix"
     "${homeMod}/cli/terminal.nix"
+    "${homeMod}/cli/ssh.nix"
     "${homeMod}/gui/1password.nix"
     "${homeMod}/cli/ssh-agent-forward.nix"
     # "${homeMod}/services/obsidian.nix"

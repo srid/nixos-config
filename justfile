@@ -14,8 +14,11 @@ mod apps 'k8s/apps/mod.just'
 # Pull from kolu's OSS cache (https://cache.kolu.dev/kolu-r2) during
 # `activate`. Off by default; enable with `just oss_cache=1 activate [host]` or
 # `OSS_CACHE=1 just activate [host]`. Needs a trusted-user (wheel) for the extra
-# public key to be honoured. Applies to local builds only; the ssh deploy path
-# does not forward NIX_CONFIG.
+# public key to be honoured.
+#
+# Remote activations get it too: NIX_CONFIG crosses ssh (SendEnv in
+# modules/home/cli/ssh.nix, AcceptEnv in modules/nixos/shared/forward-nix-config.nix)
+# and survives `sudo nixos-rebuild` via that module's env_keep.
 # Matches juspay/kolu's flake nixConfig (kolu-r2 bucket and key).
 oss_cache := env("OSS_CACHE", "0")
 oss_cache_nix_config := """
