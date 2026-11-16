@@ -49,7 +49,7 @@ in
 
   # odu CI lane, as on croissant. Builders need only SSH access and Nix; the
   # odu cache in the K3s pod on this host is a separate thing and does not use
-  # this user. This host is no longer in the lane inventory
+  # this user. This host is listed in the lane inventory
   # (modules/home/cli/odu.nix).
   users.users.ci.openssh.authorizedKeys.keys = [
     flake.config.me.sshKey
