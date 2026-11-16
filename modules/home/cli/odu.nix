@@ -11,6 +11,8 @@
       x86_64-linux = [
         # OVH dedicated (configurations/nixos/croissant), over the tailnet.
         "ci@croissant"
+        # Workstation (configurations/nixos/naiveintent), over the tailnet.
+        "ci@naiveintent"
         # K3s host running odu itself (configurations/nixos/pureintent).
         "ci@pureintent"
         # `pu`-managed CI boxes; the ssh aliases come from ~/.pu-state/*/ssh_config.

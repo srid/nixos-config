@@ -42,7 +42,7 @@ in
 
   networking.firewall.allowedTCPPorts = [ 7692 ];
 
-  # odu CI lane on the workstation (modules/home/cli/odu.nix used to list
-  # ci@pureintent here; pureintent left the inventory).
+  # odu CI lane on the workstation. This host is listed in the lane
+  # inventory (modules/home/cli/odu.nix).
   users.users.ci.openssh.authorizedKeys.keys = [ flake.config.me.sshKey ];
 }
