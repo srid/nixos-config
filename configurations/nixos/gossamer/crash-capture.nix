@@ -14,6 +14,21 @@
 # warnings on the Thunderbolt teardown path (xhci_pci_remove → pci_disable_device,
 # drivers/pci/pci.c:2198), and rebooting on those would be worse than the freeze.
 {
+  # kdump: the 2026-11-16 crash panicked (28 s from the last journal write to
+  # the next boot, matching panic=30) yet wrote no pstore record, so the dmesg
+  # that would name the fault was lost. Reserve memory and pre-load the running
+  # kernel + initrd as a crash kernel at every boot: a panic — including the
+  # lockup panics above, and nmi_watchdog=panic which this module adds —
+  # kexecs into it with the dead kernel's memory at /proc/vmcore instead of
+  # rebooting blind. The crash boot lands in a rescue shell
+  # (`boot.shell_on_fail`); save the dump before rebooting, e.g.
+  # `cp /proc/vmcore /var/crash/vmcore-$(date +%s)`, or
+  # `makedumpfile -l /proc/vmcore /var/crash/vmcore` to skip free pages.
+  boot.crashDump = {
+    enable = true;
+    reservedMemory = "256M";
+  };
+
   boot.kernel.sysctl = {
     "kernel.panic_on_oops" = 1;
     "kernel.panic" = 30;
