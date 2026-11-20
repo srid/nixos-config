@@ -94,5 +94,10 @@ in
   };
   environment.systemPackages = [ pkgs.git ];
 
+  # netbird-local runs as srid's user unit, and this box is headless: the user
+  # manager has to start at boot, not at the first login.
+  users.users.${flake.config.me.username}.linger = true;
+  home-manager.sharedModules = [ (self + /modules/home/services/netbird.nix) ];
+
   zramSwap.enable = true;
 }
