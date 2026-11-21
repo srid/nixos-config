@@ -31,7 +31,7 @@ while hidden. A 4500 K night-light tint stays on all day.
 | Meta+F / Meta+Shift+F | Maximize column / fullscreen |
 | Meta+V / Meta+Q / Meta+L | Floating / close window / lock |
 | Meta+F1/F2 | Studio Display brightness down/up; also works in Plasma |
-| Print / F9 | Screenshot / GPU Screen Recorder |
+| Print / F9 | Screenshot / Kooha recorder |
 | Meta+D / Meta+Shift+D | Start or stop dictation / cancel dictation |
 | Meta+Shift+/ / Ctrl+Alt+Delete | Shortcut help / logout confirmation |
 
@@ -62,13 +62,12 @@ and left-drag moves windows. Click a window to return to it.
 - **Calendar:** Google Calendar events appear in the date popup, refreshed every
   15 minutes. Authorize once through Settings → Services → Calendar → Google
   Calendar → Save and Connect. Events are read-only; tokens stay in the keyring.
-- **Recording:** F9 opens GPU Screen Recorder. It captures the monitor through
-  DRM/KMS and encodes on the GPU with VA-API: HEVC, 60 fps, native resolution,
-  very-high quality, and AAC audio. A setcap'd `gsr-kms-server` makes capture
-  promptless; the screencast portal is not involved. Intel's H.264 encoder stops
-  at 4096 px wide, so recording the 5K Studio Display needs HEVC, or H.264 after
-  setting **Change video resolution** to 3840×2160. Recording settings live in
-  `~/.config/gpu-screen-recorder/config` and are editable in the app.
+- **Recording:** F9 opens Kooha, defaulting to MP4/H.264 at 60 fps
+  (constant quality, CRF 17), with 192 kbps AAC audio when enabled. Captures retain
+  their native resolution; higher resolution and frame rate mean larger files.
+  Niri 26.04 carries the
+  [shared-memory capture backport](https://github.com/niri-wm/niri/pull/1791).
+  Kooha carries its upstream clock fix and an isolated PipeWire timestamp fix.
   Open recordings in **Haruna**, the default video player (MP4, WebM, MKV, and more).
 - **Chrome:** both desktops use KWallet 6 for cookie encryption. After updating
   Chrome, use **Restart Chrome** in the launcher or run `restart-chrome` to reopen
@@ -122,7 +121,7 @@ Serve provides HTTPS within the tailnet, not Funnel.
 | `desktop/noctalia-calendar.nix` | Google Calendar account and event display |
 | `desktop/input-preferences.nix`, `desktop/displays.nix`, `desktop/power.nix` | Input preferences, monitor profiles, sleep policy |
 | `desktop/keyring.nix`, `chrome/` | Wallet integration, Chrome settings, restart and login restoration |
-| `desktop/video.nix`, `desktop/recording.nix` | Video player, file associations, GPU Screen Recorder |
+| `desktop/video.nix`, `desktop/recording.nix` | Video player, file associations, recording fixes |
 | `tailscale.nix` | Tailscale and the tray applet |
 
 ## Apply or reuse
