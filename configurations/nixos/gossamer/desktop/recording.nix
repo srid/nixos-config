@@ -1,5 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+  # Records through DRM/KMS and encodes on the GPU with VA-API. The NixOS
+  # module installs a setcap'd gsr-kms-server, so monitor capture needs neither
+  # an xdg-desktop-portal picker nor a root prompt. Intel's H.264 encoder caps
+  # out at 4096 px wide, so the 5K Studio Display records HEVC at native
+  # resolution (or H.264 scaled to 4K).
+  programs.gpu-screen-recorder = {
+    enable = true;
+    gtk.enable = true;
+  };
+
   environment.systemPackages = [ pkgs.kooha ];
 
   home-manager.sharedModules = [
@@ -11,6 +21,23 @@
           1
         ];
       };
+
+      # gpu-screen-recorder-gtk owns this file at runtime, so seed it once
+      # instead of symlinking it from the store (the app rewrites the file on
+      # every settings change). HEVC is required above 4096 px wide on Intel.
+      home.activation.gsrDefaults = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        gsr_config="$HOME/.config/gpu-screen-recorder/config"
+        if [[ ! -e "$gsr_config" ]]; then
+          mkdir -p "$(dirname "$gsr_config")"
+          cat > "$gsr_config" <<'EOF'
+main.codec hevc
+main.fps 60
+main.quality very_high
+main.audio_codec aac
+main.audio_input device:Default output
+EOF
+        fi
+      '';
     })
   ];
 
