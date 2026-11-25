@@ -895,16 +895,16 @@
     },
     "kolu": {
       "locked": {
-        "lastModified": 1795101547,
-        "narHash": "sha256-R5guYy0ka90t5y4+Q14NmRMAXAfOqMcBysEJza5QzDE=",
+        "lastModified": 1795615994,
+        "narHash": "sha256-G76AOgf1MUvMWI7jtWg3fOr9SYqySyrOOC61xzbl3Y0=",
         "owner": "juspay",
         "repo": "kolu",
-        "rev": "0f1453fc66a6124f259765abe16a43e0bcc7b3bf",
+        "rev": "dde556ed88a0fada53922724d8b71d7ca9fc8565",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
+        "ref": "pull/2439/head",
         "repo": "kolu",
         "type": "github"
       }
@@ -1330,16 +1330,15 @@
         "bun2nix": "bun2nix_3"
       },
       "locked": {
-        "lastModified": 1795066586,
-        "narHash": "sha256-iAhNsrXj9GETfmK8hfjckvS9q3p4TaTSxIskJW4u1Fc=",
+        "lastModified": 1795572535,
+        "narHash": "sha256-0Tyb6rcbjTHc0XrIbNz/Wm7bBm6XkvOY8v2sM1xrxjs=",
         "owner": "juspay",
         "repo": "olai",
-        "rev": "764d276e35022c0180c3c8fd66a34843fd0d2003",
+        "rev": "0a53b14ab1f7cc5e879be842ea5f6b71f5bc5763",
         "type": "github"
       },
       "original": {
         "owner": "juspay",
-        "ref": "master",
         "repo": "olai",
         "type": "github"
       }
