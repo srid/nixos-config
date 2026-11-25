@@ -47,10 +47,33 @@ let
     export OP_SERVICE_ACCOUNT_TOKEN="$(${jq} -r \
       '.items[] | select(.kind == "Secret") | .stringData.token' \
       "$CREDENTIALS_DIRECTORY/op-token")"
+
+    # A user service can run before the resolver is up: the login-time auth
+    # call then fails and `op read` yields an empty string. Ride out the boot
+    # race, and never write a blank secret — an empty OAuth client silently
+    # disables the consumer's feature instead of failing the unit.
+    read_secret() {
+      local value attempt
+      for attempt in 1 2 3 4 5; do
+        if value=$(${op} read "$1" 2>/dev/null) && [ -n "$value" ]; then
+          printf '%s' "$value"
+          return 0
+        fi
+        if [[ $attempt -lt 5 ]]; then
+          ${lib.getExe' pkgs.coreutils "sleep"} $((1 << (attempt - 1)))
+        fi
+      done
+      echo "onepassword-env: failed to read $1" >&2
+      return 1
+    }
+
     mkdir -p ${lib.escapeShellArg stateDir} "$(dirname "$1")"
     {
     ${lib.concatStrings (lib.mapAttrsToList
-      (name: ref: ''  printf '${name}=%s\n' "$(${op} read ${lib.escapeShellArg ref})"'' + "\n")
+      (name: ref: ''
+        value=$(read_secret ${lib.escapeShellArg ref}) || exit 1
+        printf '%s=%s\n' ${lib.escapeShellArg name} "$value"
+      '')
       secrets)}
     } > "$1.tmp"
     mv -f "$1.tmp" "$1"
