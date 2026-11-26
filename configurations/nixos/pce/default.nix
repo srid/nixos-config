@@ -6,6 +6,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  homeMod = self + /modules/home;
 in
 {
   # DHCP address on the LAN; switch to `srid@pce` once MagicDNS/tailnet
@@ -39,6 +40,12 @@ in
   ];
 
   services.openssh.enable = true;
+
+  # LITELLM_API_KEY for Juspay's gateway (agenix -> ~/.bashrc), same as
+  # pureintent/naiveintent; agent-distro prompts without it.
+  home-manager.sharedModules = [
+    "${homeMod}/work/litellm.nix"
+  ];
 
   # Not enrolled unattended: run `tailscale up` once after the install.
   services.tailscale.enable = true;
