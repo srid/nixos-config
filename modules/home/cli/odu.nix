@@ -15,6 +15,8 @@
         "ci@naiveintent"
         # K3s host running odu itself (configurations/nixos/pureintent).
         "ci@pureintent"
+        # MINISFORUM MS-A2 (configurations/nixos/pce), over the tailnet.
+        "ci@pce"
         # `pu`-managed CI boxes; the ssh aliases come from ~/.pu-state/*/ssh_config.
         # Underlying pu machine names:
         #   kolu-ci-2  dev-x86-64-linux-17
