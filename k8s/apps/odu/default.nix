@@ -55,7 +55,7 @@ let
   # reached through the pod network's gateway. The node's LAN address is
   # rejected by the K3s host guard; the lane's own sshd listens on 10.42.0.1:2222.
   hostsFile = pkgs.writeText "odu-hosts.json" (builtins.toJSON {
-    x86_64-linux = [ "ci@croissant" "ci@naiveintent" ];
+    x86_64-linux = [ "ci@croissant" "ci@naiveintent" "ci@pce" ];
     aarch64-darwin = [ "ci@petit" ];
   });
   # One tailnet egress Service per lane: the pod is not a tailnet member, so
@@ -76,7 +76,7 @@ let
         ports = [{ name = "ssh"; port = 22; protocol = "TCP"; }];
       };
     })
-    [ "croissant" "naiveintent" "petit" ];
+    [ "croissant" "naiveintent" "petit" "pce" ];
   # The ssh material the coordinator's ssh child reads: HOME=/tmp, so the
   # emptyDir is mounted at /tmp/.ssh as well as the brief's /run/odu/ssh.
   laneSshDir = "/run/odu/ssh";

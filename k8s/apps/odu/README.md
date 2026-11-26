@@ -16,7 +16,7 @@ and the Machines view shows every lane unreachable. In the tailnet policy file,
 grant it by device name or by a tag the three carry:
 
 ```json
-{"src": ["tag:k8s"], "dst": ["croissant", "naiveintent", "petit"], "ip": ["tcp:22"]}
+{"src": ["tag:k8s"], "dst": ["croissant", "naiveintent", "petit", "pce"], "ip": ["tcp:22"]}
 ```
 
 One process serves the board, its CI runs, and a Nix binary cache; there is no
