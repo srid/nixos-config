@@ -10,6 +10,7 @@ in
   imports = [
     self.nixosModules.default
     (self + /k8s/odu-lane.nix)
+    (self + /modules/nixos/cache.nix)
     ./configuration.nix
     (self + /modules/nixos/linux/my-workstation.nix)
     # pu / xyne-boxes + juspay-run (needs jumphost SOCKS5 from juspay.nix)

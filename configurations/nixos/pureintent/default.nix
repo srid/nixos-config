@@ -12,6 +12,7 @@ in
   imports = [
     self.nixosModules.default
     (self + /k8s/odu-lane.nix)
+    (self + /modules/nixos/cache.nix)
     ./configuration.nix
     ./kolu.nix
     (self + /modules/nixos/linux/beszel.nix)

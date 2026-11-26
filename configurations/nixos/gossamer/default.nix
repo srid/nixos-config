@@ -20,6 +20,7 @@ in
     ./geforce-now.nix
     ./desktop
     ./tailscale.nix
+    (self + /modules/nixos/cache.nix)
     (self + /modules/nixos/linux/devbox.nix)
     (self + /modules/nixos/linux/gc.nix)
     (self + /modules/nixos/linux/gtk3-xdg-output-uaf.nix)
